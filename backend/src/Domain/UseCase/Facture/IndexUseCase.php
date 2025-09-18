@@ -4,17 +4,20 @@ declare(strict_types=1);
 
 namespace App\Domain\UseCase\Facture;
 
-use App\Application\Dto\Input\Facture\IndexInputDto;
 use App\Application\Dto\Output\Facture\IndexOutputDto;
-
 use App\Domain\Service\Soap\FactureSoapInterface;
+use App\Infrastructure\Transformer\FactureTransformer;
 
 final class IndexUseCase
 {
-  public function __construct(private readonly FactureSoapInterface $service) {}
+  public function __construct(
+    private readonly FactureSoapInterface $soapService,
+    private readonly FactureTransformer $transformer
+  ) {}
 
-  public function execute(IndexInputDto $inputDto): IndexOutputDto
+  public function execute(): IndexOutputDto
   {
-    return $this->service->indexService($inputDto);
+    $soapResponse = $this->soapService->indexService();
+    return $this->transformer->transformIndexResponse($soapResponse);
   }
 }

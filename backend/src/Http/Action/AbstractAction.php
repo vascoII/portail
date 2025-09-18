@@ -13,4 +13,12 @@ abstract class AbstractAction implements ActionInterface
   {
     return new JsonResponse($data, $status, $headers);
   }
+
+  /**
+   * Helper method to create API route path with /api prefix
+   */
+  protected static function apiPath(string $path): string
+  {
+    return '/api' . $path;
+  }
 }

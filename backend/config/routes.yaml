@@ -9,3 +9,4 @@ actions:
     path: ../src/Http/Action/
     namespace: App\Http\Action
   type: attribute
+  prefix: /api

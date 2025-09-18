@@ -6,5 +6,5 @@ namespace App\Application\Dto\Output\Facture;
 
 final class ReportOutputDto
 {
-  public function __construct(public readonly bool $generated) {}
+  public function __construct(public readonly string $pdfData) {}
 }

@@ -9,11 +9,12 @@ use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
 use App\Domain\UseCase\Facture\ReportUseCase;
 use App\Application\Dto\Input\Facture\ReportInputDto;
+use App\Infrastructure\Service\Auth\AuthenticationContext;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(path: '/factures/{pkFacture}/report', name: 'facture_report', methods: ['GET'])]
+#[Route(path: '/factures/download/{pkFacture}', name: 'facture_report', methods: ['GET'])]
 final class ReportAction extends AbstractAction implements ActionInterface
 {
   public function __construct(private readonly ResponderInterface $responder, private readonly ReportUseCase $useCase) {}
