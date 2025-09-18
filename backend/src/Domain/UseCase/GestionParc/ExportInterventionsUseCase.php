@@ -7,9 +7,12 @@ namespace App\Domain\UseCase\GestionParc;
 use App\Application\Dto\Input\GestionParc\ExportInterventionsInputDto;
 use App\Application\Dto\Output\GestionParc\ExportInterventionsOutputDto;
 use App\Domain\UseCase\UseCaseInterface;
+use App\Domain\Service\Soap\GestionParcSoapInterface;
 
 final class ExportInterventionsUseCase implements UseCaseInterface
 {
+  public function __construct(private readonly GestionParcSoapInterface $soap) {}
+
   public function execute(object $inputDto): object
   {
     \assert($inputDto instanceof ExportInterventionsInputDto);

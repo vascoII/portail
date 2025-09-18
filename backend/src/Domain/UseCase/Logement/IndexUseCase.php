@@ -7,9 +7,12 @@ namespace App\Domain\UseCase\Logement;
 use App\Application\Dto\Input\Logement\IndexInputDto;
 use App\Application\Dto\Output\Logement\IndexOutputDto;
 use App\Domain\UseCase\UseCaseInterface;
+use App\Domain\Service\Soap\LogementSoapInterface;
 
 final class IndexUseCase implements UseCaseInterface
 {
+  public function __construct(private readonly LogementSoapInterface $soap) {}
+
   public function execute(object $inputDto): object
   {
     \assert($inputDto instanceof IndexInputDto);

@@ -7,9 +7,12 @@ namespace App\Domain\UseCase\Immeuble;
 use App\Application\Dto\Input\Immeuble\LinterventionInputDto;
 use App\Application\Dto\Output\Immeuble\LinterventionOutputDto;
 use App\Domain\UseCase\UseCaseInterface;
+use App\Domain\Service\Soap\ImmeubleSoapInterface;
 
 final class LinterventionUseCase implements UseCaseInterface
 {
+  public function __construct(private readonly ImmeubleSoapInterface $soap) {}
+
   public function execute(object $inputDto): object
   {
     \assert($inputDto instanceof LinterventionInputDto);

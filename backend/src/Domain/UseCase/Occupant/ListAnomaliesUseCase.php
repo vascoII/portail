@@ -7,9 +7,12 @@ namespace App\Domain\UseCase\Occupant;
 use App\Application\Dto\Input\Occupant\ListAnomaliesInputDto;
 use App\Application\Dto\Output\Occupant\ListAnomaliesOutputDto;
 use App\Domain\UseCase\UseCaseInterface;
+use App\Domain\Service\Soap\OccupantSoapInterface;
 
 final class ListAnomaliesUseCase implements UseCaseInterface
 {
+  public function __construct(private readonly OccupantSoapInterface $soap) {}
+
   public function execute(object $inputDto): object
   {
     \assert($inputDto instanceof ListAnomaliesInputDto);
