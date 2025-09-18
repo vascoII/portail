@@ -9,25 +9,23 @@ import ButtonsAsync from "@/app/components/ButtonsAsync";
 
 export default function ImmeublePage() {
   const params = useParams();
-  const id = params.id as string; // <-- type assertion pour POC
+  const id = params.id as string;
 
   const { data: immeuble, loading: loadingImmeuble } = useImmeuble(id);
   const { data: indicators, loading: loadingIndicators } = useIndicators(id);
 
   return (
-    <main className="p-8">
-      <h1>Vue Immeuble {id}</h1>
+    <main className="p-8 max-w-4xl mx-auto">
+      <h1 className="text-2xl font-bold text-gray-800 mb-6">Vue Immeuble #{id}</h1>
 
-      {loadingImmeuble ? (
-        <p>Chargement de l'immeuble...</p>
-      ) : (
-        <ImmeubleCard {...immeuble} />
-      )}
+      <ImmeubleCard {...immeuble} />
 
-      <h2 className="mt-6">Indicateurs</h2>
+      <h2 className="text-xl font-semibold text-gray-700 mt-8 mb-2">Indicateurs</h2>
       <IndicatorsTable indicators={indicators} loading={loadingIndicators} />
 
-      <ButtonsAsync id={id} />
+      <div className="mt-6">
+        <ButtonsAsync id={id} />
+      </div>
     </main>
   );
 }
