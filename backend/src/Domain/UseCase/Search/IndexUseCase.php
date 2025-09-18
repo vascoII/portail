@@ -11,7 +11,7 @@ use App\Domain\Service\Soap\SearchSoapInterface;
 
 final class IndexUseCase implements UseCaseInterface
 {
-  public function __construct(private readonly SearchSoapInterface $soap) {}
+  public function __construct(private readonly SearchSoapInterface $service) {}
 
   public function execute(object $inputDto): object
   {

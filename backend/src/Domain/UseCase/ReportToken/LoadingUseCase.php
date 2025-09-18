@@ -11,7 +11,7 @@ use App\Domain\Service\Soap\ReportTokenSoapInterface;
 
 final class LoadingUseCase implements UseCaseInterface
 {
-  public function __construct(private readonly ReportTokenSoapInterface $soap) {}
+  public function __construct(private readonly ReportTokenSoapInterface $service) {}
 
   public function execute(object $inputDto): object
   {

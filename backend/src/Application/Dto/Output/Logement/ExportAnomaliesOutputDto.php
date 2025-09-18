@@ -8,3 +8,4 @@ final class ExportAnomaliesOutputDto
 {
   public function __construct(public readonly bool $exported) {}
 }
+

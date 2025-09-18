@@ -11,7 +11,7 @@ use App\Domain\Service\Soap\FactureSoapInterface;
 
 final class ReportUseCase implements UseCaseInterface
 {
-  public function __construct(private readonly FactureSoapInterface $soap) {}
+  public function __construct(private readonly FactureSoapInterface $service) {}
 
   public function execute(object $inputDto): object
   {

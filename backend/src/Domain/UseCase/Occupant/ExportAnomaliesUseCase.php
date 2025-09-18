@@ -11,7 +11,7 @@ use App\Domain\Service\Soap\OccupantSoapInterface;
 
 final class ExportAnomaliesUseCase implements UseCaseInterface
 {
-  public function __construct(private readonly OccupantSoapInterface $soap) {}
+  public function __construct(private readonly OccupantSoapInterface $service) {}
 
   public function execute(object $inputDto): object
   {

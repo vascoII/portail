@@ -8,3 +8,4 @@ final class ListDysfunctionsOutputDto
 {
   public function __construct(public readonly array $items) {}
 }
+

@@ -8,3 +8,4 @@ final class CreateOutputDto
 {
   public function __construct(public readonly bool $created) {}
 }
+

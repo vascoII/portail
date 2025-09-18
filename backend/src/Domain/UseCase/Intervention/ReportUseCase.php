@@ -11,7 +11,7 @@ use App\Domain\Service\Soap\InterventionSoapInterface;
 
 final class ReportUseCase implements UseCaseInterface
 {
-  public function __construct(private readonly InterventionSoapInterface $soap) {}
+  public function __construct(private readonly InterventionSoapInterface $service) {}
 
   public function execute(object $inputDto): object
   {

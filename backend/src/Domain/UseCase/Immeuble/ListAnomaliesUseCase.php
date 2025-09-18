@@ -11,7 +11,7 @@ use App\Domain\Service\Soap\ImmeubleSoapInterface;
 
 final class ListAnomaliesUseCase implements UseCaseInterface
 {
-  public function __construct(private readonly ImmeubleSoapInterface $soap) {}
+  public function __construct(private readonly ImmeubleSoapInterface $service) {}
 
   public function execute(object $inputDto): object
   {

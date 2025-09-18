@@ -11,7 +11,7 @@ use App\Domain\Service\Soap\TableauBordClientSoapInterface;
 
 final class IndexUseCase implements UseCaseInterface
 {
-  public function __construct(private readonly TableauBordClientSoapInterface $soap) {}
+  public function __construct(private readonly TableauBordClientSoapInterface $service) {}
 
   public function execute(object $inputDto): object
   {

@@ -8,3 +8,4 @@ final class ExportInterventionsOutputDto
 {
   public function __construct(public readonly bool $exported) {}
 }
+

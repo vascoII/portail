@@ -8,3 +8,4 @@ final class ListAnomaliesOutputDto
 {
   public function __construct(public readonly array $items) {}
 }
+

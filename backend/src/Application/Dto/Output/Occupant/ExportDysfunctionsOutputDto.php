@@ -8,3 +8,4 @@ final class ExportDysfunctionsOutputDto
 {
   public function __construct(public readonly bool $exported) {}
 }
+

@@ -11,7 +11,7 @@ use App\Domain\Service\Soap\GestionParcSoapInterface;
 
 final class IndexUseCase implements UseCaseInterface
 {
-  public function __construct(private readonly GestionParcSoapInterface $soap) {}
+  public function __construct(private readonly GestionParcSoapInterface $service) {}
 
   public function execute(object $inputDto): object
   {

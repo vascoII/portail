@@ -8,3 +8,4 @@ final class ExportLeaksOutputDto
 {
   public function __construct(public readonly bool $exported) {}
 }
+

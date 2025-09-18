@@ -11,7 +11,7 @@ use App\Domain\Service\Soap\SecuritySoapInterface;
 
 final class ResetOrCreateUseCase implements UseCaseInterface
 {
-  public function __construct(private readonly SecuritySoapInterface $soap) {}
+  public function __construct(private readonly SecuritySoapInterface $service) {}
 
   public function execute(object $inputDto): object
   {

@@ -11,7 +11,7 @@ use App\Domain\Service\Soap\FrontSoapInterface;
 
 final class CguUseCase implements UseCaseInterface
 {
-  public function __construct(private readonly FrontSoapInterface $soap) {}
+  public function __construct(private readonly FrontSoapInterface $service) {}
 
   public function execute(object $inputDto): object
   {

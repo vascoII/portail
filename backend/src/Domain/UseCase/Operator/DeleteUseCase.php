@@ -11,7 +11,7 @@ use App\Domain\Service\Soap\OperatorSoapInterface;
 
 final class DeleteUseCase implements UseCaseInterface
 {
-  public function __construct(private readonly OperatorSoapInterface $soap) {}
+  public function __construct(private readonly OperatorSoapInterface $service) {}
 
   public function execute(object $inputDto): object
   {

@@ -8,3 +8,4 @@ final class SearchOutputDto
 {
   public function __construct(public readonly array $results) {}
 }
+

@@ -11,7 +11,7 @@ use App\Domain\Service\Soap\TicketingSoapInterface;
 
 final class AttachmentTicketUseCase implements UseCaseInterface
 {
-  public function __construct(private readonly TicketingSoapInterface $soap) {}
+  public function __construct(private readonly TicketingSoapInterface $service) {}
 
   public function execute(object $inputDto): object
   {

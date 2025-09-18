@@ -11,7 +11,7 @@ use App\Domain\Service\Soap\LogementSoapInterface;
 
 final class ExportInterventionsUseCase implements UseCaseInterface
 {
-  public function __construct(private readonly LogementSoapInterface $soap) {}
+  public function __construct(private readonly LogementSoapInterface $service) {}
 
   public function execute(object $inputDto): object
   {
