@@ -1,0 +1,18 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Domain\UseCase\Occupant;
+
+use App\Application\Dto\Input\Occupant\ShowNoteReleveInputDto;
+use App\Application\Dto\Output\Occupant\ShowNoteReleveOutputDto;
+use App\Domain\UseCase\UseCaseInterface;
+
+final class ShowNoteReleveUseCase implements UseCaseInterface
+{
+  public function execute(object $inputDto): object
+  {
+    \assert($inputDto instanceof ShowNoteReleveInputDto);
+    return new ShowNoteReleveOutputDto($inputDto->pkOccupant, $inputDto->pkImmeuble, $inputDto->energie);
+  }
+}
