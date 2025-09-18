@@ -6,14 +6,14 @@ namespace App\Domain\UseCase\Front;
 
 use App\Application\Dto\Input\Front\LegalNoticesInputDto;
 use App\Application\Dto\Output\Front\LegalNoticesOutputDto;
-use App\Domain\UseCase\UseCaseInterface;
+
 use App\Domain\Service\Soap\FrontSoapInterface;
 
-final class LegalNoticesUseCase implements UseCaseInterface
+final class LegalNoticesUseCase
 {
   public function __construct(private readonly FrontSoapInterface $service) {}
 
-  public function execute(object $inputDto): object
+  public function execute(LegalNoticesInputDto $inputDto): LegalNoticesOutputDto
   {
     \assert($inputDto instanceof LegalNoticesInputDto);
     return new LegalNoticesOutputDto('legal notices');

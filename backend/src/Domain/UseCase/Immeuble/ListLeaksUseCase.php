@@ -6,14 +6,14 @@ namespace App\Domain\UseCase\Immeuble;
 
 use App\Application\Dto\Input\Immeuble\ListLeaksInputDto;
 use App\Application\Dto\Output\Immeuble\ListLeaksOutputDto;
-use App\Domain\UseCase\UseCaseInterface;
+
 use App\Domain\Service\Soap\ImmeubleSoapInterface;
 
-final class ListLeaksUseCase implements UseCaseInterface
+final class ListLeaksUseCase
 {
   public function __construct(private readonly ImmeubleSoapInterface $service) {}
 
-  public function execute(object $inputDto): object
+  public function execute(ListLeaksInputDto $inputDto): ListLeaksOutputDto
   {
     \assert($inputDto instanceof ListLeaksInputDto);
     return new ListLeaksOutputDto([]);

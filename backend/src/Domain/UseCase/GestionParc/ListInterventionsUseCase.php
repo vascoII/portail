@@ -6,14 +6,14 @@ namespace App\Domain\UseCase\GestionParc;
 
 use App\Application\Dto\Input\GestionParc\ListInterventionsInputDto;
 use App\Application\Dto\Output\GestionParc\ListInterventionsOutputDto;
-use App\Domain\UseCase\UseCaseInterface;
+
 use App\Domain\Service\Soap\GestionParcSoapInterface;
 
-final class ListInterventionsUseCase implements UseCaseInterface
+final class ListInterventionsUseCase
 {
   public function __construct(private readonly GestionParcSoapInterface $service) {}
 
-  public function execute(object $inputDto): object
+  public function execute(ListInterventionsInputDto $inputDto): ListInterventionsOutputDto
   {
     \assert($inputDto instanceof ListInterventionsInputDto);
     return new ListInterventionsOutputDto([]);

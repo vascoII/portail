@@ -6,14 +6,14 @@ namespace App\Domain\UseCase\Front;
 
 use App\Application\Dto\Input\Front\CguInputDto;
 use App\Application\Dto\Output\Front\CguOutputDto;
-use App\Domain\UseCase\UseCaseInterface;
+
 use App\Domain\Service\Soap\FrontSoapInterface;
 
-final class CguUseCase implements UseCaseInterface
+final class CguUseCase
 {
   public function __construct(private readonly FrontSoapInterface $service) {}
 
-  public function execute(object $inputDto): object
+  public function execute(CguInputDto $inputDto): CguOutputDto
   {
     \assert($inputDto instanceof CguInputDto);
 

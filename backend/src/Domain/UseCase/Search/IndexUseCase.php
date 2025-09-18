@@ -6,14 +6,14 @@ namespace App\Domain\UseCase\Search;
 
 use App\Application\Dto\Input\Search\IndexInputDto;
 use App\Application\Dto\Output\Search\IndexOutputDto;
-use App\Domain\UseCase\UseCaseInterface;
+
 use App\Domain\Service\Soap\SearchSoapInterface;
 
-final class IndexUseCase implements UseCaseInterface
+final class IndexUseCase
 {
   public function __construct(private readonly SearchSoapInterface $service) {}
 
-  public function execute(object $inputDto): object
+  public function execute(IndexInputDto $inputDto): IndexOutputDto
   {
     \assert($inputDto instanceof IndexInputDto);
 

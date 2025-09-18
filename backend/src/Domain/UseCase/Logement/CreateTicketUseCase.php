@@ -6,14 +6,14 @@ namespace App\Domain\UseCase\Logement;
 
 use App\Application\Dto\Input\Logement\CreateTicketInputDto;
 use App\Application\Dto\Output\Logement\CreateTicketOutputDto;
-use App\Domain\UseCase\UseCaseInterface;
+
 use App\Domain\Service\Soap\LogementSoapInterface;
 
-final class CreateTicketUseCase implements UseCaseInterface
+final class CreateTicketUseCase
 {
   public function __construct(private readonly LogementSoapInterface $service) {}
 
-  public function execute(object $inputDto): object
+  public function execute(CreateTicketInputDto $inputDto): CreateTicketOutputDto
   {
     \assert($inputDto instanceof CreateTicketInputDto);
     return new CreateTicketOutputDto(true);

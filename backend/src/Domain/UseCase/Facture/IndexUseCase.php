@@ -6,14 +6,14 @@ namespace App\Domain\UseCase\Facture;
 
 use App\Application\Dto\Input\Facture\IndexInputDto;
 use App\Application\Dto\Output\Facture\IndexOutputDto;
-use App\Domain\UseCase\UseCaseInterface;
+
 use App\Domain\Service\Soap\FactureSoapInterface;
 
-final class IndexUseCase implements UseCaseInterface
+final class IndexUseCase
 {
   public function __construct(private readonly FactureSoapInterface $service) {}
 
-  public function execute(object $inputDto): object
+  public function execute(IndexInputDto $inputDto): IndexOutputDto
   {
     \assert($inputDto instanceof IndexInputDto);
     return new IndexOutputDto([]);

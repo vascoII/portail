@@ -6,14 +6,14 @@ namespace App\Domain\UseCase\Occupant;
 
 use App\Application\Dto\Input\Occupant\ShowRepartReleveInputDto;
 use App\Application\Dto\Output\Occupant\ShowRepartReleveOutputDto;
-use App\Domain\UseCase\UseCaseInterface;
+
 use App\Domain\Service\Soap\OccupantSoapInterface;
 
-final class ShowRepartReleveUseCase implements UseCaseInterface
+final class ShowRepartReleveUseCase
 {
   public function __construct(private readonly OccupantSoapInterface $service) {}
 
-  public function execute(object $inputDto): object
+  public function execute(ShowRepartReleveInputDto $inputDto): ShowRepartReleveOutputDto
   {
     \assert($inputDto instanceof ShowRepartReleveInputDto);
     return new ShowRepartReleveOutputDto($inputDto->pkOccupant, $inputDto->pkImmeuble);

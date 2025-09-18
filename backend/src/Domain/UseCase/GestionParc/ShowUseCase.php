@@ -6,14 +6,14 @@ namespace App\Domain\UseCase\GestionParc;
 
 use App\Application\Dto\Input\GestionParc\ShowInputDto;
 use App\Application\Dto\Output\GestionParc\ShowOutputDto;
-use App\Domain\UseCase\UseCaseInterface;
+
 use App\Domain\Service\Soap\GestionParcSoapInterface;
 
-final class ShowUseCase implements UseCaseInterface
+final class ShowUseCase
 {
   public function __construct(private readonly GestionParcSoapInterface $service) {}
 
-  public function execute(object $inputDto): object
+  public function execute(ShowInputDto $inputDto): ShowOutputDto
   {
     \assert($inputDto instanceof ShowInputDto);
     return new ShowOutputDto($inputDto->pkImmeuble);

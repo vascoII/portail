@@ -6,14 +6,14 @@ namespace App\Domain\UseCase\Immeuble;
 
 use App\Application\Dto\Input\Immeuble\IndexInputDto;
 use App\Application\Dto\Output\Immeuble\IndexOutputDto;
-use App\Domain\UseCase\UseCaseInterface;
+
 use App\Domain\Service\Soap\ImmeubleSoapInterface;
 
-final class IndexUseCase implements UseCaseInterface
+final class IndexUseCase
 {
   public function __construct(private readonly ImmeubleSoapInterface $service) {}
 
-  public function execute(object $inputDto): object
+  public function execute(IndexInputDto $inputDto): IndexOutputDto
   {
     \assert($inputDto instanceof IndexInputDto);
     return new IndexOutputDto([]);

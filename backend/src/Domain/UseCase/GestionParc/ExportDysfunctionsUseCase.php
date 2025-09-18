@@ -6,14 +6,14 @@ namespace App\Domain\UseCase\GestionParc;
 
 use App\Application\Dto\Input\GestionParc\ExportDysfunctionsInputDto;
 use App\Application\Dto\Output\GestionParc\ExportDysfunctionsOutputDto;
-use App\Domain\UseCase\UseCaseInterface;
+
 use App\Domain\Service\Soap\GestionParcSoapInterface;
 
-final class ExportDysfunctionsUseCase implements UseCaseInterface
+final class ExportDysfunctionsUseCase
 {
   public function __construct(private readonly GestionParcSoapInterface $service) {}
 
-  public function execute(object $inputDto): object
+  public function execute(ExportDysfunctionsInputDto $inputDto): ExportDysfunctionsOutputDto
   {
     \assert($inputDto instanceof ExportDysfunctionsInputDto);
     return new ExportDysfunctionsOutputDto(true);

@@ -6,14 +6,14 @@ namespace App\Domain\UseCase\Security;
 
 use App\Application\Dto\Input\Security\LoginFromParamInputDto;
 use App\Application\Dto\Output\Security\LoginOutputDto;
-use App\Domain\UseCase\UseCaseInterface;
+
 use App\Domain\Service\Soap\SecuritySoapInterface;
 
-final class LoginFromParamUseCase implements UseCaseInterface
+final class LoginFromParamUseCase
 {
   public function __construct(private readonly SecuritySoapInterface $service) {}
 
-  public function execute(object $inputDto): object
+  public function execute(LoginFromParamInputDto $inputDto): LoginOutputDto
   {
     \assert($inputDto instanceof LoginFromParamInputDto);
     return new LoginOutputDto(true);

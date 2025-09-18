@@ -6,14 +6,14 @@ namespace App\Domain\UseCase\Immeuble;
 
 use App\Application\Dto\Input\Immeuble\FilterResultInputDto;
 use App\Application\Dto\Output\Immeuble\FilterResultOutputDto;
-use App\Domain\UseCase\UseCaseInterface;
+
 use App\Domain\Service\Soap\ImmeubleSoapInterface;
 
-final class FilterResultUseCase implements UseCaseInterface
+final class FilterResultUseCase
 {
   public function __construct(private readonly ImmeubleSoapInterface $service) {}
 
-  public function execute(object $inputDto): object
+  public function execute(FilterResultInputDto $inputDto): FilterResultOutputDto
   {
     \assert($inputDto instanceof FilterResultInputDto);
     return new FilterResultOutputDto([]);

@@ -6,14 +6,14 @@ namespace App\Domain\UseCase\Occupant;
 
 use App\Application\Dto\Input\Occupant\ShowUseInputDto;
 use App\Application\Dto\Output\Occupant\ShowOutputDto;
-use App\Domain\UseCase\UseCaseInterface;
+
 use App\Domain\Service\Soap\OccupantSoapInterface;
 
-final class ShowUseCase implements UseCaseInterface
+final class ShowUseCase
 {
   public function __construct(private readonly OccupantSoapInterface $service) {}
 
-  public function execute(object $inputDto): object
+  public function execute(ShowUseInputDto $inputDto): ShowOutputDto
   {
     \assert($inputDto instanceof ShowUseInputDto);
     return new ShowOutputDto([]);

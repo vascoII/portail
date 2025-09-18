@@ -6,14 +6,14 @@ namespace App\Domain\UseCase\Ticketing;
 
 use App\Application\Dto\Input\Ticketing\MenuTicketInputDto;
 use App\Application\Dto\Output\Ticketing\MenuTicketOutputDto;
-use App\Domain\UseCase\UseCaseInterface;
+
 use App\Domain\Service\Soap\TicketingSoapInterface;
 
-final class MenuTicketUseCase implements UseCaseInterface
+final class MenuTicketUseCase
 {
   public function __construct(private readonly TicketingSoapInterface $service) {}
 
-  public function execute(object $inputDto): object
+  public function execute(MenuTicketInputDto $inputDto): MenuTicketOutputDto
   {
     \assert($inputDto instanceof MenuTicketInputDto);
     return new MenuTicketOutputDto([]);

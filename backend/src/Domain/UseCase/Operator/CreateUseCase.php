@@ -6,14 +6,14 @@ namespace App\Domain\UseCase\Operator;
 
 use App\Application\Dto\Input\Operator\CreateInputDto;
 use App\Application\Dto\Output\Operator\CreateOutputDto;
-use App\Domain\UseCase\UseCaseInterface;
+
 use App\Domain\Service\Soap\OperatorSoapInterface;
 
-final class CreateUseCase implements UseCaseInterface
+final class CreateUseCase
 {
   public function __construct(private readonly OperatorSoapInterface $service) {}
 
-  public function execute(object $inputDto): object
+  public function execute(CreateInputDto $inputDto): CreateOutputDto
   {
     \assert($inputDto instanceof CreateInputDto);
     return new CreateOutputDto(true);

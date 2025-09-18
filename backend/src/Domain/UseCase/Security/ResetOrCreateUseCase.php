@@ -6,14 +6,14 @@ namespace App\Domain\UseCase\Security;
 
 use App\Application\Dto\Input\Security\ResetOrCreateInputDto;
 use App\Application\Dto\Output\Security\ResetOrCreateOutputDto;
-use App\Domain\UseCase\UseCaseInterface;
+
 use App\Domain\Service\Soap\SecuritySoapInterface;
 
-final class ResetOrCreateUseCase implements UseCaseInterface
+final class ResetOrCreateUseCase
 {
   public function __construct(private readonly SecuritySoapInterface $service) {}
 
-  public function execute(object $inputDto): object
+  public function execute(ResetOrCreateInputDto $inputDto): ResetOrCreateOutputDto
   {
     \assert($inputDto instanceof ResetOrCreateInputDto);
     return new ResetOrCreateOutputDto(true);
