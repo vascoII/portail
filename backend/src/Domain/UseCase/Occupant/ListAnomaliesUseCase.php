@@ -1,0 +1,18 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Domain\UseCase\Occupant;
+
+use App\Application\Dto\Input\Occupant\ListAnomaliesInputDto;
+use App\Application\Dto\Output\Occupant\ListAnomaliesOutputDto;
+use App\Domain\UseCase\UseCaseInterface;
+
+final class ListAnomaliesUseCase implements UseCaseInterface
+{
+  public function execute(object $inputDto): object
+  {
+    \assert($inputDto instanceof ListAnomaliesInputDto);
+    return new ListAnomaliesOutputDto([]);
+  }
+}
