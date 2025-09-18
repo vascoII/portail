@@ -15,7 +15,6 @@ final class GetTicketOnwerUseCase
 
   public function execute(GetTicketOnwerInputDto $inputDto): GetTicketOnwerOutputDto
   {
-    \assert($inputDto instanceof GetTicketOnwerInputDto);
-    return new GetTicketOnwerOutputDto([]);
+    return $this->service->getTicketOnwerService($inputDto);
   }
 }

@@ -15,7 +15,6 @@ final class GuideUseCase
 
   public function execute(GuideInputDto $inputDto): GuideOutputDto
   {
-    \assert($inputDto instanceof GuideInputDto);
-    return new GuideOutputDto([]);
+    return $this->service->guideService($inputDto);
   }
 }

@@ -15,8 +15,6 @@ final class IndexUseCase
 
   public function execute(IndexInputDto $inputDto): IndexOutputDto
   {
-    \assert($inputDto instanceof IndexInputDto);
-
-    return new IndexOutputDto('home');
+    return $this->service->indexService($inputDto);
   }
 }

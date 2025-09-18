@@ -15,7 +15,6 @@ final class CreateUseCase
 
   public function execute(CreateInputDto $inputDto): CreateOutputDto
   {
-    \assert($inputDto instanceof CreateInputDto);
-    return new CreateOutputDto(true);
+    return $this->service->createService($inputDto);
   }
 }

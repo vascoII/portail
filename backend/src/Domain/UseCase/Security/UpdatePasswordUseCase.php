@@ -15,7 +15,6 @@ final class UpdatePasswordUseCase
 
   public function execute(UpdatePasswordInputDto $inputDto): UpdatePasswordOutputDto
   {
-    \assert($inputDto instanceof UpdatePasswordInputDto);
-    return new UpdatePasswordOutputDto(true);
+    return $this->service->updatePasswordService($inputDto);
   }
 }

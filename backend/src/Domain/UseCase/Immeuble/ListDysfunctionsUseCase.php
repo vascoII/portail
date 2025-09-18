@@ -15,7 +15,6 @@ final class ListDysfunctionsUseCase
 
   public function execute(ListDysfunctionsInputDto $inputDto): ListDysfunctionsOutputDto
   {
-    \assert($inputDto instanceof ListDysfunctionsInputDto);
-    return new ListDysfunctionsOutputDto([]);
+    return $this->service->listDysfunctionsService($inputDto);
   }
 }

@@ -15,7 +15,6 @@ final class CreateTicketImmeubleUseCase
 
   public function execute(CreateTicketImmeubleInputDto $inputDto): CreateTicketImmeubleOutputDto
   {
-    \assert($inputDto instanceof CreateTicketImmeubleInputDto);
-    return new CreateTicketImmeubleOutputDto(true);
+    return $this->service->createTicketImmeubleService($inputDto);
   }
 }

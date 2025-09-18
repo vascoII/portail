@@ -15,7 +15,6 @@ final class ListLeaksUseCase
 
   public function execute(ListLeaksInputDto $inputDto): ListLeaksOutputDto
   {
-    \assert($inputDto instanceof ListLeaksInputDto);
-    return new ListLeaksOutputDto([]);
+    return $this->service->listLeaksService($inputDto);
   }
 }

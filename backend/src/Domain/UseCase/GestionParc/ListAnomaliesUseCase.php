@@ -15,7 +15,6 @@ final class ListAnomaliesUseCase
 
   public function execute(ListAnomaliesInputDto $inputDto): ListAnomaliesOutputDto
   {
-    \assert($inputDto instanceof ListAnomaliesInputDto);
-    return new ListAnomaliesOutputDto([]);
+    return $this->service->listAnomaliesService($inputDto);
   }
 }

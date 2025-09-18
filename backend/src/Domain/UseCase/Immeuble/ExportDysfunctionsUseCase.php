@@ -15,7 +15,6 @@ final class ExportDysfunctionsUseCase
 
   public function execute(ExportDysfunctionsInputDto $inputDto): ExportDysfunctionsOutputDto
   {
-    \assert($inputDto instanceof ExportDysfunctionsInputDto);
-    return new ExportDysfunctionsOutputDto(true);
+    return $this->service->exportDysfunctionsService($inputDto);
   }
 }

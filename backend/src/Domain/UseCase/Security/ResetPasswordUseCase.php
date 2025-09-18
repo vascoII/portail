@@ -15,8 +15,6 @@ final class ResetPasswordUseCase
 
   public function execute(ResetPasswordInputDto $inputDto): ResetPasswordOutputDto
   {
-    \assert($inputDto instanceof ResetPasswordInputDto);
-
-    return new ResetPasswordOutputDto(true);
+    return $this->service->resetPasswordService($inputDto);
   }
 }

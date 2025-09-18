@@ -15,7 +15,6 @@ final class TableTicketingUseCase
 
   public function execute(TableTicketingInputDto $inputDto): TableTicketingOutputDto
   {
-    \assert($inputDto instanceof TableTicketingInputDto);
-    return new TableTicketingOutputDto([]);
+    return $this->service->tableTicketingService($inputDto);
   }
 }

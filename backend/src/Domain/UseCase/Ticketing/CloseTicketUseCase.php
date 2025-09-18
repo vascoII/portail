@@ -15,7 +15,6 @@ final class CloseTicketUseCase
 
   public function execute(CloseTicketInputDto $inputDto): CloseTicketOutputDto
   {
-    \assert($inputDto instanceof CloseTicketInputDto);
-    return new CloseTicketOutputDto(true);
+    return $this->service->closeTicketService($inputDto);
   }
 }

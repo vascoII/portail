@@ -15,7 +15,6 @@ final class ExportLeaksUseCase
 
   public function execute(ExportLeaksInputDto $inputDto): ExportLeaksOutputDto
   {
-    \assert($inputDto instanceof ExportLeaksInputDto);
-    return new ExportLeaksOutputDto(true);
+    return $this->service->exportLeaksService($inputDto);
   }
 }

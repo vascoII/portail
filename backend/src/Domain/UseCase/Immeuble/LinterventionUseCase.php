@@ -15,7 +15,6 @@ final class LinterventionUseCase
 
   public function execute(LinterventionInputDto $inputDto): LinterventionOutputDto
   {
-    \assert($inputDto instanceof LinterventionInputDto);
-    return new LinterventionOutputDto([]);
+    return $this->service->linterventionService($inputDto);
   }
 }

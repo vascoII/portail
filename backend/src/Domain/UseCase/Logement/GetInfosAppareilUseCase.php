@@ -15,7 +15,6 @@ final class GetInfosAppareilUseCase
 
   public function execute(GetInfosAppareilInputDto $inputDto): GetInfosAppareilOutputDto
   {
-    \assert($inputDto instanceof GetInfosAppareilInputDto);
-    return new GetInfosAppareilOutputDto([]);
+    return $this->service->getInfosAppareilService($inputDto);
   }
 }

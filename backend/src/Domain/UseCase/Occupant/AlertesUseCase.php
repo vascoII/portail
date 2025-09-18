@@ -15,7 +15,6 @@ final class AlertesUseCase
 
   public function execute(AlertesInputDto $inputDto): AlertesOutputDto
   {
-    \assert($inputDto instanceof AlertesInputDto);
-    return new AlertesOutputDto([]);
+    return $this->service->alertesService($inputDto);
   }
 }

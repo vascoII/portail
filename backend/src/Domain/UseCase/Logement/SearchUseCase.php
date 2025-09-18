@@ -15,7 +15,6 @@ final class SearchUseCase
 
   public function execute(SearchInputDto $inputDto): SearchOutputDto
   {
-    \assert($inputDto instanceof SearchInputDto);
-    return new SearchOutputDto([]);
+    return $this->service->searchService($inputDto);
   }
 }

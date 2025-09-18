@@ -15,7 +15,6 @@ final class CreateTicketUseCase
 
   public function execute(CreateTicketInputDto $inputDto): CreateTicketOutputDto
   {
-    \assert($inputDto instanceof CreateTicketInputDto);
-    return new CreateTicketOutputDto(true);
+    return $this->service->createTicketService($inputDto);
   }
 }

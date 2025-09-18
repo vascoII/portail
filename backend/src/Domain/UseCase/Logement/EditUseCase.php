@@ -15,7 +15,6 @@ final class EditUseCase
 
   public function execute(EditInputDto $inputDto): EditOutputDto
   {
-    \assert($inputDto instanceof EditInputDto);
-    return new EditOutputDto(true);
+    return $this->service->editService($inputDto);
   }
 }

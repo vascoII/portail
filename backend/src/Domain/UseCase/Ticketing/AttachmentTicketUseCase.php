@@ -15,7 +15,6 @@ final class AttachmentTicketUseCase
 
   public function execute(AttachmentTicketInputDto $inputDto): AttachmentTicketOutputDto
   {
-    \assert($inputDto instanceof AttachmentTicketInputDto);
-    return new AttachmentTicketOutputDto([]);
+    return $this->service->attachmentTicketService($inputDto);
   }
 }

@@ -15,7 +15,6 @@ final class LoadingUseCase
 
   public function execute(LoadingInputDto $inputDto): LoadingOutputDto
   {
-    \assert($inputDto instanceof LoadingInputDto);
-    return new LoadingOutputDto(true);
+    return $this->service->loadingService($inputDto);
   }
 }

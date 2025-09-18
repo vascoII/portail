@@ -15,7 +15,6 @@ final class ViewUseCase
 
   public function execute(ViewInputDto $inputDto): ViewOutputDto
   {
-    \assert($inputDto instanceof ViewInputDto);
-    return new ViewOutputDto(['id' => $inputDto->operatorId]);
+    return $this->service->viewService($inputDto);
   }
 }

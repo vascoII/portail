@@ -15,7 +15,6 @@ final class ShowUseCase
 
   public function execute(ShowInputDto $inputDto): ShowOutputDto
   {
-    \assert($inputDto instanceof ShowInputDto);
-    return new ShowOutputDto($inputDto->pkLogement);
+    return $this->service->showService($inputDto);
   }
 }

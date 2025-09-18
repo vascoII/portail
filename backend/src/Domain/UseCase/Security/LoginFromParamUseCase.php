@@ -15,7 +15,6 @@ final class LoginFromParamUseCase
 
   public function execute(LoginFromParamInputDto $inputDto): LoginOutputDto
   {
-    \assert($inputDto instanceof LoginFromParamInputDto);
-    return new LoginOutputDto(true);
+    return $this->service->loginFromParamService($inputDto);
   }
 }

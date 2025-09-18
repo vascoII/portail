@@ -15,7 +15,6 @@ final class OtatsoccupantsUseCase
 
   public function execute(OtatsoccupantsInputDto $inputDto): OtatsoccupantsOutputDto
   {
-    \assert($inputDto instanceof OtatsoccupantsInputDto);
-    return new OtatsoccupantsOutputDto([]);
+    return $this->service->otatsoccupantsService($inputDto);
   }
 }

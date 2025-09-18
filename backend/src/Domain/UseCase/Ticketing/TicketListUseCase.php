@@ -15,7 +15,6 @@ final class TicketListUseCase
 
   public function execute(TicketListInputDto $inputDto): TicketListOutputDto
   {
-    \assert($inputDto instanceof TicketListInputDto);
-    return new TicketListOutputDto([]);
+    return $this->service->ticketListService($inputDto);
   }
 }

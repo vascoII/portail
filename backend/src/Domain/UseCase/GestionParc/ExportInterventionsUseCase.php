@@ -15,7 +15,6 @@ final class ExportInterventionsUseCase
 
   public function execute(ExportInterventionsInputDto $inputDto): ExportInterventionsOutputDto
   {
-    \assert($inputDto instanceof ExportInterventionsInputDto);
-    return new ExportInterventionsOutputDto(true);
+    return $this->service->exportInterventionsService($inputDto);
   }
 }

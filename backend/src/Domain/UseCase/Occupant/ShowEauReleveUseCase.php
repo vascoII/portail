@@ -15,7 +15,6 @@ final class ShowEauReleveUseCase
 
   public function execute(ShowEauReleveInputDto $inputDto): ShowEauReleveOutputDto
   {
-    \assert($inputDto instanceof ShowEauReleveInputDto);
-    return new ShowEauReleveOutputDto($inputDto->pkOccupant);
+    return $this->service->showEauReleveService($inputDto);
   }
 }

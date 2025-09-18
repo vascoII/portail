@@ -15,7 +15,6 @@ final class ExportUseCase
 
   public function execute(ExportInputDto $inputDto): ExportOutputDto
   {
-    \assert($inputDto instanceof ExportInputDto);
-    return new ExportOutputDto(true);
+    return $this->service->exportService($inputDto);
   }
 }

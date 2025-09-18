@@ -15,7 +15,6 @@ final class SimulateurUseCase
 
   public function execute(SimulateurInputDto $inputDto): SimulateurOutputDto
   {
-    \assert($inputDto instanceof SimulateurInputDto);
-    return new SimulateurOutputDto([]);
+    return $this->service->simulateurService($inputDto);
   }
 }

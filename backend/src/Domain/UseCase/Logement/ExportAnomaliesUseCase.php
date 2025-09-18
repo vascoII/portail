@@ -15,7 +15,6 @@ final class ExportAnomaliesUseCase
 
   public function execute(ExportAnomaliesInputDto $inputDto): ExportAnomaliesOutputDto
   {
-    \assert($inputDto instanceof ExportAnomaliesInputDto);
-    return new ExportAnomaliesOutputDto(true);
+    return $this->service->exportAnomaliesService($inputDto);
   }
 }

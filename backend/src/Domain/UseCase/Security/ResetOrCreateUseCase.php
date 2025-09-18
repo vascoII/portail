@@ -15,7 +15,6 @@ final class ResetOrCreateUseCase
 
   public function execute(ResetOrCreateInputDto $inputDto): ResetOrCreateOutputDto
   {
-    \assert($inputDto instanceof ResetOrCreateInputDto);
-    return new ResetOrCreateOutputDto(true);
+    return $this->service->resetOrCreateService($inputDto);
   }
 }

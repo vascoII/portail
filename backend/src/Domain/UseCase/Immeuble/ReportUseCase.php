@@ -15,7 +15,6 @@ final class ReportUseCase
 
   public function execute(ReportInputDto $inputDto): ReportOutputDto
   {
-    \assert($inputDto instanceof ReportInputDto);
-    return new ReportOutputDto(true);
+    return $this->service->reportService($inputDto);
   }
 }

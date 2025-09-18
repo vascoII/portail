@@ -15,7 +15,6 @@ final class DeleteUseCase
 
   public function execute(DeleteInputDto $inputDto): DeleteOutputDto
   {
-    \assert($inputDto instanceof DeleteInputDto);
-    return new DeleteOutputDto(true);
+    return $this->service->deleteService($inputDto);
   }
 }

@@ -12,10 +12,9 @@ use App\Domain\Service\Soap\GestionParcSoapInterface;
 final class FilterResultUseCase
 {
   public function __construct(private readonly GestionParcSoapInterface $service) {}
-  
+
   public function execute(FilterResultInputDto $inputDto): FilterResultOutputDto
   {
-    \assert($inputDto instanceof FilterResultInputDto);
-    return new FilterResultOutputDto([]);
+    return $this->service->filterResultService($inputDto);
   }
 }

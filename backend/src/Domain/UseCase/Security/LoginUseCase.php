@@ -15,8 +15,6 @@ final class LoginUseCase
 
   public function execute(LoginInputDto $inputDto): LoginOutputDto
   {
-    \assert($inputDto instanceof LoginInputDto);
-
-    return new LoginOutputDto(true);
+    return $this->service->loginService($inputDto);
   }
 }

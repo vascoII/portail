@@ -15,7 +15,6 @@ final class LegalNoticesUseCase
 
   public function execute(LegalNoticesInputDto $inputDto): LegalNoticesOutputDto
   {
-    \assert($inputDto instanceof LegalNoticesInputDto);
-    return new LegalNoticesOutputDto('legal notices');
+    return $this->service->legalNoticesService($inputDto);
   }
 }

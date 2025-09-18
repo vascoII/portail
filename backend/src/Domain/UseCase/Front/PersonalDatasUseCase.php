@@ -15,7 +15,6 @@ final class PersonalDatasUseCase
 
   public function execute(PersonalDatasInputDto $inputDto): PersonalDatasOutputDto
   {
-    \assert($inputDto instanceof PersonalDatasInputDto);
-    return new PersonalDatasOutputDto('personal datas');
+    return $this->service->personalDatasService($inputDto);
   }
 }

@@ -15,7 +15,6 @@ final class ListInterventionsUseCase
 
   public function execute(ListInterventionsInputDto $inputDto): ListInterventionsOutputDto
   {
-    \assert($inputDto instanceof ListInterventionsInputDto);
-    return new ListInterventionsOutputDto([]);
+    return $this->service->listInterventionsService($inputDto);
   }
 }

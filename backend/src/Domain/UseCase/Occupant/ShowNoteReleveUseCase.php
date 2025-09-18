@@ -15,7 +15,6 @@ final class ShowNoteReleveUseCase
 
   public function execute(ShowNoteReleveInputDto $inputDto): ShowNoteReleveOutputDto
   {
-    \assert($inputDto instanceof ShowNoteReleveInputDto);
-    return new ShowNoteReleveOutputDto($inputDto->pkOccupant, $inputDto->pkImmeuble, $inputDto->energie);
+    return $this->service->showNoteReleveService($inputDto);
   }
 }

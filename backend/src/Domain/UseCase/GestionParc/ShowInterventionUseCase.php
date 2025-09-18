@@ -15,7 +15,6 @@ final class ShowInterventionUseCase
 
   public function execute(ShowInterventionInputDto $inputDto): ShowInterventionOutputDto
   {
-    \assert($inputDto instanceof ShowInterventionInputDto);
-    return new ShowInterventionOutputDto($inputDto->pkImmeuble, $inputDto->pkIntervention);
+    return $this->service->showInterventionService($inputDto);
   }
 }

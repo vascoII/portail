@@ -15,8 +15,6 @@ final class CguUseCase
 
   public function execute(CguInputDto $inputDto): CguOutputDto
   {
-    \assert($inputDto instanceof CguInputDto);
-
-    return new CguOutputDto('Conditions Générales d\'Utilisation');
+    return $this->service->cguService($inputDto);
   }
 }

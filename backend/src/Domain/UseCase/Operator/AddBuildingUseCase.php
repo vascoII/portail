@@ -15,7 +15,6 @@ final class AddBuildingUseCase
 
   public function execute(AddBuildingInputDto $inputDto): AddBuildingOutputDto
   {
-    \assert($inputDto instanceof AddBuildingInputDto);
-    return new AddBuildingOutputDto(true);
+    return $this->service->addBuildingService($inputDto);
   }
 }

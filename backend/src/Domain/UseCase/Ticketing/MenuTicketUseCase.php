@@ -15,7 +15,6 @@ final class MenuTicketUseCase
 
   public function execute(MenuTicketInputDto $inputDto): MenuTicketOutputDto
   {
-    \assert($inputDto instanceof MenuTicketInputDto);
-    return new MenuTicketOutputDto([]);
+    return $this->service->menuTicketService($inputDto);
   }
 }

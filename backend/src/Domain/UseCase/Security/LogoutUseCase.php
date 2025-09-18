@@ -15,7 +15,6 @@ final class LogoutUseCase
 
   public function execute(LogoutInputDto $inputDto): LogoutOutputDto
   {
-    \assert($inputDto instanceof LogoutInputDto);
-    return new LogoutOutputDto(true);
+    return $this->service->logoutService($inputDto);
   }
 }

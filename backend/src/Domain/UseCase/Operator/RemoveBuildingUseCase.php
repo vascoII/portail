@@ -15,7 +15,6 @@ final class RemoveBuildingUseCase
 
   public function execute(RemoveBuildingInputDto $inputDto): RemoveBuildingOutputDto
   {
-    \assert($inputDto instanceof RemoveBuildingInputDto);
-    return new RemoveBuildingOutputDto(true);
+    return $this->service->removeBuildingService($inputDto);
   }
 }

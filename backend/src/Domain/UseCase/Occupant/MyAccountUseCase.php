@@ -15,7 +15,6 @@ final class MyAccountUseCase
 
   public function execute(MyAccountInputDto $inputDto): MyAccountOutputDto
   {
-    \assert($inputDto instanceof MyAccountInputDto);
-    return new MyAccountOutputDto([]);
+    return $this->service->myAccountService($inputDto);
   }
 }

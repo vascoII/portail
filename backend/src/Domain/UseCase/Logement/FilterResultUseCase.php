@@ -15,7 +15,6 @@ final class FilterResultUseCase
 
   public function execute(FilterResultInputDto $inputDto): FilterResultOutputDto
   {
-    \assert($inputDto instanceof FilterResultInputDto);
-    return new FilterResultOutputDto([]);
+    return $this->service->filterResultService($inputDto);
   }
 }

@@ -15,7 +15,6 @@ final class ShowRepartReleveUseCase
 
   public function execute(ShowRepartReleveInputDto $inputDto): ShowRepartReleveOutputDto
   {
-    \assert($inputDto instanceof ShowRepartReleveInputDto);
-    return new ShowRepartReleveOutputDto($inputDto->pkOccupant, $inputDto->pkImmeuble);
+    return $this->service->showRepartReleveService($inputDto);
   }
 }
