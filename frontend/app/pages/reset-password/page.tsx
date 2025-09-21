@@ -5,6 +5,11 @@ import Link from "next/link";
 import Alert from "../../components/UI/Alert";
 import Button from "../../components/UI/Button";
 import Input from "../../components/UI/Input";
+import {
+  AUTH_ENDPOINTS,
+  DEFAULT_HEADERS,
+  handleApiError,
+} from "../../config/api";
 
 const ResetPasswordPage: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -19,11 +24,9 @@ const ResetPasswordPage: React.FC = () => {
     setError(null);
 
     try {
-      const response = await fetch("/api/auth/reset-password", {
+      const response = await fetch(AUTH_ENDPOINTS.RESET_PASSWORD, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: DEFAULT_HEADERS,
         body: JSON.stringify({ email }),
       });
 
@@ -31,10 +34,14 @@ const ResetPasswordPage: React.FC = () => {
         setSuccess(true);
       } else {
         const errorData = await response.json();
-        setError(errorData.message || "Erreur lors de la réinitialisation");
+        const apiError = handleApiError({
+          response: { data: errorData, status: response.status },
+        });
+        setError(apiError.message);
       }
     } catch (err) {
-      setError("Une erreur est survenue. Veuillez réessayer.");
+      const apiError = handleApiError(err);
+      setError(apiError.message);
     } finally {
       setLoading(false);
     }
