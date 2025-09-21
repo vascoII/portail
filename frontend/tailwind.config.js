@@ -5,6 +5,12 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: [
+    'bg-blue-600',
+    'text-white',
+    'hover:bg-blue-700',
+    'focus:ring-blue-500',
+  ],
   theme: {
     extend: {
       colors: {
