@@ -5,14 +5,14 @@ import { useAuth } from "../../hooks/useAuth";
 import Alert from "../../components/UI/Alert";
 
 const OccupantAccountPage: React.FC = () => {
-  const { user, loading, error } = useAuth();
+  const { user, isLoading, error } = useAuth();
 
   const breadcrumbItems = [
     { label: "Mon espace", href: "/occupant/dashboard" },
     { label: "Mon compte" },
   ];
 
-  if (loading) {
+  if (isLoading) {
     return (
       <BaseLayout>
         <div className="text-center">

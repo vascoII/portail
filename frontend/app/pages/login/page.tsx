@@ -9,7 +9,7 @@ import { LoginFormData } from "../../types/auth";
 
 const LoginPage: React.FC = () => {
   const router = useRouter();
-  const { login, loading, error, isAuthenticated } = useAuth();
+  const { login, isLoading, error, isAuthenticated } = useAuth();
 
   // Rediriger si déjà connecté
   useEffect(() => {
@@ -79,7 +79,7 @@ const LoginPage: React.FC = () => {
           {/* Formulaire de connexion */}
           <LoginForm
             onSubmit={handleLogin}
-            loading={loading}
+            loading={isLoading}
             error={error?.message || null}
           />
 
