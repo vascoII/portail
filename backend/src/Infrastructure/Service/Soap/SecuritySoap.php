@@ -30,7 +30,7 @@ final class SecuritySoap implements SecuritySoapInterface
   public function loginFromParamService(LoginFromParamInputDto $inputDto): LoginOutputDto
   {
     // TODO: Implement loginFromParamService logic
-    return new LoginOutputDto([]);
+    return new LoginOutputDto(false);
   }
 
   public function logoutService(LogoutInputDto $inputDto): LogoutOutputDto
@@ -59,7 +59,113 @@ final class SecuritySoap implements SecuritySoapInterface
 
   public function loginService(LoginInputDto $inputDto): LoginOutputDto
   {
-    // TODO: Implement loginService logic
-    return new LoginOutputDto([]);
+    try {
+      // TODO: Implement SOAP call to external service
+      // This is a mock implementation - replace with actual SOAP call
+      $soapResponse = $this->mockSoapLogin($inputDto->username, $inputDto->password);
+
+      if (!$soapResponse['Connected']) {
+        return new LoginOutputDto(
+          success: false,
+          error: $soapResponse['Erreur'] ?? 'Authentication failed'
+        );
+      }
+
+      // Convert SOAP response to UserDto
+      $user = $this->convertSoapResponseToUser($soapResponse['User']);
+
+      return new LoginOutputDto(
+        success: true,
+        jwt: 'mock_jwt_token', // Will be replaced by actual JWT generation
+        userName: $user->userName
+      );
+    } catch (\Exception $e) {
+      return new LoginOutputDto(
+        success: false,
+        error: 'Login service error: ' . $e->getMessage()
+      );
+    }
+  }
+
+  private function mockSoapLogin(string $username, string $password): array
+  {
+    // Mock SOAP response based on your example
+    return [
+      'Erreur' => '',
+      'Info' => '',
+      'Connected' => true,
+      'SessionID' => '128b6158-f027-44cf-89e1-51391c54e99b',
+      'User' => [
+        'Erreur' => '',
+        'Info' => '',
+        'LoginID' => 'DEMOCLIENT',
+        'UserName' => 'Demo',
+        'Password' => 'Techem92',
+        'EMail' => 'noreply@techem.fr',
+        'UserType' => 'C',
+        'PKUser' => 1043,
+        'Adresse' => '',
+        'CP' => '',
+        'Ville' => '',
+        'FK' => 38227,
+        'PhoneNumber' => '',
+        'FirstName' => 'Client',
+        'UserRole' => 'MAISON MERE',
+        'ClientName' => '',
+        'ClientID' => 'C00892',
+        'ExpirationDate' => '0001-01-01T00:00:00',
+        'PasswordExpirationDate' => '2025-11-18T14:53:44',
+        'CGU' => 'O',
+        'FKClient' => 38227,
+        'FKClientTop' => 38227,
+        'NbImmeubles' => -1,
+        'Seuil_Conso_EF' => -1,
+        'Seuil_Conso_EC' => -1,
+        'Seuil_Conso_Repart' => -1,
+        'Seuil_Conso_CET' => -1,
+        'Seuil_Conso_Actif' => true,
+        'Seuil_Conso_Email' => '',
+        'showImmeublesArc' => false,
+        'showFactures' => true,
+        'showChgtOccupant' => true,
+        'showChantiers' => true
+      ]
+    ];
+  }
+
+  private function convertSoapResponseToUser(array $userData): \App\Application\Dto\Output\Security\UserDto
+  {
+    return new \App\Application\Dto\Output\Security\UserDto(
+      loginId: $userData['LoginID'],
+      userName: $userData['UserName'],
+      email: $userData['EMail'],
+      userType: $userData['UserType'],
+      pkUser: $userData['PKUser'],
+      address: $userData['Adresse'],
+      postalCode: $userData['CP'],
+      city: $userData['Ville'],
+      fk: $userData['FK'],
+      phoneNumber: $userData['PhoneNumber'],
+      firstName: $userData['FirstName'],
+      userRole: $userData['UserRole'],
+      clientName: $userData['ClientName'],
+      clientId: $userData['ClientID'],
+      expirationDate: $userData['ExpirationDate'],
+      passwordExpirationDate: $userData['PasswordExpirationDate'],
+      cgu: $userData['CGU'],
+      fkClient: $userData['FKClient'],
+      fkClientTop: $userData['FKClientTop'],
+      nbImmeubles: $userData['NbImmeubles'],
+      seuilConsoEf: $userData['Seuil_Conso_EF'],
+      seuilConsoEc: $userData['Seuil_Conso_EC'],
+      seuilConsoRepart: $userData['Seuil_Conso_Repart'],
+      seuilConsoCet: $userData['Seuil_Conso_CET'],
+      seuilConsoActif: $userData['Seuil_Conso_Actif'],
+      seuilConsoEmail: $userData['Seuil_Conso_Email'],
+      showImmeublesArc: $userData['showImmeublesArc'],
+      showFactures: $userData['showFactures'],
+      showChgtOccupant: $userData['showChgtOccupant'],
+      showChantiers: $userData['showChantiers']
+    );
   }
 }

@@ -1,0 +1,4 @@
+parameters:
+  jwt.secret: "%env(JWT_SECRET)%"
+  jwt.expiration: "%env(int:JWT_EXPIRATION)%"
+  redis.url: "%env(REDIS_URL)%"

@@ -21,7 +21,7 @@ const SWR_CONFIG = {
 
 // Fetcher pour SWR
 const fetcher = async (url: string): Promise<User | null> => {
-  const token = localStorage.getItem("jwt_token");
+  const token = localStorage.getItem("auth_token");
   if (!token) return null;
 
   const response = await fetch(url, {
@@ -33,14 +33,14 @@ const fetcher = async (url: string): Promise<User | null> => {
 
   if (!response.ok) {
     if (response.status === 401) {
-      localStorage.removeItem("jwt_token");
+      localStorage.removeItem("auth_token");
+      localStorage.removeItem("refresh_token");
       return null;
     }
     throw new Error("Failed to fetch user data");
   }
 
-  const data = await response.json();
-  return data.success ? data.user : null;
+  return response.json();
 };
 
 // Hook principal d'authentification
@@ -59,7 +59,7 @@ export const useAuth = () => {
     error: swrError,
     mutate,
   } = useSWR(
-    authState.isAuthenticated ? AUTH_ENDPOINTS.ME : null,
+    authState.isAuthenticated ? AUTH_ENDPOINTS.PROFILE : null,
     fetcher,
     SWR_CONFIG
   );
@@ -76,25 +76,27 @@ export const useAuth = () => {
           body: JSON.stringify({
             username: credentials.username,
             password: credentials.password,
+            rememberMe: credentials.rememberMe,
           }),
         });
 
         const data: LoginResponse = await response.json();
 
-        if (!response.ok || !data.success) {
-          const error = handleApiError({
-            response: { data, status: response.status },
-          });
+        if (!response.ok) {
+          const error = handleApiError({ response: { data, status: response.status } });
           throw new Error(error.message);
         }
 
-        // Stocker le JWT token
-        localStorage.setItem("jwt_token", data.jwt);
+        // Stocker les tokens
+        localStorage.setItem("auth_token", data.token);
+        if (data.refreshToken) {
+          localStorage.setItem("refresh_token", data.refreshToken);
+        }
 
         // Mettre à jour l'état
         setAuthState({
-          user: null, // Will be fetched by SWR
-          token: data.jwt,
+          user: data.user,
+          token: data.token,
           isAuthenticated: true,
           isLoading: false,
           error: null,
@@ -136,7 +138,8 @@ export const useAuth = () => {
       console.error("Logout error:", error);
     } finally {
       // Nettoyer le localStorage
-      localStorage.removeItem("jwt_token");
+      localStorage.removeItem("auth_token");
+      localStorage.removeItem("refresh_token");
 
       // Réinitialiser l'état
       setAuthState({
@@ -152,16 +155,44 @@ export const useAuth = () => {
     }
   }, [authState.token, mutate]);
 
-  // Fonction de refresh token (non utilisée avec JWT)
+  // Fonction de refresh token
   const refreshToken = useCallback(async (): Promise<boolean> => {
-    // JWT tokens are stateless, no refresh needed
-    return false;
+    const refreshTokenValue = localStorage.getItem("refresh_token");
+    if (!refreshTokenValue) return false;
+
+    try {
+      const response = await fetch(AUTH_ENDPOINTS.REFRESH, {
+        method: "POST",
+        headers: DEFAULT_HEADERS,
+        body: JSON.stringify({ refreshToken: refreshTokenValue }),
+      });
+
+      if (!response.ok) return false;
+
+      const data: LoginResponse = await response.json();
+
+      localStorage.setItem("auth_token", data.token);
+      if (data.refreshToken) {
+        localStorage.setItem("refresh_token", data.refreshToken);
+      }
+
+      setAuthState((prev) => ({
+        ...prev,
+        token: data.token,
+        isAuthenticated: true,
+      }));
+
+      return true;
+    } catch (error) {
+      console.error("Token refresh failed:", error);
+      return false;
+    }
   }, []);
 
   // Initialisation au chargement
   useEffect(() => {
     const initAuth = async () => {
-      const token = localStorage.getItem("jwt_token");
+      const token = localStorage.getItem("auth_token");
       if (!token) {
         setAuthState((prev) => ({ ...prev, isLoading: false }));
         return;

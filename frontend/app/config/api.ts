@@ -13,12 +13,11 @@ export const API_URL = `${API_BASE_URL}/api/${API_VERSION}`;
 
 // Endpoints d'authentification
 export const AUTH_ENDPOINTS = {
-  LOGIN: `${API_URL}/auth/login`,
-  LOGOUT: `${API_URL}/auth/logout`,
-  REFRESH: `${API_URL}/auth/refresh`,
-  RESET_PASSWORD: `${API_URL}/auth/reset-password`,
-  UPDATE_PASSWORD: `${API_URL}/auth/update-password`,
-  PROFILE: `${API_URL}/auth/profile`,
+  LOGIN: `${API_URL}/security/login`,
+  LOGOUT: `${API_URL}/security/logout`,
+  ME: `${API_URL}/security/me`,
+  RESET_PASSWORD: `${API_URL}/security/reset-password`,
+  UPDATE_PASSWORD: `${API_URL}/security/update-password`,
 } as const;
 
 // Endpoints des immeubles

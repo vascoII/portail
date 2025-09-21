@@ -1,15 +1,17 @@
 // Types pour l'authentification
 export interface User {
-  id: string;
+  loginId: string;
+  userName: string;
   email: string;
-  username?: string;
-  firstName?: string;
-  lastName?: string;
-  role: UserRole;
-  isActive: boolean;
-  createdAt: string;
-  lastLoginAt?: string;
-  avatar?: string;
+  userType: string;
+  firstName: string;
+  userRole: string;
+  clientId: string;
+  clientName: string;
+  showImmeublesArc: boolean;
+  showFactures: boolean;
+  showChgtOccupant: boolean;
+  showChantiers: boolean;
 }
 
 export type UserRole = "admin" | "operator" | "occupant" | "client";
@@ -21,10 +23,10 @@ export interface LoginCredentials {
 }
 
 export interface LoginResponse {
-  user: User;
-  token: string;
-  refreshToken: string;
-  expiresIn: number;
+  success: boolean;
+  jwt: string;
+  userName: string;
+  error?: string;
 }
 
 export interface AuthError {

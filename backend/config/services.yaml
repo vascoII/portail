@@ -32,3 +32,25 @@ services:
 
   # Pour utiliser SOAP
   App\Service\ImmeubleSoapProviderInterface: '@App\Service\External\ImmeubleSoapService'
+
+  # JWT Configuration
+  App\Domain\Service\Jwt\JwtServiceInterface: '@App\Infrastructure\Service\Jwt\JwtService'
+  App\Infrastructure\Service\Jwt\JwtService:
+    arguments:
+      $jwtSecret: "%env(JWT_SECRET)%"
+      $jwtExpiration: "%env(int:JWT_EXPIRATION)%"
+
+  # Redis Configuration
+  App\Domain\Service\Redis\RedisServiceInterface: '@App\Infrastructure\Service\Redis\RedisService'
+  App\Infrastructure\Service\Redis\RedisService:
+    arguments:
+      $redis: "@redis_client"
+
+  # Redis Client
+  redis_client:
+    class: Predis\Client
+    arguments:
+      - "%env(REDIS_URL)%"
+
+  # Auth Service
+  App\Domain\Service\Auth\AuthServiceInterface: '@App\Infrastructure\Service\Auth\AuthService'
