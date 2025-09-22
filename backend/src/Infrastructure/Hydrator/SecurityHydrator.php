@@ -15,65 +15,106 @@ use App\Application\Dto\Input\Security\LoginInputDto;
 
 final class SecurityHydrator
 {
-  public function hydrateCreate(CreateInputDto $inputDto, AuthenticationContext $authContext): object
+  public function hydrateCreate(CreateInputDto $inputDto): object
   {
+    $user = $this->authService->getCurrentUser();
+    $sessionId = $this->authService->getCurrentSessionId();
+    
+    if (!$user || !$sessionId) {
+      throw new \RuntimeException('User not authenticated');
+    }
+
     return (object) [
-      'SessionID' => $authContext->sessionId,
-      'PkUser' => $authContext->pkUser,
+      'SessionID' => $sessionId,
+      'PkUser' => $user->pkUser,
       // TODO: Add specific parameters based on CreateInputDto properties
     ];
   }
 
-  public function hydrateLoginFromParam(LoginFromParamInputDto $inputDto, AuthenticationContext $authContext): object
+  public function hydrateLoginFromParam(LoginFromParamInputDto $inputDto): object
   {
+    $user = $this->authService->getCurrentUser();
+    $sessionId = $this->authService->getCurrentSessionId();
+    
+    if (!$user || !$sessionId) {
+      throw new \RuntimeException('User not authenticated');
+    }
+
     return (object) [
-      'SessionID' => $authContext->sessionId,
-      'PkUser' => $authContext->pkUser,
+      'SessionID' => $sessionId,
+      'PkUser' => $user->pkUser,
       // TODO: Add specific parameters based on LoginFromParamInputDto properties
     ];
   }
 
-  public function hydrateLogout(LogoutInputDto $inputDto, AuthenticationContext $authContext): object
+  public function hydrateLogout(LogoutInputDto $inputDto): object
   {
+    $user = $this->authService->getCurrentUser();
+    $sessionId = $this->authService->getCurrentSessionId();
+    
+    if (!$user || !$sessionId) {
+      throw new \RuntimeException('User not authenticated');
+    }
+
     return (object) [
-      'SessionID' => $authContext->sessionId,
-      'PkUser' => $authContext->pkUser,
+      'SessionID' => $sessionId,
+      'PkUser' => $user->pkUser,
       // TODO: Add specific parameters based on LogoutInputDto properties
     ];
   }
 
-  public function hydrateResetOrCreate(ResetOrCreateInputDto $inputDto, AuthenticationContext $authContext): object
+  public function hydrateResetOrCreate(ResetOrCreateInputDto $inputDto): object
   {
+    $user = $this->authService->getCurrentUser();
+    $sessionId = $this->authService->getCurrentSessionId();
+    
+    if (!$user || !$sessionId) {
+      throw new \RuntimeException('User not authenticated');
+    }
+
     return (object) [
-      'SessionID' => $authContext->sessionId,
-      'PkUser' => $authContext->pkUser,
+      'SessionID' => $sessionId,
+      'PkUser' => $user->pkUser,
       // TODO: Add specific parameters based on ResetOrCreateInputDto properties
     ];
   }
 
-  public function hydrateUpdatePassword(UpdatePasswordInputDto $inputDto, AuthenticationContext $authContext): object
+  public function hydrateUpdatePassword(UpdatePasswordInputDto $inputDto): object
   {
+    $user = $this->authService->getCurrentUser();
+    $sessionId = $this->authService->getCurrentSessionId();
+    
+    if (!$user || !$sessionId) {
+      throw new \RuntimeException('User not authenticated');
+    }
+
     return (object) [
-      'SessionID' => $authContext->sessionId,
-      'PkUser' => $authContext->pkUser,
+      'SessionID' => $sessionId,
+      'PkUser' => $user->pkUser,
       // TODO: Add specific parameters based on UpdatePasswordInputDto properties
     ];
   }
 
-  public function hydrateResetPassword(ResetPasswordInputDto $inputDto, AuthenticationContext $authContext): object
+  public function hydrateResetPassword(ResetPasswordInputDto $inputDto): object
   {
+    $user = $this->authService->getCurrentUser();
+    $sessionId = $this->authService->getCurrentSessionId();
+    
+    if (!$user || !$sessionId) {
+      throw new \RuntimeException('User not authenticated');
+    }
+
     return (object) [
-      'SessionID' => $authContext->sessionId,
-      'PkUser' => $authContext->pkUser,
+      'SessionID' => $sessionId,
+      'PkUser' => $user->pkUser,
       // TODO: Add specific parameters based on ResetPasswordInputDto properties
     ];
   }
 
-  public function hydrateLogin(LoginInputDto $inputDto, AuthenticationContext $authContext): object
+  public function hydrateLogin(LoginInputDto $inputDto): object
   {
+    // Login doesn't need authentication context - it's the method that creates it
     return (object) [
-      'SessionID' => $authContext->sessionId,
-      'PkUser' => $authContext->pkUser,
       // TODO: Add specific parameters based on LoginInputDto properties
     ];
   }

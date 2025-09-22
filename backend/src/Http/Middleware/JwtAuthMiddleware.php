@@ -6,28 +6,34 @@ namespace App\Http\Middleware;
 
 use App\Domain\Service\Jwt\JwtServiceInterface;
 use App\Domain\Service\Redis\RedisServiceInterface;
+use App\Domain\Service\Auth\AuthServiceInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 
 final class JwtAuthMiddleware
 {
   public function __construct(
     private readonly JwtServiceInterface $jwtService,
-    private readonly RedisServiceInterface $redisService
+    private readonly RedisServiceInterface $redisService,
+    private readonly AuthServiceInterface $authService
   ) {}
 
-  public function __invoke(Request $request, callable $next): Response
+  public function __invoke(RequestEvent $event): void
   {
+    $request = $event->getRequest();
+
     // Skip authentication for login endpoint
     if ($request->getPathInfo() === '/api/security/login') {
-      return $next($request);
+      return;
     }
 
     $authHeader = $request->headers->get('Authorization');
 
     if (!$authHeader || !str_starts_with($authHeader, 'Bearer ')) {
-      return new JsonResponse(['error' => 'Missing or invalid authorization header'], 401);
+      $event->setResponse(new JsonResponse(['success' => false, 'error' => 'User not authenticated'], 401));
+      return;
     }
 
     $token = substr($authHeader, 7); // Remove 'Bearer ' prefix
@@ -35,27 +41,26 @@ final class JwtAuthMiddleware
     $payload = $this->jwtService->validateToken($token);
 
     if (!$payload) {
-      return new JsonResponse(['error' => 'Invalid or expired token'], 401);
+      $event->setResponse(new JsonResponse(['success' => false, 'error' => 'User not authenticated'], 401));
+      return;
     }
 
     // Get user data from Redis using session ID
     $sessionId = $payload['data']['sessionId'] ?? null;
 
     if (!$sessionId) {
-      return new JsonResponse(['error' => 'Invalid token payload'], 401);
+      $event->setResponse(new JsonResponse(['success' => false, 'error' => 'User not authenticated'], 401));
+      return;
     }
 
     $user = $this->redisService->getSession($sessionId);
 
     if (!$user) {
-      return new JsonResponse(['error' => 'Session expired or not found'], 401);
+      $event->setResponse(new JsonResponse(['success' => false, 'error' => 'User not authenticated'], 401));
+      return;
     }
 
-    // Add user data to request attributes for use in controllers
-    $request->attributes->set('user', $user);
-    $request->attributes->set('sessionId', $sessionId);
-    $request->attributes->set('jwtPayload', $payload);
-
-    return $next($request);
+    // Set the authenticated user in the AuthService
+    $this->authService->setAuthenticatedUser($user, $sessionId);
   }
 }

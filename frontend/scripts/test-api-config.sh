@@ -117,3 +117,4 @@ else
 fi
 
 echo "🎉 Tests de la configuration API terminés avec succès !"
+

@@ -262,3 +262,4 @@ try {
 - ✅ **Documentation** : Configuration documentée
 
 La configuration API est maintenant **parfaitement configurée** pour gérer les appels entre le frontend (port 3000) et le backend (port 8000) ! 🚀
+

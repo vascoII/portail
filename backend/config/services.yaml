@@ -23,8 +23,8 @@ services:
   # add more service definitions when explicit configuration is needed
   # please note that last definitions always *replace* previous ones
 
-  App\Controller\:
-    resource: "../src/Controller"
+  App\Http\Action\:
+    resource: "../src/Http/Action"
     tags: ["controller.service_arguments"]
 
   # Pour utiliser BDD
@@ -54,3 +54,18 @@ services:
 
   # Auth Service
   App\Domain\Service\Auth\AuthServiceInterface: '@App\Infrastructure\Service\Auth\AuthService'
+
+  # SOAP Client
+  App\Infrastructure\Service\Soap\SoapClient:
+    arguments:
+      $wsdlUrl: "%env(SOAP_WSDL_URL)%"
+
+  # JWT Middleware
+  App\Http\Middleware\JwtAuthMiddleware:
+    tags:
+      - {
+          name: kernel.event_listener,
+          event: kernel.request,
+          method: __invoke,
+          priority: 1000,
+        }

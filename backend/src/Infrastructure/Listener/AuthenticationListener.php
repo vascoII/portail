@@ -14,7 +14,8 @@ final class AuthenticationListener implements EventSubscriberInterface
   public static function getSubscribedEvents(): array
   {
     return [
-      KernelEvents::REQUEST => ['onKernelRequest', 1000],
+      // Disabled - using JWT middleware instead
+      // KernelEvents::REQUEST => ['onKernelRequest', 1000],
     ];
   }
 

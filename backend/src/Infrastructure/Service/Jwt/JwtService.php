@@ -46,7 +46,7 @@ final class JwtService implements JwtServiceInterface
   {
     try {
       $decoded = JWT::decode($token, new Key($this->jwtSecret, self::ALGORITHM));
-      return (array) $decoded;
+      return json_decode(json_encode($decoded), true);
     } catch (\Exception $e) {
       return null;
     }

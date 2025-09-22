@@ -10,14 +10,28 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 final class AuthService implements AuthServiceInterface
 {
+  private ?UserDto $user = null;
+  private ?string $sessionId = null;
+
   public function __construct(
     private readonly RequestStack $requestStack
   ) {}
 
+  public function setAuthenticatedUser(UserDto $user, string $sessionId): void
+  {
+    $this->user = $user;
+    $this->sessionId = $sessionId;
+  }
+
   public function getCurrentUser(): ?UserDto
   {
-    $request = $this->requestStack->getCurrentRequest();
+    // First try to get from memory (set by middleware)
+    if ($this->user !== null) {
+      return $this->user;
+    }
 
+    // Fallback to request attributes (for backward compatibility)
+    $request = $this->requestStack->getCurrentRequest();
     if (!$request) {
       return null;
     }
@@ -27,8 +41,13 @@ final class AuthService implements AuthServiceInterface
 
   public function getCurrentSessionId(): ?string
   {
-    $request = $this->requestStack->getCurrentRequest();
+    // First try to get from memory (set by middleware)
+    if ($this->sessionId !== null) {
+      return $this->sessionId;
+    }
 
+    // Fallback to request attributes (for backward compatibility)
+    $request = $this->requestStack->getCurrentRequest();
     if (!$request) {
       return null;
     }
@@ -39,5 +58,11 @@ final class AuthService implements AuthServiceInterface
   public function isAuthenticated(): bool
   {
     return $this->getCurrentUser() !== null;
+  }
+
+  public function clearAuthenticatedUser(): void
+  {
+    $this->user = null;
+    $this->sessionId = null;
   }
 }
