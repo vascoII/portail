@@ -1,28 +1,26 @@
-# Dockerfile Backend Symfony + API Platform (POC minimal)
-
 # 1️⃣ Base PHP
 FROM php:8.2-fpm
 
-# 2️⃣ Installer dépendances système et extensions PHP
+# 1️⃣.1️⃣ Installer utilitaires et ca-certificates
 RUN apt-get update && apt-get install -y \
-  git unzip libpq-dev libicu-dev libonig-dev libzip-dev curl \
-  && docker-php-ext-install pdo pdo_pgsql intl opcache zip
+    ca-certificates git unzip libpq-dev libicu-dev libonig-dev libzip-dev \
+    && rm -rf /var/lib/apt/lists/*
 
-# 3️⃣ Installer Composer directement dans le container
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+# 1️⃣.2️⃣ Copier le certificat Zscaler
+COPY root.crt /usr/local/share/ca-certificates/root.crt
+RUN update-ca-certificates
 
-# 4️⃣ Créer le répertoire de travail
+# 2️⃣ Installer extensions PHP nécessaires
+RUN docker-php-ext-install pdo pdo_pgsql intl opcache zip
+
+# 3️⃣ Créer le répertoire de travail
 WORKDIR /var/www/backend
 
-# 5️⃣ Copier le code source
+# 4️⃣ Copier le code source (le dossier vendor sera monté via volume)
 COPY ./backend /var/www/backend
 
-# 6️⃣ Installer les dépendances PHP via Composer
-RUN composer install --no-interaction --optimize-autoloader
-
-# 7️⃣ Exposer le port de l'API
+# 5️⃣ Exposer le port de l'API
 EXPOSE 8000
 
-# 8️⃣ Commande de lancement pour le POC
+# 6️⃣ Commande de lancement pour le POC
 CMD ["php", "-S", "0.0.0.0:8000", "-t", "public"]
-
