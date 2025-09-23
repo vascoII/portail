@@ -27,6 +27,8 @@ final class InterventionSoap implements InterventionSoapInterface
   public function reportService(ReportInputDto $inputDto): array
   {
     // TODO: Implement reportService logic
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     return [];
   }
 }

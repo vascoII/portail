@@ -24,39 +24,56 @@ final class TicketingSoap implements TicketingSoapInterface
     private readonly AuthServiceInterface $authService
   ) {}
 
+  private function getAuthContext(): AuthenticationContext
+  {
+    return AuthenticationContext::fromAuthService($this->authService);
+  }
+
   public function attachmentTicketService(AttachmentTicketInputDto $inputDto): array
   {
     // TODO: Implement attachmentTicketService logic
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     return [];
   }
 
   public function closeTicketService(CloseTicketInputDto $inputDto): array
   {
     // TODO: Implement closeTicketService logic
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     return [];
   }
 
   public function createTicketService(CreateTicketInputDto $inputDto): array
   {
     // TODO: Implement createTicketService logic
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     return [];
   }
 
   public function menuTicketService(MenuTicketInputDto $inputDto): array
   {
     // TODO: Implement menuTicketService logic
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     return [];
   }
 
   public function tableTicketingService(TableTicketingInputDto $inputDto): array
   {
     // TODO: Implement tableTicketingService logic
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     return [];
   }
 
   public function ticketListService(TicketListInputDto $inputDto): array
   {
     // TODO: Implement ticketListService logic
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     return [];
   }
 }

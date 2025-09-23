@@ -28,12 +28,16 @@ final class TableauBordClientSoap implements TableauBordClientSoapInterface
   public function indexService(IndexInputDto $inputDto): array
   {
     // TODO: Implement indexService logic
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     return [];
   }
 
   public function interventionService(InterventionInputDto $inputDto): array
   {
     // TODO: Implement interventionService logic
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     return [];
   }
 }

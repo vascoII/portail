@@ -6,7 +6,6 @@ namespace App\Infrastructure\Service\Soap;
 
 use App\Application\Dto\Input\Security\CreateInputDto;
 use App\Application\Dto\Input\Security\LoginFromParamInputDto;
-use App\Application\Dto\Input\Security\LogoutInputDto;
 use App\Application\Dto\Input\Security\ResetOrCreateInputDto;
 use App\Application\Dto\Input\Security\UpdatePasswordInputDto;
 use App\Application\Dto\Input\Security\ResetPasswordInputDto;
@@ -33,36 +32,48 @@ final class SecuritySoap implements SecuritySoapInterface
   public function createService(CreateInputDto $inputDto): array
   {
     // TODO: Implement createService logic
-    return new CreateOutputDto(true);
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
+    return [];
   }
 
   public function loginFromParamService(LoginFromParamInputDto $inputDto): array
   {
     // TODO: Implement loginFromParamService logic
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     return [];
   }
 
-  public function logoutService(LogoutInputDto $inputDto): array
+  public function logoutService(): array
   {
     // TODO: Implement logoutService logic
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     return [];
   }
 
   public function resetOrCreateService(ResetOrCreateInputDto $inputDto): array
   {
     // TODO: Implement resetOrCreateService logic
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     return [];
   }
 
   public function updatePasswordService(UpdatePasswordInputDto $inputDto): array
   {
     // TODO: Implement updatePasswordService logic
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     return [];
   }
 
   public function resetPasswordService(ResetPasswordInputDto $inputDto): array
   {
     // TODO: Implement resetPasswordService logic
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     return [];
   }
 

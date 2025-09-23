@@ -10,6 +10,7 @@ use App\Application\Dto\Output\Security\LoginOutputDto;
 use App\Application\Dto\Output\Security\ResetOrCreateOutputDto;
 use App\Application\Dto\Output\Security\ResetPasswordOutputDto;
 use App\Application\Dto\Output\Security\UpdatePasswordOutputDto;
+use App\Application\Dto\Output\Security\LogoutOutputDto;
 
 final class SecurityTransformer
 {
@@ -18,7 +19,7 @@ final class SecurityTransformer
    */
    public function transformCreateResponse(array $response): CreateOutputDto
    {
-      return new CreateOutputDto();
+      return new CreateOutputDto(true);
    }
 
    /**
@@ -59,6 +60,14 @@ final class SecurityTransformer
    public function transformLoginResponse(array $response): LoginOutputDto
    {
       return new LoginOutputDto();
+   }
+
+   /**
+   * Transform raw SOAP response to LoginOutputDto
+   */
+   public function transformLogoutResponse(array $response): LogoutOutputDto
+   {
+      return new LogoutOutputDto(true);
    }
 
 }

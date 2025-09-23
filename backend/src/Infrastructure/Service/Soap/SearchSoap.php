@@ -27,6 +27,8 @@ final class SearchSoap implements SearchSoapInterface
   public function indexService(IndexInputDto $inputDto): array
   {
     // TODO: Implement indexService logic
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     return [];
   }
 }

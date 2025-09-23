@@ -7,7 +7,6 @@ namespace App\Infrastructure\Hydrator;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Application\Dto\Input\Security\CreateInputDto;
 use App\Application\Dto\Input\Security\LoginFromParamInputDto;
-use App\Application\Dto\Input\Security\LogoutInputDto;
 use App\Application\Dto\Input\Security\ResetOrCreateInputDto;
 use App\Application\Dto\Input\Security\UpdatePasswordInputDto;
 use App\Application\Dto\Input\Security\ResetPasswordInputDto;
@@ -47,7 +46,7 @@ final class SecurityHydrator
     ];
   }
 
-  public function hydrateLogout(LogoutInputDto $inputDto): object
+  public function hydrateLogout(): object
   {
     $user = $this->authService->getCurrentUser();
     $sessionId = $this->authService->getCurrentSessionId();

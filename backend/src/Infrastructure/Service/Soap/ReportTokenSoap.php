@@ -28,12 +28,16 @@ final class ReportTokenSoap implements ReportTokenSoapInterface
   public function loadingService(LoadingInputDto $inputDto): array
   {
     // TODO: Implement loadingService logic
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     return [];
   }
 
   public function reportService(ReportInputDto $inputDto): array
   {
     // TODO: Implement reportService logic
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     return [];
   }
 }

@@ -35,54 +35,72 @@ final class OperatorSoap implements OperatorSoapInterface
   public function indexService(IndexInputDto $inputDto): array
   {
     // TODO: Implement indexService logic
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     return [];
   }
 
   public function createService(CreateInputDto $inputDto): array
   {
     // TODO: Implement createService logic
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     return [];
   }
 
   public function addBuildingService(AddBuildingInputDto $inputDto): array
   {
     // TODO: Implement addBuildingService logic
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     return [];
   }
 
   public function removeBuildingService(RemoveBuildingInputDto $inputDto): array
   {
     // TODO: Implement removeBuildingService logic
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     return [];
   }
 
   public function viewService(ViewInputDto $inputDto): array
   {
     // TODO: Implement viewService logic
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     return [];
   }
 
   public function editService(EditInputDto $inputDto): array
   {
     // TODO: Implement editService logic
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     return [];
   }
 
   public function editPasswordService(EditPasswordInputDto $inputDto): array
   {
     // TODO: Implement editPasswordService logic
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     return [];
   }
 
   public function deleteService(DeleteInputDto $inputDto): array
   {
     // TODO: Implement deleteService logic
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     return [];
   }
 
   public function otatsoccupantsService(OtatsoccupantsInputDto $inputDto): array
   {
     // TODO: Implement otatsoccupantsService logic
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     return [];
   }
 }

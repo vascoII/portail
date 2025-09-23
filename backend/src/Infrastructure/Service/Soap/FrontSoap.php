@@ -30,6 +30,8 @@ final class FrontSoap implements FrontSoapInterface
   public function indexService(IndexInputDto $inputDto): array
   {
     // TODO: Implement indexService logic
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     return [];
   }
 
@@ -42,6 +44,8 @@ final class FrontSoap implements FrontSoapInterface
   public function personalDatasService(PersonalDatasInputDto $inputDto): array
   {
     // TODO: Implement personalDatasService logic
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     return [];
   }
 
