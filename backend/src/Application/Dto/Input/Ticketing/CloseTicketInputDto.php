@@ -6,5 +6,10 @@ namespace App\Application\Dto\Input\Ticketing;
 
 final class CloseTicketInputDto
 {
-  public function __construct(public readonly string $ticketId) {}
+  const STATUS = "Clos";
+
+  public function __construct(
+      public readonly string $pkTicket,
+      public readonly string $statut = self::STATUS
+  ) {}
 }

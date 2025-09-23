@@ -6,5 +6,8 @@ namespace App\Application\Dto\Input\Operator;
 
 final class EditPasswordInputDto
 {
-  public function __construct(public readonly string $operatorId) {}
+  public function __construct(
+      public readonly string $pkUserChild,
+      public readonly string $password  
+  ) {}
 }
