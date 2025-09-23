@@ -41,13 +41,20 @@ const LoginPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md">
+      <div
+        className="absolute top-0 left-0 right-0 w-full h-64 bg-top bg-no-repeat bg-cover pointer-events-none"
+        style={{
+          backgroundImage: "url('/images/login-bg.png')",
+          zIndex: 1,
+        }}
+      />
+      <div className="sm:mx-auto sm:w-full sm:max-w-md" style={{zIndex: 1}}>
         {/* Logo */}
         <div className="flex justify-center">
           <Link href="/pages/dashboard" className="flex items-center">
             <div className="flex-shrink-0">
               <img
-                className="h-12 w-auto"
+                className="h-20 w-auto"
                 src="/images/logo.svg"
                 alt="Techem"
                 onError={(e) => {
@@ -74,7 +81,7 @@ const LoginPage: React.FC = () => {
         </p>
       </div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md" style={{zIndex: 1}}>
         <div className="bg-white py-8 px-4 shadow-xl sm:rounded-lg sm:px-10">
           {/* Formulaire de connexion */}
           <LoginForm
@@ -114,26 +121,29 @@ const LoginPage: React.FC = () => {
         <div className="mt-8 text-center">
           <div className="flex justify-center space-x-6 text-sm text-gray-500">
             <Link
-              href="/pages/legal/legal-notices"
+              target="_blank"
+              href="https://www.techem.com/fr/fr/mentions-legales"
               className="hover:text-gray-700 transition-colors"
             >
               Mentions légales
             </Link>
             <Link
-              href="/pages/legal/cgu"
+              target="_blank"
+              href="https://www.techem.com/fr/fr/politique-de-confidentialite/protection-des-donnees"
               className="hover:text-gray-700 transition-colors"
             >
-              CGU
+              Protection des Données
             </Link>
             <Link
-              href="/pages/legal/personal-datas"
+              target="_blank"
+              href="https://www.techem.com/fr/fr/politique-de-confidentialite"
               className="hover:text-gray-700 transition-colors"
             >
-              Données personnelles
+              Politique de confidentialité
             </Link>
           </div>
           <p className="mt-2 text-xs text-gray-400">
-            © 2024 Techem France. Tous droits réservés.
+            © 2025 Techem France. Tous droits réservés.
           </p>
         </div>
       </div>

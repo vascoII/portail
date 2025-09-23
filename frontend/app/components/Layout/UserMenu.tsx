@@ -78,7 +78,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
           )}
 
           <li role="presentation">
-            <Link href="/logout" role="menuitem" tabIndex={-1}>
+            <Link href="/pages/logout" role="menuitem" tabIndex={-1}>
               <i className="icon-lock-open-alt"></i>
               Déconnexion
             </Link>

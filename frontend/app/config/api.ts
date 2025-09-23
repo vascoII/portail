@@ -4,12 +4,12 @@
  */
 
 // Configuration de base
-const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000";
+const API_BASE_URL = "http://localhost:8000";
+  //process.env.NEXT_PUBLIC_API_BASE_URL || "http://backend:8000";
 const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION || "v1";
 
 // Construction de l'URL de base de l'API
-export const API_URL = `${API_BASE_URL}/api/${API_VERSION}`;
+export const API_URL = `${API_BASE_URL}/api`;
 
 // Endpoints d'authentification
 export const AUTH_ENDPOINTS = {
@@ -22,25 +22,25 @@ export const AUTH_ENDPOINTS = {
 
 // Endpoints des immeubles
 export const BUILDING_ENDPOINTS = {
-  LIST: `${API_URL}/buildings`,
-  DETAIL: (id: string) => `${API_URL}/buildings/${id}`,
-  ANOMALIES: (id: string) => `${API_URL}/buildings/${id}/anomalies`,
-  DYSFUNCTIONS: (id: string) => `${API_URL}/buildings/${id}/dysfunctions`,
-  INTERVENTIONS: (id: string) => `${API_URL}/buildings/${id}/interventions`,
-  LEAKS: (id: string) => `${API_URL}/buildings/${id}/leaks`,
+  LIST: `${API_URL}/immeuble`,
+  DETAIL: (id: string) => `${API_URL}/immeuble/${id}`,
+  ANOMALIES: (id: string) => `${API_URL}/immeuble/${id}/anomalies`,
+  DYSFUNCTIONS: (id: string) => `${API_URL}/immeuble/${id}/dysfunctions`,
+  INTERVENTIONS: (id: string) => `${API_URL}/immeuble/${id}/interventions`,
+  LEAKS: (id: string) => `${API_URL}/immeuble/${id}/leaks`,
 } as const;
 
 // Endpoints des logements
 export const HOUSING_ENDPOINTS = {
   LIST: `${API_URL}/housings`,
-  DETAIL: (id: string) => `${API_URL}/housings/${id}`,
-  EDIT: (id: string) => `${API_URL}/housings/${id}/edit`,
-  ANOMALIES: (id: string) => `${API_URL}/housings/${id}/anomalies`,
-  DYSFUNCTIONS: (id: string) => `${API_URL}/housings/${id}/dysfunctions`,
-  INTERVENTIONS: (id: string) => `${API_URL}/housings/${id}/interventions`,
-  LEAKS: (id: string) => `${API_URL}/housings/${id}/leaks`,
+  DETAIL: (id: string) => `${API_URL}/logement/${id}`,
+  EDIT: (id: string) => `${API_URL}/logement/${id}/edit`,
+  ANOMALIES: (id: string) => `${API_URL}/logement/${id}/anomalies`,
+  DYSFUNCTIONS: (id: string) => `${API_URL}/logement/${id}/dysfunctions`,
+  INTERVENTIONS: (id: string) => `${API_URL}/logement/${id}/interventions`,
+  LEAKS: (id: string) => `${API_URL}/logement/${id}/leaks`,
   INTERVENTION_DETAIL: (id: string, interventionId: string) =>
-    `${API_URL}/housings/${id}/interventions/${interventionId}`,
+    `${API_URL}/logement/${id}/interventions/${interventionId}`,
 } as const;
 
 // Endpoints des occupants
