@@ -5,118 +5,119 @@ declare(strict_types=1);
 namespace App\Infrastructure\Service\Soap;
 
 use App\Application\Dto\Input\GestionParc\IndexInputDto;
-use App\Application\Dto\Output\GestionParc\IndexOutputDto;
 use App\Application\Dto\Input\GestionParc\InterventionInputDto;
-use App\Application\Dto\Output\GestionParc\InterventionOutputDto;
 use App\Application\Dto\Input\GestionParc\ExportInterventionsInputDto;
-use App\Application\Dto\Output\GestionParc\ExportInterventionsOutputDto;
 use App\Application\Dto\Input\GestionParc\ReportInputDto;
-use App\Application\Dto\Output\GestionParc\ReportOutputDto;
 use App\Application\Dto\Input\GestionParc\ShowInputDto;
-use App\Application\Dto\Output\GestionParc\ShowOutputDto;
 use App\Application\Dto\Input\GestionParc\ExportLeaksInputDto;
-use App\Application\Dto\Output\GestionParc\ExportLeaksOutputDto;
 use App\Application\Dto\Input\GestionParc\ExportAnomaliesInputDto;
-use App\Application\Dto\Output\GestionParc\ExportAnomaliesOutputDto;
 use App\Application\Dto\Input\GestionParc\ListInterventionsInputDto;
-use App\Application\Dto\Output\GestionParc\ListInterventionsOutputDto;
 use App\Application\Dto\Input\GestionParc\ShowInterventionInputDto;
-use App\Application\Dto\Output\GestionParc\ShowInterventionOutputDto;
 use App\Application\Dto\Input\GestionParc\FilterResultInputDto;
-use App\Application\Dto\Output\GestionParc\FilterResultOutputDto;
 use App\Application\Dto\Input\GestionParc\ListLeaksInputDto;
-use App\Application\Dto\Output\GestionParc\ListLeaksOutputDto;
 use App\Application\Dto\Input\GestionParc\ListAnomaliesInputDto;
-use App\Application\Dto\Output\GestionParc\ListAnomaliesOutputDto;
 use App\Application\Dto\Input\GestionParc\ExportDysfunctionsInputDto;
-use App\Application\Dto\Output\GestionParc\ExportDysfunctionsOutputDto;
 use App\Application\Dto\Input\GestionParc\ListDysfunctionsInputDto;
-use App\Application\Dto\Output\GestionParc\ListDysfunctionsOutputDto;
 use App\Domain\Service\Soap\GestionParcSoapInterface;
+use App\Infrastructure\Hydrator\GestionParcHydrator;
+use App\Domain\Service\Auth\AuthServiceInterface;
+use App\Infrastructure\Service\Auth\AuthenticationContext;
+use App\Infrastructure\Service\Soap\SoapClient;
 
 final class GestionParcSoap implements GestionParcSoapInterface
 {
-  public function indexService(IndexInputDto $inputDto): IndexOutputDto
+  public function __construct(
+    private readonly SoapClient $soapClient,
+    private readonly GestionParcHydrator $hydrator,
+    private readonly AuthServiceInterface $authService
+  ) {}
+
+  private function getAuthContext(): AuthenticationContext
+  {
+    return AuthenticationContext::fromAuthService($this->authService);
+  }
+
+  public function indexService(IndexInputDto $inputDto): array
   {
     // TODO: Implement indexService logic
-    return new IndexOutputDto([]);
+    return [];
   }
 
-  public function interventionService(InterventionInputDto $inputDto): InterventionOutputDto
+  public function interventionService(InterventionInputDto $inputDto): array
   {
     // TODO: Implement interventionService logic
-    return new InterventionOutputDto([]);
+    return [];
   }
 
-  public function reportService(ReportInputDto $inputDto): ReportOutputDto
+  public function reportService(ReportInputDto $inputDto): array
   {
     // TODO: Implement reportService logic
-    return new ReportOutputDto(true);
+    return [];
   }
 
-  public function showService(ShowInputDto $inputDto): ShowOutputDto
+  public function showService(ShowInputDto $inputDto): array
   {
     // TODO: Implement showService logic
-    return new ShowOutputDto([]);
+    return [];
   }
 
-  public function listInterventionsService(ListInterventionsInputDto $inputDto): ListInterventionsOutputDto
+  public function listInterventionsService(ListInterventionsInputDto $inputDto): array
   {
     // TODO: Implement listInterventionsService logic
-    return new ListInterventionsOutputDto([]);
+    return  [];
   }
 
-  public function showInterventionService(ShowInterventionInputDto $inputDto): ShowInterventionOutputDto
+  public function showInterventionService(ShowInterventionInputDto $inputDto): array
   {
     // TODO: Implement showInterventionService logic
-    return new ShowInterventionOutputDto([]);
+    return [];
   }
 
-  public function filterResultService(FilterResultInputDto $inputDto): FilterResultOutputDto
+  public function filterResultService(FilterResultInputDto $inputDto): array
   {
     // TODO: Implement filterResultService logic
-    return new FilterResultOutputDto([]);
+    return [];
   }
 
-  public function listLeaksService(ListLeaksInputDto $inputDto): ListLeaksOutputDto
+  public function listLeaksService(ListLeaksInputDto $inputDto): array
   {
     // TODO: Implement listLeaksService logic
-    return new ListLeaksOutputDto([]);
+    return [];
   }
 
-  public function listAnomaliesService(ListAnomaliesInputDto $inputDto): ListAnomaliesOutputDto
+  public function listAnomaliesService(ListAnomaliesInputDto $inputDto): array
   {
     // TODO: Implement listAnomaliesService logic
-    return new ListAnomaliesOutputDto([]);
+    return [];
   }
 
-  public function exportInterventionsService(ExportInterventionsInputDto $inputDto): ExportInterventionsOutputDto
+  public function exportInterventionsService(ExportInterventionsInputDto $inputDto): array
   {
     // TODO: Implement exportInterventionsService logic
-    return new ExportInterventionsOutputDto(true);
+    return [];
   }
 
-  public function exportLeaksService(ExportLeaksInputDto $inputDto): ExportLeaksOutputDto
+  public function exportLeaksService(ExportLeaksInputDto $inputDto): array
   {
     // TODO: Implement exportLeaksService logic
-    return new ExportLeaksOutputDto(true);
+    return [];
   }
 
-  public function exportAnomaliesService(ExportAnomaliesInputDto $inputDto): ExportAnomaliesOutputDto
+  public function exportAnomaliesService(ExportAnomaliesInputDto $inputDto): array
   {
     // TODO: Implement exportAnomaliesService logic
-    return new ExportAnomaliesOutputDto(true);
+    return [];
   }
 
-  public function exportDysfunctionsService(ExportDysfunctionsInputDto $inputDto): ExportDysfunctionsOutputDto
+  public function exportDysfunctionsService(ExportDysfunctionsInputDto $inputDto): array
   {
     // TODO: Implement exportDysfunctionsService logic
-    return new ExportDysfunctionsOutputDto(true);
+    return [];
   }
 
-  public function listDysfunctionsService(ListDysfunctionsInputDto $inputDto): ListDysfunctionsOutputDto
+  public function listDysfunctionsService(ListDysfunctionsInputDto $inputDto): array
   {
     // TODO: Implement listDysfunctionsService logic
-    return new ListDysfunctionsOutputDto([]);
+    return [];
   }
 }

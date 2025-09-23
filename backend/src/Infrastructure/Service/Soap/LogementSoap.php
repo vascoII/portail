@@ -5,174 +5,168 @@ declare(strict_types=1);
 namespace App\Infrastructure\Service\Soap;
 
 use App\Application\Dto\Input\Logement\IndexInputDto;
-use App\Application\Dto\Output\Logement\IndexOutputDto;
 use App\Application\Dto\Input\Logement\ShowInputDto;
-use App\Application\Dto\Output\Logement\ShowOutputDto;
 use App\Application\Dto\Input\Logement\SearchInputDto;
-use App\Application\Dto\Output\Logement\SearchOutputDto;
 use App\Application\Dto\Input\Logement\ListInterventionsInputDto;
-use App\Application\Dto\Output\Logement\ListInterventionsOutputDto;
 use App\Application\Dto\Input\Logement\ShowInterventionInputDto;
-use App\Application\Dto\Output\Logement\ShowInterventionOutputDto;
 use App\Application\Dto\Input\Logement\ListLeaksInputDto;
-use App\Application\Dto\Output\Logement\ListLeaksOutputDto;
 use App\Application\Dto\Input\Logement\ListDysfunctionsInputDto;
-use App\Application\Dto\Output\Logement\ListDysfunctionsOutputDto;
 use App\Application\Dto\Input\Logement\ListAnomaliesInputDto;
-use App\Application\Dto\Output\Logement\ListAnomaliesOutputDto;
 use App\Application\Dto\Input\Logement\FilterResultInputDto;
-use App\Application\Dto\Output\Logement\FilterResultOutputDto;
 use App\Application\Dto\Input\Logement\ExportInputDto;
-use App\Application\Dto\Output\Logement\ExportOutputDto;
 use App\Application\Dto\Input\Logement\ExportInterventionsInputDto;
-use App\Application\Dto\Output\Logement\ExportInterventionsOutputDto;
 use App\Application\Dto\Input\Logement\ExportLeaksInputDto;
-use App\Application\Dto\Output\Logement\ExportLeaksOutputDto;
 use App\Application\Dto\Input\Logement\ExportDysfunctionsInputDto;
-use App\Application\Dto\Output\Logement\ExportDysfunctionsOutputDto;
 use App\Application\Dto\Input\Logement\ExportAnomaliesInputDto;
-use App\Application\Dto\Output\Logement\ExportAnomaliesOutputDto;
 use App\Application\Dto\Input\Logement\EditInputDto;
-use App\Application\Dto\Output\Logement\EditOutputDto;
 use App\Application\Dto\Input\Logement\CreateTicketInputDto;
-use App\Application\Dto\Output\Logement\CreateTicketOutputDto;
 use App\Application\Dto\Input\Logement\CreateTicketImmeubleInputDto;
-use App\Application\Dto\Output\Logement\CreateTicketImmeubleOutputDto;
 use App\Application\Dto\Input\Logement\GetTicketOnwerInputDto;
-use App\Application\Dto\Output\Logement\GetTicketOnwerOutputDto;
 use App\Application\Dto\Input\Logement\GuideInputDto;
-use App\Application\Dto\Output\Logement\GuideOutputDto;
 use App\Application\Dto\Input\Logement\GetInfosAppareilInputDto;
-use App\Application\Dto\Output\Logement\GetInfosAppareilOutputDto;
 use App\Application\Dto\Input\Logement\ShowRepartReleveInputDto;
-use App\Application\Dto\Output\Logement\ShowRepartReleveOutputDto;
 use App\Domain\Service\Soap\LogementSoapInterface;
+use App\Infrastructure\Hydrator\LogementHydrator;
+use App\Domain\Service\Auth\AuthServiceInterface;
+use App\Infrastructure\Service\Auth\AuthenticationContext;
+use App\Infrastructure\Service\Soap\SoapClient;
 
 final class LogementSoap implements LogementSoapInterface
 {
-  public function indexService(IndexInputDto $inputDto): IndexOutputDto
+  public function __construct(
+    private readonly SoapClient $soapClient,
+    private readonly LogementHydrator $hydrator,
+    private readonly AuthServiceInterface $authService
+  ) {}
+
+  private function getAuthContext(): AuthenticationContext
+  {
+    return AuthenticationContext::fromAuthService($this->authService);
+  }
+
+  public function indexService(IndexInputDto $inputDto): array
   {
     // TODO: Implement indexService logic
-    return new IndexOutputDto([]);
+    return [];
   }
 
-  public function showService(ShowInputDto $inputDto): ShowOutputDto
+  public function showService(ShowInputDto $inputDto): array
   {
     // TODO: Implement showService logic
-    return new ShowOutputDto([]);
+    return [];
   }
 
-  public function searchService(SearchInputDto $inputDto): SearchOutputDto
+  public function searchService(SearchInputDto $inputDto): array
   {
     // TODO: Implement searchService logic
-    return new SearchOutputDto([]);
+    return [];
   }
 
-  public function listInterventionsService(ListInterventionsInputDto $inputDto): ListInterventionsOutputDto
+  public function listInterventionsService(ListInterventionsInputDto $inputDto): array
   {
     // TODO: Implement listInterventionsService logic
-    return new ListInterventionsOutputDto([]);
+    return [];
   }
 
-  public function showInterventionService(ShowInterventionInputDto $inputDto): ShowInterventionOutputDto
+  public function showInterventionService(ShowInterventionInputDto $inputDto): array
   {
     // TODO: Implement showInterventionService logic
-    return new ShowInterventionOutputDto([]);
+    return [];
   }
 
-  public function listLeaksService(ListLeaksInputDto $inputDto): ListLeaksOutputDto
+  public function listLeaksService(ListLeaksInputDto $inputDto): array
   {
     // TODO: Implement listLeaksService logic
-    return new ListLeaksOutputDto([]);
+    return [];
   }
 
-  public function listDysfunctionsService(ListDysfunctionsInputDto $inputDto): ListDysfunctionsOutputDto
+  public function listDysfunctionsService(ListDysfunctionsInputDto $inputDto): array
   {
     // TODO: Implement listDysfunctionsService logic
-    return new ListDysfunctionsOutputDto([]);
+    return [];
   }
 
-  public function listAnomaliesService(ListAnomaliesInputDto $inputDto): ListAnomaliesOutputDto
+  public function listAnomaliesService(ListAnomaliesInputDto $inputDto): array
   {
     // TODO: Implement listAnomaliesService logic
-    return new ListAnomaliesOutputDto([]);
+    return [];
   }
 
-  public function filterResultService(FilterResultInputDto $inputDto): FilterResultOutputDto
+  public function filterResultService(FilterResultInputDto $inputDto): array
   {
     // TODO: Implement filterResultService logic
-    return new FilterResultOutputDto([]);
+    return [];
   }
 
-  public function exportService(ExportInputDto $inputDto): ExportOutputDto
+  public function exportService(ExportInputDto $inputDto): array
   {
     // TODO: Implement exportService logic
-    return new ExportOutputDto(true);
+    return [];
   }
 
-  public function exportInterventionsService(ExportInterventionsInputDto $inputDto): ExportInterventionsOutputDto
+  public function exportInterventionsService(ExportInterventionsInputDto $inputDto): array
   {
     // TODO: Implement exportInterventionsService logic
-    return new ExportInterventionsOutputDto(true);
+    return [];
   }
 
-  public function exportLeaksService(ExportLeaksInputDto $inputDto): ExportLeaksOutputDto
+  public function exportLeaksService(ExportLeaksInputDto $inputDto): array
   {
     // TODO: Implement exportLeaksService logic
-    return new ExportLeaksOutputDto(true);
+    return [];
   }
 
-  public function exportDysfunctionsService(ExportDysfunctionsInputDto $inputDto): ExportDysfunctionsOutputDto
+  public function exportDysfunctionsService(ExportDysfunctionsInputDto $inputDto): array
   {
     // TODO: Implement exportDysfunctionsService logic
-    return new ExportDysfunctionsOutputDto(true);
+    return [];
   }
 
-  public function exportAnomaliesService(ExportAnomaliesInputDto $inputDto): ExportAnomaliesOutputDto
+  public function exportAnomaliesService(ExportAnomaliesInputDto $inputDto): array
   {
     // TODO: Implement exportAnomaliesService logic
-    return new ExportAnomaliesOutputDto(true);
+    return [];
   }
 
-  public function editService(EditInputDto $inputDto): EditOutputDto
+  public function editService(EditInputDto $inputDto): array
   {
     // TODO: Implement editService logic
-    return new EditOutputDto(true);
+    return [];
   }
 
-  public function createTicketService(CreateTicketInputDto $inputDto): CreateTicketOutputDto
+  public function createTicketService(CreateTicketInputDto $inputDto): array
   {
     // TODO: Implement createTicketService logic
-    return new CreateTicketOutputDto(true);
+    return [];
   }
 
-  public function createTicketImmeubleService(CreateTicketImmeubleInputDto $inputDto): CreateTicketImmeubleOutputDto
+  public function createTicketImmeubleService(CreateTicketImmeubleInputDto $inputDto): array
   {
     // TODO: Implement createTicketImmeubleService logic
-    return new CreateTicketImmeubleOutputDto(true);
+    return [];
   }
 
-  public function getTicketOnwerService(GetTicketOnwerInputDto $inputDto): GetTicketOnwerOutputDto
+  public function getTicketOnwerService(GetTicketOnwerInputDto $inputDto): array
   {
     // TODO: Implement getTicketOnwerService logic
-    return new GetTicketOnwerOutputDto([]);
+    return [];
   }
 
-  public function guideService(GuideInputDto $inputDto): GuideOutputDto
+  public function guideService(GuideInputDto $inputDto): array
   {
     // TODO: Implement guideService logic
-    return new GuideOutputDto([]);
+    return [];
   }
 
-  public function getInfosAppareilService(GetInfosAppareilInputDto $inputDto): GetInfosAppareilOutputDto
+  public function getInfosAppareilService(GetInfosAppareilInputDto $inputDto): array
   {
     // TODO: Implement getInfosAppareilService logic
-    return new GetInfosAppareilOutputDto([]);
+    return [];
   }
 
-  public function showRepartReleveService(ShowRepartReleveInputDto $inputDto): ShowRepartReleveOutputDto
+  public function showRepartReleveService(ShowRepartReleveInputDto $inputDto): array
   {
     // TODO: Implement showRepartReleveService logic
-    return new ShowRepartReleveOutputDto('', '');
+    return [];
   }
 }

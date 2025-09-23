@@ -5,38 +5,49 @@ declare(strict_types=1);
 namespace App\Infrastructure\Service\Soap;
 
 use App\Application\Dto\Input\Front\IndexInputDto;
-use App\Application\Dto\Output\Front\IndexOutputDto;
 use App\Application\Dto\Input\Front\CguInputDto;
-use App\Application\Dto\Output\Front\CguOutputDto;
 use App\Application\Dto\Input\Front\PersonalDatasInputDto;
-use App\Application\Dto\Output\Front\PersonalDatasOutputDto;
 use App\Application\Dto\Input\Front\LegalNoticesInputDto;
-use App\Application\Dto\Output\Front\LegalNoticesOutputDto;
 use App\Domain\Service\Soap\FrontSoapInterface;
+use App\Infrastructure\Hydrator\FrontHydrator;
+use App\Domain\Service\Auth\AuthServiceInterface;
+use App\Infrastructure\Service\Auth\AuthenticationContext;
+use App\Infrastructure\Service\Soap\SoapClient;
 
 final class FrontSoap implements FrontSoapInterface
 {
-  public function indexService(IndexInputDto $inputDto): IndexOutputDto
+  public function __construct(
+    private readonly SoapClient $soapClient,
+    private readonly FrontHydrator $hydrator,
+    private readonly AuthServiceInterface $authService
+  ) {}
+
+  private function getAuthContext(): AuthenticationContext
+  {
+    return AuthenticationContext::fromAuthService($this->authService);
+  }
+
+  public function indexService(IndexInputDto $inputDto): array
   {
     // TODO: Implement indexService logic
-    return new IndexOutputDto('home');
+    return [];
   }
 
-  public function cguService(CguInputDto $inputDto): CguOutputDto
+  public function cguService(CguInputDto $inputDto): array
   {
     // TODO: Implement cguService logic
-    return new CguOutputDto('Conditions Générales d\'Utilisation');
+    return [];
   }
 
-  public function personalDatasService(PersonalDatasInputDto $inputDto): PersonalDatasOutputDto
+  public function personalDatasService(PersonalDatasInputDto $inputDto): array
   {
     // TODO: Implement personalDatasService logic
-    return new PersonalDatasOutputDto('personal datas');
+    return [];
   }
 
-  public function legalNoticesService(LegalNoticesInputDto $inputDto): LegalNoticesOutputDto
+  public function legalNoticesService(LegalNoticesInputDto $inputDto): array
   {
     // TODO: Implement legalNoticesService logic
-    return new LegalNoticesOutputDto('legal notices');
+    return [];
   }
 }

@@ -5,56 +5,65 @@ declare(strict_types=1);
 namespace App\Infrastructure\Service\Soap;
 
 use App\Application\Dto\Input\Security\CreateInputDto;
-use App\Application\Dto\Output\Security\CreateOutputDto;
 use App\Application\Dto\Input\Security\LoginFromParamInputDto;
-use App\Application\Dto\Output\Security\LoginOutputDto;
 use App\Application\Dto\Input\Security\LogoutInputDto;
-use App\Application\Dto\Output\Security\LogoutOutputDto;
 use App\Application\Dto\Input\Security\ResetOrCreateInputDto;
-use App\Application\Dto\Output\Security\ResetOrCreateOutputDto;
 use App\Application\Dto\Input\Security\UpdatePasswordInputDto;
-use App\Application\Dto\Output\Security\UpdatePasswordOutputDto;
 use App\Application\Dto\Input\Security\ResetPasswordInputDto;
-use App\Application\Dto\Output\Security\ResetPasswordOutputDto;
 use App\Application\Dto\Input\Security\LoginInputDto;
 use App\Domain\Service\Soap\SecuritySoapInterface;
+use App\Infrastructure\Hydrator\SecurityHydrator;
+use App\Domain\Service\Auth\AuthServiceInterface;
+use App\Infrastructure\Service\Auth\AuthenticationContext;
+use App\Infrastructure\Service\Soap\SoapClient;
 
 final class SecuritySoap implements SecuritySoapInterface
 {
-  public function createService(CreateInputDto $inputDto): CreateOutputDto
+  public function __construct(
+    private readonly SoapClient $soapClient,
+    private readonly SecurityHydrator $hydrator,
+    private readonly AuthServiceInterface $authService
+  ) {}
+
+  private function getAuthContext(): AuthenticationContext
+  {
+    return AuthenticationContext::fromAuthService($this->authService);
+  }
+
+  public function createService(CreateInputDto $inputDto): array
   {
     // TODO: Implement createService logic
     return new CreateOutputDto(true);
   }
 
-  public function loginFromParamService(LoginFromParamInputDto $inputDto): LoginOutputDto
+  public function loginFromParamService(LoginFromParamInputDto $inputDto): array
   {
     // TODO: Implement loginFromParamService logic
-    return new LoginOutputDto(false);
+    return [];
   }
 
-  public function logoutService(LogoutInputDto $inputDto): LogoutOutputDto
+  public function logoutService(LogoutInputDto $inputDto): array
   {
     // TODO: Implement logoutService logic
-    return new LogoutOutputDto(true);
+    return [];
   }
 
-  public function resetOrCreateService(ResetOrCreateInputDto $inputDto): ResetOrCreateOutputDto
+  public function resetOrCreateService(ResetOrCreateInputDto $inputDto): array
   {
     // TODO: Implement resetOrCreateService logic
-    return new ResetOrCreateOutputDto(true);
+    return [];
   }
 
-  public function updatePasswordService(UpdatePasswordInputDto $inputDto): UpdatePasswordOutputDto
+  public function updatePasswordService(UpdatePasswordInputDto $inputDto): array
   {
     // TODO: Implement updatePasswordService logic
-    return new UpdatePasswordOutputDto(true);
+    return [];
   }
 
-  public function resetPasswordService(ResetPasswordInputDto $inputDto): ResetPasswordOutputDto
+  public function resetPasswordService(ResetPasswordInputDto $inputDto): array
   {
     // TODO: Implement resetPasswordService logic
-    return new ResetPasswordOutputDto(true);
+    return [];
   }
 
   public function loginService(LoginInputDto $inputDto): LoginOutputDto

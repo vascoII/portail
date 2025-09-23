@@ -5,134 +5,133 @@ declare(strict_types=1);
 namespace App\Infrastructure\Service\Soap;
 
 use App\Application\Dto\Input\Occupant\AlertesInputDto;
-use App\Application\Dto\Output\Occupant\AlertesOutputDto;
 use App\Application\Dto\Input\Occupant\ExportAnomaliesInputDto;
-use App\Application\Dto\Output\Occupant\ExportAnomaliesOutputDto;
 use App\Application\Dto\Input\Occupant\ExportDysfunctionsInputDto;
-use App\Application\Dto\Output\Occupant\ExportDysfunctionsOutputDto;
 use App\Application\Dto\Input\Occupant\ExportInterventionsInputDto;
-use App\Application\Dto\Output\Occupant\ExportInterventionsOutputDto;
 use App\Application\Dto\Input\Occupant\ExportLeaksInputDto;
-use App\Application\Dto\Output\Occupant\ExportLeaksOutputDto;
 use App\Application\Dto\Input\Occupant\ListAnomaliesInputDto;
-use App\Application\Dto\Output\Occupant\ListAnomaliesOutputDto;
 use App\Application\Dto\Input\Occupant\ListDysfunctionsInputDto;
-use App\Application\Dto\Output\Occupant\ListDysfunctionsOutputDto;
 use App\Application\Dto\Input\Occupant\ListInterventionsInputDto;
-use App\Application\Dto\Output\Occupant\ListInterventionsOutputDto;
 use App\Application\Dto\Input\Occupant\ListLeaksInputDto;
-use App\Application\Dto\Output\Occupant\ListLeaksOutputDto;
 use App\Application\Dto\Input\Occupant\MyAccountInputDto;
-use App\Application\Dto\Output\Occupant\MyAccountOutputDto;
 use App\Application\Dto\Input\Occupant\ShowEauReleveInputDto;
-use App\Application\Dto\Output\Occupant\ShowEauReleveOutputDto;
 use App\Application\Dto\Input\Occupant\ShowInterventionInputDto;
-use App\Application\Dto\Output\Occupant\ShowInterventionOutputDto;
 use App\Application\Dto\Input\Occupant\ShowNoteReleveInputDto;
-use App\Application\Dto\Output\Occupant\ShowNoteReleveOutputDto;
 use App\Application\Dto\Input\Occupant\ShowRepartReleveInputDto;
-use App\Application\Dto\Output\Occupant\ShowRepartReleveOutputDto;
 use App\Application\Dto\Input\Occupant\ShowUseInputDto;
-use App\Application\Dto\Output\Occupant\ShowOutputDto;
 use App\Application\Dto\Input\Occupant\SimulateurInputDto;
-use App\Application\Dto\Output\Occupant\SimulateurOutputDto;
 use App\Domain\Service\Soap\OccupantSoapInterface;
+use App\Infrastructure\Hydrator\OccupantHydrator;
+use App\Domain\Service\Auth\AuthServiceInterface;
+use App\Infrastructure\Service\Auth\AuthenticationContext;
+use App\Infrastructure\Service\Soap\SoapClient;
 
 final class OccupantSoap implements OccupantSoapInterface
 {
-  public function alertesService(AlertesInputDto $inputDto): AlertesOutputDto
+  public function __construct(
+    private readonly SoapClient $soapClient,
+    private readonly OccupantHydrator $hydrator,
+    private readonly AuthServiceInterface $authService
+  ) {}
+
+  private function getAuthContext(): AuthenticationContext
+  {
+    return AuthenticationContext::fromAuthService($this->authService);
+  }
+
+  public function alertesService(AlertesInputDto $inputDto): array
   {
     // TODO: Implement alertesService logic
-    return new AlertesOutputDto([]);
+    return [];
   }
 
-  public function exportAnomaliesService(ExportAnomaliesInputDto $inputDto): ExportAnomaliesOutputDto
+  public function exportAnomaliesService(ExportAnomaliesInputDto $inputDto): array
   {
     // TODO: Implement exportAnomaliesService logic
-    return new ExportAnomaliesOutputDto(true);
+    return [];
   }
 
-  public function exportDysfunctionsService(ExportDysfunctionsInputDto $inputDto): ExportDysfunctionsOutputDto
+  public function exportDysfunctionsService(ExportDysfunctionsInputDto $inputDto): array
   {
     // TODO: Implement exportDysfunctionsService logic
-    return new ExportDysfunctionsOutputDto(true);
+    return [];
   }
 
-  public function exportInterventionsService(ExportInterventionsInputDto $inputDto): ExportInterventionsOutputDto
+  public function exportInterventionsService(ExportInterventionsInputDto $inputDto): array
   {
     // TODO: Implement exportInterventionsService logic
-    return new ExportInterventionsOutputDto(true);
+    return [];
   }
 
-  public function exportLeaksService(ExportLeaksInputDto $inputDto): ExportLeaksOutputDto
+  public function exportLeaksService(ExportLeaksInputDto $inputDto): array
   {
     // TODO: Implement exportLeaksService logic
-    return new ExportLeaksOutputDto(true);
+    return [];
   }
 
-  public function listAnomaliesService(ListAnomaliesInputDto $inputDto): ListAnomaliesOutputDto
+  public function listAnomaliesService(ListAnomaliesInputDto $inputDto): array
   {
     // TODO: Implement listAnomaliesService logic
-    return new ListAnomaliesOutputDto([]);
+    return [];
   }
 
-  public function listDysfunctionsService(ListDysfunctionsInputDto $inputDto): ListDysfunctionsOutputDto
+  public function listDysfunctionsService(ListDysfunctionsInputDto $inputDto): array
   {
     // TODO: Implement listDysfunctionsService logic
-    return new ListDysfunctionsOutputDto([]);
+    return [];
   }
 
-  public function listInterventionsService(ListInterventionsInputDto $inputDto): ListInterventionsOutputDto
+  public function listInterventionsService(ListInterventionsInputDto $inputDto): array
   {
     // TODO: Implement listInterventionsService logic
-    return new ListInterventionsOutputDto([]);
+    return [];
   }
 
-  public function listLeaksService(ListLeaksInputDto $inputDto): ListLeaksOutputDto
+  public function listLeaksService(ListLeaksInputDto $inputDto): array
   {
     // TODO: Implement listLeaksService logic
-    return new ListLeaksOutputDto([]);
+    return [];
   }
 
-  public function myAccountService(MyAccountInputDto $inputDto): MyAccountOutputDto
+  public function myAccountService(MyAccountInputDto $inputDto): array
   {
     // TODO: Implement myAccountService logic
-    return new MyAccountOutputDto([]);
+    return [];
   }
 
-  public function showEauReleveService(ShowEauReleveInputDto $inputDto): ShowEauReleveOutputDto
+  public function showEauReleveService(ShowEauReleveInputDto $inputDto): array
   {
     // TODO: Implement showEauReleveService logic
-    return new ShowEauReleveOutputDto('');
+    return [];
   }
 
-  public function showInterventionService(ShowInterventionInputDto $inputDto): ShowInterventionOutputDto
+  public function showInterventionService(ShowInterventionInputDto $inputDto): array
   {
     // TODO: Implement showInterventionService logic
-    return new ShowInterventionOutputDto('');
+    return [];
   }
 
-  public function showNoteReleveService(ShowNoteReleveInputDto $inputDto): ShowNoteReleveOutputDto
+  public function showNoteReleveService(ShowNoteReleveInputDto $inputDto): array
   {
     // TODO: Implement showNoteReleveService logic
-    return new ShowNoteReleveOutputDto('', '', '');
+    return [];
   }
 
-  public function showRepartReleveService(ShowRepartReleveInputDto $inputDto): ShowRepartReleveOutputDto
+  public function showRepartReleveService(ShowRepartReleveInputDto $inputDto): array
   {
     // TODO: Implement showRepartReleveService logic
-    return new ShowRepartReleveOutputDto('', '');
+    return [];
   }
 
-  public function showService(ShowUseInputDto $inputDto): ShowOutputDto
+  public function showService(ShowUseInputDto $inputDto): array
   {
     // TODO: Implement showService logic
-    return new ShowOutputDto([]);
+    return [];
   }
 
-  public function simulateurService(SimulateurInputDto $inputDto): SimulateurOutputDto
+  public function simulateurService(SimulateurInputDto $inputDto): array
   {
     // TODO: Implement simulateurService logic
-    return new SimulateurOutputDto([]);
+    return [];
   }
 }
