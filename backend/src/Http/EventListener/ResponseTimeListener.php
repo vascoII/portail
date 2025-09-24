@@ -14,6 +14,10 @@ use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
  * Response time listener that measures and logs request processing time
+ * 
+ * This listener works in conjunction with HttpLoggingSubscriber:
+ * - ResponseTimeListener: Focuses on performance monitoring and slow request detection
+ * - HttpLoggingSubscriber: Provides detailed request/response logging with payloads
  */
 final class ResponseTimeListener implements EventSubscriberInterface
 {
@@ -83,10 +87,15 @@ final class ResponseTimeListener implements EventSubscriberInterface
   }
 
   /**
-   * Log response time
+   * Log response time (focused on performance monitoring)
    */
   private function logResponseTime(Request $request, Response $response, float $responseTime): void
   {
+    // Only log slow requests or errors to avoid duplication with HttpLoggingSubscriber
+    if ($responseTime <= $this->slowRequestThreshold && $response->getStatusCode() < 400) {
+      return;
+    }
+
     $context = [
       'request_method' => $request->getMethod(),
       'request_uri' => $request->getUri(),
@@ -94,7 +103,6 @@ final class ResponseTimeListener implements EventSubscriberInterface
       'response_status' => $response->getStatusCode(),
       'response_time' => $responseTime,
       'client_ip' => $request->getClientIp(),
-      'user_agent' => $request->headers->get('User-Agent'),
     ];
 
     // Add request ID if available
@@ -109,13 +117,10 @@ final class ResponseTimeListener implements EventSubscriberInterface
       $context['user_id'] = $user['id'];
     }
 
-    // Log at different levels based on response time
+    // Log slow requests as warnings
     if ($responseTime > $this->slowRequestThreshold) {
+      $context['threshold'] = $this->slowRequestThreshold;
       $this->logger->warning('Slow request detected', $context);
-    } elseif ($response->getStatusCode() >= 400) {
-      $this->logger->info('Request completed with error', $context);
-    } else {
-      $this->logger->debug('Request completed', $context);
     }
   }
 }

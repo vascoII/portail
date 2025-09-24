@@ -23,7 +23,18 @@ final class SensitiveDataProcessor implements ProcessorInterface
     'cookie',
     'email',
     'phone',
-    'phoneNumber'
+    'phoneNumber',
+    'client_id',
+    'clientId',
+    'user_id',
+    'userId',
+    'request_data',
+    'input_data',
+    'output_data',
+    'config_data',
+    'wsdl',
+    'requestData',
+    'responseData'
   ];
 
   private const MASK_VALUE = '[REDACTED]';

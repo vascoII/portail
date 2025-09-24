@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Logger\Subscriber;
 
+use App\Http\Exception\HttpException;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,6 +17,13 @@ use Symfony\Component\Stopwatch\Stopwatch;
 
 /**
  * Centralized HTTP request/response logging
+ * 
+ * This subscriber works in conjunction with the new HTTP event listeners:
+ * - RequestIdListener: Handles request ID generation
+ * - ResponseTimeListener: Handles response time measurement
+ * - GlobalExceptionListener: Handles exception logging
+ * 
+ * This subscriber focuses on detailed request/response logging with payloads.
  */
 final class HttpLoggingSubscriber implements EventSubscriberInterface
 {
@@ -32,7 +40,7 @@ final class HttpLoggingSubscriber implements EventSubscriberInterface
     return [
       KernelEvents::REQUEST => ['onKernelRequest', 1000],
       KernelEvents::RESPONSE => ['onKernelResponse', -1000],
-      KernelEvents::EXCEPTION => ['onKernelException', -1000],
+      // Note: Exception logging is now handled by GlobalExceptionListener
     ];
   }
 
@@ -61,7 +69,13 @@ final class HttpLoggingSubscriber implements EventSubscriberInterface
       'content_length' => $request->headers->get('Content-Length'),
     ];
 
-    // Log request body for POST/PUT/PATCH (truncated)
+    // Add request ID if available (from RequestIdListener)
+    $requestId = $request->attributes->get('request_id');
+    if ($requestId) {
+      $context['request_id'] = $requestId;
+    }
+
+    // Log request body for POST/PUT/PATCH (truncated and sanitized)
     if (in_array($request->getMethod(), ['POST', 'PUT', 'PATCH'], true)) {
       $body = $request->getContent();
       if ($body) {
@@ -105,7 +119,13 @@ final class HttpLoggingSubscriber implements EventSubscriberInterface
       'memory_peak' => memory_get_peak_usage(true),
     ];
 
-    // Log response body for errors (truncated)
+    // Add request ID if available (from RequestIdListener)
+    $requestId = $request->attributes->get('request_id');
+    if ($requestId) {
+      $context['request_id'] = $requestId;
+    }
+
+    // Log response body for errors (truncated and sanitized)
     if ($response->getStatusCode() >= 400) {
       $body = $response->getContent();
       if ($body) {
@@ -123,37 +143,14 @@ final class HttpLoggingSubscriber implements EventSubscriberInterface
     $this->httpLogger->log($level, 'HTTP Response sent', $context);
   }
 
+  /**
+   * Note: Exception logging is now handled by GlobalExceptionListener
+   * This method is kept for backward compatibility but is not used.
+   */
   public function onKernelException(ExceptionEvent $event): void
   {
-    if (!$event->isMainRequest()) {
-      return;
-    }
-
-    $request = $event->getRequest();
-    $exception = $event->getThrowable();
-
-    // Skip non-API requests
-    if (!str_starts_with($request->getPathInfo(), '/api/')) {
-      return;
-    }
-
-    $context = [
-      'method' => $request->getMethod(),
-      'uri' => $request->getUri(),
-      'route' => $request->attributes->get('_route', 'unknown'),
-      'exception_class' => get_class($exception),
-      'exception_message' => $exception->getMessage(),
-      'exception_code' => $exception->getCode(),
-      'file' => $exception->getFile(),
-      'line' => $exception->getLine(),
-    ];
-
-    // Add stack trace for 5xx errors
-    if ($exception->getCode() >= 500) {
-      $context['stack_trace'] = $exception->getTraceAsString();
-    }
-
-    $this->httpLogger->error('HTTP Exception occurred', $context);
+    // Exception logging is now handled by GlobalExceptionListener
+    // which provides better integration with the exception hierarchy
   }
 
   private function getClientIp(Request $request): string

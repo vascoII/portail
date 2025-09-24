@@ -10,10 +10,13 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Adds request ID to log records for correlation across services
+ * 
+ * This processor works in conjunction with RequestIdListener:
+ * - RequestIdListener: Generates and sets request ID in request attributes
+ * - RequestIdProcessor: Adds request ID to all log records
  */
 final class RequestIdProcessor implements ProcessorInterface
 {
-  private const HEADER_NAME = 'X-Request-ID';
   private const ATTRIBUTE_NAME = 'request_id';
 
   public function __construct(
@@ -28,21 +31,13 @@ final class RequestIdProcessor implements ProcessorInterface
       return $record;
     }
 
-    // Get or generate request ID
+    // Get request ID from request attributes (set by RequestIdListener)
     $requestId = $request->attributes->get(self::ATTRIBUTE_NAME);
 
-    if (!$requestId) {
-      $requestId = $request->headers->get(self::HEADER_NAME) ?: $this->generateRequestId();
-      $request->attributes->set(self::ATTRIBUTE_NAME, $requestId);
+    if ($requestId) {
+      $record->extra['request_id'] = $requestId;
     }
 
-    $record->extra['request_id'] = $requestId;
-
     return $record;
-  }
-
-  private function generateRequestId(): string
-  {
-    return bin2hex(random_bytes(16));
   }
 }
