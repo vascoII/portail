@@ -20,6 +20,7 @@ use App\Application\Dto\Input\Occupant\ShowNoteReleveInputDto;
 use App\Application\Dto\Input\Occupant\ShowRepartReleveInputDto;
 use App\Application\Dto\Input\Occupant\ShowUseInputDto;
 use App\Application\Dto\Input\Occupant\SimulateurInputDto;
+use App\Application\Dto\Input\Occupant\EditInputDto;
 use App\Domain\Service\Soap\OccupantSoapInterface;
 use App\Infrastructure\Hydrator\OccupantHydrator;
 use App\Domain\Service\Auth\AuthServiceInterface;
@@ -162,6 +163,14 @@ final class OccupantSoap implements OccupantSoapInterface
   public function simulateurService(SimulateurInputDto $inputDto): array
   {
     // TODO: Implement simulateurService logic
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
+    return [];
+  }
+
+  public function editService(EditInputDto $inputDto): array
+  {
+    // TODO: Implement editService logic
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     return [];
