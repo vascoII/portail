@@ -9,7 +9,7 @@ use App\Application\Dto\Input\Immeuble\ShowInputDto;
 use App\Application\Dto\Input\Immeuble\ReportInputDto;
 use App\Application\Dto\Input\Immeuble\ListInterventionsInputDto;
 use App\Application\Dto\Input\Immeuble\ShowInterventionInputDto;
-use App\Application\Dto\Input\Immeuble\LinterventionInputDto;
+use App\Application\Dto\Input\Immeuble\InterventionInputDto;
 use App\Application\Dto\Input\Immeuble\ListLeaksInputDto;
 use App\Application\Dto\Input\Immeuble\ListDysfunctionsInputDto;
 use App\Application\Dto\Input\Immeuble\ListAnomaliesInputDto;
@@ -77,7 +77,7 @@ final class ImmeubleSoap implements ImmeubleSoapInterface
     return [];
   }
 
-  public function linterventionService(LinterventionInputDto $inputDto): array
+  public function interventionService(InterventionInputDto $inputDto): array
   {
     // TODO: Implement linterventionService logic
     $authContext = $this->getAuthContext();

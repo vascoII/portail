@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Infrastructure\Transformer;
 
 use App\Application\Dto\Output\Security\CreateOutputDto;
-use App\Application\Dto\Output\Security\LoginFromParamOutputDto;
 use App\Application\Dto\Output\Security\LoginOutputDto;
 use App\Application\Dto\Output\Security\ResetOrCreateOutputDto;
 use App\Application\Dto\Output\Security\ResetPasswordOutputDto;
@@ -25,9 +24,9 @@ final class SecurityTransformer
    /**
    * Transform raw SOAP response to LoginFromParamOutputDto
    */
-   public function transformLoginFromParamResponse(array $response): LoginFromParamOutputDto
+   public function transformLoginFromParamResponse(array $response): LoginOutputDto
    {
-      return new LoginFromParamOutputDto();
+      return new LoginOutputDto();
    }
 
    /**

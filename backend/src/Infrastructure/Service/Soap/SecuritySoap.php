@@ -16,6 +16,8 @@ use App\Domain\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Infrastructure\Service\Soap\SoapClient;
 
+use App\Application\Dto\Output\Security\LoginOutputDto;
+
 final class SecuritySoap implements SecuritySoapInterface
 {
   public function __construct(

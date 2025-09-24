@@ -20,9 +20,11 @@ use App\Application\Dto\Output\Occupant\ShowNoteReleveOutputDto;
 use App\Application\Dto\Output\Occupant\ShowOutputDto;
 use App\Application\Dto\Output\Occupant\ShowRepartReleveOutputDto;
 use App\Application\Dto\Output\Occupant\SimulateurOutputDto;
+use App\Application\Dto\Output\Occupant\EditOutputDto;
 
 final class OccupantTransformer
 {
+   const UPDATED = 'updated';
    /**
    * Transform raw SOAP response to AlertesOutputDto
    */
@@ -149,6 +151,14 @@ final class OccupantTransformer
    public function transformSimulateurResponse(array $response): SimulateurOutputDto
    {
       return new SimulateurOutputDto();
+   }
+
+   /**
+   * Transform raw SOAP response to EditOutputDto
+   */
+   public function transformEditResponse(array $response): EditOutputDto
+   {
+      return new EditOutputDto($response[self::UPDATED]);
    }
 
 }
