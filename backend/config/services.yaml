@@ -91,7 +91,62 @@ services:
     arguments:
       $securityLogger: '@monolog.logger.security'
 
-  # HTTP Logger for JsonResponder
-  App\Http\Responder\JsonResponder:
-    arguments:
-      $httpLogger: '@monolog.logger.http'
+# HTTP Logger for JsonResponder
+App\Http\Responder\JsonResponder:
+  arguments:
+    $httpLogger: '@monolog.logger.http'
+
+# HTTP Event Listeners
+App\Http\EventListener\GlobalExceptionListener:
+  tags: ['kernel.event_subscriber']
+  arguments:
+    $logger: '@monolog.logger.application'
+
+App\Http\EventListener\RequestIdListener:
+  tags: ['kernel.event_subscriber']
+
+App\Http\EventListener\CorsListener:
+  tags: ['kernel.event_subscriber']
+  arguments:
+    $allowedOrigins: ['*']
+    $allowedMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+    $allowedHeaders: ['Content-Type', 'Authorization', 'X-Request-ID']
+    $allowCredentials: false
+    $maxAge: 3600
+
+App\Http\EventListener\SecurityHeadersListener:
+  tags: ['kernel.event_subscriber']
+  arguments:
+    $enableSecurityHeaders: true
+    $contentSecurityPolicy: "default-src 'self'"
+    $enableHsts: true
+    $hstsMaxAge: 31536000
+    $enableFrameOptions: true
+    $frameOptions: 'DENY'
+    $enableContentTypeOptions: true
+    $enableReferrerPolicy: true
+    $referrerPolicy: 'strict-origin-when-cross-origin'
+
+App\Http\EventListener\RateLimitListener:
+  tags: ['kernel.event_subscriber']
+  arguments:
+    $logger: '@monolog.logger.security'
+    $defaultLimit: 100
+    $defaultWindow: 3600
+    $endpointLimits: []
+    $enableRateLimiting: true
+
+App\Http\EventListener\RequestValidationListener:
+  tags: ['kernel.event_subscriber']
+  arguments:
+    $logger: '@monolog.logger.http'
+    $maxRequestSize: 10485760
+    $allowedContentTypes: ['application/json', 'application/x-www-form-urlencoded']
+    $enableValidation: true
+
+App\Http\EventListener\ResponseTimeListener:
+  tags: ['kernel.event_subscriber']
+  arguments:
+    $logger: '@monolog.logger.http'
+    $slowRequestThreshold: 1.0
+    $enableResponseTimeLogging: true
