@@ -18,7 +18,7 @@ final class MenuTicketUseCase
 
   public function execute(MenuTicketInputDto $inputDto): MenuTicketOutputDto
   {
-    $soapResponse = $this->service->menuTicketService($inputDto);
-    return $this->transformer->transformMenuTicketResponse($soapResponse);
+    $serviceResponse = $this->service->menuTicketService($inputDto);
+    return $this->transformer->transformMenuTicketResponse($serviceResponse);
   }
 }

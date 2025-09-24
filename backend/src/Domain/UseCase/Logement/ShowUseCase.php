@@ -6,15 +6,19 @@ namespace App\Domain\UseCase\Logement;
 
 use App\Application\Dto\Input\Logement\ShowInputDto;
 use App\Application\Dto\Output\Logement\ShowOutputDto;
-
+use App\Infrastructure\Transformer\LogementTransformer;
 use App\Domain\Service\Soap\LogementSoapInterface;
 
 final class ShowUseCase
 {
-  public function __construct(private readonly LogementSoapInterface $service) {}
-
+  public function __construct(
+    private readonly LogementSoapInterface $service,
+    private readonly LogementTransformer $transformer 
+  ) {}
+  
   public function execute(ShowInputDto $inputDto): ShowOutputDto
   {
-    return $this->service->showService($inputDto);
+    $serviceResponse = $this->service->showService($inputDto);
+     return $this->transformer->transformShowResponse($serviceResponse);
   }
 }

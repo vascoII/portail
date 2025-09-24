@@ -18,7 +18,7 @@ final class CreateTicketUseCase
 
   public function execute(CreateTicketInputDto $inputDto): CreateTicketOutputDto
   {
-    $soapResponse = $this->service->createTicketService($inputDto);
-    return $this->transformer->transformCreateTicketResponse($soapResponse);
+    $serviceResponse = $this->service->createTicketService($inputDto);
+    return $this->transformer->transformCreateTicketResponse($serviceResponse);
   }
 }

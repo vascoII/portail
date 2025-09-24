@@ -14,7 +14,7 @@ use App\Domain\Service\Redis\RedisServiceInterface;
 final class LoginUseCase
 {
   public function __construct(
-    private readonly SecuritySoapInterface $soapService,
+    private readonly SecuritySoapInterface $service,
     private readonly JwtServiceInterface $jwtService,
     private readonly RedisServiceInterface $redisService
   ) {}
@@ -23,18 +23,18 @@ final class LoginUseCase
   {
     try {
       // Call SOAP service to authenticate
-      $soapResponse = $this->soapService->loginService($inputDto);
+      $serviceResponse = $this->service->loginService($inputDto);
 
-      if (!$soapResponse->success) {
+      if (!$serviceResponse->success) {
         return new LoginOutputDto(
           success: false,
-          error: $soapResponse->error ?? 'Authentication failed'
+          error: $serviceResponse->error ?? 'Authentication failed'
         );
       }
 
       // Get user data from SOAP response
-      $user = $this->extractUserFromSoapResponse($soapResponse);
-      $sessionId = $this->extractSessionIdFromSoapResponse($soapResponse);
+      $user = $this->extractUserFromSoapResponse($serviceResponse);
+      $sessionId = $this->extractSessionIdFromSoapResponse($serviceResponse);
 
       if (!$user || !$sessionId) {
         return new LoginOutputDto(

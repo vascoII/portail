@@ -18,7 +18,7 @@ final class AttachmentTicketUseCase
 
   public function execute(AttachmentTicketInputDto $inputDto): AttachmentTicketOutputDto
   {
-    $soapResponse = $this->service->attachmentTicketService($inputDto);
-    return $this->transformer->transformAttachmentTicketResponse($soapResponse);
+    $serviceResponse = $this->service->attachmentTicketService($inputDto);
+    return $this->transformer->transformAttachmentTicketResponse($serviceResponse);
   }
 }

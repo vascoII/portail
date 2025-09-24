@@ -18,7 +18,7 @@ final class CloseTicketUseCase
 
   public function execute(CloseTicketInputDto $inputDto): CloseTicketOutputDto
   {
-    $soapResponse = $this->service->closeTicketService($inputDto);
-    return $this->transformer->transformCloseTicketResponse($soapResponse);
+    $serviceResponse = $this->service->closeTicketService($inputDto);
+    return $this->transformer->transformCloseTicketResponse($serviceResponse);
   }
 }

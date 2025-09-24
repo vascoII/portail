@@ -9,7 +9,7 @@ use App\Application\Dto\Input\Immeuble\ShowInputDto;
 use App\Application\Dto\Input\Immeuble\ReportInputDto;
 use App\Application\Dto\Input\Immeuble\ListInterventionsInputDto;
 use App\Application\Dto\Input\Immeuble\ShowInterventionInputDto;
-use App\Application\Dto\Input\Immeuble\LinterventionInputDto;
+use App\Application\Dto\Input\Immeuble\InterventionInputDto;
 use App\Application\Dto\Input\Immeuble\ListLeaksInputDto;
 use App\Application\Dto\Input\Immeuble\ListDysfunctionsInputDto;
 use App\Application\Dto\Input\Immeuble\ListAnomaliesInputDto;
@@ -27,7 +27,7 @@ interface ImmeubleSoapInterface
   public function reportService(ReportInputDto $inputDto): array;
   public function listInterventionsService(ListInterventionsInputDto $inputDto): array;
   public function showInterventionService(ShowInterventionInputDto $inputDto): array;
-  public function linterventionService(LinterventionInputDto $inputDto): array;
+  public function interventionService(InterventionInputDto $inputDto): array;
   public function listLeaksService(ListLeaksInputDto $inputDto): array;
   public function listDysfunctionsService(ListDysfunctionsInputDto $inputDto): array;
   public function listAnomaliesService(ListAnomaliesInputDto $inputDto): array;

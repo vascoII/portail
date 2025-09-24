@@ -18,7 +18,7 @@ final class TableTicketingUseCase
 
   public function execute(TableTicketingInputDto $inputDto): TableTicketingOutputDto
   {
-    $soapResponse = $this->service->tableTicketingService($inputDto);
-    return $this->transformer->transformTableTicketingResponse($soapResponse);
+    $serviceResponse = $this->service->tableTicketingService($inputDto);
+    return $this->transformer->transformTableTicketingResponse($serviceResponse);
   }
 }

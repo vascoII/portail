@@ -18,7 +18,7 @@ final class TicketListUseCase
 
   public function execute(TicketListInputDto $inputDto): TicketListOutputDto
   {
-    $soapResponse = $this->service->ticketListService($inputDto);
-    return $this->transformer->transformTicketListResponse($soapResponse);
+    $serviceResponse = $this->service->ticketListService($inputDto);
+    return $this->transformer->transformTicketListResponse($serviceResponse);
   }
 }

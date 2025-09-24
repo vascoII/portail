@@ -12,13 +12,13 @@ use App\Infrastructure\Transformer\FactureTransformer;
 final class ReportUseCase
 {
   public function __construct(
-    private readonly FactureSoapInterface $soapService,
+    private readonly FactureSoapInterface $service,
     private readonly FactureTransformer $transformer
   ) {}
 
   public function execute(ReportInputDto $inputDto): ReportOutputDto
   {
-    $soapResponse = $this->soapService->reportService($inputDto);
-    return $this->transformer->transformReportResponse($soapResponse);
+    $serviceResponse = $this->service->reportService($inputDto);
+    return $this->transformer->transformReportResponse($serviceResponse);
   }
 }

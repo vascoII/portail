@@ -17,7 +17,7 @@ final class LogoutUseCase
 
   public function execute(): LogoutOutputDto
   {
-    $soapResponse = $this->service->logoutService();
-    return $this->transformer->transformLogoutResponse($soapResponse);
+    $serviceResponse = $this->service->logoutService();
+    return $this->transformer->transformLogoutResponse($serviceResponse);
   }
 }

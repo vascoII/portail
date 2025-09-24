@@ -11,6 +11,8 @@ use App\Application\Dto\Input\Security\UpdatePasswordInputDto;
 use App\Application\Dto\Input\Security\ResetPasswordInputDto;
 use App\Application\Dto\Input\Security\LoginInputDto;
 
+use App\Application\Dto\Output\Security\LoginOutputDto;
+
 interface SecuritySoapInterface
 {
 
@@ -20,5 +22,5 @@ interface SecuritySoapInterface
   public function resetOrCreateService(ResetOrCreateInputDto $inputDto): array;
   public function updatePasswordService(UpdatePasswordInputDto $inputDto): array;
   public function resetPasswordService(ResetPasswordInputDto $inputDto): array;
-  public function loginService(LoginInputDto $inputDto): array;
+  public function loginService(LoginInputDto $inputDto): LoginOutputDto;
 }

@@ -11,13 +11,13 @@ use App\Infrastructure\Transformer\FactureTransformer;
 final class IndexUseCase
 {
   public function __construct(
-    private readonly FactureSoapInterface $soapService,
+    private readonly FactureSoapInterface $service,
     private readonly FactureTransformer $transformer
   ) {}
 
   public function execute(): IndexOutputDto
   {
-    $soapResponse = $this->soapService->indexService();
-    return $this->transformer->transformIndexResponse($soapResponse);
+    $serviceResponse = $this->service->indexService();
+    return $this->transformer->transformIndexResponse($serviceResponse);
   }
 }
