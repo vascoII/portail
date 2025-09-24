@@ -20,7 +20,7 @@ final class ShowEauReleveAction extends AbstractAction implements ActionInterfac
 
   public function __invoke(Request $request, array $args = []): Response
   {
-    $pkOccupant = (string) $request->attributes->get('pkOccupant');
+    $pkOccupant = (string) $request->attributes->get(self::PARAM_PK_OCCUPANT);
     $input = new ShowEauReleveInputDto($pkOccupant);
     $output = $this->useCase->execute($input);
     return $this->responder->respond($output);

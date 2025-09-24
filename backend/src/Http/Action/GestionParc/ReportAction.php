@@ -20,9 +20,9 @@ final class ReportAction extends AbstractAction implements ActionInterface
 
   public function __invoke(Request $request, array $args = []): Response
   {
-    $pkImmeuble = (string) $request->attributes->get('pkImmeuble');
-    $type = (string) $request->attributes->get('type');
-    $energie = (string) $request->attributes->get('energie');
+    $pkImmeuble = (string) $request->attributes->get(self::PARAM_PK_IMMEUBLE);
+    $type = (string) $request->attributes->get(self::PARAM_TYPE);
+    $energie = (string) $request->attributes->get(self::PARAM_ENERGIE);
     $input = new ReportInputDto($pkImmeuble, $type, $energie);
     $output = $this->useCase->execute($input);
     return $this->responder->respond($output);

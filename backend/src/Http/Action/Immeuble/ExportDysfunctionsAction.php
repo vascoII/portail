@@ -20,7 +20,7 @@ final class ExportDysfunctionsAction extends AbstractAction implements ActionInt
 
   public function __invoke(Request $request, array $args = []): Response
   {
-    $pkImmeuble = (string) $request->attributes->get('pkImmeuble');
+    $pkImmeuble = (string) $request->attributes->get(self::PARAM_PK_IMMEUBLE);
     $input = new ExportDysfunctionsInputDto($pkImmeuble);
     $output = $this->useCase->execute($input);
     return $this->responder->respond($output);

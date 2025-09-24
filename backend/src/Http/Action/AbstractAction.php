@@ -9,6 +9,18 @@ use Symfony\Component\HttpFoundation\Response;
 
 abstract class AbstractAction implements ActionInterface
 {
+  public const PARAM_PK_LOGEMENT = 'pkLogement';
+  public const PARAM_PK_IMMEUBLE = 'pkImmeuble';
+  public const PARAM_PK_OCCUPANT = 'pkOccupant';
+  public const PARAM_PK_INTERVENTION = 'pkIntervention';
+  public const PARAM_PK_DEPANNAGE = 'pkDepannage';
+  public const PARAM_PK_FACTURE = 'pkFacture';
+  public const PARAM_TICKET_ID = 'ticketId';
+  public const PARAM_TYPE = 'type';
+  public const PARAM_ENERGIE = 'energie';
+  public const PARAM_TOKEN = 'token';
+  public const PARAM_ID = 'id';
+
   protected function json(mixed $data, int $status = Response::HTTP_OK, array $headers = []): JsonResponse
   {
     return new JsonResponse($data, $status, $headers);

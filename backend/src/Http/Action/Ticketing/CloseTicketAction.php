@@ -20,7 +20,7 @@ final class CloseTicketAction extends AbstractAction implements ActionInterface
 
   public function __invoke(Request $request, array $args = []): Response
   {
-    $ticketId = (string) $request->attributes->get('ticketId');
+    $ticketId = (string) $request->attributes->get(self::PARAM_TICKET_ID);
     $input = new CloseTicketInputDto($ticketId);
     $output = $this->useCase->execute($input);
     return $this->responder->respond($output);

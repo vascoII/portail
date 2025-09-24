@@ -20,7 +20,7 @@ final class ListInterventionsAction extends AbstractAction implements ActionInte
 
   public function __invoke(Request $request, array $args = []): Response
   {
-    $pkLogement = (string) $request->attributes->get('pkLogement');
+    $pkLogement = (string) $request->attributes->get(self::PARAM_PK_LOGEMENT);
     $input = new ListInterventionsInputDto($pkLogement);
     $output = $this->useCase->execute($input);
     return $this->responder->respond($output);

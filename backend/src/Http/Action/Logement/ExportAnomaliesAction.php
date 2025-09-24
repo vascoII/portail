@@ -20,7 +20,7 @@ final class ExportAnomaliesAction extends AbstractAction implements ActionInterf
 
   public function __invoke(Request $request, array $args = []): Response
   {
-    $pkLogement = (string) $request->attributes->get('pkLogement');
+    $pkLogement = (string) $request->attributes->get(self::PARAM_PK_LOGEMENT);
     $input = new ExportAnomaliesInputDto($pkLogement);
     $output = $this->useCase->execute($input);
     return $this->responder->respond($output);

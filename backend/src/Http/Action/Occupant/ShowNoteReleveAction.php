@@ -20,9 +20,9 @@ final class ShowNoteReleveAction extends AbstractAction implements ActionInterfa
 
   public function __invoke(Request $request, array $args = []): Response
   {
-    $pkOccupant = (string) $request->attributes->get('pkOccupant');
-    $pkImmeuble = (string) $request->attributes->get('pkImmeuble');
-    $energie = (string) $request->attributes->get('energie');
+    $pkOccupant = (string) $request->attributes->get(self::PARAM_PK_OCCUPANT);
+    $pkImmeuble = (string) $request->attributes->get(self::PARAM_PK_IMMEUBLE);
+    $energie = (string) $request->attributes->get(self::PARAM_ENERGIE);
     $input = new ShowNoteReleveInputDto($pkOccupant, $pkImmeuble, $energie);
     $output = $this->useCase->execute($input);
     return $this->responder->respond($output);

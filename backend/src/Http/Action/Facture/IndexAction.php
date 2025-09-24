@@ -15,7 +15,10 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route(path: '/factures', name: 'facture_index', methods: ['GET'])]
 final class IndexAction extends AbstractAction implements ActionInterface
 {
-  public function __construct(private readonly ResponderInterface $responder, private readonly IndexUseCase $useCase) {}
+  public function __construct(
+    private readonly ResponderInterface $responder, 
+    private readonly IndexUseCase $useCase
+  ) {}
 
   public function __invoke(Request $request, array $args = []): Response
   {

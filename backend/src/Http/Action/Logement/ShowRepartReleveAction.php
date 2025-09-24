@@ -20,8 +20,8 @@ final class ShowRepartReleveAction extends AbstractAction implements ActionInter
 
   public function __invoke(Request $request, array $args = []): Response
   {
-    $pkImmeuble = (string) $request->attributes->get('pkImmeuble');
-    $pkLogement = (string) $request->attributes->get('pkLogement');
+    $pkImmeuble = (string) $request->attributes->get(self::PARAM_PK_IMMEUBLE);
+    $pkLogement = (string) $request->attributes->get(self::PARAM_PK_LOGEMENT);
     $input = new ShowRepartReleveInputDto($pkImmeuble, $pkLogement);
     $output = $this->useCase->execute($input);
     return $this->responder->respond($output);

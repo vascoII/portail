@@ -20,7 +20,7 @@ final class ReportAction extends AbstractAction implements ActionInterface
 
   public function __invoke(Request $request, array $args = []): Response
   {
-    $token = (string) $request->attributes->get('token');
+    $token = (string) $request->attributes->get(self::PARAM_TOKEN);
     $input = new ReportInputDto($token);
     $output = $this->useCase->execute($input);
     return $this->responder->respond($output);

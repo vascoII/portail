@@ -21,7 +21,7 @@ final class ReportAction extends AbstractAction implements ActionInterface
 
   public function __invoke(Request $request, array $args = []): Response
   {
-    $pkFacture = (string) $request->attributes->get('pkFacture');
+    $pkFacture = (string) $request->attributes->get(self::PARAM_PK_FACTURE);
     $input = new ReportInputDto($pkFacture);
     $output = $this->useCase->execute($input);
     return $this->responder->respond($output);

@@ -20,7 +20,7 @@ final class DeleteAction extends AbstractAction implements ActionInterface
 
   public function __invoke(Request $request, array $args = []): Response
   {
-    $id = (string) $request->attributes->get('id');
+    $id = (string) $request->attributes->get(self::PARAM_ID);
     $input = new DeleteInputDto($id);
     $output = $this->useCase->execute($input);
     return $this->responder->respond($output);

@@ -20,7 +20,7 @@ final class ShowInterventionAction extends AbstractAction implements ActionInter
 
   public function __invoke(Request $request, array $args = []): Response
   {
-    $pkIntervention = (string) $request->attributes->get('pkIntervention');
+    $pkIntervention = (string) $request->attributes->get(self::PARAM_PK_INTERVENTION);
     $input = new ShowInterventionInputDto($pkIntervention);
     $output = $this->useCase->execute($input);
     return $this->responder->respond($output);

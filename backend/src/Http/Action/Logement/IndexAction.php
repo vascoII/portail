@@ -20,7 +20,7 @@ final class IndexAction extends AbstractAction implements ActionInterface
 
   public function __invoke(Request $request, array $args = []): Response
   {
-    $pkImmeuble = (string) $request->attributes->get('pkImmeuble');
+    $pkImmeuble = (string) $request->attributes->get(self::PARAM_PK_IMMEUBLE);
     $input = new IndexInputDto($pkImmeuble);
     $output = $this->useCase->execute($input);
     return $this->responder->respond($output);
