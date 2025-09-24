@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Hydrator;
 
-use App\Infrastructure\Service\Auth\AuthenticationContext;
+use App\Domain\Service\Auth\AuthServiceInterface;
 use App\Application\Dto\Input\Security\CreateInputDto;
 use App\Application\Dto\Input\Security\LoginFromParamInputDto;
 use App\Application\Dto\Input\Security\ResetOrCreateInputDto;
@@ -14,11 +14,15 @@ use App\Application\Dto\Input\Security\LoginInputDto;
 
 final class SecurityHydrator
 {
+  public function __construct(
+    private readonly AuthServiceInterface $authService
+  ) {}
+
   public function hydrateCreate(CreateInputDto $inputDto): object
   {
     $user = $this->authService->getCurrentUser();
     $sessionId = $this->authService->getCurrentSessionId();
-    
+
     if (!$user || !$sessionId) {
       throw new \RuntimeException('User not authenticated');
     }
@@ -34,7 +38,7 @@ final class SecurityHydrator
   {
     $user = $this->authService->getCurrentUser();
     $sessionId = $this->authService->getCurrentSessionId();
-    
+
     if (!$user || !$sessionId) {
       throw new \RuntimeException('User not authenticated');
     }
@@ -50,7 +54,7 @@ final class SecurityHydrator
   {
     $user = $this->authService->getCurrentUser();
     $sessionId = $this->authService->getCurrentSessionId();
-    
+
     if (!$user || !$sessionId) {
       throw new \RuntimeException('User not authenticated');
     }
@@ -66,7 +70,7 @@ final class SecurityHydrator
   {
     $user = $this->authService->getCurrentUser();
     $sessionId = $this->authService->getCurrentSessionId();
-    
+
     if (!$user || !$sessionId) {
       throw new \RuntimeException('User not authenticated');
     }
@@ -82,7 +86,7 @@ final class SecurityHydrator
   {
     $user = $this->authService->getCurrentUser();
     $sessionId = $this->authService->getCurrentSessionId();
-    
+
     if (!$user || !$sessionId) {
       throw new \RuntimeException('User not authenticated');
     }
@@ -98,7 +102,7 @@ final class SecurityHydrator
   {
     $user = $this->authService->getCurrentUser();
     $sessionId = $this->authService->getCurrentSessionId();
-    
+
     if (!$user || !$sessionId) {
       throw new \RuntimeException('User not authenticated');
     }
