@@ -1,144 +1,117 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
+import Link from "next/link";
 import BaseLayout from "../../components/Layout/BaseLayout";
 import Breadcrumb from "../../components/Layout/Breadcrumb";
-import Button from "../../components/UI/Button";
-import Alert from "../../components/UI/Alert";
+import { OperatorFilters, OperatorList } from "../../components/Operator";
 
-const OperatorsListPage: React.FC = () => {
-  const breadcrumbItems = [
-    { label: "Administration", href: "/admin" },
-    { label: "Opérateurs" },
-  ];
+interface FilterState {
+  search: string;
+}
 
-  // Données d'exemple pour les opérateurs
+const OperatorsPage: React.FC = () => {
+  const [filters, setFilters] = useState<FilterState>({
+    search: "",
+  });
+
+  // Mock data - in a real app, this would come from an API
   const operators = [
     {
-      id: "1",
-      name: "Jean Dupont",
-      email: "jean.dupont@techem.fr",
-      role: "Administrateur",
-      status: "Actif",
-      lastConnection: "2024-01-15",
-      createdAt: "2023-06-01",
+      PKUser: 1,
+      UserName: "admin",
+      FirstName: "Jean",
+      LastName: "Dupont",
+      EMail: "jean.dupont@example.com",
+      Phone: "0123456789",
+      Job: "Administrateur",
+      NbImmeubles: 15,
+      Adresse: "123 Rue de la Paix",
+      Cp: "75001",
+      Ville: "Paris",
     },
     {
-      id: "2",
-      name: "Marie Martin",
-      email: "marie.martin@techem.fr",
-      role: "Opérateur",
-      status: "Actif",
-      lastConnection: "2024-01-14",
-      createdAt: "2023-08-15",
+      PKUser: 2,
+      UserName: "gestion1",
+      FirstName: "Marie",
+      LastName: "Martin",
+      EMail: "marie.martin@example.com",
+      Phone: "0123456790",
+      Job: "Gestionnaire",
+      NbImmeubles: 8,
+      Adresse: "456 Avenue des Champs",
+      Cp: "69001",
+      Ville: "Lyon",
     },
     {
-      id: "3",
-      name: "Pierre Durand",
-      email: "pierre.durand@techem.fr",
-      role: "Technicien",
-      status: "Inactif",
-      lastConnection: "2024-01-10",
-      createdAt: "2023-09-20",
+      PKUser: 3,
+      UserName: "gestion2",
+      FirstName: "Pierre",
+      LastName: "Durand",
+      EMail: "pierre.durand@example.com",
+      Phone: "0123456791",
+      Job: "Gestionnaire",
+      NbImmeubles: 12,
+      Adresse: "789 Boulevard Saint-Germain",
+      Cp: "13001",
+      Ville: "Marseille",
+    },
+    {
+      PKUser: 4,
+      UserName: "tech1",
+      FirstName: "Sophie",
+      LastName: "Leroy",
+      EMail: "sophie.leroy@example.com",
+      Phone: "0123456792",
+      Job: "Technicien",
+      NbImmeubles: 5,
+      Adresse: "321 Rue de Rivoli",
+      Cp: "31000",
+      Ville: "Toulouse",
     },
   ];
+
+  const breadcrumbItems = [
+    { label: "Liste des gestionnaires", href: "/operators" },
+  ];
+
+  const handleDelete = async (id: number) => {
+    // In a real app, this would make an API call
+    console.log("Deleting operator:", id);
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+  };
 
   return (
     <BaseLayout>
       <Breadcrumb items={breadcrumbItems} />
-      <span className="clearfix"></span>
 
-      <div className="row">
-        <div className="col-md-6">
-          <h2>Gestion des opérateurs</h2>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="flex items-center justify-between mb-8">
+          <h1 className="text-3xl font-bold text-gray-900">
+            Gestion des gestionnaires
+          </h1>
+          <Link
+            href="/operators/create"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors duration-200 flex items-center"
+          >
+            <i className="fas fa-plus mr-2"></i>
+            Créer un compte
+          </Link>
         </div>
-        <div className="col-md-6 text-right">
-          <Button variant="primary" href="/operators/create">
-            <i className="fa fa-plus"></i> Nouvel opérateur
-          </Button>
-        </div>
-      </div>
 
-      <div className="row">
-        <div className="col-md-12">
-          <div className="panel panel-default">
-            <div className="panel-heading">
-              <h3 className="panel-title">Liste des opérateurs</h3>
-            </div>
-            <div className="panel-body">
-              <div className="table-responsive">
-                <table className="table table-striped">
-                  <thead>
-                    <tr>
-                      <th>Nom</th>
-                      <th>Email</th>
-                      <th>Rôle</th>
-                      <th>Statut</th>
-                      <th>Dernière connexion</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {operators.map((operator) => (
-                      <tr key={operator.id}>
-                        <td>{operator.name}</td>
-                        <td>{operator.email}</td>
-                        <td>
-                          <span
-                            className={`label label-${
-                              operator.role === "Administrateur"
-                                ? "danger"
-                                : operator.role === "Opérateur"
-                                ? "primary"
-                                : "info"
-                            }`}
-                          >
-                            {operator.role}
-                          </span>
-                        </td>
-                        <td>
-                          <span
-                            className={`label label-${
-                              operator.status === "Actif"
-                                ? "success"
-                                : "default"
-                            }`}
-                          >
-                            {operator.status}
-                          </span>
-                        </td>
-                        <td>
-                          {new Date(operator.lastConnection).toLocaleDateString(
-                            "fr-FR"
-                          )}
-                        </td>
-                        <td>
-                          <div className="btn-group">
-                            <Button
-                              variant="info"
-                              size="sm"
-                              href={`/operators/${operator.id}/view`}
-                            >
-                              <i className="fa fa-eye"></i>
-                            </Button>
-                            <Button
-                              variant="warning"
-                              size="sm"
-                              href={`/operators/${operator.id}/edit`}
-                            >
-                              <i className="fa fa-edit"></i>
-                            </Button>
-                          </div>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
+        <OperatorFilters onFiltersChange={setFilters} />
+
+        <OperatorList
+          operators={operators}
+          filters={filters}
+          loading={false}
+          error={null}
+          onDelete={handleDelete}
+        />
       </div>
     </BaseLayout>
   );
 };
 
-export default OperatorsListPage;
+export default OperatorsPage;

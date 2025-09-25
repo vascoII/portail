@@ -1,199 +1,91 @@
 "use client";
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
+
+import React from "react";
+import { useParams } from "next/navigation";
 import BaseLayout from "../../../../components/Layout/BaseLayout";
 import Breadcrumb from "../../../../components/Layout/Breadcrumb";
-import { useLogements } from "../../../../hooks/useLogements";
-import Alert from "../../../../components/UI/Alert";
-import Button from "../../../../components/UI/Button";
-import Input from "../../../../components/UI/Input";
+import { LogementEdit, LogementMenu } from "../../../../components/Logement";
 
 const LogementEditPage: React.FC = () => {
-  const router = useRouter();
-  const { id } = router.query;
-  const { logements, loading, error, updateLogement } = useLogements();
-  const [formData, setFormData] = useState({
-    adresse: "",
-    cp: "",
-    ville: "",
-    surface: "",
-    nbPieces: "",
-  });
-  const [saving, setSaving] = useState(false);
-  const [saveError, setSaveError] = useState<string | null>(null);
-  const [saveSuccess, setSaveSuccess] = useState(false);
+  const params = useParams();
+  const id = params.id as string;
 
-  const logement = logements.find((l) => l.id === id);
-
-  React.useEffect(() => {
-    if (logement) {
-      setFormData({
-        adresse: logement.adresse || "",
-        cp: logement.cp || "",
-        ville: logement.ville || "",
-        surface: logement.surface?.toString() || "",
-        nbPieces: logement.nbPieces?.toString() || "",
-      });
-    }
-  }, [logement]);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+  // Mock data - in a real app, this would come from an API
+  const logementData = {
+    Logement: {
+      PkLogement: parseInt(id),
+    },
+    Immeuble: {
+      PkImmeuble: 1,
+      Ref: "REF-001",
+    },
+    Occupant: {
+      Ref: `OCC-${id}`,
+      Nom: `Occupant ${id}`,
+      DateArrivee: "2024-01-15",
+    },
+    NbFuites: 1,
+    NbAnomalies: 2,
+    NbDysfonctionnements: 0,
+    NbDepannages: 1,
+    NbDepannagesTotal: 3,
+    LogementEF: {
+      NbFuites: 0,
+      NbAnomalies: 1,
+    },
+    LogementEC: {
+      NbFuites: 1,
+      NbAnomalies: 1,
+    },
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setSaving(true);
-    setSaveError(null);
-
-    try {
-      await updateLogement(id as string, {
-        adresse: formData.adresse,
-        cp: formData.cp,
-        ville: formData.ville,
-        surface: formData.surface ? parseFloat(formData.surface) : undefined,
-        nbPieces: formData.nbPieces ? parseInt(formData.nbPieces) : undefined,
-      });
-      setSaveSuccess(true);
-      setTimeout(() => {
-        router.push(`/logements/${id}`);
-      }, 2000);
-    } catch (err) {
-      setSaveError(
-        err instanceof Error ? err.message : "Erreur lors de la sauvegarde"
-      );
-    } finally {
-      setSaving(false);
-    }
+  const occupantData = {
+    newTelmobile: "0123456789",
+    newEmail: "occupant@example.com",
   };
 
   const breadcrumbItems = [
     { label: "Le parc", href: "/dashboard" },
+    { label: "Liste des immeubles", href: "/immeubles" },
     {
-      label: `Logement ${logement?.occupant.ref || id}`,
+      label: `Immeuble ${logementData.Immeuble.Ref}`,
+      href: `/immeubles/${logementData.Immeuble.PkImmeuble}`,
+    },
+    {
+      label: "Liste des logements",
+      href: `/logements?immeuble=${logementData.Immeuble.PkImmeuble}`,
+    },
+    {
+      label: `Logement ${logementData.Occupant.Ref}`,
       href: `/logements/${id}`,
     },
-    { label: "Édition" },
+    { label: "Modifier", href: `/logements/${id}/edit` },
   ];
 
-  if (loading) {
-    return (
-      <BaseLayout>
-        <div className="text-center">
-          <div className="spinner-border" role="status">
-            <span className="sr-only">Chargement...</span>
-          </div>
-        </div>
-      </BaseLayout>
-    );
-  }
-
-  if (error || !logement) {
-    return (
-      <BaseLayout>
-        <div className="alert alert-danger">
-          Erreur : {error || "Logement non trouvé"}
-        </div>
-      </BaseLayout>
-    );
-  }
+  const handleSubmit = (data: { email: string; phone: string }) => {
+    console.log("Submitting occupant data:", data);
+    // In a real app, this would make an API call
+    alert("Modification enregistrée avec succès!");
+  };
 
   return (
     <BaseLayout>
       <Breadcrumb items={breadcrumbItems} />
-      <span className="clearfix"></span>
 
-      <h2>Édition du logement</h2>
+      {/* Logement Menu */}
+      <LogementMenu logement={logementData} activeTab="edit" />
 
-      {saveError && <Alert type="danger" message={saveError} />}
-      {saveSuccess && (
-        <Alert type="success" message="Logement modifié avec succès !" />
-      )}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <h2 className="text-2xl font-bold text-gray-900 mb-8">
+          Modifier les coordonnées de l'occupant
+        </h2>
 
-      <div className="row">
-        <div className="col-md-8">
-          <div className="panel panel-default">
-            <div className="panel-heading">
-              <h3 className="panel-title">Informations du logement</h3>
-            </div>
-            <div className="panel-body">
-              <form onSubmit={handleSubmit}>
-                <div className="row">
-                  <div className="col-md-12">
-                    <Input
-                      name="adresse"
-                      label="Adresse"
-                      value={formData.adresse}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-md-4">
-                    <Input
-                      name="cp"
-                      label="Code postal"
-                      value={formData.cp}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-                  <div className="col-md-8">
-                    <Input
-                      name="ville"
-                      label="Ville"
-                      value={formData.ville}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-md-6">
-                    <Input
-                      name="surface"
-                      label="Surface (m²)"
-                      type="number"
-                      value={formData.surface}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div className="col-md-6">
-                    <Input
-                      name="nbPieces"
-                      label="Nombre de pièces"
-                      type="number"
-                      value={formData.nbPieces}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </div>
-                <div className="form-group">
-                  <Button
-                    type="submit"
-                    variant="primary"
-                    loading={saving}
-                    disabled={saving}
-                  >
-                    {saving ? "Sauvegarde..." : "Sauvegarder"}
-                  </Button>
-                  <Button
-                    type="button"
-                    variant="secondary"
-                    onClick={() => router.push(`/logements/${id}`)}
-                    className="ml-2"
-                  >
-                    Annuler
-                  </Button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
+        <LogementEdit
+          logement={logementData}
+          occupant={occupantData}
+          changeInProgress={false}
+          onSubmit={handleSubmit}
+        />
       </div>
     </BaseLayout>
   );

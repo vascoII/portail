@@ -1,63 +1,96 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Link from "next/link";
 import UserMenu from "./UserMenu";
-import LanguageSelector from "./LanguageSelector";
-import SearchForm from "../Forms/SearchForm";
+import SearchBar from "./SearchBar";
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  user?: {
+    userName?: string;
+    firstName?: string;
+    pkUser?: number;
+  };
+  isAdmin?: boolean;
+  showFactures?: boolean;
+  locale?: string;
+  onLocaleChange?: (locale: string) => void;
+  onSearch?: (query: string, type: string) => void;
+}
+
+const Header: React.FC<HeaderProps> = ({
+  user,
+  isAdmin = false,
+  showFactures = false,
+  locale = "fr",
+  onLocaleChange,
+  onSearch,
+}) => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
-    <header className="navbar navbar-static-top container-fluid">
-      <div className="row">
-        <div
-          className="hidden-sm hidden-xs pull-left"
-          style={{ width: "229px" }}
-        >
-          <Link href="/dashboard">
-            <div className="logo"></div>
-          </Link>
-        </div>
-        <div className="logo-container">
-          <div className="row row-top">
-            <div className="col-md-8 col-sm-9 no-padding pull-left">
-              <div
-                className="hidden-lg hidden-md pull-left"
-                style={{ width: "130px" }}
-              >
-                <Link href="/dashboard">
-                  <div className="logo-tablet"></div>
-                </Link>
+    <header className="bg-white shadow-sm border-b border-gray-200">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <div className="flex items-center">
+            <Link href="/dashboard" className="flex items-center">
+              <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mr-3">
+                <i className="fas fa-building text-white text-xl"></i>
               </div>
-              <h3 className="hidden-xs">Bienvenue dans votre espace client</h3>
-            </div>
-            <div className="col-md-4 col-sm-3 pull-right">
-              <UserMenu />
-              <LanguageSelector />
-            </div>
+              <div className="hidden sm:block">
+                <h1 className="text-xl font-bold text-gray-900">Techem</h1>
+                <p className="text-xs text-gray-500">Portail Client</p>
+              </div>
+            </Link>
           </div>
-          <div className="row row-bot">
-            <div className="hidden-lg hidden-md hidden-sm device-navbar">
-              <button className="sidebar-collapse-icon btn btn-primary hidden-lg hidden-md">
-                <img src="/images/toggle.png" alt="Toggle menu" />
-              </button>
-            </div>
-            <div
-              className="col-md-8 col-sm-8 hidden-xs"
-              style={{ paddingLeft: 0 }}
+
+          {/* Welcome Message - Desktop */}
+          <div className="hidden lg:block flex-1 ml-8">
+            <h3 className="text-lg font-medium text-gray-700">
+              Bienvenue dans votre espace client
+            </h3>
+          </div>
+
+          {/* User Menu and Language */}
+          <div className="flex items-center space-x-4">
+            <UserMenu
+              user={user}
+              isAdmin={isAdmin}
+              showFactures={showFactures}
+              locale={locale}
+              onLocaleChange={onLocaleChange}
+            />
+          </div>
+
+          {/* Mobile Menu Button */}
+          <div className="lg:hidden">
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
             >
-              <div
-                className="visible-sm pull-left"
-                style={{ textAlign: "center", width: "65px", padding: 0 }}
-              >
-                <button className="btn hidden-lg hidden-md hidden-xs sidebar-collapse-icon">
-                  <i className="fa fa-bars" style={{ fontSize: "30px" }}></i>
-                </button>
+              <i className="fas fa-bars text-xl"></i>
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="lg:hidden border-t border-gray-200 py-4">
+            <div className="space-y-4">
+              <div className="text-center">
+                <h3 className="text-lg font-medium text-gray-700">
+                  Bienvenue dans votre espace client
+                </h3>
               </div>
-              <SearchForm />
-            </div>
-            <div className="col-md-4 col-sm-4 hidden-xs">
-              <SearchForm isCodeForm />
+              <SearchBar onSearch={onSearch} />
             </div>
           </div>
+        )}
+
+        {/* Search Bar - Desktop */}
+        <div className="hidden lg:block border-t border-gray-200 py-4">
+          <SearchBar onSearch={onSearch} />
         </div>
       </div>
     </header>

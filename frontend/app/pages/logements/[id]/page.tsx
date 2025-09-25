@@ -1,165 +1,94 @@
 "use client";
+
 import React from "react";
-import { useRouter } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import BaseLayout from "../../../components/Layout/BaseLayout";
 import Breadcrumb from "../../../components/Layout/Breadcrumb";
-import LogementCard from "../../../components/Cards/LogementCard";
-import StatusPanel from "../../../components/Panels/StatusPanel";
-import WaterPanel from "../../../components/Energy/WaterPanel";
-import HeatingPanel from "../../../components/Energy/HeatingPanel";
-import { useLogements } from "../../../hooks/useLogements";
-import { useConsumption } from "../../../hooks/useConsumption";
+import { LogementDetail, LogementMenu } from "../../../components/Logement";
 
 const LogementDetailPage: React.FC = () => {
-  const router = useRouter();
-  const { id } = router.query;
-  const { logements, loading, error } = useLogements();
-  const { data: waterData } = useConsumption(id as string, "eau");
-  const { data: heatingData } = useConsumption(id as string, "chauffage");
+  const params = useParams();
+  const searchParams = useSearchParams();
+  const id = params.id as string;
+  const gestion = searchParams.get("gestion") === "true";
 
-  const logement = logements.find((l) => l.id === id);
+  // Mock data - in a real app, this would come from an API
+  const logementData = {
+    Logement: {
+      PkLogement: parseInt(id),
+      Ref: `LOG-${id}`,
+      NumOrdre: `L${id}`,
+      NumBatiment: "A",
+      NumEscalier: "1",
+      NumEtage: "2",
+      AdrBatiment: "123 Rue de la Paix",
+    },
+    Immeuble: {
+      PkImmeuble: 1,
+      Ref: "REF-001",
+      Numero: "NUM-001",
+      Cp: "75001",
+      Ville: "Paris",
+      HasTelereleve: true,
+      HasNoteOccupant: true,
+    },
+    Occupant: {
+      PkOccupant: parseInt(id),
+      Ref: `OCC-${id}`,
+      Nom: `Occupant ${id}`,
+      DateArrivee: "2024-01-15",
+    },
+    NbAppareils: 4,
+    NbCompteursEF: 1,
+    NbCompteursEC: 1,
+    NbCompteursRepart: 1,
+    NbCompteursCET: 0,
+    NbCompteursElect: 1,
+    NbCompteursGaz: 0,
+    NbCompteursCapteur: 0,
+    NbFuites: 1,
+    NbAnomalies: 2,
+    NbDysfonctionnements: 0,
+    NbDepannages: 1,
+    NbDepannagesTotal: 3,
+    TicketsInterEnabled: true,
+    NbTicketsInter: 1,
+  };
 
   const breadcrumbItems = [
     { label: "Le parc", href: "/dashboard" },
-    { label: `Logement ${logement?.occupant.ref || id}` },
+    { label: "Liste des immeubles", href: "/immeubles" },
+    {
+      label: `Immeuble ${logementData.Immeuble.Ref}`,
+      href: `/immeubles/${logementData.Immeuble.PkImmeuble}`,
+    },
+    {
+      label: "Liste des logements",
+      href: `/logements?immeuble=${logementData.Immeuble.PkImmeuble}`,
+    },
+    {
+      label: `Logement ${logementData.Occupant.Ref}`,
+      href: `/logements/${id}`,
+    },
   ];
-
-  if (loading) {
-    return (
-      <BaseLayout>
-        <div className="text-center">
-          <div className="spinner-border" role="status">
-            <span className="sr-only">Chargement...</span>
-          </div>
-        </div>
-      </BaseLayout>
-    );
-  }
-
-  if (error || !logement) {
-    return (
-      <BaseLayout>
-        <div className="alert alert-danger">
-          Erreur : {error || "Logement non trouvé"}
-        </div>
-      </BaseLayout>
-    );
-  }
 
   return (
     <BaseLayout>
       <Breadcrumb items={breadcrumbItems} />
-      <span className="clearfix"></span>
 
-      <h2>Aperçu du logement</h2>
+      {/* Logement Menu */}
+      <LogementMenu logement={logementData} />
 
-      <div className="row panel-area building-detail-area">
-        <div className="col-md-8 col-sm-6 block block-1">
-          <LogementCard logement={logement} />
-        </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <h2 className="text-2xl font-bold text-gray-900 mb-8">
+          Aperçu du logement
+        </h2>
 
-        <div className="col-md-4 col-sm-6 block block-2">
-          <StatusPanel
-            title="Statut"
-            value={75}
-            maxValue={100}
-            color="#4CAF50"
-            isActive={true}
-          />
-        </div>
-      </div>
-
-      <div className="row panel-area">
-        <div className="col-md-12">
-          <ul className="nav nav-tabs" role="tablist">
-            <li role="presentation" className="active">
-              <a
-                href="#tab-1"
-                aria-controls="home"
-                role="tab"
-                data-toggle="tab"
-              >
-                <div className="inner">
-                  <span className="icon icon-water94"></span>
-                  <span className="text">Eau froide</span>
-                </div>
-              </a>
-            </li>
-            <li role="presentation">
-              <a
-                href="#tab-2"
-                aria-controls="home"
-                role="tab"
-                data-toggle="tab"
-              >
-                <div className="inner">
-                  <span className="icon icon-water94"></span>
-                  <span className="text">Eau chaude</span>
-                </div>
-              </a>
-            </li>
-            <li role="presentation">
-              <a
-                href="#tab-3"
-                aria-controls="home"
-                role="tab"
-                data-toggle="tab"
-              >
-                <div className="inner">
-                  <span className="icon icon-squares36"></span>
-                  <span className="text">Chauffage</span>
-                </div>
-              </a>
-            </li>
-            <li role="presentation">
-              <a
-                href="#tab-4"
-                aria-controls="home"
-                role="tab"
-                data-toggle="tab"
-              >
-                <div className="inner">
-                  <span className="icon icon-speedometer10"></span>
-                  <span className="text">Électricité</span>
-                </div>
-              </a>
-            </li>
-          </ul>
-
-          <div className="tab-content">
-            <div role="tabpanel" className="tab-pane active" id="tab-1">
-              <WaterPanel
-                title="Eau froide"
-                data={waterData}
-                color="#2196F3"
-                nbCompteurs={1}
-              />
-            </div>
-            <div role="tabpanel" className="tab-pane" id="tab-2">
-              <WaterPanel
-                title="Eau chaude"
-                data={waterData}
-                color="#FF9800"
-                nbCompteurs={1}
-              />
-            </div>
-            <div role="tabpanel" className="tab-pane" id="tab-3">
-              <HeatingPanel
-                title="Chauffage"
-                data={heatingData}
-                color="#4CAF50"
-                nbCompteurs={1}
-              />
-            </div>
-            <div role="tabpanel" className="tab-pane" id="tab-4">
-              <div className="panel panel-default">
-                <div className="panel-body">
-                  <p>Données d'électricité en cours de développement...</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <LogementDetail
+          logement={logementData}
+          isGestionMode={gestion}
+          showChgtOccupant={true}
+        />
       </div>
     </BaseLayout>
   );
