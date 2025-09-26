@@ -16,11 +16,14 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route(path: '/security/login', name: 'security_login', methods: ['POST'])]
 final class LoginAction extends AbstractAction implements ActionInterface
 {
-  public function __construct(private readonly ResponderInterface $responder, private readonly LoginUseCase $useCase) {}
+  public function __construct(
+    private readonly ResponderInterface $responder, 
+    private readonly LoginUseCase $useCase
+  ) {}
 
   public function __invoke(Request $request, array $args = []): Response
-  {
-    $content = $request->toArray();
+  { 
+    $content = $request->toArray(); dd($content);
     $input = new LoginInputDto(...$content);
     $output = $this->useCase->execute($input);
     return $this->responder->respond($output);

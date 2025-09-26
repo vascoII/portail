@@ -27,7 +27,7 @@ final class RequestValidationListener implements EventSubscriberInterface
   public static function getSubscribedEvents(): array
   {
     return [
-      KernelEvents::REQUEST => ['onKernelRequest', 100],
+      KernelEvents::REQUEST => ['onKernelRequest', -10],
     ];
   }
 
@@ -59,7 +59,7 @@ final class RequestValidationListener implements EventSubscriberInterface
   private function validateRequest(RequestEvent $event, Request $request): void
   {
     // Check request size
-    $contentLength = (int) $request->headers->get('Content-Length', 0);
+    $contentLength = (int) $request->headers->get('Content-Length', '0');
     if ($contentLength > $this->maxRequestSize) {
       $this->logValidationError('Request too large', $request, [
         'content_length' => $contentLength,
@@ -89,7 +89,8 @@ final class RequestValidationListener implements EventSubscriberInterface
     }
 
     // Validate JSON for JSON requests
-    if ($request->getContentType() === 'json' && $request->getContent()) {
+    $contentType = $request->headers->get('Content-Type', '');
+    if (str_starts_with($contentType, 'application/json') && $request->getContent()) {
       $this->validateJsonContent($event, $request);
     }
   }
@@ -137,7 +138,7 @@ final class RequestValidationListener implements EventSubscriberInterface
   private function createErrorResponse(BadRequestException $exception): Response
   {
     return new Response(
-      json_encode($exception->toApiResponse()),
+      json_encode($exception->toApiResponse(), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
       $exception->getStatusCode(),
       array_merge(
         ['Content-Type' => 'application/json'],

@@ -20,7 +20,7 @@ final class InternalServerErrorException extends HttpException
     array $context = [],
     array $inputData = [],
     array $headers = [],
-    ?\Exception $previous = null
+    ?\Throwable $previous = null
   ) {
     parent::__construct(
       $message,
@@ -60,7 +60,7 @@ final class InternalServerErrorException extends HttpException
   public static function unexpectedError(
     string $component,
     string $operation,
-    ?\Exception $previous = null
+    ?\Throwable $previous = null
   ): self {
     return new self(
       'An unexpected error occurred',

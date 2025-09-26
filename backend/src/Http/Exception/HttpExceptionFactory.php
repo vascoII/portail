@@ -159,7 +159,7 @@ final class HttpExceptionFactory
   public static function unexpectedError(
     string $component,
     string $operation,
-    ?\Exception $previous = null
+    ?\Throwable $previous = null
   ): InternalServerErrorException {
     return InternalServerErrorException::unexpectedError($component, $operation, $previous);
   }
@@ -167,7 +167,7 @@ final class HttpExceptionFactory
   public static function serviceUnavailable(
     string $service,
     string $reason = '',
-    ?\Exception $previous = null
+    ?\Throwable $previous = null
   ): InternalServerErrorException {
     return InternalServerErrorException::serviceUnavailable($service, $reason, $previous);
   }
@@ -175,7 +175,7 @@ final class HttpExceptionFactory
   public static function databaseError(
     string $operation,
     string $reason = '',
-    ?\Exception $previous = null
+    ?\Throwable $previous = null
   ): InternalServerErrorException {
     return InternalServerErrorException::databaseError($operation, $reason, $previous);
   }
@@ -184,7 +184,7 @@ final class HttpExceptionFactory
     string $service,
     string $operation,
     string $reason = '',
-    ?\Exception $previous = null
+    ?\Throwable $previous = null
   ): InternalServerErrorException {
     return InternalServerErrorException::externalServiceError($service, $operation, $reason, $previous);
   }
@@ -192,7 +192,7 @@ final class HttpExceptionFactory
   public static function configurationError(
     string $configKey,
     string $reason = '',
-    ?\Exception $previous = null
+    ?\Throwable $previous = null
   ): InternalServerErrorException {
     return InternalServerErrorException::configurationError($configKey, $reason, $previous);
   }
@@ -211,7 +211,7 @@ final class HttpExceptionFactory
     string $operation,
     string $path,
     string $reason = '',
-    ?\Exception $previous = null
+    ?\Throwable $previous = null
   ): InternalServerErrorException {
     return InternalServerErrorException::fileSystemError($operation, $path, $reason, $previous);
   }
@@ -296,7 +296,7 @@ final class HttpExceptionFactory
   /**
    * Generic Exception Mapping
    */
-  public static function fromGenericException(\Exception $exception): HttpException
+  public static function fromGenericException(\Throwable $exception): HttpException
   {
     return InternalServerErrorException::unexpectedError(
       'Unknown',

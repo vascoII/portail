@@ -40,7 +40,7 @@ abstract class HttpException extends ApplicationException
     array $inputData = [],
     array $outputData = [],
     array $headers = [],
-    ?\Exception $previous = null
+    ?\Throwable $previous = null
   ) {
     // Add HTTP-specific context
     $context['http_status_code'] = $statusCode;

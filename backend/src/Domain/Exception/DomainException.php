@@ -33,7 +33,7 @@ abstract class DomainException extends Exception
     string $message,
     string $errorCode = '',
     array $context = [],
-    ?Exception $previous = null
+    ?\Throwable $previous = null
   ) {
     parent::__construct($message, 0, $previous);
 

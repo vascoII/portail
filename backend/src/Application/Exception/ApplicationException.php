@@ -43,7 +43,7 @@ abstract class ApplicationException extends DomainException
     array $context = [],
     array $inputData = [],
     array $outputData = [],
-    ?\Exception $previous = null
+    ?\Throwable $previous = null
   ) {
     // Add application-specific context
     $context['component'] = $component;
