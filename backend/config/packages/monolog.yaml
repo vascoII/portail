@@ -64,10 +64,7 @@ when@dev:
         type: console
         level: debug
         channels: ["http", "application", "soap", "transformer", "security"]
-        formatter: monolog.formatter.line
-        formatter_options:
-          format: "[%%datetime%%] %%channel%%.%%level_name%%: %%message%% %%context%% %%extra%%\n"
-          date_format: "Y-m-d H:i:s"
+        formatter: monolog.formatter.custom_line
 
 when@prod:
   monolog:

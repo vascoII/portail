@@ -62,6 +62,8 @@ services:
 
   # JWT Middleware
   App\Http\Middleware\JwtAuthMiddleware:
+    arguments:
+      $securityLogger: '@monolog.logger.security'
     tags:
       - {
           name: kernel.event_listener,
@@ -70,18 +72,18 @@ services:
           priority: 1000,
         }
 
-# Logger Processors
-App\Infrastructure\Logger\Processor\RequestIdProcessor:
-  tags: ["monolog.processor"]
+  # Logger Processors
+  App\Infrastructure\Logger\Processor\RequestIdProcessor:
+    tags: ["monolog.processor"]
 
-App\Infrastructure\Logger\Processor\UserContextProcessor:
-  tags: ["monolog.processor"]
+  App\Infrastructure\Logger\Processor\UserContextProcessor:
+    tags: ["monolog.processor"]
 
-App\Infrastructure\Logger\Processor\SensitiveDataProcessor:
-  tags: ["monolog.processor"]
+  App\Infrastructure\Logger\Processor\SensitiveDataProcessor:
+    tags: ["monolog.processor"]
 
-App\Infrastructure\Logger\Processor\ExceptionContextProcessor:
-  tags: ["monolog.processor"]
+  App\Infrastructure\Logger\Processor\ExceptionContextProcessor:
+    tags: ["monolog.processor"]
 
   # HTTP Logging Subscriber
   App\Infrastructure\Logger\Subscriber\HttpLoggingSubscriber:
@@ -89,74 +91,78 @@ App\Infrastructure\Logger\Processor\ExceptionContextProcessor:
     arguments:
       $httpLogger: "@monolog.logger.http"
 
-  # Security Logger for JWT Middleware
-  App\Http\Middleware\JwtAuthMiddleware:
+  # HTTP Logger for JsonResponder
+  App\Http\Responder\JsonResponder:
     arguments:
-      $securityLogger: "@monolog.logger.security"
+      $httpLogger: "@monolog.logger.http"
 
-# HTTP Logger for JsonResponder
-App\Http\Responder\JsonResponder:
-  arguments:
-    $httpLogger: "@monolog.logger.http"
+  # HTTP Event Listeners
+  App\Http\EventListener\GlobalExceptionListener:
+    tags: ["kernel.event_subscriber"]
+    arguments:
+      $logger: "@monolog.logger.application"
 
-# HTTP Event Listeners
-App\Http\EventListener\GlobalExceptionListener:
-  tags: ["kernel.event_subscriber"]
-  arguments:
-    $logger: "@monolog.logger.application"
+  App\Http\EventListener\RequestIdListener:
+    tags: ["kernel.event_subscriber"]
 
-App\Http\EventListener\RequestIdListener:
-  tags: ["kernel.event_subscriber"]
+  App\Http\EventListener\CorsListener:
+    tags: ["kernel.event_subscriber"]
+    arguments:
+      $allowedOrigins: ["*"]
+      $allowedMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+      $allowedHeaders: ["Content-Type", "Authorization", "X-Request-ID"]
+      $allowCredentials: false
+      $maxAge: 3600
 
-App\Http\EventListener\CorsListener:
-  tags: ["kernel.event_subscriber"]
-  arguments:
-    $allowedOrigins: ["*"]
-    $allowedMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
-    $allowedHeaders: ["Content-Type", "Authorization", "X-Request-ID"]
-    $allowCredentials: false
-    $maxAge: 3600
+  App\Http\EventListener\SecurityHeadersListener:
+    tags: ["kernel.event_subscriber"]
+    arguments:
+      $enableSecurityHeaders: true
+      $contentSecurityPolicy: "default-src 'self'"
+      $enableHsts: true
+      $hstsMaxAge: 31536000
+      $enableFrameOptions: true
+      $frameOptions: "DENY"
+      $enableContentTypeOptions: true
+      $enableReferrerPolicy: true
+      $referrerPolicy: "strict-origin-when-cross-origin"
 
-App\Http\EventListener\SecurityHeadersListener:
-  tags: ["kernel.event_subscriber"]
-  arguments:
-    $enableSecurityHeaders: true
-    $contentSecurityPolicy: "default-src 'self'"
-    $enableHsts: true
-    $hstsMaxAge: 31536000
-    $enableFrameOptions: true
-    $frameOptions: "DENY"
-    $enableContentTypeOptions: true
-    $enableReferrerPolicy: true
-    $referrerPolicy: "strict-origin-when-cross-origin"
+  App\Http\EventListener\RateLimitListener:
+    tags: ["kernel.event_subscriber"]
+    arguments:
+      $logger: "@monolog.logger.security"
+      $defaultLimit: 100
+      $defaultWindow: 3600
+      $endpointLimits: []
+      $enableRateLimiting: true
 
-App\Http\EventListener\RateLimitListener:
-  tags: ["kernel.event_subscriber"]
-  arguments:
-    $logger: "@monolog.logger.security"
-    $defaultLimit: 100
-    $defaultWindow: 3600
-    $endpointLimits: []
-    $enableRateLimiting: true
+  App\Http\EventListener\RequestValidationListener:
+    tags: ["kernel.event_subscriber"]
+    arguments:
+      $logger: "@monolog.logger.http"
+      $maxRequestSize: 10485760
+      $allowedContentTypes:
+        ["application/json", "application/x-www-form-urlencoded"]
+      $enableValidation: true
 
-App\Http\EventListener\RequestValidationListener:
-  tags: ["kernel.event_subscriber"]
-  arguments:
-    $logger: "@monolog.logger.http"
-    $maxRequestSize: 10485760
-    $allowedContentTypes:
-      ["application/json", "application/x-www-form-urlencoded"]
-    $enableValidation: true
+  App\Http\EventListener\ResponseTimeListener:
+    tags: ["kernel.event_subscriber"]
+    arguments:
+      $logger: "@monolog.logger.http"
+      $slowRequestThreshold: 1.0
+      $enableResponseTimeLogging: true
 
-App\Http\EventListener\ResponseTimeListener:
-  tags: ["kernel.event_subscriber"]
-  arguments:
-    $logger: "@monolog.logger.http"
-    $slowRequestThreshold: 1.0
-    $enableResponseTimeLogging: true
+  #Http Event ExceptionListener
+  App\Http\EventListener\ExceptionListener:
+    tags:
+      - { name: kernel.event_listener, event: kernel.exception }
 
-#Http Event ExceptionListener
-App\Http\EventListener\ExceptionListener:
-  tags:
-    - { name: kernel.event_listener, event: kernel.exception }
+
+  #Monolog Custom formater 
+  monolog.formatter.custom_line:
+    class: Monolog\Formatter\LineFormatter
+    arguments:
+      $format: "[%%datetime%%] %%channel%%.%%level_name%%: %%message%% %%context%% %%extra%%\n"
+      $dateFormat: "Y-m-d H:i:s"
+    
 
