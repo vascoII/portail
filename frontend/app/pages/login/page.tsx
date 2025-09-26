@@ -3,6 +3,7 @@
 import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { useAuth } from "../../hooks/useAuth";
 import LoginForm from "../../components/Forms/LoginForm";
 import { LoginFormData } from "../../types/auth";
@@ -53,7 +54,9 @@ const LoginPage: React.FC = () => {
         <div className="flex justify-center">
           <Link href="/pages/dashboard" className="flex items-center">
             <div className="flex-shrink-0">
-              <img
+              <Image
+                width={0}
+                height={0}
                 className="h-20 w-auto"
                 src="/images/logo.svg"
                 alt="Techem"
