@@ -36,9 +36,12 @@ services:
     build:
       context: .
       dockerfile: ./frontend/Dockerfile   
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
     ports:
       - "3000:3000"
-    command: sh -c "yarn install && yarn dev"
+    command: sh -c "CHOKIDAR_USEPOLLING=true yarn install && CHOKIDAR_USEPOLLING=true yarn dev"
     networks:
       - app-network
 
