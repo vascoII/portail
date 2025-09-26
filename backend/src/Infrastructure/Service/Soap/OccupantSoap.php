@@ -18,7 +18,7 @@ use App\Application\Dto\Input\Occupant\ShowEauReleveInputDto;
 use App\Application\Dto\Input\Occupant\ShowInterventionInputDto;
 use App\Application\Dto\Input\Occupant\ShowNoteReleveInputDto;
 use App\Application\Dto\Input\Occupant\ShowRepartReleveInputDto;
-use App\Application\Dto\Input\Occupant\ShowUseInputDto;
+use App\Application\Dto\Input\Occupant\ShowInputDto;
 use App\Application\Dto\Input\Occupant\SimulateurInputDto;
 use App\Application\Dto\Input\Occupant\EditInputDto;
 use App\Domain\Service\Soap\OccupantSoapInterface;
@@ -152,7 +152,7 @@ final class OccupantSoap implements OccupantSoapInterface
     return [];
   }
 
-  public function showService(ShowUseInputDto $inputDto): array
+  public function showService(ShowInputDto $inputDto): array
   {
     // TODO: Implement showService logic
     $authContext = $this->getAuthContext();

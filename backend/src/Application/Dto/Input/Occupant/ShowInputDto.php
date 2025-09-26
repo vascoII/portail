@@ -4,4 +4,4 @@ declare(strict_types=1);
 
 namespace App\Application\Dto\Input\Occupant;
 
-final class ShowUseInputDto {}
+final class ShowInputDto {}

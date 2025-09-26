@@ -19,7 +19,7 @@ use App\Application\Dto\Input\Occupant\ShowEauReleveInputDto;
 use App\Application\Dto\Input\Occupant\ShowInterventionInputDto;
 use App\Application\Dto\Input\Occupant\ShowNoteReleveInputDto;
 use App\Application\Dto\Input\Occupant\ShowRepartReleveInputDto;
-use App\Application\Dto\Input\Occupant\ShowUseInputDto;
+use App\Application\Dto\Input\Occupant\ShowInputDto;
 use App\Application\Dto\Input\Occupant\SimulateurInputDto;
 
 final class OccupantHydrator
@@ -154,12 +154,12 @@ final class OccupantHydrator
     ];
   }
 
-  public function hydrateShow(ShowUseInputDto $inputDto, AuthenticationContext $authContext): object
+  public function hydrateShow(ShowInputDto $inputDto, AuthenticationContext $authContext): object
   {
     return (object) [
       'SessionID' => $authContext->sessionId,
       'PkUser' => $authContext->pkUser,
-      // TODO: Add specific parameters based on ShowUseInputDto properties
+      // TODO: Add specific parameters based on ShowInputDto properties
     ];
   }
 

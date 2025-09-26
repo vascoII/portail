@@ -18,7 +18,7 @@ use App\Application\Dto\Input\Occupant\ShowEauReleveInputDto;
 use App\Application\Dto\Input\Occupant\ShowInterventionInputDto;
 use App\Application\Dto\Input\Occupant\ShowNoteReleveInputDto;
 use App\Application\Dto\Input\Occupant\ShowRepartReleveInputDto;
-use App\Application\Dto\Input\Occupant\ShowUseInputDto;
+use App\Application\Dto\Input\Occupant\ShowInputDto;
 use App\Application\Dto\Input\Occupant\SimulateurInputDto;
 use App\Application\Dto\Input\Occupant\EditInputDto;
 
@@ -39,7 +39,7 @@ interface OccupantSoapInterface
   public function showInterventionService(ShowInterventionInputDto $inputDto): array;
   public function showNoteReleveService(ShowNoteReleveInputDto $inputDto): array;
   public function showRepartReleveService(ShowRepartReleveInputDto $inputDto): array;
-  public function showService(ShowUseInputDto $inputDto): array;
+  public function showService(ShowInputDto $inputDto): array;
   public function simulateurService(SimulateurInputDto $inputDto): array;
   public function editService(EditInputDto $inputDto): array;
 }
