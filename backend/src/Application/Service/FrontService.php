@@ -12,12 +12,29 @@ use App\Application\Dto\Input\Front\PersonalDatasInputDto;
 use App\Application\Dto\Output\Front\PersonalDatasOutputDto;
 use App\Application\Dto\Input\Front\LegalNoticesInputDto;
 use App\Application\Dto\Output\Front\LegalNoticesOutputDto;
+use App\Domain\Service\DataProvider\FrontInterface;
 
-interface FrontInterface
+final class FrontService implements FrontInterface
 {
 
-  public function indexService(IndexInputDto $inputDto): IndexOutputDto;
-  public function cguService(CguInputDto $inputDto): CguOutputDto;
-  public function personalDatasService(PersonalDatasInputDto $inputDto): PersonalDatasOutputDto;
-  public function legalNoticesService(LegalNoticesInputDto $inputDto): LegalNoticesOutputDto;
+  public function indexService(IndexInputDto $inputDto): IndexOutputDto
+  {
+
+  }
+  
+  public function cguService(CguInputDto $inputDto): CguOutputDto
+  {
+
+  }
+
+  public function personalDatasService(PersonalDatasInputDto $inputDto): PersonalDatasOutputDto
+  {
+
+  }
+
+  public function legalNoticesService(LegalNoticesInputDto $inputDto): LegalNoticesOutputDto
+  {
+
+  }
+
 }

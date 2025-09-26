@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Application\Service;
+namespace App\Domain\Service\DataProvider;
 
 use App\Application\Dto\Input\Search\IndexInputDto;
 use App\Application\Dto\Output\Search\IndexOutputDto;

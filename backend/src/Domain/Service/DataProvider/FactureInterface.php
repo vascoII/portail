@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Application\Service;
+namespace App\Domain\Service\DataProvider;
 
 use App\Application\Dto\Output\Facture\IndexOutputDto;
 use App\Application\Dto\Input\Facture\ReportInputDto;

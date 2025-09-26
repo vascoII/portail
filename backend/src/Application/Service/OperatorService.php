@@ -22,17 +22,53 @@ use App\Application\Dto\Input\Operator\DeleteInputDto;
 use App\Application\Dto\Output\Operator\DeleteOutputDto;
 use App\Application\Dto\Input\Operator\OtatsoccupantsInputDto;
 use App\Application\Dto\Output\Operator\OtatsoccupantsOutputDto;
+use App\Domain\Service\DataProvider\OperatorInterface;
 
-interface OperatorInterface
-{
+final class OperatorService implements OperatorInterface
 
-  public function indexService(IndexInputDto $inputDto): IndexOutputDto;
-  public function createService(CreateInputDto $inputDto): CreateOutputDto;
-  public function addBuildingService(AddBuildingInputDto $inputDto): AddBuildingOutputDto;
-  public function removeBuildingService(RemoveBuildingInputDto $inputDto): RemoveBuildingOutputDto;
-  public function viewService(ViewInputDto $inputDto): ViewOutputDto;
-  public function editService(EditInputDto $inputDto): EditOutputDto;
-  public function editPasswordService(EditPasswordInputDto $inputDto): EditPasswordOutputDto;
-  public function deleteService(DeleteInputDto $inputDto): DeleteOutputDto;
-  public function otatsoccupantsService(OtatsoccupantsInputDto $inputDto): OtatsoccupantsOutputDto;
+  public function indexService(IndexInputDto $inputDto): IndexOutputDto
+  {
+
+  }
+
+  public function createService(CreateInputDto $inputDto): CreateOutputDto
+  {
+
+  }
+  
+  public function addBuildingService(AddBuildingInputDto $inputDto): AddBuildingOutputDto
+  {
+
+  }
+
+  public function removeBuildingService(RemoveBuildingInputDto $inputDto): RemoveBuildingOutputDto
+  {
+
+  }
+
+  public function viewService(ViewInputDto $inputDto): ViewOutputDto
+  {
+
+  }
+
+  public function editService(EditInputDto $inputDto): EditOutputDto
+  {
+
+  }
+
+  public function editPasswordService(EditPasswordInputDto $inputDto): EditPasswordOutputDto
+  {
+
+  }
+
+  public function deleteService(DeleteInputDto $inputDto): DeleteOutputDto
+  {
+
+  }
+
+  public function otatsoccupantsService(OtatsoccupantsInputDto $inputDto): OtatsoccupantsOutputDto
+  {
+
+  }
+
 }

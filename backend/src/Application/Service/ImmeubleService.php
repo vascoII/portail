@@ -32,22 +32,78 @@ use App\Application\Dto\Input\Immeuble\ExportDysfunctionsInputDto;
 use App\Application\Dto\Output\Immeuble\ExportDysfunctionsOutputDto;
 use App\Application\Dto\Input\Immeuble\ExportAnomaliesInputDto;
 use App\Application\Dto\Output\Immeuble\ExportAnomaliesOutputDto;
+use App\Domain\Service\DataProvider\ImmeubleInterface;
 
-interface ImmeubleInterface
-{
+final class ImmeubleService implements ImmeubleInterface
 
-  public function indexService(IndexInputDto $inputDto): IndexOutputDto;
-  public function showService(ShowInputDto $inputDto): ShowOutputDto;
-  public function reportService(ReportInputDto $inputDto): ReportOutputDto;
-  public function listInterventionsService(ListInterventionsInputDto $inputDto): ListInterventionsOutputDto;
-  public function showInterventionService(ShowInterventionInputDto $inputDto): ShowInterventionOutputDto;
-  public function interventionService(InterventionInputDto $inputDto): InterventionOutputDto;
-  public function listLeaksService(ListLeaksInputDto $inputDto): ListLeaksOutputDto;
-  public function listDysfunctionsService(ListDysfunctionsInputDto $inputDto): ListDysfunctionsOutputDto;
-  public function listAnomaliesService(ListAnomaliesInputDto $inputDto): ListAnomaliesOutputDto;
-  public function filterResultService(FilterResultInputDto $inputDto): FilterResultOutputDto;
-  public function exportInterventionsService(ExportInterventionsInputDto $inputDto): ExportInterventionsOutputDto;
-  public function exportLeaksService(ExportLeaksInputDto $inputDto): ExportLeaksOutputDto;
-  public function exportDysfunctionsService(ExportDysfunctionsInputDto $inputDto): ExportDysfunctionsOutputDto;
-  public function exportAnomaliesService(ExportAnomaliesInputDto $inputDto): ExportAnomaliesOutputDto;
+  public function indexService(IndexInputDto $inputDto): IndexOutputDto
+  {
+
+  }
+  
+  public function showService(ShowInputDto $inputDto): ShowOutputDto
+  {
+
+  }
+
+  public function reportService(ReportInputDto $inputDto): ReportOutputDto
+  {
+
+  }
+
+  public function listInterventionsService(ListInterventionsInputDto $inputDto): ListInterventionsOutputDto
+  {
+
+  }
+
+  public function showInterventionService(ShowInterventionInputDto $inputDto): ShowInterventionOutputDto
+  {
+
+  }
+
+  public function interventionService(InterventionInputDto $inputDto): InterventionOutputDto
+  {
+
+  }
+
+  public function listLeaksService(ListLeaksInputDto $inputDto): ListLeaksOutputDto
+  {
+
+  }
+
+  public function listDysfunctionsService(ListDysfunctionsInputDto $inputDto): ListDysfunctionsOutputDto
+  {
+
+  }
+
+  public function listAnomaliesService(ListAnomaliesInputDto $inputDto): ListAnomaliesOutputDto
+  {
+
+  }
+
+  public function filterResultService(FilterResultInputDto $inputDto): FilterResultOutputDto
+  {
+
+  }
+
+  public function exportInterventionsService(ExportInterventionsInputDto $inputDto): ExportInterventionsOutputDto
+  {
+
+  }
+
+  public function exportLeaksService(ExportLeaksInputDto $inputDto): ExportLeaksOutputDto
+  {
+
+  }
+
+  public function exportDysfunctionsService(ExportDysfunctionsInputDto $inputDto): ExportDysfunctionsOutputDto
+  {
+
+  }
+
+  public function exportAnomaliesService(ExportAnomaliesInputDto $inputDto): ExportAnomaliesOutputDto
+  {
+
+  }
+
 }

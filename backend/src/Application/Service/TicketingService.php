@@ -16,14 +16,38 @@ use App\Application\Dto\Input\Ticketing\TableTicketingInputDto;
 use App\Application\Dto\Output\Ticketing\TableTicketingOutputDto;
 use App\Application\Dto\Input\Ticketing\TicketListInputDto;
 use App\Application\Dto\Output\Ticketing\TicketListOutputDto;
+use App\Domain\Service\DataProvider\TicketingInterface;
 
-interface TicketingInterface
+final class TicketingService implements TicketingInterface
 {
 
-  public function attachmentTicketService(AttachmentTicketInputDto $inputDto): AttachmentTicketOutputDto;
-  public function closeTicketService(CloseTicketInputDto $inputDto): CloseTicketOutputDto;
-  public function createTicketService(CreateTicketInputDto $inputDto): CreateTicketOutputDto;
-  public function menuTicketService(MenuTicketInputDto $inputDto): MenuTicketOutputDto;
-  public function tableTicketingService(TableTicketingInputDto $inputDto): TableTicketingOutputDto;
-  public function ticketListService(TicketListInputDto $inputDto): TicketListOutputDto;
+  public function attachmentTicketService(AttachmentTicketInputDto $inputDto): AttachmentTicketOutputDto
+  {
+
+  }
+  
+  public function closeTicketService(CloseTicketInputDto $inputDto): CloseTicketOutputDto
+  {
+
+  }
+
+  public function createTicketService(CreateTicketInputDto $inputDto): CreateTicketOutputDto
+  {
+
+  }
+
+  public function menuTicketService(MenuTicketInputDto $inputDto): MenuTicketOutputDto
+  {
+
+  }
+
+  public function tableTicketingService(TableTicketingInputDto $inputDto): TableTicketingOutputDto
+  {
+
+  }
+
+  public function ticketListService(TicketListInputDto $inputDto): TicketListOutputDto
+  {
+
+  }
 }
