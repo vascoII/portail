@@ -170,55 +170,6 @@ const UserMenu: React.FC<UserMenuProps> = ({
           </div>
         )}
       </div>
-
-      {/* Language Menu */}
-      <div className="relative" ref={languageMenuRef}>
-        <button
-          className="hidden sm:flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200 text-sm font-medium"
-          type="button"
-          onClick={() => setIsLanguageMenuOpen(!isLanguageMenuOpen)}
-        >
-          <span className="uppercase">{locale}</span>
-          <i className="fas fa-chevron-down ml-2 text-xs"></i>
-        </button>
-
-        {/* Mobile Language Menu Button */}
-        <button
-          className="sm:hidden flex items-center justify-center w-10 h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200"
-          type="button"
-          onClick={() => setIsLanguageMenuOpen(!isLanguageMenuOpen)}
-        >
-          <span className="text-xs font-bold uppercase">{locale}</span>
-        </button>
-
-        {/* Language Dropdown Menu */}
-        {isLanguageMenuOpen && (
-          <div className="absolute right-0 mt-2 w-20 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
-            <div className="py-1">
-              <button
-                className={`w-full text-left px-4 py-2 text-sm transition-colors duration-200 ${
-                  locale === "fr"
-                    ? "bg-blue-50 text-blue-600 font-medium"
-                    : "text-gray-700 hover:bg-gray-100"
-                }`}
-                onClick={() => handleLocaleChange("fr")}
-              >
-                FR
-              </button>
-              <button
-                className={`w-full text-left px-4 py-2 text-sm transition-colors duration-200 ${
-                  locale === "en"
-                    ? "bg-blue-50 text-blue-600 font-medium"
-                    : "text-gray-700 hover:bg-gray-100"
-                }`}
-                onClick={() => handleLocaleChange("en")}
-              >
-                EN
-              </button>
-            </div>
-          </div>
-        )}
-      </div>
     </div>
   );
 };

@@ -154,3 +154,9 @@ App\Http\EventListener\ResponseTimeListener:
     $logger: "@monolog.logger.http"
     $slowRequestThreshold: 1.0
     $enableResponseTimeLogging: true
+
+#Http Event ExceptionListener
+App\Http\EventListener\ExceptionListener:
+  tags:
+    - { name: kernel.event_listener, event: kernel.exception }
+
