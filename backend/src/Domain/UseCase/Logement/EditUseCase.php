@@ -6,19 +6,16 @@ namespace App\Domain\UseCase\Logement;
 
 use App\Application\Dto\Input\Logement\EditInputDto;
 use App\Application\Dto\Output\Logement\EditOutputDto;
-use App\Infrastructure\Transformer\LogementTransformer;
-use App\Domain\Service\Soap\LogementSoapInterface;
+use App\Application\Service\DataProvider\LogementDataProviderInterface;
 
 final class EditUseCase
 {
   public function __construct(
-    private readonly LogementSoapInterface $service,
-    private readonly LogementTransformer $transformer 
+    private readonly LogementDataProviderInterface $serviceDataProvider
   ) {}
   
   public function execute(EditInputDto $inputDto): EditOutputDto
   {
-    $serviceResponse = $this->service->editService($inputDto);
-    return $this->transformer->transformEditResponse($serviceResponse); 
+    return $this->serviceDataProvider->editService($inputDto); 
   }
 }

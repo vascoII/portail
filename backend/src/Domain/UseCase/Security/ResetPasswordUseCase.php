@@ -6,19 +6,16 @@ namespace App\Domain\UseCase\Security;
 
 use App\Application\Dto\Input\Security\ResetPasswordInputDto;
 use App\Application\Dto\Output\Security\ResetPasswordOutputDto;
-use App\Infrastructure\Transformer\SecurityTransformer;
-use App\Domain\Service\Soap\SecuritySoapInterface;
+use App\Application\Service\DataProvider\SecurityDataProviderInterface;
 
 final class ResetPasswordUseCase
 {
   public function __construct(
-    private readonly SecuritySoapInterface $service,
-    private readonly SecurityTransformer $transformer
+    private readonly SecurityDataProviderInterface $serviceDataProvider
   ) {}
 
   public function execute(ResetPasswordInputDto $inputDto): ResetPasswordOutputDto
   {
-    $serviceResponse = $this->service->resetPasswordService($inputDto);
-    return $this->transformer->transformResetPasswordResponse($serviceResponse);
+    return $this->serviceDataProvider->resetPasswordService($inputDto);
   }
 }

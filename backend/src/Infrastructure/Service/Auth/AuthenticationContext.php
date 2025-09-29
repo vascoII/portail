@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Service\Auth;
 
-use App\Domain\Service\Auth\AuthServiceInterface;
+use App\Application\Service\Auth\AuthServiceInterface;
 
 /**
  * Temporary compatibility class for existing code

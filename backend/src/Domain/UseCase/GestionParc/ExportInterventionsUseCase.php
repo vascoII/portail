@@ -6,19 +6,16 @@ namespace App\Domain\UseCase\GestionParc;
 
 use App\Application\Dto\Input\GestionParc\ExportInterventionsInputDto;
 use App\Application\Dto\Output\GestionParc\ExportInterventionsOutputDto;
-use App\Infrastructure\Transformer\GestionParcTransformer;
-use App\Domain\Service\Soap\GestionParcSoapInterface;
+use App\Application\Service\DataProvider\GestionParcDataProviderInterface;
 
 final class ExportInterventionsUseCase
 {
   public function __construct(
-    private readonly GestionParcSoapInterface $service,
-    private readonly GestionParcTransformer $transformer
+    private readonly GestionParcDataProviderInterface $serviceDataProvider
   ) {}
 
   public function execute(ExportInterventionsInputDto $inputDto): ExportInterventionsOutputDto
   {
-    $serviceResponse = $this->service->exportInterventionsService($inputDto);
-    return $this->transformer->transformExportInterventionsResponse($serviceResponse);
+    return $this->serviceDataProvider->exportInterventionsService($inputDto);
   }
 }

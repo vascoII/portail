@@ -5,19 +5,16 @@ declare(strict_types=1);
 namespace App\Domain\UseCase\Security;
 
 use App\Application\Dto\Output\Security\LogoutOutputDto;
-use App\Infrastructure\Transformer\SecurityTransformer;
-use App\Domain\Service\Soap\SecuritySoapInterface;
+use App\Application\Service\DataProvider\SecurityDataProviderInterface;
 
 final class LogoutUseCase
 {
   public function __construct(
-    private readonly SecuritySoapInterface $service,
-    private readonly SecurityTransformer $transformer
+    private readonly SecurityDataProviderInterface $serviceDataProvider
   ) {}
 
   public function execute(): LogoutOutputDto
   {
-    $serviceResponse = $this->service->logoutService();
-    return $this->transformer->transformLogoutResponse($serviceResponse);
+    return $this->serviceDataProvider->logoutService();
   }
 }

@@ -7,31 +7,40 @@ namespace App\Infrastructure\Transformer;
 use App\Application\Dto\Output\Front\CguOutputDto;
 use App\Application\Dto\Output\Front\IndexOutputDto;
 use App\Application\Dto\Output\Front\PersonalDatasOutputDto;
+use App\Application\Dto\Output\Front\LegalNoticesOutputDto;
 
 final class FrontTransformer
 {
    /**
-   * Transform raw SOAP response to CguOutputDto
+   * Transform raw response to CguOutputDto
    */
-   public function transformCguResponse(array $response): CguOutputDto
+   public function transformCgu(array $response): CguOutputDto
    {
       return new CguOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to IndexOutputDto
+   * Transform raw response to IndexOutputDto
    */
-   public function transformIndexResponse(array $response): IndexOutputDto
+   public function transformIndex(array $response): IndexOutputDto
    {
       return new IndexOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to CguOutputDto
+   * Transform raw response to CguOutputDto
    */
-   public function transformPersonalDataResponse(array $response): PersonalDatasOutputDto
+   public function transformPersonalData(array $response): PersonalDatasOutputDto
    {
       return new PersonalDatasOutputDto();
+   }
+
+   /**
+   * Transform raw response to CguOutputDto
+   */
+   public function transformLegalNotices(array $response): LegalNoticesOutputDto
+   {
+      return new LegalNoticesOutputDto();
    }
 
 }

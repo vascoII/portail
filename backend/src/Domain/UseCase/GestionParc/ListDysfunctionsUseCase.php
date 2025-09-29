@@ -6,19 +6,16 @@ namespace App\Domain\UseCase\GestionParc;
 
 use App\Application\Dto\Input\GestionParc\ListDysfunctionsInputDto;
 use App\Application\Dto\Output\GestionParc\ListDysfunctionsOutputDto;
-use App\Infrastructure\Transformer\GestionParcTransformer;
-use App\Domain\Service\Soap\GestionParcSoapInterface;
+use App\Application\Service\DataProvider\GestionParcDataProviderInterface;
 
 final class ListDysfunctionsUseCase
 {
   public function __construct(
-    private readonly GestionParcSoapInterface $service,
-    private readonly GestionParcTransformer $transformer
+    private readonly GestionParcDataProviderInterface $serviceDataProvider
   ) {}
   
   public function execute(ListDysfunctionsInputDto $inputDto): ListDysfunctionsOutputDto
   {
-    $serviceResponse = $this->service->listDysfunctionsService($inputDto);
-    return $this->transformer->transformListDysfunctionsResponse($serviceResponse);
+    return $this->serviceDataProvider->listDysfunctionsService($inputDto);
   }
 }

@@ -6,19 +6,16 @@ namespace App\Domain\UseCase\Logement;
 
 use App\Application\Dto\Input\Logement\ExportLeaksInputDto;
 use App\Application\Dto\Output\Logement\ExportLeaksOutputDto;
-use App\Infrastructure\Transformer\LogementTransformer;
-use App\Domain\Service\Soap\LogementSoapInterface;
+use App\Application\Service\DataProvider\LogementDataProviderInterface;
 
 final class ExportLeaksUseCase
 {
   public function __construct(
-    private readonly LogementSoapInterface $service,
-    private readonly LogementTransformer $transformer 
+    private readonly LogementDataProviderInterface $serviceDataProvider
   ) {}
   
   public function execute(ExportLeaksInputDto $inputDto): ExportLeaksOutputDto
   {
-    $serviceResponse = $this->service->exportLeaksService($inputDto);
-    return $this->transformer->transformExportLeaksResponse($serviceResponse); 
+    return $this->serviceDataProvider->exportLeaksService($inputDto); 
   }
 }

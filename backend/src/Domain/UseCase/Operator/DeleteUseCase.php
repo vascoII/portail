@@ -6,19 +6,16 @@ namespace App\Domain\UseCase\Operator;
 
 use App\Application\Dto\Input\Operator\DeleteInputDto;
 use App\Application\Dto\Output\Operator\DeleteOutputDto;
-use App\Infrastructure\Transformer\OperatorTransformer;
-use App\Domain\Service\Soap\OperatorSoapInterface;
+use App\Application\Service\DataProvider\OperatorDataProviderInterface;
 
 final class DeleteUseCase
 {
   public function __construct(
-    private readonly OperatorSoapInterface $service,
-    private readonly OperatorTransformer $transformer
+    private readonly OperatorDataProviderInterface $serviceDataProvider
   ) {}
 
   public function execute(DeleteInputDto $inputDto): DeleteOutputDto
   {
-    $serviceResponse = $this->service->deleteService($inputDto);
-    return $this->transformer->transformDeleteResponse($serviceResponse);
+    return $this->serviceDataProvider->deleteService($inputDto);
   }
 }

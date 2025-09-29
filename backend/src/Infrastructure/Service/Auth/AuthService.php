@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Infrastructure\Service\Auth;
 
 use App\Application\Dto\Output\Security\UserDto;
-use App\Domain\Service\Auth\AuthServiceInterface;
+use App\Application\Service\Auth\AuthServiceInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 final class AuthService implements AuthServiceInterface

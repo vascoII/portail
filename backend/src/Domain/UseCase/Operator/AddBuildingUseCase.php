@@ -6,19 +6,16 @@ namespace App\Domain\UseCase\Operator;
 
 use App\Application\Dto\Input\Operator\AddBuildingInputDto;
 use App\Application\Dto\Output\Operator\AddBuildingOutputDto;
-use App\Infrastructure\Transformer\OperatorTransformer;
-use App\Domain\Service\Soap\OperatorSoapInterface;
+use App\Application\Service\DataProvider\OperatorDataProviderInterface;
 
 final class AddBuildingUseCase
 {
   public function __construct(
-    private readonly OperatorSoapInterface $service,
-    private readonly OperatorTransformer $transformer
+    private readonly OperatorDataProviderInterface $serviceDataProvider
   ) {}
 
   public function execute(AddBuildingInputDto $inputDto): AddBuildingOutputDto
   {
-    $serviceResponse = $this->service->addBuildingService($inputDto);
-    return $this->transformer->transformAddBuildingResponse($serviceResponse);
+    return $this->serviceDataProvider->addBuildingService($inputDto);
   }
 }

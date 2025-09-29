@@ -29,169 +29,169 @@ use App\Application\Dto\Output\Logement\ShowRepartReleveOutputDto;
 final class LogementTransformer
 {
    /**
-   * Transform raw SOAP response to CreateTicketImmeubleOutputDto
+   * Transform raw response to CreateTicketImmeubleOutputDto
    */
-   public function transformCreateTicketImmeubleResponse(array $response): CreateTicketImmeubleOutputDto
+   public function transformCreateTicketImmeuble(array $response): CreateTicketImmeubleOutputDto
    {
       return new CreateTicketImmeubleOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to CreateTicketOutputDto
+   * Transform raw response to CreateTicketOutputDto
    */
-   public function transformCreateTicketResponse(array $response): CreateTicketOutputDto
+   public function transformCreateTicket(array $response): CreateTicketOutputDto
    {
       return new CreateTicketOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to EditOutputDto
+   * Transform raw response to EditOutputDto
    */
-   public function transformEditResponse(array $response): EditOutputDto
+   public function transformEdit(array $response): EditOutputDto
    {
       return new EditOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to ExportAnomaliesOutputDto
+   * Transform raw response to ExportAnomaliesOutputDto
    */
-   public function transformExportAnomaliesResponse(array $response): ExportAnomaliesOutputDto
+   public function transformExportAnomalies(array $response): ExportAnomaliesOutputDto
    {
       return new ExportAnomaliesOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to ExportDysfunctionsOutputDto
+   * Transform raw response to ExportDysfunctionsOutputDto
    */
-   public function transformExportDysfunctionsResponse(array $response): ExportDysfunctionsOutputDto
+   public function transformExportDysfunctions(array $response): ExportDysfunctionsOutputDto
    {
       return new ExportDysfunctionsOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to ExportInterventionsOutputDto
+   * Transform raw response to ExportInterventionsOutputDto
    */
-   public function transformExportInterventionsResponse(array $response): ExportInterventionsOutputDto
+   public function transformExportInterventions(array $response): ExportInterventionsOutputDto
    {
       return new ExportInterventionsOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to ExportLeaksOutputDto
+   * Transform raw response to ExportLeaksOutputDto
    */
-   public function transformExportLeaksResponse(array $response): ExportLeaksOutputDto
+   public function transformExportLeaks(array $response): ExportLeaksOutputDto
    {
       return new ExportLeaksOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to ExportOutputDto
+   * Transform raw response to ExportOutputDto
    */
-   public function transformExportResponse(array $response): ExportOutputDto
+   public function transformExport(array $response): ExportOutputDto
    {
       return new ExportOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to FilterResultOutputDto
+   * Transform raw response to FilterResultOutputDto
    */
-   public function transformFilterResultResponse(array $response): FilterResultOutputDto
+   public function transformFilterResult(array $response): FilterResultOutputDto
    {
       return new FilterResultOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to GetInfosAppareilOutputDto
+   * Transform raw response to GetInfosAppareilOutputDto
    */
-   public function transformGetInfosAppareilResponse(array $response): GetInfosAppareilOutputDto
+   public function transformGetInfosAppareil(array $response): GetInfosAppareilOutputDto
    {
       return new GetInfosAppareilOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to GetTicketOnwerOutputDto
+   * Transform raw response to GetTicketOnwerOutputDto
    */
-   public function transformGetTicketOnwerResponse(array $response): GetTicketOnwerOutputDto
+   public function transformGetTicketOnwer(array $response): GetTicketOnwerOutputDto
    {
       return new GetTicketOnwerOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to GuideOutputDto
+   * Transform raw response to GuideOutputDto
    */
-   public function transformGuideResponse(array $response): GuideOutputDto
+   public function transformGuide(array $response): GuideOutputDto
    {
       return new GuideOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to IndexOutputDto
+   * Transform raw response to IndexOutputDto
    */
-   public function transformIndexResponse(array $response): IndexOutputDto
+   public function transformIndex(array $response): IndexOutputDto
    {
       return new IndexOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to ListAnomaliesOutputDto
+   * Transform raw response to ListAnomaliesOutputDto
    */
-   public function transformListAnomaliesResponse(array $response): ListAnomaliesOutputDto
+   public function transformListAnomalies(array $response): ListAnomaliesOutputDto
    {
       return new ListAnomaliesOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to ListDysfunctionsOutputDto
+   * Transform raw response to ListDysfunctionsOutputDto
    */
-   public function transformListDysfunctionsResponse(array $response): ListDysfunctionsOutputDto
+   public function transformListDysfunctions(array $response): ListDysfunctionsOutputDto
    {
       return new ListDysfunctionsOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to ListInterventionsOutputDto
+   * Transform raw response to ListInterventionsOutputDto
    */
-   public function transformListInterventionsResponse(array $response): ListInterventionsOutputDto
+   public function transformListInterventions(array $response): ListInterventionsOutputDto
    {
       return new ListInterventionsOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to ListLeaksOutputDto
+   * Transform raw response to ListLeaksOutputDto
    */
-   public function transformListLeaksResponse(array $response): ListLeaksOutputDto
+   public function transformListLeaks(array $response): ListLeaksOutputDto
    {
       return new ListLeaksOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to SearchOutputDto
+   * Transform raw response to SearchOutputDto
    */
-   public function transformSearchResponse(array $response): SearchOutputDto
+   public function transformSearch(array $response): SearchOutputDto
    {
       return new SearchOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to ShowInterventionOutputDto
+   * Transform raw response to ShowInterventionOutputDto
    */
-   public function transformShowInterventionResponse(array $response): ShowInterventionOutputDto
+   public function transformShowIntervention(array $response): ShowInterventionOutputDto
    {
       return new ShowInterventionOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to ShowOutputDto
+   * Transform raw response to ShowOutputDto
    */
-   public function transformShowResponse(array $response): ShowOutputDto
+   public function transformShow(array $response): ShowOutputDto
    {
       return new ShowOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to ShowRepartReleveOutputDto
+   * Transform raw response to ShowRepartReleveOutputDto
    */
-   public function transformShowRepartReleveResponse(array $response): ShowRepartReleveOutputDto
+   public function transformShowRepartReleve(array $response): ShowRepartReleveOutputDto
    {
       return new ShowRepartReleveOutputDto();
    }

@@ -6,19 +6,16 @@ namespace App\Domain\UseCase\Front;
 
 use App\Application\Dto\Input\Front\CguInputDto;
 use App\Application\Dto\Output\Front\CguOutputDto;
-use App\Infrastructure\Transformer\FrontTransformer;
-use App\Domain\Service\Soap\FrontSoapInterface;
+use App\Application\Service\DataProvider\FrontDataProviderInterface;
 
 final class CguUseCase
 {
   public function __construct(
-    private readonly FrontSoapInterface $service,
-    private readonly FrontTransformer $transformer    
+    private readonly FrontDataProviderInterface $serviceDataProvider
   ) {}
 
   public function execute(CguInputDto $inputDto): CguOutputDto
   {
-    $serviceResponse = $this->service->cguService($inputDto);
-    return $this->transformer->transformCguResponse($serviceResponse);
+    return $this->serviceDataProvider->cguService($inputDto);
   }
 }

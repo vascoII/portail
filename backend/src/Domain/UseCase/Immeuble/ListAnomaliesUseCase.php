@@ -6,19 +6,16 @@ namespace App\Domain\UseCase\Immeuble;
 
 use App\Application\Dto\Input\Immeuble\ListAnomaliesInputDto;
 use App\Application\Dto\Output\Immeuble\ListAnomaliesOutputDto;
-use App\Infrastructure\Transformer\ImmeubleTransformer;
-use App\Domain\Service\Soap\ImmeubleSoapInterface;
+use App\Application\Service\DataProvider\ImmeubleDataProviderInterface;
 
 final class ListAnomaliesUseCase
 {
   public function __construct(
-    private readonly ImmeubleSoapInterface $service,
-    private readonly ImmeubleTransformer $transformer
+    private readonly ImmeubleDataProviderInterface $serviceDataProvider
   ) {}
 
   public function execute(ListAnomaliesInputDto $inputDto): ListAnomaliesOutputDto
   {
-    $serviceResponse = $this->service->listAnomaliesService($inputDto);
-    return $this->transformer->transformListAnomaliesResponse($serviceResponse);
+    return $this->serviceDataProvider->listAnomaliesService($inputDto);
   }
 }

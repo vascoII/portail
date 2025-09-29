@@ -6,19 +6,16 @@ namespace App\Domain\UseCase\Occupant;
 
 use App\Application\Dto\Input\Occupant\SimulateurInputDto;
 use App\Application\Dto\Output\Occupant\SimulateurOutputDto;
-use App\Infrastructure\Transformer\OccupantTransformer;
-use App\Domain\Service\Soap\OccupantSoapInterface;
+use App\Application\Service\DataProvider\OccupantDataProviderInterface;
 
 final class SimulateurUseCase
 {
   public function __construct(
-    private readonly OccupantSoapInterface $service,
-    private readonly OccupantTransformer $transformer
+    private readonly OccupantDataProviderInterface $serviceDataProvider
   ) {}
 
   public function execute(SimulateurInputDto $inputDto): SimulateurOutputDto
   {
-    $serviceResponse = $this->service->simulateurService($inputDto);
-    return $this->transformer->transformSimulateurResponse($serviceResponse);
+    return $this->serviceDataProvider->simulateurService($inputDto);
   }
 }

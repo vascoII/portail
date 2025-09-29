@@ -17,73 +17,73 @@ use App\Application\Dto\Output\Operator\ViewOutputDto;
 final class OperatorTransformer
 {
    /**
-   * Transform raw SOAP response to AddBuildingOutputDto
+   * Transform raw response to AddBuildingOutputDto
    */
-   public function transformAddBuildingResponse(array $response): AddBuildingOutputDto
+   public function transformAddBuilding(array $response): AddBuildingOutputDto
    {
       return new AddBuildingOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to CreateOutputDto
+   * Transform raw response to CreateOutputDto
    */
-   public function transformCreateResponse(array $response): CreateOutputDto
+   public function transformCreate(array $response): CreateOutputDto
    {
       return new CreateOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to DeleteOutputDto
+   * Transform raw response to DeleteOutputDto
    */
-   public function transformDeleteResponse(array $response): DeleteOutputDto
+   public function transformDelete(array $response): DeleteOutputDto
    {
       return new DeleteOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to EditOutputDto
+   * Transform raw response to EditOutputDto
    */
-   public function transformEditResponse(array $response): EditOutputDto
+   public function transformEdit(array $response): EditOutputDto
    {
       return new EditOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to EditPasswordOutputDtoputDto
+   * Transform raw response to EditPasswordOutputDtoputDto
    */
-   public function transformEditPasswordResponse(array $response): EditPasswordOutputDto
+   public function transformEditPassword(array $response): EditPasswordOutputDto
    {
       return new EditPasswordOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to IndexOutputDto
+   * Transform raw response to IndexOutputDto
    */
-   public function transformIndexResponse(array $response): IndexOutputDto
+   public function transformIndex(array $response): IndexOutputDto
    {
       return new IndexOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to OtatsoccupantsOutputDto
+   * Transform raw response to OtatsoccupantsOutputDto
    */
-   public function transformOtatsoccupantsResponse(array $response): OtatsoccupantsOutputDto
+   public function transformOtatsoccupants(array $response): OtatsoccupantsOutputDto
    {
       return new OtatsoccupantsOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to RemoveBuildingOutputDto
+   * Transform raw response to RemoveBuildingOutputDto
    */
-   public function transformRemoveBuildingResponse(array $response): RemoveBuildingOutputDto
+   public function transformRemoveBuilding(array $response): RemoveBuildingOutputDto
    {
       return new RemoveBuildingOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to ViewOutputDto
+   * Transform raw response to ViewOutputDto
    */
-   public function transformViewResponse(array $response): ViewOutputDto
+   public function transformView(array $response): ViewOutputDto
    {
       return new ViewOutputDto();
    }

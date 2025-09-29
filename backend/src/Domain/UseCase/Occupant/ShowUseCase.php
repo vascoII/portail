@@ -6,19 +6,16 @@ namespace App\Domain\UseCase\Occupant;
 
 use App\Application\Dto\Input\Occupant\ShowInputDto;
 use App\Application\Dto\Output\Occupant\ShowOutputDto;
-use App\Infrastructure\Transformer\OccupantTransformer;
-use App\Domain\Service\Soap\OccupantSoapInterface;
+use App\Application\Service\DataProvider\OccupantDataProviderInterface;
 
 final class ShowUseCase
 {
   public function __construct(
-    private readonly OccupantSoapInterface $service,
-    private readonly OccupantTransformer $transformer
+    private readonly OccupantDataProviderInterface $serviceDataProvider
   ) {}
 
   public function execute(ShowInputDto $inputDto): ShowOutputDto
   {
-    $serviceResponse = $this->service->showService($inputDto);
-    return $this->transformer->transformShowResponse($serviceResponse);
+    return $this->serviceDataProvider->showService($inputDto);
   }
 }

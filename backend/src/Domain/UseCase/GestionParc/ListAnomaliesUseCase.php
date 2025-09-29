@@ -6,19 +6,16 @@ namespace App\Domain\UseCase\GestionParc;
 
 use App\Application\Dto\Input\GestionParc\ListAnomaliesInputDto;
 use App\Application\Dto\Output\GestionParc\ListAnomaliesOutputDto;
-use App\Infrastructure\Transformer\GestionParcTransformer;
-use App\Domain\Service\Soap\GestionParcSoapInterface;
+use App\Application\Service\DataProvider\GestionParcDataProviderInterface;
 
 final class ListAnomaliesUseCase
 {
   public function __construct(
-    private readonly GestionParcSoapInterface $service,
-    private readonly GestionParcTransformer $transformer
+    private readonly GestionParcDataProviderInterface $serviceDataProvider
   ) {}
   
   public function execute(ListAnomaliesInputDto $inputDto): ListAnomaliesOutputDto
   {
-    $serviceResponse = $this->service->listAnomaliesService($inputDto);
-    return $this->transformer->transformListAnomaliesResponse($serviceResponse);
+    return $this->serviceDataProvider->listAnomaliesService($inputDto);
   }
 }

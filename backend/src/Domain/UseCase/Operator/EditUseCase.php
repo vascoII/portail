@@ -6,19 +6,16 @@ namespace App\Domain\UseCase\Operator;
 
 use App\Application\Dto\Input\Operator\EditInputDto;
 use App\Application\Dto\Output\Operator\EditOutputDto;
-use App\Infrastructure\Transformer\OperatorTransformer;
-use App\Domain\Service\Soap\OperatorSoapInterface;
+use App\Application\Service\DataProvider\OperatorDataProviderInterface;
 
 final class EditUseCase
 {
   public function __construct(
-    private readonly OperatorSoapInterface $service,
-    private readonly OperatorTransformer $transformer
+    private readonly OperatorDataProviderInterface $serviceDataProvider
   ) {}
 
   public function execute(EditInputDto $inputDto): EditOutputDto
   {
-    $serviceResponse = $this->service->editService($inputDto);
-    return $this->transformer->transformEditResponse($serviceResponse);
+    return $this->serviceDataProvider->editService($inputDto);
   }
 }

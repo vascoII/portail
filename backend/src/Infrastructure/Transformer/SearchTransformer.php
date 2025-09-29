@@ -9,9 +9,9 @@ use App\Application\Dto\Output\Search\IndexOutputDto;
 final class SearchTransformer
 {
    /**
-   * Transform raw SOAP response to IndexOutputDto
+   * Transform raw response to IndexOutputDto
    */
-   public function transformIndexResponse(array $response): IndexOutputDto
+   public function transformIndex(array $response): IndexOutputDto
    {
       return new IndexOutputDto();
    }

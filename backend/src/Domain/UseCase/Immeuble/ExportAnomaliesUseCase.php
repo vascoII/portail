@@ -6,19 +6,16 @@ namespace App\Domain\UseCase\Immeuble;
 
 use App\Application\Dto\Input\Immeuble\ExportAnomaliesInputDto;
 use App\Application\Dto\Output\Immeuble\ExportAnomaliesOutputDto;
-use App\Infrastructure\Transformer\ImmeubleTransformer;
-use App\Domain\Service\Soap\ImmeubleSoapInterface;
+use App\Application\Service\DataProvider\ImmeubleDataProviderInterface;
 
 final class ExportAnomaliesUseCase
 {
   public function __construct(
-    private readonly ImmeubleSoapInterface $service,
-    private readonly ImmeubleTransformer $transformer
+    private readonly ImmeubleDataProviderInterface $serviceDataProvider
   ) {}
 
   public function execute(ExportAnomaliesInputDto $inputDto): ExportAnomaliesOutputDto
   {
-    $serviceResponse = $this->service->exportAnomaliesService($inputDto);
-    return $this->transformer->transformExportAnomaliesResponse($serviceResponse);
+    return $this->serviceDataProvider->exportAnomaliesService($inputDto);
   }
 }

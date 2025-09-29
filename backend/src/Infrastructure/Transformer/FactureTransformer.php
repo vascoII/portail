@@ -10,15 +10,15 @@ use App\Application\Dto\Output\Facture\ReportOutputDto;
 final class FactureTransformer
 {
   /**
-   * Transform raw SOAP response to IndexOutputDto
+   * Transform raw response to IndexOutputDto
    */
-  public function transformIndexResponse(array $soapResponse): IndexOutputDto
+  public function transformIndex(array $response): IndexOutputDto
   {
-    if (!isset($soapResponse['ListeFactures'])) {
+    if (!isset($response['ListeFactures'])) {
       return new IndexOutputDto([]);
     }
 
-    $listFactures = $soapResponse['ListeFactures'];
+    $listFactures = $response['ListeFactures'];
     if (isset($listFactures['facture'])) {
       $listFactures = $listFactures['facture'];
     }
@@ -48,18 +48,18 @@ final class FactureTransformer
   }
 
   /**
-   * Transform raw SOAP response to ReportOutputDto
+   * Transform raw response to ReportOutputDto
    */
-  public function transformReportResponse(array $soapResponse): ReportOutputDto
+  public function transformReport(array $response): ReportOutputDto
   {
     return new ReportOutputDto(
-      $soapResponse['PDF_DATA'] ?? '',
-      !empty($soapResponse['PDF_DATA'] ?? '')
+      $response['PDF_DATA'] ?? '',
+      !empty($response['PDF_DATA'] ?? '')
     );
   }
 
   /**
-   * Format date from SOAP format to application format
+   * Format date from format to application format
    */
   private function formatDate(?string $date): ?string
   {
@@ -76,7 +76,7 @@ final class FactureTransformer
   }
 
   /**
-   * Format amount from SOAP format to application format
+   * Format amount from format to application format
    */
   private function formatAmount(?string $amount): ?float
   {

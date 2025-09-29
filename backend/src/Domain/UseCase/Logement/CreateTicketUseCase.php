@@ -6,19 +6,16 @@ namespace App\Domain\UseCase\Logement;
 
 use App\Application\Dto\Input\Logement\CreateTicketInputDto;
 use App\Application\Dto\Output\Logement\CreateTicketOutputDto;
-use App\Infrastructure\Transformer\LogementTransformer;
-use App\Domain\Service\Soap\LogementSoapInterface;
+use App\Application\Service\DataProvider\LogementDataProviderInterface;
 
 final class CreateTicketUseCase
 {
   public function __construct(
-    private readonly LogementSoapInterface $service,
-    private readonly LogementTransformer $transformer 
+    private readonly LogementDataProviderInterface $serviceDataProvider
   ) {}
 
   public function execute(CreateTicketInputDto $inputDto): CreateTicketOutputDto
   {
-    $serviceResponse = $this->service->createTicketService($inputDto);
-    return $this->transformer->transformCreateTicketResponse($serviceResponse); 
+    return $this->serviceDataProvider->createTicketService($inputDto); 
   }
 }

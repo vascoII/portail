@@ -6,19 +6,16 @@ namespace App\Domain\UseCase\Ticketing;
 
 use App\Application\Dto\Input\Ticketing\AttachmentTicketInputDto;
 use App\Application\Dto\Output\Ticketing\AttachmentTicketOutputDto;
-use App\Infrastructure\Transformer\TicketingTransformer;
-use App\Domain\Service\Soap\TicketingSoapInterface;
+use App\Application\Service\DataProvider\TicketingDataProviderInterface;
 
 final class AttachmentTicketUseCase
 {
   public function __construct(
-    private readonly TicketingSoapInterface $service,
-    private readonly TicketingTransformer $transformer
+    private readonly TicketingDataProviderInterface $serviceDataProvider
   ) {}
 
   public function execute(AttachmentTicketInputDto $inputDto): AttachmentTicketOutputDto
   {
-    $serviceResponse = $this->service->attachmentTicketService($inputDto);
-    return $this->transformer->transformAttachmentTicketResponse($serviceResponse);
+    return $this->serviceDataProvider->attachmentTicketService($inputDto);
   }
 }

@@ -6,6 +6,7 @@ namespace App\Infrastructure\Transformer;
 
 use App\Application\Dto\Output\Security\CreateOutputDto;
 use App\Application\Dto\Output\Security\LoginOutputDto;
+use App\Application\Dto\Output\Security\LoginFromParamOutputDto;
 use App\Application\Dto\Output\Security\ResetOrCreateOutputDto;
 use App\Application\Dto\Output\Security\ResetPasswordOutputDto;
 use App\Application\Dto\Output\Security\UpdatePasswordOutputDto;
@@ -14,57 +15,57 @@ use App\Application\Dto\Output\Security\LogoutOutputDto;
 final class SecurityTransformer
 {
    /**
-   * Transform raw SOAP response to CreateOutputDto
+   * Transform raw response to CreateOutputDto
    */
-   public function transformCreateResponse(array $response): CreateOutputDto
+   public function transformCreate(array $response): CreateOutputDto
    {
       return new CreateOutputDto(true);
    }
 
    /**
-   * Transform raw SOAP response to LoginFromParamOutputDto
+   * Transform raw response to LoginFromParamOutputDto
    */
-   public function transformLoginFromParamResponse(array $response): LoginOutputDto
+   public function transformLoginFromParam(array $response): LoginFromParamOutputDto
    {
-      return new LoginOutputDto();
+      return new LoginFromParamOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to ResetOrCreateOutputDto
+   * Transform raw response to ResetOrCreateOutputDto
    */
-   public function transformResetOrCreateResponse(array $response): ResetOrCreateOutputDto
+   public function transformResetOrCreate(array $response): ResetOrCreateOutputDto
    {
       return new ResetOrCreateOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to ResetPasswordOutputDto
+   * Transform raw response to ResetPasswordOutputDto
    */
-   public function transformResetPasswordResponse(array $response): ResetPasswordOutputDto
+   public function transformResetPassword(array $response): ResetPasswordOutputDto
    {
       return new ResetPasswordOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to UpdatePasswordOutputDto
+   * Transform raw response to UpdatePasswordOutputDto
    */
-   public function transformUpdatePasswordResponse(array $response): UpdatePasswordOutputDto
+   public function transformUpdatePassword(array $response): UpdatePasswordOutputDto
    {
       return new UpdatePasswordOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to LoginOutputDto
+   * Transform raw response to LoginOutputDto
    */
-   public function transformLoginResponse(array $response): LoginOutputDto
+   public function transformLogin(array $response): LoginOutputDto
    {
       return new LoginOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to LoginOutputDto
+   * Transform raw response to LoginOutputDto
    */
-   public function transformLogoutResponse(array $response): LogoutOutputDto
+   public function transformLogout(array $response): LogoutOutputDto
    {
       return new LogoutOutputDto(true);
    }

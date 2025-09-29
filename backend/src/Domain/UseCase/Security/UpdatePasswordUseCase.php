@@ -6,19 +6,16 @@ namespace App\Domain\UseCase\Security;
 
 use App\Application\Dto\Input\Security\UpdatePasswordInputDto;
 use App\Application\Dto\Output\Security\UpdatePasswordOutputDto;
-use App\Infrastructure\Transformer\SecurityTransformer;
-use App\Domain\Service\Soap\SecuritySoapInterface;
+use App\Application\Service\DataProvider\SecurityDataProviderInterface;
 
 final class UpdatePasswordUseCase
 {
   public function __construct(
-    private readonly SecuritySoapInterface $service,
-    private readonly SecurityTransformer $transformer
+    private readonly SecurityDataProviderInterface $serviceDataProvider
   ) {}
 
   public function execute(UpdatePasswordInputDto $inputDto): UpdatePasswordOutputDto
   {
-    $serviceResponse = $this->service->updatePasswordService($inputDto);
-    return $this->transformer->transformUpdatePasswordResponse($serviceResponse);
+    return $this->serviceDataProvider->updatePasswordService($inputDto);
   }
 }

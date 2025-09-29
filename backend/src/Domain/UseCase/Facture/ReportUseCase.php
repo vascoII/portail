@@ -6,19 +6,16 @@ namespace App\Domain\UseCase\Facture;
 
 use App\Application\Dto\Input\Facture\ReportInputDto;
 use App\Application\Dto\Output\Facture\ReportOutputDto;
-use App\Domain\Service\Soap\FactureSoapInterface;
-use App\Infrastructure\Transformer\FactureTransformer;
+use App\Application\Service\DataProvider\FactureDataProviderInterface;
 
 final class ReportUseCase
 {
   public function __construct(
-    private readonly FactureSoapInterface $service,
-    private readonly FactureTransformer $transformer
+    private readonly FactureDataProviderInterface $serviceDataProvider
   ) {}
 
   public function execute(ReportInputDto $inputDto): ReportOutputDto
   {
-    $serviceResponse = $this->service->reportService($inputDto);
-    return $this->transformer->transformReportResponse($serviceResponse);
+    return $this->serviceDataProvider->reportService($inputDto);
   }
 }

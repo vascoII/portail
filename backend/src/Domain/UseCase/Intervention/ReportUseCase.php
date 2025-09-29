@@ -6,19 +6,16 @@ namespace App\Domain\UseCase\Intervention;
 
 use App\Application\Dto\Input\Intervention\ReportInputDto;
 use App\Application\Dto\Output\Intervention\ReportOutputDto;
-use App\Infrastructure\Transformer\InterventionTransformer;
-use App\Domain\Service\Soap\InterventionSoapInterface;
+use App\Application\Service\DataProvider\InterventionDataProviderInterface;
 
 final class ReportUseCase
 {
   public function __construct(
-    private readonly InterventionSoapInterface $service,
-    private readonly InterventionTransformer $transformer    
+    private readonly InterventionDataProviderInterface $serviceDataProvider
   ) {}
 
   public function execute(ReportInputDto $inputDto): ReportOutputDto
   {
-    $serviceResponse = $this->service->reportService($inputDto);
-    return $this->transformer->transformReportResponse($serviceResponse);
+    return $this->serviceDataProvider->reportService($inputDto);
   }
 }

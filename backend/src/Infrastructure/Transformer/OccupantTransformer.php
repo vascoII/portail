@@ -26,137 +26,137 @@ final class OccupantTransformer
 {
    const UPDATED = 'updated';
    /**
-   * Transform raw SOAP response to AlertesOutputDto
+   * Transform raw response to AlertesOutputDto
    */
-   public function transformAlertesResponse(array $response): AlertesOutputDto
+   public function transformAlertes(array $response): AlertesOutputDto
    {
       return new AlertesOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to ExportAnomaliesOutputDto
+   * Transform raw response to ExportAnomaliesOutputDto
    */
-   public function transformExportAnomaliesResponse(array $response): ExportAnomaliesOutputDto
+   public function transformExportAnomalies(array $response): ExportAnomaliesOutputDto
    {
       return new ExportAnomaliesOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to ExportDysfunctionsOutputDto
+   * Transform raw response to ExportDysfunctionsOutputDto
    */
-   public function transformExportDysfunctionsResponse(array $response): ExportDysfunctionsOutputDto
+   public function transformExportDysfunctions(array $response): ExportDysfunctionsOutputDto
    {
       return new ExportDysfunctionsOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to ExportInterventionsOutputDto
+   * Transform raw response to ExportInterventionsOutputDto
    */
-   public function transformExportInterventionsResponse(array $response): ExportInterventionsOutputDto
+   public function transformExportInterventions(array $response): ExportInterventionsOutputDto
    {
       return new ExportInterventionsOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to ExportLeaksOutputDto
+   * Transform raw response to ExportLeaksOutputDto
    */
-   public function transformExportLeaksResponse(array $response): ExportLeaksOutputDto
+   public function transformExportLeaks(array $response): ExportLeaksOutputDto
    {
       return new ExportLeaksOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to ListAnomaliesOutputDto
+   * Transform raw response to ListAnomaliesOutputDto
    */
-   public function transformListAnomaliesResponse(array $response): ListAnomaliesOutputDto
+   public function transformListAnomalies(array $response): ListAnomaliesOutputDto
    {
       return new ListAnomaliesOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to ListDysfunctionsOutputDto
+   * Transform raw response to ListDysfunctionsOutputDto
    */
-   public function transformListDysfunctionsResponse(array $response): ListDysfunctionsOutputDto
+   public function transformListDysfunctions(array $response): ListDysfunctionsOutputDto
    {
       return new ListDysfunctionsOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to ListInterventionsOutputDto
+   * Transform raw response to ListInterventionsOutputDto
    */
-   public function transformListInterventionsResponse(array $response): ListInterventionsOutputDto
+   public function transformListInterventions(array $response): ListInterventionsOutputDto
    {
       return new ListInterventionsOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to ListLeaksOutputDto
+   * Transform raw response to ListLeaksOutputDto
    */
-   public function transformListLeaksResponse(array $response): ListLeaksOutputDto
+   public function transformListLeaks(array $response): ListLeaksOutputDto
    {
       return new ListLeaksOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to MyAccountOutputDto
+   * Transform raw response to MyAccountOutputDto
    */
-   public function transformMyAccountResponse(array $response): MyAccountOutputDto
+   public function transformMyAccount(array $response): MyAccountOutputDto
    {
       return new MyAccountOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to ShowEauReleveOutputDto
+   * Transform raw response to ShowEauReleveOutputDto
    */
-   public function transformShowEauReleveResponse(array $response): ShowEauReleveOutputDto
+   public function transformShowEauReleve(array $response): ShowEauReleveOutputDto
    {
       return new ShowEauReleveOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to ShowInterventionOutputDto
+   * Transform raw response to ShowInterventionOutputDto
    */
-   public function transformShowInterventionResponse(array $response): ShowInterventionOutputDto
+   public function transformShowIntervention(array $response): ShowInterventionOutputDto
    {
       return new ShowInterventionOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to ShowNoteReleveOutputDto
+   * Transform raw response to ShowNoteReleveOutputDto
    */
-   public function transformShowNoteReleveResponse(array $response): ShowNoteReleveOutputDto
+   public function transformShowNoteReleve(array $response): ShowNoteReleveOutputDto
    {
       return new ShowNoteReleveOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to ShowOutputDto
+   * Transform raw response to ShowOutputDto
    */
-   public function transformShowResponse(array $response): ShowOutputDto
+   public function transformShow(array $response): ShowOutputDto
    {
       return new ShowOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to ShowRepartReleveOutputDto
+   * Transform raw response to ShowRepartReleveOutputDto
    */
-   public function transformShowRepartReleveResponse(array $response): ShowRepartReleveOutputDto
+   public function transformShowRepartReleve(array $response): ShowRepartReleveOutputDto
    {
       return new ShowRepartReleveOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to SimulateurOutputDto
+   * Transform raw response to SimulateurOutputDto
    */
-   public function transformSimulateurResponse(array $response): SimulateurOutputDto
+   public function transformSimulateur(array $response): SimulateurOutputDto
    {
       return new SimulateurOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to EditOutputDto
+   * Transform raw response to EditOutputDto
    */
-   public function transformEditResponse(array $response): EditOutputDto
+   public function transformEdit(array $response): EditOutputDto
    {
       return new EditOutputDto($response[self::UPDATED]);
    }

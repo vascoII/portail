@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Infrastructure\Service\Jwt;
 
 use App\Application\Dto\Output\Security\UserDto;
-use App\Domain\Service\Jwt\JwtServiceInterface;
+use App\Application\Service\Jwt\JwtServiceInterface;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 

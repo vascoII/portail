@@ -6,19 +6,16 @@ namespace App\Domain\UseCase\Occupant;
 
 use App\Application\Dto\Input\Occupant\ShowRepartReleveInputDto;
 use App\Application\Dto\Output\Occupant\ShowRepartReleveOutputDto;
-use App\Infrastructure\Transformer\OccupantTransformer;
-use App\Domain\Service\Soap\OccupantSoapInterface;
+use App\Application\Service\DataProvider\OccupantDataProviderInterface;
 
 final class ShowRepartReleveUseCase
 {
   public function __construct(
-    private readonly OccupantSoapInterface $service,
-    private readonly OccupantTransformer $transformer
+    private readonly OccupantDataProviderInterface $serviceDataProvider
   ) {}
 
   public function execute(ShowRepartReleveInputDto $inputDto): ShowRepartReleveOutputDto
   {
-    $serviceResponse = $this->service->showRepartReleveService($inputDto);
-    return $this->transformer->transformShowRepartReleveResponse($serviceResponse);
+    return $this->serviceDataProvider->showRepartReleveService($inputDto);
   }
 }

@@ -10,17 +10,17 @@ use App\Application\Dto\Output\ReportToken\ReportOutputDto;
 final class ReportTokenTransformer
 {
    /**
-   * Transform raw SOAP response to LoadingOutputDto
+   * Transform raw response to LoadingOutputDto
    */
-   public function transformLoadingResponse(array $response): LoadingOutputDto
+   public function transformLoading(array $response): LoadingOutputDto
    {
       return new LoadingOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to ReportInputDto
+   * Transform raw response to ReportInputDto
    */
-   public function transformReportResponse(array $response): ReportOutputDto
+   public function transformReport(array $response): ReportOutputDto
    {
       return new ReportOutputDto();
    }

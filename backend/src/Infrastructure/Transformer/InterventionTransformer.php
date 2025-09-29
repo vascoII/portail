@@ -9,9 +9,9 @@ use App\Application\Dto\Output\Intervention\ReportOutputDto;
 final class InterventionTransformer
 {
    /**
-   * Transform raw SOAP response to ReportInputDto
+   * Transform raw response to ReportInputDto
    */
-   public function transformReportResponse(array $response): ReportOutputDto
+   public function transformReport(array $response): ReportOutputDto
    {
       return new ReportOutputDto();
    }

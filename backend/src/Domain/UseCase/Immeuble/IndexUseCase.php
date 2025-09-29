@@ -6,19 +6,16 @@ namespace App\Domain\UseCase\Immeuble;
 
 use App\Application\Dto\Input\Immeuble\IndexInputDto;
 use App\Application\Dto\Output\Immeuble\IndexOutputDto;
-use App\Infrastructure\Transformer\ImmeubleTransformer;
-use App\Domain\Service\Soap\ImmeubleSoapInterface;
+use App\Application\Service\DataProvider\ImmeubleDataProviderInterface;
 
 final class IndexUseCase
 {
   public function __construct(
-    private readonly ImmeubleSoapInterface $service,
-    private readonly ImmeubleTransformer $transformer
+    private readonly ImmeubleDataProviderInterface $serviceDataProvider
   ) {}
 
   public function execute(IndexInputDto $inputDto): IndexOutputDto
   {
-    $serviceResponse = $this->service->indexService($inputDto);
-    return $this->transformer->transformIndexResponse($serviceResponse);
+    return $this->serviceDataProvider->indexService($inputDto);
   }
 }

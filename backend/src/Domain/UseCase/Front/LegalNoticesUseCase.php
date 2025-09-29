@@ -6,19 +6,16 @@ namespace App\Domain\UseCase\Front;
 
 use App\Application\Dto\Input\Front\LegalNoticesInputDto;
 use App\Application\Dto\Output\Front\LegalNoticesOutputDto;
-use App\Infrastructure\Transformer\FrontTransformer;
-use App\Domain\Service\Soap\FrontSoapInterface;
+use App\Application\Service\DataProvider\FrontDataProviderInterface;
 
 final class LegalNoticesUseCase
 {
   public function __construct(
-    private readonly FrontSoapInterface $service,
-    private readonly FrontTransformer $transformer    
+    private readonly FrontDataProviderInterface $serviceDataProvider
   ) {}
 
   public function execute(LegalNoticesInputDto $inputDto): LegalNoticesOutputDto
   {
-    $serviceResponse = $this->service->legalNoticesService($inputDto);
-    return new LegalNoticesOutputDto();
+    return $this->serviceDataProvider->legalNoticesService($inputDto);
   }
 }

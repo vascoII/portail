@@ -6,19 +6,16 @@ namespace App\Domain\UseCase\TableauBordClient;
 
 use App\Application\Dto\Input\TableauBordClient\IndexInputDto;
 use App\Application\Dto\Output\TableauBordClient\IndexOutputDto;
-use App\Infrastructure\Transformer\TableauBordClientTransformer;
-use App\Domain\Service\Soap\TableauBordClientSoapInterface;
+use App\Application\Service\DataProvider\TableauBordClientDataProviderInterface;
 
 final class IndexUseCase
 {
   public function __construct(
-    private readonly TableauBordClientSoapInterface $service,
-    private readonly TableauBordClientTransformer $transformer
+    private readonly TableauBordClientDataProviderInterface $serviceDataProvider
   ) {}
 
   public function execute(IndexInputDto $inputDto): IndexOutputDto
   {
-    $serviceResponse = $this->service->indexService($inputDto);
-    return $this->transformer->transformIndexResponse($serviceResponse);
+    return $this->serviceDataProvider->indexService($inputDto);
   }
 }

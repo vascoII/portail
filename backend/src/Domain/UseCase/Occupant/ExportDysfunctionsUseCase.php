@@ -6,19 +6,16 @@ namespace App\Domain\UseCase\Occupant;
 
 use App\Application\Dto\Input\Occupant\ExportDysfunctionsInputDto;
 use App\Application\Dto\Output\Occupant\ExportDysfunctionsOutputDto;
-use App\Infrastructure\Transformer\OccupantTransformer;
-use App\Domain\Service\Soap\OccupantSoapInterface;
+use App\Application\Service\DataProvider\OccupantDataProviderInterface;
 
 final class ExportDysfunctionsUseCase
 {
   public function __construct(
-    private readonly OccupantSoapInterface $service,
-    private readonly OccupantTransformer $transformer
+    private readonly OccupantDataProviderInterface $serviceDataProvider
   ) {}
 
   public function execute(ExportDysfunctionsInputDto $inputDto): ExportDysfunctionsOutputDto
   {
-    $serviceResponse = $this->service->exportDysfunctionsService($inputDto);
-    return $this->transformer->transformExportDysfunctionsResponse($serviceResponse);
+    return $this->serviceDataProvider->exportDysfunctionsService($inputDto);
   }
 }

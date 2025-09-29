@@ -6,19 +6,16 @@ namespace App\Domain\UseCase\Operator;
 
 use App\Application\Dto\Input\Operator\ViewInputDto;
 use App\Application\Dto\Output\Operator\ViewOutputDto;
-use App\Infrastructure\Transformer\OperatorTransformer;
-use App\Domain\Service\Soap\OperatorSoapInterface;
+use App\Application\Service\DataProvider\OperatorDataProviderInterface;
 
 final class ViewUseCase
 {
   public function __construct(
-    private readonly OperatorSoapInterface $service,
-    private readonly OperatorTransformer $transformer
+    private readonly OperatorDataProviderInterface $serviceDataProvider
   ) {}
 
   public function execute(ViewInputDto $inputDto): ViewOutputDto
   {
-    $serviceResponse = $this->service->viewService($inputDto);
-    return $this->transformer->transformViewResponse($serviceResponse);
+    return $this->serviceDataProvider->viewService($inputDto);
   }
 }

@@ -6,19 +6,16 @@ namespace App\Domain\UseCase\Immeuble;
 
 use App\Application\Dto\Input\Immeuble\ReportInputDto;
 use App\Application\Dto\Output\Immeuble\ReportOutputDto;
-use App\Infrastructure\Transformer\ImmeubleTransformer;
-use App\Domain\Service\Soap\ImmeubleSoapInterface;
+use App\Application\Service\DataProvider\ImmeubleDataProviderInterface;
 
 final class ReportUseCase
 {
   public function __construct(
-    private readonly ImmeubleSoapInterface $service,
-    private readonly ImmeubleTransformer $transformer
+    private readonly ImmeubleDataProviderInterface $serviceDataProvider
   ) {}
 
   public function execute(ReportInputDto $inputDto): ReportOutputDto
   {
-    $serviceResponse = $this->service->reportService($inputDto);
-    return $this->transformer->transformReportResponse($serviceResponse);
+    return $this->serviceDataProvider->reportService($inputDto);
   }
 }

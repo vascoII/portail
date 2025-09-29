@@ -6,19 +6,16 @@ namespace App\Domain\UseCase\Operator;
 
 use App\Application\Dto\Input\Operator\RemoveBuildingInputDto;
 use App\Application\Dto\Output\Operator\RemoveBuildingOutputDto;
-use App\Infrastructure\Transformer\OperatorTransformer;
-use App\Domain\Service\Soap\OperatorSoapInterface;
+use App\Application\Service\DataProvider\OperatorDataProviderInterface;
 
 final class RemoveBuildingUseCase
 {
   public function __construct(
-    private readonly OperatorSoapInterface $service,
-    private readonly OperatorTransformer $transformer
+    private readonly OperatorDataProviderInterface $serviceDataProvider
   ) {}
 
   public function execute(RemoveBuildingInputDto $inputDto): RemoveBuildingOutputDto
   {
-    $serviceResponse = $this->service->removeBuildingService($inputDto);
-    return $this->transformer->transformRemoveBuildingResponse($serviceResponse);
+    return $this->serviceDataProvider->removeBuildingService($inputDto);
   }
 }

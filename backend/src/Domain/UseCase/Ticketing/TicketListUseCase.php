@@ -6,19 +6,16 @@ namespace App\Domain\UseCase\Ticketing;
 
 use App\Application\Dto\Input\Ticketing\TicketListInputDto;
 use App\Application\Dto\Output\Ticketing\TicketListOutputDto;
-use App\Infrastructure\Transformer\TicketingTransformer;
-use App\Domain\Service\Soap\TicketingSoapInterface;
+use App\Application\Service\DataProvider\TicketingDataProviderInterface;
 
 final class TicketListUseCase
 {
   public function __construct(
-    private readonly TicketingSoapInterface $service,
-    private readonly TicketingTransformer $transformer
+    private readonly TicketingDataProviderInterface $serviceDataProvider
   ) {}
 
   public function execute(TicketListInputDto $inputDto): TicketListOutputDto
   {
-    $serviceResponse = $this->service->ticketListService($inputDto);
-    return $this->transformer->transformTicketListResponse($serviceResponse);
+    return $this->serviceDataProvider->ticketListService($inputDto);
   }
 }

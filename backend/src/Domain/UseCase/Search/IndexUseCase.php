@@ -6,19 +6,16 @@ namespace App\Domain\UseCase\Search;
 
 use App\Application\Dto\Input\Search\IndexInputDto;
 use App\Application\Dto\Output\Search\IndexOutputDto;
-use App\Infrastructure\Transformer\SearchTransformer;
-use App\Domain\Service\Soap\SearchSoapInterface;
+use App\Application\Service\DataProvider\SearchDataProviderInterface;
 
 final class IndexUseCase
 {
   public function __construct(
-    private readonly SearchSoapInterface $service,
-    private readonly SearchTransformer $transformer
+    private readonly SearchDataProviderInterface $serviceDataProvider
   ) {}
 
   public function execute(IndexInputDto $inputDto): IndexOutputDto
   {
-    $serviceResponse = $this->service->indexService($inputDto);
-    return $this->transformer->transformIndexResponse($serviceResponse);
+    return $this->serviceDataProvider->indexService($inputDto);
   }
 }

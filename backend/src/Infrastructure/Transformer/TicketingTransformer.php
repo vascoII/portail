@@ -14,49 +14,49 @@ use App\Application\Dto\Output\Ticketing\TicketListOutputDto;
 final class TicketingTransformer
 {
    /**
-   * Transform raw SOAP response to AttachmentTicketOutputDto
+   * Transform raw response to AttachmentTicketOutputDto
    */
-   public function transformAttachmentTicketResponse(array $response): AttachmentTicketOutputDto
+   public function transformAttachmentTicket(array $response): AttachmentTicketOutputDto
    {
       return new AttachmentTicketOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to CloseTicketOutputDto
+   * Transform raw response to CloseTicketOutputDto
    */
-   public function transformCloseTicketResponse(array $response): CloseTicketOutputDto
+   public function transformCloseTicket(array $response): CloseTicketOutputDto
    {
       return new CloseTicketOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to CreateTicketOutputDto
+   * Transform raw response to CreateTicketOutputDto
    */
-   public function transformCreateTicketResponse(array $response): CreateTicketOutputDto
+   public function transformCreateTicket(array $response): CreateTicketOutputDto
    {
       return new CreateTicketOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to MenuTicketOutputDto
+   * Transform raw response to MenuTicketOutputDto
    */
-   public function transformMenuTicketResponse(array $response): MenuTicketOutputDto
+   public function transformMenuTicket(array $response): MenuTicketOutputDto
    {
       return new MenuTicketOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to TableTicketingOutputDto
+   * Transform raw response to TableTicketingOutputDto
    */
-   public function transformTableTicketingResponse(array $response): TableTicketingOutputDto
+   public function transformTableTicketing(array $response): TableTicketingOutputDto
    {
       return new TableTicketingOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to TicketListOutputDto
+   * Transform raw response to TicketListOutputDto
    */
-   public function transformTicketListResponse(array $response): TicketListOutputDto
+   public function transformTicketList(array $response): TicketListOutputDto
    {
       return new TicketListOutputDto();
    }

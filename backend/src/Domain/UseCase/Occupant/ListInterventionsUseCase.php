@@ -6,19 +6,16 @@ namespace App\Domain\UseCase\Occupant;
 
 use App\Application\Dto\Input\Occupant\ListInterventionsInputDto;
 use App\Application\Dto\Output\Occupant\ListInterventionsOutputDto;
-use App\Infrastructure\Transformer\OccupantTransformer;
-use App\Domain\Service\Soap\OccupantSoapInterface;
+use App\Application\Service\DataProvider\OccupantDataProviderInterface;
 
 final class ListInterventionsUseCase
 {
   public function __construct(
-    private readonly OccupantSoapInterface $service,
-    private readonly OccupantTransformer $transformer
+    private readonly OccupantDataProviderInterface $serviceDataProvider
   ) {}
 
   public function execute(ListInterventionsInputDto $inputDto): ListInterventionsOutputDto
   {
-    $serviceResponse = $this->service->listInterventionsService($inputDto);
-    return $this->transformer->transformListInterventionsResponse($serviceResponse);
+    return $this->serviceDataProvider->listInterventionsService($inputDto);
   }
 }

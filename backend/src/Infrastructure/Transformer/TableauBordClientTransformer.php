@@ -10,17 +10,17 @@ use App\Application\Dto\Output\TableauBordClient\InterventionOutputDto;
 final class TableauBordClientTransformer
 {
    /**
-   * Transform raw SOAP response to IndexOutputDto
+   * Transform raw response to IndexOutputDto
    */
-   public function transformIndexResponse(array $response): IndexOutputDto
+   public function transformIndex(array $response): IndexOutputDto
    {
       return new IndexOutputDto();
    }
 
    /**
-   * Transform raw SOAP response to InterventionOutputDto
+   * Transform raw response to InterventionOutputDto
    */
-   public function transformInterventionResponse(array $response): InterventionOutputDto
+   public function transformIntervention(array $response): InterventionOutputDto
    {
       return new InterventionOutputDto();
    }

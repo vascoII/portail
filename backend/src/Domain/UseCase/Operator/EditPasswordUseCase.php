@@ -6,19 +6,16 @@ namespace App\Domain\UseCase\Operator;
 
 use App\Application\Dto\Input\Operator\EditPasswordInputDto;
 use App\Application\Dto\Output\Operator\EditPasswordOutputDto;
-use App\Infrastructure\Transformer\OperatorTransformer;
-use App\Domain\Service\Soap\OperatorSoapInterface;
+use App\Application\Service\DataProvider\OperatorDataProviderInterface;
 
 final class EditPasswordUseCase
 {
   public function __construct(
-    private readonly OperatorSoapInterface $service,
-    private readonly OperatorTransformer $transformer
+    private readonly OperatorDataProviderInterface $serviceDataProvider
   ) {}
 
   public function execute(EditPasswordInputDto $inputDto): EditPasswordOutputDto
   {
-    $serviceResponse = $this->service->editPasswordService($inputDto);
-    return $this->transformer->transformEditPasswordResponse($serviceResponse);
+    return $this->serviceDataProvider->editPasswordService($inputDto);
   }
 }

@@ -7,53 +7,22 @@ namespace App\Domain\UseCase\Security;
 use App\Application\Dto\Input\Security\LoginInputDto;
 use App\Application\Dto\Output\Security\LoginOutputDto;
 use App\Application\Dto\Output\Security\UserDto;
-use App\Domain\Service\Soap\SecuritySoapInterface;
-use App\Domain\Service\Jwt\JwtServiceInterface;
-use App\Domain\Service\Redis\RedisServiceInterface;
+use App\Application\Service\DataProvider\SecurityDataProviderInterface;
+use App\Application\Service\Jwt\JwtServiceDataProviderInterface;
+use App\Application\Service\Redis\RedisServiceDataProviderInterface;
 
 final class LoginUseCase
 {
   public function __construct(
-    private readonly SecuritySoapInterface $service,
-    private readonly JwtServiceInterface $jwtService,
-    private readonly RedisServiceInterface $redisService
+    private readonly SecurityDataProviderInterface $serviceDataProvider
   ) {}
 
   public function execute(LoginInputDto $inputDto): LoginOutputDto
   {
     try {
       // Call SOAP service to authenticate
-      $serviceResponse = $this->service->loginService($inputDto);
+      return $this->serviceDataProvider->loginService($inputDto);
 
-      if (!$serviceResponse->success) {
-        return new LoginOutputDto(
-          success: false,
-          error: $serviceResponse->error ?? 'Authentication failed'
-        );
-      }
-
-      // Get user data from SOAP response
-      $user = $this->extractUserFromSoapResponse($serviceResponse);
-      $sessionId = $this->extractSessionIdFromSoapResponse($serviceResponse);
-
-      if (!$user || !$sessionId) {
-        return new LoginOutputDto(
-          success: false,
-          error: 'Invalid response from authentication service'
-        );
-      }
-
-      // Store user data in Redis
-      $this->redisService->storeSession($sessionId, $user);
-
-      // Generate JWT token
-      $jwt = $this->jwtService->generateToken($user, $sessionId);
-
-      return new LoginOutputDto(
-        success: true,
-        jwt: $jwt,
-        userName: $user->userName
-      );
     } catch (\Exception $e) {
       return new LoginOutputDto(
         success: false,
@@ -62,7 +31,7 @@ final class LoginUseCase
     }
   }
 
-  private function extractUserFromSoapResponse(LoginOutputDto $response): ?UserDto
+  private function extractUserFromResponse(LoginOutputDto $response): ?UserDto
   {
     // This method should extract user data from the SOAP response
     // For now, we'll create a mock user based on the response structure
@@ -101,7 +70,7 @@ final class LoginUseCase
     );
   }
 
-  private function extractSessionIdFromSoapResponse(LoginOutputDto $response): ?string
+  private function extractSessionIdFromResponse(LoginOutputDto $response): ?string
   {
     // This method should extract session ID from the SOAP response
     // For now, we'll return a mock session ID
