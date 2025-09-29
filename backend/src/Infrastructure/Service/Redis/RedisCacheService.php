@@ -86,12 +86,47 @@ final class RedisCacheService implements RedisServiceInterface
 
   public function get(string $cacheKey)
   {
+    try {
+      $data = $this->redis->get($cacheKey);
+      if (!$data) {
+        return null;
+      }
 
+      $value = @unserialize($data);
+      return $value === false && $data !== serialize(false) ? null : $value;
+    } catch (\Throwable $e) {
+      return null;
+    }
   }
 
-  public function set(string $cacheKey, $dto)
+  public function set(string $cacheKey, $dto, ?int $ttl = null): bool
   {
+    try {
+      $payload = serialize($dto);
+      // If TTL not provided, calculate based on current time
+      if ($ttl === null) {
+        $ttl = $this->calculateTtlUntilEndOfDay();
+      }
 
+      $this->redis->setex($cacheKey, $ttl, $payload);
+      return true;
+    } catch (\Throwable $e) {
+      return false;
+    }
   }
 
+  private function calculateTtlUntilEndOfDay(): int
+  {
+    $now = new \DateTime();
+    $endOfDay = (new \DateTime())->setTime(23, 59, 59);
+
+    // If it's after 10 PM, use 1 hour TTL instead of until midnight
+    if ($now->format('H') >= 22) {
+      return 3600; // 1 hour
+    }
+
+    // Otherwise, cache until end of day
+    $secondsUntilMidnight = $endOfDay->getTimestamp() - $now->getTimestamp();
+    return max(300, $secondsUntilMidnight); // At least 5 minutes
+  }
 }
