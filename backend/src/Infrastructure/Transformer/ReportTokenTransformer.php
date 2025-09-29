@@ -10,19 +10,18 @@ use App\Application\Dto\Output\ReportToken\ReportOutputDto;
 final class ReportTokenTransformer
 {
    /**
-   * Transform raw response to LoadingOutputDto
-   */
-   public function transformLoading(array $response): LoadingOutputDto
+    * Transform raw response to LoadingOutputDto
+    */
+   public function transformLoading(object $response): LoadingOutputDto
    {
       return new LoadingOutputDto();
    }
 
    /**
-   * Transform raw response to ReportInputDto
-   */
-   public function transformReport(array $response): ReportOutputDto
+    * Transform raw response to ReportInputDto
+    */
+   public function transformReport(object $response): ReportOutputDto
    {
       return new ReportOutputDto();
    }
-
 }

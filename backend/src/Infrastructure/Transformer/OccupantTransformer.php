@@ -26,139 +26,138 @@ final class OccupantTransformer
 {
    const UPDATED = 'updated';
    /**
-   * Transform raw response to AlertesOutputDto
-   */
-   public function transformAlertes(array $response): AlertesOutputDto
+    * Transform raw response to AlertesOutputDto
+    */
+   public function transformAlertes(object $response): AlertesOutputDto
    {
       return new AlertesOutputDto();
    }
 
    /**
-   * Transform raw response to ExportAnomaliesOutputDto
-   */
-   public function transformExportAnomalies(array $response): ExportAnomaliesOutputDto
+    * Transform raw response to ExportAnomaliesOutputDto
+    */
+   public function transformExportAnomalies(object $response): ExportAnomaliesOutputDto
    {
       return new ExportAnomaliesOutputDto();
    }
 
    /**
-   * Transform raw response to ExportDysfunctionsOutputDto
-   */
-   public function transformExportDysfunctions(array $response): ExportDysfunctionsOutputDto
+    * Transform raw response to ExportDysfunctionsOutputDto
+    */
+   public function transformExportDysfunctions(object $response): ExportDysfunctionsOutputDto
    {
       return new ExportDysfunctionsOutputDto();
    }
 
    /**
-   * Transform raw response to ExportInterventionsOutputDto
-   */
-   public function transformExportInterventions(array $response): ExportInterventionsOutputDto
+    * Transform raw response to ExportInterventionsOutputDto
+    */
+   public function transformExportInterventions(object $response): ExportInterventionsOutputDto
    {
       return new ExportInterventionsOutputDto();
    }
 
    /**
-   * Transform raw response to ExportLeaksOutputDto
-   */
-   public function transformExportLeaks(array $response): ExportLeaksOutputDto
+    * Transform raw response to ExportLeaksOutputDto
+    */
+   public function transformExportLeaks(object $response): ExportLeaksOutputDto
    {
       return new ExportLeaksOutputDto();
    }
 
    /**
-   * Transform raw response to ListAnomaliesOutputDto
-   */
-   public function transformListAnomalies(array $response): ListAnomaliesOutputDto
+    * Transform raw response to ListAnomaliesOutputDto
+    */
+   public function transformListAnomalies(object $response): ListAnomaliesOutputDto
    {
       return new ListAnomaliesOutputDto();
    }
 
    /**
-   * Transform raw response to ListDysfunctionsOutputDto
-   */
-   public function transformListDysfunctions(array $response): ListDysfunctionsOutputDto
+    * Transform raw response to ListDysfunctionsOutputDto
+    */
+   public function transformListDysfunctions(object $response): ListDysfunctionsOutputDto
    {
       return new ListDysfunctionsOutputDto();
    }
 
    /**
-   * Transform raw response to ListInterventionsOutputDto
-   */
-   public function transformListInterventions(array $response): ListInterventionsOutputDto
+    * Transform raw response to ListInterventionsOutputDto
+    */
+   public function transformListInterventions(object $response): ListInterventionsOutputDto
    {
       return new ListInterventionsOutputDto();
    }
 
    /**
-   * Transform raw response to ListLeaksOutputDto
-   */
-   public function transformListLeaks(array $response): ListLeaksOutputDto
+    * Transform raw response to ListLeaksOutputDto
+    */
+   public function transformListLeaks(object $response): ListLeaksOutputDto
    {
       return new ListLeaksOutputDto();
    }
 
    /**
-   * Transform raw response to MyAccountOutputDto
-   */
-   public function transformMyAccount(array $response): MyAccountOutputDto
+    * Transform raw response to MyAccountOutputDto
+    */
+   public function transformMyAccount(object $response): MyAccountOutputDto
    {
       return new MyAccountOutputDto();
    }
 
    /**
-   * Transform raw response to ShowEauReleveOutputDto
-   */
-   public function transformShowEauReleve(array $response): ShowEauReleveOutputDto
+    * Transform raw response to ShowEauReleveOutputDto
+    */
+   public function transformShowEauReleve(object $response): ShowEauReleveOutputDto
    {
       return new ShowEauReleveOutputDto();
    }
 
    /**
-   * Transform raw response to ShowInterventionOutputDto
-   */
-   public function transformShowIntervention(array $response): ShowInterventionOutputDto
+    * Transform raw response to ShowInterventionOutputDto
+    */
+   public function transformShowIntervention(object $response): ShowInterventionOutputDto
    {
       return new ShowInterventionOutputDto();
    }
 
    /**
-   * Transform raw response to ShowNoteReleveOutputDto
-   */
-   public function transformShowNoteReleve(array $response): ShowNoteReleveOutputDto
+    * Transform raw response to ShowNoteReleveOutputDto
+    */
+   public function transformShowNoteReleve(object $response): ShowNoteReleveOutputDto
    {
       return new ShowNoteReleveOutputDto();
    }
 
    /**
-   * Transform raw response to ShowOutputDto
-   */
-   public function transformShow(array $response): ShowOutputDto
+    * Transform raw response to ShowOutputDto
+    */
+   public function transformShow(object $response): ShowOutputDto
    {
       return new ShowOutputDto();
    }
 
    /**
-   * Transform raw response to ShowRepartReleveOutputDto
-   */
-   public function transformShowRepartReleve(array $response): ShowRepartReleveOutputDto
+    * Transform raw response to ShowRepartReleveOutputDto
+    */
+   public function transformShowRepartReleve(object $response): ShowRepartReleveOutputDto
    {
       return new ShowRepartReleveOutputDto();
    }
 
    /**
-   * Transform raw response to SimulateurOutputDto
-   */
-   public function transformSimulateur(array $response): SimulateurOutputDto
+    * Transform raw response to SimulateurOutputDto
+    */
+   public function transformSimulateur(object $response): SimulateurOutputDto
    {
       return new SimulateurOutputDto();
    }
 
    /**
-   * Transform raw response to EditOutputDto
-   */
-   public function transformEdit(array $response): EditOutputDto
+    * Transform raw response to EditOutputDto
+    */
+   public function transformEdit(object $response): EditOutputDto
    {
       return new EditOutputDto($response[self::UPDATED]);
    }
-
 }

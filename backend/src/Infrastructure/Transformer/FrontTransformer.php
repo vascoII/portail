@@ -12,35 +12,34 @@ use App\Application\Dto\Output\Front\LegalNoticesOutputDto;
 final class FrontTransformer
 {
    /**
-   * Transform raw response to CguOutputDto
-   */
-   public function transformCgu(array $response): CguOutputDto
+    * Transform raw response to CguOutputDto
+    */
+   public function transformCgu(object $response): CguOutputDto
    {
       return new CguOutputDto();
    }
 
    /**
-   * Transform raw response to IndexOutputDto
-   */
-   public function transformIndex(array $response): IndexOutputDto
+    * Transform raw response to IndexOutputDto
+    */
+   public function transformIndex(object $response): IndexOutputDto
    {
       return new IndexOutputDto();
    }
 
    /**
-   * Transform raw response to CguOutputDto
-   */
-   public function transformPersonalData(array $response): PersonalDatasOutputDto
+    * Transform raw response to CguOutputDto
+    */
+   public function transformPersonalData(object $response): PersonalDatasOutputDto
    {
       return new PersonalDatasOutputDto();
    }
 
    /**
-   * Transform raw response to CguOutputDto
-   */
-   public function transformLegalNotices(array $response): LegalNoticesOutputDto
+    * Transform raw response to CguOutputDto
+    */
+   public function transformLegalNotices(object $response): LegalNoticesOutputDto
    {
       return new LegalNoticesOutputDto();
    }
-
 }

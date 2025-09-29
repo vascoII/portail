@@ -14,51 +14,50 @@ use App\Application\Dto\Output\Ticketing\TicketListOutputDto;
 final class TicketingTransformer
 {
    /**
-   * Transform raw response to AttachmentTicketOutputDto
-   */
-   public function transformAttachmentTicket(array $response): AttachmentTicketOutputDto
+    * Transform raw response to AttachmentTicketOutputDto
+    */
+   public function transformAttachmentTicket(object $response): AttachmentTicketOutputDto
    {
       return new AttachmentTicketOutputDto();
    }
 
    /**
-   * Transform raw response to CloseTicketOutputDto
-   */
-   public function transformCloseTicket(array $response): CloseTicketOutputDto
+    * Transform raw response to CloseTicketOutputDto
+    */
+   public function transformCloseTicket(object $response): CloseTicketOutputDto
    {
       return new CloseTicketOutputDto();
    }
 
    /**
-   * Transform raw response to CreateTicketOutputDto
-   */
-   public function transformCreateTicket(array $response): CreateTicketOutputDto
+    * Transform raw response to CreateTicketOutputDto
+    */
+   public function transformCreateTicket(object $response): CreateTicketOutputDto
    {
       return new CreateTicketOutputDto();
    }
 
    /**
-   * Transform raw response to MenuTicketOutputDto
-   */
-   public function transformMenuTicket(array $response): MenuTicketOutputDto
+    * Transform raw response to MenuTicketOutputDto
+    */
+   public function transformMenuTicket(object $response): MenuTicketOutputDto
    {
       return new MenuTicketOutputDto();
    }
 
    /**
-   * Transform raw response to TableTicketingOutputDto
-   */
-   public function transformTableTicketing(array $response): TableTicketingOutputDto
+    * Transform raw response to TableTicketingOutputDto
+    */
+   public function transformTableTicketing(object $response): TableTicketingOutputDto
    {
       return new TableTicketingOutputDto();
    }
 
    /**
-   * Transform raw response to TicketListOutputDto
-   */
-   public function transformTicketList(array $response): TicketListOutputDto
+    * Transform raw response to TicketListOutputDto
+    */
+   public function transformTicketList(object $response): TicketListOutputDto
    {
       return new TicketListOutputDto();
    }
-
 }

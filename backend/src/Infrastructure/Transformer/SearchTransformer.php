@@ -9,11 +9,10 @@ use App\Application\Dto\Output\Search\IndexOutputDto;
 final class SearchTransformer
 {
    /**
-   * Transform raw response to IndexOutputDto
-   */
-   public function transformIndex(array $response): IndexOutputDto
+    * Transform raw response to IndexOutputDto
+    */
+   public function transformIndex(object $response): IndexOutputDto
    {
       return new IndexOutputDto();
    }
-
 }

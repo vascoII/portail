@@ -12,7 +12,7 @@ final class FactureTransformer
   /**
    * Transform raw response to IndexOutputDto
    */
-  public function transformIndex(array $response): IndexOutputDto
+  public function transformIndex(object $response): IndexOutputDto
   {
     if (!isset($response['ListeFactures'])) {
       return new IndexOutputDto([]);
@@ -50,7 +50,7 @@ final class FactureTransformer
   /**
    * Transform raw response to ReportOutputDto
    */
-  public function transformReport(array $response): ReportOutputDto
+  public function transformReport(object $response): ReportOutputDto
   {
     return new ReportOutputDto(
       $response['PDF_DATA'] ?? '',

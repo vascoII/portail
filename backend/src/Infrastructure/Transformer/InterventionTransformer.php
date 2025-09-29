@@ -9,11 +9,10 @@ use App\Application\Dto\Output\Intervention\ReportOutputDto;
 final class InterventionTransformer
 {
    /**
-   * Transform raw response to ReportInputDto
-   */
-   public function transformReport(array $response): ReportOutputDto
+    * Transform raw response to ReportInputDto
+    */
+   public function transformReport(object $response): ReportOutputDto
    {
       return new ReportOutputDto();
    }
-
 }

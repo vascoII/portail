@@ -14,7 +14,7 @@ use App\Application\Dto\Output\Logement\SearchOutputDto;
 use App\Application\Dto\Input\Logement\ListInterventionsInputDto;
 use App\Application\Dto\Output\Logement\ListInterventionsOutputDto;
 use App\Application\Dto\Input\Logement\ShowInterventionInputDto;
-use App\Application\Dto\Output\Logement\ShowIntervenTionOutputDto;
+use App\Application\Dto\Output\Logement\ShowInterventionOutputDto;
 use App\Application\Dto\Input\Logement\ListLeaksInputDto;
 use App\Application\Dto\Output\Logement\ListLeaksOutputDto;
 use App\Application\Dto\Input\Logement\ListDysfunctionsInputDto;
@@ -56,10 +56,10 @@ use App\Infrastructure\Transformer\LogementTransformer;
 final class LogementDataProvider implements LogementDataProviderInterface
 {
   public function __construct(
-      private RedisCacheService $cache,
-      private LogementDataSourceInterface $source,
-      private LogementTransformer $transformer,
-      private readonly AuthServiceInterface $authService
+    private RedisCacheService $cache,
+    private LogementDataSourceInterface $source,
+    private LogementTransformer $transformer,
+    private readonly AuthServiceInterface $authService
   ) {}
 
   private function getAuthContext(): AuthenticationContext
@@ -69,350 +69,349 @@ final class LogementDataProvider implements LogementDataProviderInterface
 
   public function indexService(IndexInputDto $inputDto): IndexOutputDto
   {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "logement_index:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
+    $authContext = $this->getAuthContext();
+    $cacheKey = "logement_index:$authContext->pkUser";
+    $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof IndexOutputDto) {
-        return $cachedDto;
-      }
+    if ($cachedDto instanceof IndexOutputDto) {
+      return $cachedDto;
+    }
 
-      $rawData = $this->source->fetchIndex($inputDto);
-      $dto = $this->transformer->transformIndex($rawData);
+    $rawData = $this->source->fetchIndex($inputDto);
+    $dto = $this->transformer->transformIndex($rawData);
 
-      $this->cache->set($cacheKey, $dto);
+    $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+    return $dto;
   }
-  
+
   public function showService(ShowInputDto $inputDto): ShowOutputDto
   {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "logement_show:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
+    $authContext = $this->getAuthContext();
+    $cacheKey = "logement_show:$authContext->pkUser";
+    $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof ShowOutputDto) {
-        return $cachedDto;
-      }
+    if ($cachedDto instanceof ShowOutputDto) {
+      return $cachedDto;
+    }
 
-      $rawData = $this->source->fetchShow($inputDto);
-      $dto = $this->transformer->transformShow($rawData);
+    $rawData = $this->source->fetchShow($inputDto);
+    $dto = $this->transformer->transformShow($rawData);
 
-      $this->cache->set($cacheKey, $dto);
+    $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+    return $dto;
   }
-  
+
   public function searchService(SearchInputDto $inputDto): SearchOutputDto
   {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "logement_search:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
+    $authContext = $this->getAuthContext();
+    $cacheKey = "logement_search:$authContext->pkUser";
+    $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof SearchOutputDto) {
-        return $cachedDto;
-      }
+    if ($cachedDto instanceof SearchOutputDto) {
+      return $cachedDto;
+    }
 
-      $rawData = $this->source->fetchSearch($inputDto);
-      $dto = $this->transformer->transformSearch($rawData);
+    $rawData = $this->source->fetchSearch($inputDto);
+    $dto = $this->transformer->transformSearch($rawData);
 
-      $this->cache->set($cacheKey, $dto);
+    $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+    return $dto;
   }
-  
+
   public function listInterventionsService(ListInterventionsInputDto $inputDto): ListInterventionsOutputDto
   {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "logement_list_interventions:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
+    $authContext = $this->getAuthContext();
+    $cacheKey = "logement_list_interventions:$authContext->pkUser";
+    $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof ListInterventionsOutputDto) {
-        return $cachedDto;
-      }
+    if ($cachedDto instanceof ListInterventionsOutputDto) {
+      return $cachedDto;
+    }
 
-      $rawData = $this->source->fetchListInterventions($inputDto);
-      $dto = $this->transformer->transformListInterventions($rawData);
+    $rawData = $this->source->fetchListInterventions($inputDto);
+    $dto = $this->transformer->transformListInterventions($rawData);
 
-      $this->cache->set($cacheKey, $dto);
+    $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+    return $dto;
   }
-  
+
   public function showInterventionService(ShowInterventionInputDto $inputDto): ShowInterventionOutputDto
   {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "logement_show_interventions:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
+    $authContext = $this->getAuthContext();
+    $cacheKey = "logement_show_interventions:$authContext->pkUser";
+    $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof ShowInterventionOutputDto) {
-        return $cachedDto;
-      }
+    if ($cachedDto instanceof ShowInterventionOutputDto) {
+      return $cachedDto;
+    }
 
-      $rawData = $this->source->fetchShowIntervention($inputDto);
-      $dto = $this->transformer->transformShowIntervention($rawData);
+    $rawData = $this->source->fetchShowIntervention($inputDto);
+    $dto = $this->transformer->transformShowIntervention($rawData);
 
-      $this->cache->set($cacheKey, $dto);
+    $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+    return $dto;
   }
-  
+
   public function listLeaksService(ListLeaksInputDto $inputDto): ListLeaksOutputDto
   {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "logement_list_leaks:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
+    $authContext = $this->getAuthContext();
+    $cacheKey = "logement_list_leaks:$authContext->pkUser";
+    $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof ListLeaksOutputDto) {
-        return $cachedDto;
-      }
+    if ($cachedDto instanceof ListLeaksOutputDto) {
+      return $cachedDto;
+    }
 
-      $rawData = $this->source->fetchListLeaks($inputDto);
-      $dto = $this->transformer->transformListLeaks($rawData);
+    $rawData = $this->source->fetchListLeaks($inputDto);
+    $dto = $this->transformer->transformListLeaks($rawData);
 
-      $this->cache->set($cacheKey, $dto);
+    $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+    return $dto;
   }
-  
+
   public function listDysfunctionsService(ListDysfunctionsInputDto $inputDto): ListDysfunctionsOutputDto
   {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "logement_list_dysfuntions:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
+    $authContext = $this->getAuthContext();
+    $cacheKey = "logement_list_dysfuntions:$authContext->pkUser";
+    $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof ListDysfunctionsOutputDto) {
-        return $cachedDto;
-      }
+    if ($cachedDto instanceof ListDysfunctionsOutputDto) {
+      return $cachedDto;
+    }
 
-      $rawData = $this->source->fetchListDysfunctions($inputDto);
-      $dto = $this->transformer->transformListDysfunctions($rawData);
+    $rawData = $this->source->fetchListDysfunctions($inputDto);
+    $dto = $this->transformer->transformListDysfunctions($rawData);
 
-      $this->cache->set($cacheKey, $dto);
+    $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+    return $dto;
   }
-  
+
   public function listAnomaliesService(ListAnomaliesInputDto $inputDto): ListAnomaliesOutputDto
   {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "logement_list_anomalies:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
+    $authContext = $this->getAuthContext();
+    $cacheKey = "logement_list_anomalies:$authContext->pkUser";
+    $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof ListAnomaliesOutputDto) {
-        return $cachedDto;
-      }
+    if ($cachedDto instanceof ListAnomaliesOutputDto) {
+      return $cachedDto;
+    }
 
-      $rawData = $this->source->fetchListAnomalies($inputDto);
-      $dto = $this->transformer->transformListAnomalies($rawData);
+    $rawData = $this->source->fetchListAnomalies($inputDto);
+    $dto = $this->transformer->transformListAnomalies($rawData);
 
-      $this->cache->set($cacheKey, $dto);
+    $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+    return $dto;
   }
-  
+
   public function filterResultService(FilterResultInputDto $inputDto): FilterResultOutputDto
   {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "logement_filter_result:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
+    $authContext = $this->getAuthContext();
+    $cacheKey = "logement_filter_result:$authContext->pkUser";
+    $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof FilterResultOutputDto) {
-        return $cachedDto;
-      }
+    if ($cachedDto instanceof FilterResultOutputDto) {
+      return $cachedDto;
+    }
 
-      $rawData = $this->source->fetchFilterResult($inputDto);
-      $dto = $this->transformer->transformFilterResult($rawData);
+    $rawData = $this->source->fetchFilterResult($inputDto);
+    $dto = $this->transformer->transformFilterResult($rawData);
 
-      $this->cache->set($cacheKey, $dto);
+    $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+    return $dto;
   }
-  
+
   public function exportService(ExportInputDto $inputDto): ExportOutputDto
   {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "logement_export:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
+    $authContext = $this->getAuthContext();
+    $cacheKey = "logement_export:$authContext->pkUser";
+    $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof ExportOutputDto) {
-        return $cachedDto;
-      }
+    if ($cachedDto instanceof ExportOutputDto) {
+      return $cachedDto;
+    }
 
-      $rawData = $this->source->fetchExport($inputDto);
-      $dto = $this->transformer->transformExport($rawData);
+    $rawData = $this->source->fetchExport($inputDto);
+    $dto = $this->transformer->transformExport($rawData);
 
-      $this->cache->set($cacheKey, $dto);
+    $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+    return $dto;
   }
-  
+
   public function exportInterventionsService(ExportInterventionsInputDto $inputDto): ExportInterventionsOutputDto
   {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "logement_export_interventions:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
+    $authContext = $this->getAuthContext();
+    $cacheKey = "logement_export_interventions:$authContext->pkUser";
+    $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof ExportInterventionsOutputDto) {
-        return $cachedDto;
-      }
+    if ($cachedDto instanceof ExportInterventionsOutputDto) {
+      return $cachedDto;
+    }
 
-      $rawData = $this->source->fetchExportInterventions($inputDto);
-      $dto = $this->transformer->transformExportInterventions($rawData);
+    $rawData = $this->source->fetchExportInterventions($inputDto);
+    $dto = $this->transformer->transformExportInterventions($rawData);
 
-      $this->cache->set($cacheKey, $dto);
+    $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+    return $dto;
   }
-  
+
   public function exportLeaksService(ExportLeaksInputDto $inputDto): ExportLeaksOutputDto
   {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "logement_export_leaks:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
+    $authContext = $this->getAuthContext();
+    $cacheKey = "logement_export_leaks:$authContext->pkUser";
+    $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof ExportLeaksOutputDto) {
-        return $cachedDto;
-      }
+    if ($cachedDto instanceof ExportLeaksOutputDto) {
+      return $cachedDto;
+    }
 
-      $rawData = $this->source->fetchExportLeaks($inputDto);
-      $dto = $this->transformer->transformExportLeaks($rawData);
+    $rawData = $this->source->fetchExportLeaks($inputDto);
+    $dto = $this->transformer->transformExportLeaks($rawData);
 
-      $this->cache->set($cacheKey, $dto);
+    $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+    return $dto;
   }
-  
+
   public function exportDysfunctionsService(ExportDysfunctionsInputDto $inputDto): ExportDysfunctionsOutputDto
   {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "logement_export_dysfunctions:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
+    $authContext = $this->getAuthContext();
+    $cacheKey = "logement_export_dysfunctions:$authContext->pkUser";
+    $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof ExportDysfunctionsOutputDto) {
-        return $cachedDto;
-      }
+    if ($cachedDto instanceof ExportDysfunctionsOutputDto) {
+      return $cachedDto;
+    }
 
-      $rawData = $this->source->fetchExportDysfunctions($inputDto);
-      $dto = $this->transformer->transformExportDysfunctions($rawData);
+    $rawData = $this->source->fetchExportDysfunctions($inputDto);
+    $dto = $this->transformer->transformExportDysfunctions($rawData);
 
-      $this->cache->set($cacheKey, $dto);
+    $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+    return $dto;
   }
-  
+
   public function exportAnomaliesService(ExportAnomaliesInputDto $inputDto): ExportAnomaliesOutputDto
   {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "logement_export_anomalies:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
+    $authContext = $this->getAuthContext();
+    $cacheKey = "logement_export_anomalies:$authContext->pkUser";
+    $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof ExportAnomaliesOutputDto) {
-        return $cachedDto;
-      }
+    if ($cachedDto instanceof ExportAnomaliesOutputDto) {
+      return $cachedDto;
+    }
 
-      $rawData = $this->source->fetchExportAnomalies($inputDto);
-      $dto = $this->transformer->transformExportAnomalies($rawData);
+    $rawData = $this->source->fetchExportAnomalies($inputDto);
+    $dto = $this->transformer->transformExportAnomalies($rawData);
 
-      $this->cache->set($cacheKey, $dto);
+    $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+    return $dto;
   }
-  
+
   public function editService(EditInputDto $inputDto): EditOutputDto
   {
-      $rawData = $this->source->fetchEdit($inputDto);
-      $dto = $this->transformer->transformEdit($rawData);
+    $rawData = $this->source->fetchEdit($inputDto);
+    $dto = $this->transformer->transformEdit($rawData);
 
-      return $dto;
+    return $dto;
   }
-  
+
   public function createTicketService(CreateTicketInputDto $inputDto): CreateTicketOutputDto
   {
-      $rawData = $this->source->fetchCreateTicket($inputDto);
-      $dto = $this->transformer->transformCreateTicket($rawData);
+    $rawData = $this->source->fetchCreateTicket($inputDto);
+    $dto = $this->transformer->transformCreateTicket($rawData);
 
-      return $dto;
+    return $dto;
   }
-  
+
   public function createTicketImmeubleService(CreateTicketImmeubleInputDto $inputDto): CreateTicketImmeubleOutputDto
   {
-      $rawData = $this->source->fetchCreateTicketImmeuble($inputDto);
-      $dto = $this->transformer->transformCreateTicketImmeuble($rawData);
+    $rawData = $this->source->fetchCreateTicketImmeuble($inputDto);
+    $dto = $this->transformer->transformCreateTicketImmeuble($rawData);
 
-      return $dto;
+    return $dto;
   }
-  
+
   public function getTicketOnwerService(GetTicketOnwerInputDto $inputDto): GetTicketOnwerOutputDto
   {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "logement_get_ticket_owner:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
+    $authContext = $this->getAuthContext();
+    $cacheKey = "logement_get_ticket_owner:$authContext->pkUser";
+    $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof GetTicketOnwerOutputDto) {
-        return $cachedDto;
-      }
+    if ($cachedDto instanceof GetTicketOnwerOutputDto) {
+      return $cachedDto;
+    }
 
-      $rawData = $this->source->fetchGetTicketOnwer($inputDto);
-      $dto = $this->transformer->transformGetTicketOnwer($rawData);
+    $rawData = $this->source->fetchGetTicketOnwer($inputDto);
+    $dto = $this->transformer->transformGetTicketOnwer($rawData);
 
-      $this->cache->set($cacheKey, $dto);
+    $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+    return $dto;
   }
-  
+
   public function guideService(GuideInputDto $inputDto): GuideOutputDto
   {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "logement_guide:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
+    $authContext = $this->getAuthContext();
+    $cacheKey = "logement_guide:$authContext->pkUser";
+    $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof GuideOutputDto) {
-        return $cachedDto;
-      }
+    if ($cachedDto instanceof GuideOutputDto) {
+      return $cachedDto;
+    }
 
-      $rawData = $this->source->fetchGuide($inputDto);
-      $dto = $this->transformer->transformGuide($rawData);
+    $rawData = $this->source->fetchGuide($inputDto);
+    $dto = $this->transformer->transformGuide($rawData);
 
-      $this->cache->set($cacheKey, $dto);
+    $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+    return $dto;
   }
-  
+
   public function getInfosAppareilService(GetInfosAppareilInputDto $inputDto): GetInfosAppareilOutputDto
   {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "logement_get_info_appareil:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
+    $authContext = $this->getAuthContext();
+    $cacheKey = "logement_get_info_appareil:$authContext->pkUser";
+    $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof GetInfosAppareilOutputDto) {
-        return $cachedDto;
-      }
+    if ($cachedDto instanceof GetInfosAppareilOutputDto) {
+      return $cachedDto;
+    }
 
-      $rawData = $this->source->fetchGetInfosAppareil($inputDto);
-      $dto = $this->transformer->transformGetInfosAppareil($rawData);
+    $rawData = $this->source->fetchGetInfosAppareil($inputDto);
+    $dto = $this->transformer->transformGetInfosAppareil($rawData);
 
-      $this->cache->set($cacheKey, $dto);
+    $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+    return $dto;
   }
-  
+
   public function showRepartReleveService(ShowRepartReleveInputDto $inputDto): ShowRepartReleveOutputDto
   {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "logement_show_repart_releve:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
+    $authContext = $this->getAuthContext();
+    $cacheKey = "logement_show_repart_releve:$authContext->pkUser";
+    $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof ShowRepartReleveOutputDto) {
-        return $cachedDto;
-      }
+    if ($cachedDto instanceof ShowRepartReleveOutputDto) {
+      return $cachedDto;
+    }
 
-      $rawData = $this->source->fetchShowRepartReleve($inputDto);
-      $dto = $this->transformer->transformShowRepartReleve($rawData);
+    $rawData = $this->source->fetchShowRepartReleve($inputDto);
+    $dto = $this->transformer->transformShowRepartReleve($rawData);
 
-      $this->cache->set($cacheKey, $dto);
+    $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+    return $dto;
   }
-  
 }

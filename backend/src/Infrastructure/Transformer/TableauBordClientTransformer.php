@@ -10,19 +10,18 @@ use App\Application\Dto\Output\TableauBordClient\InterventionOutputDto;
 final class TableauBordClientTransformer
 {
    /**
-   * Transform raw response to IndexOutputDto
-   */
-   public function transformIndex(array $response): IndexOutputDto
+    * Transform raw response to IndexOutputDto
+    */
+   public function transformIndex(object $response): IndexOutputDto
    {
       return new IndexOutputDto();
    }
 
    /**
-   * Transform raw response to InterventionOutputDto
-   */
-   public function transformIntervention(array $response): InterventionOutputDto
+    * Transform raw response to InterventionOutputDto
+    */
+   public function transformIntervention(object $response): InterventionOutputDto
    {
       return new InterventionOutputDto();
    }
-
 }

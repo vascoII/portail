@@ -13,7 +13,7 @@ use App\Application\Dto\Output\Logement\SearchOutputDto;
 use App\Application\Dto\Input\Logement\ListInterventionsInputDto;
 use App\Application\Dto\Output\Logement\ListInterventionsOutputDto;
 use App\Application\Dto\Input\Logement\ShowInterventionInputDto;
-use App\Application\Dto\Output\Logement\ShowIntervenTionOutputDto;
+use App\Application\Dto\Output\Logement\ShowInterventionOutputDto;
 use App\Application\Dto\Input\Logement\ListLeaksInputDto;
 use App\Application\Dto\Output\Logement\ListLeaksOutputDto;
 use App\Application\Dto\Input\Logement\ListDysfunctionsInputDto;
