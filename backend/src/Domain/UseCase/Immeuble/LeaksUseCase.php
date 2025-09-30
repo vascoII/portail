@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace App\Domain\UseCase\Immeuble;
 
-use App\Application\Dto\Input\Immeuble\ListLeaksInputDto;
+use App\Application\Dto\Input\Immeuble\LeaksInputDto;
 use App\Application\Dto\Output\Immeuble\ListLeaksOutputDto;
 use App\Application\Service\DataProvider\ImmeubleDataProviderInterface;
 
-final class ListLeaksUseCase
+final class LeaksUseCase
 {
   public function __construct(
     private readonly ImmeubleDataProviderInterface $serviceDataProvider
   ) {}
 
-  public function execute(ListLeaksInputDto $inputDto): ListLeaksOutputDto
+  public function execute(LeaksInputDto $inputDto): ListLeaksOutputDto
   {
     return $this->serviceDataProvider->listLeaksService($inputDto);
   }

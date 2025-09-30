@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\UseCase\GestionParc;
 
-use App\Application\Dto\Input\GestionParc\IndexInputDto;
 use App\Application\Dto\Output\GestionParc\IndexOutputDto;
-use App\Infrastructure\Transformer\GestionParcTransformer;
 use App\Application\Service\DataProvider\GestionParcDataProviderInterface;
 
 final class IndexUseCase
@@ -15,8 +13,8 @@ final class IndexUseCase
     private readonly GestionParcDataProviderInterface $serviceDataProvider
   ) {}
   
-  public function execute(IndexInputDto $inputDto): IndexOutputDto
+  public function execute(): IndexOutputDto
   {
-    return $this->serviceDataProvider->indexService($inputDto);
+    return $this->serviceDataProvider->indexService();
   }
 }

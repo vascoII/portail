@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Domain\UseCase\Front;
 
-use App\Application\Dto\Input\Front\PersonalDatasInputDto;
 use App\Application\Dto\Output\Front\PersonalDatasOutputDto;
 use App\Application\Service\DataProvider\FrontDataProviderInterface;
 
@@ -14,8 +13,8 @@ final class PersonalDatasUseCase
     private readonly FrontDataProviderInterface $serviceDataProvider
   ) {}
 
-  public function execute(PersonalDatasInputDto $inputDto): PersonalDatasOutputDto
+  public function execute(): PersonalDatasOutputDto
   {
-    return $this->serviceDataProvider->personalDatasService($inputDto);
+    return $this->serviceDataProvider->personalDatasService();
   }
 }
