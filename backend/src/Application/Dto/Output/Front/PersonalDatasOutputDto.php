@@ -6,5 +6,8 @@ namespace App\Application\Dto\Output\Front;
 
 final class PersonalDatasOutputDto
 {
-  public function __construct(public readonly string $message) {}
+  /** @param ListSousTraitantOutputDto $listSousTraitants */
+  public function __construct(
+      public readonly ListSousTraitantOutputDto $listSousTraitants
+  ) {}
 }

@@ -14,6 +14,6 @@ interface FrontDataSourceInterface
 
   public function fetchIndex(IndexInputDto $inputDto): object;
   public function fetchCgu(CguInputDto $inputDto): object;
-  public function fetchPersonalDatas(PersonalDatasInputDto $inputDto): object;
+  public function fetchPersonalDatas(): object;
   public function fetchLegalNotices(LegalNoticesInputDto $inputDto): object;
 }

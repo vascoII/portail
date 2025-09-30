@@ -6,5 +6,9 @@ namespace App\Application\Dto\Output\Intervention;
 
 final class ReportOutputDto
 {
-  public function __construct(public readonly bool $generated) {}
+  public function __construct(
+    public readonly string $data,
+    public readonly string $filename,
+    public readonly int $length    
+  ) {}
 }

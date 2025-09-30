@@ -6,22 +6,12 @@ namespace App\Application\Service\DataProvider;
 
 use App\Application\Dto\Input\Occupant\AlertesInputDto;
 use App\Application\Dto\Output\Occupant\AlertesOutputDto;
-use App\Application\Dto\Input\Occupant\ExportAnomaliesInputDto;
-use App\Application\Dto\Output\Occupant\ExportAnomaliesOutputDto;
-use App\Application\Dto\Input\Occupant\ExportDysfunctionsInputDto;
-use App\Application\Dto\Output\Occupant\ExportDysfunctionsOutputDto;
-use App\Application\Dto\Input\Occupant\ExportInterventionsInputDto;
-use App\Application\Dto\Output\Occupant\ExportInterventionsOutputDto;
-use App\Application\Dto\Input\Occupant\ExportLeaksInputDto;
-use App\Application\Dto\Output\Occupant\ExportLeaksOutputDto;
-use App\Application\Dto\Input\Occupant\ListAnomaliesInputDto;
-use App\Application\Dto\Output\Occupant\ListAnomaliesOutputDto;
-use App\Application\Dto\Input\Occupant\ListDysfunctionsInputDto;
-use App\Application\Dto\Output\Occupant\ListDysfunctionsOutputDto;
-use App\Application\Dto\Input\Occupant\ListInterventionsInputDto;
-use App\Application\Dto\Output\Occupant\ListInterventionsOutputDto;
-use App\Application\Dto\Input\Occupant\ListLeaksInputDto;
-use App\Application\Dto\Output\Occupant\ListLeaksOutputDto;
+use App\Application\Dto\Input\Occupant\DysfunctionsInputDto;
+use App\Application\Dto\Output\Occupant\DysfunctionsOutputDto;
+use App\Application\Dto\Input\Occupant\InterventionsInputDto;
+use App\Application\Dto\Output\Occupant\InterventionsOutputDto;
+use App\Application\Dto\Input\Occupant\LeaksInputDto;
+use App\Application\Dto\Output\Occupant\LeaksOutputDto;
 use App\Application\Dto\Input\Occupant\MyAccountInputDto;
 use App\Application\Dto\Output\Occupant\MyAccountOutputDto;
 use App\Application\Dto\Input\Occupant\ShowEauReleveInputDto;
@@ -43,14 +33,9 @@ interface OccupantDataProviderInterface
 {
 
   public function alertesService(AlertesInputDto $inputDto): AlertesOutputDto;
-  public function exportAnomaliesService(ExportAnomaliesInputDto $inputDto): ExportAnomaliesOutputDto;
-  public function exportDysfunctionsService(ExportDysfunctionsInputDto $inputDto): ExportDysfunctionsOutputDto;
-  public function exportInterventionsService(ExportInterventionsInputDto $inputDto): ExportInterventionsOutputDto;
-  public function exportLeaksService(ExportLeaksInputDto $inputDto): ExportLeaksOutputDto;
-  public function listAnomaliesService(ListAnomaliesInputDto $inputDto): ListAnomaliesOutputDto;
-  public function listDysfunctionsService(ListDysfunctionsInputDto $inputDto): ListDysfunctionsOutputDto;
-  public function listInterventionsService(ListInterventionsInputDto $inputDto): ListInterventionsOutputDto;
-  public function listLeaksService(ListLeaksInputDto $inputDto): ListLeaksOutputDto;
+  public function listDysfunctionsService(DysfunctionsInputDto $inputDto): DysfunctionsOutputDto;
+  public function listInterventionsService(InterventionsInputDto $inputDto): InterventionsOutputDto;
+  public function listLeaksService(LeaksInputDto $inputDto): LeaksOutputDto;
   public function myAccountService(MyAccountInputDto $inputDto): MyAccountOutputDto;
   public function showEauReleveService(ShowEauReleveInputDto $inputDto): ShowEauReleveOutputDto;
   public function showInterventionService(ShowInterventionInputDto $inputDto): ShowInterventionOutputDto;

@@ -12,9 +12,6 @@ use App\Application\Dto\Input\Ticketing\CreateTicketInputDto;
 use App\Application\Dto\Output\Ticketing\CreateTicketOutputDto;
 use App\Application\Dto\Input\Ticketing\MenuTicketInputDto;
 use App\Application\Dto\Output\Ticketing\MenuTicketOutputDto;
-use App\Application\Dto\Input\Ticketing\TableTicketingInputDto;
-use App\Application\Dto\Output\Ticketing\TableTicketingOutputDto;
-use App\Application\Dto\Input\Ticketing\TicketListInputDto;
 use App\Application\Dto\Output\Ticketing\TicketListOutputDto;
 
 interface TicketingDataProviderInterface
@@ -24,6 +21,5 @@ interface TicketingDataProviderInterface
   public function closeTicketService(CloseTicketInputDto $inputDto): CloseTicketOutputDto;
   public function createTicketService(CreateTicketInputDto $inputDto): CreateTicketOutputDto;
   public function menuTicketService(MenuTicketInputDto $inputDto): MenuTicketOutputDto;
-  public function tableTicketingService(TableTicketingInputDto $inputDto): TableTicketingOutputDto;
-  public function ticketListService(TicketListInputDto $inputDto): TicketListOutputDto;
+  public function ticketListService(): TicketListOutputDto;
 }

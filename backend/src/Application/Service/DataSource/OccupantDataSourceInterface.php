@@ -5,14 +5,10 @@ declare(strict_types=1);
 namespace App\Application\Service\DataSource;
 
 use App\Application\Dto\Input\Occupant\AlertesInputDto;
-use App\Application\Dto\Input\Occupant\ExportAnomaliesInputDto;
-use App\Application\Dto\Input\Occupant\ExportDysfunctionsInputDto;
-use App\Application\Dto\Input\Occupant\ExportInterventionsInputDto;
-use App\Application\Dto\Input\Occupant\ExportLeaksInputDto;
-use App\Application\Dto\Input\Occupant\ListAnomaliesInputDto;
-use App\Application\Dto\Input\Occupant\ListDysfunctionsInputDto;
-use App\Application\Dto\Input\Occupant\ListInterventionsInputDto;
-use App\Application\Dto\Input\Occupant\ListLeaksInputDto;
+use App\Application\Dto\Input\Occupant\AnomaliesInputDto;
+use App\Application\Dto\Input\Occupant\DysfunctionsInputDto;
+use App\Application\Dto\Input\Occupant\InterventionsInputDto;
+use App\Application\Dto\Input\Occupant\LeaksInputDto;
 use App\Application\Dto\Input\Occupant\MyAccountInputDto;
 use App\Application\Dto\Input\Occupant\ShowEauReleveInputDto;
 use App\Application\Dto\Input\Occupant\ShowInterventionInputDto;
@@ -26,14 +22,10 @@ interface OccupantDataSourceInterface
 {
 
   public function fetchAlertes(AlertesInputDto $inputDto): object;
-  public function fetchExportAnomalies(ExportAnomaliesInputDto $inputDto): object;
-  public function fetchExportDysfunctions(ExportDysfunctionsInputDto $inputDto): object;
-  public function fetchExportInterventions(ExportInterventionsInputDto $inputDto): object;
-  public function fetchExportLeaks(ExportLeaksInputDto $inputDto): object;
-  public function fetchListAnomalies(ListAnomaliesInputDto $inputDto): object;
-  public function fetchListDysfunctions(ListDysfunctionsInputDto $inputDto): object;
-  public function fetchListInterventions(ListInterventionsInputDto $inputDto): object;
-  public function fetchListLeaks(ListLeaksInputDto $inputDto): object;
+  public function fetchListAnomalies(AnomaliesInputDto $inputDto): object;
+  public function fetchListDysfunctions(DysfunctionsInputDto $inputDto): object;
+  public function fetchListInterventions(InterventionsInputDto $inputDto): object;
+  public function fetchListLeaks(LeaksInputDto $inputDto): object;
   public function fetchMyAccount(MyAccountInputDto $inputDto): object;
   public function fetchShowEauReleve(ShowEauReleveInputDto $inputDto): object;
   public function fetchShowIntervention(ShowInterventionInputDto $inputDto): object;

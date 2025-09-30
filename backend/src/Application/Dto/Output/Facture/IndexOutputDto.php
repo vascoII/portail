@@ -6,6 +6,8 @@ namespace App\Application\Dto\Output\Facture;
 
 final class IndexOutputDto
 {
-  /** @param array<int, mixed> $factures */
-  public function __construct(public readonly array $factures) {}
+  /** @param ListFactureOutputDto $listFactures */
+  public function __construct(
+      public readonly ListFactureOutputDto $listFactures
+  ) {}
 }
