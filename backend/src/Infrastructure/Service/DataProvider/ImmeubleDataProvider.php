@@ -11,38 +11,30 @@ use App\Application\Dto\Input\Immeuble\ShowInputDto;
 use App\Application\Dto\Output\Immeuble\ShowOutputDto;
 use App\Application\Dto\Input\Immeuble\ReportInputDto;
 use App\Application\Dto\Output\Immeuble\ReportOutputDto;
-use App\Application\Dto\Input\Immeuble\ListInterventionsInputDto;
+use App\Application\Dto\Input\Immeuble\InterventionsInputDto;
 use App\Application\Dto\Output\Immeuble\ListInterventionsOutputDto;
 use App\Application\Dto\Input\Immeuble\ShowInterventionInputDto;
 use App\Application\Dto\Output\Immeuble\ShowInterventionOutputDto;
 use App\Application\Dto\Input\Immeuble\InterventionInputDto;
 use App\Application\Dto\Output\Immeuble\InterventionOutputDto;
-use App\Application\Dto\Input\Immeuble\ListLeaksInputDto;
+use App\Application\Dto\Input\Immeuble\LeaksInputDto;
 use App\Application\Dto\Output\Immeuble\ListLeaksOutputDto;
-use App\Application\Dto\Input\Immeuble\ListDysfunctionsInputDto;
+use App\Application\Dto\Input\Immeuble\DysfunctionsInputDto;
 use App\Application\Dto\Output\Immeuble\ListDysfunctionsOutputDto;
-use App\Application\Dto\Input\Immeuble\ListAnomaliesInputDto;
+use App\Application\Dto\Input\Immeuble\AnomaliesInputDto;
 use App\Application\Dto\Output\Immeuble\ListAnomaliesOutputDto;
 use App\Application\Dto\Input\Immeuble\FilterResultInputDto;
 use App\Application\Dto\Output\Immeuble\FilterResultOutputDto;
-use App\Application\Dto\Input\Immeuble\ExportInterventionsInputDto;
-use App\Application\Dto\Output\Immeuble\ExportInterventionsOutputDto;
-use App\Application\Dto\Input\Immeuble\ExportLeaksInputDto;
-use App\Application\Dto\Output\Immeuble\ExportLeaksOutputDto;
-use App\Application\Dto\Input\Immeuble\ExportDysfunctionsInputDto;
-use App\Application\Dto\Output\Immeuble\ExportDysfunctionsOutputDto;
-use App\Application\Dto\Input\Immeuble\ExportAnomaliesInputDto;
-use App\Application\Dto\Output\Immeuble\ExportAnomaliesOutputDto;
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Application\Service\DataSource\ImmeubleDataSourceInterface;
-use App\Infrastructure\Service\Cache\RedisCacheService;
+use App\Infrastructure\Service\Redis\RedisService;
 use App\Infrastructure\Transformer\ImmeubleTransformer;
 
 final class ImmeubleDataProvider implements ImmeubleDataProviderInterface
 {
   public function __construct(
-      private RedisCacheService $cache,
+      private RedisService $cache,
       private ImmeubleDataSourceInterface $source,
       private ImmeubleTransformer $transformer,
       private readonly AuthServiceInterface $authService
@@ -107,7 +99,7 @@ final class ImmeubleDataProvider implements ImmeubleDataProviderInterface
       return $dto;
   }
   
-  public function listInterventionsService(ListInterventionsInputDto $inputDto): ListInterventionsOutputDto
+  public function listInterventionsService(InterventionsInputDto $inputDto): ListInterventionsOutputDto
   {
       $authContext = $this->getAuthContext();
       $cacheKey = "immeuble_list_interventions:$authContext->pkUser";
@@ -161,7 +153,7 @@ final class ImmeubleDataProvider implements ImmeubleDataProviderInterface
       return $dto;
   }
   
-  public function listLeaksService(ListLeaksInputDto $inputDto): ListLeaksOutputDto
+  public function listLeaksService(LeaksInputDto $inputDto): ListLeaksOutputDto
   {
       $authContext = $this->getAuthContext();
       $cacheKey = "immeuble_list_leaks:$authContext->pkUser";
@@ -179,7 +171,7 @@ final class ImmeubleDataProvider implements ImmeubleDataProviderInterface
       return $dto;
   }
   
-  public function listDysfunctionsService(ListDysfunctionsInputDto $inputDto): ListDysfunctionsOutputDto
+  public function listDysfunctionsService(DysfunctionsInputDto $inputDto): ListDysfunctionsOutputDto
   {
       $authContext = $this->getAuthContext();
       $cacheKey = "immeuble_list_dysfunctions:$authContext->pkUser";
@@ -197,7 +189,7 @@ final class ImmeubleDataProvider implements ImmeubleDataProviderInterface
       return $dto;
   }
   
-  public function listAnomaliesService(ListAnomaliesInputDto $inputDto): ListAnomaliesOutputDto
+  public function listAnomaliesService(AnomaliesInputDto $inputDto): ListAnomaliesOutputDto
   {
       $authContext = $this->getAuthContext();
       $cacheKey = "immeuble_list_anomalies:$authContext->pkUser";
@@ -227,78 +219,6 @@ final class ImmeubleDataProvider implements ImmeubleDataProviderInterface
 
       $rawData = $this->source->fetchFilterResult($inputDto);
       $dto = $this->transformer->transformFilterResult($rawData);
-
-      $this->cache->set($cacheKey, $dto);
-
-      return $dto;
-  }
-  
-  public function exportInterventionsService(ExportInterventionsInputDto $inputDto): ExportInterventionsOutputDto
-  {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "immeuble_export_interventions:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
-
-      if ($cachedDto instanceof ExportInterventionsOutputDto) {
-        return $cachedDto;
-      }
-
-      $rawData = $this->source->fetchExportInterventions($inputDto);
-      $dto = $this->transformer->transformExportInterventions($rawData);
-
-      $this->cache->set($cacheKey, $dto);
-
-      return $dto;
-  }
-  
-  public function exportLeaksService(ExportLeaksInputDto $inputDto): ExportLeaksOutputDto
-  {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "immeuble_export_leaks:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
-
-      if ($cachedDto instanceof ExportLeaksOutputDto) {
-        return $cachedDto;
-      }
-
-      $rawData = $this->source->fetchExportLeaks($inputDto);
-      $dto = $this->transformer->transformExportLeaks($rawData);
-
-      $this->cache->set($cacheKey, $dto);
-
-      return $dto;
-  }
-  
-  public function exportDysfunctionsService(ExportDysfunctionsInputDto $inputDto): ExportDysfunctionsOutputDto
-  {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "immeuble_export_dysfunctions:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
-
-      if ($cachedDto instanceof ExportDysfunctionsOutputDto) {
-        return $cachedDto;
-      }
-
-      $rawData = $this->source->fetchExportDysfunctions($inputDto);
-      $dto = $this->transformer->transformExportDysfunctions($rawData);
-
-      $this->cache->set($cacheKey, $dto);
-
-      return $dto;
-  }
-  
-  public function exportAnomaliesService(ExportAnomaliesInputDto $inputDto): ExportAnomaliesOutputDto
-  {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "immeuble_export_anomalies:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
-
-      if ($cachedDto instanceof ExportAnomaliesOutputDto) {
-        return $cachedDto;
-      }
-
-      $rawData = $this->source->fetchExportAnomalies($inputDto);
-      $dto = $this->transformer->transformExportAnomalies($rawData);
 
       $this->cache->set($cacheKey, $dto);
 

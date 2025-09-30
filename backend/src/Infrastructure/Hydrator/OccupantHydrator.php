@@ -6,14 +6,10 @@ namespace App\Infrastructure\Hydrator;
 
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Application\Dto\Input\Occupant\AlertesInputDto;
-use App\Application\Dto\Input\Occupant\ExportAnomaliesInputDto;
-use App\Application\Dto\Input\Occupant\ExportDysfunctionsInputDto;
-use App\Application\Dto\Input\Occupant\ExportInterventionsInputDto;
-use App\Application\Dto\Input\Occupant\ExportLeaksInputDto;
-use App\Application\Dto\Input\Occupant\ListAnomaliesInputDto;
-use App\Application\Dto\Input\Occupant\ListDysfunctionsInputDto;
-use App\Application\Dto\Input\Occupant\ListInterventionsInputDto;
-use App\Application\Dto\Input\Occupant\ListLeaksInputDto;
+use App\Application\Dto\Input\Occupant\AnomaliesInputDto;
+use App\Application\Dto\Input\Occupant\DysfunctionsInputDto;
+use App\Application\Dto\Input\Occupant\InterventionsInputDto;
+use App\Application\Dto\Input\Occupant\LeaksInputDto;
 use App\Application\Dto\Input\Occupant\MyAccountInputDto;
 use App\Application\Dto\Input\Occupant\ShowEauReleveInputDto;
 use App\Application\Dto\Input\Occupant\ShowInterventionInputDto;
@@ -21,6 +17,7 @@ use App\Application\Dto\Input\Occupant\ShowNoteReleveInputDto;
 use App\Application\Dto\Input\Occupant\ShowRepartReleveInputDto;
 use App\Application\Dto\Input\Occupant\ShowInputDto;
 use App\Application\Dto\Input\Occupant\SimulateurInputDto;
+use App\Application\Dto\Input\Occupant\EditInputDto;
 
 final class OccupantHydrator
 {
@@ -33,79 +30,39 @@ final class OccupantHydrator
     ];
   }
 
-  public function hydrateExportAnomalies(ExportAnomaliesInputDto $inputDto, AuthenticationContext $authContext): object
+  public function hydrateListAnomalies(AnomaliesInputDto $inputDto, AuthenticationContext $authContext): object
   {
     return (object) [
       'SessionID' => $authContext->sessionId,
       'PkUser' => $authContext->pkUser,
-      'ReportType' => 'ANOMALIES_OCCUPANT',
-      'ParamsFiltres' => $this->buildParamsFiltres($inputDto)
+      // TODO: Add specific parameters based on AnomaliesInputDto properties
     ];
   }
 
-  public function hydrateExportDysfunctions(ExportDysfunctionsInputDto $inputDto, AuthenticationContext $authContext): object
+  public function hydrateListDysfunctions(DysfunctionsInputDto $inputDto, AuthenticationContext $authContext): object
   {
     return (object) [
       'SessionID' => $authContext->sessionId,
       'PkUser' => $authContext->pkUser,
-      'ReportType' => 'DYSFUNCTIONS_OCCUPANT',
-      'ParamsFiltres' => $this->buildParamsFiltres($inputDto)
+      // TODO: Add specific parameters based on DysfunctionsInputDto properties
     ];
   }
 
-  public function hydrateExportInterventions(ExportInterventionsInputDto $inputDto, AuthenticationContext $authContext): object
+  public function hydrateListInterventions(InterventionsInputDto $inputDto, AuthenticationContext $authContext): object
   {
     return (object) [
       'SessionID' => $authContext->sessionId,
       'PkUser' => $authContext->pkUser,
-      'ReportType' => 'INTERVENTIONS_OCCUPANT',
-      'ParamsFiltres' => $this->buildParamsFiltres($inputDto)
+      // TODO: Add specific parameters based on InterventionsInputDto properties
     ];
   }
 
-  public function hydrateExportLeaks(ExportLeaksInputDto $inputDto, AuthenticationContext $authContext): object
+  public function hydrateListLeaks(LeaksInputDto $inputDto, AuthenticationContext $authContext): object
   {
     return (object) [
       'SessionID' => $authContext->sessionId,
       'PkUser' => $authContext->pkUser,
-      'ReportType' => 'LEAKS_OCCUPANT',
-      'ParamsFiltres' => $this->buildParamsFiltres($inputDto)
-    ];
-  }
-
-  public function hydrateListAnomalies(ListAnomaliesInputDto $inputDto, AuthenticationContext $authContext): object
-  {
-    return (object) [
-      'SessionID' => $authContext->sessionId,
-      'PkUser' => $authContext->pkUser,
-      // TODO: Add specific parameters based on ListAnomaliesInputDto properties
-    ];
-  }
-
-  public function hydrateListDysfunctions(ListDysfunctionsInputDto $inputDto, AuthenticationContext $authContext): object
-  {
-    return (object) [
-      'SessionID' => $authContext->sessionId,
-      'PkUser' => $authContext->pkUser,
-      // TODO: Add specific parameters based on ListDysfunctionsInputDto properties
-    ];
-  }
-
-  public function hydrateListInterventions(ListInterventionsInputDto $inputDto, AuthenticationContext $authContext): object
-  {
-    return (object) [
-      'SessionID' => $authContext->sessionId,
-      'PkUser' => $authContext->pkUser,
-      // TODO: Add specific parameters based on ListInterventionsInputDto properties
-    ];
-  }
-
-  public function hydrateListLeaks(ListLeaksInputDto $inputDto, AuthenticationContext $authContext): object
-  {
-    return (object) [
-      'SessionID' => $authContext->sessionId,
-      'PkUser' => $authContext->pkUser,
-      // TODO: Add specific parameters based on ListLeaksInputDto properties
+      // TODO: Add specific parameters based on LeaksInputDto properties
     ];
   }
 
@@ -172,28 +129,12 @@ final class OccupantHydrator
     ];
   }
 
-  private function buildParamsFiltres(object $inputDto): string
+  public function hydrateEdit(EditInputDto $inputDto, AuthenticationContext $authContext): object
   {
-    $filters = [];
-
-    $propertyMap = [
-      'pkImmeuble' => 'PKIMMEUBLE',
-      'pkLogement' => 'PKLOGEMENT',
-      'pkOccupant' => 'PKOCCUPANT',
-      'pkIntervention' => 'PKINTERVENTION',
-      'pkFacture' => 'PKFACTURE',
-      'workOrderNumber' => 'WORKORDERNUMBER',
-      'date' => 'DATE',
-      'date1' => 'DATE1',
-      'date2' => 'DATE2',
+    return (object) [
+      'SessionID' => $authContext->sessionId,
+      'PkUser' => $authContext->pkUser,
+      // TODO: Add specific parameters based on SimulateurInputDto properties
     ];
-
-    foreach ($propertyMap as $dtoProperty => $soapProperty) {
-      if (property_exists($inputDto, $dtoProperty) && $inputDto->$dtoProperty !== null) {
-        $filters[] = $soapProperty . '=' . $inputDto->$dtoProperty;
-      }
-    }
-
-    return implode('|', $filters);
   }
 }

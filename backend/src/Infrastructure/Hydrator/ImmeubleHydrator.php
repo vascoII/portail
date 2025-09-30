@@ -8,17 +8,13 @@ use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Application\Dto\Input\Immeuble\IndexInputDto;
 use App\Application\Dto\Input\Immeuble\ShowInputDto;
 use App\Application\Dto\Input\Immeuble\ReportInputDto;
-use App\Application\Dto\Input\Immeuble\ListInterventionsInputDto;
+use App\Application\Dto\Input\Immeuble\InterventionsInputDto;
 use App\Application\Dto\Input\Immeuble\ShowInterventionInputDto;
-use App\Application\Dto\Input\Immeuble\LinterventionInputDto;
-use App\Application\Dto\Input\Immeuble\ListLeaksInputDto;
-use App\Application\Dto\Input\Immeuble\ListDysfunctionsInputDto;
-use App\Application\Dto\Input\Immeuble\ListAnomaliesInputDto;
+use App\Application\Dto\Input\Immeuble\InterventionInputDto;
+use App\Application\Dto\Input\Immeuble\LeaksInputDto;
+use App\Application\Dto\Input\Immeuble\DysfunctionsInputDto;
+use App\Application\Dto\Input\Immeuble\AnomaliesInputDto;
 use App\Application\Dto\Input\Immeuble\FilterResultInputDto;
-use App\Application\Dto\Input\Immeuble\ExportInterventionsInputDto;
-use App\Application\Dto\Input\Immeuble\ExportLeaksInputDto;
-use App\Application\Dto\Input\Immeuble\ExportDysfunctionsInputDto;
-use App\Application\Dto\Input\Immeuble\ExportAnomaliesInputDto;
 
 final class ImmeubleHydrator
 {
@@ -62,12 +58,12 @@ final class ImmeubleHydrator
   /**
    * Hydrate SOAP request for listInterventions
    */
-  public function hydrateListInterventions(ListInterventionsInputDto $inputDto, AuthenticationContext $authContext): object
+  public function hydrateListInterventions(InterventionsInputDto $inputDto, AuthenticationContext $authContext): object
   {
     return (object) [
       'SessionID' => $authContext->sessionId,
       'PkUser' => $authContext->pkUser,
-      // TODO: Add specific parameters based on ListInterventionsInputDto properties
+      // TODO: Add specific parameters based on InterventionsInputDto properties
     ];
   }
 
@@ -86,7 +82,7 @@ final class ImmeubleHydrator
   /**
    * Hydrate SOAP request for lintervention
    */
-  public function hydrateLintervention(LinterventionInputDto $inputDto, AuthenticationContext $authContext): object
+  public function hydrateIntervention(InterventionInputDto $inputDto, AuthenticationContext $authContext): object
   {
     return (object) [
       'SessionID' => $authContext->sessionId,
@@ -98,36 +94,36 @@ final class ImmeubleHydrator
   /**
    * Hydrate SOAP request for listLeaks
    */
-  public function hydrateListLeaks(ListLeaksInputDto $inputDto, AuthenticationContext $authContext): object
+  public function hydrateListLeaks(LeaksInputDto $inputDto, AuthenticationContext $authContext): object
   {
     return (object) [
       'SessionID' => $authContext->sessionId,
       'PkUser' => $authContext->pkUser,
-      // TODO: Add specific parameters based on ListLeaksInputDto properties
+      // TODO: Add specific parameters based on LeaksInputDto properties
     ];
   }
 
   /**
    * Hydrate SOAP request for listDysfunctions
    */
-  public function hydrateListDysfunctions(ListDysfunctionsInputDto $inputDto, AuthenticationContext $authContext): object
+  public function hydrateListDysfunctions(DysfunctionsInputDto $inputDto, AuthenticationContext $authContext): object
   {
     return (object) [
       'SessionID' => $authContext->sessionId,
       'PkUser' => $authContext->pkUser,
-      // TODO: Add specific parameters based on ListDysfunctionsInputDto properties
+      // TODO: Add specific parameters based on DysfunctionsInputDto properties
     ];
   }
 
   /**
    * Hydrate SOAP request for listAnomalies
    */
-  public function hydrateListAnomalies(ListAnomaliesInputDto $inputDto, AuthenticationContext $authContext): object
+  public function hydrateListAnomalies(AnomaliesInputDto $inputDto, AuthenticationContext $authContext): object
   {
     return (object) [
       'SessionID' => $authContext->sessionId,
       'PkUser' => $authContext->pkUser,
-      // TODO: Add specific parameters based on ListAnomaliesInputDto properties
+      // TODO: Add specific parameters based on AnomaliesInputDto properties
     ];
   }
 
@@ -140,58 +136,6 @@ final class ImmeubleHydrator
       'SessionID' => $authContext->sessionId,
       'PkUser' => $authContext->pkUser,
       // TODO: Add specific parameters based on FilterResultInputDto properties
-    ];
-  }
-
-  /**
-   * Hydrate SOAP request for exportInterventions
-   */
-  public function hydrateExportInterventions(ExportInterventionsInputDto $inputDto, AuthenticationContext $authContext): object
-  {
-    return (object) [
-      'SessionID' => $authContext->sessionId,
-      'PkUser' => $authContext->pkUser,
-      'ReportType' => 'INTERVENTIONS_IMMEUBLE',
-      'ParamsFiltres' => $this->buildParamsFiltres($inputDto)
-    ];
-  }
-
-  /**
-   * Hydrate SOAP request for exportLeaks
-   */
-  public function hydrateExportLeaks(ExportLeaksInputDto $inputDto, AuthenticationContext $authContext): object
-  {
-    return (object) [
-      'SessionID' => $authContext->sessionId,
-      'PkUser' => $authContext->pkUser,
-      'ReportType' => 'LEAKS_IMMEUBLE',
-      'ParamsFiltres' => $this->buildParamsFiltres($inputDto)
-    ];
-  }
-
-  /**
-   * Hydrate SOAP request for exportDysfunctions
-   */
-  public function hydrateExportDysfunctions(ExportDysfunctionsInputDto $inputDto, AuthenticationContext $authContext): object
-  {
-    return (object) [
-      'SessionID' => $authContext->sessionId,
-      'PkUser' => $authContext->pkUser,
-      'ReportType' => 'DYSFUNCTIONS_IMMEUBLE',
-      'ParamsFiltres' => $this->buildParamsFiltres($inputDto)
-    ];
-  }
-
-  /**
-   * Hydrate SOAP request for exportAnomalies
-   */
-  public function hydrateExportAnomalies(ExportAnomaliesInputDto $inputDto, AuthenticationContext $authContext): object
-  {
-    return (object) [
-      'SessionID' => $authContext->sessionId,
-      'PkUser' => $authContext->pkUser,
-      'ReportType' => 'ANOMALIES_IMMEUBLE',
-      'ParamsFiltres' => $this->buildParamsFiltres($inputDto)
     ];
   }
 

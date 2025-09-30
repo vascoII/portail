@@ -7,11 +7,15 @@ namespace App\Infrastructure\Hydrator;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Application\Dto\Input\Front\IndexInputDto;
 use App\Application\Dto\Input\Front\CguInputDto;
-use App\Application\Dto\Input\Front\PersonalDatasInputDto;
 use App\Application\Dto\Input\Front\LegalNoticesInputDto;
 
 final class FrontHydrator
 {
+  public function __construct(
+    private readonly string $superLoginID,
+    private readonly string $superPassword
+  ) {}
+
   public function hydrateIndex(IndexInputDto $inputDto, AuthenticationContext $authContext): object
   {
     return (object) [
@@ -30,12 +34,11 @@ final class FrontHydrator
     ];
   }
 
-  public function hydratePersonalDatas(PersonalDatasInputDto $inputDto, AuthenticationContext $authContext): object
+  public function hydratePersonalDatas(): object
   {
     return (object) [
-      'SessionID' => $authContext->sessionId,
-      'PkUser' => $authContext->pkUser,
-      // TODO: Add specific parameters based on PersonalDatasInputDto properties
+      'SuperLoginID' => $this->superLoginID,
+      'SuperPassword' => $this->superPassword,
     ];
   }
 

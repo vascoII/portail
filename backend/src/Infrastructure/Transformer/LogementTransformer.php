@@ -7,10 +7,6 @@ namespace App\Infrastructure\Transformer;
 use App\Application\Dto\Output\Logement\CreateTicketImmeubleOutputDto;
 use App\Application\Dto\Output\Logement\CreateTicketOutputDto;
 use App\Application\Dto\Output\Logement\EditOutputDto;
-use App\Application\Dto\Output\Logement\ExportAnomaliesOutputDto;
-use App\Application\Dto\Output\Logement\ExportDysfunctionsOutputDto;
-use App\Application\Dto\Output\Logement\ExportInterventionsOutputDto;
-use App\Application\Dto\Output\Logement\ExportLeaksOutputDto;
 use App\Application\Dto\Output\Logement\ExportOutputDto;
 use App\Application\Dto\Output\Logement\FilterResultOutputDto;
 use App\Application\Dto\Output\Logement\GetInfosAppareilOutputDto;
@@ -50,38 +46,6 @@ final class LogementTransformer
    public function transformEdit(object $dataSourceResult): EditOutputDto
    {
       return new EditOutputDto();
-   }
-
-   /**
-    * Transform raw response to ExportAnomaliesOutputDto
-    */
-   public function transformExportAnomalies(object $dataSourceResult): ExportAnomaliesOutputDto
-   {
-      return new ExportAnomaliesOutputDto();
-   }
-
-   /**
-    * Transform raw response to ExportDysfunctionsOutputDto
-    */
-   public function transformExportDysfunctions(object $dataSourceResult): ExportDysfunctionsOutputDto
-   {
-      return new ExportDysfunctionsOutputDto();
-   }
-
-   /**
-    * Transform raw response to ExportInterventionsOutputDto
-    */
-   public function transformExportInterventions(object $dataSourceResult): ExportInterventionsOutputDto
-   {
-      return new ExportInterventionsOutputDto();
-   }
-
-   /**
-    * Transform raw response to ExportLeaksOutputDto
-    */
-   public function transformExportLeaks(object $dataSourceResult): ExportLeaksOutputDto
-   {
-      return new ExportLeaksOutputDto();
    }
 
    /**

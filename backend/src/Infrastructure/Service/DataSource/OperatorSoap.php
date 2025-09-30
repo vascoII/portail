@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Service\Soap;
+namespace App\Infrastructure\Service\DataSource;
 
 use App\Application\Dto\Input\Operator\IndexInputDto;
 use App\Application\Dto\Input\Operator\CreateInputDto;
@@ -17,7 +17,7 @@ use App\Application\Service\DataSource\OperatorDataSourceInterface;
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Hydrator\OperatorHydrator;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
-use App\Infrastructure\Service\Soap\SoapClient;
+use App\Infrastructure\Service\DataSource\SoapClient;
 
 final class OperatorSoap implements OperatorDataSourceInterface
 {
@@ -36,71 +36,71 @@ final class OperatorSoap implements OperatorDataSourceInterface
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIndex($authContext);
-    return $this->soapClient->call('getFactures', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateIndex($inputDto, $authContext);
+    return $this->soapClient->call('', $soapRequest);
   }
 
   public function fetchCreate(CreateInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIndex($authContext);
-    return $this->soapClient->call('getFactures', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateCreate($inputDto, $authContext);
+    return $this->soapClient->call('', $soapRequest);
   }
 
   public function fetchAddBuilding(AddBuildingInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIndex($authContext);
-    return $this->soapClient->call('getFactures', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateAddBuilding($inputDto, $authContext);
+    return $this->soapClient->call('', $soapRequest);
   }
 
   public function fetchRemoveBuilding(RemoveBuildingInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIndex($authContext);
-    return $this->soapClient->call('getFactures', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateRemoveBuilding($inputDto, $authContext);
+    return $this->soapClient->call('', $soapRequest);
   }
 
   public function fetchView(ViewInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIndex($authContext);
-    return $this->soapClient->call('getFactures', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateView($inputDto, $authContext);
+    return $this->soapClient->call('', $soapRequest);
   }
 
   public function fetchEdit(EditInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIndex($authContext);
-    return $this->soapClient->call('getFactures', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateEdit($inputDto, $authContext);
+    return $this->soapClient->call('', $soapRequest);
   }
 
   public function fetchEditPassword(EditPasswordInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIndex($authContext);
-    return $this->soapClient->call('getFactures', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateEditPassword($inputDto, $authContext);
+    return $this->soapClient->call('', $soapRequest);
   }
 
   public function fetchDelete(DeleteInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIndex($authContext);
-    return $this->soapClient->call('getFactures', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateDelete($inputDto, $authContext);
+    return $this->soapClient->call('', $soapRequest);
   }
 
   public function fetchOtatsoccupants(OtatsoccupantsInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIndex($authContext);
-    return $this->soapClient->call('getFactures', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateOtatsoccupants($inputDto, $authContext);
+    return $this->soapClient->call('', $soapRequest);
   }
 }

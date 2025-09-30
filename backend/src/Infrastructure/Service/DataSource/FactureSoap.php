@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Service\Soap;
+namespace App\Infrastructure\Service\DataSource;
 
 use App\Application\Service\DataSource\FactureDataSourceInterface;
 use App\Application\Dto\Input\Facture\ReportInputDto;
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Infrastructure\Hydrator\FactureHydrator;
-use App\Infrastructure\Service\Soap\SoapClient;
+use App\Infrastructure\Service\DataSource\SoapClient;
 
 final class FactureSoap implements FactureDataSourceInterface
 {

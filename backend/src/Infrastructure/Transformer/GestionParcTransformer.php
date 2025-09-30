@@ -4,10 +4,6 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Transformer;
 
-use App\Application\Dto\Output\GestionParc\ExportAnomaliesOutputDto;
-use App\Application\Dto\Output\GestionParc\ExportDysfunctionsOutputDto;
-use App\Application\Dto\Output\GestionParc\ExportInterventionsOutputDto;
-use App\Application\Dto\Output\GestionParc\ExportLeaksOutputDto;
 use App\Application\Dto\Output\GestionParc\FilterResultOutputDto;
 use App\Application\Dto\Output\GestionParc\IndexOutputDto;
 use App\Application\Dto\Output\GestionParc\InterventionOutputDto;
@@ -21,38 +17,6 @@ use App\Application\Dto\Output\GestionParc\ShowOutputDto;
 
 final class GestionParcTransformer
 {
-   /**
-    * Transform raw response to ExportAnomaliesOutputDto
-    */
-   public function transformExportAnomalies(object $dataSourceResult): ExportAnomaliesOutputDto
-   {
-      return new ExportAnomaliesOutputDto();
-   }
-
-   /**
-    * Transform raw response to ExportDysfunctionsOutputDto
-    */
-   public function transformExportDysfunctions(object $dataSourceResult): ExportDysfunctionsOutputDto
-   {
-      return new ExportDysfunctionsOutputDto();
-   }
-
-   /**
-    * Transform raw response to ExportInterventionsOutputDto
-    */
-   public function transformExportInterventions(object $dataSourceResult): ExportInterventionsOutputDto
-   {
-      return new ExportInterventionsOutputDto();
-   }
-
-   /**
-    * Transform raw response to ExportLeaksOutputDto
-    */
-   public function transformExportLeaks(object $dataSourceResult): ExportLeaksOutputDto
-   {
-      return new ExportLeaksOutputDto();
-   }
-
    /**
     * Transform raw response to FilterResultOutputDto
     */

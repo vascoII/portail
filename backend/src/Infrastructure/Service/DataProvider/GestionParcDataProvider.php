@@ -5,44 +5,35 @@ declare(strict_types=1);
 namespace App\Infrastructure\Service\DataProvider;
 
 use App\Application\Service\DataProvider\GestionParcDataProviderInterface;
-use App\Application\Dto\Input\GestionParc\IndexInputDto;
 use App\Application\Dto\Output\GestionParc\IndexOutputDto;
 use App\Application\Dto\Input\GestionParc\InterventionInputDto;
 use App\Application\Dto\Output\GestionParc\InterventionOutputDto;
-use App\Application\Dto\Input\GestionParc\ExportInterventionsInputDto;
-use App\Application\Dto\Output\GestionParc\ExportInterventionsOutputDto;
 use App\Application\Dto\Input\GestionParc\ReportInputDto;
 use App\Application\Dto\Output\GestionParc\ReportOutputDto;
 use App\Application\Dto\Input\GestionParc\ShowInputDto;
 use App\Application\Dto\Output\GestionParc\ShowOutputDto;
-use App\Application\Dto\Input\GestionParc\ExportLeaksInputDto;
-use App\Application\Dto\Output\GestionParc\ExportLeaksOutputDto;
-use App\Application\Dto\Input\GestionParc\ExportAnomaliesInputDto;
-use App\Application\Dto\Output\GestionParc\ExportAnomaliesOutputDto;
-use App\Application\Dto\Input\GestionParc\ListInterventionsInputDto;
+use App\Application\Dto\Input\GestionParc\InterventionsInputDto;
 use App\Application\Dto\Output\GestionParc\ListInterventionsOutputDto;
 use App\Application\Dto\Input\GestionParc\ShowInterventionInputDto;
 use App\Application\Dto\Output\GestionParc\ShowInterventionOutputDto;
 use App\Application\Dto\Input\GestionParc\FilterResultInputDto;
 use App\Application\Dto\Output\GestionParc\FilterResultOutputDto;
-use App\Application\Dto\Input\GestionParc\ListLeaksInputDto;
+use App\Application\Dto\Input\GestionParc\LeaksInputDto;
 use App\Application\Dto\Output\GestionParc\ListLeaksOutputDto;
-use App\Application\Dto\Input\GestionParc\ListAnomaliesInputDto;
+use App\Application\Dto\Input\GestionParc\AnomaliesInputDto;
 use App\Application\Dto\Output\GestionParc\ListAnomaliesOutputDto;
-use App\Application\Dto\Input\GestionParc\ExportDysfunctionsInputDto;
-use App\Application\Dto\Output\GestionParc\ExportDysfunctionsOutputDto;
-use App\Application\Dto\Input\GestionParc\ListDysfunctionsInputDto;
+use App\Application\Dto\Input\GestionParc\DysfunctionsInputDto;
 use App\Application\Dto\Output\GestionParc\ListDysfunctionsOutputDto;
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Application\Service\DataSource\GestionParcDataSourceInterface;
-use App\Infrastructure\Service\Cache\RedisCacheService;
+use App\Infrastructure\Service\Redis\RedisService;
 use App\Infrastructure\Transformer\GestionParcTransformer;
 
 final class GestionParcDataProvider implements GestionParcDataProviderInterface
 {
   public function __construct(
-      private RedisCacheService $cache,
+      private RedisService $cache,
       private GestionParcDataSourceInterface $source,
       private GestionParcTransformer $transformer,
       private readonly AuthServiceInterface $authService
@@ -53,7 +44,7 @@ final class GestionParcDataProvider implements GestionParcDataProviderInterface
     return AuthenticationContext::fromAuthService($this->authService);
   }
 
-  public function indexService(IndexInputDto $inputDto): IndexOutputDto
+  public function indexService(): IndexOutputDto
   {
       $authContext = $this->getAuthContext();
       $cacheKey = "gestion_parc_index:$authContext->pkUser";
@@ -63,7 +54,7 @@ final class GestionParcDataProvider implements GestionParcDataProviderInterface
         return $cachedDto;
       }
 
-      $rawData = $this->source->fetchIndex($inputDto);
+      $rawData = $this->source->fetchIndex();
       $dto = $this->transformer->transformIndex($rawData);
 
       $this->cache->set($cacheKey, $dto);
@@ -125,7 +116,7 @@ final class GestionParcDataProvider implements GestionParcDataProviderInterface
       return $dto;
   }
 
-  public function listInterventionsService(ListInterventionsInputDto $inputDto): ListInterventionsOutputDto
+  public function listInterventionsService(InterventionsInputDto $inputDto): ListInterventionsOutputDto
   {
       $authContext = $this->getAuthContext();
       $cacheKey = "gestion_parc_list_interventions:$authContext->pkUser";
@@ -179,7 +170,7 @@ final class GestionParcDataProvider implements GestionParcDataProviderInterface
       return $dto;
   }
 
-  public function listLeaksService(ListLeaksInputDto $inputDto): ListLeaksOutputDto
+  public function listLeaksService(LeaksInputDto $inputDto): ListLeaksOutputDto
   {
       $authContext = $this->getAuthContext();
       $cacheKey = "gestion_parc__list_leaks:$authContext->pkUser";
@@ -197,7 +188,7 @@ final class GestionParcDataProvider implements GestionParcDataProviderInterface
       return $dto;
   }
 
-  public function listAnomaliesService(ListAnomaliesInputDto $inputDto): ListAnomaliesOutputDto
+  public function listAnomaliesService(AnomaliesInputDto $inputDto): ListAnomaliesOutputDto
   {
       $authContext = $this->getAuthContext();
       $cacheKey = "gestion_parc_list_anomalies:$authContext->pkUser";
@@ -215,79 +206,7 @@ final class GestionParcDataProvider implements GestionParcDataProviderInterface
       return $dto;
   }
 
-  public function exportInterventionsService(ExportInterventionsInputDto $inputDto): ExportInterventionsOutputDto
-  {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "gestion_parc_export_interventions:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
-
-      if ($cachedDto instanceof ExportInterventionsOutputDto) {
-        return $cachedDto;
-      }
-
-      $rawData = $this->source->fetchExportInterventions($inputDto);
-      $dto = $this->transformer->transformExportInterventions($rawData);
-
-      $this->cache->set($cacheKey, $dto);
-
-      return $dto;
-  }
-
-  public function exportLeaksService(ExportLeaksInputDto $inputDto): ExportLeaksOutputDto
-  {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "gestion_parc_export_leaks:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
-
-      if ($cachedDto instanceof ExportLeaksOutputDto) {
-        return $cachedDto;
-      }
-
-      $rawData = $this->source->fetchExportLeaks($inputDto);
-      $dto = $this->transformer->transformExportLeaks($rawData);
-
-      $this->cache->set($cacheKey, $dto);
-
-      return $dto;
-  }
-
-  public function exportAnomaliesService(ExportAnomaliesInputDto $inputDto): ExportAnomaliesOutputDto
-  {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "gestion_parc_export_anomalies:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
-
-      if ($cachedDto instanceof ExportAnomaliesOutputDto) {
-        return $cachedDto;
-      }
-
-      $rawData = $this->source->fetchExportAnomalies($inputDto);
-      $dto = $this->transformer->transformExportAnomalies($rawData);
-
-      $this->cache->set($cacheKey, $dto);
-
-      return $dto;
-  }
-
-  public function exportDysfunctionsService(ExportDysfunctionsInputDto $inputDto): ExportDysfunctionsOutputDto
-  {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "gestion_parc_export_dysfunctions:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
-
-      if ($cachedDto instanceof ExportDysfunctionsOutputDto) {
-        return $cachedDto;
-      }
-
-      $rawData = $this->source->fetchExportDysfunctions($inputDto);
-      $dto = $this->transformer->transformExportDysfunctions($rawData);
-
-      $this->cache->set($cacheKey, $dto);
-
-      return $dto;
-  }
-
-  public function listDysfunctionsService(ListDysfunctionsInputDto $inputDto): ListDysfunctionsOutputDto
+  public function listDysfunctionsService(DysfunctionsInputDto $inputDto): ListDysfunctionsOutputDto
   {
       $authContext = $this->getAuthContext();
       $cacheKey = "gestion_parc_list_dysfunctions:$authContext->pkUser";

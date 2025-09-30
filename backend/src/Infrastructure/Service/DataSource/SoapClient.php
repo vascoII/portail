@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Service\Soap;
+namespace App\Infrastructure\Service\DataSource;
 
 use Exception;
 use RuntimeException;

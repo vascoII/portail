@@ -23,12 +23,11 @@ final class TicketingHydrator
     ];
   }
 
-  public function hydrateCloseTicket(CloseTicketInputDto $inputDto, AuthenticationContext $authContext): object
+  public function hydrateCloseTicket(CloseTicketInputDto $inputDto): object
   {
     return (object) [
-      'SessionID' => $authContext->sessionId,
-      'PkUser' => $authContext->pkUser,
-      // TODO: Add specific parameters based on CloseTicketInputDto properties
+      'pkticket' => $inputDto->pkTicket,
+      'statut'   => $inputDto->statut,
     ];
   }
 
@@ -50,21 +49,10 @@ final class TicketingHydrator
     ];
   }
 
-  public function hydrateTableTicketing(TableTicketingInputDto $inputDto, AuthenticationContext $authContext): object
+  public function hydrateTicketList(): object
   {
     return (object) [
-      'SessionID' => $authContext->sessionId,
-      'PkUser' => $authContext->pkUser,
-      // TODO: Add specific parameters based on TableTicketingInputDto properties
-    ];
-  }
-
-  public function hydrateTicketList(TicketListInputDto $inputDto, AuthenticationContext $authContext): object
-  {
-    return (object) [
-      'SessionID' => $authContext->sessionId,
-      'PkUser' => $authContext->pkUser,
-      // TODO: Add specific parameters based on TicketListInputDto properties
+      'ParamsFiltres' => 'SHOWALL ='
     ];
   }
 }

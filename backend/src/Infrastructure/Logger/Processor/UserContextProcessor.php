@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Logger\Processor;
 
-use App\Domain\Service\Auth\AuthServiceInterface;
+use App\Application\Service\Auth\AuthServiceInterface;
 use Monolog\LogRecord;
 use Monolog\Processor\ProcessorInterface;
 

@@ -13,6 +13,10 @@ final class InterventionTransformer
     */
    public function transformReport(object $dataSourceResult): ReportOutputDto
    {
-      return new ReportOutputDto();
+      return new ReportOutputDto(
+         data: $dataSourceResult,
+         filename: "relevé-" . date('d-m-Y'),
+         length: strlen($dataSourceResult)
+      );
    }
 }

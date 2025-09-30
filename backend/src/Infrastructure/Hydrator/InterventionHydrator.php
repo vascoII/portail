@@ -9,38 +9,11 @@ use App\Application\Dto\Input\Intervention\ReportInputDto;
 
 final class InterventionHydrator
 {
-  public function hydrateReport(ReportInputDto $inputDto, AuthenticationContext $authContext): object
+  public function hydrateReport(ReportInputDto $inputDto): object
   {
     return (object) [
-      'SessionID' => $authContext->sessionId,
-      'PkUser' => $authContext->pkUser,
       'ReportType' => 'INTERVENTION',
-      'ParamsFiltres' => $this->buildParamsFiltres($inputDto)
+      'ParamsFiltres' => 'WORKORDERNUMBER=' . $inputDto->pkDepannage
     ];
-  }
-
-  private function buildParamsFiltres(object $inputDto): string
-  {
-    $filters = [];
-
-    $propertyMap = [
-      'pkImmeuble' => 'PKIMMEUBLE',
-      'pkLogement' => 'PKLOGEMENT',
-      'pkOccupant' => 'PKOCCUPANT',
-      'pkIntervention' => 'PKINTERVENTION',
-      'pkFacture' => 'PKFACTURE',
-      'workOrderNumber' => 'WORKORDERNUMBER',
-      'date' => 'DATE',
-      'date1' => 'DATE1',
-      'date2' => 'DATE2',
-    ];
-
-    foreach ($propertyMap as $dtoProperty => $soapProperty) {
-      if (property_exists($inputDto, $dtoProperty) && $inputDto->$dtoProperty !== null) {
-        $filters[] = $soapProperty . '=' . $inputDto->$dtoProperty;
-      }
-    }
-
-    return implode('|', $filters);
   }
 }

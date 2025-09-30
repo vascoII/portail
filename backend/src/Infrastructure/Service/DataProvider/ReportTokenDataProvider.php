@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace App\Infrastructure\Service\DataProvider;
 
 use App\Application\Service\DataProvider\ReportTokenDataProviderInterface;
-use App\Application\Dto\Input\ReportToken\LoadingInputDto;
-use App\Application\Dto\Output\ReportToken\LoadingOutputDto;
 use App\Application\Dto\Input\ReportToken\ReportInputDto;
 use App\Application\Dto\Output\ReportToken\ReportOutputDto;
 use App\Application\Service\Auth\AuthServiceInterface;
@@ -29,24 +27,6 @@ final class ReportTokenDataProvider implements ReportTokenDataProviderInterface
     return AuthenticationContext::fromAuthService($this->authService);
   }
 
-  public function loadingService(LoadingInputDto $inputDto): LoadingOutputDto
-  {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "report_token_loading:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
-
-      if ($cachedDto instanceof LoadingOutputDto) {
-        return $cachedDto;
-      }
-
-      $rawData = $this->source->fetchLoading($inputDto);
-      $dto = $this->transformer->transformLoading($rawData);
-
-      $this->cache->set($cacheKey, $dto);
-
-      return $dto;
-  }
-  
   public function reportService(ReportInputDto $inputDto): ReportOutputDto
   {
       $authContext = $this->getAuthContext();

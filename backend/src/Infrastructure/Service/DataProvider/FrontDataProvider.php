@@ -9,7 +9,6 @@ use App\Application\Dto\Input\Front\IndexInputDto;
 use App\Application\Dto\Output\Front\IndexOutputDto;
 use App\Application\Dto\Input\Front\CguInputDto;
 use App\Application\Dto\Output\Front\CguOutputDto;
-use App\Application\Dto\Input\Front\PersonalDatasInputDto;
 use App\Application\Dto\Output\Front\PersonalDatasOutputDto;
 use App\Application\Dto\Input\Front\LegalNoticesInputDto;
 use App\Application\Dto\Output\Front\LegalNoticesOutputDto;
@@ -69,7 +68,7 @@ final class FrontDataProvider implements FrontDataProviderInterface
       return $dto;
   }
 
-  public function personalDatasService(PersonalDatasInputDto $inputDto): PersonalDatasOutputDto
+  public function personalDatasService(): PersonalDatasOutputDto
   {
       $authContext = $this->getAuthContext();
       $cacheKey = "front_personal_data:$authContext->pkUser";
@@ -79,7 +78,7 @@ final class FrontDataProvider implements FrontDataProviderInterface
         return $cachedDto;
       }
 
-      $rawData = $this->source->fetchPersonalDatas($inputDto);
+      $rawData = $this->source->fetchPersonalDatas();
       $dto = $this->transformer->transformPersonalData($rawData);
 
       $this->cache->set($cacheKey, $dto);

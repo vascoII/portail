@@ -6,6 +6,9 @@ namespace App\Infrastructure\Transformer;
 
 use App\Application\Dto\Output\Facture\IndexOutputDto;
 use App\Application\Dto\Output\Facture\ReportOutputDto;
+use App\Application\Dto\Output\Facture\ListFactureOutputDto;
+use App\Application\Dto\Output\Facture\FactureOutputDto;
+use DateTimeImmutable;
 
 final class FactureTransformer
 {
@@ -14,37 +17,37 @@ final class FactureTransformer
    */
   public function transformIndex(object $dataSourceResult): IndexOutputDto
   {
-    if (!isset($dataSourceResult['ListeFactures'])) {
-      return new IndexOutputDto([]);
+    $rawList = (array) $dataSourceResult->ListeFactures;
+
+    // Normalisation : si 'facture' est un tableau ou un objet unique
+    $factures = $rawList['facture'] ?? [];
+    if (!is_array($factures)) {
+        $factures = [$factures];
     }
 
-    $listFactures = $dataSourceResult['ListeFactures'];
-    if (isset($listFactures['facture'])) {
-      $listFactures = $listFactures['facture'];
+    $dtoList = [];
+
+    foreach ($factures as $facture) {
+        $dtoList[] = new FactureOutputDto(
+            pkFacture: (int) $facture->PKFacture,
+            numFacture: (string) $facture->NumFacture,
+            dateEdition: new DateTimeImmutable($facture->DateEdition),
+            dateDebut: new DateTimeImmutable($facture->DateDebut),
+            dateFin: new DateTimeImmutable($facture->DateFin),
+            montantTotalHT: (float) $facture->MontantTotalHT,
+            montantTotalTTC: (float) $facture->MontantTotalTTC,
+            montantTotalAPayer: (float) $facture->MontantTotalAPayer,
+            idImm: (string) $facture->IDImm,
+            codeGestio: (string) $facture->CodeGestio,
+            cp: (string) $facture->CP,
+            adresse: (string) $facture->Adresse,
+            ville: (string) $facture->Ville
+        );
     }
 
-    // Ensure it's always an array
-    if (!is_array($listFactures)) {
-      $listFactures = [$listFactures];
-    }
-
-    // Format the data similar to the original controller
-    foreach ($listFactures as &$facture) {
-      if (isset($facture['DateEdition'])) {
-        $facture['DateEdition'] = date('d/m/Y', strtotime($facture['DateEdition']));
-      }
-      if (isset($facture['MontantTotalHT'])) {
-        $facture['MontantTotalHT'] = number_format($facture['MontantTotalHT'], 2, ',', ' ') . ' €';
-      }
-      if (isset($facture['MontantTotalTTC'])) {
-        $facture['MontantTotalTTC'] = number_format($facture['MontantTotalTTC'], 2, ',', ' ') . ' €';
-      }
-      if (isset($facture['MontantTotalAPayer'])) {
-        $facture['MontantTotalAPayer'] = number_format($facture['MontantTotalAPayer'], 2, ',', ' ') . ' €';
-      }
-    }
-
-    return new IndexOutputDto($listFactures);
+    return new IndexOutputDto(
+        listFactures: new ListFactureOutputDto($dtoList)
+    );
   }
 
   /**
@@ -53,37 +56,7 @@ final class FactureTransformer
   public function transformReport(object $dataSourceResult): ReportOutputDto
   {
     return new ReportOutputDto(
-      $dataSourceResult['PDF_DATA'] ?? '',
-      !empty($dataSourceResult['PDF_DATA'] ?? '')
+      "Factures", $dataSourceResult
     );
-  }
-
-  /**
-   * Format date from format to application format
-   */
-  private function formatDate(?string $date): ?string
-  {
-    if (!$date) {
-      return null;
-    }
-
-    try {
-      $dateTime = new \DateTime($date);
-      return $dateTime->format('Y-m-d');
-    } catch (\Exception $e) {
-      return null;
-    }
-  }
-
-  /**
-   * Format amount from format to application format
-   */
-  private function formatAmount(?string $amount): ?float
-  {
-    if (!$amount) {
-      return null;
-    }
-
-    return (float) str_replace(',', '.', $amount);
   }
 }

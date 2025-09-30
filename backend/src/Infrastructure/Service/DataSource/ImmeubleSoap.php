@@ -2,27 +2,23 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Service\Soap;
+namespace App\Infrastructure\Service\DataSource;
 
 use App\Application\Dto\Input\Immeuble\IndexInputDto;
 use App\Application\Dto\Input\Immeuble\ShowInputDto;
 use App\Application\Dto\Input\Immeuble\ReportInputDto;
-use App\Application\Dto\Input\Immeuble\ListInterventionsInputDto;
+use App\Application\Dto\Input\Immeuble\InterventionsInputDto;
 use App\Application\Dto\Input\Immeuble\ShowInterventionInputDto;
 use App\Application\Dto\Input\Immeuble\InterventionInputDto;
-use App\Application\Dto\Input\Immeuble\ListLeaksInputDto;
-use App\Application\Dto\Input\Immeuble\ListDysfunctionsInputDto;
-use App\Application\Dto\Input\Immeuble\ListAnomaliesInputDto;
+use App\Application\Dto\Input\Immeuble\LeaksInputDto;
+use App\Application\Dto\Input\Immeuble\DysfunctionsInputDto;
+use App\Application\Dto\Input\Immeuble\AnomaliesInputDto;
 use App\Application\Dto\Input\Immeuble\FilterResultInputDto;
-use App\Application\Dto\Input\Immeuble\ExportInterventionsInputDto;
-use App\Application\Dto\Input\Immeuble\ExportLeaksInputDto;
-use App\Application\Dto\Input\Immeuble\ExportDysfunctionsInputDto;
-use App\Application\Dto\Input\Immeuble\ExportAnomaliesInputDto;
 use App\Application\Service\DataSource\ImmeubleDataSourceInterface;
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Hydrator\ImmeubleHydrator;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
-use App\Infrastructure\Service\Soap\SoapClient;
+use App\Infrastructure\Service\DataSource\SoapClient;
 
 final class ImmeubleSoap implements ImmeubleDataSourceInterface
 {
@@ -41,111 +37,80 @@ final class ImmeubleSoap implements ImmeubleDataSourceInterface
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIndex($authContext);
-    return $this->soapClient->call('getFactures', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateIndex($inputDto, $authContext);
+    return $this->soapClient->call('', $soapRequest);
   }
 
   public function fetchShow(ShowInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIndex($authContext);
-    return $this->soapClient->call('getFactures', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateShow($inputDto, $authContext);
+    return $this->soapClient->call('', $soapRequest);
   }
 
   public function fetchReport(ReportInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIndex($authContext);
-    return $this->soapClient->call('getFactures', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateReport($inputDto, $authContext);
+    return $this->soapClient->call('', $soapRequest);
   }
 
-  public function fetchListInterventions(ListInterventionsInputDto $inputDto): object
+  public function fetchListInterventions(InterventionsInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIndex($authContext);
-    return $this->soapClient->call('getFactures', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateListInterventions($inputDto, $authContext);
+    return $this->soapClient->call('', $soapRequest);
   }
 
   public function fetchShowIntervention(ShowInterventionInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIndex($authContext);
-    return $this->soapClient->call('getFactures', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateShowIntervention($inputDto, $authContext);
+    return $this->soapClient->call('', $soapRequest);
   }
 
   public function fetchIntervention(InterventionInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIndex($authContext);
-    return $this->soapClient->call('getFactures', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateIntervention($inputDto, $authContext);
+    return $this->soapClient->call('', $soapRequest);
   }
 
-  public function fetchListLeaks(ListLeaksInputDto $inputDto): object
+  public function fetchListLeaks(LeaksInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIndex($authContext);
-    return $this->soapClient->call('getFactures', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateListLeaks($inputDto, $authContext);
+    return $this->soapClient->call('', $soapRequest);
   }
 
-  public function fetchListDysfunctions(ListDysfunctionsInputDto $inputDto): object
+  public function fetchListDysfunctions(DysfunctionsInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIndex($authContext);
-    return $this->soapClient->call('getFactures', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateListDysfunctions($inputDto, $authContext);
+    return $this->soapClient->call('', $soapRequest);
   }
 
-  public function fetchListAnomalies(ListAnomaliesInputDto $inputDto): object
+  public function fetchListAnomalies(AnomaliesInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIndex($authContext);
-    return $this->soapClient->call('getFactures', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateListAnomalies($inputDto, $authContext);
+    return $this->soapClient->call('', $soapRequest);
   }
 
   public function fetchFilterResult(FilterResultInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIndex($authContext);
-    return $this->soapClient->call('getFactures', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateFilterResult($inputDto, $authContext);
+    return $this->soapClient->call('', $soapRequest);
   }
 
-  public function fetchExportInterventions(ExportInterventionsInputDto $inputDto): object
-  {
-    $authContext = $this->getAuthContext();
-    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIndex($authContext);
-    return $this->soapClient->call('getFactures', $soapRequest);
-  }
-
-  public function fetchExportLeaks(ExportLeaksInputDto $inputDto): object
-  {
-    $authContext = $this->getAuthContext();
-    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIndex($authContext);
-    return $this->soapClient->call('getFactures', $soapRequest);
-  }
-
-  public function fetchExportDysfunctions(ExportDysfunctionsInputDto $inputDto): object
-  {
-    $authContext = $this->getAuthContext();
-    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIndex($authContext);
-    return $this->soapClient->call('getFactures', $soapRequest);
-  }
-
-  public function fetchExportAnomalies(ExportAnomaliesInputDto $inputDto): object
-  {
-    $authContext = $this->getAuthContext();
-    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIndex($authContext);
-    return $this->soapClient->call('getFactures', $soapRequest);
-  }
 }

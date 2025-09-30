@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Service\Soap;
+namespace App\Infrastructure\Service\DataSource;
 
 use App\Application\Dto\Input\Intervention\ReportInputDto;
 use App\Application\Service\DataSource\InterventionDataSourceInterface;
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Hydrator\InterventionHydrator;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
-use App\Infrastructure\Service\Soap\SoapClient;
+use App\Infrastructure\Service\DataSource\SoapClient;
 
 final class InterventionSoap implements InterventionDataSourceInterface
 {
@@ -28,7 +28,7 @@ final class InterventionSoap implements InterventionDataSourceInterface
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIndex($authContext);
-    return $this->soapClient->call('getFactures', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateReport($inputDto);
+    return $this->soapClient->call('GetReport', $soapRequest);
   }
 }

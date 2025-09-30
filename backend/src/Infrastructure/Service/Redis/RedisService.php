@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Service\Cache;
+namespace App\Infrastructure\Service\Redis;
 
 use App\Application\Dto\Output\Security\UserDto;
-use App\Application\Service\Cache\RedisServiceInterface;
+use App\Application\Service\Redis\RedisServiceInterface;
 use Predis\Client;
 
-final class RedisCacheService implements RedisServiceInterface
+final class RedisService implements RedisServiceInterface
 {
   private const SESSION_PREFIX = 'session:';
   private const USER_PREFIX = 'user:';

@@ -89,25 +89,7 @@ final class TicketingDataProvider implements TicketingDataProviderInterface
       return $dto;
   }
   
-  public function tableTicketingService(TableTicketingInputDto $inputDto): TableTicketingOutputDto
-  {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "ticketing_legal_notice:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
-
-      if ($cachedDto instanceof TableTicketingOutputDto) {
-        return $cachedDto;
-      }
-
-      $rawData = $this->source->fetchTableTicketing($inputDto);
-      $dto = $this->transformer->transformTableTicketing($rawData);
-
-      $this->cache->set($cacheKey, $dto);
-
-      return $dto;
-  }
-  
-  public function ticketListService(TicketListInputDto $inputDto): TicketListOutputDto
+  public function ticketListService(): TicketListOutputDto
   {
       $authContext = $this->getAuthContext();
       $cacheKey = "ticketing_ticket_list:$authContext->pkUser";
@@ -117,7 +99,7 @@ final class TicketingDataProvider implements TicketingDataProviderInterface
         return $cachedDto;
       }
 
-      $rawData = $this->source->fetchTicketList($inputDto);
+      $rawData = $this->source->fetchTicketList();
       $dto = $this->transformer->transformTicketList($rawData);
 
       $this->cache->set($cacheKey, $dto);

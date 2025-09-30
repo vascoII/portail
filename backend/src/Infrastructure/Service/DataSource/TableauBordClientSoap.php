@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Service\Soap;
+namespace App\Infrastructure\Service\DataSource;
 
 use App\Application\Dto\Input\TableauBordClient\IndexInputDto;
 use App\Application\Dto\Input\TableauBordClient\InterventionInputDto;
@@ -10,7 +10,7 @@ use App\Application\Service\DataSource\TableauBordClientDataSourceInterface;
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Hydrator\TableauBordClientHydrator;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
-use App\Infrastructure\Service\Soap\SoapClient;
+use App\Infrastructure\Service\DataSource\SoapClient;
 
 final class TableauBordClientSoap implements TableauBordClientDataSourceInterface
 {
@@ -29,7 +29,7 @@ final class TableauBordClientSoap implements TableauBordClientDataSourceInterfac
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIndex($authContext);
+    $soapRequest = $this->hydrator->hydrateIndex($inputDto, $authContext);
     return $this->soapClient->call('getFactures', $soapRequest);
   }
 
@@ -37,7 +37,7 @@ final class TableauBordClientSoap implements TableauBordClientDataSourceInterfac
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIndex($authContext);
+    $soapRequest = $this->hydrator->hydrateIntervention($inputDto, $authContext);
     return $this->soapClient->call('getFactures', $soapRequest);
   }
 }

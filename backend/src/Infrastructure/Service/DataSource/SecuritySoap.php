@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Service\Soap;
+namespace App\Infrastructure\Service\DataSource;
 
 use App\Application\Dto\Input\Security\CreateInputDto;
 use App\Application\Dto\Input\Security\LoginFromParamInputDto;
@@ -14,7 +14,7 @@ use App\Application\Service\DataSource\SecurityDataSourceInterface;
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Hydrator\SecurityHydrator;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
-use App\Infrastructure\Service\Soap\SoapClient;
+use App\Infrastructure\Service\DataSource\SoapClient;
 
 final class SecuritySoap implements SecurityDataSourceInterface
 {

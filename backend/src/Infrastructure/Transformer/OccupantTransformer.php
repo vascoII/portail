@@ -5,10 +5,6 @@ declare(strict_types=1);
 namespace App\Infrastructure\Transformer;
 
 use App\Application\Dto\Output\Occupant\AlertesOutputDto;
-use App\Application\Dto\Output\Occupant\ExportAnomaliesOutputDto;
-use App\Application\Dto\Output\Occupant\ExportDysfunctionsOutputDto;
-use App\Application\Dto\Output\Occupant\ExportInterventionsOutputDto;
-use App\Application\Dto\Output\Occupant\ExportLeaksOutputDto;
 use App\Application\Dto\Output\Occupant\ListAnomaliesOutputDto;
 use App\Application\Dto\Output\Occupant\ListDysfunctionsOutputDto;
 use App\Application\Dto\Output\Occupant\ListInterventionsOutputDto;
@@ -31,38 +27,6 @@ final class OccupantTransformer
    public function transformAlertes(object $dataSourceResult): AlertesOutputDto
    {
       return new AlertesOutputDto();
-   }
-
-   /**
-    * Transform raw response to ExportAnomaliesOutputDto
-    */
-   public function transformExportAnomalies(object $dataSourceResult): ExportAnomaliesOutputDto
-   {
-      return new ExportAnomaliesOutputDto();
-   }
-
-   /**
-    * Transform raw response to ExportDysfunctionsOutputDto
-    */
-   public function transformExportDysfunctions(object $dataSourceResult): ExportDysfunctionsOutputDto
-   {
-      return new ExportDysfunctionsOutputDto();
-   }
-
-   /**
-    * Transform raw response to ExportInterventionsOutputDto
-    */
-   public function transformExportInterventions(object $dataSourceResult): ExportInterventionsOutputDto
-   {
-      return new ExportInterventionsOutputDto();
-   }
-
-   /**
-    * Transform raw response to ExportLeaksOutputDto
-    */
-   public function transformExportLeaks(object $dataSourceResult): ExportLeaksOutputDto
-   {
-      return new ExportLeaksOutputDto();
    }
 
    /**

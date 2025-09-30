@@ -5,32 +5,18 @@ declare(strict_types=1);
 namespace App\Infrastructure\Hydrator;
 
 use App\Infrastructure\Service\Auth\AuthenticationContext;
-use App\Application\Dto\Input\GestionParc\IndexInputDto;
 use App\Application\Dto\Input\GestionParc\InterventionInputDto;
-use App\Application\Dto\Input\GestionParc\ExportInterventionsInputDto;
 use App\Application\Dto\Input\GestionParc\ReportInputDto;
 use App\Application\Dto\Input\GestionParc\ShowInputDto;
-use App\Application\Dto\Input\GestionParc\ExportLeaksInputDto;
-use App\Application\Dto\Input\GestionParc\ExportAnomaliesInputDto;
-use App\Application\Dto\Input\GestionParc\ListInterventionsInputDto;
+use App\Application\Dto\Input\GestionParc\InterventionsInputDto;
 use App\Application\Dto\Input\GestionParc\ShowInterventionInputDto;
 use App\Application\Dto\Input\GestionParc\FilterResultInputDto;
-use App\Application\Dto\Input\GestionParc\ListLeaksInputDto;
-use App\Application\Dto\Input\GestionParc\ListAnomaliesInputDto;
-use App\Application\Dto\Input\GestionParc\ExportDysfunctionsInputDto;
-use App\Application\Dto\Input\GestionParc\ListDysfunctionsInputDto;
+use App\Application\Dto\Input\GestionParc\LeaksInputDto;
+use App\Application\Dto\Input\GestionParc\AnomaliesInputDto;
+use App\Application\Dto\Input\GestionParc\DysfunctionsInputDto;
 
 final class GestionParcHydrator
 {
-  public function hydrateIndex(IndexInputDto $inputDto, AuthenticationContext $authContext): object
-  {
-    return (object) [
-      'SessionID' => $authContext->sessionId,
-      'PkUser' => $authContext->pkUser,
-      // TODO: Add specific parameters based on IndexInputDto properties
-    ];
-  }
-
   public function hydrateIntervention(InterventionInputDto $inputDto, AuthenticationContext $authContext): object
   {
     return (object) [
@@ -59,12 +45,12 @@ final class GestionParcHydrator
     ];
   }
 
-  public function hydrateListInterventions(ListInterventionsInputDto $inputDto, AuthenticationContext $authContext): object
+  public function hydrateListInterventions(InterventionsInputDto $inputDto, AuthenticationContext $authContext): object
   {
     return (object) [
       'SessionID' => $authContext->sessionId,
       'PkUser' => $authContext->pkUser,
-      // TODO: Add specific parameters based on ListInterventionsInputDto properties
+      // TODO: Add specific parameters based on InterventionsInputDto properties
     ];
   }
 
@@ -86,70 +72,30 @@ final class GestionParcHydrator
     ];
   }
 
-  public function hydrateListLeaks(ListLeaksInputDto $inputDto, AuthenticationContext $authContext): object
+  public function hydrateListLeaks(LeaksInputDto $inputDto, AuthenticationContext $authContext): object
   {
     return (object) [
       'SessionID' => $authContext->sessionId,
       'PkUser' => $authContext->pkUser,
-      // TODO: Add specific parameters based on ListLeaksInputDto properties
+      // TODO: Add specific parameters based on LeaksInputDto properties
     ];
   }
 
-  public function hydrateListAnomalies(ListAnomaliesInputDto $inputDto, AuthenticationContext $authContext): object
+  public function hydrateListAnomalies(AnomaliesInputDto $inputDto, AuthenticationContext $authContext): object
   {
     return (object) [
       'SessionID' => $authContext->sessionId,
       'PkUser' => $authContext->pkUser,
-      // TODO: Add specific parameters based on ListAnomaliesInputDto properties
+      // TODO: Add specific parameters based on AnomaliesInputDto properties
     ];
   }
 
-  public function hydrateExportInterventions(ExportInterventionsInputDto $inputDto, AuthenticationContext $authContext): object
+  public function hydrateListDysfunctions(DysfunctionsInputDto $inputDto, AuthenticationContext $authContext): object
   {
     return (object) [
       'SessionID' => $authContext->sessionId,
       'PkUser' => $authContext->pkUser,
-      'ReportType' => 'INTERVENTIONS_GESTIONPARC',
-      'ParamsFiltres' => $this->buildParamsFiltres($inputDto)
-    ];
-  }
-
-  public function hydrateExportLeaks(ExportLeaksInputDto $inputDto, AuthenticationContext $authContext): object
-  {
-    return (object) [
-      'SessionID' => $authContext->sessionId,
-      'PkUser' => $authContext->pkUser,
-      'ReportType' => 'LEAKS_GESTIONPARC',
-      'ParamsFiltres' => $this->buildParamsFiltres($inputDto)
-    ];
-  }
-
-  public function hydrateExportAnomalies(ExportAnomaliesInputDto $inputDto, AuthenticationContext $authContext): object
-  {
-    return (object) [
-      'SessionID' => $authContext->sessionId,
-      'PkUser' => $authContext->pkUser,
-      'ReportType' => 'ANOMALIES_GESTIONPARC',
-      'ParamsFiltres' => $this->buildParamsFiltres($inputDto)
-    ];
-  }
-
-  public function hydrateExportDysfunctions(ExportDysfunctionsInputDto $inputDto, AuthenticationContext $authContext): object
-  {
-    return (object) [
-      'SessionID' => $authContext->sessionId,
-      'PkUser' => $authContext->pkUser,
-      'ReportType' => 'DYSFUNCTIONS_GESTIONPARC',
-      'ParamsFiltres' => $this->buildParamsFiltres($inputDto)
-    ];
-  }
-
-  public function hydrateListDysfunctions(ListDysfunctionsInputDto $inputDto, AuthenticationContext $authContext): object
-  {
-    return (object) [
-      'SessionID' => $authContext->sessionId,
-      'PkUser' => $authContext->pkUser,
-      // TODO: Add specific parameters based on ListDysfunctionsInputDto properties
+      // TODO: Add specific parameters based on DysfunctionsInputDto properties
     ];
   }
 

@@ -2,15 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Service\Soap;
+namespace App\Infrastructure\Service\DataSource;
 
-use App\Application\Dto\Input\ReportToken\LoadingInputDto;
 use App\Application\Dto\Input\ReportToken\ReportInputDto;
 use App\Application\Service\DataSource\ReportTokenDataSourceInterface;
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Hydrator\ReportTokenHydrator;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
-use App\Infrastructure\Service\Soap\SoapClient;
+use App\Infrastructure\Service\DataSource\SoapClient;
 
 final class ReportTokenSoap implements ReportTokenDataSourceInterface
 {
@@ -25,19 +24,11 @@ final class ReportTokenSoap implements ReportTokenDataSourceInterface
     return AuthenticationContext::fromAuthService($this->authService);
   }
 
-  public function fetchLoading(LoadingInputDto $inputDto): object
-  {
-    $authContext = $this->getAuthContext();
-    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIndex($authContext);
-    return $this->soapClient->call('getFactures', $soapRequest);
-  }
-
   public function fetchReport(ReportInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIndex($authContext);
-    return $this->soapClient->call('getFactures', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateReport($inputDto, $authContext);
+    return $this->soapClient->call('', $soapRequest);
   }
 }
