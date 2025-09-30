@@ -24,7 +24,7 @@ final class GestionParcTransformer
    /**
     * Transform raw response to ExportAnomaliesOutputDto
     */
-   public function transformExportAnomalies(object $response): ExportAnomaliesOutputDto
+   public function transformExportAnomalies(object $dataSourceResult): ExportAnomaliesOutputDto
    {
       return new ExportAnomaliesOutputDto();
    }
@@ -32,7 +32,7 @@ final class GestionParcTransformer
    /**
     * Transform raw response to ExportDysfunctionsOutputDto
     */
-   public function transformExportDysfunctions(object $response): ExportDysfunctionsOutputDto
+   public function transformExportDysfunctions(object $dataSourceResult): ExportDysfunctionsOutputDto
    {
       return new ExportDysfunctionsOutputDto();
    }
@@ -40,7 +40,7 @@ final class GestionParcTransformer
    /**
     * Transform raw response to ExportInterventionsOutputDto
     */
-   public function transformExportInterventions(object $response): ExportInterventionsOutputDto
+   public function transformExportInterventions(object $dataSourceResult): ExportInterventionsOutputDto
    {
       return new ExportInterventionsOutputDto();
    }
@@ -48,7 +48,7 @@ final class GestionParcTransformer
    /**
     * Transform raw response to ExportLeaksOutputDto
     */
-   public function transformExportLeaks(object $response): ExportLeaksOutputDto
+   public function transformExportLeaks(object $dataSourceResult): ExportLeaksOutputDto
    {
       return new ExportLeaksOutputDto();
    }
@@ -56,7 +56,7 @@ final class GestionParcTransformer
    /**
     * Transform raw response to FilterResultOutputDto
     */
-   public function transformFilterResult(object $response): FilterResultOutputDto
+   public function transformFilterResult(object $dataSourceResult): FilterResultOutputDto
    {
       return new FilterResultOutputDto();
    }
@@ -64,7 +64,7 @@ final class GestionParcTransformer
    /**
     * Transform raw response to IndexOutputDto
     */
-   public function transformIndex(object $response): IndexOutputDto
+   public function transformIndex(object $dataSourceResult): IndexOutputDto
    {
       return new IndexOutputDto();
    }
@@ -72,7 +72,7 @@ final class GestionParcTransformer
    /**
     * Transform raw response to InterventionOutputDto
     */
-   public function transformIntervention(object $response): InterventionOutputDto
+   public function transformIntervention(object $dataSourceResult): InterventionOutputDto
    {
       return new InterventionOutputDto();
    }
@@ -80,7 +80,7 @@ final class GestionParcTransformer
    /**
     * Transform raw response to ListAnomaliesOutputDto
     */
-   public function transformListAnomalies(object $response): ListAnomaliesOutputDto
+   public function transformListAnomalies(object $dataSourceResult): ListAnomaliesOutputDto
    {
       return new ListAnomaliesOutputDto();
    }
@@ -88,7 +88,7 @@ final class GestionParcTransformer
    /**
     * Transform raw response to ListDysfunctionsOutputDto
     */
-   public function transformListDysfunctions(object $response): ListDysfunctionsOutputDto
+   public function transformListDysfunctions(object $dataSourceResult): ListDysfunctionsOutputDto
    {
       return new ListDysfunctionsOutputDto();
    }
@@ -96,7 +96,7 @@ final class GestionParcTransformer
    /**
     * Transform raw response to ListInterventionsOutputDto
     */
-   public function transformListInterventions(object $response): ListInterventionsOutputDto
+   public function transformListInterventions(object $dataSourceResult): ListInterventionsOutputDto
    {
       return new ListInterventionsOutputDto();
    }
@@ -104,7 +104,7 @@ final class GestionParcTransformer
    /**
     * Transform raw response to ListLeaksOutputDto
     */
-   public function transformListLeaks(object $response): ListLeaksOutputDto
+   public function transformListLeaks(object $dataSourceResult): ListLeaksOutputDto
    {
       return new ListLeaksOutputDto();
    }
@@ -112,7 +112,7 @@ final class GestionParcTransformer
    /**
     * Transform raw response to ReportOutputDto
     */
-   public function transformReport(object $response): ReportOutputDto
+   public function transformReport(object $dataSourceResult): ReportOutputDto
    {
       return new ReportOutputDto();
    }
@@ -120,7 +120,7 @@ final class GestionParcTransformer
    /**
     * Transform raw response to ShowInterventionOutputDto
     */
-   public function transformShowIntervention(object $response): ShowInterventionOutputDto
+   public function transformShowIntervention(object $dataSourceResult): ShowInterventionOutputDto
    {
       return new ShowInterventionOutputDto();
    }
@@ -128,7 +128,7 @@ final class GestionParcTransformer
    /**
     * Transform raw response to ShowOutputDto
     */
-   public function transformShow(object $response): ShowOutputDto
+   public function transformShow(object $dataSourceResult): ShowOutputDto
    {
       return new ShowOutputDto();
    }

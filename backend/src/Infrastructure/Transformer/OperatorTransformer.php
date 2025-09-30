@@ -19,7 +19,7 @@ final class OperatorTransformer
    /**
     * Transform raw response to AddBuildingOutputDto
     */
-   public function transformAddBuilding(object $response): AddBuildingOutputDto
+   public function transformAddBuilding(object $dataSourceResult): AddBuildingOutputDto
    {
       return new AddBuildingOutputDto();
    }
@@ -27,7 +27,7 @@ final class OperatorTransformer
    /**
     * Transform raw response to CreateOutputDto
     */
-   public function transformCreate(object $response): CreateOutputDto
+   public function transformCreate(object $dataSourceResult): CreateOutputDto
    {
       return new CreateOutputDto();
    }
@@ -35,7 +35,7 @@ final class OperatorTransformer
    /**
     * Transform raw response to DeleteOutputDto
     */
-   public function transformDelete(object $response): DeleteOutputDto
+   public function transformDelete(object $dataSourceResult): DeleteOutputDto
    {
       return new DeleteOutputDto();
    }
@@ -43,7 +43,7 @@ final class OperatorTransformer
    /**
     * Transform raw response to EditOutputDto
     */
-   public function transformEdit(object $response): EditOutputDto
+   public function transformEdit(object $dataSourceResult): EditOutputDto
    {
       return new EditOutputDto();
    }
@@ -51,7 +51,7 @@ final class OperatorTransformer
    /**
     * Transform raw response to EditPasswordOutputDtoputDto
     */
-   public function transformEditPassword(object $response): EditPasswordOutputDto
+   public function transformEditPassword(object $dataSourceResult): EditPasswordOutputDto
    {
       return new EditPasswordOutputDto();
    }
@@ -59,7 +59,7 @@ final class OperatorTransformer
    /**
     * Transform raw response to IndexOutputDto
     */
-   public function transformIndex(object $response): IndexOutputDto
+   public function transformIndex(object $dataSourceResult): IndexOutputDto
    {
       return new IndexOutputDto();
    }
@@ -67,7 +67,7 @@ final class OperatorTransformer
    /**
     * Transform raw response to OtatsoccupantsOutputDto
     */
-   public function transformOtatsoccupants(object $response): OtatsoccupantsOutputDto
+   public function transformOtatsoccupants(object $dataSourceResult): OtatsoccupantsOutputDto
    {
       return new OtatsoccupantsOutputDto();
    }
@@ -75,7 +75,7 @@ final class OperatorTransformer
    /**
     * Transform raw response to RemoveBuildingOutputDto
     */
-   public function transformRemoveBuilding(object $response): RemoveBuildingOutputDto
+   public function transformRemoveBuilding(object $dataSourceResult): RemoveBuildingOutputDto
    {
       return new RemoveBuildingOutputDto();
    }
@@ -83,7 +83,7 @@ final class OperatorTransformer
    /**
     * Transform raw response to ViewOutputDto
     */
-   public function transformView(object $response): ViewOutputDto
+   public function transformView(object $dataSourceResult): ViewOutputDto
    {
       return new ViewOutputDto();
    }

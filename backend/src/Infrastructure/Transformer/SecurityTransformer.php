@@ -17,7 +17,7 @@ final class SecurityTransformer
    /**
     * Transform raw response to CreateOutputDto
     */
-   public function transformCreate(object $response): CreateOutputDto
+   public function transformCreate(object $dataSourceResult): CreateOutputDto
    {
       return new CreateOutputDto(true);
    }
@@ -25,7 +25,7 @@ final class SecurityTransformer
    /**
     * Transform raw response to LoginFromParamOutputDto
     */
-   public function transformLoginFromParam(object $response): LoginFromParamOutputDto
+   public function transformLoginFromParam(object $dataSourceResult): LoginFromParamOutputDto
    {
       return new LoginFromParamOutputDto();
    }
@@ -33,7 +33,7 @@ final class SecurityTransformer
    /**
     * Transform raw response to ResetOrCreateOutputDto
     */
-   public function transformResetOrCreate(object $response): ResetOrCreateOutputDto
+   public function transformResetOrCreate(object $dataSourceResult): ResetOrCreateOutputDto
    {
       return new ResetOrCreateOutputDto();
    }
@@ -41,7 +41,7 @@ final class SecurityTransformer
    /**
     * Transform raw response to ResetPasswordOutputDto
     */
-   public function transformResetPassword(object $response): ResetPasswordOutputDto
+   public function transformResetPassword(object $dataSourceResult): ResetPasswordOutputDto
    {
       return new ResetPasswordOutputDto();
    }
@@ -49,7 +49,7 @@ final class SecurityTransformer
    /**
     * Transform raw response to UpdatePasswordOutputDto
     */
-   public function transformUpdatePassword(object $response): UpdatePasswordOutputDto
+   public function transformUpdatePassword(object $dataSourceResult): UpdatePasswordOutputDto
    {
       return new UpdatePasswordOutputDto();
    }
@@ -57,7 +57,7 @@ final class SecurityTransformer
    /**
     * Transform raw response to LoginOutputDto
     */
-   public function transformLogin(object $response): LoginOutputDto
+   public function transformLogin(object $dataSourceResult): LoginOutputDto
    {
       return new LoginOutputDto();
    }
@@ -65,7 +65,7 @@ final class SecurityTransformer
    /**
     * Transform raw response to LoginOutputDto
     */
-   public function transformLogout(object $response): LogoutOutputDto
+   public function transformLogout(object $dataSourceResult): LogoutOutputDto
    {
       return new LogoutOutputDto(true);
    }

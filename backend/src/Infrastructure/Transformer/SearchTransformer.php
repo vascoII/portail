@@ -11,7 +11,7 @@ final class SearchTransformer
    /**
     * Transform raw response to IndexOutputDto
     */
-   public function transformIndex(object $response): IndexOutputDto
+   public function transformIndex(object $dataSourceResult): IndexOutputDto
    {
       return new IndexOutputDto();
    }

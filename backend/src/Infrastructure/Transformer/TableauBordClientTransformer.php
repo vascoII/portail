@@ -12,7 +12,7 @@ final class TableauBordClientTransformer
    /**
     * Transform raw response to IndexOutputDto
     */
-   public function transformIndex(object $response): IndexOutputDto
+   public function transformIndex(object $dataSourceResult): IndexOutputDto
    {
       return new IndexOutputDto();
    }
@@ -20,7 +20,7 @@ final class TableauBordClientTransformer
    /**
     * Transform raw response to InterventionOutputDto
     */
-   public function transformIntervention(object $response): InterventionOutputDto
+   public function transformIntervention(object $dataSourceResult): InterventionOutputDto
    {
       return new InterventionOutputDto();
    }

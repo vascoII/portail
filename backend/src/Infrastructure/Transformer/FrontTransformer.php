@@ -14,7 +14,7 @@ final class FrontTransformer
    /**
     * Transform raw response to CguOutputDto
     */
-   public function transformCgu(object $response): CguOutputDto
+   public function transformCgu(object $dataSourceResult): CguOutputDto
    {
       return new CguOutputDto();
    }
@@ -22,7 +22,7 @@ final class FrontTransformer
    /**
     * Transform raw response to IndexOutputDto
     */
-   public function transformIndex(object $response): IndexOutputDto
+   public function transformIndex(object $dataSourceResult): IndexOutputDto
    {
       return new IndexOutputDto();
    }
@@ -30,7 +30,7 @@ final class FrontTransformer
    /**
     * Transform raw response to CguOutputDto
     */
-   public function transformPersonalData(object $response): PersonalDatasOutputDto
+   public function transformPersonalData(object $dataSourceResult): PersonalDatasOutputDto
    {
       return new PersonalDatasOutputDto();
    }
@@ -38,7 +38,7 @@ final class FrontTransformer
    /**
     * Transform raw response to CguOutputDto
     */
-   public function transformLegalNotices(object $response): LegalNoticesOutputDto
+   public function transformLegalNotices(object $dataSourceResult): LegalNoticesOutputDto
    {
       return new LegalNoticesOutputDto();
    }

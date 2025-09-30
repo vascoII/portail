@@ -12,13 +12,13 @@ final class FactureTransformer
   /**
    * Transform raw response to IndexOutputDto
    */
-  public function transformIndex(object $response): IndexOutputDto
+  public function transformIndex(object $dataSourceResult): IndexOutputDto
   {
-    if (!isset($response['ListeFactures'])) {
+    if (!isset($dataSourceResult['ListeFactures'])) {
       return new IndexOutputDto([]);
     }
 
-    $listFactures = $response['ListeFactures'];
+    $listFactures = $dataSourceResult['ListeFactures'];
     if (isset($listFactures['facture'])) {
       $listFactures = $listFactures['facture'];
     }
@@ -50,11 +50,11 @@ final class FactureTransformer
   /**
    * Transform raw response to ReportOutputDto
    */
-  public function transformReport(object $response): ReportOutputDto
+  public function transformReport(object $dataSourceResult): ReportOutputDto
   {
     return new ReportOutputDto(
-      $response['PDF_DATA'] ?? '',
-      !empty($response['PDF_DATA'] ?? '')
+      $dataSourceResult['PDF_DATA'] ?? '',
+      !empty($dataSourceResult['PDF_DATA'] ?? '')
     );
   }
 

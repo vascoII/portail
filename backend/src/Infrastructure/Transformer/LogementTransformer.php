@@ -31,7 +31,7 @@ final class LogementTransformer
    /**
     * Transform raw response to CreateTicketImmeubleOutputDto
     */
-   public function transformCreateTicketImmeuble(object $response): CreateTicketImmeubleOutputDto
+   public function transformCreateTicketImmeuble(object $dataSourceResult): CreateTicketImmeubleOutputDto
    {
       return new CreateTicketImmeubleOutputDto();
    }
@@ -39,7 +39,7 @@ final class LogementTransformer
    /**
     * Transform raw response to CreateTicketOutputDto
     */
-   public function transformCreateTicket(object $response): CreateTicketOutputDto
+   public function transformCreateTicket(object $dataSourceResult): CreateTicketOutputDto
    {
       return new CreateTicketOutputDto();
    }
@@ -47,7 +47,7 @@ final class LogementTransformer
    /**
     * Transform raw response to EditOutputDto
     */
-   public function transformEdit(object $response): EditOutputDto
+   public function transformEdit(object $dataSourceResult): EditOutputDto
    {
       return new EditOutputDto();
    }
@@ -55,7 +55,7 @@ final class LogementTransformer
    /**
     * Transform raw response to ExportAnomaliesOutputDto
     */
-   public function transformExportAnomalies(object $response): ExportAnomaliesOutputDto
+   public function transformExportAnomalies(object $dataSourceResult): ExportAnomaliesOutputDto
    {
       return new ExportAnomaliesOutputDto();
    }
@@ -63,7 +63,7 @@ final class LogementTransformer
    /**
     * Transform raw response to ExportDysfunctionsOutputDto
     */
-   public function transformExportDysfunctions(object $response): ExportDysfunctionsOutputDto
+   public function transformExportDysfunctions(object $dataSourceResult): ExportDysfunctionsOutputDto
    {
       return new ExportDysfunctionsOutputDto();
    }
@@ -71,7 +71,7 @@ final class LogementTransformer
    /**
     * Transform raw response to ExportInterventionsOutputDto
     */
-   public function transformExportInterventions(object $response): ExportInterventionsOutputDto
+   public function transformExportInterventions(object $dataSourceResult): ExportInterventionsOutputDto
    {
       return new ExportInterventionsOutputDto();
    }
@@ -79,7 +79,7 @@ final class LogementTransformer
    /**
     * Transform raw response to ExportLeaksOutputDto
     */
-   public function transformExportLeaks(object $response): ExportLeaksOutputDto
+   public function transformExportLeaks(object $dataSourceResult): ExportLeaksOutputDto
    {
       return new ExportLeaksOutputDto();
    }
@@ -87,7 +87,7 @@ final class LogementTransformer
    /**
     * Transform raw response to ExportOutputDto
     */
-   public function transformExport(object $response): ExportOutputDto
+   public function transformExport(object $dataSourceResult): ExportOutputDto
    {
       return new ExportOutputDto();
    }
@@ -95,7 +95,7 @@ final class LogementTransformer
    /**
     * Transform raw response to FilterResultOutputDto
     */
-   public function transformFilterResult(object $response): FilterResultOutputDto
+   public function transformFilterResult(object $dataSourceResult): FilterResultOutputDto
    {
       return new FilterResultOutputDto();
    }
@@ -103,7 +103,7 @@ final class LogementTransformer
    /**
     * Transform raw response to GetInfosAppareilOutputDto
     */
-   public function transformGetInfosAppareil(object $response): GetInfosAppareilOutputDto
+   public function transformGetInfosAppareil(object $dataSourceResult): GetInfosAppareilOutputDto
    {
       return new GetInfosAppareilOutputDto();
    }
@@ -111,7 +111,7 @@ final class LogementTransformer
    /**
     * Transform raw response to GetTicketOnwerOutputDto
     */
-   public function transformGetTicketOnwer(object $response): GetTicketOnwerOutputDto
+   public function transformGetTicketOnwer(object $dataSourceResult): GetTicketOnwerOutputDto
    {
       return new GetTicketOnwerOutputDto();
    }
@@ -119,7 +119,7 @@ final class LogementTransformer
    /**
     * Transform raw response to GuideOutputDto
     */
-   public function transformGuide(object $response): GuideOutputDto
+   public function transformGuide(object $dataSourceResult): GuideOutputDto
    {
       return new GuideOutputDto();
    }
@@ -127,7 +127,7 @@ final class LogementTransformer
    /**
     * Transform raw response to IndexOutputDto
     */
-   public function transformIndex(object $response): IndexOutputDto
+   public function transformIndex(object $dataSourceResult): IndexOutputDto
    {
       return new IndexOutputDto();
    }
@@ -135,7 +135,7 @@ final class LogementTransformer
    /**
     * Transform raw response to ListAnomaliesOutputDto
     */
-   public function transformListAnomalies(object $response): ListAnomaliesOutputDto
+   public function transformListAnomalies(object $dataSourceResult): ListAnomaliesOutputDto
    {
       return new ListAnomaliesOutputDto();
    }
@@ -143,7 +143,7 @@ final class LogementTransformer
    /**
     * Transform raw response to ListDysfunctionsOutputDto
     */
-   public function transformListDysfunctions(object $response): ListDysfunctionsOutputDto
+   public function transformListDysfunctions(object $dataSourceResult): ListDysfunctionsOutputDto
    {
       return new ListDysfunctionsOutputDto();
    }
@@ -151,7 +151,7 @@ final class LogementTransformer
    /**
     * Transform raw response to ListInterventionsOutputDto
     */
-   public function transformListInterventions(object $response): ListInterventionsOutputDto
+   public function transformListInterventions(object $dataSourceResult): ListInterventionsOutputDto
    {
       return new ListInterventionsOutputDto();
    }
@@ -159,7 +159,7 @@ final class LogementTransformer
    /**
     * Transform raw response to ListLeaksOutputDto
     */
-   public function transformListLeaks(object $response): ListLeaksOutputDto
+   public function transformListLeaks(object $dataSourceResult): ListLeaksOutputDto
    {
       return new ListLeaksOutputDto();
    }
@@ -167,7 +167,7 @@ final class LogementTransformer
    /**
     * Transform raw response to SearchOutputDto
     */
-   public function transformSearch(object $response): SearchOutputDto
+   public function transformSearch(object $dataSourceResult): SearchOutputDto
    {
       return new SearchOutputDto();
    }
@@ -175,7 +175,7 @@ final class LogementTransformer
    /**
     * Transform raw response to ShowInterventionOutputDto
     */
-   public function transformShowIntervention(object $response): ShowInterventionOutputDto
+   public function transformShowIntervention(object $dataSourceResult): ShowInterventionOutputDto
    {
       return new ShowInterventionOutputDto();
    }
@@ -183,7 +183,7 @@ final class LogementTransformer
    /**
     * Transform raw response to ShowOutputDto
     */
-   public function transformShow(object $response): ShowOutputDto
+   public function transformShow(object $dataSourceResult): ShowOutputDto
    {
       return new ShowOutputDto();
    }
@@ -191,7 +191,7 @@ final class LogementTransformer
    /**
     * Transform raw response to ShowRepartReleveOutputDto
     */
-   public function transformShowRepartReleve(object $response): ShowRepartReleveOutputDto
+   public function transformShowRepartReleve(object $dataSourceResult): ShowRepartReleveOutputDto
    {
       return new ShowRepartReleveOutputDto();
    }

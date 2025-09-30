@@ -28,7 +28,7 @@ final class OccupantTransformer
    /**
     * Transform raw response to AlertesOutputDto
     */
-   public function transformAlertes(object $response): AlertesOutputDto
+   public function transformAlertes(object $dataSourceResult): AlertesOutputDto
    {
       return new AlertesOutputDto();
    }
@@ -36,7 +36,7 @@ final class OccupantTransformer
    /**
     * Transform raw response to ExportAnomaliesOutputDto
     */
-   public function transformExportAnomalies(object $response): ExportAnomaliesOutputDto
+   public function transformExportAnomalies(object $dataSourceResult): ExportAnomaliesOutputDto
    {
       return new ExportAnomaliesOutputDto();
    }
@@ -44,7 +44,7 @@ final class OccupantTransformer
    /**
     * Transform raw response to ExportDysfunctionsOutputDto
     */
-   public function transformExportDysfunctions(object $response): ExportDysfunctionsOutputDto
+   public function transformExportDysfunctions(object $dataSourceResult): ExportDysfunctionsOutputDto
    {
       return new ExportDysfunctionsOutputDto();
    }
@@ -52,7 +52,7 @@ final class OccupantTransformer
    /**
     * Transform raw response to ExportInterventionsOutputDto
     */
-   public function transformExportInterventions(object $response): ExportInterventionsOutputDto
+   public function transformExportInterventions(object $dataSourceResult): ExportInterventionsOutputDto
    {
       return new ExportInterventionsOutputDto();
    }
@@ -60,7 +60,7 @@ final class OccupantTransformer
    /**
     * Transform raw response to ExportLeaksOutputDto
     */
-   public function transformExportLeaks(object $response): ExportLeaksOutputDto
+   public function transformExportLeaks(object $dataSourceResult): ExportLeaksOutputDto
    {
       return new ExportLeaksOutputDto();
    }
@@ -68,7 +68,7 @@ final class OccupantTransformer
    /**
     * Transform raw response to ListAnomaliesOutputDto
     */
-   public function transformListAnomalies(object $response): ListAnomaliesOutputDto
+   public function transformListAnomalies(object $dataSourceResult): ListAnomaliesOutputDto
    {
       return new ListAnomaliesOutputDto();
    }
@@ -76,7 +76,7 @@ final class OccupantTransformer
    /**
     * Transform raw response to ListDysfunctionsOutputDto
     */
-   public function transformListDysfunctions(object $response): ListDysfunctionsOutputDto
+   public function transformListDysfunctions(object $dataSourceResult): ListDysfunctionsOutputDto
    {
       return new ListDysfunctionsOutputDto();
    }
@@ -84,7 +84,7 @@ final class OccupantTransformer
    /**
     * Transform raw response to ListInterventionsOutputDto
     */
-   public function transformListInterventions(object $response): ListInterventionsOutputDto
+   public function transformListInterventions(object $dataSourceResult): ListInterventionsOutputDto
    {
       return new ListInterventionsOutputDto();
    }
@@ -92,7 +92,7 @@ final class OccupantTransformer
    /**
     * Transform raw response to ListLeaksOutputDto
     */
-   public function transformListLeaks(object $response): ListLeaksOutputDto
+   public function transformListLeaks(object $dataSourceResult): ListLeaksOutputDto
    {
       return new ListLeaksOutputDto();
    }
@@ -100,7 +100,7 @@ final class OccupantTransformer
    /**
     * Transform raw response to MyAccountOutputDto
     */
-   public function transformMyAccount(object $response): MyAccountOutputDto
+   public function transformMyAccount(object $dataSourceResult): MyAccountOutputDto
    {
       return new MyAccountOutputDto();
    }
@@ -108,7 +108,7 @@ final class OccupantTransformer
    /**
     * Transform raw response to ShowEauReleveOutputDto
     */
-   public function transformShowEauReleve(object $response): ShowEauReleveOutputDto
+   public function transformShowEauReleve(object $dataSourceResult): ShowEauReleveOutputDto
    {
       return new ShowEauReleveOutputDto();
    }
@@ -116,7 +116,7 @@ final class OccupantTransformer
    /**
     * Transform raw response to ShowInterventionOutputDto
     */
-   public function transformShowIntervention(object $response): ShowInterventionOutputDto
+   public function transformShowIntervention(object $dataSourceResult): ShowInterventionOutputDto
    {
       return new ShowInterventionOutputDto();
    }
@@ -124,7 +124,7 @@ final class OccupantTransformer
    /**
     * Transform raw response to ShowNoteReleveOutputDto
     */
-   public function transformShowNoteReleve(object $response): ShowNoteReleveOutputDto
+   public function transformShowNoteReleve(object $dataSourceResult): ShowNoteReleveOutputDto
    {
       return new ShowNoteReleveOutputDto();
    }
@@ -132,7 +132,7 @@ final class OccupantTransformer
    /**
     * Transform raw response to ShowOutputDto
     */
-   public function transformShow(object $response): ShowOutputDto
+   public function transformShow(object $dataSourceResult): ShowOutputDto
    {
       return new ShowOutputDto();
    }
@@ -140,7 +140,7 @@ final class OccupantTransformer
    /**
     * Transform raw response to ShowRepartReleveOutputDto
     */
-   public function transformShowRepartReleve(object $response): ShowRepartReleveOutputDto
+   public function transformShowRepartReleve(object $dataSourceResult): ShowRepartReleveOutputDto
    {
       return new ShowRepartReleveOutputDto();
    }
@@ -148,7 +148,7 @@ final class OccupantTransformer
    /**
     * Transform raw response to SimulateurOutputDto
     */
-   public function transformSimulateur(object $response): SimulateurOutputDto
+   public function transformSimulateur(object $dataSourceResult): SimulateurOutputDto
    {
       return new SimulateurOutputDto();
    }
@@ -156,8 +156,8 @@ final class OccupantTransformer
    /**
     * Transform raw response to EditOutputDto
     */
-   public function transformEdit(object $response): EditOutputDto
+   public function transformEdit(object $dataSourceResult): EditOutputDto
    {
-      return new EditOutputDto($response[self::UPDATED]);
+      return new EditOutputDto($dataSourceResult[self::UPDATED]);
    }
 }

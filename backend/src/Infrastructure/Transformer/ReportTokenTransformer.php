@@ -12,7 +12,7 @@ final class ReportTokenTransformer
    /**
     * Transform raw response to LoadingOutputDto
     */
-   public function transformLoading(object $response): LoadingOutputDto
+   public function transformLoading(object $dataSourceResult): LoadingOutputDto
    {
       return new LoadingOutputDto();
    }
@@ -20,7 +20,7 @@ final class ReportTokenTransformer
    /**
     * Transform raw response to ReportInputDto
     */
-   public function transformReport(object $response): ReportOutputDto
+   public function transformReport(object $dataSourceResult): ReportOutputDto
    {
       return new ReportOutputDto();
    }

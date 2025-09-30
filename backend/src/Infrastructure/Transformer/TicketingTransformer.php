@@ -16,7 +16,7 @@ final class TicketingTransformer
    /**
     * Transform raw response to AttachmentTicketOutputDto
     */
-   public function transformAttachmentTicket(object $response): AttachmentTicketOutputDto
+   public function transformAttachmentTicket(object $dataSourceResult): AttachmentTicketOutputDto
    {
       return new AttachmentTicketOutputDto();
    }
@@ -24,7 +24,7 @@ final class TicketingTransformer
    /**
     * Transform raw response to CloseTicketOutputDto
     */
-   public function transformCloseTicket(object $response): CloseTicketOutputDto
+   public function transformCloseTicket(object $dataSourceResult): CloseTicketOutputDto
    {
       return new CloseTicketOutputDto();
    }
@@ -32,7 +32,7 @@ final class TicketingTransformer
    /**
     * Transform raw response to CreateTicketOutputDto
     */
-   public function transformCreateTicket(object $response): CreateTicketOutputDto
+   public function transformCreateTicket(object $dataSourceResult): CreateTicketOutputDto
    {
       return new CreateTicketOutputDto();
    }
@@ -40,7 +40,7 @@ final class TicketingTransformer
    /**
     * Transform raw response to MenuTicketOutputDto
     */
-   public function transformMenuTicket(object $response): MenuTicketOutputDto
+   public function transformMenuTicket(object $dataSourceResult): MenuTicketOutputDto
    {
       return new MenuTicketOutputDto();
    }
@@ -48,7 +48,7 @@ final class TicketingTransformer
    /**
     * Transform raw response to TableTicketingOutputDto
     */
-   public function transformTableTicketing(object $response): TableTicketingOutputDto
+   public function transformTableTicketing(object $dataSourceResult): TableTicketingOutputDto
    {
       return new TableTicketingOutputDto();
    }
@@ -56,7 +56,7 @@ final class TicketingTransformer
    /**
     * Transform raw response to TicketListOutputDto
     */
-   public function transformTicketList(object $response): TicketListOutputDto
+   public function transformTicketList(object $dataSourceResult): TicketListOutputDto
    {
       return new TicketListOutputDto();
    }
