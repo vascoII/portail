@@ -7,8 +7,8 @@ namespace App\Http\Action\Occupant;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
-use App\Domain\UseCase\Occupant\ExportAnomaliesUseCase;
-use App\Application\Dto\Input\Occupant\ExportAnomaliesInputDto;
+use App\Domain\UseCase\Occupant\AnomaliesUseCase;
+use App\Application\Dto\Input\Occupant\AnomaliesInputDto;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,11 +16,11 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route(path: '/occupant/anomalies/export', name: 'occupant_export_anomalies', methods: ['GET'])]
 final class ExportAnomaliesAction extends AbstractAction implements ActionInterface
 {
-  public function __construct(private readonly ResponderInterface $responder, private readonly ExportAnomaliesUseCase $useCase) {}
+  public function __construct(private readonly ResponderInterface $responder, private readonly AnomaliesUseCase $useCase) {}
 
   public function __invoke(Request $request, array $args = []): Response
   {
-    $input = new ExportAnomaliesInputDto();
+    $input = new AnomaliesInputDto();
     $output = $this->useCase->execute($input);
     return $this->responder->respond($output);
   }

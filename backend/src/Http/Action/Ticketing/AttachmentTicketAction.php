@@ -20,8 +20,8 @@ final class AttachmentTicketAction extends AbstractAction implements ActionInter
 
   public function __invoke(Request $request, array $args = []): Response
   {
-    $ticketId = (string) $request->attributes->get(self::PARAM_TICKET_ID);
-    $input = new AttachmentTicketInputDto($ticketId);
+    $pkTicket = (string) $request->attributes->get(self::PARAM_PK_TICKET);
+    $input = new AttachmentTicketInputDto($pkTicket);
     $output = $this->useCase->execute($input);
     return $this->responder->respond($output);
   }

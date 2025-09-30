@@ -8,7 +8,6 @@ use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
 use App\Domain\UseCase\Front\PersonalDatasUseCase;
-use App\Application\Dto\Input\Front\PersonalDatasInputDto;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,8 +19,7 @@ final class PersonalDatasAction extends AbstractAction implements ActionInterfac
 
   public function __invoke(Request $request, array $args = []): Response
   {
-    $input = new PersonalDatasInputDto();
-    $output = $this->useCase->execute($input);
+    $output = $this->useCase->execute();
     return $this->responder->respond($output);
   }
 }

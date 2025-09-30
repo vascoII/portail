@@ -16,7 +16,10 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route(path: '/intervention/{pkDepannage}/report', name: 'intervention_report', methods: ['GET'])]
 final class ReportAction extends AbstractAction implements ActionInterface
 {
-  public function __construct(private readonly ResponderInterface $responder, private readonly ReportUseCase $useCase) {}
+  public function __construct(
+    private readonly ResponderInterface $responder, 
+    private readonly ReportUseCase $useCase
+  ) {}
 
   public function __invoke(Request $request, array $args = []): Response
   {

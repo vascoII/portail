@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Middleware;
 
-use App\Domain\Service\Jwt\JwtServiceInterface;
-use App\Domain\Service\Redis\RedisServiceInterface;
-use App\Domain\Service\Auth\AuthServiceInterface;
+use App\Application\Service\Jwt\JwtServiceInterface;
+use App\Application\Service\Redis\RedisServiceInterface;
+use App\Application\Service\Auth\AuthServiceInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

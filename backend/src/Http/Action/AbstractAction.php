@@ -15,7 +15,7 @@ abstract class AbstractAction implements ActionInterface
   public const PARAM_PK_INTERVENTION = 'pkIntervention';
   public const PARAM_PK_DEPANNAGE = 'pkDepannage';
   public const PARAM_PK_FACTURE = 'pkFacture';
-  public const PARAM_TICKET_ID = 'ticketId';
+  public const PARAM_PK_TICKET = 'pkTicket';
   public const PARAM_TYPE = 'type';
   public const PARAM_ENERGIE = 'energie';
   public const PARAM_TOKEN = 'token';
