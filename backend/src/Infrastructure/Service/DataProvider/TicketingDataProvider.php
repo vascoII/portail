@@ -20,16 +20,16 @@ use App\Application\Dto\Output\Ticketing\TicketListOutputDto;
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Application\Service\DataSource\TicketingDataSourceInterface;
-use App\Infrastructure\Service\Cache\RedisCacheService;
+use App\Infrastructure\Service\Redis\RedisService;
 use App\Infrastructure\Transformer\TicketingTransformer;
 
 final class TicketingDataProvider implements TicketingDataProviderInterface
 {
   public function __construct(
-      private RedisCacheService $cache,
-      private TicketingDataSourceInterface $source,
-      private TicketingTransformer $transformer,
-      private readonly AuthServiceInterface $authService
+    private RedisCacheService $cache,
+    private TicketingDataSourceInterface $source,
+    private TicketingTransformer $transformer,
+    private readonly AuthServiceInterface $authService
   ) {}
 
   private function getAuthContext(): AuthenticationContext
@@ -39,72 +39,71 @@ final class TicketingDataProvider implements TicketingDataProviderInterface
 
   public function attachmentTicketService(AttachmentTicketInputDto $inputDto): AttachmentTicketOutputDto
   {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "ticketing_attachment_ticket:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
+    $authContext = $this->getAuthContext();
+    $cacheKey = "ticketing_attachment_ticket:$authContext->pkUser";
+    $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof AttachmentTicketOutputDto) {
-        return $cachedDto;
-      }
+    if ($cachedDto instanceof AttachmentTicketOutputDto) {
+      return $cachedDto;
+    }
 
-      $rawData = $this->source->fetchAttachmentTicket($inputDto);
-      $dto = $this->transformer->transformAttachmentTicket($rawData);
+    $rawData = $this->source->fetchAttachmentTicket($inputDto);
+    $dto = $this->transformer->transformAttachmentTicket($rawData);
 
-      $this->cache->set($cacheKey, $dto);
+    $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+    return $dto;
   }
-  
+
   public function closeTicketService(CloseTicketInputDto $inputDto): CloseTicketOutputDto
   {
-      $rawData = $this->source->fetchCloseTicket($inputDto);
-      $dto = $this->transformer->transformCloseTicket($rawData);
+    $rawData = $this->source->fetchCloseTicket($inputDto);
+    $dto = $this->transformer->transformCloseTicket($rawData);
 
-      return $dto;
+    return $dto;
   }
-  
+
   public function createTicketService(CreateTicketInputDto $inputDto): CreateTicketOutputDto
   {
-      $rawData = $this->source->fetchCreateTicket($inputDto);
-      $dto = $this->transformer->transformCreateTicket($rawData);
+    $rawData = $this->source->fetchCreateTicket($inputDto);
+    $dto = $this->transformer->transformCreateTicket($rawData);
 
-      return $dto;
+    return $dto;
   }
-  
+
   public function menuTicketService(MenuTicketInputDto $inputDto): MenuTicketOutputDto
   {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "ticketing_menu_ticket:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
+    $authContext = $this->getAuthContext();
+    $cacheKey = "ticketing_menu_ticket:$authContext->pkUser";
+    $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof MenuTicketOutputDto) {
-        return $cachedDto;
-      }
+    if ($cachedDto instanceof MenuTicketOutputDto) {
+      return $cachedDto;
+    }
 
-      $rawData = $this->source->fetchMenuTicket($inputDto);
-      $dto = $this->transformer->transformMenuTicket($rawData);
+    $rawData = $this->source->fetchMenuTicket($inputDto);
+    $dto = $this->transformer->transformMenuTicket($rawData);
 
-      $this->cache->set($cacheKey, $dto);
+    $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+    return $dto;
   }
-  
+
   public function ticketListService(): TicketListOutputDto
   {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "ticketing_ticket_list:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
+    $authContext = $this->getAuthContext();
+    $cacheKey = "ticketing_ticket_list:$authContext->pkUser";
+    $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof TicketListOutputDto) {
-        return $cachedDto;
-      }
+    if ($cachedDto instanceof TicketListOutputDto) {
+      return $cachedDto;
+    }
 
-      $rawData = $this->source->fetchTicketList();
-      $dto = $this->transformer->transformTicketList($rawData);
+    $rawData = $this->source->fetchTicketList();
+    $dto = $this->transformer->transformTicketList($rawData);
 
-      $this->cache->set($cacheKey, $dto);
+    $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+    return $dto;
   }
-  
 }

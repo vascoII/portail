@@ -10,16 +10,16 @@ use App\Application\Dto\Output\Search\IndexOutputDto;
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Application\Service\DataSource\SearchDataSourceInterface;
-use App\Infrastructure\Service\Cache\RedisCacheService;
+use App\Infrastructure\Service\Redis\RedisService;
 use App\Infrastructure\Transformer\SearchTransformer;
 
 final class SearchDataProvider implements SearchDataProviderInterface
 {
   public function __construct(
-      private RedisCacheService $cache,
-      private SearchDataSourceInterface $source,
-      private SearchTransformer $transformer,
-      private readonly AuthServiceInterface $authService
+    private RedisCacheService $cache,
+    private SearchDataSourceInterface $source,
+    private SearchTransformer $transformer,
+    private readonly AuthServiceInterface $authService
   ) {}
 
   private function getAuthContext(): AuthenticationContext
@@ -29,20 +29,19 @@ final class SearchDataProvider implements SearchDataProviderInterface
 
   public function indexService(IndexInputDto $inputDto): IndexOutputDto
   {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "search_index:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
+    $authContext = $this->getAuthContext();
+    $cacheKey = "search_index:$authContext->pkUser";
+    $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof IndexOutputDto) {
-        return $cachedDto;
-      }
+    if ($cachedDto instanceof IndexOutputDto) {
+      return $cachedDto;
+    }
 
-      $rawData = $this->source->fetchIndex($inputDto);
-      $dto = $this->transformer->transformIndex($rawData);
+    $rawData = $this->source->fetchIndex($inputDto);
+    $dto = $this->transformer->transformIndex($rawData);
 
-      $this->cache->set($cacheKey, $dto);
+    $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+    return $dto;
   }
-  
 }

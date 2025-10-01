@@ -21,31 +21,31 @@ final class FactureTransformer
     // Normalisation : si 'facture' est un tableau ou un objet unique
     $factures = $rawList['facture'] ?? [];
     if (!is_array($factures)) {
-        $factures = [$factures];
+      $factures = [$factures];
     }
 
     $dtoList = [];
 
     foreach ($factures as $facture) {
-        $dtoList[] = new FactureOutputDto(
-            pkFacture: (int) $facture->PKFacture,
-            numFacture: (string) $facture->NumFacture,
-            dateEdition: new DateTimeImmutable($facture->DateEdition),
-            dateDebut: new DateTimeImmutable($facture->DateDebut),
-            dateFin: new DateTimeImmutable($facture->DateFin),
-            montantTotalHT: (float) $facture->MontantTotalHT,
-            montantTotalTTC: (float) $facture->MontantTotalTTC,
-            montantTotalAPayer: (float) $facture->MontantTotalAPayer,
-            idImm: (string) $facture->IDImm,
-            codeGestio: (string) $facture->CodeGestio,
-            cp: (string) $facture->CP,
-            adresse: (string) $facture->Adresse,
-            ville: (string) $facture->Ville
-        );
+      $dtoList[] = new FactureOutputDto(
+        pkFacture: (int) $facture->PKFacture,
+        numFacture: (string) $facture->NumFacture,
+        dateEdition: new DateTimeImmutable($facture->DateEdition),
+        dateDebut: new DateTimeImmutable($facture->DateDebut),
+        dateFin: new DateTimeImmutable($facture->DateFin),
+        montantTotalHT: (float) $facture->MontantTotalHT,
+        montantTotalTTC: (float) $facture->MontantTotalTTC,
+        montantTotalAPayer: (float) $facture->MontantTotalAPayer,
+        idImm: (string) $facture->IDImm,
+        codeGestio: (string) $facture->CodeGestio,
+        cp: (string) $facture->CP,
+        adresse: (string) $facture->Adresse,
+        ville: (string) $facture->Ville
+      );
     }
 
     return new ListFactureOutputDto(
-        factures:  $dtoList
+      factures: $dtoList
     );
   }
 
@@ -54,10 +54,12 @@ final class FactureTransformer
    */
   public function transformReport(object $dataSourceResult): ReportFactureOutputDto
   {
+    $binary = (string) $dataSourceResult;
+    $filename = 'releve-' . date('Y-m-d') . '.pdf';
     return new ReportFactureOutputDto(
-      data: $dataSourceResult,
-      filename: 'relevé-' . date('d-m-Y'),
-      length: strlen($dataSourceResult)
+      data: $binary,
+      filename: $filename,
+      length: strlen($binary)
     );
   }
 }

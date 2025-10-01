@@ -13,11 +13,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(path: '/factures/download/{pkFacture}', name: 'facture_report', methods: ['GET'])]
+#[Route(path: '/api/factures/{pkFacture}/report', name: 'facture_report', methods: ['GET'])]
 final class ReportAction extends AbstractAction implements ActionInterface
 {
   public function __construct(
-    private readonly ResponderInterface $responder, 
+    private readonly ResponderInterface $responder,
     private readonly ReportUseCase $useCase
   ) {}
 

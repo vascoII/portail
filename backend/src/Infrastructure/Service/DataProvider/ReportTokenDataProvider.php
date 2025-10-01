@@ -10,16 +10,16 @@ use App\Application\Dto\Output\ReportToken\ReportOutputDto;
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Application\Service\DataSource\ReportTokenDataSourceInterface;
-use App\Infrastructure\Service\Cache\RedisCacheService;
+use App\Infrastructure\Service\Redis\RedisService;
 use App\Infrastructure\Transformer\ReportTokenTransformer;
 
 final class ReportTokenDataProvider implements ReportTokenDataProviderInterface
 {
   public function __construct(
-      private RedisCacheService $cache,
-      private ReportTokenDataSourceInterface $source,
-      private ReportTokenTransformer $transformer,
-      private readonly AuthServiceInterface $authService
+    private RedisService $cache,
+    private ReportTokenDataSourceInterface $source,
+    private ReportTokenTransformer $transformer,
+    private readonly AuthServiceInterface $authService
   ) {}
 
   private function getAuthContext(): AuthenticationContext
@@ -29,20 +29,19 @@ final class ReportTokenDataProvider implements ReportTokenDataProviderInterface
 
   public function reportService(ReportInputDto $inputDto): ReportOutputDto
   {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "report_token_report:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
+    $authContext = $this->getAuthContext();
+    $cacheKey = "report_token_report:$authContext->pkUser";
+    $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof ReportOutputDto) {
-        return $cachedDto;
-      }
+    if ($cachedDto instanceof ReportOutputDto) {
+      return $cachedDto;
+    }
 
-      $rawData = $this->source->fetchReport($inputDto);
-      $dto = $this->transformer->transformReport($rawData);
+    $rawData = $this->source->fetchReport($inputDto);
+    $dto = $this->transformer->transformReport($rawData);
 
-      $this->cache->set($cacheKey, $dto);
+    $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+    return $dto;
   }
-  
 }
