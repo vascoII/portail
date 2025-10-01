@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(path: '/front/personal-datas', name: 'front_personal_datas', methods: ['GET'])]
+#[Route(path: '/api/front/personal-datas', name: 'front_personal_datas', methods: ['GET'])]
 final class PersonalDatasAction extends AbstractAction implements ActionInterface
 {
   public function __construct(private readonly ResponderInterface $responder, private readonly PersonalDatasUseCase $useCase) {}
