@@ -4,159 +4,89 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Transformer;
 
-use App\Application\Dto\Output\Logement\CreateTicketImmeubleOutputDto;
-use App\Application\Dto\Output\Logement\CreateTicketOutputDto;
-use App\Application\Dto\Output\Logement\EditOutputDto;
-use App\Application\Dto\Output\Logement\ExportOutputDto;
-use App\Application\Dto\Output\Logement\FilterResultOutputDto;
-use App\Application\Dto\Output\Logement\GetInfosAppareilOutputDto;
-use App\Application\Dto\Output\Logement\GetTicketOnwerOutputDto;
-use App\Application\Dto\Output\Logement\GuideOutputDto;
-use App\Application\Dto\Output\Logement\IndexOutputDto;
-use App\Application\Dto\Output\Logement\ListAnomaliesOutputDto;
-use App\Application\Dto\Output\Logement\ListDysfunctionsOutputDto;
-use App\Application\Dto\Output\Logement\ListInterventionsOutputDto;
-use App\Application\Dto\Output\Logement\ListLeaksOutputDto;
-use App\Application\Dto\Output\Logement\SearchOutputDto;
-use App\Application\Dto\Output\Logement\ShowInterventionOutputDto;
-use App\Application\Dto\Output\Logement\ShowOutputDto;
-use App\Application\Dto\Output\Logement\ShowRepartReleveOutputDto;
+use App\Application\Dto\Output\Logement\GetInfosLogementsOutputDto;
+use App\Application\Dto\Output\Logement\GetOccupants4ChgtOutputDto;
+use App\Application\Dto\Output\Logement\GetStatOccupantsGraphOutputDto;
+use App\Application\Dto\Output\Logement\GetTableauBordLogementOutputDto;
+use App\Application\Dto\Output\Logement\SetOccupants4ChgtOutputDto;
+use App\Application\Dto\Output\Logement\SetSeuilConsoOutputDto;
 
 final class LogementTransformer
 {
    /**
-    * Transform raw response to CreateTicketImmeubleOutputDto
+    * Transform raw response to GetTableauBordLogementOutputDto
     */
-   public function transformCreateTicketImmeuble(object $dataSourceResult): CreateTicketImmeubleOutputDto
+   public function transformGetTableauBordLogement(object $dataSourceResult): GetTableauBordLogementOutputDto
    {
-      return new CreateTicketImmeubleOutputDto();
+      $result = $dataSourceResult->GetTableauBordLogementResult;
+      return new GetTableauBordLogementOutputDto($result);
    }
 
    /**
-    * Transform raw response to CreateTicketOutputDto
+    * Transform raw response to SetOccupants4ChgtOutputDto
     */
-   public function transformCreateTicket(object $dataSourceResult): CreateTicketOutputDto
+   public function transformSetOccupants4Chgt(object $dataSourceResult): SetOccupants4ChgtOutputDto
    {
-      return new CreateTicketOutputDto();
+      $occupants = [];
+      if (is_array($dataSourceResult->setOccupants4ChgtResult)) {
+         foreach ($dataSourceResult->setOccupants4ChgtResult as $occupant) {
+            $occupants[] = $occupant;
+         }
+      }
+      return new SetOccupants4ChgtOutputDto($occupants);
    }
 
    /**
-    * Transform raw response to EditOutputDto
+    * Transform raw response to GetOccupants4ChgtOutputDto
     */
-   public function transformEdit(object $dataSourceResult): EditOutputDto
+   public function transformGetOccupants4Chgt(object $dataSourceResult): GetOccupants4ChgtOutputDto
    {
-      return new EditOutputDto();
+      $occupants = [];
+      if (is_array($dataSourceResult->getOccupants4ChgtResult)) {
+         foreach ($dataSourceResult->getOccupants4ChgtResult as $occupant) {
+            $occupants[] = $occupant;
+         }
+      }
+      return new GetOccupants4ChgtOutputDto($occupants);
    }
 
    /**
-    * Transform raw response to ExportOutputDto
+    * Transform raw response to SetSeuilConsoOutputDto
     */
-   public function transformExport(object $dataSourceResult): ExportOutputDto
+   public function transformSetSeuilConso(object $dataSourceResult): SetSeuilConsoOutputDto
    {
-      return new ExportOutputDto();
+      $retour = $dataSourceResult->SetSeuilConsoResult;
+      return new SetSeuilConsoOutputDto($retour);
    }
 
    /**
-    * Transform raw response to FilterResultOutputDto
+    * Transform raw response to GetStatOccupantsGraphOutputDto
     */
-   public function transformFilterResult(object $dataSourceResult): FilterResultOutputDto
+   public function transformGetStatOccupantsGraph(object $dataSourceResult): GetStatOccupantsGraphOutputDto
    {
-      return new FilterResultOutputDto();
+      $graphPoints = [];
+      if (is_array($dataSourceResult->GetStatOccupantsGraphResult)) {
+         foreach ($dataSourceResult->GetStatOccupantsGraphResult as $point) {
+            $graphPoints[] = $point;
+         }
+      }
+      return new GetStatOccupantsGraphOutputDto($graphPoints);
    }
 
    /**
-    * Transform raw response to GetInfosAppareilOutputDto
+    * Transform raw response to GetInfosAppareilsByLogementOutputDto
     */
-   public function transformGetInfosAppareil(object $dataSourceResult): GetInfosAppareilOutputDto
+   public function transformGetInfosAppareilsByLogement(object $dataSourceResult): object
    {
-      return new GetInfosAppareilOutputDto();
+      return $dataSourceResult->GetInfosAppareilsByLogementResult;
    }
 
    /**
-    * Transform raw response to GetTicketOnwerOutputDto
+    * Transform raw response to GetInfosLogementsOutputDto
     */
-   public function transformGetTicketOnwer(object $dataSourceResult): GetTicketOnwerOutputDto
+   public function transformGetInfosLogements(object $dataSourceResult): GetInfosLogementsOutputDto
    {
-      return new GetTicketOnwerOutputDto();
-   }
-
-   /**
-    * Transform raw response to GuideOutputDto
-    */
-   public function transformGuide(object $dataSourceResult): GuideOutputDto
-   {
-      return new GuideOutputDto();
-   }
-
-   /**
-    * Transform raw response to IndexOutputDto
-    */
-   public function transformIndex(object $dataSourceResult): IndexOutputDto
-   {
-      return new IndexOutputDto();
-   }
-
-   /**
-    * Transform raw response to ListAnomaliesOutputDto
-    */
-   public function transformListAnomalies(object $dataSourceResult): ListAnomaliesOutputDto
-   {
-      return new ListAnomaliesOutputDto();
-   }
-
-   /**
-    * Transform raw response to ListDysfunctionsOutputDto
-    */
-   public function transformListDysfunctions(object $dataSourceResult): ListDysfunctionsOutputDto
-   {
-      return new ListDysfunctionsOutputDto();
-   }
-
-   /**
-    * Transform raw response to ListInterventionsOutputDto
-    */
-   public function transformListInterventions(object $dataSourceResult): ListInterventionsOutputDto
-   {
-      return new ListInterventionsOutputDto();
-   }
-
-   /**
-    * Transform raw response to ListLeaksOutputDto
-    */
-   public function transformListLeaks(object $dataSourceResult): ListLeaksOutputDto
-   {
-      return new ListLeaksOutputDto();
-   }
-
-   /**
-    * Transform raw response to SearchOutputDto
-    */
-   public function transformSearch(object $dataSourceResult): SearchOutputDto
-   {
-      return new SearchOutputDto();
-   }
-
-   /**
-    * Transform raw response to ShowInterventionOutputDto
-    */
-   public function transformShowIntervention(object $dataSourceResult): ShowInterventionOutputDto
-   {
-      return new ShowInterventionOutputDto();
-   }
-
-   /**
-    * Transform raw response to ShowOutputDto
-    */
-   public function transformShow(object $dataSourceResult): ShowOutputDto
-   {
-      return new ShowOutputDto();
-   }
-
-   /**
-    * Transform raw response to ShowRepartReleveOutputDto
-    */
-   public function transformShowRepartReleve(object $dataSourceResult): ShowRepartReleveOutputDto
-   {
-      return new ShowRepartReleveOutputDto();
+      $result = $dataSourceResult->GetInfosLogementsResult;
+      return new GetInfosLogementsOutputDto($result);
    }
 }

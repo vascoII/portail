@@ -9,8 +9,10 @@ use App\Application\Dto\Output\Security\LoginOutputDto;
 use App\Application\Dto\Output\Security\LoginFromParamOutputDto;
 use App\Application\Dto\Output\Security\ResetOrCreateOutputDto;
 use App\Application\Dto\Output\Security\ResetPasswordOutputDto;
+use App\Application\Dto\Output\Security\ResetPasswordFromPKUserOutputDto;
 use App\Application\Dto\Output\Security\UpdatePasswordOutputDto;
 use App\Application\Dto\Output\Security\LogoutOutputDto;
+use App\Application\Dto\Output\Security\UserDto;
 
 final class SecurityTransformer
 {
@@ -27,7 +29,7 @@ final class SecurityTransformer
     */
    public function transformLoginFromParam(object $dataSourceResult): LoginFromParamOutputDto
    {
-      return new LoginFromParamOutputDto();
+      return new LoginFromParamOutputDto(true);
    }
 
    /**
@@ -35,7 +37,7 @@ final class SecurityTransformer
     */
    public function transformResetOrCreate(object $dataSourceResult): ResetOrCreateOutputDto
    {
-      return new ResetOrCreateOutputDto();
+      return new ResetOrCreateOutputDto(true);
    }
 
    /**
@@ -43,7 +45,7 @@ final class SecurityTransformer
     */
    public function transformResetPassword(object $dataSourceResult): ResetPasswordOutputDto
    {
-      return new ResetPasswordOutputDto();
+      return new ResetPasswordOutputDto(true);
    }
 
    /**
@@ -51,7 +53,8 @@ final class SecurityTransformer
     */
    public function transformUpdatePassword(object $dataSourceResult): UpdatePasswordOutputDto
    {
-      return new UpdatePasswordOutputDto();
+      $updated = (bool) $dataSourceResult->UpdatePasswordResult;
+      return new UpdatePasswordOutputDto($updated);
    }
 
    /**
@@ -59,14 +62,64 @@ final class SecurityTransformer
     */
    public function transformLogin(object $dataSourceResult): LoginOutputDto
    {
-      return new LoginOutputDto();
+      $success = (bool) $dataSourceResult->LoginResult;
+      return new LoginOutputDto($success);
    }
 
    /**
-    * Transform raw response to LoginOutputDto
+    * Transform raw response to ResetPasswordFromPKUserOutputDto
+    */
+   public function transformResetPasswordFromPKUser(object $dataSourceResult): ResetPasswordFromPKUserOutputDto
+   {
+      $user = $this->transformUser($dataSourceResult->ResetPasswordFromPKUserResult);
+      return new ResetPasswordFromPKUserOutputDto($user);
+   }
+
+   /**
+    * Transform raw response to LogoutOutputDto
     */
    public function transformLogout(object $dataSourceResult): LogoutOutputDto
    {
-      return new LogoutOutputDto(true);
+      $loggedOut = (bool) $dataSourceResult->LogoutResult;
+      return new LogoutOutputDto($loggedOut);
+   }
+
+   /**
+    * Transform SOAP user object to UserDto
+    */
+   private function transformUser(object $soapUser): UserDto
+   {
+      return new UserDto(
+         loginId: (string) $soapUser->LoginID,
+         userName: (string) $soapUser->UserName,
+         email: (string) $soapUser->EMail,
+         userType: (string) $soapUser->UserType,
+         pkUser: (int) $soapUser->PKUser,
+         address: (string) $soapUser->Adresse,
+         postalCode: (string) $soapUser->CP,
+         city: (string) $soapUser->Ville,
+         fk: (int) $soapUser->FK,
+         phoneNumber: (string) $soapUser->PhoneNumber,
+         firstName: (string) $soapUser->FirstName,
+         userRole: (string) $soapUser->UserRole,
+         clientName: (string) $soapUser->ClientName,
+         clientId: (string) $soapUser->ClientID,
+         expirationDate: (string) $soapUser->ExpirationDate,
+         passwordExpirationDate: (string) $soapUser->PasswordExpirationDate,
+         cgu: (string) $soapUser->CGU,
+         fkClient: (int) $soapUser->FKClient,
+         fkClientTop: (int) $soapUser->FKClientTop,
+         nbImmeubles: (int) $soapUser->NbImmeubles,
+         seuilConsoEf: (int) $soapUser->Seuil_Conso_EF,
+         seuilConsoEc: (int) $soapUser->Seuil_Conso_EC,
+         seuilConsoRepart: (int) $soapUser->Seuil_Conso_Repart,
+         seuilConsoCet: (int) $soapUser->Seuil_Conso_CET,
+         seuilConsoActif: (bool) $soapUser->Seuil_Conso_Actif,
+         seuilConsoEmail: (string) $soapUser->Seuil_Conso_Email,
+         showImmeublesArc: (bool) $soapUser->showImmeublesArc,
+         showFactures: (bool) $soapUser->showFactures,
+         showChgtOccupant: (bool) $soapUser->showChgtOccupant,
+         showChantiers: (bool) $soapUser->showChantiers
+      );
    }
 }

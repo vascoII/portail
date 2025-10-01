@@ -7,9 +7,6 @@ namespace App\Application\Dto\Output\Security;
 final class LoginOutputDto
 {
   public function __construct(
-    public readonly bool $success,
-    public readonly ?string $jwt = null,
-    public readonly ?string $userName = null,
-    public readonly ?string $error = null
+    public readonly Session $session
   ) {}
 }

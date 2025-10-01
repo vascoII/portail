@@ -4,49 +4,92 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Transformer;
 
-use App\Application\Dto\Output\Immeuble\FilterResultOutputDto;
-use App\Application\Dto\Output\Immeuble\IndexOutputDto;
-use App\Application\Dto\Output\Immeuble\InterventionOutputDto;
+use App\Application\Dto\Output\Immeuble\AnomaliesOutputDto;
+use App\Application\Dto\Output\Immeuble\DysfunctionsOutputDto;
+use App\Application\Dto\Output\Immeuble\GetInfosImmeublesOutputDto;
+use App\Application\Dto\Output\Immeuble\GetInfosLogementsByImmeubleOutputDto;
+use App\Application\Dto\Output\Immeuble\GetTableauBordImmeubleOutputDto;
 use App\Application\Dto\Output\Immeuble\ListAnomaliesOutputDto;
 use App\Application\Dto\Output\Immeuble\ListDysfunctionsOutputDto;
-use App\Application\Dto\Output\Immeuble\ListInterventionsOutputDto;
-use App\Application\Dto\Output\Immeuble\ListLeaksOutputDto;
-use App\Application\Dto\Output\Immeuble\ReportOutputDto;
-use App\Application\Dto\Output\Immeuble\ShowInterventionOutputDto;
-use App\Application\Dto\Output\Immeuble\ShowOutputDto;
+use App\Application\Dto\Output\Immeuble\ListImmeublesOutputDto;
+use App\Application\Dto\Output\Immeuble\ListLogementsOutputDto;
 
 final class ImmeubleTransformer
 {
    /**
-    * Transform raw response to FilterResultOutputDto
+    * Transform raw response to GetTableauBordImmeubleOutputDto
     */
-   public function transformFilterResult(object $dataSourceResult): FilterResultOutputDto
+   public function transformGetTableauBordImmeuble(object $dataSourceResult): GetTableauBordImmeubleOutputDto
    {
-      return new FilterResultOutputDto();
+      $result = $dataSourceResult->GetTableauBordImmeubleResult;
+      return new GetTableauBordImmeubleOutputDto($result);
    }
 
    /**
-    * Transform raw response to IndexOutputDto
+    * Transform raw response to GetInfosAnomaliesByImmeubleOutputDto
     */
-   public function transformIndex(object $dataSourceResult): IndexOutputDto
+   public function transformGetInfosAnomaliesByImmeuble(object $dataSourceResult): AnomaliesOutputDto
    {
-      return new IndexOutputDto();
+      $result = $dataSourceResult->GetInfosAnomaliesByImmeubleResult;
+      return new AnomaliesOutputDto($result);
    }
 
    /**
-    * Transform raw response to InterventionOutputDto
+    * Transform raw response to GetInfosDysfonctionnementsByImmeubleOutputDto
     */
-   public function transformIntervention(object $dataSourceResult): InterventionOutputDto
+   public function transformGetInfosDysfonctionnementsByImmeuble(object $dataSourceResult): DysfunctionsOutputDto
    {
-      return new InterventionOutputDto();
+      $result = $dataSourceResult->GetInfosDysfonctionnementsByImmeubleResult;
+      return new DysfunctionsOutputDto($result);
    }
 
+   /**
+    * Transform raw response to GetInfosImmeublesOutputDto
+    */
+   public function transformGetInfosImmeubles(object $dataSourceResult): GetInfosImmeublesOutputDto
+   {
+      $result = $dataSourceResult->GetInfosImmeublesResult;
+      return new GetInfosImmeublesOutputDto($result);
+   }
+
+   /**
+    * Transform raw response to GetInfosLogementsByImmeubleOutputDto
+    */
+   public function transformGetInfosLogementsByImmeuble(object $dataSourceResult): GetInfosLogementsByImmeubleOutputDto
+   {
+      $result = $dataSourceResult->GetInfosLogementsByImmeubleResult;
+      return new GetInfosLogementsByImmeubleOutputDto($result);
+   }
+
+   /**
+    * Transform raw response to GetInfosDepannagesByImmeubleOutputDto
+    */
+   public function transformGetInfosDepannagesByImmeuble(object $dataSourceResult): object
+   {
+      return $dataSourceResult->GetInfosDepannagesByImmeubleResult;
+   }
+
+   /**
+    * Transform raw response to GetInfosFuitesByImmeubleOutputDto
+    */
+   public function transformGetInfosFuitesByImmeuble(object $dataSourceResult): object
+   {
+      return $dataSourceResult->GetInfosFuitesByImmeubleResult;
+   }
+
+   // List methods for when we need simple arrays
    /**
     * Transform raw response to ListAnomaliesOutputDto
     */
    public function transformListAnomalies(object $dataSourceResult): ListAnomaliesOutputDto
    {
-      return new ListAnomaliesOutputDto();
+      $anomalies = [];
+      if (is_array($dataSourceResult->GetInfosAnomaliesByImmeubleResult->ListeInfosAnomalies)) {
+         foreach ($dataSourceResult->GetInfosAnomaliesByImmeubleResult->ListeInfosAnomalies as $anomalie) {
+            $anomalies[] = $anomalie;
+         }
+      }
+      return new ListAnomaliesOutputDto($anomalies);
    }
 
    /**
@@ -54,46 +97,40 @@ final class ImmeubleTransformer
     */
    public function transformListDysfunctions(object $dataSourceResult): ListDysfunctionsOutputDto
    {
-      return new ListDysfunctionsOutputDto();
+      $dysfunctions = [];
+      if (is_array($dataSourceResult->GetInfosDysfonctionnementsByImmeubleResult->ListeInfosDysfonctionnements)) {
+         foreach ($dataSourceResult->GetInfosDysfonctionnementsByImmeubleResult->ListeInfosDysfonctionnements as $dysfunction) {
+            $dysfunctions[] = $dysfunction;
+         }
+      }
+      return new ListDysfunctionsOutputDto($dysfunctions);
    }
 
    /**
-    * Transform raw response to ListInterventionsOutputDto
+    * Transform raw response to ListImmeublesOutputDto
     */
-   public function transformListInterventions(object $dataSourceResult): ListInterventionsOutputDto
+   public function transformListImmeubles(object $dataSourceResult): ListImmeublesOutputDto
    {
-      return new ListInterventionsOutputDto();
+      $immeubles = [];
+      if (is_array($dataSourceResult->GetInfosImmeublesResult->ListeInfosImmeubles)) {
+         foreach ($dataSourceResult->GetInfosImmeublesResult->ListeInfosImmeubles as $immeuble) {
+            $immeubles[] = $immeuble;
+         }
+      }
+      return new ListImmeublesOutputDto($immeubles);
    }
 
    /**
-    * Transform raw response to ListLeaksOutputDto
+    * Transform raw response to ListLogementsOutputDto
     */
-   public function transformListLeaks(object $dataSourceResult): ListLeaksOutputDto
+   public function transformListLogements(object $dataSourceResult): ListLogementsOutputDto
    {
-      return new ListLeaksOutputDto();
-   }
-
-   /**
-    * Transform raw response to ReportOutputDto
-    */
-   public function transformReport(object $dataSourceResult): ReportOutputDto
-   {
-      return new ReportOutputDto();
-   }
-
-   /**
-    * Transform raw response to ShowInterventionOutputDto
-    */
-   public function transformShowIntervention(object $dataSourceResult): ShowInterventionOutputDto
-   {
-      return new ShowInterventionOutputDto();
-   }
-
-   /**
-    * Transform raw response to ShowOutputDto
-    */
-   public function transformShow(object $dataSourceResult): ShowOutputDto
-   {
-      return new ShowOutputDto();
+      $logements = [];
+      if (is_array($dataSourceResult->GetInfosLogementsByImmeubleResult->ListeInfosLogements)) {
+         foreach ($dataSourceResult->GetInfosLogementsByImmeubleResult->ListeInfosLogements as $logement) {
+            $logements[] = $logement;
+         }
+      }
+      return new ListLogementsOutputDto($logements);
    }
 }

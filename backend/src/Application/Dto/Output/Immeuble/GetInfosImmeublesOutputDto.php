@@ -7,6 +7,6 @@ namespace App\Application\Dto\Output\Immeuble;
 final class GetInfosImmeublesOutputDto
 {
   public function __construct(
-    public readonly array $immeubles
+    public readonly InfosImmeubles $infosImmeubles
   ) {}
 }

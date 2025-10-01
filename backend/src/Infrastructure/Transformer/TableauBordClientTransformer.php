@@ -4,24 +4,16 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Transformer;
 
-use App\Application\Dto\Output\TableauBordClient\IndexOutputDto;
-use App\Application\Dto\Output\TableauBordClient\InterventionOutputDto;
+use App\Application\Dto\Output\TableauBordClient\GetTableauBordClientOutputDto;
 
 final class TableauBordClientTransformer
 {
    /**
-    * Transform raw response to IndexOutputDto
+    * Transform raw response to GetTableauBordClientOutputDto
     */
-   public function transformIndex(object $dataSourceResult): IndexOutputDto
+   public function transformGetTableauBordClient(object $dataSourceResult): GetTableauBordClientOutputDto
    {
-      return new IndexOutputDto();
-   }
-
-   /**
-    * Transform raw response to InterventionOutputDto
-    */
-   public function transformIntervention(object $dataSourceResult): InterventionOutputDto
-   {
-      return new InterventionOutputDto();
+      $result = $dataSourceResult->GetTableauBordClientResult;
+      return new GetTableauBordClientOutputDto($result);
    }
 }

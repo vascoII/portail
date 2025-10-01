@@ -4,87 +4,66 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Transformer;
 
-use App\Application\Dto\Output\Operator\AddBuildingOutputDto;
-use App\Application\Dto\Output\Operator\CreateOutputDto;
-use App\Application\Dto\Output\Operator\DeleteOutputDto;
-use App\Application\Dto\Output\Operator\EditOutputDto;
-use App\Application\Dto\Output\Operator\EditPasswordOutputDto;
-use App\Application\Dto\Output\Operator\IndexOutputDto;
-use App\Application\Dto\Output\Operator\OtatsoccupantsOutputDto;
-use App\Application\Dto\Output\Operator\RemoveBuildingOutputDto;
-use App\Application\Dto\Output\Operator\ViewOutputDto;
+use App\Application\Dto\Output\Operator\CreateGestionnaireOutputDto;
+use App\Application\Dto\Output\Operator\DeleteUserOutputDto;
+use App\Application\Dto\Output\Operator\GetChildUsersOutputDto;
+use App\Application\Dto\Output\Operator\GetUserOutputDto;
+use App\Application\Dto\Output\Operator\SetImmeublesOutputDto;
+use App\Application\Dto\Output\Operator\UpdateUserOutputDto;
 
 final class OperatorTransformer
 {
    /**
-    * Transform raw response to AddBuildingOutputDto
+    * Transform raw response to SetImmeublesOutputDto
     */
-   public function transformAddBuilding(object $dataSourceResult): AddBuildingOutputDto
+   public function transformSetImmeubles(object $dataSourceResult): SetImmeublesOutputDto
    {
-      return new AddBuildingOutputDto();
+      $retour = $dataSourceResult->SetImmeublesResult;
+      return new SetImmeublesOutputDto($retour);
    }
 
    /**
-    * Transform raw response to CreateOutputDto
+    * Transform raw response to CreateGestionnaireOutputDto
     */
-   public function transformCreate(object $dataSourceResult): CreateOutputDto
+   public function transformCreateGestionnaire(object $dataSourceResult): CreateGestionnaireOutputDto
    {
-      return new CreateOutputDto();
+      $success = $dataSourceResult->CreateGestionnaireResult;
+      return new CreateGestionnaireOutputDto($success);
    }
 
    /**
-    * Transform raw response to DeleteOutputDto
+    * Transform raw response to DeleteUserOutputDto
     */
-   public function transformDelete(object $dataSourceResult): DeleteOutputDto
+   public function transformDeleteUser(object $dataSourceResult): DeleteUserOutputDto
    {
-      return new DeleteOutputDto();
+      $retour = $dataSourceResult->DeleteUserResult;
+      return new DeleteUserOutputDto($retour);
    }
 
    /**
-    * Transform raw response to EditOutputDto
+    * Transform raw response to GetChildUsersOutputDto
     */
-   public function transformEdit(object $dataSourceResult): EditOutputDto
+   public function transformGetChildUsers(object $dataSourceResult): GetChildUsersOutputDto
    {
-      return new EditOutputDto();
+      $users = $dataSourceResult->GetChildUsersResult;
+      return new GetChildUsersOutputDto($users);
    }
 
    /**
-    * Transform raw response to EditPasswordOutputDtoputDto
+    * Transform raw response to GetUserOutputDto
     */
-   public function transformEditPassword(object $dataSourceResult): EditPasswordOutputDto
+   public function transformGetUser(object $dataSourceResult): GetUserOutputDto
    {
-      return new EditPasswordOutputDto();
+      $user = $dataSourceResult->GetUserResult;
+      return new GetUserOutputDto($user);
    }
 
    /**
-    * Transform raw response to IndexOutputDto
+    * Transform raw response to UpdateUserOutputDto
     */
-   public function transformIndex(object $dataSourceResult): IndexOutputDto
+   public function transformUpdateUser(object $dataSourceResult): UpdateUserOutputDto
    {
-      return new IndexOutputDto();
-   }
-
-   /**
-    * Transform raw response to OtatsoccupantsOutputDto
-    */
-   public function transformOtatsoccupants(object $dataSourceResult): OtatsoccupantsOutputDto
-   {
-      return new OtatsoccupantsOutputDto();
-   }
-
-   /**
-    * Transform raw response to RemoveBuildingOutputDto
-    */
-   public function transformRemoveBuilding(object $dataSourceResult): RemoveBuildingOutputDto
-   {
-      return new RemoveBuildingOutputDto();
-   }
-
-   /**
-    * Transform raw response to ViewOutputDto
-    */
-   public function transformView(object $dataSourceResult): ViewOutputDto
-   {
-      return new ViewOutputDto();
+      $retour = $dataSourceResult->UpdateUser3Result;
+      return new UpdateUserOutputDto($retour);
    }
 }

@@ -6,5 +6,7 @@ namespace App\Application\Dto\Output\Security;
 
 final class UpdatePasswordOutputDto
 {
-  public function __construct(public readonly bool $updated) {}
+  public function __construct(
+    public readonly Retour $retour
+  ) {}
 }

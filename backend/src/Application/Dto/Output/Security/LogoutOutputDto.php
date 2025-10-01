@@ -6,5 +6,7 @@ namespace App\Application\Dto\Output\Security;
 
 final class LogoutOutputDto
 {
-  public function __construct(public readonly bool $loggedOut) {}
+  public function __construct(
+    public readonly bool $success
+  ) {}
 }
