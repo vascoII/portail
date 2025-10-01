@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Application\Service\DataProvider;
 
-use App\Application\Dto\Input\Intervention\ReportInputDto;
+use App\Application\Dto\Input\Shared\GetReportInputDto;
 use App\Application\Dto\Output\Intervention\ReportOutputDto;
 
 interface InterventionDataProviderInterface
 {
 
-  public function reportService(ReportInputDto $inputDto): ReportOutputDto;
+  public function reportService(GetReportInputDto $inputDto): ReportOutputDto;
 }

@@ -22,6 +22,7 @@ abstract class AbstractAction implements ActionInterface
   public const PARAM_ID = 'id';
 
   public const FACTURE = 'FACTURE';
+  public const INTERVENTION = 'INTERVENTION';
 
   protected function json(mixed $data, int $status = Response::HTTP_OK, array $headers = []): JsonResponse
   {

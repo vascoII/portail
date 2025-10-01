@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\UseCase\Intervention;
 
-use App\Application\Dto\Input\Intervention\ReportInputDto;
+use App\Application\Dto\Input\Shared\GetReportInputDto;
 use App\Application\Dto\Output\Intervention\ReportOutputDto;
 use App\Application\Service\DataProvider\InterventionDataProviderInterface;
 
@@ -14,7 +14,7 @@ final class ReportUseCase
     private readonly InterventionDataProviderInterface $serviceDataProvider
   ) {}
 
-  public function execute(ReportInputDto $inputDto): ReportOutputDto
+  public function execute(GetReportInputDto $inputDto): ReportOutputDto
   {
     return $this->serviceDataProvider->reportService($inputDto);
   }
