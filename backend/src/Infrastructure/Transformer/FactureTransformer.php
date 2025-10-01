@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Transformer;
 
-use App\Application\Dto\Output\Facture\IndexOutputDto;
-use App\Application\Dto\Output\Facture\ReportOutputDto;
+use App\Application\Dto\Output\Facture\ReportFactureOutputDto;
 use App\Application\Dto\Output\Facture\ListFactureOutputDto;
 use App\Application\Dto\Output\Facture\FactureOutputDto;
 use DateTimeImmutable;
@@ -15,7 +14,7 @@ final class FactureTransformer
   /**
    * Transform raw response to IndexOutputDto
    */
-  public function transformIndex(object $dataSourceResult): IndexOutputDto
+  public function transformIndex(object $dataSourceResult): ListFactureOutputDto
   {
     $rawList = (array) $dataSourceResult->ListeFactures;
 
@@ -45,18 +44,20 @@ final class FactureTransformer
         );
     }
 
-    return new IndexOutputDto(
-        listFactures: new ListFactureOutputDto($dtoList)
+    return new ListFactureOutputDto(
+        factures:  $dtoList
     );
   }
 
   /**
    * Transform raw response to ReportOutputDto
    */
-  public function transformReport(object $dataSourceResult): ReportOutputDto
+  public function transformReport(object $dataSourceResult): ReportFactureOutputDto
   {
-    return new ReportOutputDto(
-      "Factures", $dataSourceResult
+    return new ReportFactureOutputDto(
+      data: $dataSourceResult,
+      filename: 'relevé-' . date('d-m-Y'),
+      length: strlen($dataSourceResult)
     );
   }
 }

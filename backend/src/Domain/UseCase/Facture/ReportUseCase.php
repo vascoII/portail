@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Domain\UseCase\Facture;
 
 use App\Application\Dto\Input\Shared\GetReportInputDto;
-use App\Application\Dto\Output\Facture\ReportOutputDto;
+use App\Application\Dto\Output\Facture\ReportFactureOutputDto;
 use App\Application\Service\DataProvider\FactureDataProviderInterface;
 
 final class ReportUseCase
@@ -14,7 +14,7 @@ final class ReportUseCase
     private readonly FactureDataProviderInterface $serviceDataProvider
   ) {}
 
-  public function execute(GetReportInputDto $inputDto): ReportOutputDto
+  public function execute(GetReportInputDto $inputDto): ReportFactureOutputDto
   {
     return $this->serviceDataProvider->reportService($inputDto);
   }
