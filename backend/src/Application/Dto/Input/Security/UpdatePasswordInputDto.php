@@ -7,7 +7,7 @@ namespace App\Application\Dto\Input\Security;
 final class UpdatePasswordInputDto 
 {
     public function __construct(
-        public readonly string $pkUserChild,
+        public readonly string $pkUser,
         public readonly string $password 
   ) {}
 }

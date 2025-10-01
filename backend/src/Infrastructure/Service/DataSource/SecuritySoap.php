@@ -4,12 +4,9 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Service\DataSource;
 
-use App\Application\Dto\Input\Security\CreateInputDto;
-use App\Application\Dto\Input\Security\LoginFromParamInputDto;
-use App\Application\Dto\Input\Security\ResetOrCreateInputDto;
-use App\Application\Dto\Input\Security\UpdatePasswordInputDto;
-use App\Application\Dto\Input\Security\ResetPasswordInputDto;
 use App\Application\Dto\Input\Security\LoginInputDto;
+use App\Application\Dto\Input\Security\ResetPasswordFromPKUserInputDto;
+use App\Application\Dto\Input\Security\UpdatePasswordInputDto;
 use App\Application\Service\DataSource\SecurityDataSourceInterface;
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Hydrator\SecurityHydrator;
@@ -29,19 +26,9 @@ final class SecuritySoap implements SecurityDataSourceInterface
     return AuthenticationContext::fromAuthService($this->authService);
   }
 
-  public function fetchCreate(CreateInputDto $inputDto): object
+  public function fetchLogin(LoginInputDto $inputDto): object
   {
-    $authContext = $this->getAuthContext();
-    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIndex($authContext);
-    return $this->soapClient->call('getFactures', $soapRequest);
-  }
-
-  public function fetchLoginFromParam(LoginFromParamInputDto $inputDto): object
-  {
-    $authContext = $this->getAuthContext();
-    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIndex($authContext);
+    $soapRequest = $this->hydrator->hydrateLogin($inputDto);
     return $this->soapClient->call('getFactures', $soapRequest);
   }
 
@@ -49,40 +36,21 @@ final class SecuritySoap implements SecurityDataSourceInterface
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIndex($authContext);
-    return $this->soapClient->call('getFactures', $soapRequest);
+    return $this->soapClient->call('Logout', (object) []);
   }
 
-  public function fetchResetOrCreate(ResetOrCreateInputDto $inputDto): object
+  public function fetchResetPasswordFromPKUser(ResetPasswordFromPKUserInputDto $inputDto): object
   {
-    $authContext = $this->getAuthContext();
-    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIndex($authContext);
-    return $this->soapClient->call('getFactures', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateResetPasswordFromPKUser($inputDto);
+    return $this->soapClient->call('ResetPasswordFromPKUser', $soapRequest);
   }
 
   public function fetchUpdatePassword(UpdatePasswordInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIndex($authContext);
-    return $this->soapClient->call('getFactures', $soapRequest);
-  }
-
-  public function fetchResetPassword(ResetPasswordInputDto $inputDto): object
-  {
-    $authContext = $this->getAuthContext();
-    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIndex($authContext);
-    return $this->soapClient->call('getFactures', $soapRequest);
-  }
-
-  public function fetchLogin(LoginInputDto $inputDto): object
-  {
-    $authContext = $this->getAuthContext();
-    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIndex($authContext);
-    return $this->soapClient->call('getFactures', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateUpdatePassword($inputDto);
+    return $this->soapClient->call('UpdatePassword', $soapRequest);
   }
 
 }

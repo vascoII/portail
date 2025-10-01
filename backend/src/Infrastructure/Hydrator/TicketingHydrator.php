@@ -4,55 +4,53 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Hydrator;
 
-use App\Infrastructure\Service\Auth\AuthenticationContext;
-use App\Application\Dto\Input\Ticketing\AttachmentTicketInputDto;
-use App\Application\Dto\Input\Ticketing\CloseTicketInputDto;
-use App\Application\Dto\Input\Ticketing\CreateTicketInputDto;
-use App\Application\Dto\Input\Ticketing\MenuTicketInputDto;
-use App\Application\Dto\Input\Ticketing\TableTicketingInputDto;
-use App\Application\Dto\Input\Ticketing\TicketListInputDto;
+use App\Application\Dto\Input\Ticketing\CreateTicketInterInputDto;
+use App\Application\Dto\Input\Ticketing\GetAttachmentInputDto;
+use App\Application\Dto\Input\Ticketing\GetTicketInterInitInputDto;
+use App\Application\Dto\Input\Ticketing\GetTicketsIntersUserInputDto;
+use App\Application\Dto\Input\Ticketing\SetTicketStatusInputDto;
 
 final class TicketingHydrator
 {
-  public function hydrateAttachmentTicket(AttachmentTicketInputDto $inputDto, AuthenticationContext $authContext): object
+  public function hydrateCreateTicketInter(CreateTicketInterInputDto $inputDto): object
   {
     return (object) [
-      'SessionID' => $authContext->sessionId,
-      'PkUser' => $authContext->pkUser,
-      // TODO: Add specific parameters based on AttachmentTicketInputDto properties
+      'PkLogement' => $inputDto->pkLogement,
+      'Nom' => $inputDto->name,
+      'Email' => $inputDto->email,
+      'TelFixe' => $inputDto->phone,
+      'TelMobile' => $inputDto->mobile,
+      'Objet' => $inputDto->objet,
+      'MotifLibre' => $inputDto->message
     ];
   }
 
-  public function hydrateCloseTicket(CloseTicketInputDto $inputDto): object
+  public function hydrateGetAttachment(GetAttachmentInputDto $inputDto): object
+  {
+    return (object) [
+      'PkTicketInter' => $inputDto->pkTicketInter
+    ];
+  }
+
+  public function hydrateGetTicketInterInit(GetTicketInterInitInputDto $inputDto): object
+  {
+    return (object) [
+      'PkLogement' => $inputDto->pkLogement
+    ];
+  }
+
+  public function hydrateGetTicketsIntersUser(GetTicketsIntersUserInputDto $inputDto): object
+  {
+    return (object) [
+      'ParamsFiltres' => 'SHOWALL = ' . $inputDto->paramsFiltres
+    ];
+  }
+
+  public function hydrateSetTicketStatus(SetTicketStatusInputDto $inputDto): object
   {
     return (object) [
       'pkticket' => $inputDto->pkTicket,
-      'statut'   => $inputDto->statut,
-    ];
-  }
-
-  public function hydrateCreateTicket(CreateTicketInputDto $inputDto, AuthenticationContext $authContext): object
-  {
-    return (object) [
-      'SessionID' => $authContext->sessionId,
-      'PkUser' => $authContext->pkUser,
-      // TODO: Add specific parameters based on CreateTicketInputDto properties
-    ];
-  }
-
-  public function hydrateMenuTicket(MenuTicketInputDto $inputDto, AuthenticationContext $authContext): object
-  {
-    return (object) [
-      'SessionID' => $authContext->sessionId,
-      'PkUser' => $authContext->pkUser,
-      // TODO: Add specific parameters based on MenuTicketInputDto properties
-    ];
-  }
-
-  public function hydrateTicketList(): object
-  {
-    return (object) [
-      'ParamsFiltres' => 'SHOWALL ='
+      'statut' => $inputDto->statut
     ];
   }
 }

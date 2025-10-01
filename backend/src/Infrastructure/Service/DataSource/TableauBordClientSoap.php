@@ -4,11 +4,8 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Service\DataSource;
 
-use App\Application\Dto\Input\TableauBordClient\IndexInputDto;
-use App\Application\Dto\Input\TableauBordClient\InterventionInputDto;
 use App\Application\Service\DataSource\TableauBordClientDataSourceInterface;
 use App\Application\Service\Auth\AuthServiceInterface;
-use App\Infrastructure\Hydrator\TableauBordClientHydrator;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Infrastructure\Service\DataSource\SoapClient;
 
@@ -16,7 +13,6 @@ final class TableauBordClientSoap implements TableauBordClientDataSourceInterfac
 {
   public function __construct(
     private readonly SoapClient $soapClient,
-    private readonly TableauBordClientHydrator $hydrator,
     private readonly AuthServiceInterface $authService
   ) {}
 
@@ -25,19 +21,10 @@ final class TableauBordClientSoap implements TableauBordClientDataSourceInterfac
     return AuthenticationContext::fromAuthService($this->authService);
   }
 
-  public function fetchIndex(IndexInputDto $inputDto): object
+  public function fetcGetTableauBordClient(): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIndex($inputDto, $authContext);
-    return $this->soapClient->call('getFactures', $soapRequest);
-  }
-
-  public function fetchIntervention(InterventionInputDto $inputDto): object
-  {
-    $authContext = $this->getAuthContext();
-    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIntervention($inputDto, $authContext);
-    return $this->soapClient->call('getFactures', $soapRequest);
+    return $this->soapClient->call('GetTableauBordClient', (object) []);
   }
 }

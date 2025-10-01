@@ -4,97 +4,66 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Hydrator;
 
-use App\Infrastructure\Service\Auth\AuthenticationContext;
-use App\Application\Dto\Input\Operator\IndexInputDto;
-use App\Application\Dto\Input\Operator\CreateInputDto;
-use App\Application\Dto\Input\Operator\AddBuildingInputDto;
-use App\Application\Dto\Input\Operator\RemoveBuildingInputDto;
-use App\Application\Dto\Input\Operator\ViewInputDto;
-use App\Application\Dto\Input\Operator\EditInputDto;
-use App\Application\Dto\Input\Operator\EditPasswordInputDto;
-use App\Application\Dto\Input\Operator\DeleteInputDto;
-use App\Application\Dto\Input\Operator\OtatsoccupantsInputDto;
+use App\Application\Dto\Input\Operator\SetImmeublesInpuDto;
+use App\Application\Dto\Input\Operator\CreateGestionnaireInputDto;
+use App\Application\Dto\Input\Operator\DeleteUserInpuDto;
+use App\Application\Dto\Input\Operator\GetUserInpuDto;
+use App\Application\Dto\Input\Operator\UpdateUserInpuDto;
 
 final class OperatorHydrator
 {
-  public function hydrateIndex(IndexInputDto $inputDto, AuthenticationContext $authContext): object
+  public function hydrateSetImmeubles(SetImmeublesInpuDto $inputDto): object
   {
     return (object) [
-      'SessionID' => $authContext->sessionId,
-      'PkUser' => $authContext->pkUser,
-      // TODO: Add specific parameters based on IndexInputDto properties
+      'PkUserChild'   => $inputDto->pkUserChild,
+      'ListImmeubles' => $inputDto->listImmeubles,
     ];
   }
 
-  public function hydrateCreate(CreateInputDto $inputDto, AuthenticationContext $authContext): object
+  public function hydrateCreateGestionnaire(CreateGestionnaireInputDto $inputDto): object
   {
     return (object) [
-      'SessionID' => $authContext->sessionId,
-      'PkUser' => $authContext->pkUser,
-      // TODO: Add specific parameters based on CreateInputDto properties
+      'LoginID'     => $inputDto->email,
+      'UserName'    => $inputDto->lastname,
+      'FirstName'   => $inputDto->firstname,
+      'PhoneNumber' => $inputDto->phone,
+      'Email'       => $inputDto->email,
+      'UserRole'    => $inputDto->job,
     ];
   }
 
-  public function hydrateAddBuilding(AddBuildingInputDto $inputDto, AuthenticationContext $authContext): object
+  public function hydrateDeleteUser(DeleteUserInpuDto $inputDto): object
   {
     return (object) [
-      'SessionID' => $authContext->sessionId,
-      'PkUser' => $authContext->pkUser,
-      // TODO: Add specific parameters based on AddBuildingInputDto properties
+      'PkUserChild' => $inputDto->pkUser,
     ];
   }
 
-  public function hydrateRemoveBuilding(RemoveBuildingInputDto $inputDto, AuthenticationContext $authContext): object
+  public function hydrateGetChildUsers(): object
   {
     return (object) [
-      'SessionID' => $authContext->sessionId,
-      'PkUser' => $authContext->pkUser,
-      // TODO: Add specific parameters based on RemoveBuildingInputDto properties
+      'type' => 'G',
     ];
   }
 
-  public function hydrateView(ViewInputDto $inputDto, AuthenticationContext $authContext): object
+  public function hydrateGetUser(GetUserInpuDto $inputDto): object
   {
     return (object) [
-      'SessionID' => $authContext->sessionId,
-      'PkUser' => $authContext->pkUser,
-      // TODO: Add specific parameters based on ViewInputDto properties
+      'PkUserChild' => $inputDto->pkUser,
     ];
   }
 
-  public function hydrateEdit(EditInputDto $inputDto, AuthenticationContext $authContext): object
+  public function hydrateUpdateUser(UpdateUserInpuDto $inputDto): object
   {
     return (object) [
-      'SessionID' => $authContext->sessionId,
-      'PkUser' => $authContext->pkUser,
-      // TODO: Add specific parameters based on EditInputDto properties
+      'PkUserChild' => $inputDto->pkUser,
+      'LoginID'     => $inputDto->email,
+      'UserName'    => $inputDto->lastname,
+      'FirstName'   => $inputDto->firstname,
+      'PhoneNumber' => $inputDto->phone,
+      'Email'       => $inputDto->email,
+      'UserRole'    => $inputDto->job,
     ];
   }
-
-  public function hydrateEditPassword(EditPasswordInputDto $inputDto, AuthenticationContext $authContext): object
-  {
-    return (object) [
-      'SessionID' => $authContext->sessionId,
-      'PkUser' => $authContext->pkUser,
-      // TODO: Add specific parameters based on EditPasswordInputDto properties
-    ];
-  }
-
-  public function hydrateDelete(DeleteInputDto $inputDto, AuthenticationContext $authContext): object
-  {
-    return (object) [
-      'SessionID' => $authContext->sessionId,
-      'PkUser' => $authContext->pkUser,
-      // TODO: Add specific parameters based on DeleteInputDto properties
-    ];
-  }
-
-  public function hydrateOtatsoccupants(OtatsoccupantsInputDto $inputDto, AuthenticationContext $authContext): object
-  {
-    return (object) [
-      'SessionID' => $authContext->sessionId,
-      'PkUser' => $authContext->pkUser,
-      // TODO: Add specific parameters based on OtatsoccupantsInputDto properties
-    ];
-  }
+  
 }

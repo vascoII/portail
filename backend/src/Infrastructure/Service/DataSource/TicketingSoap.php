@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Service\DataSource;
 
-use App\Application\Dto\Input\Ticketing\AttachmentTicketInputDto;
-use App\Application\Dto\Input\Ticketing\CloseTicketInputDto;
-use App\Application\Dto\Input\Ticketing\CreateTicketInputDto;
-use App\Application\Dto\Input\Ticketing\MenuTicketInputDto;
-use App\Application\Dto\Input\Ticketing\TableTicketingInputDto;
-use App\Application\Dto\Input\Ticketing\TicketListInputDto;
+use App\Application\Dto\Input\Ticketing\CreateTicketInterInputDto;
+use App\Application\Dto\Input\Ticketing\GetAttachmentInputDto;
+use App\Application\Dto\Input\Ticketing\GetTicketInterInitInputDto;
+use App\Application\Dto\Input\Ticketing\GetTicketsIntersUserInputDto;
+use App\Application\Dto\Input\Ticketing\SetTicketStatusInputDto;
 use App\Application\Service\DataSource\TicketingDataSourceInterface;
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Hydrator\TicketingHydrator;
@@ -29,43 +28,57 @@ final class TicketingSoap implements TicketingDataSourceInterface
     return AuthenticationContext::fromAuthService($this->authService);
   }
 
-  public function fetchAttachmentTicket(AttachmentTicketInputDto $inputDto): object
+  public function fetchCheckTicketsInterEnabled($inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateAttachmentTicket($inputDto, $authContext);
-    return $this->soapClient->call('', $soapRequest);
+    return $this->soapClient->call('CheckTicketsInterEnabled', (object) []);
   }
 
-  public function fetchCloseTicket(CloseTicketInputDto $inputDto): void
+  public function fetchCreateTicketInter(CreateTicketInterInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateCloseTicket($inputDto);
-    $this->soapClient->call('SetTicketStatus', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateCreateTicketInter($inputDto);
+    return $this->soapClient->call('CreateTicketInter', $soapRequest);
   }
 
-  public function fetchCreateTicket(CreateTicketInputDto $inputDto): object
+  public function fetchGetAttachment(GetAttachmentInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateCreateTicket($inputDto, $authContext);
-    return $this->soapClient->call('', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateGetAttachment($inputDto);
+    return $this->soapClient->call('GetAttachment', $soapRequest);
   }
 
-  public function fetchMenuTicket(MenuTicketInputDto $inputDto): object
+  public function fetchGetTicketInterInit(GetTicketInterInitInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateMenuTicket($inputDto, $authContext);
-    return $this->soapClient->call('', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateGetTicketInterInit($inputDto);
+    return $this->soapClient->call('GetTicketInterInit', $soapRequest);
   }
 
-  public function fetchTicketList(): object
+	public function fetchGetTicketsIntersUser(GetTicketsIntersUserInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateTicketList();
+    $soapRequest = $this->hydrator->hydrateGetTicketsIntersUser($inputDto);
     return $this->soapClient->call('GetTicketsIntersUser', $soapRequest);
+  }
+
+	public function fetchSetTicketStatus(SetTicketStatusInputDto $inputDto): object
+  {
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
+    $soapRequest = $this->hydrator->hydrateSetTicketStatus($inputDto);
+    return $this->soapClient->call('SetTicketStatus', $soapRequest);
+  }
+
+	public function fetchGetNbTicketsIntersUser(): object
+  {
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
+    return $this->soapClient->call('GetNbTicketsIntersUser', (object) []);
   }
 }

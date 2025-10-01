@@ -27,4 +27,8 @@ interface GestionParcDataSourceInterface
   public function fetchListLeaks(LeaksInputDto $inputDto): object;
   public function fetchListAnomalies(AnomaliesInputDto $inputDto): object;
   public function fetchListDysfunctions(DysfunctionsInputDto $inputDto): object;
+
+  public function CreateGestionnaire($inputDto): object;
+  public function DeleteUser($inputDto): object;
+  public function GetChildUsers($inputDto): object;
 }

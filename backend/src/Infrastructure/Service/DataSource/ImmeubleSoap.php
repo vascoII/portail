@@ -4,16 +4,13 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Service\DataSource;
 
-use App\Application\Dto\Input\Immeuble\IndexInputDto;
-use App\Application\Dto\Input\Immeuble\ShowInputDto;
-use App\Application\Dto\Input\Immeuble\ReportInputDto;
-use App\Application\Dto\Input\Immeuble\InterventionsInputDto;
-use App\Application\Dto\Input\Immeuble\ShowInterventionInputDto;
-use App\Application\Dto\Input\Immeuble\InterventionInputDto;
-use App\Application\Dto\Input\Immeuble\LeaksInputDto;
-use App\Application\Dto\Input\Immeuble\DysfunctionsInputDto;
-use App\Application\Dto\Input\Immeuble\AnomaliesInputDto;
-use App\Application\Dto\Input\Immeuble\FilterResultInputDto;
+use App\Application\Dto\Input\Immeuble\GetTableauBordImmeubleInputDto;
+use App\Application\Dto\Input\Immeuble\GetInfosAnomaliesByImmeubleInputDto;
+use App\Application\Dto\Input\Immeuble\GetInfosLogementsByImmeubleInputDto;
+use App\Application\Dto\Input\Immeuble\GetInfosDepannagesByImmeubleInputDto;
+use App\Application\Dto\Input\Immeuble\GetInfosDysfonctionnementsByImmeubleInputDto;
+use App\Application\Dto\Input\Immeuble\GetInfosFuitesByImmeubleInputDto;
+use App\Application\Dto\Input\Immeuble\GetInfosImmeublesInputDto;
 use App\Application\Service\DataSource\ImmeubleDataSourceInterface;
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Hydrator\ImmeubleHydrator;
@@ -33,84 +30,60 @@ final class ImmeubleSoap implements ImmeubleDataSourceInterface
     return AuthenticationContext::fromAuthService($this->authService);
   }
 
-  public function fetchIndex(IndexInputDto $inputDto): object
+  public function fetchGetTableauBordImmeuble(GetTableauBordImmeubleInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIndex($inputDto, $authContext);
-    return $this->soapClient->call('', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateGetTableauBordImmeuble($inputDto);
+    return $this->soapClient->call('GetTableauBordImmeuble', $soapRequest);
   }
 
-  public function fetchShow(ShowInputDto $inputDto): object
+  public function fetchGetInfosAnomaliesByImmeuble(GetInfosAnomaliesByImmeubleInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateShow($inputDto, $authContext);
-    return $this->soapClient->call('', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateGetInfosAnomaliesByImmeuble($inputDto);
+    return $this->soapClient->call('GetInfosAnomaliesByImmeuble', $soapRequest);
   }
 
-  public function fetchReport(ReportInputDto $inputDto): object
+  public function fetchGetInfosLogementsByImmeuble(GetInfosLogementsByImmeubleInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateReport($inputDto, $authContext);
-    return $this->soapClient->call('', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateGetInfosLogementsByImmeuble($inputDto);
+    return $this->soapClient->call('GetInfosLogementsByImmeuble', $soapRequest);
   }
 
-  public function fetchListInterventions(InterventionsInputDto $inputDto): object
+  public function fetchGetInfosDepannagesByImmeuble(GetInfosDepannagesByImmeubleInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateListInterventions($inputDto, $authContext);
-    return $this->soapClient->call('', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateGetInfosDepannagesByImmeuble($inputDto);
+    return $this->soapClient->call('GetInfosDepannagesByImmeuble', $soapRequest);
   }
 
-  public function fetchShowIntervention(ShowInterventionInputDto $inputDto): object
+  public function fetchGetInfosDysfonctionnementsByImmeuble(GetInfosDysfonctionnementsByImmeubleInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateShowIntervention($inputDto, $authContext);
-    return $this->soapClient->call('', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateGetInfosDysfonctionnementsByImmeuble($inputDto);
+    return $this->soapClient->call('GetInfosDysfonctionnementsByImmeuble', $soapRequest);
   }
 
-  public function fetchIntervention(InterventionInputDto $inputDto): object
+  public function fetchGetInfosFuitesByImmeuble(GetInfosFuitesByImmeubleInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateIntervention($inputDto, $authContext);
-    return $this->soapClient->call('', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateGetInfosFuitesByImmeuble($inputDto);
+    return $this->soapClient->call('GetInfosFuitesByImmeuble', $soapRequest);
   }
 
-  public function fetchListLeaks(LeaksInputDto $inputDto): object
+  public function fetchGetInfosImmeubles(GetInfosImmeublesInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateListLeaks($inputDto, $authContext);
-    return $this->soapClient->call('', $soapRequest);
-  }
-
-  public function fetchListDysfunctions(DysfunctionsInputDto $inputDto): object
-  {
-    $authContext = $this->getAuthContext();
-    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateListDysfunctions($inputDto, $authContext);
-    return $this->soapClient->call('', $soapRequest);
-  }
-
-  public function fetchListAnomalies(AnomaliesInputDto $inputDto): object
-  {
-    $authContext = $this->getAuthContext();
-    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateListAnomalies($inputDto, $authContext);
-    return $this->soapClient->call('', $soapRequest);
-  }
-
-  public function fetchFilterResult(FilterResultInputDto $inputDto): object
-  {
-    $authContext = $this->getAuthContext();
-    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateFilterResult($inputDto, $authContext);
-    return $this->soapClient->call('', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateGetInfosImmeubles($inputDto);
+    return $this->soapClient->call('GetInfosImmeubles', $soapRequest);
   }
 
 }
