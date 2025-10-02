@@ -29,7 +29,10 @@ const Header: React.FC<HeaderProps> = ({
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <header className="bg-white shadow-sm border-b border-gray-200">
+    <header 
+      className="bg-white shadow-sm border-b border-gray-200 bg-cover bg-center"
+      style={{ backgroundImage: "url('/images/login-bg.png')" }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}

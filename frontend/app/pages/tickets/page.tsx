@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react";
 import BaseLayout from "../../components/Layout/BaseLayout";
 import Breadcrumb from "../../components/Layout/Breadcrumb";
