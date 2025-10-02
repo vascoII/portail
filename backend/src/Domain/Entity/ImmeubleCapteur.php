@@ -1,50 +1,15 @@
 <?php
 
-class immeubleCapteur
+declare(strict_types=1);
+
+namespace App\Domain\Entity;
+
+final class ImmeubleCapteur
 {
-
-  /**
-   * 
-   * @var indexRecapDate $IndexRecapTemperature
-   * @access public
-   */
-  public $IndexRecapTemperature = null;
-
-  /**
-   * 
-   * @var indexRecapDate $IndexRecapHumidite
-   * @access public
-   */
-  public $IndexRecapHumidite = null;
-
-  /**
-   * 
-   * @var serie $SerieConsosTemperature
-   * @access public
-   */
-  public $SerieConsosTemperature = null;
-
-  /**
-   * 
-   * @var serie $SerieConsosHumidite
-   * @access public
-   */
-  public $SerieConsosHumidite = null;
-
-  /**
-   * 
-   * @param indexRecapDate $IndexRecapTemperature
-   * @param indexRecapDate $IndexRecapHumidite
-   * @param serie $SerieConsosTemperature
-   * @param serie $SerieConsosHumidite
-   * @access public
-   */
-  public function __construct($IndexRecapTemperature, $IndexRecapHumidite, $SerieConsosTemperature, $SerieConsosHumidite)
-  {
-    $this->IndexRecapTemperature = $IndexRecapTemperature;
-    $this->IndexRecapHumidite = $IndexRecapHumidite;
-    $this->SerieConsosTemperature = $SerieConsosTemperature;
-    $this->SerieConsosHumidite = $SerieConsosHumidite;
-  }
-
+    public function __construct(
+        public ?IndexRecapDate $indexRecapTemperature = null,
+        public ?IndexRecapDate $indexRecapHumidite = null,
+        public ?Serie $serieConsosTemperature = null,
+        public ?Serie $serieConsosHumidite = null
+    ) {}
 }

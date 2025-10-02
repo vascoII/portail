@@ -10,7 +10,7 @@ final class DetailsDepannage
    * @param Depannage[] $listeDepannagesOccupant
    */
   public function __construct(
-    public readonly ?object $infosDepannage, // Will be updated when infosDepannage is defined
+    public readonly ?InfosDepannage $infosDepannage, // Will be updated when infosDepannage is defined
     public readonly array $listeDepannagesOccupant
   ) {}
 }

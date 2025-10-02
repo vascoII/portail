@@ -1,59 +1,16 @@
 <?php
 
-class immeubleGaz
+declare(strict_types=1);
+
+namespace App\Domain\Entity;
+
+final class ImmeubleGaz
 {
-
-  /**
-   * 
-   * @var int $NbCompteursARelever
-   * @access public
-   */
-  public $NbCompteursARelever = null;
-
-  /**
-   * 
-   * @var int $NbCompteursReleves
-   * @access public
-   */
-  public $NbCompteursReleves = null;
-
-  /**
-   * 
-   * @var chantier $Chantier
-   * @access public
-   */
-  public $Chantier = null;
-
-  /**
-   * 
-   * @var topConsos $TopConsos
-   * @access public
-   */
-  public $TopConsos = null;
-
-  /**
-   * 
-   * @var Releve[] $ListeReleves
-   * @access public
-   */
-  public $ListeReleves = null;
-
-  /**
-   * 
-   * @param int $NbCompteursARelever
-   * @param int $NbCompteursReleves
-   * @param chantier $Chantier
-   * @param topConsos $TopConsos
-   * @param Releve[] $ListeReleves
-   * @access public
-   */
-  public function __construct($NbCompteursARelever, $NbCompteursReleves, $Chantier, $TopConsos, $ListeReleves)
-  {
-    $this->NbCompteursARelever = $NbCompteursARelever;
-    $this->NbCompteursReleves = $NbCompteursReleves;
-    $this->Chantier = $Chantier;
-    $this->TopConsos = $TopConsos;
-    $this->ListeReleves = $ListeReleves;
-  }
-
+    public function __construct(
+        public ?int $nbCompteursARelever = null,
+        public ?int $nbCompteursReleves = null,
+        public ?Chantier $chantier = null,
+        public ?TopConsos $topConsos = null,
+        public ?array $listeReleves = null // Releve[]
+    ) {}
 }

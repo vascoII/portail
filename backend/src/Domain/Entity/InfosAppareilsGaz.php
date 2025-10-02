@@ -1,23 +1,12 @@
 <?php
 
-class infosAppareilsGaz
+declare(strict_types=1);
+
+namespace App\Domain\Entity;
+
+final class InfosAppareilsGaz
 {
-
-  /**
-   * 
-   * @var InfosAppareilGaz[] $ListeInfosAppareils
-   * @access public
-   */
-  public $ListeInfosAppareils = null;
-
-  /**
-   * 
-   * @param InfosAppareilGaz[] $ListeInfosAppareils
-   * @access public
-   */
-  public function __construct($ListeInfosAppareils)
-  {
-    $this->ListeInfosAppareils = $ListeInfosAppareils;
-  }
-
+    public function __construct(
+        public ?array $listeInfosAppareils = null // InfosAppareilGaz[]
+    ) {}
 }

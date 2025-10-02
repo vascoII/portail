@@ -1,23 +1,12 @@
 <?php
 
-class infosAppareilElect
+declare(strict_types=1);
+
+namespace App\Domain\Entity;
+
+final class InfosAppareilElect
 {
-
-  /**
-   * 
-   * @var appareil $Appareil
-   * @access public
-   */
-  public $Appareil = null;
-
-  /**
-   * 
-   * @param appareil $Appareil
-   * @access public
-   */
-  public function __construct($Appareil)
-  {
-    $this->Appareil = $Appareil;
-  }
-
+    public function __construct(
+        public ?Appareil $appareil = null
+    ) {}
 }
