@@ -7,7 +7,7 @@ namespace App\Http\Action\Operator;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
-use App\Domain\UseCase\Operator\EditPasswordUseCase;
+use App\Application\UseCase\Operator\EditPasswordUseCase;
 use App\Application\Dto\Input\Operator\EditPasswordInputDto;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

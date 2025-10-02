@@ -7,7 +7,7 @@ namespace App\Http\Action\Operator;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
-use App\Domain\UseCase\Operator\AddBuildingUseCase;
+use App\Application\UseCase\Operator\AddBuildingUseCase;
 use App\Application\Dto\Input\Operator\AddBuildingInputDto;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

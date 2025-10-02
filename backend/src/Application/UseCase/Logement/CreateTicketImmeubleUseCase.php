@@ -1,0 +1,21 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Application\UseCase\Logement;
+
+use App\Application\Dto\Input\Logement\CreateTicketImmeubleInputDto;
+use App\Application\Dto\Output\Logement\CreateTicketImmeubleOutputDto;
+use App\Application\Service\DataProvider\LogementDataProviderInterface;
+
+final class CreateTicketImmeubleUseCase
+{
+  public function __construct(
+    private readonly LogementDataProviderInterface $serviceDataProvider
+  ) {}
+
+  public function execute(CreateTicketImmeubleInputDto $inputDto): CreateTicketImmeubleOutputDto
+  {
+    return $this->serviceDataProvider->createTicketImmeubleService($inputDto);
+  }
+}

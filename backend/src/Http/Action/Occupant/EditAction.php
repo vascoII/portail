@@ -7,7 +7,7 @@ namespace App\Http\Action\Occupant;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
-use App\Domain\UseCase\Occupant\EditUseCase;
+use App\Application\UseCase\Occupant\EditUseCase;
 use App\Application\Dto\Input\Occupant\EditInputDto;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

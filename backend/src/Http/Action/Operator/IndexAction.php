@@ -7,7 +7,7 @@ namespace App\Http\Action\Operator;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
-use App\Domain\UseCase\Operator\IndexUseCase;
+use App\Application\UseCase\Operator\IndexUseCase;
 use App\Application\Dto\Input\Operator\IndexInputDto;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

@@ -7,7 +7,7 @@ namespace App\Http\Action\Ticketing;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
-use App\Domain\UseCase\Ticketing\CloseTicketUseCase;
+use App\Application\UseCase\Ticketing\CloseTicketUseCase;
 use App\Application\Dto\Input\Ticketing\CloseTicketInputDto;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

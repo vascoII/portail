@@ -7,7 +7,7 @@ namespace App\Http\Action\Logement;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
-use App\Domain\UseCase\Logement\InterventionsUseCase;
+use App\Application\UseCase\Logement\InterventionsUseCase;
 use App\Application\Dto\Input\Logement\InterventionsInputDto;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

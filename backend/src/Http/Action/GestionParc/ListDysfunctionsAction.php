@@ -7,7 +7,7 @@ namespace App\Http\Action\GestionParc;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
-use App\Domain\UseCase\GestionParc\DysfunctionsUseCase;
+use App\Application\UseCase\GestionParc\DysfunctionsUseCase;
 use App\Application\Dto\Input\GestionParc\DysfunctionsInputDto;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

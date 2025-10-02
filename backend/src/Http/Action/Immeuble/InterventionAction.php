@@ -7,7 +7,7 @@ namespace App\Http\Action\Immeuble;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
-use App\Domain\UseCase\Immeuble\InterventionUseCase;
+use App\Application\UseCase\Immeuble\InterventionUseCase;
 use App\Application\Dto\Input\Immeuble\InterventionInputDto;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 final class InterventionAction extends AbstractAction implements ActionInterface
 {
   public function __construct(
-    private readonly ResponderInterface $responder, 
+    private readonly ResponderInterface $responder,
     private readonly InterventionUseCase $useCase
   ) {}
 

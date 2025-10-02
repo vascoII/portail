@@ -7,7 +7,7 @@ namespace App\Http\Action\Security;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
-use App\Domain\UseCase\Security\ResetPasswordUseCase;
+use App\Application\UseCase\Security\ResetPasswordUseCase;
 use App\Application\Dto\Input\Security\ResetPasswordInputDto;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

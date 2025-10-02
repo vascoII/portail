@@ -7,7 +7,7 @@ namespace App\Http\Action\Intervention;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
-use App\Domain\UseCase\Intervention\ReportUseCase;
+use App\Application\UseCase\Intervention\ReportUseCase;
 use App\Application\Dto\Input\Shared\GetReportInputDto;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

@@ -7,7 +7,7 @@ namespace App\Http\Action\Ticketing;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
-use App\Domain\UseCase\Ticketing\TicketListUseCase;
+use App\Application\UseCase\Ticketing\TicketListUseCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

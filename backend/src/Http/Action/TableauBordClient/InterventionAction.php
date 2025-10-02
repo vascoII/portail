@@ -7,7 +7,7 @@ namespace App\Http\Action\TableauBordClient;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
-use App\Domain\UseCase\TableauBordClient\InterventionUseCase;
+use App\Application\UseCase\TableauBordClient\InterventionUseCase;
 use App\Application\Dto\Input\TableauBordClient\InterventionInputDto;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

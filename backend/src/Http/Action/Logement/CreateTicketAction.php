@@ -7,7 +7,7 @@ namespace App\Http\Action\Logement;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
-use App\Domain\UseCase\Logement\CreateTicketUseCase;
+use App\Application\UseCase\Logement\CreateTicketUseCase;
 use App\Application\Dto\Input\Logement\CreateTicketInputDto;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

@@ -7,7 +7,7 @@ namespace App\Http\Action\Occupant;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
-use App\Domain\UseCase\Occupant\AlertesUseCase;
+use App\Application\UseCase\Occupant\AlertesUseCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

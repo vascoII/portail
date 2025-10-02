@@ -7,7 +7,7 @@ namespace App\Http\Action\Immeuble;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
-use App\Domain\UseCase\Immeuble\ShowInterventionUseCase;
+use App\Application\UseCase\Immeuble\ShowInterventionUseCase;
 use App\Application\Dto\Input\Immeuble\ShowInterventionInputDto;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

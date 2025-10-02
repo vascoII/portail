@@ -7,7 +7,7 @@ namespace App\Http\Action\Security;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
-use App\Domain\UseCase\Security\UpdatePasswordUseCase;
+use App\Application\UseCase\Security\UpdatePasswordUseCase;
 use App\Application\Dto\Input\Security\UpdatePasswordInputDto;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

@@ -7,7 +7,7 @@ namespace App\Http\Action\Security;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
-use App\Domain\UseCase\Security\ResetOrCreateUseCase;
+use App\Application\UseCase\Security\ResetOrCreateUseCase;
 use App\Application\Dto\Input\Security\ResetOrCreateInputDto;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
