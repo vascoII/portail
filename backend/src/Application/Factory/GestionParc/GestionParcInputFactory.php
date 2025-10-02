@@ -68,4 +68,50 @@ final class GestionParcInputFactory
       (string) $request->query->get('pkIntervention')
     );
   }
+
+  // Methods for route parameters
+  public function createReportFromRoute(Request $request, string $pkImmeubleParam, string $typeParam, string $energieParam): ReportInputDto
+  {
+    $pkImmeuble = (string) $request->attributes->get($pkImmeubleParam);
+    $type = (string) $request->attributes->get($typeParam);
+    $energie = (string) $request->attributes->get($energieParam);
+    return new ReportInputDto($pkImmeuble, $type, $energie);
+  }
+
+  public function createShowFromRoute(Request $request, string $pkImmeubleParam): ShowInputDto
+  {
+    $pkImmeuble = (string) $request->attributes->get($pkImmeubleParam);
+    return new ShowInputDto($pkImmeuble);
+  }
+
+  public function createShowInterventionFromRoute(Request $request, string $pkImmeubleParam, string $pkInterventionParam): ShowInterventionInputDto
+  {
+    $pkImmeuble = (string) $request->attributes->get($pkImmeubleParam);
+    $pkIntervention = (string) $request->attributes->get($pkInterventionParam);
+    return new ShowInterventionInputDto($pkImmeuble, $pkIntervention);
+  }
+
+  public function createAnomaliesFromRoute(Request $request, string $pkImmeubleParam): AnomaliesInputDto
+  {
+    $pkImmeuble = (string) $request->attributes->get($pkImmeubleParam);
+    return new AnomaliesInputDto($pkImmeuble);
+  }
+
+  public function createDysfunctionsFromRoute(Request $request, string $pkImmeubleParam): DysfunctionsInputDto
+  {
+    $pkImmeuble = (string) $request->attributes->get($pkImmeubleParam);
+    return new DysfunctionsInputDto($pkImmeuble);
+  }
+
+  public function createInterventionsFromRoute(Request $request, string $pkImmeubleParam): InterventionsInputDto
+  {
+    $pkImmeuble = (string) $request->attributes->get($pkImmeubleParam);
+    return new InterventionsInputDto($pkImmeuble);
+  }
+
+  public function createLeaksFromRoute(Request $request, string $pkImmeubleParam): LeaksInputDto
+  {
+    $pkImmeuble = (string) $request->attributes->get($pkImmeubleParam);
+    return new LeaksInputDto($pkImmeuble);
+  }
 }

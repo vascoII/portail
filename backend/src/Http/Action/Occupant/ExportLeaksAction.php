@@ -8,7 +8,7 @@ use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
 use App\Application\UseCase\Occupant\LeaksUseCase;
-use App\Application\Dto\Input\Occupant\LeaksInputDto;
+use App\Application\Factory\Occupant\OccupantInputFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,11 +16,15 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route(path: '/occupant/fuites/export', name: 'occupant_export_leaks', methods: ['GET'])]
 final class ExportLeaksAction extends AbstractAction implements ActionInterface
 {
-  public function __construct(private readonly ResponderInterface $responder, private readonly LeaksUseCase $useCase) {}
+  public function __construct(
+    private readonly ResponderInterface $responder,
+    private readonly LeaksUseCase $useCase,
+    private readonly OccupantInputFactory $inputFactory
+  ) {}
 
   public function __invoke(Request $request, array $args = []): Response
   {
-    $input = new LeaksInputDto();
+    $input = $this->inputFactory->createLeaksFromRequest($request);
     $output = $this->useCase->execute($input);
     return $this->responder->respond($output);
   }

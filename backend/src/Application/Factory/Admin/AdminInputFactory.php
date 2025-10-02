@@ -13,7 +13,7 @@ use App\Application\Dto\Input\Admin\UpdateCGUFromPKUserInputDto;
 final class AdminInputFactory
 {
 
-  public function createLoginFromParamFromRequest(Request $request)
+  public function createLoginFromParamFromRequest(Request $request): LoginFromParamInputDto
   {
     return new LoginFromParamInputDto($request->query->get('param'));
   }
@@ -23,7 +23,7 @@ final class AdminInputFactory
     return new ResetPasswordFromEmailInputDto($request->query->get('email'));
   }
 
-  public function createUpdateEmailFromPKUserFromRequest(Request $request)
+  public function createUpdateEmailFromPKUserFromRequest(Request $request): UpdateEmailFromPKUserInputDto
   {
     return new UpdateEmailFromPKUserInputDto(
       $request->query->get('pkUser'),
@@ -31,7 +31,7 @@ final class AdminInputFactory
     );
   }
 
-  public function createUpdateCGUFromPKUserFromRequest(Request $request)
+  public function createUpdateCGUFromPKUserFromRequest(Request $request): UpdateCGUFromPKUserInputDto
   {
     return new UpdateCGUFromPKUserInputDto(
       $request->query->get('pkUser'),

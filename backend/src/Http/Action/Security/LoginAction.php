@@ -8,7 +8,7 @@ use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
 use App\Application\UseCase\Security\LoginUseCase;
-use App\Application\Dto\Input\Security\LoginInputDto;
+use App\Application\Factory\Security\SecurityInputFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,13 +18,13 @@ final class LoginAction extends AbstractAction implements ActionInterface
 {
   public function __construct(
     private readonly ResponderInterface $responder,
-    private readonly LoginUseCase $useCase
+    private readonly LoginUseCase $useCase,
+    private readonly SecurityInputFactory $inputFactory
   ) {}
 
   public function __invoke(Request $request, array $args = []): Response
   {
-    $content = $request->toArray();
-    $input = new LoginInputDto(...$content);
+    $input = $this->inputFactory->createLoginFromRequest($request);
     $output = $this->useCase->execute($input);
     return $this->responder->respond($output);
   }

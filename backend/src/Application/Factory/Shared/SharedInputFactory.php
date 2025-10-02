@@ -43,4 +43,17 @@ final class SharedInputFactory
   {
     return new ReportTokenInputDto((string) $request->query->get('token'));
   }
+
+  public function createGetReportFromRoute(Request $request, string $type, string $paramName): GetReportInputDto
+  {
+    $params = (string) $request->attributes->get($paramName);
+    return new GetReportInputDto($type, $params);
+  }
+
+  public function createGetReportFromRouteWithCustomParams(Request $request, string $type, string $paramName, string $paramPrefix): GetReportInputDto
+  {
+    $paramValue = (string) $request->attributes->get($paramName);
+    $params = $paramPrefix . '=' . $paramValue;
+    return new GetReportInputDto($type, $params);
+  }
 }

@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace App\Application\UseCase\Ticketing;
 
-use App\Application\Dto\Input\Ticketing\MenuTicketInputDto;
-use App\Application\Dto\Output\Ticketing\MenuTicketOutputDto;
+use App\Application\Dto\Output\Ticketing\GetTicketsIntersUserOutputDto;
 use App\Application\Service\DataProvider\TicketingDataProviderInterface;
 
 final class MenuTicketUseCase
@@ -14,8 +13,8 @@ final class MenuTicketUseCase
     private readonly TicketingDataProviderInterface $serviceDataProvider
   ) {}
 
-  public function execute(MenuTicketInputDto $inputDto): MenuTicketOutputDto
+  public function execute(): GetTicketsIntersUserOutputDto
   {
-    return $this->serviceDataProvider->menuTicketService($inputDto);
+    return $this->serviceDataProvider->ticketListService();
   }
 }

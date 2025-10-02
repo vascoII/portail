@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Application\UseCase\Ticketing;
 
-use App\Application\Dto\Input\Ticketing\CreateTicketInputDto;
-use App\Application\Dto\Output\Ticketing\CreateTicketOutputDto;
+use App\Application\Dto\Input\Ticketing\CreateTicketInterInputDto;
+use App\Application\Dto\Output\Ticketing\CreateTicketInterOutputDto;
 use App\Application\Service\DataProvider\TicketingDataProviderInterface;
 
 final class CreateTicketUseCase
@@ -14,7 +14,7 @@ final class CreateTicketUseCase
     private readonly TicketingDataProviderInterface $serviceDataProvider
   ) {}
 
-  public function execute(CreateTicketInputDto $inputDto): CreateTicketOutputDto
+  public function execute(CreateTicketInterInputDto $inputDto): CreateTicketInterOutputDto
   {
     return $this->serviceDataProvider->createTicketService($inputDto);
   }

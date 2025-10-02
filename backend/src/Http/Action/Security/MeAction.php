@@ -7,7 +7,7 @@ namespace App\Http\Action\Security;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
-use App\Domain\Service\Auth\AuthServiceInterface;
+use App\Application\Service\Auth\AuthServiceInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
