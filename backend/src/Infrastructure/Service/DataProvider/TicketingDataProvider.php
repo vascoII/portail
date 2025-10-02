@@ -4,19 +4,14 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Service\DataProvider;
 
+use App\Application\Dto\Input\Ticketing\GetAttachmentInputDto;
+use App\Application\Dto\Output\Ticketing\GetAttachmentOutputDto;
+use App\Application\Dto\Input\Ticketing\SetTicketStatusInputDto;
+use App\Application\Dto\Output\Ticketing\SetTicketStatusOutputDto;
+use App\Application\Dto\Input\Ticketing\CreateTicketInterInputDto;
+use App\Application\Dto\Output\Ticketing\CreateTicketInterOutputDto;
+use App\Application\Dto\Output\Ticketing\GetTicketsIntersUserOutputDto;
 use App\Application\Service\DataProvider\TicketingDataProviderInterface;
-use App\Application\Dto\Input\Ticketing\AttachmentTicketInputDto;
-use App\Application\Dto\Output\Ticketing\AttachmentTicketOutputDto;
-use App\Application\Dto\Input\Ticketing\CloseTicketInputDto;
-use App\Application\Dto\Output\Ticketing\CloseTicketOutputDto;
-use App\Application\Dto\Input\Ticketing\CreateTicketInputDto;
-use App\Application\Dto\Output\Ticketing\CreateTicketOutputDto;
-use App\Application\Dto\Input\Ticketing\MenuTicketInputDto;
-use App\Application\Dto\Output\Ticketing\MenuTicketOutputDto;
-use App\Application\Dto\Input\Ticketing\TableTicketingInputDto;
-use App\Application\Dto\Output\Ticketing\TableTicketingOutputDto;
-use App\Application\Dto\Input\Ticketing\TicketListInputDto;
-use App\Application\Dto\Output\Ticketing\TicketListOutputDto;
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Application\Service\DataSource\TicketingDataSourceInterface;
@@ -26,9 +21,9 @@ use App\Infrastructure\Transformer\TicketingTransformer;
 final class TicketingDataProvider implements TicketingDataProviderInterface
 {
   public function __construct(
-    private RedisCacheService $cache,
-    private TicketingDataSourceInterface $source,
-    private TicketingTransformer $transformer,
+    private RedisService $cache,
+    private TicketingDataSourceInterface $ticketingDataSource,
+    private TicketingTransformer $ticketingTransformer,
     private readonly AuthServiceInterface $authService
   ) {}
 
@@ -37,70 +32,52 @@ final class TicketingDataProvider implements TicketingDataProviderInterface
     return AuthenticationContext::fromAuthService($this->authService);
   }
 
-  public function attachmentTicketService(AttachmentTicketInputDto $inputDto): AttachmentTicketOutputDto
+  public function attachmentTicketService(GetAttachmentInputDto $inputDto): GetAttachmentOutputDto
   {
     $authContext = $this->getAuthContext();
     $cacheKey = "ticketing_attachment_ticket:$authContext->pkUser";
     $cachedDto = $this->cache->get($cacheKey);
 
-    if ($cachedDto instanceof AttachmentTicketOutputDto) {
+    if ($cachedDto instanceof GetAttachmentOutputDto) {
       return $cachedDto;
     }
 
-    $rawData = $this->source->fetchAttachmentTicket($inputDto);
-    $dto = $this->transformer->transformAttachmentTicket($rawData);
+    $rawData = $this->ticketingDataSource->fetchGetAttachment($inputDto);
+    $dto = $this->ticketingTransformer->transformGetAttachment($rawData);
 
     $this->cache->set($cacheKey, $dto);
 
     return $dto;
   }
 
-  public function closeTicketService(CloseTicketInputDto $inputDto): CloseTicketOutputDto
+  public function closeTicketService(SetTicketStatusInputDto $inputDto): SetTicketStatusOutputDto
   {
-    $rawData = $this->source->fetchCloseTicket($inputDto);
-    $dto = $this->transformer->transformCloseTicket($rawData);
+    $rawData = $this->ticketingDataSource->fetchSetTicketStatus($inputDto);
+    $dto = $this->ticketingTransformer->transformSetTicketStatus($rawData);
 
     return $dto;
   }
 
-  public function createTicketService(CreateTicketInputDto $inputDto): CreateTicketOutputDto
+  public function createTicketService(CreateTicketInterInputDto $inputDto): CreateTicketInterOutputDto
   {
-    $rawData = $this->source->fetchCreateTicket($inputDto);
-    $dto = $this->transformer->transformCreateTicket($rawData);
+    $rawData = $this->ticketingDataSource->fetchCreateTicketInter($inputDto);
+    $dto = $this->ticketingTransformer->transformCreateTicketInter($rawData);
 
     return $dto;
   }
 
-  public function menuTicketService(MenuTicketInputDto $inputDto): MenuTicketOutputDto
-  {
-    $authContext = $this->getAuthContext();
-    $cacheKey = "ticketing_menu_ticket:$authContext->pkUser";
-    $cachedDto = $this->cache->get($cacheKey);
-
-    if ($cachedDto instanceof MenuTicketOutputDto) {
-      return $cachedDto;
-    }
-
-    $rawData = $this->source->fetchMenuTicket($inputDto);
-    $dto = $this->transformer->transformMenuTicket($rawData);
-
-    $this->cache->set($cacheKey, $dto);
-
-    return $dto;
-  }
-
-  public function ticketListService(): TicketListOutputDto
+  public function ticketListService(): GetTicketsIntersUserOutputDto
   {
     $authContext = $this->getAuthContext();
     $cacheKey = "ticketing_ticket_list:$authContext->pkUser";
     $cachedDto = $this->cache->get($cacheKey);
 
-    if ($cachedDto instanceof TicketListOutputDto) {
+    if ($cachedDto instanceof GetTicketsIntersUserOutputDto) {
       return $cachedDto;
     }
 
-    $rawData = $this->source->fetchTicketList();
-    $dto = $this->transformer->transformTicketList($rawData);
+    $rawData = $this->ticketingDataSource->fetchGetNbTicketsIntersUser();
+    $dto = $this->ticketingTransformer->transformGetTicketsIntersUser($rawData);
 
     $this->cache->set($cacheKey, $dto);
 

@@ -5,50 +5,51 @@ declare(strict_types=1);
 namespace App\Infrastructure\Service\DataProvider;
 
 use App\Application\Service\DataProvider\LogementDataProviderInterface;
-use App\Application\Dto\Input\Logement\IndexInputDto;
-use App\Application\Dto\Output\Logement\IndexOutputDto;
-use App\Application\Dto\Input\Logement\ShowInputDto;
-use App\Application\Dto\Output\Logement\ShowOutputDto;
-use App\Application\Dto\Input\Logement\SearchInputDto;
-use App\Application\Dto\Output\Logement\SearchOutputDto;
-use App\Application\Dto\Input\Logement\InterventionsInputDto;
-use App\Application\Dto\Output\Logement\ListInterventionsOutputDto;
-use App\Application\Dto\Input\Logement\ShowInterventionInputDto;
-use App\Application\Dto\Output\Logement\ShowInterventionOutputDto;
-use App\Application\Dto\Input\Logement\LeaksInputDto;
-use App\Application\Dto\Output\Logement\ListLeaksOutputDto;
-use App\Application\Dto\Input\Logement\DysfunctionsInputDto;
-use App\Application\Dto\Output\Logement\ListDysfunctionsOutputDto;
-use App\Application\Dto\Input\Logement\AnomaliesInputDto;
-use App\Application\Dto\Output\Logement\ListAnomaliesOutputDto;
-use App\Application\Dto\Input\Logement\FilterResultInputDto;
-use App\Application\Dto\Output\Logement\FilterResultOutputDto;
-use App\Application\Dto\Input\Logement\EditInputDto;
-use App\Application\Dto\Output\Logement\EditOutputDto;
-use App\Application\Dto\Input\Logement\CreateTicketInputDto;
-use App\Application\Dto\Output\Logement\CreateTicketOutputDto;
-use App\Application\Dto\Input\Logement\CreateTicketImmeubleInputDto;
-use App\Application\Dto\Output\Logement\CreateTicketImmeubleOutputDto;
-use App\Application\Dto\Input\Logement\GetTicketOnwerInputDto;
-use App\Application\Dto\Output\Logement\GetTicketOnwerOutputDto;
-use App\Application\Dto\Input\Logement\GuideInputDto;
-use App\Application\Dto\Output\Logement\GuideOutputDto;
-use App\Application\Dto\Input\Logement\GetInfosAppareilInputDto;
-use App\Application\Dto\Output\Logement\GetInfosAppareilOutputDto;
-use App\Application\Dto\Input\Logement\ShowRepartReleveInputDto;
-use App\Application\Dto\Output\Logement\ShowRepartReleveOutputDto;
+use App\Application\Dto\Output\TableauBordClient\GetTableauBordClientOutputDto;
+use App\Application\Dto\Input\Shared\GetDetailsDepannageInpuDto;
+use App\Application\Dto\Output\Shared\GetDetailsDepannageOutputDto;
+use App\Application\Dto\Input\Immeuble\GetInfosFuitesByImmeubleInputDto;
+use App\Application\Dto\Output\Immeuble\GetInfosFuitesByImmeubleOutputDto;
+use App\Application\Dto\Input\Immeuble\GetInfosDysfonctionnementsByImmeubleInputDto;
+use App\Application\Dto\Output\Immeuble\GetInfosDysfonctionnementsByImmeubleOutputDto;
+use App\Application\Dto\Input\Immeuble\GetInfosAnomaliesByImmeubleInputDto;
+use App\Application\Dto\Output\Immeuble\GetInfosAnomaliesByImmeubleOutputDto;
+use App\Application\Dto\Input\Ticketing\CreateTicketInterInputDto;
+use App\Application\Dto\Output\Ticketing\CreateTicketInterOutputDto;
+use App\Application\Dto\Input\Ticketing\GetTicketInterInitInputDto;
+use App\Application\Dto\Output\Ticketing\GetTicketInterInitOutputDto;
+use App\Application\Dto\Input\Logement\GetInfosAppareilsByLogementInpuDto;
+use App\Application\Dto\Output\Logement\GetInfosAppareilsByLogementOutputDto;
+use App\Application\Dto\Input\Shared\GetReportInputDto;
+use App\Application\Dto\Output\Shared\GetReportOutputDto;
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
-use App\Application\Service\DataSource\LogementDataSourceInterface;
 use App\Infrastructure\Service\Redis\RedisService;
+use App\Application\Service\DataSource\TicketingDataSourceInterface;
+use App\Infrastructure\Transformer\TicketingTransformer;
+use App\Application\Service\DataSource\ImmeubleDataSourceInterface;
+use App\Infrastructure\Transformer\ImmeubleTransformer;
+use App\Application\Service\DataSource\SharedDataSourceInterface;
+use App\Infrastructure\Transformer\SharedTransformer;
+use App\Application\Service\DataSource\LogementDataSourceInterface;
 use App\Infrastructure\Transformer\LogementTransformer;
+use App\Application\Service\DataSource\TableauBordClientDataSourceInterface;
+use App\Infrastructure\Transformer\TableauBordClientTransformer;
 
 final class LogementDataProvider implements LogementDataProviderInterface
 {
   public function __construct(
     private RedisService $cache,
-    private LogementDataSourceInterface $source,
-    private LogementTransformer $transformer,
+    private TicketingDataSourceInterface $ticketingDataProvider,
+    private TicketingTransformer $ticketingTransformer,
+    private ImmeubleDataSourceInterface $immeubleDataSource,
+    private ImmeubleTransformer $immeubleTransformer,
+    private SharedDataSourceInterface $sharedDataSource,
+    private SharedTransformer $sharedTransformer,
+    private LogementDataSourceInterface $logementDataSource,
+    private LogementTransformer $logementTransformer,
+    private TableauBordClientDataSourceInterface $tableauBordClientDataSource,
+    private TableauBordClientTransformer $tableauBordClientTransformer,
     private readonly AuthServiceInterface $authService
   ) {}
 
@@ -57,258 +58,196 @@ final class LogementDataProvider implements LogementDataProviderInterface
     return AuthenticationContext::fromAuthService($this->authService);
   }
 
-  public function indexService(IndexInputDto $inputDto): IndexOutputDto
+  public function indexService(): GetTableauBordClientOutputDto
   {
     $authContext = $this->getAuthContext();
     $cacheKey = "logement_index:$authContext->pkUser";
     $cachedDto = $this->cache->get($cacheKey);
 
-    if ($cachedDto instanceof IndexOutputDto) {
+    if ($cachedDto instanceof GetTableauBordClientOutputDto) {
       return $cachedDto;
     }
 
-    $rawData = $this->source->fetchIndex($inputDto);
-    $dto = $this->transformer->transformIndex($rawData);
+    $rawData = $this->tableauBordClientDataSource->fetcGetTableauBordClient();
+    $dto = $this->tableauBordClientTransformer->transformGetTableauBordClient($rawData);
 
     $this->cache->set($cacheKey, $dto);
 
     return $dto;
   }
 
-  public function showService(ShowInputDto $inputDto): ShowOutputDto
+  public function showService(): GetTableauBordClientOutputDto
   {
     $authContext = $this->getAuthContext();
     $cacheKey = "logement_show:$authContext->pkUser";
     $cachedDto = $this->cache->get($cacheKey);
 
-    if ($cachedDto instanceof ShowOutputDto) {
+    if ($cachedDto instanceof GetTableauBordClientOutputDto) {
       return $cachedDto;
     }
 
-    $rawData = $this->source->fetchShow($inputDto);
-    $dto = $this->transformer->transformShow($rawData);
+    $rawData = $this->tableauBordClientDataSource->fetcGetTableauBordClient();
+    $dto = $this->tableauBordClientTransformer->transformGetTableauBordClient($rawData);
 
     $this->cache->set($cacheKey, $dto);
 
     return $dto;
   }
 
-  public function searchService(SearchInputDto $inputDto): SearchOutputDto
-  {
-    $authContext = $this->getAuthContext();
-    $cacheKey = "logement_search:$authContext->pkUser";
-    $cachedDto = $this->cache->get($cacheKey);
-
-    if ($cachedDto instanceof SearchOutputDto) {
-      return $cachedDto;
-    }
-
-    $rawData = $this->source->fetchSearch($inputDto);
-    $dto = $this->transformer->transformSearch($rawData);
-
-    $this->cache->set($cacheKey, $dto);
-
-    return $dto;
-  }
-
-  public function listInterventionsService(InterventionsInputDto $inputDto): ListInterventionsOutputDto
+  public function listInterventionsService(GetDetailsDepannageInpuDto $inputDto): GetDetailsDepannageOutputDto
   {
     $authContext = $this->getAuthContext();
     $cacheKey = "logement_list_interventions:$authContext->pkUser";
     $cachedDto = $this->cache->get($cacheKey);
 
-    if ($cachedDto instanceof ListInterventionsOutputDto) {
+    if ($cachedDto instanceof GetDetailsDepannageOutputDto) {
       return $cachedDto;
     }
 
-    $rawData = $this->source->fetchListInterventions($inputDto);
-    $dto = $this->transformer->transformListInterventions($rawData);
+    $rawData = $this->sharedDataSource->fetchGetDetailsDepannage($inputDto);
+    $dto = $this->sharedTransformer->transformGetDetailsDepannage($rawData);
 
     $this->cache->set($cacheKey, $dto);
 
     return $dto;
   }
 
-  public function showInterventionService(ShowInterventionInputDto $inputDto): ShowInterventionOutputDto
+  public function showInterventionService(GetDetailsDepannageInpuDto $inputDto): GetDetailsDepannageOutputDto
   {
     $authContext = $this->getAuthContext();
     $cacheKey = "logement_show_interventions:$authContext->pkUser";
     $cachedDto = $this->cache->get($cacheKey);
 
-    if ($cachedDto instanceof ShowInterventionOutputDto) {
+    if ($cachedDto instanceof GetDetailsDepannageOutputDto) {
       return $cachedDto;
     }
 
-    $rawData = $this->source->fetchShowIntervention($inputDto);
-    $dto = $this->transformer->transformShowIntervention($rawData);
+    $rawData = $this->sharedDataSource->fetchGetDetailsDepannage($inputDto);
+    $dto = $this->sharedTransformer->transformGetDetailsDepannage($rawData);
 
     $this->cache->set($cacheKey, $dto);
 
     return $dto;
   }
 
-  public function listLeaksService(LeaksInputDto $inputDto): ListLeaksOutputDto
+  public function listLeaksService(GetInfosFuitesByImmeubleInputDto $inputDto): GetInfosFuitesByImmeubleOutputDto
   {
     $authContext = $this->getAuthContext();
     $cacheKey = "logement_list_leaks:$authContext->pkUser";
     $cachedDto = $this->cache->get($cacheKey);
 
-    if ($cachedDto instanceof ListLeaksOutputDto) {
+    if ($cachedDto instanceof GetInfosFuitesByImmeubleOutputDto) {
       return $cachedDto;
     }
 
-    $rawData = $this->source->fetchListLeaks($inputDto);
-    $dto = $this->transformer->transformListLeaks($rawData);
+    $rawData = $this->immeubleDataSource->fetchGetInfosFuitesByImmeuble($inputDto);
+    $dto = $this->immeubleTransformer->transformGetInfosFuitesByImmeuble($rawData);
 
     $this->cache->set($cacheKey, $dto);
 
     return $dto;
   }
 
-  public function listDysfunctionsService(DysfunctionsInputDto $inputDto): ListDysfunctionsOutputDto
+  public function listDysfunctionsService(GetInfosDysfonctionnementsByImmeubleInputDto $inputDto): GetInfosDysfonctionnementsByImmeubleOutputDto
   {
     $authContext = $this->getAuthContext();
     $cacheKey = "logement_list_dysfuntions:$authContext->pkUser";
     $cachedDto = $this->cache->get($cacheKey);
 
-    if ($cachedDto instanceof ListDysfunctionsOutputDto) {
+    if ($cachedDto instanceof GetInfosDysfonctionnementsByImmeubleOutputDto) {
       return $cachedDto;
     }
 
-    $rawData = $this->source->fetchListDysfunctions($inputDto);
-    $dto = $this->transformer->transformListDysfunctions($rawData);
+    $rawData = $this->immeubleDataSource->fetchGetInfosDysfonctionnementsByImmeuble($inputDto);
+    $dto = $this->immeubleTransformer->transformGetInfosDysfonctionnementsByImmeuble($rawData);
 
     $this->cache->set($cacheKey, $dto);
 
     return $dto;
   }
 
-  public function listAnomaliesService(AnomaliesInputDto $inputDto): ListAnomaliesOutputDto
+  public function listAnomaliesService(GetInfosAnomaliesByImmeubleInputDto $inputDto): GetInfosAnomaliesByImmeubleOutputDto
   {
     $authContext = $this->getAuthContext();
     $cacheKey = "logement_list_anomalies:$authContext->pkUser";
     $cachedDto = $this->cache->get($cacheKey);
 
-    if ($cachedDto instanceof ListAnomaliesOutputDto) {
+    if ($cachedDto instanceof GetInfosAnomaliesByImmeubleOutputDto) {
       return $cachedDto;
     }
 
-    $rawData = $this->source->fetchListAnomalies($inputDto);
-    $dto = $this->transformer->transformListAnomalies($rawData);
+    $rawData = $this->immeubleDataSource->fetchGetInfosAnomaliesByImmeuble($inputDto);
+    $dto = $this->immeubleTransformer->transformGetInfosAnomaliesByImmeuble($rawData);
 
     $this->cache->set($cacheKey, $dto);
 
     return $dto;
   }
 
-  public function filterResultService(FilterResultInputDto $inputDto): FilterResultOutputDto
+  public function createTicketService(CreateTicketInterInputDto $inputDto): CreateTicketInterOutputDto
   {
-    $authContext = $this->getAuthContext();
-    $cacheKey = "logement_filter_result:$authContext->pkUser";
-    $cachedDto = $this->cache->get($cacheKey);
-
-    if ($cachedDto instanceof FilterResultOutputDto) {
-      return $cachedDto;
-    }
-
-    $rawData = $this->source->fetchFilterResult($inputDto);
-    $dto = $this->transformer->transformFilterResult($rawData);
-
-    $this->cache->set($cacheKey, $dto);
+    $rawData = $this->ticketingDataProvider->fetchCreateTicketInter($inputDto);
+    $dto = $this->ticketingTransformer->transformCreateTicketInter($rawData);
 
     return $dto;
   }
 
-  public function editService(EditInputDto $inputDto): EditOutputDto
+  public function createTicketImmeubleService(CreateTicketInterInputDto $inputDto): CreateTicketInterOutputDto
   {
-    $rawData = $this->source->fetchEdit($inputDto);
-    $dto = $this->transformer->transformEdit($rawData);
+    $rawData = $this->ticketingDataProvider->fetchCreateTicketInter($inputDto);
+    $dto = $this->ticketingTransformer->transformCreateTicketInter($rawData);
 
     return $dto;
   }
 
-  public function createTicketService(CreateTicketInputDto $inputDto): CreateTicketOutputDto
-  {
-    $rawData = $this->source->fetchCreateTicket($inputDto);
-    $dto = $this->transformer->transformCreateTicket($rawData);
-
-    return $dto;
-  }
-
-  public function createTicketImmeubleService(CreateTicketImmeubleInputDto $inputDto): CreateTicketImmeubleOutputDto
-  {
-    $rawData = $this->source->fetchCreateTicketImmeuble($inputDto);
-    $dto = $this->transformer->transformCreateTicketImmeuble($rawData);
-
-    return $dto;
-  }
-
-  public function getTicketOnwerService(GetTicketOnwerInputDto $inputDto): GetTicketOnwerOutputDto
+  public function getTicketOnwerService(GetTicketInterInitInputDto $inputDto): GetTicketInterInitOutputDto
   {
     $authContext = $this->getAuthContext();
     $cacheKey = "logement_get_ticket_owner:$authContext->pkUser";
     $cachedDto = $this->cache->get($cacheKey);
 
-    if ($cachedDto instanceof GetTicketOnwerOutputDto) {
+    if ($cachedDto instanceof GetTicketInterInitOutputDto) {
       return $cachedDto;
     }
 
-    $rawData = $this->source->fetchGetTicketOnwer($inputDto);
-    $dto = $this->transformer->transformGetTicketOnwer($rawData);
+    $rawData = $this->ticketingDataProvider->fetchGetTicketInterInit($inputDto);
+    $dto = $this->ticketingTransformer->transformGetTicketInterInit($rawData);
 
     $this->cache->set($cacheKey, $dto);
 
     return $dto;
   }
 
-  public function guideService(GuideInputDto $inputDto): GuideOutputDto
-  {
-    $authContext = $this->getAuthContext();
-    $cacheKey = "logement_guide:$authContext->pkUser";
-    $cachedDto = $this->cache->get($cacheKey);
-
-    if ($cachedDto instanceof GuideOutputDto) {
-      return $cachedDto;
-    }
-
-    $rawData = $this->source->fetchGuide($inputDto);
-    $dto = $this->transformer->transformGuide($rawData);
-
-    $this->cache->set($cacheKey, $dto);
-
-    return $dto;
-  }
-
-  public function getInfosAppareilService(GetInfosAppareilInputDto $inputDto): GetInfosAppareilOutputDto
+  public function getInfosAppareilService(GetInfosAppareilsByLogementInpuDto $inputDto): GetInfosAppareilsByLogementOutputDto
   {
     $authContext = $this->getAuthContext();
     $cacheKey = "logement_get_info_appareil:$authContext->pkUser";
     $cachedDto = $this->cache->get($cacheKey);
 
-    if ($cachedDto instanceof GetInfosAppareilOutputDto) {
+    if ($cachedDto instanceof GetInfosAppareilsByLogementOutputDto) {
       return $cachedDto;
     }
 
-    $rawData = $this->source->fetchGetInfosAppareil($inputDto);
-    $dto = $this->transformer->transformGetInfosAppareil($rawData);
+    $rawData = $this->logementDataSource->fetchGetInfosAppareilsByLogement($inputDto);
+    $dto = $this->logementTransformer->transformGetInfosAppareilsByLogement($rawData);
 
     $this->cache->set($cacheKey, $dto);
 
     return $dto;
   }
 
-  public function showRepartReleveService(ShowRepartReleveInputDto $inputDto): ShowRepartReleveOutputDto
+  public function showRepartReleveService(GetReportInputDto $inputDto): GetReportOutputDto
   {
     $authContext = $this->getAuthContext();
     $cacheKey = "logement_show_repart_releve:$authContext->pkUser";
     $cachedDto = $this->cache->get($cacheKey);
 
-    if ($cachedDto instanceof ShowRepartReleveOutputDto) {
+    if ($cachedDto instanceof GetReportOutputDto) {
       return $cachedDto;
     }
 
-    $rawData = $this->source->fetchShowRepartReleve($inputDto);
-    $dto = $this->transformer->transformShowRepartReleve($rawData);
+    $rawData = $this->sharedDataSource->fetchGetReport($inputDto);
+    $dto = $this->sharedTransformer->transformGetReport($rawData);
 
     $this->cache->set($cacheKey, $dto);
 

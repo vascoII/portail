@@ -4,26 +4,24 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Service\DataProvider;
 
-use App\Application\Service\DataProvider\GestionParcDataProviderInterface;
-use App\Application\Dto\Output\GestionParc\IndexOutputDto;
 use App\Application\Dto\Input\GestionParc\InterventionInputDto;
-use App\Application\Dto\Output\GestionParc\InterventionOutputDto;
 use App\Application\Dto\Input\GestionParc\ReportInputDto;
-use App\Application\Dto\Output\GestionParc\ReportOutputDto;
 use App\Application\Dto\Input\GestionParc\ShowInputDto;
-use App\Application\Dto\Output\GestionParc\ShowOutputDto;
 use App\Application\Dto\Input\GestionParc\InterventionsInputDto;
-use App\Application\Dto\Output\GestionParc\ListInterventionsOutputDto;
 use App\Application\Dto\Input\GestionParc\ShowInterventionInputDto;
-use App\Application\Dto\Output\GestionParc\ShowInterventionOutputDto;
 use App\Application\Dto\Input\GestionParc\FilterResultInputDto;
-use App\Application\Dto\Output\GestionParc\FilterResultOutputDto;
-use App\Application\Dto\Input\GestionParc\LeaksInputDto;
-use App\Application\Dto\Output\GestionParc\ListLeaksOutputDto;
-use App\Application\Dto\Input\GestionParc\AnomaliesInputDto;
-use App\Application\Dto\Output\GestionParc\ListAnomaliesOutputDto;
 use App\Application\Dto\Input\GestionParc\DysfunctionsInputDto;
-use App\Application\Dto\Output\GestionParc\ListDysfunctionsOutputDto;
+use App\Application\Dto\Input\GestionParc\AnomaliesInputDto;
+use App\Application\Dto\Input\GestionParc\LeaksInputDto;
+use App\Application\Dto\Output\Immeuble\GetTableauBordImmeubleOutputDto;
+use App\Application\Dto\Output\Immeuble\GetInfosDepannagesByImmeubleOutputDto;
+use App\Application\Dto\Output\Immeuble\GetInfosImmeublesOutputDto;
+use App\Application\Dto\Output\Immeuble\GetInfosFuitesByImmeubleOutputDto;
+use App\Application\Dto\Output\Immeuble\GetInfosAnomaliesByImmeubleOutputDto;
+use App\Application\Dto\Output\Immeuble\GetInfosDysfonctionnementsByImmeubleOutputDto;
+use App\Application\Dto\Output\Shared\GetReportOutputDto;
+use App\Application\Dto\Output\TableauBordClient\GetTableauBordClientOutputDto;
+use App\Application\Service\DataProvider\GestionParcDataProviderInterface;
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Application\Service\DataSource\GestionParcDataSourceInterface;
@@ -31,7 +29,7 @@ use App\Infrastructure\Service\Redis\RedisService;
 use App\Infrastructure\Transformer\GestionParcTransformer;
 
 final class GestionParcDataProvider implements GestionParcDataProviderInterface
-{
+{ 
   public function __construct(
       private RedisService $cache,
       private GestionParcDataSourceInterface $source,
@@ -44,13 +42,13 @@ final class GestionParcDataProvider implements GestionParcDataProviderInterface
     return AuthenticationContext::fromAuthService($this->authService);
   }
 
-  public function indexService(): IndexOutputDto
+  public function indexService(): GetTableauBordClientOutputDto
   {
       $authContext = $this->getAuthContext();
       $cacheKey = "gestion_parc_index:$authContext->pkUser";
       $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof IndexOutputDto) {
+      if ($cachedDto instanceof GetTableauBordClientOutputDto) {
         return $cachedDto;
       }
 
@@ -62,13 +60,13 @@ final class GestionParcDataProvider implements GestionParcDataProviderInterface
       return $dto;
   }
 
-  public function interventionService(InterventionInputDto $inputDto): InterventionOutputDto
+  public function interventionService(InterventionInputDto $inputDto): GetReportOutputDto
   {
       $authContext = $this->getAuthContext();
       $cacheKey = "gestion_parc_interventions:$authContext->pkUser";
       $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof InterventionOutputDto) {
+      if ($cachedDto instanceof GetReportOutputDto) {
         return $cachedDto;
       }
 
@@ -80,13 +78,13 @@ final class GestionParcDataProvider implements GestionParcDataProviderInterface
       return $dto;
   }
 
-  public function reportService(ReportInputDto $inputDto): ReportOutputDto
+  public function reportService(ReportInputDto $inputDto): GetReportOutputDto
   {
       $authContext = $this->getAuthContext();
       $cacheKey = "gestion_parc_report:$authContext->pkUser";
       $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof ReportOutputDto) {
+      if ($cachedDto instanceof GetReportOutputDto) {
         return $cachedDto;
       }
 
@@ -98,13 +96,13 @@ final class GestionParcDataProvider implements GestionParcDataProviderInterface
       return $dto;
   }
 
-  public function showService(ShowInputDto $inputDto): ShowOutputDto
+  public function showService(ShowInputDto $inputDto): GetTableauBordImmeubleOutputDto
   {
       $authContext = $this->getAuthContext();
       $cacheKey = "gestion_parc_show:$authContext->pkUser";
       $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof ShowOutputDto) {
+      if ($cachedDto instanceof GetTableauBordImmeubleOutputDto) {
         return $cachedDto;
       }
 
@@ -116,13 +114,13 @@ final class GestionParcDataProvider implements GestionParcDataProviderInterface
       return $dto;
   }
 
-  public function listInterventionsService(InterventionsInputDto $inputDto): ListInterventionsOutputDto
+  public function listInterventionsService(InterventionsInputDto $inputDto): GetInfosDepannagesByImmeubleOutputDto
   {
       $authContext = $this->getAuthContext();
       $cacheKey = "gestion_parc_list_interventions:$authContext->pkUser";
       $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof ListInterventionsOutputDto) {
+      if ($cachedDto instanceof GetInfosDepannagesByImmeubleOutputDto) {
         return $cachedDto;
       }
 
@@ -134,13 +132,13 @@ final class GestionParcDataProvider implements GestionParcDataProviderInterface
       return $dto;
   }
 
-  public function showInterventionService(ShowInterventionInputDto $inputDto): ShowInterventionOutputDto
+  public function showInterventionService(ShowInterventionInputDto $inputDto): GetInfosDepannagesByImmeubleOutputDto
   {
       $authContext = $this->getAuthContext();
       $cacheKey = "gestion_parc_show_interventions:$authContext->pkUser";
       $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof ShowInterventionOutputDto) {
+      if ($cachedDto instanceof GetInfosDepannagesByImmeubleOutputDto) {
         return $cachedDto;
       }
 
@@ -152,13 +150,13 @@ final class GestionParcDataProvider implements GestionParcDataProviderInterface
       return $dto;
   }
 
-  public function filterResultService(FilterResultInputDto $inputDto): FilterResultOutputDto
+  public function filterResultService(FilterResultInputDto $inputDto): GetInfosImmeublesOutputDto
   {
       $authContext = $this->getAuthContext();
       $cacheKey = "gestion_parc_filter_result:$authContext->pkUser";
       $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof FilterResultOutputDto) {
+      if ($cachedDto instanceof GetInfosImmeublesOutputDto) {
         return $cachedDto;
       }
 
@@ -170,13 +168,13 @@ final class GestionParcDataProvider implements GestionParcDataProviderInterface
       return $dto;
   }
 
-  public function listLeaksService(LeaksInputDto $inputDto): ListLeaksOutputDto
+  public function listLeaksService(LeaksInputDto $inputDto): GetInfosFuitesByImmeubleOutputDto
   {
       $authContext = $this->getAuthContext();
       $cacheKey = "gestion_parc__list_leaks:$authContext->pkUser";
       $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof ListLeaksOutputDto) {
+      if ($cachedDto instanceof GetInfosFuitesByImmeubleOutputDto) {
         return $cachedDto;
       }
 
@@ -188,13 +186,13 @@ final class GestionParcDataProvider implements GestionParcDataProviderInterface
       return $dto;
   }
 
-  public function listAnomaliesService(AnomaliesInputDto $inputDto): ListAnomaliesOutputDto
+  public function listAnomaliesService(AnomaliesInputDto $inputDto): GetInfosAnomaliesByImmeubleOutputDto
   {
       $authContext = $this->getAuthContext();
       $cacheKey = "gestion_parc_list_anomalies:$authContext->pkUser";
       $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof ListAnomaliesOutputDto) {
+      if ($cachedDto instanceof GetInfosAnomaliesByImmeubleOutputDto) {
         return $cachedDto;
       }
 
@@ -206,13 +204,13 @@ final class GestionParcDataProvider implements GestionParcDataProviderInterface
       return $dto;
   }
 
-  public function listDysfunctionsService(DysfunctionsInputDto $inputDto): ListDysfunctionsOutputDto
+  public function listDysfunctionsService(DysfunctionsInputDto $inputDto): GetInfosDysfonctionnementsByImmeubleOutputDto
   {
       $authContext = $this->getAuthContext();
       $cacheKey = "gestion_parc_list_dysfunctions:$authContext->pkUser";
       $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof ListDysfunctionsOutputDto) {
+      if ($cachedDto instanceof GetInfosDysfonctionnementsByImmeubleOutputDto) {
         return $cachedDto;
       }
 

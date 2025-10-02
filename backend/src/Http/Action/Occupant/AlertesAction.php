@@ -8,7 +8,6 @@ use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
 use App\Domain\UseCase\Occupant\AlertesUseCase;
-use App\Application\Dto\Input\Occupant\AlertesInputDto;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,8 +19,7 @@ final class AlertesAction extends AbstractAction implements ActionInterface
 
   public function __invoke(Request $request, array $args = []): Response
   {
-    $input = new AlertesInputDto();
-    $output = $this->useCase->execute($input);
+    $output = $this->useCase->execute();
     return $this->responder->respond($output);
   }
 }

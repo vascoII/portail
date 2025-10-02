@@ -4,37 +4,30 @@ declare(strict_types=1);
 
 namespace App\Application\Service\DataProvider;
 
-use App\Application\Dto\Input\Immeuble\IndexInputDto;
-use App\Application\Dto\Output\Immeuble\IndexOutputDto;
-use App\Application\Dto\Input\Immeuble\ShowInputDto;
-use App\Application\Dto\Output\Immeuble\ShowOutputDto;
-use App\Application\Dto\Input\Immeuble\ReportInputDto;
-use App\Application\Dto\Output\Immeuble\ReportOutputDto;
-use App\Application\Dto\Input\Immeuble\InterventionsInputDto;
-use App\Application\Dto\Output\Immeuble\ListInterventionsOutputDto;
-use App\Application\Dto\Input\Immeuble\ShowInterventionInputDto;
-use App\Application\Dto\Output\Immeuble\ShowInterventionOutputDto;
-use App\Application\Dto\Input\Immeuble\InterventionInputDto;
-use App\Application\Dto\Output\Immeuble\InterventionOutputDto;
-use App\Application\Dto\Input\Immeuble\LeaksInputDto;
-use App\Application\Dto\Output\Immeuble\ListLeaksOutputDto;
-use App\Application\Dto\Input\Immeuble\DysfunctionsInputDto;
-use App\Application\Dto\Output\Immeuble\ListDysfunctionsOutputDto;
-use App\Application\Dto\Input\Immeuble\AnomaliesInputDto;
-use App\Application\Dto\Output\Immeuble\ListAnomaliesOutputDto;
-use App\Application\Dto\Input\Immeuble\FilterResultInputDto;
-use App\Application\Dto\Output\Immeuble\FilterResultOutputDto;
+use App\Application\Dto\Input\Immeuble\GetTableauBordImmeubleInputDto;
+use App\Application\Dto\Input\Shared\GetReportInputDto;
+use App\Application\Dto\Input\Immeuble\GetInfosDepannagesByImmeubleInputDto;
+use App\Application\Dto\Input\Immeuble\GetInfosFuitesByImmeubleInputDto;
+use App\Application\Dto\Input\Immeuble\GetInfosDysfonctionnementsByImmeubleInputDto;
+use App\Application\Dto\Input\Immeuble\GetInfosAnomaliesByImmeubleInputDto;
+use App\Application\Dto\Output\Immeuble\GetTableauBordImmeubleOutputDto;
+use App\Application\Dto\Output\Immeuble\GetInfosDepannagesByImmeubleOutputDto;
+use App\Application\Dto\Output\Immeuble\GetInfosFuitesByImmeubleOutputDto;
+use App\Application\Dto\Output\Immeuble\GetInfosAnomaliesByImmeubleOutputDto;
+use App\Application\Dto\Output\Immeuble\GetInfosDysfonctionnementsByImmeubleOutputDto;
+use App\Application\Dto\Output\Shared\GetReportOutputDto;
+use App\Application\Dto\Output\TableauBordClient\GetTableauBordClientOutputDto;
+
 interface ImmeubleDataProviderInterface
 {
 
-  public function indexService(IndexInputDto $inputDto): IndexOutputDto;
-  public function showService(ShowInputDto $inputDto): ShowOutputDto;
-  public function reportService(ReportInputDto $inputDto): ReportOutputDto;
-  public function listInterventionsService(InterventionsInputDto $inputDto): ListInterventionsOutputDto;
-  public function showInterventionService(ShowInterventionInputDto $inputDto): ShowInterventionOutputDto;
-  public function interventionService(InterventionInputDto $inputDto): InterventionOutputDto;
-  public function listLeaksService(LeaksInputDto $inputDto): ListLeaksOutputDto;
-  public function listDysfunctionsService(DysfunctionsInputDto $inputDto): ListDysfunctionsOutputDto;
-  public function listAnomaliesService(AnomaliesInputDto $inputDto): ListAnomaliesOutputDto;
-  public function filterResultService(FilterResultInputDto $inputDto): FilterResultOutputDto;
+  public function indexService(): GetTableauBordClientOutputDto;
+  public function showService(GetTableauBordImmeubleInputDto $inputDto): GetTableauBordImmeubleOutputDto;
+  public function reportService(GetReportInputDto $inputDto): GetReportOutputDto;
+  public function listInterventionsService(GetInfosDepannagesByImmeubleInputDto $inputDto): GetInfosDepannagesByImmeubleOutputDto;
+  public function showInterventionService(GetInfosDepannagesByImmeubleInputDto $inputDto): GetInfosDepannagesByImmeubleOutputDto;
+  public function listLeaksService(GetInfosFuitesByImmeubleInputDto $inputDto): GetInfosFuitesByImmeubleOutputDto;
+  public function listDysfunctionsService(GetInfosDysfonctionnementsByImmeubleInputDto $inputDto): GetInfosDysfonctionnementsByImmeubleOutputDto;
+  public function listAnomaliesService(GetInfosAnomaliesByImmeubleInputDto $inputDto): GetInfosAnomaliesByImmeubleOutputDto;
+
 }

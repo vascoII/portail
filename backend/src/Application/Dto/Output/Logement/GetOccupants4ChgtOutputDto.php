@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Application\Dto\Output\Logement;
 
+use App\Domain\Entity\Occupant4Chgt;
+
 final class GetOccupants4ChgtOutputDto
 {
   /** @param Occupant4Chgt[] $occupants */

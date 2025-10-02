@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace App\Application\Service\DataProvider;
 
-use App\Application\Dto\Input\TableauBordClient\IndexInputDto;
-use App\Application\Dto\Output\TableauBordClient\IndexOutputDto;
-use App\Application\Dto\Input\TableauBordClient\InterventionInputDto;
-use App\Application\Dto\Output\TableauBordClient\InterventionOutputDto;
+use App\Application\Dto\Output\TableauBordClient\GetTableauBordClientOutputDto;
+use App\Application\Dto\Input\Shared\GetReportInputDto;
+use App\Application\Dto\Output\Shared\GetReportOutputDto;
 
 interface TableauBordClientDataProviderInterface
 {
 
-  public function indexService(IndexInputDto $inputDto): IndexOutputDto;
-  public function interventionService(InterventionInputDto $inputDto): InterventionOutputDto;
+  public function indexService(): GetTableauBordClientOutputDto;
+  public function interventionService(GetReportInputDto $inputDto): GetReportOutputDto;
 }

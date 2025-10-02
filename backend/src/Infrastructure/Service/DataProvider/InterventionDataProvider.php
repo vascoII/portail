@@ -4,21 +4,21 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Service\DataProvider;
 
-use App\Application\Service\DataProvider\InterventionDataProviderInterface;
 use App\Application\Dto\Input\Shared\GetReportInputDto;
-use App\Application\Dto\Output\Intervention\ReportOutputDto;
+use App\Application\Dto\Output\Shared\GetReportOutputDto;
+use App\Application\Service\DataProvider\InterventionDataProviderInterface;
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Application\Service\DataSource\SharedDataSourceInterface;
 use App\Infrastructure\Service\Redis\RedisService;
-use App\Infrastructure\Transformer\InterventionTransformer;
+use App\Infrastructure\Transformer\SharedTransformer;
 
 final class InterventionDataProvider implements InterventionDataProviderInterface
 {
   public function __construct(
     private RedisService $cache,
     private SharedDataSourceInterface $sharedDataSource,
-    private InterventionTransformer $transformer,
+    private SharedTransformer $transformer,
     private readonly AuthServiceInterface $authService
   ) {}
 
@@ -27,18 +27,18 @@ final class InterventionDataProvider implements InterventionDataProviderInterfac
     return AuthenticationContext::fromAuthService($this->authService);
   }
 
-  public function reportService(GetReportInputDto $inputDto): ReportOutputDto
+  public function reportService(GetReportInputDto $inputDto): GetReportOutputDto
   {
     $authContext = $this->getAuthContext();
     $cacheKey = "intervention_report:$authContext->pkUser";
     $cachedDto = $this->cache->get($cacheKey);
 
-    if ($cachedDto instanceof ReportOutputDto) {
+    if ($cachedDto instanceof GetReportOutputDto) {
       return $cachedDto;
     }
 
     $rawData = $this->sharedDataSource->fetchGetReport($inputDto);
-    $dto = $this->transformer->transformReport($rawData);
+    $dto = $this->transformer->transformGetReport($rawData);
 
     $this->cache->set($cacheKey, $dto);
 

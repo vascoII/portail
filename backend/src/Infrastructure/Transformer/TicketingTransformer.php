@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Transformer;
 
-use App\Application\Dto\Output\Ticketing\AttachmentTicketOutputDto;
+use App\Application\Dto\Output\Ticketing\GetAttachmentOutputDto;
 use App\Application\Dto\Output\Ticketing\CheckTicketsInterEnabledOutputDto;
 use App\Application\Dto\Output\Ticketing\CreateTicketInterOutputDto;
 use App\Application\Dto\Output\Ticketing\GetNbTicketsIntersUserOutputDto;
@@ -26,10 +26,10 @@ final class TicketingTransformer
       return new CreateTicketInterOutputDto((int) $dataSourceResult->CreateTicketInterResult);
    }
 
-   public function transformGetAttachment(object $dataSourceResult): AttachmentTicketOutputDto
+   public function transformGetAttachment(object $dataSourceResult): GetAttachmentOutputDto
    {
       // Placeholder: depends on actual attachment structure; return empty list for now
-      return new AttachmentTicketOutputDto([]);
+      return new GetAttachmentOutputDto([]);
    }
 
    public function transformGetTicketInterInit(object $dataSourceResult): GetTicketInterInitOutputDto

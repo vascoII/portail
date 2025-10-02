@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Infrastructure\Service\DataProvider;
 
 use App\Application\Service\DataProvider\FrontDataProviderInterface;
-use App\Application\Dto\Output\Admin\ListSousTraitantOutputDto;
+use App\Application\Dto\Output\Admin\GetSousTraitantsOutputDto;
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Application\Service\DataSource\AdminDataSourceInterface;
@@ -26,13 +26,13 @@ final class FrontDataProvider implements FrontDataProviderInterface
     return AuthenticationContext::fromAuthService($this->authService);
   }
 
-  public function personalDatasService(): ListSousTraitantOutputDto
+  public function personalDatasService(): GetSousTraitantsOutputDto
   {
       $authContext = $this->getAuthContext();
       $cacheKey = "front_personal_data:$authContext->pkUser";
       $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof ListSousTraitantOutputDto) {
+      if ($cachedDto instanceof GetSousTraitantsOutputDto) {
         return $cachedDto;
       }
 

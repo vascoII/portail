@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace App\Infrastructure\Service\DataProvider;
 
 use App\Application\Service\DataProvider\OperatorDataProviderInterface;
-use App\Application\Dto\Input\Operator\IndexInputDto;
+use App\Application\Dto\Input\Operator\GetUserInputDto;
+use App\Application\Dto\Input\Operator\CreateGestionnaireInputDto;
 use App\Application\Dto\Output\Operator\IndexOutputDto;
 use App\Application\Dto\Input\Operator\CreateInputDto;
 use App\Application\Dto\Output\Operator\CreateOutputDto;
@@ -32,7 +33,7 @@ use App\Infrastructure\Transformer\OperatorTransformer;
 final class OperatorDataProvider implements OperatorDataProviderInterface
 {
   public function __construct(
-    private RedisCacheService $cache,
+    private RedisService $cache,
     private OperatorDataSourceInterface $source,
     private OperatorTransformer $transformer,
     private readonly AuthServiceInterface $authService
@@ -43,7 +44,7 @@ final class OperatorDataProvider implements OperatorDataProviderInterface
     return AuthenticationContext::fromAuthService($this->authService);
   }
 
-  public function indexService(IndexInputDto $inputDto): IndexOutputDto
+  public function indexService(GetUserInputDto $inputDto)
   {
     $authContext = $this->getAuthContext();
     $cacheKey = "operator_index:$authContext->pkUser";
@@ -61,7 +62,7 @@ final class OperatorDataProvider implements OperatorDataProviderInterface
     return $dto;
   }
 
-  public function createService(CreateInputDto $inputDto): CreateOutputDto
+  public function createService(CreateGestionnaireInputDto $inputDto)
   {
     $rawData = $this->source->fetchCreate($inputDto);
     $dto = $this->transformer->transformCreate($rawData);
@@ -69,7 +70,7 @@ final class OperatorDataProvider implements OperatorDataProviderInterface
     return $dto;
   }
 
-  public function addBuildingService(AddBuildingInputDto $inputDto): AddBuildingOutputDto
+  public function addBuildingService($inputDto)
   {
     $rawData = $this->source->fetchAddBuilding($inputDto);
     $dto = $this->transformer->transformAddBuilding($rawData);
@@ -77,7 +78,7 @@ final class OperatorDataProvider implements OperatorDataProviderInterface
     return $dto;
   }
 
-  public function removeBuildingService(RemoveBuildingInputDto $inputDto): RemoveBuildingOutputDto
+  public function removeBuildingService( $inputDto)
   {
     $rawData = $this->source->fetchRemoveBuilding($inputDto);
     $dto = $this->transformer->transformRemoveBuilding($rawData);
@@ -85,7 +86,7 @@ final class OperatorDataProvider implements OperatorDataProviderInterface
     return $dto;
   }
 
-  public function viewService(ViewInputDto $inputDto): ViewOutputDto
+  public function viewService( $inputDto)
   {
     $authContext = $this->getAuthContext();
     $cacheKey = "operator_view:$authContext->pkUser";
@@ -103,7 +104,7 @@ final class OperatorDataProvider implements OperatorDataProviderInterface
     return $dto;
   }
 
-  public function editService(EditInputDto $inputDto): EditOutputDto
+  public function editService( $inputDto)
   {
     $rawData = $this->source->fetchEdit($inputDto);
     $dto = $this->transformer->transformEdit($rawData);
@@ -111,7 +112,7 @@ final class OperatorDataProvider implements OperatorDataProviderInterface
     return $dto;
   }
 
-  public function editPasswordService(EditPasswordInputDto $inputDto): EditPasswordOutputDto
+  public function editPasswordService( $inputDto)
   {
     $rawData = $this->source->fetchEditPassword($inputDto);
     $dto = $this->transformer->transformEditPassword($rawData);
@@ -119,7 +120,7 @@ final class OperatorDataProvider implements OperatorDataProviderInterface
     return $dto;
   }
 
-  public function deleteService(DeleteInputDto $inputDto): DeleteOutputDto
+  public function deleteService( $inputDto)
   {
     $rawData = $this->source->fetchDelete($inputDto);
     $dto = $this->transformer->transformDelete($rawData);
@@ -127,7 +128,7 @@ final class OperatorDataProvider implements OperatorDataProviderInterface
     return $dto;
   }
 
-  public function otatsoccupantsService(OtatsoccupantsInputDto $inputDto): OtatsoccupantsOutputDto
+  public function otatsoccupantsService( $inputDto)
   {
     $authContext = $this->getAuthContext();
     $cacheKey = "operator_otatsoccupants:$authContext->pkUser";

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Application\Service\DataProvider;
 
-use App\Application\Dto\Input\Occupant\AlertesInputDto;
 use App\Application\Dto\Output\Occupant\AlertesOutputDto;
 use App\Application\Dto\Input\Occupant\DysfunctionsInputDto;
 use App\Application\Dto\Output\Occupant\DysfunctionsOutputDto;
@@ -32,16 +31,16 @@ use App\Application\Dto\Output\Occupant\EditOutputDto;
 interface OccupantDataProviderInterface
 {
 
-  public function alertesService(AlertesInputDto $inputDto): AlertesOutputDto;
-  public function listDysfunctionsService(DysfunctionsInputDto $inputDto): DysfunctionsOutputDto;
-  public function listInterventionsService(InterventionsInputDto $inputDto): InterventionsOutputDto;
-  public function listLeaksService(LeaksInputDto $inputDto): LeaksOutputDto;
-  public function myAccountService(MyAccountInputDto $inputDto): MyAccountOutputDto;
-  public function showEauReleveService(ShowEauReleveInputDto $inputDto): ShowEauReleveOutputDto;
-  public function showInterventionService(ShowInterventionInputDto $inputDto): ShowInterventionOutputDto;
-  public function showNoteReleveService(ShowNoteReleveInputDto $inputDto): ShowNoteReleveOutputDto;
-  public function showRepartReleveService(ShowRepartReleveInputDto $inputDto): ShowRepartReleveOutputDto;
-  public function showService(ShowInputDto $inputDto): ShowOutputDto;
-  public function simulateurService(SimulateurInputDto $inputDto): SimulateurOutputDto;
-  public function editService(EditInputDto $inputDto): EditOutputDto;
+  public function alertesService();
+  public function listDysfunctionsService( $inputDto);
+  public function listInterventionsService( $inputDto);
+  public function listLeaksService( $inputDto);
+  public function myAccountService( $inputDto);
+  public function showEauReleveService( $inputDto);
+  public function showInterventionService( $inputDto);
+  public function showNoteReleveService( $inputDto);
+  public function showRepartReleveService( $inputDto);
+  public function showService( $inputDto);
+  public function simulateurService( $inputDto);
+  public function editService( $inputDto);
 }

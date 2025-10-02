@@ -4,22 +4,19 @@ declare(strict_types=1);
 
 namespace App\Application\Service\DataProvider;
 
-use App\Application\Dto\Input\Ticketing\AttachmentTicketInputDto;
-use App\Application\Dto\Output\Ticketing\AttachmentTicketOutputDto;
-use App\Application\Dto\Input\Ticketing\CloseTicketInputDto;
-use App\Application\Dto\Output\Ticketing\CloseTicketOutputDto;
-use App\Application\Dto\Input\Ticketing\CreateTicketInputDto;
-use App\Application\Dto\Output\Ticketing\CreateTicketOutputDto;
-use App\Application\Dto\Input\Ticketing\MenuTicketInputDto;
-use App\Application\Dto\Output\Ticketing\MenuTicketOutputDto;
-use App\Application\Dto\Output\Ticketing\TicketListOutputDto;
+use App\Application\Dto\Input\Ticketing\GetAttachmentInputDto;
+use App\Application\Dto\Output\Ticketing\GetAttachmentOutputDto;
+use App\Application\Dto\Input\Ticketing\SetTicketStatusInputDto;
+use App\Application\Dto\Output\Ticketing\SetTicketStatusOutputDto;
+use App\Application\Dto\Input\Ticketing\CreateTicketInterInputDto;
+use App\Application\Dto\Output\Ticketing\CreateTicketInterOutputDto;
+use App\Application\Dto\Output\Ticketing\GetTicketsIntersUserOutputDto;
 
 interface TicketingDataProviderInterface
 {
 
-  public function attachmentTicketService(AttachmentTicketInputDto $inputDto): AttachmentTicketOutputDto;
-  public function closeTicketService(CloseTicketInputDto $inputDto): CloseTicketOutputDto;
-  public function createTicketService(CreateTicketInputDto $inputDto): CreateTicketOutputDto;
-  public function menuTicketService(MenuTicketInputDto $inputDto): MenuTicketOutputDto;
-  public function ticketListService(): TicketListOutputDto;
+  public function attachmentTicketService(GetAttachmentInputDto $inputDto): GetAttachmentOutputDto;
+  public function closeTicketService(SetTicketStatusInputDto $inputDto): SetTicketStatusOutputDto;
+  public function createTicketService(CreateTicketInterInputDto $inputDto): CreateTicketInterOutputDto;
+  public function ticketListService(): GetTicketsIntersUserOutputDto;
 }

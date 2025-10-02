@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Transformer;
 
-use App\Application\Dto\Output\Facture\ReportFactureOutputDto;
-use App\Application\Dto\Output\Facture\ListFactureOutputDto;
-use App\Application\Dto\Output\Facture\FactureOutputDto;
+use App\Application\Dto\Output\Shared\GetReportOutputDto;
+use App\Domain\Entity\Facture;
+use App\Application\Dto\Output\Facture\GetFacturesOutputDto;
 use DateTimeImmutable;
 
 final class FactureTransformer
@@ -14,7 +14,7 @@ final class FactureTransformer
   /**
    * Transform raw response to IndexOutputDto
    */
-  public function transformIndex(object $dataSourceResult): ListFactureOutputDto
+  public function transformIndex(object $dataSourceResult): GetFacturesOutputDto
   {
     $rawList = (array) $dataSourceResult->ListeFactures;
 
@@ -27,14 +27,14 @@ final class FactureTransformer
     $dtoList = [];
 
     foreach ($factures as $facture) {
-      $dtoList[] = new FactureOutputDto(
+      $dtoList[] = new Facture(
         pkFacture: (int) $facture->PKFacture,
         numFacture: (string) $facture->NumFacture,
-        dateEdition: new DateTimeImmutable($facture->DateEdition),
+        dateEdition: new \DateTimeImmutable($facture->DateEdition),
         dateDebut: new DateTimeImmutable($facture->DateDebut),
         dateFin: new DateTimeImmutable($facture->DateFin),
-        montantTotalHT: (float) $facture->MontantTotalHT,
-        montantTotalTTC: (float) $facture->MontantTotalTTC,
+        montantTotalHt: (float) $facture->MontantTotalHT,
+        montantTotalTtc: (float) $facture->MontantTotalTTC,
         montantTotalAPayer: (float) $facture->MontantTotalAPayer,
         idImm: (string) $facture->IDImm,
         codeGestio: (string) $facture->CodeGestio,
@@ -44,7 +44,7 @@ final class FactureTransformer
       );
     }
 
-    return new ListFactureOutputDto(
+    return new GetFacturesOutputDto(
       factures: $dtoList
     );
   }
@@ -52,11 +52,11 @@ final class FactureTransformer
   /**
    * Transform raw response to ReportOutputDto
    */
-  public function transformReport(object $dataSourceResult): ReportFactureOutputDto
+  public function transformReport(object $dataSourceResult): GetReportOutputDto
   {
     $binary = (string) $dataSourceResult;
     $filename = 'releve-' . date('Y-m-d') . '.pdf';
-    return new ReportFactureOutputDto(
+    return new GetReportOutputDto(
       data: $binary,
       filename: $filename,
       length: strlen($binary)

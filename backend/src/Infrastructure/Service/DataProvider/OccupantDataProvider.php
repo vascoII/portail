@@ -5,43 +5,11 @@ declare(strict_types=1);
 namespace App\Infrastructure\Service\DataProvider;
 
 use App\Application\Service\DataProvider\OccupantDataProviderInterface;
-use App\Application\Dto\Input\Occupant\AlertesInputDto;
-use App\Application\Dto\Output\Occupant\AlertesOutputDto;
-use App\Application\Dto\Input\Occupant\ExportAnomaliesInputDto;
-use App\Application\Dto\Output\Occupant\ExportAnomaliesOutputDto;
-use App\Application\Dto\Input\Occupant\ExportDysfunctionsInputDto;
-use App\Application\Dto\Output\Occupant\ExportDysfunctionsOutputDto;
-use App\Application\Dto\Input\Occupant\ExportInterventionsInputDto;
-use App\Application\Dto\Output\Occupant\ExportInterventionsOutputDto;
-use App\Application\Dto\Input\Occupant\ExportLeaksInputDto;
-use App\Application\Dto\Output\Occupant\ExportLeaksOutputDto;
-use App\Application\Dto\Input\Occupant\AnomaliesInputDto;
-use App\Application\Dto\Output\Occupant\ListAnomaliesOutputDto;
-use App\Application\Dto\Input\Occupant\DysfunctionsInputDto;
-use App\Application\Dto\Output\Occupant\ListDysfunctionsOutputDto;
-use App\Application\Dto\Input\Occupant\InterventionsInputDto;
-use App\Application\Dto\Output\Occupant\ListInterventionsOutputDto;
-use App\Application\Dto\Input\Occupant\LeaksInputDto;
-use App\Application\Dto\Output\Occupant\ListLeaksOutputDto;
-use App\Application\Dto\Input\Occupant\MyAccountInputDto;
-use App\Application\Dto\Output\Occupant\MyAccountOutputDto;
-use App\Application\Dto\Input\Occupant\ShowEauReleveInputDto;
-use App\Application\Dto\Output\Occupant\ShowEauReleveOutputDto;
-use App\Application\Dto\Input\Occupant\ShowInterventionInputDto;
-use App\Application\Dto\Output\Occupant\ShowInterventionOutputDto;
-use App\Application\Dto\Input\Occupant\ShowNoteReleveInputDto;
-use App\Application\Dto\Output\Occupant\ShowNoteReleveOutputDto;
-use App\Application\Dto\Input\Occupant\ShowRepartReleveInputDto;
-use App\Application\Dto\Output\Occupant\ShowRepartReleveOutputDto;
-use App\Application\Dto\Input\Occupant\ShowInputDto;
-use App\Application\Dto\Output\Occupant\ShowOutputDto;
-use App\Application\Dto\Input\Occupant\SimulateurInputDto;
-use App\Application\Dto\Output\Occupant\SimulateurOutputDto;
-use App\Application\Dto\Input\Occupant\EditInputDto;
-use App\Application\Dto\Output\Occupant\EditOutputDto;
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
-use App\Application\Service\DataSource\OccupantDataSourceInterface;
+use App\Application\Service\DataSource\LogementDataSourceInterface;
+use App\Application\Service\DataSource\SharedDataSourceInterface;
+use App\Application\Service\DataSource\ImmeubleDataSourceInterface;
 use App\Infrastructure\Service\Redis\RedisService;
 use App\Infrastructure\Transformer\OccupantTransformer;
 
@@ -49,7 +17,9 @@ final class OccupantDataProvider implements OccupantDataProviderInterface
 {
   public function __construct(
       private RedisService $cache,
-      private OccupantDataSourceInterface $source,
+      private LogementDataSourceInterface $logementDataSource,
+      private SharedDataSourceInterface $sharedDataSource,
+      private ImmeubleDataSourceInterface $immeubleDataSource,
       private OccupantTransformer $transformer,
       private readonly AuthServiceInterface $authService
   ) {}
@@ -59,7 +29,7 @@ final class OccupantDataProvider implements OccupantDataProviderInterface
     return AuthenticationContext::fromAuthService($this->authService);
   }
 
-  public function alertesService(AlertesInputDto $inputDto): AlertesOutputDto
+  public function alertesService()
   {
       $authContext = $this->getAuthContext();
       $cacheKey = "occupant_alertes:$authContext->pkUser";
@@ -77,25 +47,7 @@ final class OccupantDataProvider implements OccupantDataProviderInterface
       return $dto;
   }
   
-  public function listAnomaliesService(AnomaliesInputDto $inputDto): ListAnomaliesOutputDto
-  {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "occupant_list_anomalies:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
-
-      if ($cachedDto instanceof ListAnomaliesOutputDto) {
-        return $cachedDto;
-      }
-
-      $rawData = $this->source->fetchListAnomalies($inputDto);
-      $dto = $this->transformer->transformListAnomalies($rawData);
-
-      $this->cache->set($cacheKey, $dto);
-
-      return $dto;
-  }
-  
-  public function listDysfunctionsService(DysfunctionsInputDto $inputDto): ListDysfunctionsOutputDto
+  public function listDysfunctionsService( $inputDto)
   {
       $authContext = $this->getAuthContext();
       $cacheKey = "occupant_list_dysfunctions:$authContext->pkUser";
@@ -113,7 +65,7 @@ final class OccupantDataProvider implements OccupantDataProviderInterface
       return $dto;
   }
   
-  public function listInterventionsService(InterventionsInputDto $inputDto): ListInterventionsOutputDto
+  public function listInterventionsService( $inputDto)
   {
       $authContext = $this->getAuthContext();
       $cacheKey = "occupant_list_interventions:$authContext->pkUser";
@@ -131,7 +83,7 @@ final class OccupantDataProvider implements OccupantDataProviderInterface
       return $dto;
   }
   
-  public function listLeaksService(LeaksInputDto $inputDto): ListLeaksOutputDto
+  public function listLeaksService( $inputDto)
   {
       $authContext = $this->getAuthContext();
       $cacheKey = "occupant_list_leaks:$authContext->pkUser";
@@ -149,7 +101,7 @@ final class OccupantDataProvider implements OccupantDataProviderInterface
       return $dto;
   }
   
-  public function myAccountService(MyAccountInputDto $inputDto): MyAccountOutputDto
+  public function myAccountService( $inputDto)
   {
       $authContext = $this->getAuthContext();
       $cacheKey = "occupant_my_account:$authContext->pkUser";
@@ -167,7 +119,7 @@ final class OccupantDataProvider implements OccupantDataProviderInterface
       return $dto;
   }
   
-  public function showEauReleveService(ShowEauReleveInputDto $inputDto): ShowEauReleveOutputDto
+  public function showEauReleveService( $inputDto)
   {
       $authContext = $this->getAuthContext();
       $cacheKey = "occupant_show_eau_releve:$authContext->pkUser";
@@ -185,7 +137,7 @@ final class OccupantDataProvider implements OccupantDataProviderInterface
       return $dto;
   }
   
-  public function showInterventionService(ShowInterventionInputDto $inputDto): ShowInterventionOutputDto
+  public function showInterventionService( $inputDto)
   {
       $authContext = $this->getAuthContext();
       $cacheKey = "occupant_show_intervention:$authContext->pkUser";
@@ -203,7 +155,7 @@ final class OccupantDataProvider implements OccupantDataProviderInterface
       return $dto;
   }
   
-  public function showNoteReleveService(ShowNoteReleveInputDto $inputDto): ShowNoteReleveOutputDto
+  public function showNoteReleveService( $inputDto)
   {
       $authContext = $this->getAuthContext();
       $cacheKey = "occupant_show_note-releve:$authContext->pkUser";
@@ -221,7 +173,7 @@ final class OccupantDataProvider implements OccupantDataProviderInterface
       return $dto;
   }
   
-  public function showRepartReleveService(ShowRepartReleveInputDto $inputDto): ShowRepartReleveOutputDto
+  public function showRepartReleveService( $inputDto)
   {
       $authContext = $this->getAuthContext();
       $cacheKey = "occupant_show_repart_releve:$authContext->pkUser";
@@ -239,7 +191,7 @@ final class OccupantDataProvider implements OccupantDataProviderInterface
       return $dto;
   }
   
-  public function showService(ShowInputDto $inputDto): ShowOutputDto
+  public function showService( $inputDto)
   {
       $authContext = $this->getAuthContext();
       $cacheKey = "occupant_show:$authContext->pkUser";
@@ -257,7 +209,7 @@ final class OccupantDataProvider implements OccupantDataProviderInterface
       return $dto;
   }
   
-  public function simulateurService(SimulateurInputDto $inputDto): SimulateurOutputDto
+  public function simulateurService( $inputDto)
   {
       $authContext = $this->getAuthContext();
       $cacheKey = "occupant_simulateur:$authContext->pkUser";
@@ -275,7 +227,7 @@ final class OccupantDataProvider implements OccupantDataProviderInterface
       return $dto;
   }
   
-  public function editService(EditInputDto $inputDto): EditOutputDto
+  public function editService( $inputDto)
   {
       $authContext = $this->getAuthContext();
       $rawData = $this->source->fetchEdit($inputDto);

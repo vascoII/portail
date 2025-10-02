@@ -6,8 +6,8 @@ namespace App\Infrastructure\Service\DataProvider;
 
 use App\Application\Service\DataProvider\FactureDataProviderInterface;
 use App\Application\Dto\Input\Shared\GetReportInputDto;
-use App\Application\Dto\Output\Facture\ListFactureOutputDto;
-use App\Application\Dto\Output\Facture\ReportFactureOutputDto;
+use App\Application\Dto\Output\Shared\GetReportOutputDto;
+use App\Application\Dto\Output\Facture\GetFacturesOutputDto;
 use App\Application\Service\DataSource\FactureDataSourceInterface;
 use App\Application\Service\DataSource\SharedDataSourceInterface;
 use App\Application\Service\Auth\AuthServiceInterface;
@@ -32,14 +32,14 @@ final class FactureDataProvider implements FactureDataProviderInterface
     return AuthenticationContext::fromAuthService($this->authService);
   }
 
-  public function indexService(): ListFactureOutputDto
+  public function indexService(): GetFacturesOutputDto
   {  
       $authContext = $this->getAuthContext();
 
       $cacheKey = "facture_index:$authContext->pkUser";
       $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof ListFactureOutputDto) {
+      if ($cachedDto instanceof GetFacturesOutputDto) {
         return $cachedDto;
       }
 
@@ -51,14 +51,14 @@ final class FactureDataProvider implements FactureDataProviderInterface
       return $dto;
   }
 
-  public function reportService(GetReportInputDto $inputDto): ReportFactureOutputDto
+  public function reportService(GetReportInputDto $inputDto): GetReportOutputDto
   {
       $authContext = $this->getAuthContext();
 
       $cacheKey = "facture_report:$authContext->pkUser";
       $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof ReportFactureOutputDto) {
+      if ($cachedDto instanceof GetReportOutputDto) {
         return $cachedDto;
       }
 

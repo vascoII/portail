@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Transformer;
 
-use App\Application\Dto\Output\Immeuble\AnomaliesOutputDto;
-use App\Application\Dto\Output\Immeuble\DysfunctionsOutputDto;
+use App\Application\Dto\Output\Immeuble\GetInfosAnomaliesByImmeubleOutputDto;
+use App\Application\Dto\Output\Immeuble\GetInfosDysfonctionnementsByImmeubleOutputDto;
 use App\Application\Dto\Output\Immeuble\GetInfosImmeublesOutputDto;
 use App\Application\Dto\Output\Immeuble\GetInfosLogementsByImmeubleOutputDto;
 use App\Application\Dto\Output\Immeuble\GetTableauBordImmeubleOutputDto;
@@ -28,19 +28,19 @@ final class ImmeubleTransformer
    /**
     * Transform raw response to GetInfosAnomaliesByImmeubleOutputDto
     */
-   public function transformGetInfosAnomaliesByImmeuble(object $dataSourceResult): AnomaliesOutputDto
+   public function transformGetInfosAnomaliesByImmeuble(object $dataSourceResult): GetInfosAnomaliesByImmeubleOutputDto
    {
       $result = $dataSourceResult->GetInfosAnomaliesByImmeubleResult;
-      return new AnomaliesOutputDto($result);
+      return new GetInfosAnomaliesByImmeubleOutputDto($result);
    }
 
    /**
     * Transform raw response to GetInfosDysfonctionnementsByImmeubleOutputDto
     */
-   public function transformGetInfosDysfonctionnementsByImmeuble(object $dataSourceResult): DysfunctionsOutputDto
+   public function transformGetInfosDysfonctionnementsByImmeuble(object $dataSourceResult): GetInfosDysfonctionnementsByImmeubleOutputDto
    {
       $result = $dataSourceResult->GetInfosDysfonctionnementsByImmeubleResult;
-      return new DysfunctionsOutputDto($result);
+      return new GetInfosDysfonctionnementsByImmeubleOutputDto($result);
    }
 
    /**

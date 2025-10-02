@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Transformer;
 
-use App\Application\Dto\Output\Admin\ListSousTraitantOutputDto;
-use App\Application\Dto\Output\Admin\SousTraitantOutputDto;
+use App\Domain\Entity\SousTraitant;
+use App\Application\Dto\Output\Admin\GetSousTraitantsOutputDto;
 
 final class FrontTransformer
 {
    /**
     * Transform raw response to CguOutputDto
     */
-   public function transformPersonalData(object $dataSourceResult): ListSousTraitantOutputDto
+   public function transformPersonalData(object $dataSourceResult): GetSousTraitantsOutputDto
    {
       $rawList = (array) $dataSourceResult->ListeSousTraitant;
 
@@ -25,7 +25,7 @@ final class FrontTransformer
       $dtoList = [];
 
       foreach ($sousTraitants as $sousTraitant) {
-         $dtoList[] = new SousTraitantOutputDto(
+         $dtoList[] = new SousTraitant(
                nom: (string) $sousTraitant->Nom,
                description: (string) $sousTraitant->Description,
                territoires: (string) $sousTraitant->Territoires,
@@ -37,7 +37,7 @@ final class FrontTransformer
          );
       }
 
-      return new ListSousTraitantOutputDto(
+      return new GetSousTraitantsOutputDto(
          sousTraitants:  $dtoList
       );
    }
