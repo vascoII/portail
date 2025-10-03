@@ -9,7 +9,7 @@ use App\Application\Dto\Input\Security\ResetPasswordFromPKUserInputDto;
 use App\Application\Dto\Input\Security\UpdatePasswordInputDto;
 use App\Application\Service\DataSource\SecurityDataSourceInterface;
 use App\Application\Service\Auth\AuthServiceInterface;
-use App\Infrastructure\Hydrator\SecurityHydrator;
+use App\Infrastructure\Service\Hydrator\SecurityHydrator;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Infrastructure\Service\DataSource\SoapClient;
 

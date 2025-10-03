@@ -11,7 +11,7 @@ use App\Application\Dto\Input\Ticketing\GetTicketsIntersUserInputDto;
 use App\Application\Dto\Input\Ticketing\SetTicketStatusInputDto;
 use App\Application\Service\DataSource\TicketingDataSourceInterface;
 use App\Application\Service\Auth\AuthServiceInterface;
-use App\Infrastructure\Hydrator\TicketingHydrator;
+use App\Infrastructure\Service\Hydrator\TicketingHydrator;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Infrastructure\Service\DataSource\SoapClient;
 

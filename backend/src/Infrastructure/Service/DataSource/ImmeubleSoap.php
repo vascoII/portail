@@ -13,7 +13,7 @@ use App\Application\Dto\Input\Immeuble\GetInfosFuitesByImmeubleInputDto;
 use App\Application\Dto\Input\Immeuble\GetInfosImmeublesInputDto;
 use App\Application\Service\DataSource\ImmeubleDataSourceInterface;
 use App\Application\Service\Auth\AuthServiceInterface;
-use App\Infrastructure\Hydrator\ImmeubleHydrator;
+use App\Infrastructure\Service\Hydrator\ImmeubleHydrator;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Infrastructure\Service\DataSource\SoapClient;
 

@@ -11,7 +11,7 @@ use App\Application\Dto\Input\Operator\GetUserInpuDto;
 use App\Application\Dto\Input\Operator\UpdateUserInpuDto;
 use App\Application\Service\DataSource\OperatorDataSourceInterface;
 use App\Application\Service\Auth\AuthServiceInterface;
-use App\Infrastructure\Hydrator\OperatorHydrator;
+use App\Infrastructure\Service\Hydrator\OperatorHydrator;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Infrastructure\Service\DataSource\SoapClient;
 

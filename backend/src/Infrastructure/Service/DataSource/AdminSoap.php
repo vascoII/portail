@@ -9,7 +9,7 @@ use App\Application\Dto\Input\Admin\LoginFromParamInputDto;
 use App\Application\Dto\Input\Admin\ResetPasswordFromEmailInputDto;
 use App\Application\Dto\Input\Admin\UpdateEmailFromPKUserInputDto;
 use App\Application\Dto\Input\Admin\UpdateCGUFromPKUserInputDto;
-use App\Infrastructure\Hydrator\AdminHydrator;
+use App\Infrastructure\Service\Hydrator\AdminHydrator;
 use App\Infrastructure\Service\DataSource\SoapClient;
 
 final class AdminSoap implements AdminDataSourceInterface

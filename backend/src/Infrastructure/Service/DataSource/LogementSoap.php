@@ -14,7 +14,7 @@ use App\Application\Dto\Input\Logement\GetInfosAppareilsByLogementInpuDto;
 use App\Application\Dto\Input\Logement\GetInfosLogementsInputDto;
 use App\Application\Service\DataSource\LogementDataSourceInterface;
 use App\Application\Service\Auth\AuthServiceInterface;
-use App\Infrastructure\Hydrator\LogementHydrator;
+use App\Infrastructure\Service\Hydrator\LogementHydrator;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Infrastructure\Service\DataSource\SoapClient;
 

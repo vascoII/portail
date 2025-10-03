@@ -10,7 +10,7 @@ use App\Application\Dto\Input\Shared\GetReportInputDto;
 use App\Application\Dto\Input\Shared\GetReportByTokenInputDto;
 use App\Application\Service\DataSource\SharedDataSourceInterface;
 use App\Application\Service\Auth\AuthServiceInterface;
-use App\Infrastructure\Hydrator\SharedHydrator;
+use App\Infrastructure\Service\Hydrator\SharedHydrator;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Infrastructure\Service\DataSource\SoapClient;
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Hydrator;
+namespace App\Infrastructure\Service\Hydrator;
 
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Application\Dto\Input\Intervention\ReportInputDto;
