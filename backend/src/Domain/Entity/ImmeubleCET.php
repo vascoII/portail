@@ -6,13 +6,16 @@ namespace App\Domain\Entity;
 
 final class ImmeubleCET
 {
+   /**
+   * @param Releve[] $listeReleves
+   */
     public function __construct(
         public ?int $nbCompteursARelever = null,
         public ?int $nbCompteursReleves = null,
         public ?Chantier $chantier = null,
         public ?TopConsos $topConsos = null,
         public ?Serie $serieConsos = null,
-        public ?array $listeReleves = null, // Releve[]
+        public ?array $listeReleves = null,
         public ?float $totURepart = null,
         public ?float $totTantChauff = null,
         public ?float $puTant = null,

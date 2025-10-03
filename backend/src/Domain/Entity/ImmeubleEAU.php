@@ -6,6 +6,9 @@ namespace App\Domain\Entity;
 
 final class ImmeubleEAU
 {
+   /**
+   * @param Releve[] $listeReleves
+   */
     public function __construct(
         public ?int $nbCompteursARelever = null,
         public ?int $nbCompteursReleves = null,
@@ -17,6 +20,6 @@ final class ImmeubleEAU
         public ?TopConsos $topConsos = null,
         public ?Serie $serieConsos1 = null,
         public ?Serie $serieConsos2 = null,
-        public ?array $listeReleves = null // Releve[]
+        public ?array $listeReleves = null
     ) {}
 }

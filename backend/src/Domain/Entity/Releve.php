@@ -8,7 +8,7 @@ final class Releve
 {
   public function __construct(
     public readonly ?int $pkReleve,
-    public readonly ?\DateTime $dateReleve,
+    public readonly ?\DateTimeImmutable $dateReleve,
     public readonly ?string $typeErc
   ) {}
 }

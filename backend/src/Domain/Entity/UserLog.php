@@ -8,6 +8,6 @@ final class UserLog
 {
   public function __construct(
     public readonly string $loginId,
-    public readonly \DateTime $loginTime
+    public readonly \DateTimeImmutable $loginTime
   ) {}
 }

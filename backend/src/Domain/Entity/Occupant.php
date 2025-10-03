@@ -10,7 +10,7 @@ final class Occupant
     public readonly ?int $pkOccupant,
     public readonly ?string $nom,
     public readonly ?string $ref,
-    public readonly ?\DateTime $dateArrivee,
-    public readonly ?\DateTime $dateDepart
+    public readonly ?\DateTimeImmutable $dateArrivee,
+    public readonly ?\DateTimeImmutable $dateDepart
   ) {}
 }

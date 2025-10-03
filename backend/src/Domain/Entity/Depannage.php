@@ -11,7 +11,7 @@ final class Depannage
     public readonly ?string $numero,
     public readonly ?string $statut,
     public readonly ?string $statutAbrege,
-    public readonly ?\DateTime $date,
+    public readonly ?\DateTimeImmutable $date,
     public readonly ?string $motif,
     public readonly ?string $motifAbrege,
     public readonly ?string $compteRendu

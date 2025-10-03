@@ -6,13 +6,16 @@ namespace App\Domain\Entity;
 
 final class InfosAppareilsEAU
 {
+   /**
+   * @param InfosAppareilEAU[] $listeInfosAppareils
+   */
     public function __construct(
         public ?array $listeInfosAppareils = null, // InfosAppareilEAU[]
-        public ?\DateTime $dateR6 = null,
-        public ?\DateTime $dateR5 = null,
-        public ?\DateTime $dateR4 = null,
-        public ?\DateTime $dateR3 = null,
-        public ?\DateTime $dateR2 = null,
-        public ?\DateTime $dateR1 = null
+        public ?\DateTimeImmutable $dateR6 = null,
+        public ?\DateTimeImmutable $dateR5 = null,
+        public ?\DateTimeImmutable $dateR4 = null,
+        public ?\DateTimeImmutable $dateR3 = null,
+        public ?\DateTimeImmutable $dateR2 = null,
+        public ?\DateTimeImmutable $dateR1 = null
     ) {}
 }

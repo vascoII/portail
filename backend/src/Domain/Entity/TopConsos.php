@@ -11,7 +11,7 @@ final class TopConsos
    * @param Conso[] $consosPetites
    */
   public function __construct(
-    public readonly ?\DateTime $dateReleve,
+    public readonly ?\DateTimeImmutable $dateReleve,
     public readonly array $consosGrandes,
     public readonly array $consosPetites
   ) {}

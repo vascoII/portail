@@ -6,6 +6,9 @@ namespace App\Domain\Entity;
 
 final class LogementElect
 {
+    /**
+    * @param InfosAppareilElect[] $listeInfosAppareils
+    */
     public function __construct(
         public ?array $listeInfosAppareils = null // InfosAppareilElect[]
     ) {}

@@ -11,7 +11,7 @@ final class TicketInter
     public readonly ?string $email,
     public readonly ?string $telFixe,
     public readonly ?string $telMobile,
-    public readonly ?\DateTime $ticketDate,
+    public readonly ?\DateTimeImmutable $ticketDate,
     public readonly ?string $motifLibre,
     public readonly ?string $statut,
     public readonly ?string $objetRetour,
@@ -30,6 +30,6 @@ final class TicketInter
     public readonly ?string $caseNumber,
     public readonly ?string $caseId,
     public readonly ?string $attachmentName,
-    public readonly ?\DateTime $lastUpdateDate
+    public readonly ?\DateTimeImmutable $lastUpdateDate
   ) {}
 }

@@ -8,8 +8,8 @@ final class ConsosPeriode
 {
   public function __construct(
     public readonly ?float $conso,
-    public readonly ?\DateTime $dateDeb,
-    public readonly ?\DateTime $dateFin,
+    public readonly ?\DateTimeImmutable $dateDeb,
+    public readonly ?\DateTimeImmutable $dateFin,
     public readonly ?IndexReleve $r5,
     public readonly ?IndexReleve $r4,
     public readonly ?IndexReleve $r3,

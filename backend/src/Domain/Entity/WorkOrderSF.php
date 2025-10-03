@@ -12,7 +12,7 @@ final class WorkOrderSF
   public function __construct(
     public readonly string $workOrderNumber,
     public readonly string $statut,
-    public readonly \DateTime $schedStartTime,
+    public readonly \DateTimeImmutable $schedStartTime,
     public readonly string $techArrivalStartTime,
     public readonly string $techArrivalEndTime,
     public readonly string $idImm,

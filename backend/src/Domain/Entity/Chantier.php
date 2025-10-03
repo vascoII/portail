@@ -10,7 +10,7 @@ final class Chantier
     public readonly ?int $pkChantier,
     public readonly ?int $pkDevis,
     public readonly ?int $pkImmeuble,
-    public readonly ?\DateTime $dateEntreeChantier,
+    public readonly ?\DateTimeImmutable $dateEntreeChantier,
     public readonly ?int $nbCompteursPoses,
     public readonly ?int $nbCompteursCommandes
   ) {}
