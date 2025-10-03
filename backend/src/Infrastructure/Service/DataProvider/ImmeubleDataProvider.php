@@ -25,20 +25,20 @@ use App\Application\Service\DataSource\ImmeubleDataSourceInterface;
 use App\Application\Service\DataSource\SharedDataSourceInterface;
 use App\Application\Service\DataSource\TableauBordClientDataSourceInterface;
 use App\Infrastructure\Service\Redis\RedisService;
-use App\Infrastructure\Transformer\ImmeubleTransformer;
-use App\Infrastructure\Transformer\SharedTransformer;
-use App\Infrastructure\Transformer\TableauBordClientTransformer;
+use App\Application\Service\Transformer\ImmeubleTransformerInterface;
+use App\Application\Service\Transformer\SharedTransformerInterface;
+use App\Application\Service\Transformer\TableauBordClientTransformerInterface;
 
 final class ImmeubleDataProvider implements ImmeubleDataProviderInterface
 {
   public function __construct(
       private RedisService $cache,
       private ImmeubleDataSourceInterface $immeubleDataSource,
-      private ImmeubleTransformer $immeubleTransformer,
+      private ImmeubleTransformerInterface $immeubleTransformer,
       private SharedDataSourceInterface $sharedDataSource,
-      private SharedTransformer $sharedTransformer,
+      private SharedTransformerInterface $sharedTransformer,
       private TableauBordClientDataSourceInterface $tableauBordClientDataSource,
-      private TableauBordClientTransformer $tableauBordClientTransformer,
+      private TableauBordClientTransformerInterface $tableauBordClientTransformer,
       private readonly AuthServiceInterface $authService
   ) {}
 

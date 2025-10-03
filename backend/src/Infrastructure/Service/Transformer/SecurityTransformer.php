@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Transformer;
+namespace App\Infrastructure\Service\Transformer;
 
 use App\Application\Dto\Output\Security\CreateOutputDto;
 use App\Application\Dto\Output\Security\LoginOutputDto;
@@ -13,9 +13,17 @@ use App\Application\Dto\Output\Security\ResetPasswordFromPKUserOutputDto;
 use App\Application\Dto\Output\Security\UpdatePasswordOutputDto;
 use App\Application\Dto\Output\Security\LogoutOutputDto;
 use App\Application\Dto\Output\Security\UserDto;
+use App\Application\Service\Transformer\SecurityTransformerInterface;
+use App\Application\Factory\Facture\SecurityEntityFactory;
+use App\Application\Factory\Facture\SecurityOutputFactory;
 
-final class SecurityTransformer
+final class SecurityTransformer implements SecurityTransformerInterface
 {
+   public function __construct(
+      private readonly SecurityEntityFactory $entityFactory,
+      private readonly SecurityOutputFactory $outputFactory
+   ) {}
+
    /**
     * Transform raw response to CreateOutputDto
     */

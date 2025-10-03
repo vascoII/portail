@@ -11,9 +11,9 @@ use App\Application\Dto\Output\Shared\GetReportOutputDto;
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Application\Service\DataSource\TableauBordClientDataSourceInterface;
-use App\Infrastructure\Transformer\TableauBordClientTransformer;
+use App\Application\Service\Transformer\TableauBordClientTransformerInterface;
 use App\Application\Service\DataSource\SharedDataSourceInterface;
-use App\Infrastructure\Transformer\SharedTransformer;
+use App\Application\Service\Transformer\SharedTransformerInterface;
 use App\Infrastructure\Service\Redis\RedisService;
 
 final class TableauBordClientDataProvider implements TableauBordClientDataProviderInterface
@@ -21,9 +21,9 @@ final class TableauBordClientDataProvider implements TableauBordClientDataProvid
   public function __construct(
     private RedisService $cache,
     private TableauBordClientDataSourceInterface $tableauBordClientDataSource,
-    private TableauBordClientTransformer $tableauBordClientTransformer,
+    private TableauBordClientTransformerInterface $tableauBordClientTransformer,
     private SharedDataSourceInterface $sharedDataSourceInterface,
-    private SharedTransformer $sharedTransformer,
+    private SharedTransformerInterface $sharedTransformer,
     private readonly AuthServiceInterface $authService
   ) {}
 

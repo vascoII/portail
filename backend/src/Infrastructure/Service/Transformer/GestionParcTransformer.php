@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Transformer;
+namespace App\Infrastructure\Service\Transformer;
 
 use App\Application\Dto\Output\GestionParc\FilterResultOutputDto;
 use App\Application\Dto\Output\GestionParc\ListAnomaliesOutputDto;
@@ -18,9 +18,18 @@ use App\Application\Dto\Output\Immeuble\GetInfosAnomaliesByImmeubleOutputDto;
 use App\Application\Dto\Output\Immeuble\GetInfosDysfonctionnementsByImmeubleOutputDto;
 use App\Application\Dto\Output\Shared\GetReportOutputDto;
 use App\Application\Dto\Output\TableauBordClient\GetTableauBordClientOutputDto;
+use App\Application\Service\Transformer\GestionParcTransformerInterface;
+use App\Application\Factory\GestionParc\GestionParcEntityFactory;
+use App\Application\Factory\GestionParc\GestionParcOutputFactory;
 
-final class GestionParcTransformer
+final class GestionParcTransformer implements GestionParcTransformerInterface
 {
+   public function __construct(
+      private readonly GestionParcEntityFactory $entityFactory,
+      private readonly GestionParcOutputFactory $outputFactory
+   ) {}
+
+   
    /**
     * Transform raw response to FilterResultOutputDto
     */

@@ -10,14 +10,14 @@ use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Application\Service\DataSource\AdminDataSourceInterface;
 use App\Infrastructure\Service\Redis\RedisService;
-use App\Infrastructure\Transformer\FrontTransformer;
+use App\Application\Service\Transformer\FrontTransformerInterface;
 
 final class FrontDataProvider implements FrontDataProviderInterface
 {
   public function __construct(
       private RedisService $cache,
       private AdminDataSourceInterface $source,
-      private FrontTransformer $transformer,
+      private FrontTransformerInterface $transformer,
       private readonly AuthServiceInterface $authService
   ) {}
 

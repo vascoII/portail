@@ -26,30 +26,30 @@ use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Infrastructure\Service\Redis\RedisService;
 use App\Application\Service\DataSource\TicketingDataSourceInterface;
-use App\Infrastructure\Transformer\TicketingTransformer;
+use App\Application\Service\Transformer\TicketingTransformerInterface;
 use App\Application\Service\DataSource\ImmeubleDataSourceInterface;
-use App\Infrastructure\Transformer\ImmeubleTransformer;
+use App\Application\Service\Transformer\ImmeubleTransformerInterface;
 use App\Application\Service\DataSource\SharedDataSourceInterface;
-use App\Infrastructure\Transformer\SharedTransformer;
+use App\Application\Service\Transformer\SharedTransformerInterface;
 use App\Application\Service\DataSource\LogementDataSourceInterface;
-use App\Infrastructure\Transformer\LogementTransformer;
+use App\Application\Service\Transformer\LogementTransformerInterface;
 use App\Application\Service\DataSource\TableauBordClientDataSourceInterface;
-use App\Infrastructure\Transformer\TableauBordClientTransformer;
+use App\Application\Service\Transformer\TableauBordClientTransformerInterface;
 
 final class LogementDataProvider implements LogementDataProviderInterface
 {
   public function __construct(
     private RedisService $cache,
     private TicketingDataSourceInterface $ticketingDataProvider,
-    private TicketingTransformer $ticketingTransformer,
+    private TicketingTransformerInterface $ticketingTransformer,
     private ImmeubleDataSourceInterface $immeubleDataSource,
-    private ImmeubleTransformer $immeubleTransformer,
+    private ImmeubleTransformerInterface $immeubleTransformer,
     private SharedDataSourceInterface $sharedDataSource,
-    private SharedTransformer $sharedTransformer,
+    private SharedTransformerInterface $sharedTransformer,
     private LogementDataSourceInterface $logementDataSource,
-    private LogementTransformer $logementTransformer,
+    private LogementTransformerInterface $logementTransformer,
     private TableauBordClientDataSourceInterface $tableauBordClientDataSource,
-    private TableauBordClientTransformer $tableauBordClientTransformer,
+    private TableauBordClientTransformerInterface $tableauBordClientTransformer,
     private readonly AuthServiceInterface $authService
   ) {}
 

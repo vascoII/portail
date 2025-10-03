@@ -11,7 +11,7 @@ use App\Application\Service\DataSource\LogementDataSourceInterface;
 use App\Application\Service\DataSource\SharedDataSourceInterface;
 use App\Application\Service\DataSource\ImmeubleDataSourceInterface;
 use App\Infrastructure\Service\Redis\RedisService;
-use App\Infrastructure\Transformer\OccupantTransformer;
+use App\Application\Service\Transformer\OccupantTransformerInterface;
 
 final class OccupantDataProvider implements OccupantDataProviderInterface
 {
@@ -20,7 +20,7 @@ final class OccupantDataProvider implements OccupantDataProviderInterface
       private LogementDataSourceInterface $logementDataSource,
       private SharedDataSourceInterface $sharedDataSource,
       private ImmeubleDataSourceInterface $immeubleDataSource,
-      private OccupantTransformer $transformer,
+      private OccupantTransformerInterface $transformer,
       private readonly AuthServiceInterface $authService
   ) {}
 

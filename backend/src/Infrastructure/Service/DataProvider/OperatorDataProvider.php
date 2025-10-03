@@ -28,14 +28,14 @@ use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Application\Service\DataSource\OperatorDataSourceInterface;
 use App\Infrastructure\Service\Redis\RedisService;
-use App\Infrastructure\Transformer\OperatorTransformer;
+use App\Application\Service\Transformer\OperatorTransformerInterface;
 
 final class OperatorDataProvider implements OperatorDataProviderInterface
 {
   public function __construct(
     private RedisService $cache,
     private OperatorDataSourceInterface $source,
-    private OperatorTransformer $transformer,
+    private OperatorTransformerInterface $transformer,
     private readonly AuthServiceInterface $authService
   ) {}
 

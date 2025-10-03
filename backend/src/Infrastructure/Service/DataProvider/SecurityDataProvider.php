@@ -17,13 +17,13 @@ use App\Application\Service\DataProvider\SecurityDataProviderInterface;
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Application\Service\DataSource\SecurityDataSourceInterface;
-use App\Infrastructure\Transformer\SecurityTransformer;
+use App\Application\Service\Transformer\SecurityTransformerInterface;
 
 final class SecurityDataProvider implements SecurityDataProviderInterface
 {
   public function __construct(
       private SecurityDataSourceInterface $securityDataSource,
-      private SecurityTransformer $securityTransformer,
+      private SecurityTransformerInterface $securityTransformer,
       private readonly AuthServiceInterface $authService
   ) {}
 

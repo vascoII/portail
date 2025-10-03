@@ -16,14 +16,14 @@ use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Application\Service\DataSource\TicketingDataSourceInterface;
 use App\Infrastructure\Service\Redis\RedisService;
-use App\Infrastructure\Transformer\TicketingTransformer;
+use App\Application\Service\Transformer\TicketingTransformerInterface;
 
 final class TicketingDataProvider implements TicketingDataProviderInterface
 {
   public function __construct(
     private RedisService $cache,
     private TicketingDataSourceInterface $ticketingDataSource,
-    private TicketingTransformer $ticketingTransformer,
+    private TicketingTransformerInterface $ticketingTransformer,
     private readonly AuthServiceInterface $authService
   ) {}
 

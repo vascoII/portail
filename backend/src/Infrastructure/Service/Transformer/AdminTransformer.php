@@ -2,16 +2,24 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Transformer;
+namespace App\Infrastructure\Service\Transformer;
 
 use App\Application\Dto\Output\Admin\GetSousTraitantsOutputDto;
 use App\Application\Dto\Output\Admin\LoginFromParamOutputDto;
 use App\Application\Dto\Output\Admin\ResetPasswordFromEmailOutputDto;
 use App\Application\Dto\Output\Admin\UpdateCGUFromPKUserOutputDto;
 use App\Application\Dto\Output\Admin\UpdateEmailFromPKUserOutputDto;
-
-final class AdminTransformer
+use App\Application\Service\Transformer\AdminTransformerInterface;
+use App\Application\Factory\Admin\AdminEntityFactory;
+use App\Application\Factory\Admin\AdminOutputFactory;
+final class AdminTransformer implements AdminTransformerInterface
 {
+  
+  public function __construct(
+      private readonly AdminEntityFactory $entityFactory,
+      private readonly AdminOutputFactory $outputFactory
+  ) {}
+
   /**
    * Transform raw response to LoginFromParamOutputDto
    */

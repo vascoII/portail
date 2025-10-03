@@ -13,7 +13,7 @@ use App\Application\Service\DataSource\SharedDataSourceInterface;
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Infrastructure\Service\Redis\RedisService;
-use App\Infrastructure\Transformer\FactureTransformer;
+use App\Application\Service\Transformer\FactureTransformerInterface;
 
 
 final class FactureDataProvider implements FactureDataProviderInterface
@@ -23,7 +23,7 @@ final class FactureDataProvider implements FactureDataProviderInterface
       private RedisService $cache,
       private FactureDataSourceInterface $factureDataSource,
       private SharedDataSourceInterface $sharedDataSource,
-      private readonly FactureTransformer $transformer,
+      private readonly FactureTransformerInterface $transformer,
       private readonly AuthServiceInterface $authService
   ) {}
 

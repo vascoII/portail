@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Transformer;
+namespace App\Infrastructure\Service\Transformer;
 
 use App\Application\Dto\Output\Logement\GetInfosLogementsOutputDto;
 use App\Application\Dto\Output\Logement\GetOccupants4ChgtOutputDto;
@@ -10,9 +10,17 @@ use App\Application\Dto\Output\Logement\GetStatOccupantsGraphOutputDto;
 use App\Application\Dto\Output\Logement\GetTableauBordLogementOutputDto;
 use App\Application\Dto\Output\Logement\SetOccupants4ChgtOutputDto;
 use App\Application\Dto\Output\Logement\SetSeuilConsoOutputDto;
+use App\Application\Service\Transformer\LogementTransformerInterface;
+use App\Application\Factory\Logement\LogementEntityFactory;
+use App\Application\Factory\Logement\LogementOutputFactory;
 
-final class LogementTransformer
+final class LogementTransformer implements LogementTransformerInterface
 {
+   public function __construct(
+      private readonly LogementEntityFactory $entityFactory,
+      private readonly LogementOutputFactory $outputFactory
+   ) {}
+
    /**
     * Transform raw response to GetTableauBordLogementOutputDto
     */

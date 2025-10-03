@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Transformer;
+namespace App\Infrastructure\Service\Transformer;
 
 use App\Application\Dto\Output\Immeuble\GetInfosAnomaliesByImmeubleOutputDto;
 use App\Application\Dto\Output\Immeuble\GetInfosDysfonctionnementsByImmeubleOutputDto;
@@ -13,9 +13,17 @@ use App\Application\Dto\Output\Immeuble\ListAnomaliesOutputDto;
 use App\Application\Dto\Output\Immeuble\ListDysfunctionsOutputDto;
 use App\Application\Dto\Output\Immeuble\ListImmeublesOutputDto;
 use App\Application\Dto\Output\Immeuble\ListLogementsOutputDto;
+use App\Application\Service\Transformer\ImmeubleTransformerInterface;
+use App\Application\Factory\Immeuble\ImmeubleEntityFactory;
+use App\Application\Factory\Immeuble\ImmeubleOutputFactory;
 
-final class ImmeubleTransformer
+final class ImmeubleTransformer implements ImmeubleTransformerInterface
 {
+   public function __construct(
+      private readonly ImmeubleEntityFactory $entityFactory,
+      private readonly ImmeubleOutputFactory $outputFactory
+   ) {}
+
    /**
     * Transform raw response to GetTableauBordImmeubleOutputDto
     */

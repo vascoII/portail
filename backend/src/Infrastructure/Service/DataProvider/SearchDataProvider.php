@@ -11,14 +11,14 @@ use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Application\Service\DataSource\SearchDataSourceInterface;
 use App\Infrastructure\Service\Redis\RedisService;
-use App\Infrastructure\Transformer\SearchTransformer;
+use App\Application\Service\Transformer\SearchTransformerInterface;
 
 final class SearchDataProvider implements SearchDataProviderInterface
 {
   public function __construct(
-    private RedisCacheService $cache,
+    private RedisService $cache,
     private SearchDataSourceInterface $source,
-    private SearchTransformer $transformer,
+    private SearchTransformerInterface $transformer,
     private readonly AuthServiceInterface $authService
   ) {}
 

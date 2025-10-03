@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Transformer;
+namespace App\Infrastructure\Service\Transformer;
 
 use App\Application\Dto\Output\Occupant\AlertesOutputDto;
 use App\Application\Dto\Output\Occupant\ListAnomaliesOutputDto;
@@ -17,10 +17,19 @@ use App\Application\Dto\Output\Occupant\ShowOutputDto;
 use App\Application\Dto\Output\Occupant\ShowRepartReleveOutputDto;
 use App\Application\Dto\Output\Occupant\SimulateurOutputDto;
 use App\Application\Dto\Output\Occupant\EditOutputDto;
+use App\Application\Service\Transformer\OccupantTransformerInterface;
+use App\Application\Factory\Occupant\OccupantEntityFactory;
+use App\Application\Factory\Occupant\OccupantOutputFactory;
 
-final class OccupantTransformer
+final class OccupantTransformer implements OccupantTransformerInterface
 {
    const UPDATED = 'updated';
+   
+   public function __construct(
+      private readonly OccupantEntityFactory $entityFactory,
+      private readonly OccupantOutputFactory $outputFactory
+   ) {}
+
    /**
     * Transform raw response to AlertesOutputDto
     */

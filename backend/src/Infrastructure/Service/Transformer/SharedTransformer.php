@@ -2,15 +2,23 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Transformer;
+namespace App\Infrastructure\Service\Transformer;
 
 use App\Application\Dto\Output\Shared\GetDetailsDepannageOutputDto;
 use App\Application\Dto\Output\Shared\GetExcelOutputDto;
 use App\Application\Dto\Output\Shared\GetReportOutputDto;
 use App\Application\Dto\Output\Shared\GetReportByTokenOutputDto;
+use App\Application\Service\Transformer\SharedTransformerInterface;
+use App\Application\Factory\Shared\SharedEntityFactory;
+use App\Application\Factory\Shared\SharedOutputFactory;
 
-final class SharedTransformer
+final class SharedTransformer implements SharedTransformerInterface
 {
+  public function __construct(
+      private readonly SharedEntityFactory $entityFactory,
+      private readonly SharedOutputFactory $outputFactory
+   ) {}
+   
   /**
    * Transform raw response to GetDetailsDepannageOutputDto
    */

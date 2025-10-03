@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Transformer;
+namespace App\Infrastructure\Service\Transformer;
 
 use App\Application\Dto\Output\Operator\CreateGestionnaireOutputDto;
 use App\Application\Dto\Output\Operator\DeleteUserOutputDto;
@@ -10,9 +10,17 @@ use App\Application\Dto\Output\Operator\GetChildUsersOutputDto;
 use App\Application\Dto\Output\Operator\GetUserOutputDto;
 use App\Application\Dto\Output\Operator\SetImmeublesOutputDto;
 use App\Application\Dto\Output\Operator\UpdateUserOutputDto;
+use App\Application\Service\Transformer\OperatorTransformerInterface;
+use App\Application\Factory\Operator\OperatorEntityFactory;
+use App\Application\Factory\Operator\OperatorOutputFactory;
 
-final class OperatorTransformer
+final class OperatorTransformer implements OperatorTransformerInterface
 {
+   public function __construct(
+      private readonly OperatorEntityFactory $entityFactory,
+      private readonly OperatorOutputFactory $outputFactory
+   ) {}
+
    /**
     * Transform raw response to SetImmeublesOutputDto
     */

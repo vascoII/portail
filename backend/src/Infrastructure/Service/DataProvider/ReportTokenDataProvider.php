@@ -11,14 +11,14 @@ use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Application\Service\DataSource\SharedDataSourceInterface;
 use App\Infrastructure\Service\Redis\RedisService;
-use App\Infrastructure\Transformer\SharedTransformer;
+use App\Application\Service\Transformer\SharedTransformerInterface;
 
 final class ReportTokenDataProvider implements ReportTokenDataProviderInterface
 {
   public function __construct(
     private RedisService $cache,
     private SharedDataSourceInterface $sharedDataSource,
-    private SharedTransformer $sharedTransformer,
+    private SharedTransformerInterface $sharedTransformer,
     private readonly AuthServiceInterface $authService
   ) {}
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Transformer;
+namespace App\Infrastructure\Service\Transformer;
 
 use App\Application\Dto\Output\Ticketing\GetAttachmentOutputDto;
 use App\Application\Dto\Output\Ticketing\CheckTicketsInterEnabledOutputDto;
@@ -13,9 +13,17 @@ use App\Application\Dto\Output\Ticketing\TicketInterInitDto;
 use App\Application\Dto\Output\Ticketing\GetTicketsIntersUserOutputDto;
 use App\Application\Dto\Output\Ticketing\TicketInterDto;
 use App\Application\Dto\Output\Ticketing\SetTicketStatusOutputDto;
+use App\Application\Service\Transformer\TicketingTransformerInterface;
+use App\Application\Factory\Ticketing\TicketingEntityFactory;
+use App\Application\Factory\Ticketing\TicketingOutputFactory;
 
-final class TicketingTransformer
+final class TicketingTransformer implements TicketingTransformerInterface
 {
+   public function __construct(
+      private readonly TicketingEntityFactory $entityFactory,
+      private readonly TicketingOutputFactory $outputFactory
+   ) {}
+
    public function transformCheckTicketsInterEnabled(object $dataSourceResult): CheckTicketsInterEnabledOutputDto
    {
       return new CheckTicketsInterEnabledOutputDto((bool) $dataSourceResult->CheckTicketsInterEnabledResult);

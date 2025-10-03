@@ -26,14 +26,14 @@ use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Application\Service\DataSource\GestionParcDataSourceInterface;
 use App\Infrastructure\Service\Redis\RedisService;
-use App\Infrastructure\Transformer\GestionParcTransformer;
+use App\Application\Service\Transformer\GestionParcTransformerInterface;
 
 final class GestionParcDataProvider implements GestionParcDataProviderInterface
 { 
   public function __construct(
       private RedisService $cache,
       private GestionParcDataSourceInterface $source,
-      private GestionParcTransformer $transformer,
+      private GestionParcTransformerInterface $transformer,
       private readonly AuthServiceInterface $authService
   ) {}
 
