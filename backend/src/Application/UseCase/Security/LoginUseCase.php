@@ -16,15 +16,7 @@ final class LoginUseCase
 
   public function execute(LoginInputDto $inputDto): LoginOutputDto
   {
-    try {
-      // Call SOAP service to authenticate
-      return $this->serviceDataProvider->loginService($inputDto);
-    } catch (\Exception $e) {
-      return new LoginOutputDto(
-        success: false,
-        error: 'Login error: ' . $e->getMessage()
-      );
-    }
+    // Delegate to data provider; let exceptions bubble to be handled centrally
+    return $this->serviceDataProvider->loginService($inputDto);
   }
-
 }

@@ -38,43 +38,43 @@ final class SecurityDataProvider implements SecurityDataProviderInterface
 
   public function loginFromParamService(LoginFromParamInputDto $inputDto): LoginOutputDto
   {
-      $rawData = $this->securityDataSource->fetchLoginFromParam($inputDto);
-      return $this->securityTransformer->transformLoginFromParam($rawData);
+    $rawData = $this->securityDataSource->fetchLoginFromParam($inputDto);
+    return $this->securityTransformer->transformLoginFromParam($rawData);
   }
-  
+
   public function logoutService(): LogoutOutputDto
   {
-      $rawData = $this->securityDataSource->fetchLogout();
-      return $this->securityTransformer->transformLogout($rawData);
+    $rawData = $this->securityDataSource->fetchLogout();
+    return $this->securityTransformer->transformLogout($rawData);
   }
-  
+
   public function resetOrCreateService(ResetOrCreateInputDto $inputDto): ResetPasswordFromPKUserOutputDto
   {
-      $rawData = $this->securityDataSource->fetchResetOrCreate($inputDto);
-      return $this->securityTransformer->transformResetOrCreateResponse($rawData);
+    $rawData = $this->securityDataSource->fetchResetOrCreate($inputDto);
+    return $this->securityTransformer->transformResetOrCreateResponse($rawData);
   }
-  
+
   public function updatePasswordService(UpdatePasswordInputDto $inputDto): UpdatePasswordOutputDto
   {
-      $rawData = $this->securityDataSource->fetchUpdatePassword($inputDto);
-      return $this->securityTransformer->transformUpdatePassword($rawData);
+    $rawData = $this->securityDataSource->fetchUpdatePassword($inputDto);
+    return $this->securityTransformer->transformUpdatePassword($rawData);
   }
-  
+
   public function resetPasswordService(ResetPasswordInputDto $inputDto): bool
   {
-      $rawData = $this->securityDataSource->fetchResetPassword($inputDto);
-      return $this->securityTransformer->transformResetPassword($rawData);
+    $rawData = $this->securityDataSource->fetchResetPassword($inputDto);
+    return $this->securityTransformer->transformResetPassword($rawData);
   }
-  
+
   public function loginService(LoginInputDto $inputDto): LoginOutputDto
   {
-      $rawData = $this->securityDataSource->fetchLogin($inputDto);
-      $sessionDto = $this->securityTransformer->transformLoginToSession($rawData);
+    $rawData = $this->securityDataSource->fetchLogin($inputDto);
+    $sessionDto = $this->securityTransformer->transformLoginToSession($rawData);
 
-      $token = $this->serviceJwt->generateToken($sessionDto);
-      $this->serviceRedis->storeSession($token, $sessionDto);
+    $token = $this->serviceJwt->generateToken($sessionDto);
+    // Store session keyed by the backend sessionId for consistency with middleware
+    $this->serviceRedis->storeSession($sessionDto->session->sessionId, $sessionDto);
 
-      return $this->securityTransformer->transformToLoginOutput($sessionDto, $token);
+    return $this->securityTransformer->transformToLoginOutput($sessionDto, $token);
   }
-
 }

@@ -8,6 +8,10 @@ use App\Application\Dto\Output\Security\UserDto;
 
 interface AuthServiceInterface
 {
+  public function setAuthenticatedUser(UserDto $user, string $sessionId): void;
+
+  public function clearAuthenticatedUser(): void;
+
   public function getCurrentUser(): ?UserDto;
 
   public function getCurrentSessionId(): ?string;

@@ -21,13 +21,15 @@ const sections = [
 ];
 
 const RgpdPage: React.FC = () => {
-  const [openSections, setOpenSections] = useState<boolean[]>(sections.map(() => false));
+  const [openSections, setOpenSections] = useState<boolean[]>(
+    sections.map(() => false)
+  );
   const toggleSection = (index: number) => {
     setOpenSections((prev) =>
       prev.map((isOpen, i) => (i === index ? !isOpen : isOpen))
     );
   };
-  
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div
@@ -37,7 +39,7 @@ const RgpdPage: React.FC = () => {
           zIndex: 1,
         }}
       />
-      <div className="sm:mx-auto sm:w-full sm:max-w-md" style={{zIndex: 1}}>
+      <div className="sm:mx-auto sm:w-full sm:max-w-md" style={{ zIndex: 1 }}>
         {/* Logo */}
         <div className="flex justify-center">
           <Link href="/pages/dashboard" className="flex items-center">
@@ -68,30 +70,32 @@ const RgpdPage: React.FC = () => {
           RGPD – Protection des données
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
-          Informations relatives à la collecte et au traitement de vos données personnelles
+          Informations relatives à la collecte et au traitement de vos données
+          personnelles
         </p>
       </div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md" style={{zIndex: 1}}>
+      <div
+        className="mt-8 mx-auto w-full lg:w-3/4 max-w-5xl"
+        style={{ zIndex: 1 }}
+      >
         <div className="bg-white py-8 px-4 shadow-xl sm:rounded-lg sm:px-10">
-          <div className="bg-white py-8 px-4 shadow-xl sm:rounded-lg sm:px-10 space-y-4">
-            {sections.map((section, index) => (
-              <div key={index} className="border rounded">
-                <button
-                  onClick={() => toggleSection(index)}
-                  className="w-full text-left px-4 py-3 bg-gray-100 hover:bg-gray-200 font-semibold text-gray-800 flex justify-between items-center"
-                >
-                  <span>{section.title}</span>
-                  <span>{openSections[index] ? "−" : "+"}</span>
-                </button>
-                {openSections[index] && (
-                  <div className="px-4 py-3 text-gray-700 whitespace-pre-line">
-                    {section.content}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
+          {sections.map((section, index) => (
+            <div key={index} className="border rounded">
+              <button
+                onClick={() => toggleSection(index)}
+                className="w-full text-left px-4 py-3 bg-gray-100 hover:bg-gray-200 font-semibold text-gray-800 flex justify-between items-center"
+              >
+                <span>{section.title}</span>
+                <span>{openSections[index] ? "−" : "+"}</span>
+              </button>
+              {openSections[index] && (
+                <div className="px-4 py-3 text-gray-700 whitespace-pre-line">
+                  {section.content}
+                </div>
+              )}
+            </div>
+          ))}
         </div>
 
         {/* Footer */}

@@ -26,8 +26,9 @@ final class JwtAuthMiddleware
   {
     $request = $event->getRequest();
 
-    // Skip authentication for login endpoint
-    if ($request->getPathInfo() === '/api/security/login') {
+    // Skip authentication for public login endpoint (with or without /api prefix)
+    $path = $request->getPathInfo();
+    if ($path === '/security/login' || $path === '/api/security/login') {
       return;
     }
 
@@ -71,9 +72,9 @@ final class JwtAuthMiddleware
       return;
     }
 
-    $user = $this->redisService->getSession($sessionId);
+    $sessionDto = $this->redisService->getSession($sessionId);
 
-    if (!$user) {
+    if (!$sessionDto || !$sessionDto->session || !$sessionDto->session->user) {
       $this->securityLogger->warning('Authentication failed: Session not found in Redis', [
         'route' => $request->attributes->get('_route'),
         'ip' => $request->getClientIp(),
@@ -85,12 +86,12 @@ final class JwtAuthMiddleware
     }
 
     // Set the authenticated user in the AuthService
-    $this->authService->setAuthenticatedUser($user, $sessionId);
+    $this->authService->setAuthenticatedUser($sessionDto->session->user, $sessionId);
 
     $this->securityLogger->debug('Authentication successful', [
       'route' => $request->attributes->get('_route'),
-      'user_id' => $user->pkUser,
-      'user_name' => $user->userName,
+      'user_id' => $sessionDto->session->user->pkUser,
+      'user_name' => $sessionDto->session->user->userName,
     ]);
   }
 }
