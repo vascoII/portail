@@ -11,7 +11,9 @@ use App\Application\UseCase\Security\LogoutUseCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 
+#[AsController]
 #[Route(path: '/security/logout', name: 'security_logout', methods: ['POST'])]
 final class LogoutAction extends AbstractAction implements ActionInterface
 {

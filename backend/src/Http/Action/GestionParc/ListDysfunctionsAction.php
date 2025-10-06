@@ -12,7 +12,9 @@ use App\Application\Factory\GestionParc\GestionParcInputFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 
+#[AsController]
 #[Route(path: '/gestionParc/{pkImmeuble}/dysfonctionnements', name: 'gestionparc_list_dysfunctions', methods: ['GET'])]
 final class ListDysfunctionsAction extends AbstractAction implements ActionInterface
 {

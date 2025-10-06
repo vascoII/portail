@@ -11,7 +11,9 @@ use App\Application\Service\Auth\AuthServiceInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 
+#[AsController]
 #[Route(path: '/security/me', name: 'security_me', methods: ['GET'])]
 final class MeAction extends AbstractAction implements ActionInterface
 {

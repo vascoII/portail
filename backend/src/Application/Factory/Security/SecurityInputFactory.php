@@ -23,17 +23,21 @@ final class SecurityInputFactory
 
   public function createLoginFromRequest(Request $request): LoginInputDto
   {
+    $data = json_decode($request->getContent(), true);
+    
     return new LoginInputDto(
-      (string) $request->request->get('username'),
-      (string) $request->request->get('password')
+      (string) $data['username'] ?? null,
+      (string) $data['password'] ?? null
     );
   }
 
   public function createLoginFromParamFromRequest(Request $request): LoginFromParamInputDto
   {
+    $data = json_decode($request->getContent(), true);
+
     return new LoginFromParamInputDto(
-      $request->query->get('username'),
-      $request->query->get('password'),
+      (string) $data['username'] ?? null,
+      (string) $data['password'] ?? null,
       $request->query->get('param')
     );
   }

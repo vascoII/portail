@@ -12,7 +12,9 @@ use App\Application\Factory\Shared\SharedInputFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 
+#[AsController]
 #[Route(path: '/intervention/{pkDepannage}/report', name: 'intervention_report', methods: ['GET'])]
 final class ReportAction extends AbstractAction implements ActionInterface
 {

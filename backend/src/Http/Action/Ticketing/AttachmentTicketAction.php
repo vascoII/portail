@@ -12,7 +12,9 @@ use App\Application\Factory\Ticketing\TicketingInputFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 
+#[AsController]
 #[Route(path: '/ticketing/{ticketId}/attachments', name: 'ticketing_attachments', methods: ['GET'])]
 final class AttachmentTicketAction extends AbstractAction implements ActionInterface
 {

@@ -12,7 +12,9 @@ use App\Application\Factory\GestionParc\GestionParcInputFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 
+#[AsController]
 #[Route(path: '/gestionParc/filter', name: 'gestionparc_filter', methods: ['POST'])]
 final class FilterResultAction extends AbstractAction implements ActionInterface
 {

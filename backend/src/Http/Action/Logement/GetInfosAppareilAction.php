@@ -12,7 +12,9 @@ use App\Application\Factory\Logement\LogementInputFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 
+#[AsController]
 #[Route(path: '/infos-appareils', name: 'logement_infos_appareils', methods: ['GET'])]
 final class GetInfosAppareilAction extends AbstractAction implements ActionInterface
 {

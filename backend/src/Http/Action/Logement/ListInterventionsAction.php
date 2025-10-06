@@ -12,7 +12,9 @@ use App\Application\Factory\Logement\LogementInputFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 
+#[AsController]
 #[Route(path: '/logement/{pkLogement}/interventions', name: 'logement_list_interventions', methods: ['GET'])]
 final class ListInterventionsAction extends AbstractAction implements ActionInterface
 {

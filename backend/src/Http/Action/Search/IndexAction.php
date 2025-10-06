@@ -12,7 +12,9 @@ use App\Application\Factory\Search\SearchInputFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 
+#[AsController]
 #[Route(path: '/search', name: 'search_index', methods: ['GET'])]
 final class IndexAction extends AbstractAction implements ActionInterface
 {

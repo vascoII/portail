@@ -12,7 +12,9 @@ use App\Application\Dto\Input\Operator\CreateInputDto;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 
+#[AsController]
 #[Route(path: '/gestionnaire/nouveau', name: 'operator_create', methods: ['POST'])]
 final class CreateAction extends AbstractAction implements ActionInterface
 {

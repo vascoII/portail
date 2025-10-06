@@ -11,7 +11,9 @@ use App\Application\UseCase\Facture\IndexUseCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 
+#[AsController]
 #[Route(path: '/factures', name: 'facture_index', methods: ['GET'])]
 final class IndexAction extends AbstractAction implements ActionInterface
 {

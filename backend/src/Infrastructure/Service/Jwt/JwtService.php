@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Service\Jwt;
 
-use App\Application\Dto\Output\Security\UserDto;
+use App\Application\Dto\Output\Security\SessionDto;
 use App\Application\Service\Jwt\JwtServiceInterface;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
@@ -19,7 +19,7 @@ final class JwtService implements JwtServiceInterface
     private readonly int $jwtExpiration = self::EXPIRATION_TIME
   ) {}
 
-  public function generateToken(UserDto $user, string $sessionId): string
+  public function generateToken(SessionDto $sessionDto): string
   {
     $now = time();
     $payload = [
@@ -27,15 +27,15 @@ final class JwtService implements JwtServiceInterface
       'aud' => 'techem-client', // Audience
       'iat' => $now, // Issued at
       'exp' => $now + $this->jwtExpiration, // Expiration
-      'sub' => (string) $user->pkUser, // Subject (user ID)
+      'sub' => (string) $sessionDto->session->user->pkUser, // Subject (user ID)
       'data' => [
-        'sessionId' => $sessionId,
-        'userName' => $user->userName,
-        'loginId' => $user->loginId,
-        'userType' => $user->userType,
-        'clientId' => $user->clientId,
-        'fkClient' => $user->fkClient,
-        'userRole' => $user->userRole
+        'sessionId' => (string) $sessionDto->session->sessionId,
+        'userName' => (string) $sessionDto->session->user->userName,
+        'loginId' => (string) $sessionDto->session->user->loginId,
+        'userType' => (string) $sessionDto->session->user->userType,
+        'clientId' => (string) $sessionDto->session->user->clientId,
+        'fkClient' => (int) $sessionDto->session->user->fkClient,
+        'userRole' => (string) $sessionDto->session->user->userRole
       ]
     ];
 

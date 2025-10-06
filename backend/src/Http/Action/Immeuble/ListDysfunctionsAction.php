@@ -12,7 +12,9 @@ use App\Application\Factory\Immeuble\ImmeubleInputFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 
+#[AsController]
 #[Route(path: '/immeuble/{pkImmeuble}/dysfonctionnements', name: 'immeuble_list_dysfunctions', methods: ['GET'])]
 final class ListDysfunctionsAction extends AbstractAction implements ActionInterface
 {

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Application\Service\Transformer;
 
 use App\Application\Dto\Output\Security\CreateOutputDto;
+use App\Application\Dto\Output\Security\SessionDto;
 use App\Application\Dto\Output\Security\LoginOutputDto;
-use App\Application\Dto\Output\Security\LoginFromParamOutputDto;
 use App\Application\Dto\Output\Security\ResetOrCreateOutputDto;
 use App\Application\Dto\Output\Security\ResetPasswordOutputDto;
 use App\Application\Dto\Output\Security\ResetPasswordFromPKUserOutputDto;
@@ -24,7 +24,7 @@ interface SecurityTransformerInterface
    /**
     * Transform raw response to LoginFromParamOutputDto
     */
-   public function transformLoginFromParam(object $dataSourceResult): LoginFromParamOutputDto;
+   public function transformLoginFromParam(object $dataSourceResult): SessionDto;
    
 
    /**
@@ -48,7 +48,7 @@ interface SecurityTransformerInterface
    /**
     * Transform raw response to LoginOutputDto
     */
-   public function transformLogin(object $dataSourceResult): LoginOutputDto;
+   public function transformLoginToSession(object $dataSourceResult): SessionDto;
    
 
    /**
@@ -61,5 +61,8 @@ interface SecurityTransformerInterface
     * Transform raw response to LogoutOutputDto
     */
    public function transformLogout(object $dataSourceResult): LogoutOutputDto;
+
+
+   public function transformToLoginOutput(SessionDto $sessionDto, string $token): LoginOutputDto;
   
 }

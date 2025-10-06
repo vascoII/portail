@@ -12,7 +12,9 @@ use App\Application\Dto\Input\GestionParc\AnomaliesInputDto;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 
+#[AsController]
 #[Route(path: '/gestionParc/{pkImmeuble}/anomalies/export', name: 'gestionparc_export_anomalies', methods: ['GET'])]
 final class ExportAnomaliesAction extends AbstractAction implements ActionInterface
 {

@@ -17,7 +17,7 @@ final class SearchDataProvider implements SearchDataProviderInterface
 {
   public function __construct(
     private RedisService $cache,
-    private SearchDataSourceInterface $source,
+  //  private SearchDataSourceInterface $source,
     private SearchTransformerInterface $transformer,
     private readonly AuthServiceInterface $authService
   ) {}
@@ -37,11 +37,11 @@ final class SearchDataProvider implements SearchDataProviderInterface
       return $cachedDto;
     }
 
-    $rawData = $this->source->fetchIndex($inputDto);
+  /*  $rawData = $this->source->fetchIndex($inputDto);
     $dto = $this->transformer->transformIndex($rawData);
 
     $this->cache->set($cacheKey, $dto);
 
-    return $dto;
+    return $dto;*/
   }
 }

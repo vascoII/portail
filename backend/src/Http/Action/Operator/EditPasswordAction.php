@@ -12,7 +12,9 @@ use App\Application\Dto\Input\Operator\EditPasswordInputDto;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 
+#[AsController]
 #[Route(path: '/gestionnaire/{id}/password', name: 'operator_password', methods: ['POST'])]
 final class EditPasswordAction extends AbstractAction implements ActionInterface
 {

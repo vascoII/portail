@@ -32,7 +32,7 @@ final class GestionParcDataProvider implements GestionParcDataProviderInterface
 { 
   public function __construct(
       private RedisService $cache,
-      private GestionParcDataSourceInterface $source,
+  //    private GestionParcDataSourceInterface $source,
       private GestionParcTransformerInterface $transformer,
       private readonly AuthServiceInterface $authService
   ) {}
@@ -52,12 +52,12 @@ final class GestionParcDataProvider implements GestionParcDataProviderInterface
         return $cachedDto;
       }
 
-      $rawData = $this->source->fetchIndex();
+  /*    $rawData = $this->source->fetchIndex();
       $dto = $this->transformer->transformIndex($rawData);
 
       $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+      return $dto;*/
   }
 
   public function interventionService(InterventionInputDto $inputDto): GetReportOutputDto
@@ -70,12 +70,12 @@ final class GestionParcDataProvider implements GestionParcDataProviderInterface
         return $cachedDto;
       }
 
-      $rawData = $this->source->fetchIntervention($inputDto);
+  /*    $rawData = $this->source->fetchIntervention($inputDto);
       $dto = $this->transformer->transformIntervention($rawData);
 
       $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+      return $dto;*/
   }
 
   public function reportService(ReportInputDto $inputDto): GetReportOutputDto
@@ -88,12 +88,12 @@ final class GestionParcDataProvider implements GestionParcDataProviderInterface
         return $cachedDto;
       }
 
-      $rawData = $this->source->fetchReport($inputDto);
+  /*    $rawData = $this->source->fetchReport($inputDto);
       $dto = $this->transformer->transformReport($rawData);
 
       $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+      return $dto;*/
   }
 
   public function showService(ShowInputDto $inputDto): GetTableauBordImmeubleOutputDto
@@ -106,12 +106,12 @@ final class GestionParcDataProvider implements GestionParcDataProviderInterface
         return $cachedDto;
       }
 
-      $rawData = $this->source->fetchShow($inputDto);
+  /*    $rawData = $this->source->fetchShow($inputDto);
       $dto = $this->transformer->transformShow($rawData);
 
       $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+      return $dto;*/
   }
 
   public function listInterventionsService(InterventionsInputDto $inputDto): GetInfosDepannagesByImmeubleOutputDto
@@ -124,12 +124,12 @@ final class GestionParcDataProvider implements GestionParcDataProviderInterface
         return $cachedDto;
       }
 
-      $rawData = $this->source->fetchListInterventions($inputDto);
+  /*    $rawData = $this->source->fetchListInterventions($inputDto);
       $dto = $this->transformer->transformListInterventions($rawData);
 
       $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+      return $dto;*/
   }
 
   public function showInterventionService(ShowInterventionInputDto $inputDto): GetInfosDepannagesByImmeubleOutputDto
@@ -142,12 +142,12 @@ final class GestionParcDataProvider implements GestionParcDataProviderInterface
         return $cachedDto;
       }
 
-      $rawData = $this->source->fetchShowIntervention($inputDto);
+  /*    $rawData = $this->source->fetchShowIntervention($inputDto);
       $dto = $this->transformer->transformShowIntervention($rawData);
 
       $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+      return $dto;*/
   }
 
   public function filterResultService(FilterResultInputDto $inputDto): GetInfosImmeublesOutputDto
@@ -160,12 +160,12 @@ final class GestionParcDataProvider implements GestionParcDataProviderInterface
         return $cachedDto;
       }
 
-      $rawData = $this->source->fetchFilterResult($inputDto);
+  /*    $rawData = $this->source->fetchFilterResult($inputDto);
       $dto = $this->transformer->transformFilterResult($rawData);
 
       $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+      return $dto;*/
   }
 
   public function listLeaksService(LeaksInputDto $inputDto): GetInfosFuitesByImmeubleOutputDto
@@ -178,12 +178,12 @@ final class GestionParcDataProvider implements GestionParcDataProviderInterface
         return $cachedDto;
       }
 
-      $rawData = $this->source->fetchListLeaks($inputDto);
+  /*    $rawData = $this->source->fetchListLeaks($inputDto);
       $dto = $this->transformer->transformListLeaks($rawData);
 
       $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+      return $dto;*/
   }
 
   public function listAnomaliesService(AnomaliesInputDto $inputDto): GetInfosAnomaliesByImmeubleOutputDto
@@ -196,12 +196,12 @@ final class GestionParcDataProvider implements GestionParcDataProviderInterface
         return $cachedDto;
       }
 
-      $rawData = $this->source->fetchListAnomalies($inputDto);
+  /*    $rawData = $this->source->fetchListAnomalies($inputDto);
       $dto = $this->transformer->transformListAnomalies($rawData);
 
       $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+      return $dto;*/
   }
 
   public function listDysfunctionsService(DysfunctionsInputDto $inputDto): GetInfosDysfonctionnementsByImmeubleOutputDto
@@ -214,11 +214,11 @@ final class GestionParcDataProvider implements GestionParcDataProviderInterface
         return $cachedDto;
       }
 
-      $rawData = $this->source->fetchListDysfunctions($inputDto);
+  /*    $rawData = $this->source->fetchListDysfunctions($inputDto);
       $dto = $this->transformer->transformListDysfunctions($rawData);
 
       $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+      return $dto;*/
   }
 }

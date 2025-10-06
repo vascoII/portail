@@ -11,7 +11,9 @@ use App\Application\UseCase\Occupant\AlertesUseCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 
+#[AsController]
 #[Route(path: '/occupant/alertes', name: 'occupant_alertes', methods: ['GET'])]
 final class AlertesAction extends AbstractAction implements ActionInterface
 {

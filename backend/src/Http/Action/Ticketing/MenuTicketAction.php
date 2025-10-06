@@ -11,7 +11,9 @@ use App\Application\UseCase\Ticketing\MenuTicketUseCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 
+#[AsController]
 #[Route(path: '/ticketing/menu', name: 'ticketing_menu', methods: ['GET'])]
 final class MenuTicketAction extends AbstractAction implements ActionInterface
 {

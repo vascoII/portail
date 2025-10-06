@@ -12,7 +12,9 @@ use App\Application\Factory\Logement\LogementInputFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 
+#[AsController]
 #[Route(path: '/logement/{pkLogement}/dysfonctionnements/export', name: 'logement_export_dysfunctions', methods: ['GET'])]
 final class ExportDysfunctionsAction extends AbstractAction implements ActionInterface
 {

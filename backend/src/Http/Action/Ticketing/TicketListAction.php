@@ -11,7 +11,9 @@ use App\Application\UseCase\Ticketing\TicketListUseCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 
+#[AsController]
 #[Route(path: '/tickets', name: 'ticketing_list', methods: ['GET'])]
 final class TicketListAction extends AbstractAction implements ActionInterface
 {

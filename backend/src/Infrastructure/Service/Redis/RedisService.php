@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Service\Redis;
 
-use App\Application\Dto\Output\Security\UserDto;
+use App\Application\Dto\Output\Security\SessionDto;
 use App\Application\Service\Redis\RedisServiceInterface;
 use Predis\Client;
 
@@ -17,20 +17,20 @@ final class RedisService implements RedisServiceInterface
     private readonly Client $redis
   ) {}
 
-  public function storeSession(string $sessionId, UserDto $user, int $ttl = 3600): bool
+  public function storeSession(string $tokenId, SessionDto $sessionDto, int $ttl = 3600): bool 
   {
     try {
-      $key = self::SESSION_PREFIX . $sessionId;
-      $userData = $this->userToArray($user);
+      $key = self::SESSION_PREFIX . $tokenId;
+      $sessionData = $this->sessionToArray($sessionDto);
 
-      $this->redis->setex($key, $ttl, json_encode($userData));
+      $this->redis->setex($key, $ttl, json_encode($sessionData));
       return true;
     } catch (\Exception $e) {
       return false;
     }
   }
 
-  public function getSession(string $sessionId): ?UserDto
+  public function getSession(string $sessionId): ?SessionDto
   {
     try {
       $key = self::SESSION_PREFIX . $sessionId;
@@ -40,8 +40,8 @@ final class RedisService implements RedisServiceInterface
         return null;
       }
 
-      $userData = json_decode($data, true);
-      return $this->arrayToUser($userData);
+      $sessionData = json_decode($data, true);
+      return $this->arrayToSession($sessionData);
     } catch (\Exception $e) {
       return null;
     }
@@ -128,5 +128,49 @@ final class RedisService implements RedisServiceInterface
     // Otherwise, cache until end of day
     $secondsUntilMidnight = $endOfDay->getTimestamp() - $now->getTimestamp();
     return max(300, $secondsUntilMidnight); // At least 5 minutes
+  }
+
+  private function sessionToArray(SessionDto $sessionDto): array
+  {
+    $session = $sessionDto->session;
+    $user = $session->user;
+
+    return [
+        'connected' => $session->connected,
+        'sessionId' => $session->sessionId,
+        'user' => $user ? [
+            'loginId' => $user->loginId,
+            'userName' => $user->userName,
+            'password' => $user->password,
+            'email' => $user->email,
+            'userType' => $user->userType,
+            'pkUser' => $user->pkUser,
+            'adresse' => $user->adresse,
+            'cp' => $user->cp,
+            'ville' => $user->ville,
+            'fk' => $user->fk,
+            'phoneNumber' => $user->phoneNumber,
+            'firstName' => $user->firstName,
+            'userRole' => $user->userRole,
+            'clientName' => $user->clientName,
+            'clientId' => $user->clientId,
+            'expirationDate' => $user->expirationDate?->format('c'),
+            'passwordExpirationDate' => $user->passwordExpirationDate?->format('c'),
+            'cgu' => $user->cgu,
+            'fkClient' => $user->fkClient,
+            'fkClientTop' => $user->fkClientTop,
+            'nbImmeubles' => $user->nbImmeubles,
+            'seuilConsoEf' => $user->seuilConsoEf,
+            'seuilConsoEc' => $user->seuilConsoEc,
+            'seuilConsoRepart' => $user->seuilConsoRepart,
+            'seuilConsoCet' => $user->seuilConsoCet,
+            'seuilConsoActif' => $user->seuilConsoActif,
+            'seuilConsoEmail' => $user->seuilConsoEmail,
+            'showImmeublesArc' => $user->showImmeublesArc,
+            'showFactures' => $user->showFactures,
+            'showChgtOccupant' => $user->showChgtOccupant,
+            'showChantiers' => $user->showChantiers,
+        ] : null,
+    ];
   }
 }

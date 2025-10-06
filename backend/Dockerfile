@@ -3,15 +3,18 @@ FROM php:8.2-fpm
 
 # 1️⃣.1️⃣ Installer utilitaires et ca-certificates
 RUN apt-get update && apt-get install -y \
-    ca-certificates git unzip libpq-dev libicu-dev libonig-dev libzip-dev \
+    libxml2-dev \
+    libpq-dev libicu-dev libonig-dev libzip-dev \
+    && docker-php-ext-install pdo pdo_pgsql intl opcache zip soap \
     && rm -rf /var/lib/apt/lists/*
+
 
 # 1️⃣.2️⃣ Copier le certificat Zscaler
 #COPY root.crt /usr/local/share/ca-certificates/root.crt
 #RUN update-ca-certificates
 
 # 2️⃣ Installer extensions PHP nécessaires
-RUN docker-php-ext-install pdo pdo_pgsql intl opcache zip
+RUN docker-php-ext-install pdo pdo_pgsql intl opcache zip soap
 
 # 3️⃣ Créer le répertoire de travail
 WORKDIR /var/www/backend

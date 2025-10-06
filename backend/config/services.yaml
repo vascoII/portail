@@ -33,6 +33,9 @@ services:
   # Pour utiliser SOAP
   App\Service\ImmeubleSoapProviderInterface: '@App\Service\External\ImmeubleSoapService'
 
+  # Pour utiliser DataProvider
+  App\Application\Service\DataSource\GestionParcDataSourceInterface: '@App\Infrastructure\Service\DataSource\GestionParcDataSource'
+
   # JWT Configuration
   App\Domain\Service\Jwt\JwtServiceInterface: '@App\Infrastructure\Service\Jwt\JwtService'
   App\Infrastructure\Service\Jwt\JwtService:
@@ -420,3 +423,10 @@ services:
       $superLoginID: '%env(SUPER_LOGIN_ID)%'
       $superPassword: '%env(SUPER_PASSWORD)%'
       $adminSessionId: '%env(ADMIN_SESSION_ID)%'    
+
+  #SharedHydrator   
+  App\Infrastructure\Service\Hydrator\SharedHydrator:
+    arguments:
+      $superLoginID: '%env(SUPER_LOGIN_ID)%'
+      $superPassword: '%env(SUPER_PASSWORD)%'
+      $adminSessionId: '%env(ADMIN_SESSION_ID)%' 

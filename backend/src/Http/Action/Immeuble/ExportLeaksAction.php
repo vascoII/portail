@@ -12,7 +12,9 @@ use App\Application\Factory\Immeuble\ImmeubleInputFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 
+#[AsController]
 #[Route(path: '/immeuble/{pkImmeuble}/fuites/export', name: 'immeuble_export_leaks', methods: ['GET'])]
 final class ExportLeaksAction extends AbstractAction implements ActionInterface
 {

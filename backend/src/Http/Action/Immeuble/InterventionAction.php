@@ -12,7 +12,9 @@ use App\Application\Factory\Immeuble\ImmeubleInputFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 
+#[AsController]
 #[Route(path: '/immeuble/{pkImmeuble}/lintervention', name: 'immeuble_lintervention', methods: ['GET'])]
 final class InterventionAction extends AbstractAction implements ActionInterface
 {

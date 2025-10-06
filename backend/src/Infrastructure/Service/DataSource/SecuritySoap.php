@@ -29,7 +29,7 @@ final class SecuritySoap implements SecurityDataSourceInterface
   public function fetchLogin(LoginInputDto $inputDto): object
   {
     $soapRequest = $this->hydrator->hydrateLogin($inputDto);
-    return $this->soapClient->call('getFactures', $soapRequest);
+    return $this->soapClient->call('Login', $soapRequest);
   }
 
   public function fetchLogout(): object

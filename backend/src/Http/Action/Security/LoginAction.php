@@ -12,7 +12,9 @@ use App\Application\Factory\Security\SecurityInputFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 
+#[AsController]
 #[Route(path: '/security/login', name: 'security_login', methods: ['POST'])]
 final class LoginAction extends AbstractAction implements ActionInterface
 {

@@ -18,13 +18,17 @@ use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Application\Service\DataSource\SecurityDataSourceInterface;
 use App\Application\Service\Transformer\SecurityTransformerInterface;
+use App\Application\Service\Jwt\JwtServiceInterface;
+use App\Application\Service\Redis\RedisServiceInterface;
 
 final class SecurityDataProvider implements SecurityDataProviderInterface
 {
   public function __construct(
-      private SecurityDataSourceInterface $securityDataSource,
-      private SecurityTransformerInterface $securityTransformer,
-      private readonly AuthServiceInterface $authService
+    private readonly SecurityDataSourceInterface $securityDataSource,
+    private readonly SecurityTransformerInterface $securityTransformer,
+    private readonly AuthServiceInterface $authService,
+    private readonly JwtServiceInterface $serviceJwt,
+    private readonly RedisServiceInterface $serviceRedis
   ) {}
 
   private function getAuthContext(): AuthenticationContext
@@ -65,7 +69,12 @@ final class SecurityDataProvider implements SecurityDataProviderInterface
   public function loginService(LoginInputDto $inputDto): LoginOutputDto
   {
       $rawData = $this->securityDataSource->fetchLogin($inputDto);
-      return $this->securityTransformer->transformLogin($rawData);
+      $sessionDto = $this->securityTransformer->transformLoginToSession($rawData);
+
+      $token = $this->serviceJwt->generateToken($sessionDto);
+      $this->serviceRedis->storeSession($token, $sessionDto);
+
+      return $this->securityTransformer->transformToLoginOutput($sessionDto, $token);
   }
-  
+
 }

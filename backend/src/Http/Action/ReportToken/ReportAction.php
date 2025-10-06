@@ -12,7 +12,9 @@ use App\Application\Factory\ReportToken\ReportTokenInputFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 
+#[AsController]
 #[Route(path: '/report-token/{token}', name: 'report_token_report', methods: ['GET'])]
 final class ReportAction extends AbstractAction implements ActionInterface
 {

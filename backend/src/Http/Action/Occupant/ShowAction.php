@@ -12,7 +12,9 @@ use App\Application\Factory\Occupant\OccupantInputFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 
+#[AsController]
 #[Route(path: '/occupant', name: 'occupant_show', methods: ['GET'])]
 final class ShowAction extends AbstractAction implements ActionInterface
 {

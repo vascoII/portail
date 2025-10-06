@@ -12,7 +12,9 @@ use App\Application\Factory\Logement\LogementInputFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 
+#[AsController]
 #[Route(path: '/logements/{pkImmeuble}/logement/{pkLogement}/releve_repart', name: 'logement_repart_releve', methods: ['GET'])]
 final class ShowRepartReleveAction extends AbstractAction implements ActionInterface
 {

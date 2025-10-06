@@ -12,7 +12,9 @@ use App\Application\Factory\Operator\OperatorInputFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 
+#[AsController]
 #[Route(path: '/gestionnaire/statistiques', name: 'operator_statsoccupants', methods: ['GET'])]
 final class OtatsoccupantsAction extends AbstractAction implements ActionInterface
 {

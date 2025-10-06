@@ -12,7 +12,9 @@ use App\Application\Dto\Input\Logement\SearchInputDto;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 
+#[AsController]
 #[Route(path: '/logements/recherche', name: 'logement_search', methods: ['GET'])]
 final class SearchAction extends AbstractAction implements ActionInterface
 {

@@ -12,7 +12,9 @@ use App\Application\Factory\GestionParc\GestionParcInputFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 
+#[AsController]
 #[Route(path: '/gestionParc/{pkImmeuble}/fuites', name: 'gestionparc_list_leaks', methods: ['GET'])]
 final class ListLeaksAction extends AbstractAction implements ActionInterface
 {

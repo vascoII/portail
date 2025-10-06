@@ -12,7 +12,9 @@ use App\Application\Dto\Input\GestionParc\InterventionsInputDto;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 
+#[AsController]
 #[Route(path: '/gestionParc/{pkImmeuble}/interventions/export', name: 'gestionparc_export_interventions', methods: ['GET'])]
 final class ExportInterventionsAction extends AbstractAction implements ActionInterface
 {

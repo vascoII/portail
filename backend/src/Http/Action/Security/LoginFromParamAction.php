@@ -12,7 +12,9 @@ use App\Application\Factory\Security\SecurityInputFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 
+#[AsController]
 #[Route(path: '/security/login/param', name: 'security_login_param', methods: ['GET'])]
 final class LoginFromParamAction extends AbstractAction implements ActionInterface
 {
