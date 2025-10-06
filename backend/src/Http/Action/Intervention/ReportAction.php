@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(path: '/api/intervention/{pkDepannage}/report', name: 'intervention_report', methods: ['GET'])]
+#[Route(path: '/intervention/{pkDepannage}/report', name: 'intervention_report', methods: ['GET'])]
 final class ReportAction extends AbstractAction implements ActionInterface
 {
   public function __construct(
