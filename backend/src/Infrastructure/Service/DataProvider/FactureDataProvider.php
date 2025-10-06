@@ -18,13 +18,13 @@ use App\Application\Service\Transformer\FactureTransformerInterface;
 
 final class FactureDataProvider implements FactureDataProviderInterface
 {
-  
+
   public function __construct(
-      private RedisService $cache,
-      private FactureDataSourceInterface $factureDataSource,
-      private SharedDataSourceInterface $sharedDataSource,
-      private readonly FactureTransformerInterface $transformer,
-      private readonly AuthServiceInterface $authService
+    private RedisService $cache,
+    private FactureDataSourceInterface $factureDataSource,
+    private SharedDataSourceInterface $sharedDataSource,
+    private readonly FactureTransformerInterface $transformer,
+    private readonly AuthServiceInterface $authService
   ) {}
 
   private function getAuthContext(): AuthenticationContext
@@ -33,41 +33,40 @@ final class FactureDataProvider implements FactureDataProviderInterface
   }
 
   public function indexService(): GetFacturesOutputDto
-  {  
-      $authContext = $this->getAuthContext();
+  {
+    $authContext = $this->getAuthContext();
 
-      $cacheKey = "facture_index:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
+    $cacheKey = "facture_index:$authContext->pkUser";
+    $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof GetFacturesOutputDto) {
-        return $cachedDto;
-      }
+    if ($cachedDto instanceof GetFacturesOutputDto) {
+      return $cachedDto;
+    }
 
-      $rawData = $this->factureDataSource->fetchGetFactures();
-      $dto = $this->transformer->transformIndex($rawData);
+    $rawData = $this->factureDataSource->fetchGetFactures();
+    $dto = $this->transformer->transformIndex($rawData);
 
-      $this->cache->set($cacheKey, $dto);
+    $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+    return $dto;
   }
 
   public function reportService(GetReportInputDto $inputDto): GetReportOutputDto
   {
-      $authContext = $this->getAuthContext();
+    $authContext = $this->getAuthContext();
 
-      $cacheKey = "facture_report:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
+    $cacheKey = "facture_report:$authContext->pkUser:$inputDto->params";
+    $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof GetReportOutputDto) {
-        return $cachedDto;
-      }
+    if ($cachedDto instanceof GetReportOutputDto) {
+      return $cachedDto;
+    }
 
-      $rawData = $this->sharedDataSource->fetchGetReport($inputDto);
-      $dto = $this->transformer->transformReport($rawData);
+    $rawData = $this->sharedDataSource->fetchGetReport($inputDto);
+    $dto = $this->transformer->transformReport($rawData);
 
-      $this->cache->set($cacheKey, $dto);
+    $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+    return $dto;
   }
-
 }

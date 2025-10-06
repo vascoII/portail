@@ -13,8 +13,8 @@ use App\Application\Factory\Facture\FactureOutputFactory;
 final class FactureTransformer implements FactureTransformerInterface
 {
   public function __construct(
-      private readonly FactureEntityFactory $entityFactory,
-      private readonly FactureOutputFactory $outputFactory
+    private readonly FactureEntityFactory $entityFactory,
+    private readonly FactureOutputFactory $outputFactory
   ) {}
 
   /**
@@ -22,6 +22,7 @@ final class FactureTransformer implements FactureTransformerInterface
    */
   public function transformIndex(object $dataSourceResult): GetFacturesOutputDto
   {
+    $rawList = (array) $dataSourceResult;
     $facturesRaw = $rawList['facture'] ?? [];
 
     if (!is_array($facturesRaw)) {
