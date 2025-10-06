@@ -156,6 +156,13 @@ const ResetPasswordPage: React.FC = () => {
               >
                 Politique de confidentialité
               </Link>
+              <Link
+                target="_blank"
+                href="/pages/rgpd"
+                className="hover:text-gray-700 transition-colors"
+              >
+                RGPD
+            </Link>
             </div>
             <p className="mt-2 text-xs text-gray-400">
               © 2025 Techem France. Tous droits réservés.

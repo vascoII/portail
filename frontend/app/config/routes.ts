@@ -12,7 +12,7 @@ export const ROUTES = {
   // Pages légales
   LEGAL_NOTICES: "/pages/legal/legal-notices",
   CGU: "/pages/legal/cgu",
-  PERSONAL_DATAS: "/pages/legal/personal-datas",
+  RGPD: "/pages/legal/rgpd",
 
   // Dashboard et navigation
   DASHBOARD: "/pages/dashboard",

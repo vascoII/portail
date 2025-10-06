@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(path: '/api/factures', name: 'facture_index', methods: ['GET'])]
+#[Route(path: '/factures', name: 'facture_index', methods: ['GET'])]
 final class IndexAction extends AbstractAction implements ActionInterface
 {
   public function __construct(

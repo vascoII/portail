@@ -177,12 +177,7 @@ services:
       $responder: '@App\Http\Responder\JsonResponder'
   App\Http\Action\Facture\ReportAction:
     arguments:
-      $responder: '@App\Http\Responder\PdfResponder'    
-  #Front
-  App\Http\Action\Front\:
-    resource: '../src/Http/Action/Front/*'
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'    
+      $responder: '@App\Http\Responder\PdfResponder'       
   #GestionParc
   App\Http\Action\GestionParc\ExportAnomaliesAction:
     arguments:
