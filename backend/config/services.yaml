@@ -420,7 +420,7 @@ services:
                                                                                                                                                                    
     
   #AdminHydrator
-  App\Infrastructure\Hydrator\AdminHydrator:
+  App\Infrastructure\Service\Hydrator\AdminHydrator:
     arguments:
       $superLoginID: '%env(SUPER_LOGIN_ID)%'
       $superPassword: '%env(SUPER_PASSWORD)%'
