@@ -45,7 +45,17 @@ final class SecurityDataProvider implements SecurityDataProviderInterface
   public function logoutService(): LogoutOutputDto
   {
     $rawData = $this->securityDataSource->fetchLogout();
-    return $this->securityTransformer->transformLogout($rawData);
+    $output = $this->securityTransformer->transformLogout($rawData);
+
+    if ($output->success) {
+      $sessionId = $this->authService->getCurrentSessionId();
+      if ($sessionId) {
+        $this->serviceRedis->deleteSession($sessionId);
+      }
+      $this->authService->clearAuthenticatedUser();
+    }
+
+    return $output;
   }
 
   public function resetOrCreateService(ResetOrCreateInputDto $inputDto): ResetPasswordFromPKUserOutputDto
