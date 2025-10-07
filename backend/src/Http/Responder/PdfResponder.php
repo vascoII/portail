@@ -38,7 +38,7 @@ final class PdfResponder implements ResponderInterface
         $this->httpLogger->debug('PDF response prepared', [
             'status_code' => $status,
             'duration_ms' => round($duration, 2),
-            'response_size' => strlen($payload),
+            'response_size' => $payload->length,
             'filename' => $payload->filename,
             'headers' => array_keys($headers),
         ]);

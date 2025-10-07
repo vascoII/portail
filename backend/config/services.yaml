@@ -62,6 +62,11 @@ services:
   App\Infrastructure\Service\DataSource\SoapClient:
     arguments:
       $wsdlUrl: "%env(SOAP_WSDL_URL)%"
+      $debug: false
+      $processors:
+        - '@App\Infrastructure\Service\DataSource\ResponseProcessor\ObjectResponseProcessor'
+        - '@App\Infrastructure\Service\DataSource\ResponseProcessor\StringResponseProcessor'
+
 
   # JWT Middleware
   App\Http\Middleware\JwtAuthMiddleware:
@@ -430,3 +435,8 @@ services:
       $superLoginID: '%env(SUPER_LOGIN_ID)%'
       $superPassword: '%env(SUPER_PASSWORD)%'
       $adminSessionId: '%env(ADMIN_SESSION_ID)%' 
+
+  
+  App\Infrastructure\Service\DataSource\ResponseProcessor\ObjectResponseProcessor: ~
+  App\Infrastructure\Service\DataSource\ResponseProcessor\StringResponseProcessor: ~
+    

@@ -31,14 +31,13 @@ final class FactureTransformer implements FactureTransformerInterface
   /**
    * Transform raw response to ReportOutputDto
    */
-  public function transformReport(object $dataSourceResult): GetReportOutputDto
+  public function transformReport(string $dataSourceResult): GetReportOutputDto
   {
-    $binary = (string) $dataSourceResult;
     $filename = 'releve-' . date('Y-m-d') . '.pdf';
-    return new GetReportOutputDto(
-      data: $binary,
+    return new GetReportOutputDto (
+      data: $dataSourceResult,
       filename: $filename,
-      length: strlen($binary)
+      length: strval(strlen($dataSourceResult))
     );
   }
 }

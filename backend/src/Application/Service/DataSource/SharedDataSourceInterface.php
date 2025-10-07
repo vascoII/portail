@@ -14,6 +14,6 @@ interface SharedDataSourceInterface
 
   public function fetchGetDetailsDepannage(GetDetailsDepannageInpuDto $inputDto): object;
   public function fetchGetExcel(GetExcelInpuDto $inputDto): object;
-  public function fetchGetReport(GetReportInputDto $inputDto): object;
+  public function fetchGetReport(GetReportInputDto $inputDto): string;
   public function fetchGetReportByToken(GetReportByTokenInputDto $inputDto): object;
 }

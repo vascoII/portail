@@ -7,6 +7,8 @@ namespace App\Application\Dto\Output\Shared;
 final class GetReportOutputDto
 {
   public function __construct(
-    public readonly string $reportContent
+    public readonly string $data,
+    public readonly string $filename,
+    public readonly string $length
   ) {}
 }

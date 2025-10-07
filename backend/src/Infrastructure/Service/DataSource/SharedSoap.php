@@ -43,11 +43,12 @@ final class SharedSoap implements SharedDataSourceInterface
     return $this->soapClient->call('GetExcel', $soapRequest);
   }
 
-  public function fetchGetReport(GetReportInputDto $inputDto): object
+  public function fetchGetReport(GetReportInputDto $inputDto): string
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     $soapRequest = $this->hydrator->hydrateGetReport($inputDto);
+
     return $this->soapClient->call('GetReport', $soapRequest);
   }
   

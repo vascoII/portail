@@ -18,6 +18,6 @@ interface FactureTransformerInterface
   /**
    * Transform raw response to ReportOutputDto
    */
-  public function transformReport(object $dataSourceResult): GetReportOutputDto;
+  public function transformReport(string $dataSourceResult): GetReportOutputDto;
   
 }

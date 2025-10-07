@@ -11,6 +11,12 @@ use Psr\Cache\CacheItemPoolInterface;
 
 final class SoapClient
 {
+  
+  /**
+   * @var SoapResponseProcessorInterface[]
+  */
+  private array $processors;
+
   private ?\SoapClient $client = null;
   private ?string $sessionId = null;
   private ?string $pkUser = null;
@@ -19,8 +25,10 @@ final class SoapClient
     private readonly string $wsdlUrl,
     private readonly ?CacheItemPoolInterface $cache = null,
     private readonly ?Stopwatch $stopwatch = null,
-    private readonly bool $debug = false
+    private readonly bool $debug = false,
+    array $processors
   ) {
+    $this->processors = $processors;
     $this->initializeClient();
   }
 
@@ -60,7 +68,7 @@ final class SoapClient
   /**
    * Call a SOAP method
    */
-  public function call(string $method, object $request): object
+  public function call(string $method, object $request): object|string
   {
     $this->stopwatchStart('SoapClient::call');
 
@@ -83,34 +91,14 @@ final class SoapClient
       throw new RuntimeException("SOAP call failed for method '$method': " . $e->getMessage(), 0, $e);
     }
 
-    $result = $this->processResponse($method, $response);
+    
+    foreach ($this->processors as $processor) {
+        if ($processor->supports($method)) {
+            $result = $processor->process($method, $response);
+        }
+    }
 
     $this->stopwatchStop('SoapClient::call');
-
-    return $result;
-  }
-
-  /**
-   * Process SOAP response and extract result
-   */
-  private function processResponse(string $method, $response): object
-  {
-    $resultName = $method . 'Result';
-
-    if (!isset($response->{$resultName})) {
-      throw new RuntimeException("SOAP method '$method' failed: No result found");
-    }
-
-    $result = $response->{$resultName};
-
-    // Check for SOAP errors
-    if (isset($result->Erreur) && !empty($result->Erreur)) {
-      $errorMessage = $result->Erreur;
-      if ($this->debug) {
-        $errorMessage .= ' (Debug mode enabled)';
-      }
-      throw new RuntimeException("SOAP error in method '$method': $errorMessage");
-    }
 
     return $result;
   }
