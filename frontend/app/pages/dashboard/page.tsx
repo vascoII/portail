@@ -78,7 +78,7 @@ const DashboardPage: React.FC = () => {
                 onClick={() => setIsInterventionModalOpen(true)}
                 className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg transition-colors duration-200"
               >
-                Livret d'intervention
+                Livret d&apos;intervention
               </button>
             </div>
           </div>

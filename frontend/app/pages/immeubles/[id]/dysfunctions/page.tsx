@@ -29,7 +29,7 @@ const ImmeubleDysfunctionsPage: React.FC = () => {
       <Breadcrumb items={breadcrumbItems} />
       <span className="clearfix"></span>
 
-      <h2>Dysfonctionnements de l'immeuble {id}</h2>
+      <h2>Dysfonctionnements de l&apos;immeuble {id}</h2>
 
       <div className="row">
         <div className="col-md-12">

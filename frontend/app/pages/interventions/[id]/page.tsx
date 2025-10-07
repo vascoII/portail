@@ -45,7 +45,7 @@ const InterventionDetailPage: React.FC = () => {
       <Breadcrumb items={breadcrumbItems} />
       <span className="clearfix"></span>
 
-      <h2>Détail de l'intervention</h2>
+      <h2>Détail de l&apos;intervention</h2>
 
       <div className="row">
         <div className="col-md-8">
