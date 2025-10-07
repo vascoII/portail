@@ -23,8 +23,9 @@ final class FactureSoap implements FactureDataSourceInterface
 
   public function fetchGetFactures(): object
   {
-    $authContext = $this->getAuthContext();
+    $authContext = $this->getAuthContext(); 
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
+
     return $this->soapClient->call('getFactures', (object) []);
   }
 
