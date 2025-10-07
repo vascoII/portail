@@ -46,7 +46,7 @@ const NotFoundPage: React.FC = () => {
           Page introuvable
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
-          La page que vous recherchez n'existe pas ou a été déplacée
+          La page que vous recherchez n&apos;existe pas ou a été déplacée
         </p>
       </div>
 
@@ -78,9 +78,9 @@ const NotFoundPage: React.FC = () => {
               Erreur 404
             </h3>
             <p className="text-gray-600 mb-8">
-              Désolé, la page que vous recherchez n'a pas pu être trouvée.
+              Désolé, la page que vous recherchez n&apos;a pas pu être trouvée.
               <br />
-              Vérifiez l'URL ou retournez à la page d'accueil.
+              Vérifiez l&apos;URL ou retournez à la page d&apos;accueil.
             </p>
 
             {/* Boutons d'action */}
@@ -102,7 +102,7 @@ const NotFoundPage: React.FC = () => {
                     d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
                   />
                 </svg>
-                Retour à l'accueil
+                Retour à l&apos;accueil
               </Link>
 
               <button
