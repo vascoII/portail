@@ -68,82 +68,87 @@ const PasswordForm: React.FC<PasswordFormProps> = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="form-horizontal">
-      {error && (
-        <div className="alert alert-danger" role="alert">
-          {error}
-        </div>
-      )}
-
-      {success && (
-        <div className="alert alert-success" role="alert">
-          {success}
-        </div>
-      )}
-
-      <div className="form-group">
-        <label htmlFor="currentPassword" className="control-label">
+    <form onSubmit={handlePasswordUpdate} className="space-y-6">
+      {/* Champ mot de passe actuel */}
+      <div>
+        <label
+          htmlFor="currentPassword"
+          className="block text-sm font-medium text-gray-700 mb-2"
+        >
           Mot de passe actuel
         </label>
         <input
-          type="password"
           id="currentPassword"
           name="currentPassword"
-          className="form-control"
-          value={passwords.currentPassword}
-          onChange={handleChange}
+          type="password"
           required
+          value={currentPassword}
+          onChange={(e) => setCurrentPassword(e.target.value)}
+          className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+          placeholder="Mot de passe actuel"
         />
-        {errors.currentPassword && (
-          <span className="help-block text-danger">
-            {errors.currentPassword}
-          </span>
-        )}
       </div>
 
-      <div className="form-group">
-        <label htmlFor="newPassword" className="control-label">
+      {/* Champ nouveau mot de passe */}
+      <div>
+        <label
+          htmlFor="newPassword"
+          className="block text-sm font-medium text-gray-700 mb-2"
+        >
           Nouveau mot de passe
         </label>
         <input
-          type="password"
           id="newPassword"
           name="newPassword"
-          className="form-control"
-          value={passwords.newPassword}
-          onChange={handleChange}
-          required
-        />
-        {errors.newPassword && (
-          <span className="help-block text-danger">{errors.newPassword}</span>
-        )}
-      </div>
-
-      <div className="form-group">
-        <label htmlFor="confirmPassword" className="control-label">
-          Confirmer le nouveau mot de passe
-        </label>
-        <input
           type="password"
-          id="confirmPassword"
-          name="confirmPassword"
-          className="form-control"
-          value={passwords.confirmPassword}
-          onChange={handleChange}
           required
+          value={newPassword}
+          onChange={(e) => setNewPassword(e.target.value)}
+          className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+          placeholder="Nouveau mot de passe"
         />
-        {errors.confirmPassword && (
-          <span className="help-block text-danger">
-            {errors.confirmPassword}
-          </span>
-        )}
       </div>
 
-      <div className="form-group">
-        <button type="submit" className="btn btn-primary" disabled={loading}>
-          {loading ? "Modification..." : "Modifier le mot de passe"}
+      {/* Bouton de soumission */}
+      <div>
+        <button
+          type="submit"
+          disabled={loading}
+          className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+        >
+          {loading ? (
+            <div className="flex items-center">
+              <svg
+                className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                />
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                />
+              </svg>
+              Mise à jour...
+            </div>
+          ) : (
+            "Mettre à jour le mot de passe"
+          )}
         </button>
       </div>
+
+      {/* Messages de feedback */}
+      {error && <p className="text-sm text-red-600">{error}</p>}
+      {success && <p className="text-sm text-green-600">{success}</p>}
     </form>
   );
 };

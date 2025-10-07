@@ -6,6 +6,7 @@ namespace App\Infrastructure\Service\Redis;
 
 use App\Application\Dto\Output\Security\SessionDto;
 use App\Application\Service\Redis\RedisServiceInterface;
+use App\Application\Factory\Security\SecurityOutputFactory;
 use Predis\Client;
 
 final class RedisService implements RedisServiceInterface
@@ -14,7 +15,8 @@ final class RedisService implements RedisServiceInterface
   private const USER_PREFIX = 'user:';
 
   public function __construct(
-    private readonly Client $redis
+    private readonly Client $redis,
+    private readonly SecurityOutputFactory $outputFactory,
   ) {}
 
   public function storeSession(string $tokenId, SessionDto $sessionDto, int $ttl = 3600): bool 
@@ -173,4 +175,12 @@ final class RedisService implements RedisServiceInterface
         ] : null,
     ];
   }
+
+  
+  private function arrayToSession(array $sessionData): SessionDto
+  {
+      return $this->outputFactory->arrayToSessionDto($sessionData); 
+  }
+
+
 }

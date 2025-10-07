@@ -15,8 +15,8 @@ const UpdatePasswordPage: React.FC = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (!user) {
-      router.push("/login");
+    if (user) {
+      router.push("pages/login");
     }
   }, [user, router]);
 
@@ -46,7 +46,7 @@ const UpdatePasswordPage: React.FC = () => {
         setSuccess("Mot de passe modifié avec succès !");
         // Optionally redirect after a delay
         setTimeout(() => {
-          router.push("/dashboard");
+          router.push("/pages/dashboard");
         }, 2000);
       } else {
         const errorData = await response.json();
@@ -59,12 +59,12 @@ const UpdatePasswordPage: React.FC = () => {
     }
   };
 
-  if (!user) {
+  if (user) {
     return <div>Chargement...</div>;
   }
 
   const breadcrumbItems = [
-    { label: "Mon compte", href: "/account" },
+    { label: "Mon compte", href: "/pages/account" },
     { label: "Modifier le mot de passe" },
   ];
 
@@ -83,12 +83,7 @@ const UpdatePasswordPage: React.FC = () => {
               {error && <Alert type="danger" message={error} />}
               {success && <Alert type="success" message={success} />}
 
-              <PasswordForm
-                onSubmit={handlePasswordUpdate}
-                loading={loading}
-                error={error}
-                success={success}
-              />
+              <PasswordForm onSubmit={handlePasswordUpdate}/>
             </div>
           </div>
         </div>

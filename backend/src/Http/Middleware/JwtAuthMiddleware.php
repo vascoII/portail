@@ -7,6 +7,7 @@ namespace App\Http\Middleware;
 use App\Application\Service\Jwt\JwtServiceInterface;
 use App\Application\Service\Redis\RedisServiceInterface;
 use App\Application\Service\Auth\AuthServiceInterface;
+use App\Application\Factory\Security\SecurityOutputFactory;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,6 +20,7 @@ final class JwtAuthMiddleware
     private readonly JwtServiceInterface $jwtService,
     private readonly RedisServiceInterface $redisService,
     private readonly AuthServiceInterface $authService,
+    private readonly SecurityOutputFactory $outputFactory,
     private readonly LoggerInterface $securityLogger
   ) {}
 
@@ -85,8 +87,10 @@ final class JwtAuthMiddleware
       return;
     }
 
+    $userDto = $this->outputFactory->createUserDto($sessionDto->session->user);  
+
     // Set the authenticated user in the AuthService
-    $this->authService->setAuthenticatedUser($sessionDto->session->user, $sessionId);
+    $this->authService->setAuthenticatedUser($userDto, $sessionId);
 
     $this->securityLogger->debug('Authentication successful', [
       'route' => $request->attributes->get('_route'),
