@@ -52,7 +52,7 @@ const NotFoundPage: React.FC = () => {
 
       {/* Contenu */}
       <div className="mt-8 mx-auto w-full lg:w-3/4 max-w-5xl relative z-10">
-        <div className="bg-white py-8 px-4 shadow-xl sm:rounded-lg sm:px-10">
+        <div className="bg-white mt-6 py-8 px-4 shadow-xl sm:rounded-lg sm:px-10">
           <div className="text-center">
             {/* Icône 404 */}
             <div className="mb-6">
