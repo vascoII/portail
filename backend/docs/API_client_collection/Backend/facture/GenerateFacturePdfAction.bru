@@ -1,0 +1,19 @@
+meta {
+  name: GenerateFacturePdfAction
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{localhost_backend}}/api/facture/{{pkFacture}}/generate
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bearToken}}
+}
+
+settings {
+  encodeUrl: true
+}

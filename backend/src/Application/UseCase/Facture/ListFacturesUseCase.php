@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace App\Application\UseCase\Facture;
 
-use App\Application\Dto\Output\Facture\GetFacturesOutputDto;
+use App\Application\Dto\Output\Facture\ListFacturesOutputDto;
 use App\Application\Service\DataProvider\FactureDataProviderInterface;
 
-final class IndexUseCase
+final class ListFacturesUseCase
 {
   public function __construct(
     private readonly FactureDataProviderInterface $serviceDataProvider
   ) {}
 
-  public function execute(): GetFacturesOutputDto
+  public function execute(): ListFacturesOutputDto
   {
-    return $this->serviceDataProvider->indexService();
+    return $this->serviceDataProvider->listFacturesService();
   }
 }

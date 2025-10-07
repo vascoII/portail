@@ -8,7 +8,7 @@ use App\Application\Dto\Input\Shared\GetReportInputDto;
 use App\Application\Dto\Output\Shared\GetReportOutputDto;
 use App\Application\Service\DataProvider\FactureDataProviderInterface;
 
-final class ReportUseCase
+final class GenerateFacturePdfUseCase
 {
   public function __construct(
     private readonly FactureDataProviderInterface $serviceDataProvider
@@ -16,6 +16,6 @@ final class ReportUseCase
 
   public function execute(GetReportInputDto $inputDto): GetReportOutputDto
   {
-    return $this->serviceDataProvider->reportService($inputDto);
+    return $this->serviceDataProvider->generateFacturePdfService($inputDto);
   }
 }

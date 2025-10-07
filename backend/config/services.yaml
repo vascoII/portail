@@ -180,10 +180,10 @@ services:
 
   #Responder for each Action (JsonResponse, pdfResponse)
   #Facture
-  App\Http\Action\Facture\IndexAction:
+  App\Http\Action\Facture\ListFacturesAction:
     arguments:
       $responder: '@App\Http\Responder\JsonResponder'
-  App\Http\Action\Facture\ReportAction:
+  App\Http\Action\Facture\GenerateFacturePdfAction:
     arguments:
       $responder: '@App\Http\Responder\PdfResponder'       
   #GestionParc

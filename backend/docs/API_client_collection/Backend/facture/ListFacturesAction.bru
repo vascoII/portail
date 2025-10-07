@@ -1,5 +1,5 @@
 meta {
-  name: GetFactures
+  name: ListFacturesAction
   type: http
   seq: 1
 }
@@ -7,7 +7,11 @@ meta {
 get {
   url: {{localhost_backend}}/api/factures
   body: none
-  auth: inherit
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bearToken}}
 }
 
 settings {

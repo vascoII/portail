@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Application\Factory\Facture;
 
-use App\Application\Dto\Output\Facture\GetFacturesOutputDto;
+use App\Application\Dto\Output\Facture\ListFacturesOutputDto;
 use App\Domain\Entity\Facture;
 
 class FactureOutputFactory
@@ -12,8 +12,8 @@ class FactureOutputFactory
     /**
      * @param Facture[] $factures
      */
-    public function create(array $factures): GetFacturesOutputDto
+    public function create(array $factures): ListFacturesOutputDto
     {
-        return new GetFacturesOutputDto($factures);
+        return new ListFacturesOutputDto($factures);
     }
 }

@@ -7,7 +7,7 @@ namespace App\Http\Action\Facture;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
-use App\Application\UseCase\Facture\ReportUseCase;
+use App\Application\UseCase\Facture\GenerateFacturePdfUseCase;
 use App\Application\Factory\Shared\SharedInputFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,12 +15,12 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 
 #[AsController]
-#[Route(path: '/factures/{pkFacture}/report', name: 'facture_report', methods: ['GET'])]
-final class ReportAction extends AbstractAction implements ActionInterface
+#[Route(path: '/facture/{pkFacture}/generate', name: 'facture_generate', methods: ['GET'])]
+final class GenerateFacturePdfAction extends AbstractAction implements ActionInterface
 {
   public function __construct(
     private readonly ResponderInterface $responder,
-    private readonly ReportUseCase $useCase,
+    private readonly GenerateFacturePdfUseCase $useCase,
     private readonly SharedInputFactory $inputFactory
   ) {}
 

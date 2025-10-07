@@ -7,7 +7,7 @@ namespace App\Infrastructure\Service\DataProvider;
 use App\Application\Service\DataProvider\FactureDataProviderInterface;
 use App\Application\Dto\Input\Shared\GetReportInputDto;
 use App\Application\Dto\Output\Shared\GetReportOutputDto;
-use App\Application\Dto\Output\Facture\GetFacturesOutputDto;
+use App\Application\Dto\Output\Facture\ListFacturesOutputDto;
 use App\Application\Service\DataSource\FactureDataSourceInterface;
 use App\Application\Service\DataSource\SharedDataSourceInterface;
 use App\Application\Service\Auth\AuthServiceInterface;
@@ -32,26 +32,26 @@ final class FactureDataProvider implements FactureDataProviderInterface
     return AuthenticationContext::fromAuthService($this->authService);
   }
 
-  public function indexService(): GetFacturesOutputDto
+  public function listFacturesService(): ListFacturesOutputDto
   {
     $authContext = $this->getAuthContext();
 
-    $cacheKey = "facture_index:$authContext->pkUser";
+    $cacheKey = "facture_list:$authContext->pkUser";
     $cachedDto = $this->cache->get($cacheKey);
 
-    if ($cachedDto instanceof GetFacturesOutputDto) {
+    if ($cachedDto instanceof ListFacturesOutputDto) {
       return $cachedDto;
     }
 
     $rawData = $this->factureDataSource->fetchGetFactures();
-    $dto = $this->transformer->transformIndex($rawData);
+    $dto = $this->transformer->transformListFactures($rawData);
 
     $this->cache->set($cacheKey, $dto);
 
     return $dto;
   }
 
-  public function reportService(GetReportInputDto $inputDto): GetReportOutputDto
+  public function generateFacturePdfService(GetReportInputDto $inputDto): GetReportOutputDto
   {
     $authContext = $this->getAuthContext();
 

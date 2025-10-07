@@ -16,7 +16,7 @@ use Symfony\Component\HttpKernel\Attribute\AsController;
 
 #[AsController]
 #[Route(path: '/intervention/{pkDepannage}/report', name: 'intervention_report', methods: ['GET'])]
-final class ReportAction extends AbstractAction implements ActionInterface
+final class GenerateInterventionPdfAction extends AbstractAction implements ActionInterface
 {
   public function __construct(
     private readonly ResponderInterface $responder,
