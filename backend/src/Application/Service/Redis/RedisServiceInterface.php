@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Application\Service\Redis;
 
-use App\Application\Dto\Output\Security\SessionDto;
+use App\Application\Dto\Output\Shared\SessionDto;
 
 interface RedisServiceInterface
 {

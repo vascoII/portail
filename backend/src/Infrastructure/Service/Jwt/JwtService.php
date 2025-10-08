@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Service\Jwt;
 
-use App\Application\Dto\Output\Security\SessionDto;
+use App\Application\Dto\Output\Shared\SessionDto;
 use App\Application\Service\Jwt\JwtServiceInterface;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;

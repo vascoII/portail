@@ -7,8 +7,7 @@ namespace App\Http\Action\Immeuble;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
-use App\Application\UseCase\Immeuble\IndexUseCase;
-use App\Application\Factory\Immeuble\ImmeubleInputFactory;
+use App\Application\UseCase\Immeuble\ListImmeublesUseCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,14 +19,12 @@ final class ListImmeublesAction extends AbstractAction implements ActionInterfac
 {
   public function __construct(
     private readonly ResponderInterface $responder,
-    private readonly IndexUseCase $useCase,
-    private readonly ImmeubleInputFactory $inputFactory
+    private readonly ListImmeublesUseCase $useCase
   ) {}
 
   public function __invoke(Request $request, array $args = []): Response
   {
-    $input = $this->inputFactory->createIndexFromRequest($request);
-    $output = $this->useCase->execute($input);
+    $output = $this->useCase->execute();
     return $this->responder->respond($output);
   }
 }

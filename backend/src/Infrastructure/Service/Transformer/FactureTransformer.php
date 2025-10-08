@@ -22,7 +22,9 @@ final class FactureTransformer implements FactureTransformerInterface
    */
   public function transformListFactures(object $dataSourceResult): ListFacturesOutputDto
   {
-    $facturesRaw = $dataSourceResult->ListeFactures->facture ?? null;
+    $facturesRaw = is_array($rawFacture = $dataSourceResult->ListeFactures->facture ?? null) ? 
+         $rawFacture : ($rawFacture ? [$rawFacture] : []);
+
     $entities = $this->entityFactory->createManyFromRawList($facturesRaw);
 
     return $this->outputFactory->create($entities);

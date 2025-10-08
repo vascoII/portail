@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Application\UseCase\Immeuble;
 
-use App\Application\Dto\Output\Immeuble\IndexOutputDto;
+use App\Application\Dto\Output\Immeuble\ListImmeublesOutputDto;
 use App\Application\Service\DataProvider\ImmeubleDataProviderInterface;
 
 final class ListImmeublesUseCase

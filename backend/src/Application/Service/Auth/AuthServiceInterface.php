@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Application\Service\Auth;
 
-use App\Application\Dto\Output\Security\UserDto;
+use App\Application\Dto\Output\Shared\UserDto;
 
 interface AuthServiceInterface
 {

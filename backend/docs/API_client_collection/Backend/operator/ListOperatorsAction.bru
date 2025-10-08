@@ -1,11 +1,11 @@
 meta {
-  name: GenerateInterventionPdfAction
+  name: ListOperatorsAction
   type: http
   seq: 1
 }
 
 get {
-  url: {{localhost_backend}}/api/intervention/{{pkIntervention}}/generate
+  url: {{localhost_backend}}/api/gestionnaires
   body: none
   auth: bearer
 }

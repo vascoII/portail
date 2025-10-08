@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Application\Factory\Security;
 
 use App\Application\Dto\Output\Security\LoginOutputDto;
-use App\Application\Dto\Output\Security\SessionDto;
-use App\Application\Dto\Output\Security\UserDto;
+use App\Application\Dto\Output\Shared\SessionDto;
+use App\Application\Dto\Output\Shared\UserDto;
 use App\Domain\Entity\User;
 use App\Domain\Entity\Session;
 

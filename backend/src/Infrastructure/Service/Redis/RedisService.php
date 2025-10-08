@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Service\Redis;
 
-use App\Application\Dto\Output\Security\SessionDto;
+use App\Application\Dto\Output\Shared\SessionDto;
 use App\Application\Service\Redis\RedisServiceInterface;
 use App\Application\Factory\Security\SecurityOutputFactory;
 use Predis\Client;

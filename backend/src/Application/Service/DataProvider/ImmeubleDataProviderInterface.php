@@ -21,13 +21,5 @@ use App\Application\Dto\Output\TableauBordClient\GetTableauBordClientOutputDto;
 interface ImmeubleDataProviderInterface
 {
 
-  public function indexService(): GetTableauBordClientOutputDto;
-  public function showService(GetTableauBordImmeubleInputDto $inputDto): GetTableauBordImmeubleOutputDto;
-  public function reportService(GetReportInputDto $inputDto): GetReportOutputDto;
-  public function listInterventionsService(GetInfosDepannagesByImmeubleInputDto $inputDto): GetInfosDepannagesByImmeubleOutputDto;
-  public function showInterventionService(GetInfosDepannagesByImmeubleInputDto $inputDto): GetInfosDepannagesByImmeubleOutputDto;
-  public function listLeaksService(GetInfosFuitesByImmeubleInputDto $inputDto): GetInfosFuitesByImmeubleOutputDto;
-  public function listDysfunctionsService(GetInfosDysfonctionnementsByImmeubleInputDto $inputDto): GetInfosDysfonctionnementsByImmeubleOutputDto;
-  public function listAnomaliesService(GetInfosAnomaliesByImmeubleInputDto $inputDto): GetInfosAnomaliesByImmeubleOutputDto;
-
+  
 }

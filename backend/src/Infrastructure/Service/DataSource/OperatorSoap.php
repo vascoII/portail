@@ -4,11 +4,8 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Service\DataSource;
 
-use App\Application\Dto\Input\Operator\SetImmeublesInpuDto;
-use App\Application\Dto\Input\Operator\CreateGestionnaireInputDto;
-use App\Application\Dto\Input\Operator\DeleteUserInpuDto;
-use App\Application\Dto\Input\Operator\GetUserInpuDto;
-use App\Application\Dto\Input\Operator\UpdateUserInpuDto;
+use App\Application\Dto\Input\Operator\ListOperatorsInputDto;
+
 use App\Application\Service\DataSource\OperatorDataSourceInterface;
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Service\Hydrator\OperatorHydrator;
@@ -28,52 +25,12 @@ final class OperatorSoap implements OperatorDataSourceInterface
     return AuthenticationContext::fromAuthService($this->authService);
   }
 
-  public function fetchSetImmeubles(SetImmeublesInpuDto $inputDto): object
+  public function fetchGetOperators(ListOperatorsInputDto $inputDto): object
   {
-    $authContext = $this->getAuthContext();
-    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateSetImmeubles($inputDto);
-    return $this->soapClient->call('SetImmeubles', $soapRequest);
-  }
-
-  public function fetchCreateGestionnaire(CreateGestionnaireInputDto $inputDto): object
-  {
-    $authContext = $this->getAuthContext();
-    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateCreateGestionnaire($inputDto);
-    return $this->soapClient->call('CreateGestionnaire', $soapRequest);
-  }
-
-  public function fetchDeleteUser(DeleteUserInpuDto $inputDto): object
-  {
-    $authContext = $this->getAuthContext();
-    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateDeleteUser($inputDto);
-    return $this->soapClient->call('DeleteUser', $soapRequest);
-  }
-
-  public function fetchGetChildUsers(): object
-  {
-    $authContext = $this->getAuthContext();
-    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateGetChildUsers();
-    return $this->soapClient->call('GetChildUsers', $soapRequest);
-  }
-
-  public function fetchGetUser(GetUserInpuDto $inputDto): object
-  {
-    $authContext = $this->getAuthContext();
-    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateGetUser($inputDto);
-    return $this->soapClient->call('GetUser', $soapRequest);
-  }
-
-  public function fetchUpdateUser(UpdateUserInpuDto $inputDto): object
-  {
-    $authContext = $this->getAuthContext();
-    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateUpdateUser($inputDto);
-    return $this->soapClient->call('UpdateUser', $soapRequest);
+      $authContext = $this->getAuthContext();
+      $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
+      $soapRequest = $this->hydrator->hydrateGetListOperators($inputDto); 
+      return $this->soapClient->call('GetChildUsers', $soapRequest);  
   }
 
 }

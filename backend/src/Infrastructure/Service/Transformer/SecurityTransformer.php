@@ -10,16 +10,16 @@ use App\Application\Dto\Output\Security\ResetPasswordOutputDto;
 use App\Application\Dto\Output\Security\ResetPasswordFromPKUserOutputDto;
 use App\Application\Dto\Output\Security\UpdatePasswordOutputDto;
 use App\Application\Dto\Output\Security\LogoutOutputDto;
-use App\Application\Dto\Output\Security\SessionDto;
+use App\Application\Dto\Output\Shared\SessionDto;
 use App\Application\Dto\Output\Security\LoginOutputDto;
 use App\Application\Service\Transformer\SecurityTransformerInterface;
-use App\Application\Factory\Security\SecurityEntityFactory;
+use App\Application\Factory\Shared\SharedEntityFactory;
 use App\Application\Factory\Security\SecurityOutputFactory;
 
 final class SecurityTransformer implements SecurityTransformerInterface
 {
    public function __construct(
-      private readonly SecurityEntityFactory $entityFactory,
+      private readonly SharedEntityFactory $entityFactory,
       private readonly SecurityOutputFactory $outputFactory
    ) {}
 

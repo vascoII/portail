@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace App\Application\Factory\Operator;
 
 use Symfony\Component\HttpFoundation\Request;
+use App\Application\Dto\Input\Operator\ListOperatorsInputDto;
+
 use App\Application\Dto\Input\Operator\CreateGestionnaireInputDto;
 use App\Application\Dto\Input\Operator\DeleteUserInpuDto;
 use App\Application\Dto\Input\Operator\GetUserInputDto;
-use App\Application\Dto\Input\Operator\IndexInputDto;
+
 use App\Application\Dto\Input\Operator\OtatsoccupantsInputDto;
 use App\Application\Dto\Input\Operator\SetImmeublesInpuDto;
 use App\Application\Dto\Input\Operator\UpdateUserInpuDto;
@@ -59,10 +61,9 @@ final class OperatorInputFactory
     );
   }
 
-  // Methods for GET actions
-  public function createIndexFromRequest(Request $request): IndexInputDto
+  public function createListOperatorsFromRequest(Request $request, string $type): ListOperatorsInputDto
   {
-    return new IndexInputDto();
+    return new ListOperatorsInputDto($type);
   }
 
   public function createViewFromRequest(Request $request): ViewInputDto

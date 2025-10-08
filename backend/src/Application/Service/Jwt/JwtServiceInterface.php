@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Application\Service\Jwt;
 
-use App\Application\Dto\Output\Security\SessionDto;
+use App\Application\Dto\Output\Shared\SessionDto;
 
 interface JwtServiceInterface
 {

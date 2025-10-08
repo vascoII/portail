@@ -70,25 +70,23 @@ final class AdminTransformer implements AdminTransformerInterface
     return new ResetPasswordFromEmailOutputDto($user);
   }
 
-  private function transformUser(object $soapUser): \App\Application\Dto\Output\Security\UserDto
+  private function transformUser(object $soapUser): \App\Application\Dto\Output\Shared\UserDto
   {
-    return new \App\Application\Dto\Output\Security\UserDto(
+    return new \App\Application\Dto\Output\Shared\UserDto(
       loginId: (string) $soapUser->LoginID,
       userName: (string) $soapUser->UserName,
       email: (string) $soapUser->EMail,
       userType: (string) $soapUser->UserType,
       pkUser: (int) $soapUser->PKUser,
-      address: (string) $soapUser->Adresse,
-      postalCode: (string) $soapUser->CP,
-      city: (string) $soapUser->Ville,
+      adresse: (string) $soapUser->Adresse,
+      cp: (string) $soapUser->CP,
+      ville: (string) $soapUser->Ville,
       fk: (int) $soapUser->FK,
       phoneNumber: (string) $soapUser->PhoneNumber,
       firstName: (string) $soapUser->FirstName,
       userRole: (string) $soapUser->UserRole,
       clientName: (string) $soapUser->ClientName,
       clientId: (string) $soapUser->ClientID,
-      expirationDate: (string) $soapUser->ExpirationDate,
-      passwordExpirationDate: (string) $soapUser->PasswordExpirationDate,
       cgu: (string) $soapUser->CGU,
       fkClient: (int) $soapUser->FKClient,
       fkClientTop: (int) $soapUser->FKClientTop,

@@ -191,7 +191,7 @@ services:
   App\Http\Action\Intervention\GenerateInterventionPdfAction:
     arguments:
       $responder: '@App\Http\Responder\PdfResponder'
-               
+
   #GestionParc
   App\Http\Action\GestionParc\ExportAnomaliesAction:
     arguments:
@@ -234,7 +234,8 @@ services:
       $responder: '@App\Http\Responder\JsonResponder'
   App\Http\Action\GestionParc\ShowInterventionAction:
     arguments:
-      $responder: '@App\Http\Responder\JsonResponder'     
+      $responder: '@App\Http\Responder\JsonResponder'   
+
   #Immeuble
   App\Http\Action\Immeuble\ExportAnomaliesAction:
     arguments:
@@ -251,7 +252,7 @@ services:
   App\Http\Action\Immeuble\FilterResultAction:
     arguments:
       $responder: '@App\Http\Responder\JsonResponder'
-  App\Http\Action\Immeuble\IndexAction:
+  App\Http\Action\Immeuble\ListImmeublesAction:
     arguments:
       $responder: '@App\Http\Responder\JsonResponder'
   App\Http\Action\Immeuble\InterventionAction:
@@ -343,6 +344,7 @@ services:
   App\Http\Action\Logement\ShowRepartReleveAction:
     arguments:
       $responder: '@App\Http\Responder\JsonResponder'  
+
   #Occupant
   App\Http\Action\Occupant\AlertesAction:
     arguments:
@@ -394,7 +396,8 @@ services:
       $responder: '@App\Http\Responder\JsonResponder' 
   App\Http\Action\Occupant\SimulateurAction:
     arguments:
-      $responder: '@App\Http\Responder\JsonResponder'   
+      $responder: '@App\Http\Responder\JsonResponder'  
+       
   #Operator
   App\Http\Action\Operator\:
     resource: '../src/Http/Action/Operator/*' 
