@@ -14,12 +14,11 @@ class ObjectResponseProcessor implements SoapResponseProcessorInterface
 
     public function supports(string $method): bool
     {
-        return !in_array($method, [self::GET_REPORT]); // à affiner
+        return !in_array($method, [self::GET_REPORT, self::CREATE_GESTIONNAIRE]);
     }
 
     public function process(string $method, mixed $response): object
     {
-        // Ici tu peux appeler ton processResponse existant
         return $this->processResponse($method, $response);
     }
 

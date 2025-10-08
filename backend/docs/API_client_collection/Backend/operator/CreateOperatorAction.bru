@@ -1,0 +1,29 @@
+meta {
+  name: CreateOperatorAction
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{localhost_backend}}/api/operator
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bearToken}}
+}
+
+body:json {
+  {
+      "email": "test@test.com",
+      "lastname": "lastname",
+      "firstname": "firstname",
+      "phone": "0112121212",
+      "job": "job"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

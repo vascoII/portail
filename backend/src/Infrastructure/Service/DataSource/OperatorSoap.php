@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Infrastructure\Service\DataSource;
 
 use App\Application\Dto\Input\Operator\ListOperatorsInputDto;
+use App\Application\Dto\Input\Operator\CreateOperatorInputDto;
 
 use App\Application\Service\DataSource\OperatorDataSourceInterface;
 use App\Application\Service\Auth\AuthServiceInterface;
@@ -31,6 +32,14 @@ final class OperatorSoap implements OperatorDataSourceInterface
       $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
       $soapRequest = $this->hydrator->hydrateGetListOperators($inputDto); 
       return $this->soapClient->call('GetChildUsers', $soapRequest);  
+  }
+
+  public function fetchPostOperator(CreateOperatorInputDto $inputDto): bool
+  {   
+      $authContext = $this->getAuthContext();
+      $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
+      $soapRequest = $this->hydrator->hydratePostOperator($inputDto);
+      return $this->soapClient->call('CreateGestionnaire', $soapRequest);  
   }
 
 }

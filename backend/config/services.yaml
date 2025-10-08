@@ -66,6 +66,7 @@ services:
       $processors:
         - '@App\Infrastructure\Service\DataSource\ResponseProcessor\ObjectResponseProcessor'
         - '@App\Infrastructure\Service\DataSource\ResponseProcessor\StringResponseProcessor'
+        - '@App\Infrastructure\Service\DataSource\ResponseProcessor\BoolResponseProcessor'
 
 
   # JWT Middleware
@@ -442,7 +443,15 @@ services:
       $superPassword: '%env(SUPER_PASSWORD)%'
       $adminSessionId: '%env(ADMIN_SESSION_ID)%' 
 
-  
+  #ResponseProcessor
   App\Infrastructure\Service\DataSource\ResponseProcessor\ObjectResponseProcessor: ~
   App\Infrastructure\Service\DataSource\ResponseProcessor\StringResponseProcessor: ~
+  App\Infrastructure\Service\DataSource\ResponseProcessor\BoolResponseProcessor: ~
+
+  #Validator
+  App\Application\Validator\Input\Operator\CreateOperatorInputValidator:
+    autowire: true
+    autoconfigure: true
+    public: false
+
     

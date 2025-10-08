@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Infrastructure\Service\Hydrator;
 
 use App\Application\Dto\Input\Operator\ListOperatorsInputDto;
+use App\Application\Dto\Input\Operator\CreateOperatorInputDto;
+
 
 use App\Application\Dto\Input\Operator\SetImmeublesInpuDto;
 use App\Application\Dto\Input\Operator\CreateGestionnaireInputDto;
@@ -21,24 +23,24 @@ final class OperatorHydrator
           'type' => $inputDto->type
       ];
   }
+
+  public function hydratePostOperator(CreateOperatorInputDto $inputDto): object
+  {
+      return (object) [
+          'LoginID'     => $inputDto->email,
+          'UserName'    => $inputDto->lastname,
+          'FirstName'   => $inputDto->firstname,
+          'PhoneNumber' => $inputDto->phone,
+          'Email'       => $inputDto->email,
+          'UserRole'    => $inputDto->job,
+      ];
+  }
   
   public function hydrateSetImmeubles(SetImmeublesInpuDto $inputDto): object
   {
     return (object) [
       'PkUserChild'   => $inputDto->pkUserChild,
       'ListImmeubles' => $inputDto->listImmeubles,
-    ];
-  }
-
-  public function hydrateCreateGestionnaire(CreateGestionnaireInputDto $inputDto): object
-  {
-    return (object) [
-      'LoginID'     => $inputDto->email,
-      'UserName'    => $inputDto->lastname,
-      'FirstName'   => $inputDto->firstname,
-      'PhoneNumber' => $inputDto->phone,
-      'Email'       => $inputDto->email,
-      'UserRole'    => $inputDto->job,
     ];
   }
 

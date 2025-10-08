@@ -6,8 +6,9 @@ namespace App\Application\Factory\Operator;
 
 use Symfony\Component\HttpFoundation\Request;
 use App\Application\Dto\Input\Operator\ListOperatorsInputDto;
+use App\Application\Dto\Input\Operator\CreateOperatorInputDto;
 
-use App\Application\Dto\Input\Operator\CreateGestionnaireInputDto;
+
 use App\Application\Dto\Input\Operator\DeleteUserInpuDto;
 use App\Application\Dto\Input\Operator\GetUserInputDto;
 
@@ -17,18 +18,33 @@ use App\Application\Dto\Input\Operator\UpdateUserInpuDto;
 use App\Application\Dto\Input\Operator\ViewInputDto;
 use App\Application\Dto\Input\Operator\EditInputDto;
 
+use App\Application\Validator\Input\Operator\CreateOperatorInputValidator;
+
 final class OperatorInputFactory
 {
-  public function createCreateGestionnaireFromRequest(Request $request): CreateGestionnaireInputDto
+  
+  public function __construct(
+      private CreateOperatorInputValidator $validator
+  ) {}
+
+  public function createOperatorFromRequest(Request $request): CreateOperatorInputDto
   {
-    return new CreateGestionnaireInputDto(
-      (int) $request->request->get('pkUser'),
-      (string) $request->request->get('email'),
-      (string) $request->request->get('lastname'),
-      (string) $request->request->get('firstname'),
-      (string) $request->request->get('phone'),
-      (string) $request->request->get('job')
-    );
+      $raw = (string) $request->getContent();
+      $data = json_decode($raw, true);
+
+      if (!is_array($data)) {
+        $data = [];
+      }
+
+      $this->validator->validate($data);
+
+      return new CreateOperatorInputDto(
+        email: $data['email'],
+        lastname: $data['lastname'],
+        firstname: $data['firstname'],
+        phone: $data['phone'],
+        job: $data['job']
+      );
   }
 
   public function createDeleteUserFromRequest(Request $request): DeleteUserInpuDto

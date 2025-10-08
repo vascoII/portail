@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 
 #[AsController]
-#[Route(path: '/gestionnaires', name: 'operator_list', methods: ['GET'])]
+#[Route(path: '/operators', name: 'operator_list', methods: ['GET'])]
 final class ListOperatorsAction extends AbstractAction implements ActionInterface
 {
   public function __construct(

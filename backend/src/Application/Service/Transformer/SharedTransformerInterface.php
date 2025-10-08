@@ -4,17 +4,15 @@ declare(strict_types=1);
 
 namespace App\Application\Service\Transformer;
 
-use App\Application\Dto\Output\Shared\GetDetailsDepannageOutputDto;
 use App\Application\Dto\Output\Shared\GetExcelOutputDto;
 use App\Application\Dto\Output\Shared\GetReportOutputDto;
-use App\Application\Dto\Output\Shared\GetReportByTokenOutputDto;
-
+use App\Application\Dto\Output\Shared\SuccessOutputDto;
 interface SharedTransformerInterface
 {
   /**
-   * Transform raw response to GetDetailsDepannageOutputDto
+   * Transform raw response to Post
    */
-  public function transformGetDetailsDepannage(object $dataSourceResult): GetDetailsDepannageOutputDto;
+  public function transformPost(bool $dataSourceResult): SuccessOutputDto;
   
 
   /**
@@ -27,11 +25,5 @@ interface SharedTransformerInterface
    * Transform raw response to GetReportOutputDto
    */
   public function transformGetReport(string $dataSourceResult, string $filename): GetReportOutputDto;
-  
-
-  /**
-   * Transform raw response to GetReportByTokenOutputDto
-   */
-  public function transformGetReportByToken(object $dataSourceResult): GetReportByTokenOutputDto;
  
 }

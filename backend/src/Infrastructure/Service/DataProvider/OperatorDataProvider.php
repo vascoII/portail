@@ -6,15 +6,16 @@ namespace App\Infrastructure\Service\DataProvider;
 
 use App\Application\Dto\Input\Operator\ListOperatorsInputDto;
 use App\Application\Dto\Output\Operator\ListOperatorsOutputDto;
-
+use App\Application\Dto\Input\Operator\CreateOperatorInputDto;
 use App\Application\Service\DataProvider\OperatorDataProviderInterface;
-use App\Application\Dto\Input\Operator\CreateGestionnaireInputDto;
-use App\Application\Dto\Output\Operator\ViewOutputDto;
+use App\Application\Dto\Output\Shared\SuccessOutputDto;
+
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Application\Service\DataSource\OperatorDataSourceInterface;
 use App\Infrastructure\Service\Redis\RedisService;
 use App\Application\Service\Transformer\OperatorTransformerInterface;
+use App\Application\Service\Transformer\SharedTransformerInterface;
 
 final class OperatorDataProvider implements OperatorDataProviderInterface
 {
@@ -22,6 +23,7 @@ final class OperatorDataProvider implements OperatorDataProviderInterface
     private RedisService $cache,
     private OperatorDataSourceInterface $operatorDataSource,
     private OperatorTransformerInterface $operatorTransformer,
+    private SharedTransformerInterface $sharedTransformer,
     private readonly AuthServiceInterface $authService
   ) {}
 
@@ -47,6 +49,14 @@ final class OperatorDataProvider implements OperatorDataProviderInterface
       $this->cache->set($cacheKey, $dto);
 
       return $dto;  
+  }
+
+  public function createOperatorService(CreateOperatorInputDto $inputDto): SuccessOutputDto
+  {
+      $rawData = $this->operatorDataSource->fetchPostOperator($inputDto);
+      $dto = $this->sharedTransformer->transformPost($rawData);
+
+      return $dto; 
   }
 
 }

@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Service\Transformer;
 
-use App\Application\Dto\Output\Shared\GetDetailsDepannageOutputDto;
+use App\Application\Dto\Output\Shared\SuccessOutputDto;
 use App\Application\Dto\Output\Shared\GetExcelOutputDto;
 use App\Application\Dto\Output\Shared\GetReportOutputDto;
-use App\Application\Dto\Output\Shared\GetReportByTokenOutputDto;
 use App\Application\Service\Transformer\SharedTransformerInterface;
 use App\Application\Factory\Shared\SharedEntityFactory;
 use App\Application\Factory\Shared\SharedOutputFactory;
+
 
 final class SharedTransformer implements SharedTransformerInterface
 {
@@ -19,15 +19,6 @@ final class SharedTransformer implements SharedTransformerInterface
       private readonly SharedOutputFactory $outputFactory
    ) {}
    
-  /**
-   * Transform raw response to GetDetailsDepannageOutputDto
-   */
-  public function transformGetDetailsDepannage(object $dataSourceResult): GetDetailsDepannageOutputDto
-  {
-    $result = $dataSourceResult->GetDetailsDepannageResult;
-    return new GetDetailsDepannageOutputDto($result);
-  }
-
   /**
    * Transform raw response to GetExcelOutputDto
    */
@@ -54,17 +45,9 @@ final class SharedTransformer implements SharedTransformerInterface
     );
   }
 
-  /**
-   * Transform raw response to GetReportByTokenOutputDto
-   */
-  public function transformGetReportByToken(object $dataSourceResult): GetReportByTokenOutputDto
+  public function transformPost(bool $dataSourceResult): SuccessOutputDto
   {
-    $binary = (string) $dataSourceResult->GetReportByTokenResult;
-    $filename = 'report-token-' . date('Y-m-d') . '.pdf';
-    return new GetReportByTokenOutputDto(
-      data: $binary,
-      filename: $filename,
-      length: strlen($binary)
-    );
+       return new SuccessOutputDto (bool: $dataSourceResult);   
   }
+
 }

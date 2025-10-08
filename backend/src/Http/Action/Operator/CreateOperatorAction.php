@@ -7,22 +7,26 @@ namespace App\Http\Action\Operator;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
-use App\Application\UseCase\Operator\CreateUseCase;
-use App\Application\Dto\Input\Operator\CreateInputDto;
+use App\Application\UseCase\Operator\CreateOperatorUseCase;
+use App\Application\Factory\Operator\OperatorInputFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 
 #[AsController]
-#[Route(path: '/gestionnaire/nouveau', name: 'operator_create', methods: ['POST'])]
-final class CreateAction extends AbstractAction implements ActionInterface
+#[Route(path: '/operator', name: 'operator_create', methods: ['POST'])]
+final class CreateOperatorAction extends AbstractAction implements ActionInterface
 {
-  public function __construct(private readonly ResponderInterface $responder, private readonly CreateUseCase $useCase) {}
+  public function __construct(
+    private readonly ResponderInterface $responder,
+    private readonly CreateOperatorUseCase $useCase,
+    private readonly OperatorInputFactory $inputFactory
+  ) {}
 
   public function __invoke(Request $request, array $args = []): Response
   {
-    $input = new CreateInputDto();
+    $input = $this->inputFactory->createOperatorFromRequest($request);
     $output = $this->useCase->execute($input);
     return $this->responder->respond($output);
   }

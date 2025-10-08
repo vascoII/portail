@@ -68,7 +68,7 @@ final class SoapClient
   /**
    * Call a SOAP method
    */
-  public function call(string $method, object $request): object|string
+  public function call(string $method, object $request): object|string|bool
   {
     $this->stopwatchStart('SoapClient::call');
 
@@ -90,7 +90,6 @@ final class SoapClient
       $this->stopwatchStop('SoapClient::call');
       throw new RuntimeException("SOAP call failed for method '$method': " . $e->getMessage(), 0, $e);
     }
-
     
     foreach ($this->processors as $processor) {
         if ($processor->supports($method)) {

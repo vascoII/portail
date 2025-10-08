@@ -24,7 +24,7 @@ final class OperatorTransformer implements OperatorTransformerInterface
    {
       $operatorsRaw = is_array($rawUser = $dataSourceResult->ListeUsers->user ?? null) ? 
          $rawUser : ($rawUser ? [$rawUser] : []);
-         
+
       $entities = $this->entityFactory->createManyUsersFromRawList($operatorsRaw);
 
       return $this->outputFactory->create($entities);
