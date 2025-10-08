@@ -66,6 +66,29 @@ services:
     networks:
       - app-network      
 
+  mercure:
+    image: dunglas/mercure
+    container_name: mercure
+    restart: unless-stopped
+    environment:
+      # Shared secret between the hub and the app
+      JWT_KEY: '!ChangeThisMercureHubJWTSecretKey!'
+      # Allow anonymous subscribers (frontend)
+      ALLOW_ANONYMOUS: '1'
+      # CORS settings
+      CORS_ALLOWED_ORIGINS: '*'
+      # Publisher JWT (used by Symfony)
+      PUBLISHER_JWT_KEY: '!ChangeThisMercureHubJWTSecretKey!'
+      # Subscriber JWT (used by frontend if needed)
+      SUBSCRIBER_JWT_KEY: '!ChangeThisMercureHubJWTSecretKey!'
+      # Enable the UI for testing
+      DEMO: '1'
+    ports:
+      - "3001:80"
+    networks:
+      - app-network
+    
+
   redis-commander:
     image: rediscommander/redis-commander:latest
     container_name: redis-commander
