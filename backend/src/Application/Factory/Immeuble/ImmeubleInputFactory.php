@@ -95,11 +95,6 @@ final class ImmeubleInputFactory
     return new FilterResultInputDto();
   }
 
-  public function createIndexFromRequest(Request $request): IndexInputDto
-  {
-    return new IndexInputDto();
-  }
-
   public function createInterventionFromRequest(Request $request): InterventionInputDto
   {
     return new InterventionInputDto((string) $request->query->get('pkImmeuble'));

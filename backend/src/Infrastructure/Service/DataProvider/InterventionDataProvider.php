@@ -18,7 +18,7 @@ final class InterventionDataProvider implements InterventionDataProviderInterfac
   public function __construct(
     private RedisService $cache,
     private SharedDataSourceInterface $sharedDataSource,
-    private SharedTransformerInterface $transformer,
+    private readonly SharedTransformerInterface $transformer,
     private readonly AuthServiceInterface $authService
   ) {}
 
@@ -27,10 +27,12 @@ final class InterventionDataProvider implements InterventionDataProviderInterfac
     return AuthenticationContext::fromAuthService($this->authService);
   }
 
-  public function reportService(GetReportInputDto $inputDto): GetReportOutputDto
+  public function generateInterventionPdfService(GetReportInputDto $inputDto): GetReportOutputDto
   {
+    $filename = 'releve-intervention-' . date('Y-m-d') . '.pdf';
+
     $authContext = $this->getAuthContext();
-    $cacheKey = "intervention_report:$authContext->pkUser";
+    $cacheKey = "intervention_generate:$authContext->pkUser:$inputDto->params";
     $cachedDto = $this->cache->get($cacheKey);
 
     if ($cachedDto instanceof GetReportOutputDto) {
@@ -38,7 +40,7 @@ final class InterventionDataProvider implements InterventionDataProviderInterfac
     }
 
     $rawData = $this->sharedDataSource->fetchGetReport($inputDto);
-    $dto = $this->transformer->transformGetReport($rawData);
+    $dto = $this->transformer->transformGetReport($rawData, $filename);
 
     $this->cache->set($cacheKey, $dto);
 

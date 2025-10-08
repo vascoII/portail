@@ -10,5 +10,5 @@ use App\Application\Dto\Output\Shared\GetReportOutputDto;
 interface InterventionDataProviderInterface
 {
 
-  public function reportService(GetReportInputDto $inputDto): GetReportOutputDto;
+  public function generateInterventionPdfService(GetReportInputDto $inputDto): GetReportOutputDto;
 }

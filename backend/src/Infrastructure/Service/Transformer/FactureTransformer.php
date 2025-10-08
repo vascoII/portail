@@ -28,16 +28,4 @@ final class FactureTransformer implements FactureTransformerInterface
     return $this->outputFactory->create($entities);
   }
 
-  /**
-   * Transform raw response to ReportOutputDto
-   */
-  public function transformReport(string $dataSourceResult): GetReportOutputDto
-  {
-    $filename = 'releve-' . date('Y-m-d') . '.pdf';
-    return new GetReportOutputDto (
-      data: $dataSourceResult,
-      filename: $filename,
-      length: strval(strlen($dataSourceResult))
-    );
-  }
 }

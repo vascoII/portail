@@ -43,16 +43,14 @@ final class SharedTransformer implements SharedTransformerInterface
   }
 
   /**
-   * Transform raw response to GetReportOutputDto
+   * Transform raw response to ReportOutputDto
    */
-  public function transformGetReport(object $dataSourceResult): GetReportOutputDto
+  public function transformGetReport(string $dataSourceResult, string $filename): GetReportOutputDto
   {
-    $binary = (string) $dataSourceResult->GetReportResult;
-    $filename = 'report-' . date('Y-m-d') . '.pdf';
-    return new GetReportOutputDto(
-      data: $binary,
+    return new GetReportOutputDto (
+      data: $dataSourceResult,
       filename: $filename,
-      length: strlen($binary)
+      length: strval(strlen($dataSourceResult))
     );
   }
 

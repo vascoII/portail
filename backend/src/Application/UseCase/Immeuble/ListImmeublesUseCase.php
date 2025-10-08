@@ -4,18 +4,17 @@ declare(strict_types=1);
 
 namespace App\Application\UseCase\Immeuble;
 
-use App\Application\Dto\Input\Immeuble\IndexInputDto;
 use App\Application\Dto\Output\Immeuble\IndexOutputDto;
 use App\Application\Service\DataProvider\ImmeubleDataProviderInterface;
 
-final class IndexUseCase
+final class ListImmeublesUseCase
 {
   public function __construct(
     private readonly ImmeubleDataProviderInterface $serviceDataProvider
   ) {}
 
-  public function execute(IndexInputDto $inputDto): IndexOutputDto
+  public function execute(): ListImmeublesOutputDto
   {
-    return $this->serviceDataProvider->indexService($inputDto);
+    return $this->serviceDataProvider->listImmeublesService();
   }
 }

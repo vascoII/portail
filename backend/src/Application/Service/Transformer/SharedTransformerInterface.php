@@ -26,7 +26,7 @@ interface SharedTransformerInterface
   /**
    * Transform raw response to GetReportOutputDto
    */
-  public function transformGetReport(object $dataSourceResult): GetReportOutputDto;
+  public function transformGetReport(string $dataSourceResult, string $filename): GetReportOutputDto;
   
 
   /**

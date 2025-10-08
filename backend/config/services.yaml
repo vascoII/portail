@@ -185,7 +185,13 @@ services:
       $responder: '@App\Http\Responder\JsonResponder'
   App\Http\Action\Facture\GenerateFacturePdfAction:
     arguments:
-      $responder: '@App\Http\Responder\PdfResponder'       
+      $responder: '@App\Http\Responder\PdfResponder'  
+
+  #Intervention
+  App\Http\Action\Intervention\GenerateInterventionPdfAction:
+    arguments:
+      $responder: '@App\Http\Responder\PdfResponder'
+               
   #GestionParc
   App\Http\Action\GestionParc\ExportAnomaliesAction:
     arguments:
@@ -272,10 +278,7 @@ services:
   App\Http\Action\Immeuble\ShowInterventionAction:
     arguments:
       $responder: '@App\Http\Responder\JsonResponder'                                                    
-  #Intervention
-  App\Http\Action\Intervention\ReportAction:
-    arguments:
-      $responder: '@App\Http\Responder\PdfResponder' 
+   
   #Logement
   App\Http\Action\Logement\CreateTicketAction:
     arguments:

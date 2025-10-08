@@ -14,10 +14,4 @@ interface FactureTransformerInterface
    */
   public function transformListFactures(object $dataSourceResult): ListFacturesOutputDto;
   
-
-  /**
-   * Transform raw response to ReportOutputDto
-   */
-  public function transformReport(string $dataSourceResult): GetReportOutputDto;
-  
 }

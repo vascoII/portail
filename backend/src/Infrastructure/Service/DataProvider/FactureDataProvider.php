@@ -14,6 +14,7 @@ use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Infrastructure\Service\Redis\RedisService;
 use App\Application\Service\Transformer\FactureTransformerInterface;
+use App\Application\Service\Transformer\SharedTransformerInterface;
 
 
 final class FactureDataProvider implements FactureDataProviderInterface
@@ -23,7 +24,8 @@ final class FactureDataProvider implements FactureDataProviderInterface
     private RedisService $cache,
     private FactureDataSourceInterface $factureDataSource,
     private SharedDataSourceInterface $sharedDataSource,
-    private readonly FactureTransformerInterface $transformer,
+    private readonly FactureTransformerInterface $factureTransformer,
+    private readonly SharedTransformerInterface $sharedTransformer,
     private readonly AuthServiceInterface $authService
   ) {}
 
@@ -44,7 +46,7 @@ final class FactureDataProvider implements FactureDataProviderInterface
     }
 
     $rawData = $this->factureDataSource->fetchGetFactures();
-    $dto = $this->transformer->transformListFactures($rawData);
+    $dto = $this->factureTransformer->transformListFactures($rawData);
 
     $this->cache->set($cacheKey, $dto);
 
@@ -53,9 +55,11 @@ final class FactureDataProvider implements FactureDataProviderInterface
 
   public function generateFacturePdfService(GetReportInputDto $inputDto): GetReportOutputDto
   {
+    $filename = 'releve-facture-' . date('Y-m-d') . '.pdf';
+    
     $authContext = $this->getAuthContext();
 
-    $cacheKey = "facture_report:$authContext->pkUser:$inputDto->params";
+    $cacheKey = "facture_generate:$authContext->pkUser:$inputDto->params";
     $cachedDto = $this->cache->get($cacheKey);
 
     if ($cachedDto instanceof GetReportOutputDto) {
@@ -63,7 +67,7 @@ final class FactureDataProvider implements FactureDataProviderInterface
     }
 
     $rawData = $this->sharedDataSource->fetchGetReport($inputDto);
-    $dto = $this->transformer->transformReport($rawData);
+    $dto = $this->sharedTransformer->transformGetReport($rawData, $filename);
 
     $this->cache->set($cacheKey, $dto);
 
