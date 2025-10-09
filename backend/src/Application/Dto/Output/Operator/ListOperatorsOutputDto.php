@@ -10,6 +10,6 @@ final class ListOperatorsOutputDto
 {
   /** @param UserDto[] $userDto */
   public function __construct(
-    public readonly array $userDtos
+    public readonly array $userDto
   ) {}
 }

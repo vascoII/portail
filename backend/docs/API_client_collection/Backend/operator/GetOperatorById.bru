@@ -1,0 +1,19 @@
+meta {
+  name: GetOperatorById
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{localhost_backend}}/api/operator/79252
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bearToken}}
+}
+
+settings {
+  encodeUrl: true
+}

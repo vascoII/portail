@@ -7,6 +7,8 @@ namespace App\Application\Service\Transformer;
 use App\Application\Dto\Output\Shared\GetExcelOutputDto;
 use App\Application\Dto\Output\Shared\GetReportOutputDto;
 use App\Application\Dto\Output\Shared\SuccessOutputDto;
+use App\Application\Dto\Output\Shared\UserDto;
+
 interface SharedTransformerInterface
 {
   /**
@@ -14,6 +16,7 @@ interface SharedTransformerInterface
    */
   public function transformPost(bool $dataSourceResult): SuccessOutputDto;
   
+  public function transformGetUser(object $dataSourceResult): UserDto;
 
   /**
    * Transform raw response to GetExcelOutputDto

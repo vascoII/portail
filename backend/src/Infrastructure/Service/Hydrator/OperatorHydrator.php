@@ -6,7 +6,7 @@ namespace App\Infrastructure\Service\Hydrator;
 
 use App\Application\Dto\Input\Operator\ListOperatorsInputDto;
 use App\Application\Dto\Input\Operator\CreateOperatorInputDto;
-
+use App\Application\Dto\Input\Shared\GetByIdIntInputDto;
 
 use App\Application\Dto\Input\Operator\SetImmeublesInpuDto;
 use App\Application\Dto\Input\Operator\CreateGestionnaireInputDto;
@@ -36,32 +36,10 @@ final class OperatorHydrator
       ];
   }
   
-  public function hydrateSetImmeubles(SetImmeublesInpuDto $inputDto): object
+  public function hydrateGetOperator(GetByIdIntInputDto $inputDto): object
   {
     return (object) [
-      'PkUserChild'   => $inputDto->pkUserChild,
-      'ListImmeubles' => $inputDto->listImmeubles,
-    ];
-  }
-
-  public function hydrateDeleteUser(DeleteUserInpuDto $inputDto): object
-  {
-    return (object) [
-      'PkUserChild' => $inputDto->pkUser,
-    ];
-  }
-
-  public function hydrateGetChildUsers(): object
-  {
-    return (object) [
-      'type' => 'G',
-    ];
-  }
-
-  public function hydrateGetUser(GetUserInpuDto $inputDto): object
-  {
-    return (object) [
-      'PkUserChild' => $inputDto->pkUser,
+      'PkUserChild' => $inputDto->id,
     ];
   }
 

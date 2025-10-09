@@ -9,6 +9,8 @@ use App\Application\Dto\Output\Operator\ListOperatorsOutputDto;
 use App\Application\Dto\Input\Operator\CreateOperatorInputDto;
 use App\Application\Service\DataProvider\OperatorDataProviderInterface;
 use App\Application\Dto\Output\Shared\SuccessOutputDto;
+use App\Application\Dto\Input\Shared\GetByIdIntInputDto;
+use App\Application\Dto\Output\Operator\GetOperatorOutputDto;
 
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
@@ -32,7 +34,7 @@ final class OperatorDataProvider implements OperatorDataProviderInterface
     return AuthenticationContext::fromAuthService($this->authService);
   }
 
-  public function listOperators(ListOperatorsInputDto $inputDto): ListOperatorsOutputDto
+  public function listOperatorsService(ListOperatorsInputDto $inputDto): ListOperatorsOutputDto
   {
       $authContext = $this->getAuthContext();
 
@@ -57,6 +59,23 @@ final class OperatorDataProvider implements OperatorDataProviderInterface
       $dto = $this->sharedTransformer->transformPost($rawData);
 
       return $dto; 
+  }
+
+  public function getOperatorService(GetByIdIntInputDto $inputDto): GetOperatorOutputDto
+  {
+      $cacheKey = "operator_get:$inputDto->id";
+      $cachedDto = $this->cache->get($cacheKey);
+
+      if ($cachedDto instanceof GetOperatorOutputDto) {
+        return $cachedDto;
+      }
+
+      $rawData = $this->operatorDataSource->fetchGetOperator($inputDto); 
+      $dto = $this->operatorTransformer->transformGetOperator($rawData);
+
+      $this->cache->set($cacheKey, $dto);
+
+      return $dto;    
   }
 
 }

@@ -7,16 +7,7 @@ namespace App\Application\Factory\Operator;
 use Symfony\Component\HttpFoundation\Request;
 use App\Application\Dto\Input\Operator\ListOperatorsInputDto;
 use App\Application\Dto\Input\Operator\CreateOperatorInputDto;
-
-
-use App\Application\Dto\Input\Operator\DeleteUserInpuDto;
-use App\Application\Dto\Input\Operator\GetUserInputDto;
-
-use App\Application\Dto\Input\Operator\OtatsoccupantsInputDto;
-use App\Application\Dto\Input\Operator\SetImmeublesInpuDto;
-use App\Application\Dto\Input\Operator\UpdateUserInpuDto;
-use App\Application\Dto\Input\Operator\ViewInputDto;
-use App\Application\Dto\Input\Operator\EditInputDto;
+use App\Application\Dto\Input\Shared\GetByIdIntInputDto;
 
 use App\Application\Validator\Input\Operator\CreateOperatorInputValidator;
 
@@ -45,6 +36,11 @@ final class OperatorInputFactory
         phone: $data['phone'],
         job: $data['job']
       );
+  }
+
+  public function getOperatorFromRoute(Request $request): GetByIdIntInputDto
+  {
+      return new GetByIdIntInputDto(id: (int) $request->attributes->get('operatorId'));
   }
 
   public function createDeleteUserFromRequest(Request $request): DeleteUserInpuDto

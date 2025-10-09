@@ -7,9 +7,11 @@ namespace App\Infrastructure\Service\Transformer;
 use App\Application\Dto\Output\Shared\SuccessOutputDto;
 use App\Application\Dto\Output\Shared\GetExcelOutputDto;
 use App\Application\Dto\Output\Shared\GetReportOutputDto;
+use App\Application\Dto\Output\Shared\UserDto;
 use App\Application\Service\Transformer\SharedTransformerInterface;
 use App\Application\Factory\Shared\SharedEntityFactory;
 use App\Application\Factory\Shared\SharedOutputFactory;
+
 
 
 final class SharedTransformer implements SharedTransformerInterface
@@ -48,6 +50,15 @@ final class SharedTransformer implements SharedTransformerInterface
   public function transformPost(bool $dataSourceResult): SuccessOutputDto
   {
        return new SuccessOutputDto (bool: $dataSourceResult);   
+  }
+
+  public function transformGetUser(object $dataSourceResult): UserDto
+  {
+      $operatorsRaw = $dataSourceResult->GetUserResult;
+
+      $entity = $this->entityFactory->createUserFromRaw($operatorsRaw);
+
+      return $this->outputFactory->createUser($entity);  
   }
 
 }

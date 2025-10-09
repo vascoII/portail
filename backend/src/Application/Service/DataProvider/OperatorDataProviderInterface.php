@@ -8,10 +8,14 @@ use App\Application\Dto\Input\Operator\ListOperatorsInputDto;
 use App\Application\Dto\Output\Operator\ListOperatorsOutputDto;
 use App\Application\Dto\Input\Operator\CreateOperatorInputDto;
 use App\Application\Dto\Output\Shared\SuccessOutputDto;
+use App\Application\Dto\Input\Shared\GetByIdIntInputDto;
+use App\Application\Dto\Output\Operator\GetOperatorOutputDto;
+
 interface OperatorDataProviderInterface
 {
 
-  public function listOperators(ListOperatorsInputDto $inputDto): ListOperatorsOutputDto;
+  public function listOperatorsService(ListOperatorsInputDto $inputDto): ListOperatorsOutputDto;
   public function createOperatorService(CreateOperatorInputDto $inputDto): SuccessOutputDto;
+  public function getOperatorService(GetByIdIntInputDto $inputDto): GetOperatorOutputDto;
 
 }

@@ -16,6 +16,6 @@ final class ListOperatorsUseCase
 
   public function execute(ListOperatorsInputDto $inputDto): ListOperatorsOutputDto
   {
-    return $this->serviceDataProvider->listOperators($inputDto);
+    return $this->serviceDataProvider->listOperatorsService($inputDto);
   }
 }
