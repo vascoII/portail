@@ -49,7 +49,12 @@ final class SharedTransformer implements SharedTransformerInterface
 
   public function transformPost(bool $dataSourceResult): SuccessOutputDto
   {
-       return new SuccessOutputDto (bool: $dataSourceResult);   
+      return new SuccessOutputDto (bool: $dataSourceResult);   
+  }
+
+  public function transformPut(object $dataSourceResult): SuccessOutputDto
+  {
+      return new SuccessOutputDto (bool: empty($dataSourceResult->Erreur) ? true : false);
   }
 
   public function transformGetUser(object $dataSourceResult): UserDto

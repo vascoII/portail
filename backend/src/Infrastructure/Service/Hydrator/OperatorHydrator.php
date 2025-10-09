@@ -6,6 +6,7 @@ namespace App\Infrastructure\Service\Hydrator;
 
 use App\Application\Dto\Input\Operator\ListOperatorsInputDto;
 use App\Application\Dto\Input\Operator\CreateOperatorInputDto;
+use App\Application\Dto\Input\Operator\PutOperatorInputDto;
 use App\Application\Dto\Input\Shared\GetByIdIntInputDto;
 
 use App\Application\Dto\Input\Operator\SetImmeublesInpuDto;
@@ -43,10 +44,10 @@ final class OperatorHydrator
     ];
   }
 
-  public function hydrateUpdateUser(UpdateUserInpuDto $inputDto): object
+  public function hydratePutOperator(PutOperatorInputDto $inputDto): object
   {
     return (object) [
-      'PkUserChild' => $inputDto->pkUser,
+      'PkUserChild' => $inputDto->id,
       'LoginID'     => $inputDto->email,
       'UserName'    => $inputDto->lastname,
       'FirstName'   => $inputDto->firstname,

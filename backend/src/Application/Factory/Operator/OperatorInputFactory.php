@@ -7,6 +7,7 @@ namespace App\Application\Factory\Operator;
 use Symfony\Component\HttpFoundation\Request;
 use App\Application\Dto\Input\Operator\ListOperatorsInputDto;
 use App\Application\Dto\Input\Operator\CreateOperatorInputDto;
+use App\Application\Dto\Input\Operator\PutOperatorInputDto;
 use App\Application\Dto\Input\Shared\GetByIdIntInputDto;
 
 use App\Application\Validator\Input\Operator\CreateOperatorInputValidator;
@@ -43,34 +44,25 @@ final class OperatorInputFactory
       return new GetByIdIntInputDto(id: (int) $request->attributes->get('operatorId'));
   }
 
-  public function createDeleteUserFromRequest(Request $request): DeleteUserInpuDto
+  public function putOperatorFromRequest(Request $request): PutOperatorInputDto
   {
-    return new DeleteUserInpuDto((int) $request->query->get('pkUser'));
-  }
+      $raw = (string) $request->getContent();
+      $data = json_decode($raw, true);
 
-  public function createGetUserFromRequest(Request $request): GetUserInputDto
-  {
-    return new GetUserInputDto((int) $request->query->get('pkUser'));
-  }
+      if (!is_array($data)) {
+        $data = [];
+      }
 
-  public function createSetImmeublesFromRequest(Request $request): SetImmeublesInpuDto
-  {
-    return new SetImmeublesInpuDto(
-      (int) $request->request->get('pkUserChild'),
-      (string) $request->request->get('listImmeubles')
-    );
-  }
+      $this->validator->validate($data);
 
-  public function createUpdateUserFromRequest(Request $request): UpdateUserInpuDto
-  {
-    return new UpdateUserInpuDto(
-      (int) $request->request->get('pkUser'),
-      (string) $request->request->get('email'),
-      (string) $request->request->get('lastname'),
-      (string) $request->request->get('firstname'),
-      (string) $request->request->get('phone'),
-      (string) $request->request->get('job')
-    );
+      return new PutOperatorInputDto(
+        id: (int) $request->attributes->get('id'),
+        email: $data['email'],
+        lastname: $data['lastname'],
+        firstname: $data['firstname'],
+        phone: $data['phone'],
+        job: $data['job']
+      );
   }
 
   public function createListOperatorsFromRequest(Request $request, string $type): ListOperatorsInputDto

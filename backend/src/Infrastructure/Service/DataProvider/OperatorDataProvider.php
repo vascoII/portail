@@ -7,6 +7,7 @@ namespace App\Infrastructure\Service\DataProvider;
 use App\Application\Dto\Input\Operator\ListOperatorsInputDto;
 use App\Application\Dto\Output\Operator\ListOperatorsOutputDto;
 use App\Application\Dto\Input\Operator\CreateOperatorInputDto;
+use App\Application\Dto\Input\Operator\PutOperatorInputDto;
 use App\Application\Service\DataProvider\OperatorDataProviderInterface;
 use App\Application\Dto\Output\Shared\SuccessOutputDto;
 use App\Application\Dto\Input\Shared\GetByIdIntInputDto;
@@ -76,6 +77,14 @@ final class OperatorDataProvider implements OperatorDataProviderInterface
       $this->cache->set($cacheKey, $dto);
 
       return $dto;    
+  }
+
+  public function putOperatorService(PutOperatorInputDto $inputDto): SuccessOutputDto
+  {
+      $rawData = $this->operatorDataSource->fetchPutOperator($inputDto);
+      $dto = $this->sharedTransformer->transformPut($rawData);
+
+      return $dto;  
   }
 
 }

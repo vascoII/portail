@@ -16,6 +16,8 @@ interface SharedTransformerInterface
    */
   public function transformPost(bool $dataSourceResult): SuccessOutputDto;
   
+  public function transformPut(object $dataSourceResult): SuccessOutputDto;
+  
   public function transformGetUser(object $dataSourceResult): UserDto;
 
   /**

@@ -6,6 +6,7 @@ namespace App\Infrastructure\Service\DataSource;
 
 use App\Application\Dto\Input\Operator\ListOperatorsInputDto;
 use App\Application\Dto\Input\Operator\CreateOperatorInputDto;
+use App\Application\Dto\Input\Operator\PutOperatorInputDto;
 use App\Application\Dto\Input\Shared\GetByIdIntInputDto;
 
 use App\Application\Service\DataSource\OperatorDataSourceInterface;
@@ -39,7 +40,7 @@ final class OperatorSoap implements OperatorDataSourceInterface
   {   
       $authContext = $this->getAuthContext();
       $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-      $soapRequest = $this->hydrator->hydratePostOperator($inputDto);
+      $soapRequest = $this->hydrator->hydratePostOperator($inputDto); dd($soapRequest);
       return $this->soapClient->call('CreateGestionnaire', $soapRequest);  
   }
 
@@ -49,6 +50,14 @@ final class OperatorSoap implements OperatorDataSourceInterface
       $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
       $soapRequest = $this->hydrator->hydrateGetOperator($inputDto);
       return $this->soapClient->call('GetUser', $soapRequest);  
+  }
+
+  public function fetchPutOperator(PutOperatorInputDto $inputDto): object
+  {
+      $authContext = $this->getAuthContext();
+      $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
+      $soapRequest = $this->hydrator->hydratePutOperator($inputDto);
+      return $this->soapClient->call('UpdateUser', $soapRequest);  
   }
 
 }
