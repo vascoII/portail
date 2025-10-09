@@ -9,12 +9,14 @@ use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Infrastructure\Service\DataSource\SoapClient;
 
-final class TableauBordClientSoap implements TableauBordClientDataSourceInterface
+final class TableauBordClientSoap extends Soap implements TableauBordClientDataSourceInterface
 {
   public function __construct(
-    private readonly SoapClient $soapClient,
+    SoapClient $soapClient,
     private readonly AuthServiceInterface $authService
-  ) {}
+  ) {
+    parent::__construct($soapClient);
+  }
 
   private function getAuthContext(): AuthenticationContext
   {
@@ -25,6 +27,6 @@ final class TableauBordClientSoap implements TableauBordClientDataSourceInterfac
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    return $this->soapClient->call('GetTableauBordClient', (object) []);
+    return $this->safeCall('GetTableauBordClient', (object) []);
   }
 }

@@ -15,13 +15,15 @@ use App\Infrastructure\Service\Hydrator\TicketingHydrator;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Infrastructure\Service\DataSource\SoapClient;
 
-final class TicketingSoap implements TicketingDataSourceInterface
+final class TicketingSoap extends Soap implements TicketingDataSourceInterface
 {
   public function __construct(
-    private readonly SoapClient $soapClient,
+    SoapClient $soapClient,
     private readonly TicketingHydrator $hydrator,
     private readonly AuthServiceInterface $authService
-  ) {}
+  ) {
+    parent::__construct($soapClient);
+  }
 
   private function getAuthContext(): AuthenticationContext
   {
@@ -32,7 +34,7 @@ final class TicketingSoap implements TicketingDataSourceInterface
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    return $this->soapClient->call('CheckTicketsInterEnabled', (object) []);
+    return $this->safeCall('CheckTicketsInterEnabled', (object) []);
   }
 
   public function fetchCreateTicketInter(CreateTicketInterInputDto $inputDto): object
@@ -40,7 +42,7 @@ final class TicketingSoap implements TicketingDataSourceInterface
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     $soapRequest = $this->hydrator->hydrateCreateTicketInter($inputDto);
-    return $this->soapClient->call('CreateTicketInter', $soapRequest);
+    return $this->safeCall('CreateTicketInter', $soapRequest);
   }
 
   public function fetchGetAttachment(GetAttachmentInputDto $inputDto): object
@@ -48,7 +50,7 @@ final class TicketingSoap implements TicketingDataSourceInterface
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     $soapRequest = $this->hydrator->hydrateGetAttachment($inputDto);
-    return $this->soapClient->call('GetAttachment', $soapRequest);
+    return $this->safeCall('GetAttachment', $soapRequest);
   }
 
   public function fetchGetTicketInterInit(GetTicketInterInitInputDto $inputDto): object
@@ -56,7 +58,7 @@ final class TicketingSoap implements TicketingDataSourceInterface
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     $soapRequest = $this->hydrator->hydrateGetTicketInterInit($inputDto);
-    return $this->soapClient->call('GetTicketInterInit', $soapRequest);
+    return $this->safeCall('GetTicketInterInit', $soapRequest);
   }
 
 	public function fetchGetTicketsIntersUser(GetTicketsIntersUserInputDto $inputDto): object
@@ -64,7 +66,7 @@ final class TicketingSoap implements TicketingDataSourceInterface
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     $soapRequest = $this->hydrator->hydrateGetTicketsIntersUser($inputDto);
-    return $this->soapClient->call('GetTicketsIntersUser', $soapRequest);
+    return $this->safeCall('GetTicketsIntersUser', $soapRequest);
   }
 
 	public function fetchSetTicketStatus(SetTicketStatusInputDto $inputDto): object
@@ -72,13 +74,13 @@ final class TicketingSoap implements TicketingDataSourceInterface
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     $soapRequest = $this->hydrator->hydrateSetTicketStatus($inputDto);
-    return $this->soapClient->call('SetTicketStatus', $soapRequest);
+    return $this->safeCall('SetTicketStatus', $soapRequest);
   }
 
 	public function fetchGetNbTicketsIntersUser(): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    return $this->soapClient->call('GetNbTicketsIntersUser', (object) []);
+    return $this->safeCall('GetNbTicketsIntersUser', (object) []);
   }
 }

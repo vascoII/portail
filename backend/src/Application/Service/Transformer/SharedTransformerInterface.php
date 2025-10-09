@@ -12,11 +12,12 @@ use App\Application\Dto\Output\Shared\UserDto;
 interface SharedTransformerInterface
 {
   /**
-   * Transform raw response to Post
+   * Transform raw response to SuccessOutputDto
    */
   public function transformPost(bool $dataSourceResult): SuccessOutputDto;
-  
   public function transformPut(object $dataSourceResult): SuccessOutputDto;
+  public function transformPatch(object $dataSourceResult): SuccessOutputDto;
+  public function transformDelete(object $dataSourceResult): SuccessOutputDto;
   
   public function transformGetUser(object $dataSourceResult): UserDto;
 

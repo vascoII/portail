@@ -11,15 +11,16 @@ use App\Application\Service\DataSource\SecurityDataSourceInterface;
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Service\Hydrator\SecurityHydrator;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
-use App\Infrastructure\Service\DataSource\SoapClient;
 
-final class SecuritySoap implements SecurityDataSourceInterface
+final class SecuritySoap extends Soap implements SecurityDataSourceInterface
 {
   public function __construct(
-    private readonly SoapClient $soapClient,
+    SoapClient $soapClient,
     private readonly SecurityHydrator $hydrator,
     private readonly AuthServiceInterface $authService
-  ) {}
+  ) {
+    parent::__construct($soapClient);
+  }
 
   private function getAuthContext(): AuthenticationContext
   {
@@ -29,20 +30,20 @@ final class SecuritySoap implements SecurityDataSourceInterface
   public function fetchLogin(LoginInputDto $inputDto): object
   {
     $soapRequest = $this->hydrator->hydrateLogin($inputDto);
-    return $this->soapClient->call('Login', $soapRequest);
+    return $this->safeCall('Login', $soapRequest);
   }
 
   public function fetchLogout(): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    return $this->soapClient->call('Logout', (object) []);
+    return $this->safeCall('Logout', (object) []);
   }
 
   public function fetchResetPasswordFromPKUser(ResetPasswordFromPKUserInputDto $inputDto): object
   {
     $soapRequest = $this->hydrator->hydrateResetPasswordFromPKUser($inputDto);
-    return $this->soapClient->call('ResetPasswordFromPKUser', $soapRequest);
+    return $this->safeCall('ResetPasswordFromPKUser', $soapRequest);
   }
 
   public function fetchUpdatePassword(UpdatePasswordInputDto $inputDto): object
@@ -50,7 +51,7 @@ final class SecuritySoap implements SecurityDataSourceInterface
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     $soapRequest = $this->hydrator->hydrateUpdatePassword($inputDto);
-    return $this->soapClient->call('UpdatePassword', $soapRequest);
+    return $this->safeCall('UpdatePassword', $soapRequest);
   }
 
 }

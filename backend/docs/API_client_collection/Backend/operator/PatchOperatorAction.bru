@@ -1,10 +1,10 @@
 meta {
-  name: PutOperatorAction
+  name: PatchOperatorAction
   type: http
-  seq: 4
+  seq: 5
 }
 
-put {
+patch {
   url: {{localhost_backend}}/api/operator/79252
   body: json
   auth: bearer
@@ -16,11 +16,7 @@ auth:bearer {
 
 body:json {
   {
-      "email": "test@testa.com",
-      "lastname": "lastname2",
-      "firstname": "firstname2",
-      "phone": "0112121211",
-      "job": "job"
+      "password": "password"
   }
 }
 

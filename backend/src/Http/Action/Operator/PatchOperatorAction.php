@@ -7,23 +7,26 @@ namespace App\Http\Action\Operator;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
-use App\Application\UseCase\Operator\DeleteUseCase;
-use App\Application\Dto\Input\Operator\DeleteInputDto;
+use App\Application\UseCase\Operator\PatchOperatorUseCase;
+use App\Application\Factory\Operator\OperatorInputFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 
 #[AsController]
-#[Route(path: '/gestionnaire/{id}/supprimer', name: 'operator_delete', methods: ['DELETE'])]
-final class DeleteAction extends AbstractAction implements ActionInterface
+#[Route(path: '/operator/{id}', name: 'operator_patch', methods: ['PATCH'])]
+final class PatchOperatorAction extends AbstractAction implements ActionInterface
 {
-  public function __construct(private readonly ResponderInterface $responder, private readonly DeleteUseCase $useCase) {}
+  public function __construct(
+    private readonly ResponderInterface $responder,
+    private readonly PatchOperatorUseCase $useCase,
+    private readonly OperatorInputFactory $inputFactory
+  ) {}
 
   public function __invoke(Request $request, array $args = []): Response
   {
-    $id = (string) $request->attributes->get(self::PARAM_ID);
-    $input = new DeleteInputDto($id);
+    $input = $this->inputFactory->patchOperatorFromRequest($request, self::PARAM_ID);
     $output = $this->useCase->execute($input);
     return $this->responder->respond($output);
   }

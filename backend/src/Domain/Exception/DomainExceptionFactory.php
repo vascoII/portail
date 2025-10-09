@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Exception;
 
+use App\Domain\Exception\Soap\SoapCallFailedException;
 /**
  * Factory for creating domain exceptions with common patterns
  * 
@@ -146,5 +147,10 @@ final class DomainExceptionFactory
       null,
       ['user_id' => $userId, 'action' => $action]
     );
+  }
+
+  public static function soapCallFailed(string $operation, string $message, array $context = []): SoapCallFailedException
+  {
+    return SoapCallFailedException::fromOperation($operation, $message, $context);
   }
 }

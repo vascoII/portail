@@ -57,6 +57,16 @@ final class SharedTransformer implements SharedTransformerInterface
       return new SuccessOutputDto (bool: empty($dataSourceResult->Erreur) ? true : false);
   }
 
+  public function transformPatch(object $dataSourceResult): SuccessOutputDto
+  {
+      return new SuccessOutputDto (bool: empty($dataSourceResult->Erreur) ? true : false);
+  }
+
+  public function transformDelete(object $dataSourceResult): SuccessOutputDto
+  {
+      return new SuccessOutputDto (bool: empty($dataSourceResult->Erreur) ? true : false);
+  }
+
   public function transformGetUser(object $dataSourceResult): UserDto
   {
       $operatorsRaw = $dataSourceResult->GetUserResult;

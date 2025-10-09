@@ -6,6 +6,7 @@ namespace App\Application\Validator\Input\Operator;
 
 use App\Application\Validator\Input\InputValidatorInterface;
 use App\Http\Action\Operator\CreateOperatorAction;
+use App\Http\Action\Operator\PatchOperatorAction;
 use App\Domain\Exception\DomainExceptionFactory;
 
 final class CreateOperatorInputValidator implements InputValidatorInterface
@@ -38,5 +39,18 @@ final class CreateOperatorInputValidator implements InputValidatorInterface
         if ($errors) {
             throw DomainExceptionFactory::dtoValidation(CreateOperatorAction::class, $errors);
         }
-    }    
+    }  
+    
+    public function validatePassword(array $data): void
+    {
+        $errors = [];
+
+        if (empty($data['password'])) {
+            $errors[] = DomainExceptionFactory::requiredField('password', PatchOperatorAction::class);
+        }
+        
+        if ($errors) {
+            throw DomainExceptionFactory::dtoValidation(CreateOperatorAction::class, $errors);
+        }
+    }  
 }

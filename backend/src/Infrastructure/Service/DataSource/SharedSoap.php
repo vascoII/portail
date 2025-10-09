@@ -12,15 +12,16 @@ use App\Application\Service\DataSource\SharedDataSourceInterface;
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Service\Hydrator\SharedHydrator;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
-use App\Infrastructure\Service\DataSource\SoapClient;
 
-final class SharedSoap implements SharedDataSourceInterface
+final class SharedSoap extends Soap implements SharedDataSourceInterface
 {
   public function __construct(
-    private readonly SoapClient $soapClient,
+    SoapClient $soapClient,
     private readonly SharedHydrator $hydrator,
     private readonly AuthServiceInterface $authService
-  ) {}
+  ) {
+    parent::__construct($soapClient);
+  }
 
   private function getAuthContext(): AuthenticationContext
   {
@@ -32,7 +33,7 @@ final class SharedSoap implements SharedDataSourceInterface
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     $soapRequest = $this->hydrator->hydrateGetDetailsDepannage($inputDto);
-    return $this->soapClient->call('GetDetailsDepannage', $soapRequest);
+    return $this->safeCall('GetDetailsDepannage', $soapRequest);
   }
 
   public function fetchGetExcel(GetExcelInpuDto $inputDto): object
@@ -40,7 +41,7 @@ final class SharedSoap implements SharedDataSourceInterface
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     $soapRequest = $this->hydrator->hydrateGetExcel($inputDto);
-    return $this->soapClient->call('GetExcel', $soapRequest);
+    return $this->safeCall('GetExcel', $soapRequest);
   }
 
   public function fetchGetReport(GetReportInputDto $inputDto): string
@@ -49,7 +50,7 @@ final class SharedSoap implements SharedDataSourceInterface
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     $soapRequest = $this->hydrator->hydrateGetReport($inputDto);
 
-    return $this->soapClient->call('GetReport', $soapRequest);
+    return $this->safeCall('GetReport', $soapRequest);
   }
   
   public function fetchGetReportByToken(GetReportByTokenInputDto $inputDto): object
@@ -57,7 +58,7 @@ final class SharedSoap implements SharedDataSourceInterface
       $authContext = $this->getAuthContext();
       $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
       $soapRequest = $this->hydrator->hydrateGetReportByToken($inputDto);
-      return $this->soapClient->call('GetReportByToken', $soapRequest);  
+      return $this->safeCall('GetReportByToken', $soapRequest);  
   }
 
 }

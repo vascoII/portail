@@ -7,15 +7,16 @@ namespace App\Infrastructure\Service\DataSource;
 use App\Application\Service\DataSource\FactureDataSourceInterface;
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
-use App\Infrastructure\Service\DataSource\SoapClient;
 
-final class FactureSoap implements FactureDataSourceInterface
+final class FactureSoap extends Soap implements FactureDataSourceInterface
 {
   public function __construct(
-    private readonly SoapClient $soapClient,
+    SoapClient $soapClient,
     private readonly AuthServiceInterface $authService
-  ) {}
-
+  ) {
+    parent::__construct($soapClient);
+  }
+  
   private function getAuthContext(): AuthenticationContext
   {
     return AuthenticationContext::fromAuthService($this->authService);
@@ -26,7 +27,7 @@ final class FactureSoap implements FactureDataSourceInterface
     $authContext = $this->getAuthContext(); 
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
 
-    return $this->soapClient->call('getFactures', (object) []);
+    return $this->safeCall('getFactures', (object) []);
   }
 
 }

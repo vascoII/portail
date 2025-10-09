@@ -12,41 +12,43 @@ use App\Application\Dto\Input\Admin\UpdateCGUFromPKUserInputDto;
 use App\Infrastructure\Service\Hydrator\AdminHydrator;
 use App\Infrastructure\Service\DataSource\SoapClient;
 
-final class AdminSoap implements AdminDataSourceInterface
+final class AdminSoap extends Soap implements AdminDataSourceInterface
 {
   public function __construct(
-    private readonly SoapClient $soapClient,
+    SoapClient $soapClient,
     private readonly AdminHydrator $hydrator
-  ) {}
+  ) {
+    parent::__construct($soapClient);
+  }
 
   public function fetchLoginFromParam(LoginFromParamInputDto $inputDto): object
   {
     $soapRequest = $this->hydrator->hydrateLoginFromParam($inputDto);
-    return $this->soapClient->call('LoginFromParam', $soapRequest);
+    return $this->safeCall('LoginFromParam', $soapRequest);
   }
 
   public function fetchResetPasswordFromEmail(ResetPasswordFromEmailInputDto $inputDto): object
   {
     $soapRequest = $this->hydrator->hydrateResetPasswordFromEmail($inputDto);
-    return $this->soapClient->call('ResetPasswordFromEmail', $soapRequest);
+    return $this->safeCall('ResetPasswordFromEmail', $soapRequest);
   }
 
   public function fetchUpdateEmailFromPKUser(UpdateEmailFromPKUserInputDto $inputDto): object
   {
     $soapRequest = $this->hydrator->hydrateUpdateEmailFromPKUser($inputDto);
-    return $this->soapClient->call('UpdateEmailFromPKUser', $soapRequest);
+    return $this->safeCall('UpdateEmailFromPKUser', $soapRequest);
   }
   
   public function fetchUpdateCGUFromPKUser(UpdateCGUFromPKUserInputDto $inputDto): object
   {
     $soapRequest = $this->hydrator->hydrateUpdateCGUFromPKUser($inputDto);
-    return $this->soapClient->call('UpdateCGUFromPKUser', $soapRequest);
+    return $this->safeCall('UpdateCGUFromPKUser', $soapRequest);
   }
 
   public function fetchGetSousTraitants(): object
   {
     $soapRequest = $this->hydrator->hydrateGetSousTraitants();
-    return $this->soapClient->call('GetSousTraitants', $soapRequest);
+    return $this->safeCall('GetSousTraitants', $soapRequest);
   }
 
 }

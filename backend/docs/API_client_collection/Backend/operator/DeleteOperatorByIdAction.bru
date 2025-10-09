@@ -1,0 +1,19 @@
+meta {
+  name: DeleteOperatorByIdAction
+  type: http
+  seq: 6
+}
+
+delete {
+  url: {{localhost_backend}}/api/operator/79253
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bearToken}}
+}
+
+settings {
+  encodeUrl: true
+}

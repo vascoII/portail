@@ -8,6 +8,7 @@ use App\Application\Dto\Input\Operator\ListOperatorsInputDto;
 use App\Application\Dto\Output\Operator\ListOperatorsOutputDto;
 use App\Application\Dto\Input\Operator\CreateOperatorInputDto;
 use App\Application\Dto\Input\Operator\PutOperatorInputDto;
+use App\Application\Dto\Input\Operator\PatchOperatorInputDto;
 use App\Application\Service\DataProvider\OperatorDataProviderInterface;
 use App\Application\Dto\Output\Shared\SuccessOutputDto;
 use App\Application\Dto\Input\Shared\GetByIdIntInputDto;
@@ -85,6 +86,22 @@ final class OperatorDataProvider implements OperatorDataProviderInterface
       $dto = $this->sharedTransformer->transformPut($rawData);
 
       return $dto;  
+  }
+
+  public function patchOperatorService(PatchOperatorInputDto $inputDto): SuccessOutputDto
+  {
+      $rawData = $this->operatorDataSource->fetchPatchOperator($inputDto);
+      $dto = $this->sharedTransformer->transformPatch($rawData);
+
+      return $dto;  
+  }
+
+  public function  deleteOperatorService(GetByIdIntInputDto $inputDto): SuccessOutputDto
+  {
+      $rawData = $this->operatorDataSource->fetchDeleteOperator($inputDto);
+      $dto = $this->sharedTransformer->transformDelete($rawData);
+
+      return $dto; 
   }
 
 }
