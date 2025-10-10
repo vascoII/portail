@@ -14,19 +14,17 @@ use App\Application\Dto\Input\Logement\GetInfosAppareilsByLogementInpuDto;
 use App\Application\Dto\Input\Logement\GetInfosLogementsInputDto;
 use App\Application\Service\DataSource\LogementDataSourceInterface;
 use App\Application\Service\Auth\AuthServiceInterface;
-use App\Infrastructure\Service\Hydrator\LogementHydrator;
+use App\Infrastructure\Hydrator\LogementHydrator;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Infrastructure\Service\DataSource\SoapClient;
 
-final class LogementSoap extends Soap implements LogementDataSourceInterface
+final class LogementSoap implements LogementDataSourceInterface
 {
   public function __construct(
-    SoapClient $soapClient,
+    private readonly SoapClient $soapClient,
     private readonly LogementHydrator $hydrator,
     private readonly AuthServiceInterface $authService
-  ) {
-    parent::__construct($soapClient);
-  }
+  ) {}
 
   private function getAuthContext(): AuthenticationContext
   {
@@ -38,7 +36,7 @@ final class LogementSoap extends Soap implements LogementDataSourceInterface
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     $soapRequest = $this->hydrator->hydrateGetTableauBordLogement($inputDto);
-    return $this->safeCall('GetTableauBordLogement', $soapRequest);
+    return $this->soapClient->call('GetTableauBordLogement', $soapRequest);
   }
 
   public function fetchGetNbTicketsInterByLogement(GetNbTicketsInterByLogementInputDto $inputDto): object
@@ -46,7 +44,7 @@ final class LogementSoap extends Soap implements LogementDataSourceInterface
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     $soapRequest = $this->hydrator->hydrateGetNbTicketsInterByLogement($inputDto);
-    return $this->safeCall('GetNbTicketsInterByLogement', $soapRequest);
+    return $this->soapClient->call('GetNbTicketsInterByLogement', $soapRequest);
   }
 
   public function fetchsetOccupants4Chgt(SetOccupants4ChgtInputDto $inputDto): object
@@ -54,7 +52,7 @@ final class LogementSoap extends Soap implements LogementDataSourceInterface
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     $soapRequest = $this->hydrator->hydrateSetOccupants4Chgt($inputDto);
-    return $this->safeCall('setOccupants4Chgt', $soapRequest);
+    return $this->soapClient->call('setOccupants4Chgt', $soapRequest);
   }
 
   public function fetchgetOccupants4Chgt(GetOccupants4ChgtInputDto $inputDto): object
@@ -62,7 +60,7 @@ final class LogementSoap extends Soap implements LogementDataSourceInterface
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     $soapRequest = $this->hydrator->hydrateGetOccupants4Chgt($inputDto);
-    return $this->safeCall('getOccupants4Chgt', $soapRequest);
+    return $this->soapClient->call('getOccupants4Chgt', $soapRequest);
   }
 
   public function fetchSetSeuilConso(SetSeuilConsoInputDto $inputDto): object
@@ -70,7 +68,7 @@ final class LogementSoap extends Soap implements LogementDataSourceInterface
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     $soapRequest = $this->hydrator->hydrateSetSeuilConso($inputDto);
-    return $this->safeCall('SetSeuilConso', $soapRequest);
+    return $this->soapClient->call('SetSeuilConso', $soapRequest);
   }
 
   public function fetchGetStatOccupantsGraph(GetStatOccupantsGraphInputDto $inputDto): object
@@ -78,7 +76,7 @@ final class LogementSoap extends Soap implements LogementDataSourceInterface
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     $soapRequest = $this->hydrator->hydrateGetStatOccupantsGraph($inputDto);
-    return $this->safeCall('GetStatOccupantsGraph', $soapRequest);
+    return $this->soapClient->call('GetStatOccupantsGraph', $soapRequest);
   }
 
   public function fetchGetInfosAppareilsByLogement(GetInfosAppareilsByLogementInpuDto $inputDto): object
@@ -86,7 +84,7 @@ final class LogementSoap extends Soap implements LogementDataSourceInterface
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     $soapRequest = $this->hydrator->hydrateGetInfosAppareilsByLogement($inputDto);
-    return $this->safeCall('GetInfosAppareilsByLogement', $soapRequest);
+    return $this->soapClient->call('GetInfosAppareilsByLogement', $soapRequest);
   }
 
   public function fetchGetInfosLogements(GetInfosLogementsInputDto $inputDto): object
@@ -94,7 +92,7 @@ final class LogementSoap extends Soap implements LogementDataSourceInterface
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
     $soapRequest = $this->hydrator->hydrateGetInfosLogements($inputDto);
-    return $this->safeCall('GetInfosLogements', $soapRequest);
+    return $this->soapClient->call('GetInfosLogements', $soapRequest);
   }
 
 }

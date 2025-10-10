@@ -1,0 +1,19 @@
+meta {
+  name: ListImmeublesAction
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{localhost_backend}}/api/operators
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bearToken}}
+}
+
+settings {
+  encodeUrl: true
+}

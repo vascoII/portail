@@ -1,0 +1,19 @@
+meta {
+  name: ListAnomaliesByImmeubleAction
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{localhost_backend}}/api/immeuble/4423/anomalies
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bearToken}}
+}
+
+settings {
+  encodeUrl: true
+}

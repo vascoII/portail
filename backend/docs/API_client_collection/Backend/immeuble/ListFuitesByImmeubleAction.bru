@@ -1,0 +1,19 @@
+meta {
+  name: ListFuitesByImmeubleAction
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{localhost_backend}}/api/immeuble/4423/fuites
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bearToken}}
+}
+
+settings {
+  encodeUrl: true
+}

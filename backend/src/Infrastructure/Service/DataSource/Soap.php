@@ -17,7 +17,7 @@ class Soap
     {
         try {
             return $this->soapClient->call($operation, $request);
-        } catch (\Throwable $e) { 
+        } catch (\Throwable $e) {
             throw DomainExceptionFactory::soapCallFailed($operation, $e->getMessage(), [
                 'request' => $request,
                 'exception' => $e,

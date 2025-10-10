@@ -4,69 +4,65 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Service\Hydrator;
 
-use App\Application\Dto\Input\Immeuble\GetTableauBordImmeubleInputDto;
-use App\Application\Dto\Input\Immeuble\GetInfosAnomaliesByImmeubleInputDto;
-use App\Application\Dto\Input\Immeuble\GetInfosLogementsByImmeubleInputDto;
-use App\Application\Dto\Input\Immeuble\GetInfosDepannagesByImmeubleInputDto;
-use App\Application\Dto\Input\Immeuble\GetInfosDysfonctionnementsByImmeubleInputDto;
-use App\Application\Dto\Input\Immeuble\GetInfosFuitesByImmeubleInputDto;
-use App\Application\Dto\Input\Immeuble\GetInfosImmeublesInputDto;
+use App\Application\Dto\Input\Shared\GetByIdIntInputDto;
 
 final class ImmeubleHydrator
 {
-  public function hydrateGetTableauBordImmeuble(GetTableauBordImmeubleInputDto $inputDto): object
-  {
-    return (object) [
-      'PkImmeuble' => $inputDto->pkImmeuble
-    ];
-  }
 
-  public function hydrateGetInfosAnomaliesByImmeuble(GetInfosAnomaliesByImmeubleInputDto $inputDto): object
-  {
-    return (object) [
-      'PkImmeuble' => $inputDto->pkImmeuble,
-      'ParamsFiltres' => $inputDto->paramsFiltres
-    ];
-  }
+    public function hydrateGetListImmeubles(): object
+    {
+        return (object) [
+          'PkUserChild' => -1,
+          "ParamsInfos" => "NBCOMPTEURS=O|NBFUITES=O|NBDEPANNAGES=O|NBDYSFONCTIONNEMENTS=O|NBANOMALIES=O",
+          "ParamsFiltres" => ""
+        ];
+    }
 
-  public function hydrateGetInfosLogementsByImmeuble(GetInfosLogementsByImmeubleInputDto $inputDto): object
-  {
-    return (object) [
-      'ParamsFiltres' => $inputDto->paramsFiltres,
-      'ParamsInfos' => $inputDto->paramsInfos
-    ];
-  }
+    public function hydrateGetImmeuble(GetByIdIntInputDto $inputDto): object
+    {
+      return (object) [
+        'PkImmeuble' => $inputDto->id,
+      ];
+    }
 
-  public function hydrateGetInfosDepannagesByImmeuble(GetInfosDepannagesByImmeubleInputDto $inputDto): object
-  {
-    return (object) [
-      'PkImmeuble' => $inputDto->pkImmeuble,
-      'ParamsFiltres' => $inputDto->paramsFiltres
-    ];
-  }
+    public function hydrateListAnomaliesByImmeuble(GetByIdIntInputDto $inputDto): object
+    {
+      return (object) [
+        'PkImmeuble' => $inputDto->id,
+        'ParamsFiltres' => ""
+      ];
+    }
+
+    public function hydrateListDysfonctionnementsByImmeuble(GetByIdIntInputDto $inputDto): object
+    {
+      return (object) [
+        'PkImmeuble' => $inputDto->id,
+        'ParamsFiltres' => ""
+      ];
+    }
+    
+    public function hydrateListFuitesByImmeuble(GetByIdIntInputDto $inputDto): object
+    {
+      return (object) [
+        'PkImmeuble' => $inputDto->id,
+        'ParamsFiltres' => ""
+      ];
+    }
+
+    public function hydrateListInterventionsByImmeuble(GetByIdIntInputDto $inputDto): object
+    {
+      return (object) [
+        'PkImmeuble' => $inputDto->id,
+        'ParamsFiltres' => ""
+      ];
+    }
+
+    public function hydrateListLogementsByImmeuble(GetByIdIntInputDto $inputDto): object
+    {
+      return (object) [
+        'PkImmeuble' => $inputDto->id,
+        'ParamsFiltres' => ""
+      ];
+    }
   
-  public function hydrateGetInfosDysfonctionnementsByImmeuble(GetInfosDysfonctionnementsByImmeubleInputDto $inputDto): object
-  {
-    return (object) [
-      'PkImmeuble' => $inputDto->pkImmeuble,
-      'ParamsFiltres' => $inputDto->paramsFiltres
-    ];
-  }
-
-  public function hydrateGetInfosFuitesByImmeuble(GetInfosFuitesByImmeubleInputDto $inputDto): object
-  {
-    return (object) [
-      'PkImmeuble' => $inputDto->pkImmeuble,
-      'ParamsFiltres' => $inputDto->paramsFiltres
-    ];
-  }
-
-  public function hydrateGetInfosImmeubles(GetInfosImmeublesInputDto $inputDto): object
-  {
-    return (object) [
-      'PkUserChild' => $inputDto->pkUser,
-      'ParamsFiltres' => $inputDto->paramsFiltres,
-      'ParamsInfos' => $inputDto->paramsInfos
-    ];
-  }
 }

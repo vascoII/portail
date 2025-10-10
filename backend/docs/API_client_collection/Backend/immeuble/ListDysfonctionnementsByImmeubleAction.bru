@@ -1,0 +1,19 @@
+meta {
+  name: ListDysfonctionnementsByImmeubleAction
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{localhost_backend}}/api/immeuble/4423/dysfonctionnements
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bearToken}}
+}
+
+settings {
+  encodeUrl: true
+}

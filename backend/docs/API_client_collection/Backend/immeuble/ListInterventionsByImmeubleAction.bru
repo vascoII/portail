@@ -1,0 +1,19 @@
+meta {
+  name: ListInterventionsByImmeubleAction
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{localhost_backend}}/api/immeuble/4423/interventions
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bearToken}}
+}
+
+settings {
+  encodeUrl: true
+}

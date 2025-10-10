@@ -1,0 +1,19 @@
+meta {
+  name: GetTableauBordImmeubleByIdAction
+  type: http
+  seq: 9
+}
+
+get {
+  url: {{localhost_backend}}/api/operator/79252
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bearToken}}
+}
+
+settings {
+  encodeUrl: true
+}

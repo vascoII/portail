@@ -192,241 +192,30 @@ services:
   App\Http\Action\Intervention\GenerateInterventionPdfAction:
     arguments:
       $responder: '@App\Http\Responder\PdfResponder'
-
-  #GestionParc
-  App\Http\Action\GestionParc\ExportAnomaliesAction:
-    arguments:
-      $responder: '@App\Http\Responder\PdfResponder'  
-  App\Http\Action\GestionParc\ExportDysfunctionsAction:
-    arguments:
-      $responder: '@App\Http\Responder\PdfResponder'
-  App\Http\Action\GestionParc\ExportInterventionsAction:
-    arguments:
-      $responder: '@App\Http\Responder\PdfResponder'
-  App\Http\Action\GestionParc\ExportLeaksAction:
-    arguments:
-      $responder: '@App\Http\Responder\PdfResponder'
-  App\Http\Action\GestionParc\FilterResultAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'
-  App\Http\Action\GestionParc\IndexAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'
-  App\Http\Action\GestionParc\InterventionAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'
-  App\Http\Action\GestionParc\ListAnomaliesAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'
-  App\Http\Action\GestionParc\ListDysfunctionsAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'
-  App\Http\Action\GestionParc\ListInterventionsAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'
-  App\Http\Action\GestionParc\ListLeaksAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'
-  App\Http\Action\GestionParc\ReportAction:
-    arguments:
-      $responder: '@App\Http\Responder\PdfResponder'
-  App\Http\Action\GestionParc\ShowAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'
-  App\Http\Action\GestionParc\ShowInterventionAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'   
-
-  #Immeuble
-  App\Http\Action\Immeuble\ExportAnomaliesAction:
-    arguments:
-      $responder: '@App\Http\Responder\PdfResponder'  
-  App\Http\Action\Immeuble\ExportDysfunctionsAction:
-    arguments:
-      $responder: '@App\Http\Responder\PdfResponder'
-  App\Http\Action\Immeuble\ExportInterventionsAction:
-    arguments:
-      $responder: '@App\Http\Responder\PdfResponder'
-  App\Http\Action\Immeuble\ExportLeaksAction:
-    arguments:
-      $responder: '@App\Http\Responder\PdfResponder'
-  App\Http\Action\Immeuble\FilterResultAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'
-  App\Http\Action\Immeuble\ListImmeublesAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'
-  App\Http\Action\Immeuble\InterventionAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'
-  App\Http\Action\Immeuble\ListAnomaliesAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'
-  App\Http\Action\Immeuble\ListDysfunctionsAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'
-  App\Http\Action\Immeuble\ListInterventionsAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'
-  App\Http\Action\Immeuble\ListLeaksAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'
-  App\Http\Action\Immeuble\ReportAction:
-    arguments:
-      $responder: '@App\Http\Responder\PdfResponder'
-  App\Http\Action\Immeuble\ShowAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'
-  App\Http\Action\Immeuble\ShowInterventionAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'                                                    
-   
-  #Logement
-  App\Http\Action\Logement\CreateTicketAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'
-  App\Http\Action\Logement\CreateTicketImmeubleAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'
-  App\Http\Action\Logement\EditAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'
-  App\Http\Action\Logement\ExportAction:
-    arguments:
-      $responder: '@App\Http\Responder\PdfResponder'
-  App\Http\Action\Logement\ExportAnomaliesAction:
-    arguments:
-      $responder: '@App\Http\Responder\PdfResponder'
-  App\Http\Action\Logement\ExportDysfunctionsAction:
-    arguments:
-      $responder: '@App\Http\Responder\PdfResponder'
-  App\Http\Action\Logement\ExportInterventionsAction:
-    arguments:
-      $responder: '@App\Http\Responder\PdfResponder'
-  App\Http\Action\Logement\ExportLeaksAction:
-    arguments:
-      $responder: '@App\Http\Responder\PdfResponder'
-  App\Http\Action\Logement\FilterResultAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'
-  App\Http\Action\Logement\GetInfosAppareilAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'
-  App\Http\Action\Logement\GetTicketOnwerAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'
-  App\Http\Action\Logement\GuideAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'
-  App\Http\Action\Logement\IndexAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'
-  App\Http\Action\Logement\ListAnomaliesAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'
-  App\Http\Action\Logement\ListDysfunctionsAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'
-  App\Http\Action\Logement\ListInterventionsAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'
-  App\Http\Action\Logement\ListLeaksAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'
-  App\Http\Action\Logement\SearchAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'
-  App\Http\Action\Logement\ShowAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'
-  App\Http\Action\Logement\ShowInterventionAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'
-  App\Http\Action\Logement\ShowRepartReleveAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'  
-
-  #Occupant
-  App\Http\Action\Occupant\AlertesAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder' 
-  App\Http\Action\Occupant\EditAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder' 
-  App\Http\Action\Occupant\ExportAnomaliesAction:
-    arguments:
-      $responder: '@App\Http\Responder\PdfResponder' 
-  App\Http\Action\Occupant\ExportDysfunctionsAction:
-    arguments:
-      $responder: '@App\Http\Responder\PdfResponder' 
-  App\Http\Action\Occupant\ExportInterventionsAction:
-    arguments:
-      $responder: '@App\Http\Responder\PdfResponder' 
-  App\Http\Action\Occupant\ExportLeaksAction:
-    arguments:
-      $responder: '@App\Http\Responder\PdfResponder' 
-  App\Http\Action\Occupant\ListAnomaliesAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder' 
-  App\Http\Action\Occupant\ListDysfunctionsAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder' 
-  App\Http\Action\Occupant\ListInterventionsAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder' 
-  App\Http\Action\Occupant\ListLeaksAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder' 
-  App\Http\Action\Occupant\MyAccountAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder' 
-  App\Http\Action\Occupant\ShowAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder' 
-  App\Http\Action\Occupant\ShowEauReleveAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder' 
-  App\Http\Action\Occupant\ShowInterventionAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder' 
-  App\Http\Action\Occupant\ShowNoteReleveAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder' 
-  App\Http\Action\Occupant\ShowRepartReleveAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder' 
-  App\Http\Action\Occupant\SimulateurAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'  
-       
+  
   #Operator
   App\Http\Action\Operator\:
     resource: '../src/Http/Action/Operator/*' 
     arguments:
       $responder: '@App\Http\Responder\JsonResponder'  
+
+  #Immeuble
+  App\Http\Action\Immeuble\:
+    resource: '../src/Http/Action/Immeuble/*'
+    arguments:
+      $responder: '@App\Http\Responder\JsonResponder'    
+
   #ReportToken
   App\Http\Action\ReportToken\ReportAction:
     arguments:
       $responder: '@App\Http\Responder\PdfResponder'      
-  #Search
-  App\Http\Action\Search\IndexAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'      
+      
   #Security
   App\Http\Action\Security\:
     resource: '../src/Http/Action/Security/*'
     arguments:
       $responder: '@App\Http\Responder\JsonResponder'  
-  #TableauBordClient
-  App\Http\Action\TableauBordClient\:
-    resource: '../src/Http/Action/TableauBordClient/*'
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'   
-  #Ticketing
-  App\Http\Action\Ticketing\:
-    resource: '../src/Http/Action/Ticketing/*'
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'          
+         
                                                                                                                                                                    
     
   #AdminHydrator
