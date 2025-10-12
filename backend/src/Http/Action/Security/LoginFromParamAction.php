@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 
 #[AsController]
-#[Route(path: '/security/login/param', name: 'security_login_param', methods: ['GET'])]
+#[Route(path: '/security/login/param', name: 'security_login_param', methods: ['POST'])]
 final class LoginFromParamAction extends AbstractAction implements ActionInterface
 {
   public function __construct(

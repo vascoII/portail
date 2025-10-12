@@ -7,10 +7,12 @@ import Image from "next/image";
 import { useAuth } from "../../hooks/useAuth";
 import LoginForm from "../../components/Forms/LoginForm";
 import { LoginFormData } from "../../types/auth";
+import { useDataStore } from "../../store/dataStore";
 
 const LoginPage: React.FC = () => {
   const router = useRouter();
   const { login, isLoading, error, isAuthenticated } = useAuth();
+  const { loginData } = useDataStore();
 
   // Rediriger si déjà connecté
   useEffect(() => {
@@ -49,7 +51,7 @@ const LoginPage: React.FC = () => {
           zIndex: 1,
         }}
       />
-      <div className="sm:mx-auto sm:w-full sm:max-w-md" style={{zIndex: 1}}>
+      <div className="sm:mx-auto sm:w-full sm:max-w-md" style={{ zIndex: 1 }}>
         {/* Logo */}
         <div className="flex justify-center">
           <Link href="/pages/dashboard" className="flex items-center">
@@ -84,7 +86,10 @@ const LoginPage: React.FC = () => {
         </p>
       </div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md" style={{zIndex: 1}}>
+      <div
+        className="mt-8 sm:mx-auto sm:w-full sm:max-w-md"
+        style={{ zIndex: 1 }}
+      >
         <div className="bg-white py-8 px-4 shadow-xl sm:rounded-lg sm:px-10">
           {/* Formulaire de connexion */}
           <LoginForm
@@ -92,6 +97,18 @@ const LoginPage: React.FC = () => {
             loading={isLoading}
             error={error?.message || null}
           />
+
+          {/* Debug: Show stored login data (remove in production) */}
+          {loginData && (
+            <div className="mt-4 p-4 bg-gray-100 rounded-lg">
+              <h3 className="text-sm font-medium text-gray-700 mb-2">
+                Debug: Login Data Stored
+              </h3>
+              <pre className="text-xs text-gray-600 overflow-auto max-h-32">
+                {JSON.stringify(loginData, null, 2)}
+              </pre>
+            </div>
+          )}
 
           {/* Informations supplémentaires */}
           <div className="mt-6">

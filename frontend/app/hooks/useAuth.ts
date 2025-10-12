@@ -9,7 +9,9 @@ import {
   AuthState,
   AuthError,
   LoginFormData,
+  LoginOutputDto,
 } from "../types/auth";
+import { useDataStore } from "../store/dataStore";
 import { AUTH_ENDPOINTS, DEFAULT_HEADERS, handleApiError } from "../config/api";
 
 // Configuration SWR
@@ -45,6 +47,7 @@ const fetcher = async (url: string): Promise<User | null> => {
 
 // Hook principal d'authentification
 export const useAuth = () => {
+  const { setLoginData, clearLoginData } = useDataStore();
   const [authState, setAuthState] = useState<AuthState>({
     user: null,
     token: null,
@@ -79,22 +82,25 @@ export const useAuth = () => {
           }),
         });
 
-        const data: LoginResponse = await response.json();
+        const loginData: LoginOutputDto = await response.json();
 
-        if (!response.ok || !data.success) {
+        if (!response.ok) {
           const error = handleApiError({
-            response: { data, status: response.status },
+            response: { data: loginData, status: response.status },
           });
           throw new Error(error.message);
         }
 
         // Stocker le JWT token
-        localStorage.setItem("jwt_token", data.jwt);
+        localStorage.setItem("jwt_token", loginData.tokenJwt);
+
+        // Stocker les données complètes dans le data store
+        setLoginData(loginData);
 
         // Mettre à jour l'état
         setAuthState({
           user: null, // Will be fetched by SWR
-          token: data.jwt,
+          token: loginData.tokenJwt,
           isAuthenticated: true,
           isLoading: false,
           error: null,
@@ -118,7 +124,7 @@ export const useAuth = () => {
         throw error;
       }
     },
-    [mutate]
+    [mutate, setLoginData]
   );
 
   // Fonction de logout
@@ -138,6 +144,9 @@ export const useAuth = () => {
       // Nettoyer le localStorage
       localStorage.removeItem("jwt_token");
 
+      // Nettoyer le data store
+      clearLoginData();
+
       // Réinitialiser l'état
       setAuthState({
         user: null,
@@ -150,7 +159,7 @@ export const useAuth = () => {
       // Invalider le cache SWR
       mutate(null);
     }
-  }, [authState.token, mutate]);
+  }, [authState.token, mutate, clearLoginData]);
 
   // Fonction de refresh token (non utilisée avec JWT)
   const refreshToken = useCallback(async (): Promise<boolean> => {
