@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Application\Dto\Output\Immeuble;
+namespace App\Application\Dto\Output\Shared;
 
 use App\Domain\Entity\Depannage;
 

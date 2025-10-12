@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Service\Transformer;
 
-use App\Application\Dto\Output\Logement\GetInfosLogementsOutputDto;
-use App\Application\Dto\Output\Logement\GetOccupants4ChgtOutputDto;
-use App\Application\Dto\Output\Logement\GetStatOccupantsGraphOutputDto;
-use App\Application\Dto\Output\Logement\GetTableauBordLogementOutputDto;
-use App\Application\Dto\Output\Logement\SetOccupants4ChgtOutputDto;
-use App\Application\Dto\Output\Logement\SetSeuilConsoOutputDto;
+use App\Application\Dto\Output\Logement\ListLogementsOutputDto;
+use App\Application\Dto\Output\Logement\GetLogementOutputDto;
 use App\Application\Service\Transformer\LogementTransformerInterface;
 use App\Application\Factory\Logement\LogementEntityFactory;
 use App\Application\Factory\Logement\LogementOutputFactory;
+use App\Application\Dto\Output\Logement\ListAnomaliesOuputDto;
+use App\Application\Dto\Output\Logement\ListDysfonctionnementsOuputDto;
+use App\Application\Dto\Output\Logement\ListFuitesOuputDto;
+use App\Application\Dto\Output\Logement\ListInternetionsOutputDto;
+use App\Application\Dto\Output\Logement\ListLogementsOuputDto;
 
 final class LogementTransformer implements LogementTransformerInterface
 {
@@ -22,79 +23,39 @@ final class LogementTransformer implements LogementTransformerInterface
    ) {}
 
    /**
-    * Transform raw response to GetTableauBordLogementOutputDto
+    * Transform raw response to ListLogementsOutputDto
     */
-   public function transformGetTableauBordLogement(object $dataSourceResult): GetTableauBordLogementOutputDto
+   public function transformListLogements(object $dataSourceResult): ListLogementsOutputDto
    {
-      $result = $dataSourceResult->GetTableauBordLogementResult;
-      return new GetTableauBordLogementOutputDto($result);
+      $logementsRaw = is_array($rawLogement = $dataSourceResult->ListeInfosLogements->infosLogement ?? null) ?
+         $rawLogement : ($rawLogement ? [$rawLogement] : []);
+
+      $entities = $this->entityFactory->createManyLogementsFromRawList($logementsRaw);
+
+      return $this->outputFactory->createListLogements($entities);
    }
 
-   /**
-    * Transform raw response to SetOccupants4ChgtOutputDto
-    */
-   public function transformSetOccupants4Chgt(object $dataSourceResult): SetOccupants4ChgtOutputDto
+   public function transformGetLogement(object $dataSourceResult): GetLogementOutputDto
    {
-      $occupants = [];
-      if (is_array($dataSourceResult->setOccupants4ChgtResult)) {
-         foreach ($dataSourceResult->setOccupants4ChgtResult as $occupant) {
-            $occupants[] = $occupant;
-         }
-      }
-      return new SetOccupants4ChgtOutputDto($occupants);
+      $entity = $this->entityFactory->createLogementFromRaw($dataSourceResult);
+      return $this->outputFactory->createGetLogement($entity);
    }
 
-   /**
-    * Transform raw response to GetOccupants4ChgtOutputDto
-    */
-   public function transformGetOccupants4Chgt(object $dataSourceResult): GetOccupants4ChgtOutputDto
+   public function transformListAnomaliesByLogement(object $dataSourceResult): ListAnomaliesOuputDto {}
+
+   public function transformListDysfonctionnementsByLogement(object $dataSourceResult): ListDysfonctionnementsOuputDto {}
+
+   public function transformListFuitesByLogement(object $dataSourceResult): ListFuitesOuputDto {}
+
+   public function transformListInterventionsByLogement(object $dataSourceResult): ListInternetionsOutputDto
    {
-      $occupants = [];
-      if (is_array($dataSourceResult->getOccupants4ChgtResult)) {
-         foreach ($dataSourceResult->getOccupants4ChgtResult as $occupant) {
-            $occupants[] = $occupant;
-         }
-      }
-      return new GetOccupants4ChgtOutputDto($occupants);
+      $interventionsRaw = is_array($rawIntervention = $dataSourceResult->ListeInfosDepannages->infosDepannage ?? null) ?
+         $rawIntervention : ($rawIntervention ? [$rawIntervention] : []);
+
+      $entities = $this->entityFactory->createManyInterventionsFromRawList($interventionsRaw);
+
+      return $this->outputFactory->createListInterventionsByLogement($entities);
    }
 
-   /**
-    * Transform raw response to SetSeuilConsoOutputDto
-    */
-   public function transformSetSeuilConso(object $dataSourceResult): SetSeuilConsoOutputDto
-   {
-      $retour = $dataSourceResult->SetSeuilConsoResult;
-      return new SetSeuilConsoOutputDto($retour);
-   }
-
-   /**
-    * Transform raw response to GetStatOccupantsGraphOutputDto
-    */
-   public function transformGetStatOccupantsGraph(object $dataSourceResult): GetStatOccupantsGraphOutputDto
-   {
-      $graphPoints = [];
-      if (is_array($dataSourceResult->GetStatOccupantsGraphResult)) {
-         foreach ($dataSourceResult->GetStatOccupantsGraphResult as $point) {
-            $graphPoints[] = $point;
-         }
-      }
-      return new GetStatOccupantsGraphOutputDto($graphPoints);
-   }
-
-   /**
-    * Transform raw response to GetInfosAppareilsByLogementOutputDto
-    */
-   public function transformGetInfosAppareilsByLogement(object $dataSourceResult): object
-   {
-      return $dataSourceResult->GetInfosAppareilsByLogementResult;
-   }
-
-   /**
-    * Transform raw response to GetInfosLogementsOutputDto
-    */
-   public function transformGetInfosLogements(object $dataSourceResult): GetInfosLogementsOutputDto
-   {
-      $result = $dataSourceResult->GetInfosLogementsResult;
-      return new GetInfosLogementsOutputDto($result);
-   }
+   public function transformListLogementsByLogement(object $dataSourceResult): ListLogementsOuputDto {}
 }

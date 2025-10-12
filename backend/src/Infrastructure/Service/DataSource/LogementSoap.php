@@ -4,95 +4,81 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Service\DataSource;
 
-use App\Application\Dto\Input\Logement\GetTableauBordLogementInputDto;
-use App\Application\Dto\Input\Logement\GetNbTicketsInterByLogementInputDto;
-use App\Application\Dto\Input\Logement\SetOccupants4ChgtInputDto;
-use App\Application\Dto\Input\Logement\GetOccupants4ChgtInputDto;
-use App\Application\Dto\Input\Logement\SetSeuilConsoInputDto;
-use App\Application\Dto\Input\Logement\GetStatOccupantsGraphInputDto;
-use App\Application\Dto\Input\Logement\GetInfosAppareilsByLogementInpuDto;
-use App\Application\Dto\Input\Logement\GetInfosLogementsInputDto;
+use App\Application\Dto\Input\Shared\GetByIdIntInputDto;
+
 use App\Application\Service\DataSource\LogementDataSourceInterface;
 use App\Application\Service\Auth\AuthServiceInterface;
-use App\Infrastructure\Hydrator\LogementHydrator;
+use App\Infrastructure\Service\Hydrator\LogementHydrator;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
-use App\Infrastructure\Service\DataSource\SoapClient;
 
-final class LogementSoap implements LogementDataSourceInterface
+final class LogementSoap extends Soap implements LogementDataSourceInterface
 {
   public function __construct(
-    private readonly SoapClient $soapClient,
+    SoapClient $soapClient,
     private readonly LogementHydrator $hydrator,
     private readonly AuthServiceInterface $authService
-  ) {}
+  ) {
+    parent::__construct($soapClient);
+  }
 
   private function getAuthContext(): AuthenticationContext
   {
     return AuthenticationContext::fromAuthService($this->authService);
   }
 
-  public function fetchGetTableauBordLogement(GetTableauBordLogementInputDto $inputDto): object
+  public function fetchGetLogements(): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateGetTableauBordLogement($inputDto);
-    return $this->soapClient->call('GetTableauBordLogement', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateGetListLogements();
+    return $this->safeCall('GetInfosLogements', $soapRequest);
   }
 
-  public function fetchGetNbTicketsInterByLogement(GetNbTicketsInterByLogementInputDto $inputDto): object
+  public function fetchGetLogement(GetByIdIntInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateGetNbTicketsInterByLogement($inputDto);
-    return $this->soapClient->call('GetNbTicketsInterByLogement', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateGetLogement($inputDto);
+    return $this->safeCall('GetTableauBordLogement', $soapRequest);
   }
 
-  public function fetchsetOccupants4Chgt(SetOccupants4ChgtInputDto $inputDto): object
+  public function fetchListAnomaliesByLogement(GetByIdIntInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateSetOccupants4Chgt($inputDto);
-    return $this->soapClient->call('setOccupants4Chgt', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateListAnomaliesByLogement($inputDto);
+    return $this->safeCall('GetInfosAnomaliesByLogement', $soapRequest);
   }
 
-  public function fetchgetOccupants4Chgt(GetOccupants4ChgtInputDto $inputDto): object
+  public function fetchListDysfonctionnementsByLogement(GetByIdIntInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateGetOccupants4Chgt($inputDto);
-    return $this->soapClient->call('getOccupants4Chgt', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateListDysfonctionnementsByLogement($inputDto);
+    return $this->safeCall('GetInfosDysfonctionnementsByLogement', $soapRequest);
   }
 
-  public function fetchSetSeuilConso(SetSeuilConsoInputDto $inputDto): object
+  public function fetchListFuitesByLogement(GetByIdIntInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateSetSeuilConso($inputDto);
-    return $this->soapClient->call('SetSeuilConso', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateListFuitesByLogement($inputDto);
+    return $this->safeCall('GetInfosFuitesByLogement', $soapRequest);
   }
 
-  public function fetchGetStatOccupantsGraph(GetStatOccupantsGraphInputDto $inputDto): object
+  public function fetchListInterventionsByLogement(GetByIdIntInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateGetStatOccupantsGraph($inputDto);
-    return $this->soapClient->call('GetStatOccupantsGraph', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateListInterventionsByLogement($inputDto);
+    return $this->safeCall('GetInfosDepannagesByLogement', $soapRequest);
   }
 
-  public function fetchGetInfosAppareilsByLogement(GetInfosAppareilsByLogementInpuDto $inputDto): object
+  public function fetchListLogementsByLogement(GetByIdIntInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateGetInfosAppareilsByLogement($inputDto);
-    return $this->soapClient->call('GetInfosAppareilsByLogement', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateListLogementsByLogement($inputDto);
+    return $this->safeCall('GetInfosLogements', $soapRequest);
   }
-
-  public function fetchGetInfosLogements(GetInfosLogementsInputDto $inputDto): object
-  {
-    $authContext = $this->getAuthContext();
-    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateGetInfosLogements($inputDto);
-    return $this->soapClient->call('GetInfosLogements', $soapRequest);
-  }
-
 }
