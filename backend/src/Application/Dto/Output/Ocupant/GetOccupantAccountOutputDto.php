@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Application\Dto\Output\Occupant;
+namespace App\Application\Dto\Output\Ocupant;
 
 use App\Domain\Entity\Occupant;
 

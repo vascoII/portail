@@ -8,14 +8,14 @@ use App\Application\Dto\Input\Shared\GetByIdIntInputDto;
 
 use App\Application\Service\DataSource\LogementDataSourceInterface;
 use App\Application\Service\Auth\AuthServiceInterface;
-use App\Infrastructure\Service\Hydrator\LogementHydrator;
+use App\Infrastructure\Service\Hydrator\ImmeubleHydrator;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 
 final class LogementSoap extends Soap implements LogementDataSourceInterface
 {
   public function __construct(
     SoapClient $soapClient,
-    private readonly LogementHydrator $hydrator,
+    private readonly ImmeubleHydrator $hydrator,
     private readonly AuthServiceInterface $authService
   ) {
     parent::__construct($soapClient);
@@ -26,7 +26,7 @@ final class LogementSoap extends Soap implements LogementDataSourceInterface
     return AuthenticationContext::fromAuthService($this->authService);
   }
 
-  public function fetchGetLogements(): object
+  public function fetchGetLogements(GetByIdIntInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
     $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);

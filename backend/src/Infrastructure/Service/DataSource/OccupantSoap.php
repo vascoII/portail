@@ -8,14 +8,14 @@ use App\Application\Dto\Input\Shared\GetByIdIntInputDto;
 
 use App\Application\Service\DataSource\OccupantDataSourceInterface;
 use App\Application\Service\Auth\AuthServiceInterface;
-use App\Infrastructure\Service\Hydrator\OccupantHydrator;
+use App\Infrastructure\Service\Hydrator\ImmeubleHydrator;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 
 final class OccupantSoap extends Soap implements OccupantDataSourceInterface
 {
   public function __construct(
     SoapClient $soapClient,
-    private readonly OccupantHydrator $hydrator,
+    private readonly ImmeubleHydrator $hydrator,
     private readonly AuthServiceInterface $authService
   ) {
     parent::__construct($soapClient);

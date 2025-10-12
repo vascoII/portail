@@ -17,6 +17,8 @@ use App\Application\Dto\Output\Occupant\ShowOutputDto;
 use App\Application\Dto\Output\Occupant\ShowRepartReleveOutputDto;
 use App\Application\Dto\Output\Occupant\SimulateurOutputDto;
 use App\Application\Dto\Output\Occupant\EditOutputDto;
+use App\Application\Dto\Output\Occupant\GetOccupantAccountOutputDto;
+use App\Application\Dto\Output\Occupant\GetOccupantOutputDto;
 use App\Application\Service\Transformer\OccupantTransformerInterface;
 use App\Application\Factory\Occupant\OccupantEntityFactory;
 use App\Application\Factory\Occupant\OccupantOutputFactory;
@@ -24,7 +26,7 @@ use App\Application\Factory\Occupant\OccupantOutputFactory;
 final class OccupantTransformer implements OccupantTransformerInterface
 {
    const UPDATED = 'updated';
-   
+
    public function __construct(
       private readonly OccupantEntityFactory $entityFactory,
       private readonly OccupantOutputFactory $outputFactory
@@ -132,5 +134,21 @@ final class OccupantTransformer implements OccupantTransformerInterface
    public function transformEdit(object $dataSourceResult): EditOutputDto
    {
       return new EditOutputDto($dataSourceResult[self::UPDATED]);
+   }
+
+   /**
+    * Transform raw response to GetOccupantAccountOutputDto
+    */
+   public function transformGetOccupantAccount(object $dataSourceResult): GetOccupantAccountOutputDto
+   {
+      return new GetOccupantAccountOutputDto($dataSourceResult);
+   }
+
+   /**
+    * Transform raw response to GetOccupantOutputDto
+    */
+   public function transformGetOccupant(object $dataSourceResult): GetOccupantOutputDto
+   {
+      return new GetOccupantOutputDto($dataSourceResult);
    }
 }

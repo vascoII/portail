@@ -7,7 +7,7 @@ namespace App\Http\Action\Document\Pdf;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
-use App\Application\UseCase\Document\Pdf\GenerateFacturePdfUseCase;
+use App\Application\UseCase\Document\GenerateFacturePdfUseCase;
 use App\Application\Factory\Shared\SharedInputFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

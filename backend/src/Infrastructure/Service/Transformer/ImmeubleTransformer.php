@@ -10,6 +10,7 @@ use App\Application\Service\Transformer\ImmeubleTransformerInterface;
 use App\Application\Factory\Immeuble\ImmeubleEntityFactory;
 use App\Application\Factory\Immeuble\ImmeubleOutputFactory;
 use App\Application\Dto\Output\Immeuble\ListAnomaliesOuputDto;
+use App\Application\Dto\Output\Immeuble\ListLogementsOuputDto;
 
 
 final class ImmeubleTransformer implements ImmeubleTransformerInterface

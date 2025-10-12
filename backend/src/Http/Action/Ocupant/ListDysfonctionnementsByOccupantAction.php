@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Action\Occupant;
+namespace App\Http\Action\Ocupant;
 
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
