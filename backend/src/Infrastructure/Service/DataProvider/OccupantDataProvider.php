@@ -5,23 +5,30 @@ declare(strict_types=1);
 namespace App\Infrastructure\Service\DataProvider;
 
 use App\Application\Service\DataProvider\OccupantDataProviderInterface;
+use App\Application\Dto\Input\Shared\GetByIdIntInputDto;
+use App\Application\Dto\Output\Occupant\GetOccupantOutputDto;
+use App\Application\Dto\Output\Occupant\GetOccupantAccountOutputDto;
+use App\Application\Dto\Output\Shared\ListAnomaliesOuputDto;
+use App\Application\Dto\Output\Shared\ListInternetionsOutputDto;
+use App\Application\Dto\Output\Shared\ListFuitesOuputDto;
+use App\Application\Dto\Output\Shared\ListDysfonctionnementsOuputDto;
+use App\Application\Dto\Output\Shared\ListAlertesOuputDto;
+
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
-use App\Application\Service\DataSource\LogementDataSourceInterface;
-use App\Application\Service\DataSource\SharedDataSourceInterface;
-use App\Application\Service\DataSource\ImmeubleDataSourceInterface;
+use App\Application\Service\DataSource\OccupantDataSourceInterface;
 use App\Infrastructure\Service\Redis\RedisService;
 use App\Application\Service\Transformer\OccupantTransformerInterface;
+use App\Application\Service\Transformer\SharedTransformerInterface;
 
 final class OccupantDataProvider implements OccupantDataProviderInterface
 {
   public function __construct(
-      private RedisService $cache,
-      private LogementDataSourceInterface $logementDataSource,
-      private SharedDataSourceInterface $sharedDataSource,
-      private ImmeubleDataSourceInterface $immeubleDataSource,
-      private OccupantTransformerInterface $transformer,
-      private readonly AuthServiceInterface $authService
+    private RedisService $cache,
+    private OccupantDataSourceInterface $occupantDataSource,
+    private OccupantTransformerInterface $occupantTransformer,
+    private SharedTransformerInterface $sharedTransformer,
+    private readonly AuthServiceInterface $authService
   ) {}
 
   private function getAuthContext(): AuthenticationContext
@@ -29,211 +36,129 @@ final class OccupantDataProvider implements OccupantDataProviderInterface
     return AuthenticationContext::fromAuthService($this->authService);
   }
 
-  public function alertesService()
+  public function getOccupantService(): GetOccupantOutputDto
   {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "occupant_alertes:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
+    $authContext = $this->getAuthContext();
+    $cacheKey = "occupant_get:$authContext->pkUser";
+    $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof AlertesOutputDto) {
-        return $cachedDto;
-      }
+    if ($cachedDto instanceof GetOccupantOutputDto) {
+      return $cachedDto;
+    }
 
-      $rawData = $this->source->fetchAlertes($inputDto);
-      $dto = $this->transformer->transformAlertes($rawData);
+    $rawData = $this->occupantDataSource->fetchGetOccupant();
+    $dto = $this->occupantTransformer->transformGetOccupant($rawData);
 
-      $this->cache->set($cacheKey, $dto);
+    $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+    return $dto;
   }
-  
-  public function listDysfunctionsService( $inputDto)
+
+  public function listAlertesByOccupantService(): ListAlertesOuputDto
   {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "occupant_list_dysfunctions:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
+    $authContext = $this->getAuthContext();
+    $cacheKey = "occupant_alertes_list:$authContext->pkUser";
+    $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof ListDysfunctionsOutputDto) {
-        return $cachedDto;
-      }
+    if ($cachedDto instanceof ListAlertesOuputDto) {
+      return $cachedDto;
+    }
 
-      $rawData = $this->source->fetchListDysfunctions($inputDto);
-      $dto = $this->transformer->transformListDysfunctions($rawData);
+    $rawData = $this->occupantDataSource->fetchListAlertesByOccupant();
+    $dto = $this->sharedTransformer->transformListAlertes($rawData);
 
-      $this->cache->set($cacheKey, $dto);
+    $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+    return $dto;
   }
-  
-  public function listInterventionsService( $inputDto)
+
+  public function listAnomaliesByOccupantService(): ListAnomaliesOuputDto
   {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "occupant_list_interventions:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
+    $authContext = $this->getAuthContext();
+    $cacheKey = "occupant_anomalies_list:$authContext->pkUser";
+    $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof ListInterventionsOutputDto) {
-        return $cachedDto;
-      }
+    if ($cachedDto instanceof ListAnomaliesOuputDto) {
+      return $cachedDto;
+    }
 
-      $rawData = $this->source->fetchListInterventions($inputDto);
-      $dto = $this->transformer->transformListInterventions($rawData);
+    $rawData = $this->occupantDataSource->fetchListAnomaliesByOccupant();
+    $dto = $this->sharedTransformer->transformListAnomalies($rawData);
 
-      $this->cache->set($cacheKey, $dto);
+    $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+    return $dto;
   }
-  
-  public function listLeaksService( $inputDto)
+
+  public function listDysfonctionnementsByOccupantService(): ListDysfonctionnementsOuputDto
   {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "occupant_list_leaks:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
+    $authContext = $this->getAuthContext();
+    $cacheKey = "occupant__dysfonctionnements_list:$authContext->pkUser";
+    $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof ListLeaksOutputDto) {
-        return $cachedDto;
-      }
+    if ($cachedDto instanceof ListDysfonctionnementsOuputDto) {
+      return $cachedDto;
+    }
 
-      $rawData = $this->source->fetchListLeaks($inputDto);
-      $dto = $this->transformer->transformListLeaks($rawData);
+    $rawData = $this->occupantDataSource->fetchListDysfonctionnementsByOccupant();
+    $dto = $this->sharedTransformer->transformListDysfonctionnements($rawData);
 
-      $this->cache->set($cacheKey, $dto);
+    $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+    return $dto;
   }
-  
-  public function myAccountService( $inputDto)
+
+  public function listFuitesByOccupantService(): ListFuitesOuputDto
   {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "occupant_my_account:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
+    $authContext = $this->getAuthContext();
+    $cacheKey = "occupant_fuites_list:$authContext->pkUser";
+    $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof MyAccountOutputDto) {
-        return $cachedDto;
-      }
+    if ($cachedDto instanceof ListFuitesOuputDto) {
+      return $cachedDto;
+    }
 
-      $rawData = $this->source->fetchMyAccount($inputDto);
-      $dto = $this->transformer->transformMyAccount($rawData);
+    $rawData = $this->occupantDataSource->fetchListFuitesByOccupant();
+    $dto = $this->sharedTransformer->transformListFuites($rawData);
 
-      $this->cache->set($cacheKey, $dto);
+    $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+    return $dto;
   }
-  
-  public function showEauReleveService( $inputDto)
+
+  public function listInterventionsByOccupantService(): ListInternetionsOutputDto
   {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "occupant_show_eau_releve:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
+    $authContext = $this->getAuthContext();
+    $cacheKey = "occupant_interventions_list:$authContext->pkUser";
+    $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof ShowEauReleveOutputDto) {
-        return $cachedDto;
-      }
+    if ($cachedDto instanceof ListInternetionsOutputDto) {
+      return $cachedDto;
+    }
 
-      $rawData = $this->source->fetchShowEauReleve($inputDto);
-      $dto = $this->transformer->transformShowEauReleve($rawData);
+    $rawData = $this->occupantDataSource->fetchListInterventionsByOccupant();
+    $dto = $this->sharedTransformer->transformListInterventions($rawData);
 
-      $this->cache->set($cacheKey, $dto);
+    $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+    return $dto;
   }
-  
-  public function showInterventionService( $inputDto)
+
+  public function getOccupantAccountService(): GetOccupantAccountOutputDto
   {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "occupant_show_intervention:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
+    $authContext = $this->getAuthContext();
+    $cacheKey = "occupant_account_get:$authContext->pkUser";
+    $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof ShowInterventionOutputDto) {
-        return $cachedDto;
-      }
+    if ($cachedDto instanceof GetOccupantAccountOutputDto) {
+      return $cachedDto;
+    }
 
-      $rawData = $this->source->fetchShowIntervention($inputDto);
-      $dto = $this->transformer->transformShowIntervention($rawData);
+    $rawData = $this->occupantDataSource->fetchGetOccupantAccount();
+    $dto = $this->occupantTransformer->transformGetOccupantAccount($rawData);
 
-      $this->cache->set($cacheKey, $dto);
+    $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+    return $dto;
   }
-  
-  public function showNoteReleveService( $inputDto)
-  {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "occupant_show_note-releve:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
-
-      if ($cachedDto instanceof ShowNoteReleveOutputDto) {
-        return $cachedDto;
-      }
-
-      $rawData = $this->source->fetchShowNoteReleve($inputDto);
-      $dto = $this->transformer->transformShowNoteReleve($rawData);
-
-      $this->cache->set($cacheKey, $dto);
-
-      return $dto;
-  }
-  
-  public function showRepartReleveService( $inputDto)
-  {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "occupant_show_repart_releve:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
-
-      if ($cachedDto instanceof ShowRepartReleveOutputDto) {
-        return $cachedDto;
-      }
-
-      $rawData = $this->source->fetchShowRepartReleve($inputDto);
-      $dto = $this->transformer->transformShowRepartReleve($rawData);
-
-      $this->cache->set($cacheKey, $dto);
-
-      return $dto;
-  }
-  
-  public function showService( $inputDto)
-  {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "occupant_show:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
-
-      if ($cachedDto instanceof ShowOutputDto) {
-        return $cachedDto;
-      }
-
-      $rawData = $this->source->fetchShow($inputDto);
-      $dto = $this->transformer->transformShow($rawData);
-
-      $this->cache->set($cacheKey, $dto);
-
-      return $dto;
-  }
-  
-  public function simulateurService( $inputDto)
-  {
-      $authContext = $this->getAuthContext();
-      $cacheKey = "occupant_simulateur:$authContext->pkUser";
-      $cachedDto = $this->cache->get($cacheKey);
-
-      if ($cachedDto instanceof SimulateurOutputDto) {
-        return $cachedDto;
-      }
-
-      $rawData = $this->source->fetchSimulateur($inputDto);
-      $dto = $this->transformer->transformSimulateur($rawData);
-
-      $this->cache->set($cacheKey, $dto);
-
-      return $dto;
-  }
-  
-  public function editService( $inputDto)
-  {
-      $authContext = $this->getAuthContext();
-      $rawData = $this->source->fetchEdit($inputDto);
-      $dto = $this->transformer->transformEdit($rawData);
-
-      return $dto;
-  }
-  
 }

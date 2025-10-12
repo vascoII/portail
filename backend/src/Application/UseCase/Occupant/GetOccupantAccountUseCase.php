@@ -4,18 +4,17 @@ declare(strict_types=1);
 
 namespace App\Application\UseCase\Occupant;
 
-use App\Application\Dto\Input\Occupant\EditInputDto;
-use App\Application\Dto\Output\Occupant\EditOutputDto;
+use App\Application\Dto\Output\Occupant\GetOccupantAccountOutputDto;
 use App\Application\Service\DataProvider\OccupantDataProviderInterface;
 
-final class EditUseCase
+final class GetOccupantAccountUseCase
 {
   public function __construct(
     private readonly OccupantDataProviderInterface $serviceDataProvider
   ) {}
 
-  public function execute(EditInputDto $inputDto): EditOutputDto
+  public function execute(): GetOccupantAccountOutputDto
   {
-    return $this->serviceDataProvider->editService($inputDto);
+    return $this->serviceDataProvider->getOccupantAccountService();
   }
 }

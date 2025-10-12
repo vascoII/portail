@@ -112,6 +112,15 @@ final class SharedEntityFactory
         );
     }
 
+    public function createAlerteFromRaw(object $raw): Alerte
+    {
+        return new Alerte(
+            index: $raw->Index,
+            conso: $raw->Conso,
+            observations: $raw->observations
+        );
+    }
+
     /**
      * @param object[] $rawList
      * @return Anomalie[]
@@ -146,5 +155,14 @@ final class SharedEntityFactory
     public function createManyInterventionsFromRawList(array $rawList): array
     {
         return array_map([$this, 'createInterventionFromRaw'], $rawList);
+    }
+
+    /**
+     * @param object[] $rawList
+     * @return Alertes[]
+     */
+    public function createManyAlertesFromRawList(array $rawList): array
+    {
+        return array_map([$this, 'createAlerteFromRaw'], $rawList);
     }
 }

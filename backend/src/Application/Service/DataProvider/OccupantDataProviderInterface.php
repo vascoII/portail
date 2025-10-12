@@ -4,43 +4,23 @@ declare(strict_types=1);
 
 namespace App\Application\Service\DataProvider;
 
-use App\Application\Dto\Output\Occupant\AlertesOutputDto;
-use App\Application\Dto\Input\Occupant\DysfunctionsInputDto;
-use App\Application\Dto\Output\Occupant\DysfunctionsOutputDto;
-use App\Application\Dto\Input\Occupant\InterventionsInputDto;
-use App\Application\Dto\Output\Occupant\InterventionsOutputDto;
-use App\Application\Dto\Input\Occupant\LeaksInputDto;
-use App\Application\Dto\Output\Occupant\LeaksOutputDto;
-use App\Application\Dto\Input\Occupant\MyAccountInputDto;
-use App\Application\Dto\Output\Occupant\MyAccountOutputDto;
-use App\Application\Dto\Input\Occupant\ShowEauReleveInputDto;
-use App\Application\Dto\Output\Occupant\ShowEauReleveOutputDto;
-use App\Application\Dto\Input\Occupant\ShowInterventionInputDto;
-use App\Application\Dto\Output\Occupant\ShowInterventionOutputDto;
-use App\Application\Dto\Input\Occupant\ShowNoteReleveInputDto;
-use App\Application\Dto\Output\Occupant\ShowNoteReleveOutputDto;
-use App\Application\Dto\Input\Occupant\ShowRepartReleveInputDto;
-use App\Application\Dto\Output\Occupant\ShowRepartReleveOutputDto;
-use App\Application\Dto\Input\Occupant\ShowInputDto;
-use App\Application\Dto\Output\Occupant\ShowOutputDto;
-use App\Application\Dto\Input\Occupant\SimulateurInputDto;
-use App\Application\Dto\Output\Occupant\SimulateurOutputDto;
-use App\Application\Dto\Input\Occupant\EditInputDto;
-use App\Application\Dto\Output\Occupant\EditOutputDto;
+use App\Application\Dto\Output\Occupant\GetOccupantOutputDto;
+use App\Application\Dto\Output\Shared\ListAnomaliesOuputDto;
+use App\Application\Dto\Output\Shared\ListInternetionsOutputDto;
+use App\Application\Dto\Output\Shared\ListFuitesOuputDto;
+use App\Application\Dto\Output\Shared\ListDysfonctionnementsOuputDto;
+use App\Application\Dto\Output\Shared\ListAlertesOuputDto;
+use App\Application\Dto\Output\Occupant\GetOccupantAccountOutputDto;
+
 
 interface OccupantDataProviderInterface
 {
 
-  public function alertesService();
-  public function listDysfunctionsService( $inputDto);
-  public function listInterventionsService( $inputDto);
-  public function listLeaksService( $inputDto);
-  public function myAccountService( $inputDto);
-  public function showEauReleveService( $inputDto);
-  public function showInterventionService( $inputDto);
-  public function showNoteReleveService( $inputDto);
-  public function showRepartReleveService( $inputDto);
-  public function showService( $inputDto);
-  public function simulateurService( $inputDto);
-  public function editService( $inputDto);
+  public function listAnomaliesByOccupantService(): ListAnomaliesOuputDto;
+  public function listInterventionsByOccupantService(): ListInternetionsOutputDto;
+  public function listFuitesByOccupantService(): ListFuitesOuputDto;
+  public function listDysfonctionnementsByOccupantService(): ListDysfonctionnementsOuputDto;
+  public function getOccupantService(): GetOccupantOutputDto;
+  public function listAlertesByOccupantService(): ListAlertesOuputDto;
+  public function getOccupantAccountService(): GetOccupantAccountOutputDto;
 }

@@ -5,16 +5,16 @@ declare(strict_types=1);
 namespace App\Infrastructure\Service\Transformer;
 
 use App\Application\Dto\Output\Shared\SuccessOutputDto;
-use App\Application\Dto\Output\Shared\GetExcelOutputDto;
 use App\Application\Dto\Output\Shared\GetReportOutputDto;
 use App\Application\Dto\Output\Shared\UserDto;
 use App\Application\Dto\Output\Shared\ListAnomaliesOuputDto;
 use App\Application\Dto\Output\Shared\ListDysfonctionnementsOuputDto;
 use App\Application\Dto\Output\Shared\ListFuitesOuputDto;
 use App\Application\Dto\Output\Shared\ListInternetionsOutputDto;
-use App\Application\Service\Transformer\SharedTransformerInterface;
+use App\Application\Dto\Output\Shared\ListAlertesOuputDto;
 use App\Application\Factory\Shared\SharedEntityFactory;
 use App\Application\Factory\Shared\SharedOutputFactory;
+use App\Application\Service\Transformer\SharedTransformerInterface;
 
 
 
@@ -109,5 +109,15 @@ final class SharedTransformer implements SharedTransformerInterface
     $entities = $this->entityFactory->createManyInterventionsFromRawList($interventionsRaw);
 
     return $this->outputFactory->createListInterventions($entities);
+  }
+
+  public function transformListAlertes(object $dataSourceResult): ListAlertesOuputDto
+  {
+    $alertesRaw = is_array($rawAlerte = $dataSourceResult->ListeInfosDepannages->infosDepannage ?? null) ?
+      $rawAlerte : ($rawAlerte ? [$rawAlerte] : []);
+
+    $entities = $this->entityFactory->createManyAlertesFromRawList($alertesRaw);
+
+    return $this->outputFactory->createListAlertes($entities);
   }
 }

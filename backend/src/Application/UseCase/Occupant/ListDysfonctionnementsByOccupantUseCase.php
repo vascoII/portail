@@ -4,18 +4,17 @@ declare(strict_types=1);
 
 namespace App\Application\UseCase\Occupant;
 
-use App\Application\Dto\Input\Occupant\ShowInputDto;
-use App\Application\Dto\Output\Occupant\ShowOutputDto;
+use App\Application\Dto\Output\Shared\ListDysfonctionnementsOuputDto;
 use App\Application\Service\DataProvider\OccupantDataProviderInterface;
 
-final class ShowUseCase
+final class ListDysfonctionnementsByOccupantUseCase
 {
   public function __construct(
     private readonly OccupantDataProviderInterface $serviceDataProvider
   ) {}
 
-  public function execute(ShowInputDto $inputDto): ShowOutputDto
+  public function execute(): ListDysfonctionnementsOuputDto
   {
-    return $this->serviceDataProvider->showService($inputDto);
+    return $this->serviceDataProvider->listDysfonctionnementsByOccupantService();
   }
 }
