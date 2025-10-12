@@ -8,29 +8,23 @@ use App\Application\Dto\Output\Shared\GetExcelOutputDto;
 use App\Application\Dto\Output\Shared\GetReportOutputDto;
 use App\Application\Dto\Output\Shared\SuccessOutputDto;
 use App\Application\Dto\Output\Shared\UserDto;
+use App\Application\Dto\Output\Shared\ListAnomaliesOuputDto;
+use App\Application\Dto\Output\Shared\ListDysfonctionnementsOuputDto;
+use App\Application\Dto\Output\Shared\ListFuitesOuputDto;
+use App\Application\Dto\Output\Shared\ListInternetionsOutputDto;
 
 interface SharedTransformerInterface
 {
-  /**
-   * Transform raw response to SuccessOutputDto
-   */
   public function transformPost(bool $dataSourceResult): SuccessOutputDto;
   public function transformPut(object $dataSourceResult): SuccessOutputDto;
   public function transformPatch(object $dataSourceResult): SuccessOutputDto;
   public function transformDelete(object $dataSourceResult): SuccessOutputDto;
-
   public function transformGetUser(object $dataSourceResult): UserDto;
-
-  /**
-   * Transform raw response to GetExcelOutputDto
-   */
-  public function transformGetExcel(object $dataSourceResult): GetExcelOutputDto;
-
-
-  /**
-   * Transform raw response to GetReportOutputDto
-   */
   public function transformGetReport(string $dataSourceResult, string $filename): GetReportOutputDto;
-
   public function transformSuccess(): SuccessOutputDto;
+
+  public function transformListAnomalies(object $dataSourceResult): ListAnomaliesOuputDto;
+  public function transformListDysfonctionnements(object $dataSourceResult): ListDysfonctionnementsOuputDto;
+  public function transformListFuites(object $dataSourceResult): ListFuitesOuputDto;
+  public function transformListInterventions(object $dataSourceResult): ListInternetionsOutputDto;
 }

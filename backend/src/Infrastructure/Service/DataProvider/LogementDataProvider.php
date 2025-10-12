@@ -82,7 +82,7 @@ final class LogementDataProvider implements LogementDataProviderInterface
     }
 
     $rawData = $this->logementDataSource->fetchListAnomaliesByLogement($inputDto);
-    $dto = $this->logementTransformer->transformListAnomaliesByLogement($rawData);
+    $dto = $this->sharedTransformer->transformListAnomalies($rawData);
 
     $this->cache->set($cacheKey, $dto);
 
@@ -99,7 +99,7 @@ final class LogementDataProvider implements LogementDataProviderInterface
     }
 
     $rawData = $this->logementDataSource->fetchListDysfonctionnementsByLogement($inputDto);
-    $dto = $this->logementTransformer->transformListDysfonctionnementsByLogement($rawData);
+    $dto = $this->sharedTransformer->transformListDysfonctionnements($rawData);
 
     $this->cache->set($cacheKey, $dto);
 
@@ -116,7 +116,7 @@ final class LogementDataProvider implements LogementDataProviderInterface
     }
 
     $rawData = $this->logementDataSource->fetchListFuitesByLogement($inputDto);
-    $dto = $this->logementTransformer->transformListFuitesByLogement($rawData);
+    $dto = $this->sharedTransformer->transformListFuites($rawData);
 
     $this->cache->set($cacheKey, $dto);
 
@@ -133,7 +133,7 @@ final class LogementDataProvider implements LogementDataProviderInterface
     }
 
     $rawData = $this->logementDataSource->fetchListInterventionsByLogement($inputDto);
-    $dto = $this->logementTransformer->transformListInterventionsByLogement($rawData);
+    $dto = $this->sharedTransformer->transformListInterventions($rawData);
 
     $this->cache->set($cacheKey, $dto);
 

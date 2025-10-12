@@ -86,4 +86,36 @@ final class DocumentSoap extends Soap implements DocumentDataSourceInterface
 
     return true;
   }
+
+  public function fetchOccupantAnomalies(GetByIdStringInputDto $inputDto): bool
+  {
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
+
+    return true;
+  }
+
+  public function fetchOccupantDysfonctionnements(GetByIdStringInputDto $inputDto): bool
+  {
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
+
+    return true;
+  }
+
+  public function fetchOccupantFuites(GetByIdStringInputDto $inputDto): bool
+  {
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
+
+    return true;
+  }
+
+  public function fetchOccupantInterventions(GetByIdStringInputDto $inputDto): bool
+  {
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
+
+    return true;
+  }
 }

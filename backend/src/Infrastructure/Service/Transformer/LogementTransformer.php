@@ -9,10 +9,6 @@ use App\Application\Dto\Output\Logement\GetLogementOutputDto;
 use App\Application\Service\Transformer\LogementTransformerInterface;
 use App\Application\Factory\Logement\LogementEntityFactory;
 use App\Application\Factory\Logement\LogementOutputFactory;
-use App\Application\Dto\Output\Logement\ListAnomaliesOuputDto;
-use App\Application\Dto\Output\Logement\ListDysfonctionnementsOuputDto;
-use App\Application\Dto\Output\Logement\ListFuitesOuputDto;
-use App\Application\Dto\Output\Logement\ListInternetionsOutputDto;
 use App\Application\Dto\Output\Logement\ListLogementsOuputDto;
 
 final class LogementTransformer implements LogementTransformerInterface
@@ -40,22 +36,4 @@ final class LogementTransformer implements LogementTransformerInterface
       $entity = $this->entityFactory->createLogementFromRaw($dataSourceResult);
       return $this->outputFactory->createGetLogement($entity);
    }
-
-   public function transformListAnomaliesByLogement(object $dataSourceResult): ListAnomaliesOuputDto {}
-
-   public function transformListDysfonctionnementsByLogement(object $dataSourceResult): ListDysfonctionnementsOuputDto {}
-
-   public function transformListFuitesByLogement(object $dataSourceResult): ListFuitesOuputDto {}
-
-   public function transformListInterventionsByLogement(object $dataSourceResult): ListInternetionsOutputDto
-   {
-      $interventionsRaw = is_array($rawIntervention = $dataSourceResult->ListeInfosDepannages->infosDepannage ?? null) ?
-         $rawIntervention : ($rawIntervention ? [$rawIntervention] : []);
-
-      $entities = $this->entityFactory->createManyInterventionsFromRawList($interventionsRaw);
-
-      return $this->outputFactory->createListInterventionsByLogement($entities);
-   }
-
-   public function transformListLogementsByLogement(object $dataSourceResult): ListLogementsOuputDto {}
 }

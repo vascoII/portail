@@ -10,10 +10,7 @@ use App\Application\Service\Transformer\ImmeubleTransformerInterface;
 use App\Application\Factory\Immeuble\ImmeubleEntityFactory;
 use App\Application\Factory\Immeuble\ImmeubleOutputFactory;
 use App\Application\Dto\Output\Immeuble\ListAnomaliesOuputDto;
-use App\Application\Dto\Output\Immeuble\ListDysfonctionnementsOuputDto;
-use App\Application\Dto\Output\Immeuble\ListFuitesOuputDto;
-use App\Application\Dto\Output\Immeuble\ListInternetionsOutputDto;
-use App\Application\Dto\Output\Immeuble\ListLogementsOuputDto;
+
 
 final class ImmeubleTransformer implements ImmeubleTransformerInterface
 {
@@ -27,7 +24,7 @@ final class ImmeubleTransformer implements ImmeubleTransformerInterface
     */
    public function transformListImmeubles(object $dataSourceResult): ListImmeublesOutputDto
    {
-      $immeublesRaw = is_array($rawImmeuble = $dataSourceResult->ListeInfosImmeubles->infosImmeuble ?? null) ? 
+      $immeublesRaw = is_array($rawImmeuble = $dataSourceResult->ListeInfosImmeubles->infosImmeuble ?? null) ?
          $rawImmeuble : ($rawImmeuble ? [$rawImmeuble] : []);
 
       $entities = $this->entityFactory->createManyImmeublesFromRawList($immeublesRaw);
@@ -41,34 +38,13 @@ final class ImmeubleTransformer implements ImmeubleTransformerInterface
       return $this->outputFactory->createGetImmeuble($entity);
    }
 
-   public function transformListAnomaliesByImmeuble(object $dataSourceResult): ListAnomaliesOuputDto
-   {
-
-   }
-
-   public function transformListDysfonctionnementsByImmeuble(object $dataSourceResult): ListDysfonctionnementsOuputDto
-   {
-
-   }
-
-   public function transformListFuitesByImmeuble(object $dataSourceResult): ListFuitesOuputDto
-   {
-
-   }
-
-   public function transformListInterventionsByImmeuble(object $dataSourceResult): ListInternetionsOutputDto
-   {
-      $interventionsRaw = is_array($rawIntervention = $dataSourceResult->ListeInfosDepannages->infosDepannage ?? null) ? 
-         $rawIntervention : ($rawIntervention ? [$rawIntervention] : []);
-         
-      $entities = $this->entityFactory->createManyInterventionsFromRawList($interventionsRaw);
-
-      return $this->outputFactory->createListInterventionsByImmeuble($entities);
-   }
-
    public function transformListLogementsByImmeuble(object $dataSourceResult): ListLogementsOuputDto
    {
+      $logementsRaw = is_array($rawLogement = $dataSourceResult->ListeInfosImmeubles->infosImmeuble ?? null) ?
+         $rawLogement : ($rawLogement ? [$rawLogement] : []);
 
+      $entities = $this->entityFactory->createManyLogementsFromRawList($logementsRaw);
+
+      return $this->outputFactory->createListLogements($entities);
    }
-
 }

@@ -16,4 +16,8 @@ interface DocumentDataSourceInterface
   public function fetchLogementDysfonctionnements(GetByIdStringInputDto $inputDto): bool;
   public function fetchLogementFuites(GetByIdStringInputDto $inputDto): bool;
   public function fetchLogementInterventions(GetByIdStringInputDto $inputDto): bool;
+  public function fetchOccupantAnomalies(GetByIdStringInputDto $inputDto): bool;
+  public function fetchOccupantDysfonctionnements(GetByIdStringInputDto $inputDto): bool;
+  public function fetchOccupantFuites(GetByIdStringInputDto $inputDto): bool;
+  public function fetchOccupantInterventions(GetByIdStringInputDto $inputDto): bool;
 }

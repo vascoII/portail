@@ -17,4 +17,8 @@ interface DocumentDataProviderInterface
   public function generateLogementDysfonctionnementsExcelService(GetByIdStringInputDto $inputDto): SuccessOutputDto;
   public function generateLogementFuitesExcelService(GetByIdStringInputDto $inputDto): SuccessOutputDto;
   public function generateLogementInterventionsExcelService(GetByIdStringInputDto $inputDto): SuccessOutputDto;
+  public function generateOccupantAnomaliesExcelService(GetByIdStringInputDto $inputDto): SuccessOutputDto;
+  public function generateOccupantDysfonctionnementsExcelService(GetByIdStringInputDto $inputDto): SuccessOutputDto;
+  public function generateOccupantFuitesExcelService(GetByIdStringInputDto $inputDto): SuccessOutputDto;
+  public function generateOccupantInterventionsExcelService(GetByIdStringInputDto $inputDto): SuccessOutputDto;
 }

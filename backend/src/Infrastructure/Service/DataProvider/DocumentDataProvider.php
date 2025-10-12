@@ -83,4 +83,36 @@ final class DocumentDataProvider implements DocumentDataProviderInterface
 
     return $dto;
   }
+
+  public function generateOccupantAnomaliesExcelService(GetByIdStringInputDto $inputDto): SuccessOutputDto
+  {
+    $rawData = $this->documentDataSource->fetchOccupantAnomalies($inputDto);
+    $dto = $this->sharedTransformer->transformSuccess();
+
+    return $dto;
+  }
+
+  public function generateOccupantDysfonctionnementsExcelService(GetByIdStringInputDto $inputDto): SuccessOutputDto
+  {
+    $rawData = $this->documentDataSource->fetchOccupantDysfonctionnements($inputDto);
+    $dto = $this->sharedTransformer->transformSuccess();
+
+    return $dto;
+  }
+
+  public function generateOccupantFuitesExcelService(GetByIdStringInputDto $inputDto): SuccessOutputDto
+  {
+    $rawData = $this->documentDataSource->fetchOccupantFuites($inputDto);
+    $dto = $this->sharedTransformer->transformSuccess();
+
+    return $dto;
+  }
+
+  public function generateOccupantInterventionsExcelService(GetByIdStringInputDto $inputDto): SuccessOutputDto
+  {
+    $rawData = $this->documentDataSource->fetchOccupantInterventions($inputDto);
+    $dto = $this->sharedTransformer->transformSuccess();
+
+    return $dto;
+  }
 }

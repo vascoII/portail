@@ -8,6 +8,10 @@ use App\Application\Dto\Output\Shared\SuccessOutputDto;
 use App\Application\Dto\Output\Shared\GetExcelOutputDto;
 use App\Application\Dto\Output\Shared\GetReportOutputDto;
 use App\Application\Dto\Output\Shared\UserDto;
+use App\Application\Dto\Output\Shared\ListAnomaliesOuputDto;
+use App\Application\Dto\Output\Shared\ListDysfonctionnementsOuputDto;
+use App\Application\Dto\Output\Shared\ListFuitesOuputDto;
+use App\Application\Dto\Output\Shared\ListInternetionsOutputDto;
 use App\Application\Service\Transformer\SharedTransformerInterface;
 use App\Application\Factory\Shared\SharedEntityFactory;
 use App\Application\Factory\Shared\SharedOutputFactory;
@@ -20,20 +24,6 @@ final class SharedTransformer implements SharedTransformerInterface
     private readonly SharedEntityFactory $entityFactory,
     private readonly SharedOutputFactory $outputFactory
   ) {}
-
-  /**
-   * Transform raw response to GetExcelOutputDto
-   */
-  public function transformGetExcel(object $dataSourceResult): GetExcelOutputDto
-  {
-    $binary = (string) $dataSourceResult->GetExcelResult;
-    $filename = 'export-' . date('Y-m-d') . '.xlsx';
-    return new GetExcelOutputDto(
-      data: $binary,
-      filename: $filename,
-      length: strlen($binary)
-    );
-  }
 
   /**
    * Transform raw response to ReportOutputDto
@@ -79,5 +69,45 @@ final class SharedTransformer implements SharedTransformerInterface
   public function transformSuccess(): SuccessOutputDto
   {
     return new SuccessOutputDto(bool: true);
+  }
+
+  public function transformListAnomalies(object $dataSourceResult): ListAnomaliesOuputDto
+  {
+    $anomaliesRaw = is_array($rawAnomalies = $dataSourceResult->ListeInfosDepannages->infosDepannage ?? null) ?
+      $rawAnomalies : ($rawAnomalies ? [$rawAnomalies] : []);
+
+    $entities = $this->entityFactory->createManyAnomaliesFromRawList($anomaliesRaw);
+
+    return $this->outputFactory->createListAnomalies($entities);
+  }
+
+  public function transformListDysfonctionnements(object $dataSourceResult): ListDysfonctionnementsOuputDto
+  {
+    $dysfonctionnementsRaw = is_array($rawDysfonctionnement = $dataSourceResult->ListeInfosDepannages->infosDepannage ?? null) ?
+      $rawDysfonctionnement : ($rawDysfonctionnement ? [$rawDysfonctionnement] : []);
+
+    $entities = $this->entityFactory->createManyDysfonctionnementsFromRawList($dysfonctionnementsRaw);
+
+    return $this->outputFactory->createListDysfonctionnements($entities);
+  }
+
+  public function transformListFuites(object $dataSourceResult): ListFuitesOuputDto
+  {
+    $fuitesRaw = is_array($rawFuite = $dataSourceResult->ListeInfosDepannages->infosDepannage ?? null) ?
+      $rawFuite : ($rawFuite ? [$rawFuite] : []);
+
+    $entities = $this->entityFactory->createManyFuitesFromRawList($fuitesRaw);
+
+    return $this->outputFactory->createListFuites($entities);
+  }
+
+  public function transformListInterventions(object $dataSourceResult): ListInternetionsOutputDto
+  {
+    $interventionsRaw = is_array($rawIntervention = $dataSourceResult->ListeInfosDepannages->infosDepannage ?? null) ?
+      $rawIntervention : ($rawIntervention ? [$rawIntervention] : []);
+
+    $entities = $this->entityFactory->createManyInterventionsFromRawList($interventionsRaw);
+
+    return $this->outputFactory->createListInterventions($entities);
   }
 }
