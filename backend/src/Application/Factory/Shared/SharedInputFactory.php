@@ -9,10 +9,16 @@ use App\Application\Dto\Input\Shared\GetDetailsDepannageInpuDto;
 use App\Application\Dto\Input\Shared\GetExcelInpuDto;
 use App\Application\Dto\Input\Shared\GetReportByTokenInputDto;
 use App\Application\Dto\Input\Shared\GetReportInputDto;
+use App\Application\Dto\Input\Shared\GetByIdStringInputDto;
 use App\Application\Dto\Input\Shared\ReportTokenInputDto;
 
 final class SharedInputFactory
 {
+  public function createIdStringFromRoute(Request $request): GetByIdStringInputDto
+  {
+    return new GetByIdStringInputDto((string) $request->attributes->get('id'));
+  }
+
   public function createGetDetailsDepannageFromRequest(Request $request): GetDetailsDepannageInpuDto
   {
     return new GetDetailsDepannageInpuDto((string) $request->query->get('pkDepannage'));

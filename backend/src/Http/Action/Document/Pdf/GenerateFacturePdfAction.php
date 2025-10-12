@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Action\Facture;
+namespace App\Http\Action\Document\Pdf;
 
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
-use App\Application\UseCase\Facture\GenerateFacturePdfUseCase;
+use App\Application\UseCase\Document\Pdf\GenerateFacturePdfUseCase;
 use App\Application\Factory\Shared\SharedInputFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 
 #[AsController]
-#[Route(path: '/facture/{pkFacture}/generate', name: 'facture_generate', methods: ['GET'])]
+#[Route(path: '/document/facture/{pkFacture}/generate', name: 'facture_generate', methods: ['GET'])]
 final class GenerateFacturePdfAction extends AbstractAction implements ActionInterface
 {
   public function __construct(

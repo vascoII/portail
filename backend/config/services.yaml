@@ -68,11 +68,10 @@ services:
         - '@App\Infrastructure\Service\DataSource\ResponseProcessor\StringResponseProcessor'
         - '@App\Infrastructure\Service\DataSource\ResponseProcessor\BoolResponseProcessor'
 
-
   # JWT Middleware
   App\Http\Middleware\JwtAuthMiddleware:
     arguments:
-      $securityLogger: '@monolog.logger.security'
+      $securityLogger: "@monolog.logger.security"
     tags:
       - {
           name: kernel.event_listener,
@@ -108,7 +107,7 @@ services:
   # HTTP Logger for PdfResponder
   App\Http\Responder\PdfResponder:
     arguments:
-      $httpLogger: "@monolog.logger.http"    
+      $httpLogger: "@monolog.logger.http"
 
   # HTTP Event Listeners
   App\Http\EventListener\GlobalExceptionListener:
@@ -171,8 +170,7 @@ services:
     tags:
       - { name: kernel.event_listener, event: kernel.exception }
 
-
-  #Monolog Custom formater 
+  #Monolog Custom formater
   monolog.formatter.custom_line:
     class: Monolog\Formatter\LineFormatter
     arguments:
@@ -180,57 +178,58 @@ services:
       $dateFormat: "Y-m-d H:i:s"
 
   #Responder for each Action (JsonResponse, pdfResponse)
-  #Facture
-  App\Http\Action\Facture\ListFacturesAction:
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'
-  App\Http\Action\Facture\GenerateFacturePdfAction:
-    arguments:
-      $responder: '@App\Http\Responder\PdfResponder'  
-
-  #Intervention
-  App\Http\Action\Intervention\GenerateInterventionPdfAction:
+  #Document
+  App\Http\Action\Document\Pdf\:
+    resource: "../src/Http/Action/Document/Pdf/*"
     arguments:
       $responder: '@App\Http\Responder\PdfResponder'
-  
+  App\Http\Action\Document\Excel\:
+    resource: "../src/Http/Action/Document/Excel/*"
+    arguments:
+      $responder: '@App\Http\Responder\ExcelResponder'
+
+  #Facture
+  App\Http\Action\Facture\:
+    resource: "../src/Http/Action/Facture/*"
+    arguments:
+      $responder: '@App\Http\Responder\JsonResponder'
+
   #Operator
   App\Http\Action\Operator\:
-    resource: '../src/Http/Action/Operator/*' 
+    resource: "../src/Http/Action/Operator/*"
     arguments:
-      $responder: '@App\Http\Responder\JsonResponder'  
+      $responder: '@App\Http\Responder\JsonResponder'
 
   #Immeuble
   App\Http\Action\Immeuble\:
-    resource: '../src/Http/Action/Immeuble/*'
+    resource: "../src/Http/Action/Immeuble/*"
     arguments:
-      $responder: '@App\Http\Responder\JsonResponder'    
+      $responder: '@App\Http\Responder\JsonResponder'
 
   #ReportToken
   App\Http\Action\ReportToken\ReportAction:
     arguments:
-      $responder: '@App\Http\Responder\PdfResponder'      
-      
+      $responder: '@App\Http\Responder\PdfResponder'
+
   #Security
   App\Http\Action\Security\:
-    resource: '../src/Http/Action/Security/*'
+    resource: "../src/Http/Action/Security/*"
     arguments:
-      $responder: '@App\Http\Responder\JsonResponder'  
-         
-                                                                                                                                                                   
-    
+      $responder: '@App\Http\Responder\JsonResponder'
+
   #AdminHydrator
   App\Infrastructure\Service\Hydrator\AdminHydrator:
     arguments:
-      $superLoginID: '%env(SUPER_LOGIN_ID)%'
-      $superPassword: '%env(SUPER_PASSWORD)%'
-      $adminSessionId: '%env(ADMIN_SESSION_ID)%'    
+      $superLoginID: "%env(SUPER_LOGIN_ID)%"
+      $superPassword: "%env(SUPER_PASSWORD)%"
+      $adminSessionId: "%env(ADMIN_SESSION_ID)%"
 
-  #SharedHydrator   
+  #SharedHydrator
   App\Infrastructure\Service\Hydrator\SharedHydrator:
     arguments:
-      $superLoginID: '%env(SUPER_LOGIN_ID)%'
-      $superPassword: '%env(SUPER_PASSWORD)%'
-      $adminSessionId: '%env(ADMIN_SESSION_ID)%' 
+      $superLoginID: "%env(SUPER_LOGIN_ID)%"
+      $superPassword: "%env(SUPER_PASSWORD)%"
+      $adminSessionId: "%env(ADMIN_SESSION_ID)%"
 
   #ResponseProcessor
   App\Infrastructure\Service\DataSource\ResponseProcessor\ObjectResponseProcessor: ~
@@ -242,5 +241,3 @@ services:
     autowire: true
     autoconfigure: true
     public: false
-
-    

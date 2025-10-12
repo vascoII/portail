@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Application\UseCase\Intervention;
+namespace App\Application\UseCase\Document;
 
 use App\Application\Dto\Input\Shared\GetReportInputDto;
 use App\Application\Dto\Output\Shared\GetReportOutputDto;

@@ -1,0 +1,21 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Application\UseCase\Document;
+
+use App\Application\Dto\Input\Shared\GetByIdStringInputDto;
+use App\Application\Dto\Output\Shared\SuccessOutputDto;
+use App\Application\Service\DataProvider\DocumentDataProviderInterface;
+
+final class GenerateLogementInterventionsExcelUseCase
+{
+  public function __construct(
+    private readonly DocumentDataProviderInterface $serviceDataProvider
+  ) {}
+
+  public function execute(GetByIdStringInputDto $inputDto): SuccessOutputDto
+  {
+    return $this->serviceDataProvider->generateLogementInterventionsExcelService($inputDto);
+  }
+}

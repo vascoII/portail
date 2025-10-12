@@ -17,10 +17,10 @@ use App\Application\Factory\Shared\SharedOutputFactory;
 final class SharedTransformer implements SharedTransformerInterface
 {
   public function __construct(
-      private readonly SharedEntityFactory $entityFactory,
-      private readonly SharedOutputFactory $outputFactory
-   ) {}
-   
+    private readonly SharedEntityFactory $entityFactory,
+    private readonly SharedOutputFactory $outputFactory
+  ) {}
+
   /**
    * Transform raw response to GetExcelOutputDto
    */
@@ -40,7 +40,7 @@ final class SharedTransformer implements SharedTransformerInterface
    */
   public function transformGetReport(string $dataSourceResult, string $filename): GetReportOutputDto
   {
-    return new GetReportOutputDto (
+    return new GetReportOutputDto(
       data: $dataSourceResult,
       filename: $filename,
       length: strval(strlen($dataSourceResult))
@@ -49,31 +49,35 @@ final class SharedTransformer implements SharedTransformerInterface
 
   public function transformPost(bool $dataSourceResult): SuccessOutputDto
   {
-      return new SuccessOutputDto (bool: $dataSourceResult);   
+    return new SuccessOutputDto(bool: $dataSourceResult);
   }
 
   public function transformPut(object $dataSourceResult): SuccessOutputDto
   {
-      return new SuccessOutputDto (bool: empty($dataSourceResult->Erreur) ? true : false);
+    return new SuccessOutputDto(bool: empty($dataSourceResult->Erreur) ? true : false);
   }
 
   public function transformPatch(object $dataSourceResult): SuccessOutputDto
   {
-      return new SuccessOutputDto (bool: empty($dataSourceResult->Erreur) ? true : false);
+    return new SuccessOutputDto(bool: empty($dataSourceResult->Erreur) ? true : false);
   }
 
   public function transformDelete(object $dataSourceResult): SuccessOutputDto
   {
-      return new SuccessOutputDto (bool: empty($dataSourceResult->Erreur) ? true : false);
+    return new SuccessOutputDto(bool: empty($dataSourceResult->Erreur) ? true : false);
   }
 
   public function transformGetUser(object $dataSourceResult): UserDto
   {
-      $operatorsRaw = $dataSourceResult->GetUserResult;
+    $operatorsRaw = $dataSourceResult->GetUserResult;
 
-      $entity = $this->entityFactory->createUserFromRaw($operatorsRaw);
+    $entity = $this->entityFactory->createUserFromRaw($operatorsRaw);
 
-      return $this->outputFactory->createUser($entity);  
+    return $this->outputFactory->createUser($entity);
   }
 
+  public function transformSuccess(): SuccessOutputDto
+  {
+    return new SuccessOutputDto(bool: true);
+  }
 }
