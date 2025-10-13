@@ -130,6 +130,7 @@ final class SharedTransformer implements SharedTransformerInterface
       $entitiesToArray = [];
       foreach ($immeublesRaw as $immeuble) {
         $entitiesToArray[] = [
+            "pkImmeuble" => $immeuble->Immeuble->PkImmeuble,
             "nbLogements" => $immeuble->NbLogements,
             "nbAppareils" => $immeuble->NbAppareils,
             "nbCompteursEC" => $immeuble->NbCompteursEC,
