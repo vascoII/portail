@@ -6,9 +6,10 @@ namespace App\Application\Dto\Output\Logement;
 
 use App\Domain\Entity\Logement;
 
-final class GetLogementOutputDto
+final class LogementOutputDto
 {
+  /** @param Logement $logementDto */
   public function __construct(
-    public readonly Logement $logement
+    public readonly Logement $logementDto
   ) {}
 }

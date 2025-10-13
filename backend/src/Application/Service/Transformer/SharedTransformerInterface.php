@@ -41,4 +41,7 @@ interface SharedTransformerInterface
   public function transformGetImmeubleRepart(object $dataSourceResult): ListIndicatorsOuputDto;
   public function transformGetImmeubleSerieConsosCompteurGeneral(object $dataSourceResult): ListIndicatorsOuputDto;
   public function transformGetImmeubleSerieConsosEAU(object $dataSourceResult): ListIndicatorsOuputDto;
+
+  public function transformListLogementsIndicators(object $dataSourceResult): ListIndicatorsOuputDto;
+  public function transformGetLogementIndicators(object $dataSourceResult): ListIndicatorsOuputDto;
 }

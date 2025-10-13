@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Service\DataProvider;
 
-use App\Application\Dto\Output\Logement\ListLogementsOutputDto;
+use App\Application\Dto\Output\Logement\ListLogementsOuputDto;
 use App\Application\Service\DataProvider\LogementDataProviderInterface;
 use App\Application\Dto\Input\Shared\GetByIdIntInputDto;
-use App\Application\Dto\Output\Logement\GetLogementOutputDto;
+use App\Application\Dto\Output\Logement\LogementOutputDto;
 use App\Application\Dto\Output\Shared\ListAnomaliesOuputDto;
 use App\Application\Dto\Output\Shared\ListInternetionsOutputDto;
 use App\Application\Dto\Output\Shared\ListFuitesOuputDto;
 use App\Application\Dto\Output\Shared\ListDysfonctionnementsOuputDto;
-use App\Application\Dto\Output\Logement\ListLogementsOuputDto;
+use App\Application\Dto\Output\Shared\ListIndicatorsOuputDto;
 
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
@@ -36,14 +36,12 @@ final class LogementDataProvider implements LogementDataProviderInterface
     return AuthenticationContext::fromAuthService($this->authService);
   }
 
-  public function listLogementsService(GetByIdIntInputDto $inputDto): ListLogementsOutputDto
+  public function listLogementsService(GetByIdIntInputDto $inputDto): ListLogementsOuputDto
   {
-    $authContext = $this->getAuthContext();
-
-    $cacheKey = "logement_list:$authContext->pkUser";
+    $cacheKey = "logement_list:$inputDto->id";
     $cachedDto = $this->cache->get($cacheKey);
 
-    if ($cachedDto instanceof ListLogementsOutputDto) {
+    if ($cachedDto instanceof ListLogementsOuputDto) {
       return $cachedDto;
     }
 
@@ -55,12 +53,12 @@ final class LogementDataProvider implements LogementDataProviderInterface
     return $dto;
   }
 
-  public function getLogementService(GetByIdIntInputDto $inputDto): GetLogementOutputDto
+  public function getLogementService(GetByIdIntInputDto $inputDto): LogementOutputDto
   {
     $cacheKey = "logement_get:$inputDto->id";
     $cachedDto = $this->cache->get($cacheKey);
 
-    if ($cachedDto instanceof GetLogementOutputDto) {
+    if ($cachedDto instanceof LogementOutputDto) {
       return $cachedDto;
     }
 
@@ -70,6 +68,23 @@ final class LogementDataProvider implements LogementDataProviderInterface
     $this->cache->set($cacheKey, $dto);
 
     return $dto;
+  }
+
+  public function getLogementIndicatorsService(GetByIdIntInputDto $inputDto): ListIndicatorsOuputDto
+  {
+      $cacheKey = "logement_indicators_get:$inputDto->id";
+      $cachedDto = $this->cache->get($cacheKey);
+
+      if ($cachedDto instanceof ListIndicatorsOuputDto) {
+        return $cachedDto;
+      }
+
+      $rawData = $this->logementDataSource->fetchGetLogement($inputDto);
+      $dto = $this->sharedTransformer->transformGetLogementIndicators($rawData);
+
+      $this->cache->set($cacheKey, $dto);
+
+      return $dto;
   }
 
   public function listAnomaliesByLogementService(GetByIdIntInputDto $inputDto): ListAnomaliesOuputDto
@@ -98,7 +113,7 @@ final class LogementDataProvider implements LogementDataProviderInterface
       return $cachedDto;
     }
 
-    $rawData = $this->logementDataSource->fetchListDysfonctionnementsByLogement($inputDto);
+    $rawData = $this->logementDataSource->fetchListDysfonctionnementsByLogement($inputDto); dd($rawData);
     $dto = $this->sharedTransformer->transformListDysfonctionnements($rawData);
 
     $this->cache->set($cacheKey, $dto);

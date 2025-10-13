@@ -12,7 +12,7 @@ use App\Application\Dto\Output\Shared\ListAnomaliesOuputDto;
 use App\Application\Dto\Output\Shared\ListDysfonctionnementsOuputDto;
 use App\Application\Dto\Output\Shared\ListFuitesOuputDto;
 use App\Application\Dto\Output\Shared\ListInternetionsOutputDto;
-use App\Application\Dto\Output\Immeuble\ListLogementsOuputDto;
+use App\Application\Dto\Output\Logement\ListLogementsOuputDto;
 use App\Application\Dto\Output\Shared\ListIndicatorsOuputDto;
 
 use App\Application\Service\Auth\AuthServiceInterface;
@@ -20,6 +20,7 @@ use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Application\Service\DataSource\ImmeubleDataSourceInterface;
 use App\Infrastructure\Service\Redis\RedisService;
 use App\Application\Service\Transformer\ImmeubleTransformerInterface;
+use App\Application\Service\Transformer\LogementTransformerInterface;
 use App\Application\Service\Transformer\SharedTransformerInterface;
 
 final class ImmeubleDataProvider implements ImmeubleDataProviderInterface
@@ -28,6 +29,7 @@ final class ImmeubleDataProvider implements ImmeubleDataProviderInterface
     private RedisService $cache,
     private ImmeubleDataSourceInterface $immeubleDataSource,
     private ImmeubleTransformerInterface $immeubleTransformer,
+    private LogementTransformerInterface $logementTransformer,
     private SharedTransformerInterface $sharedTransformer,
     private readonly AuthServiceInterface $authService
   ) {}
@@ -332,18 +334,35 @@ final class ImmeubleDataProvider implements ImmeubleDataProviderInterface
 
   public function listLogementsByImmeubleService(GetByIdIntInputDto $inputDto): ListLogementsOuputDto
   {
-    $cacheKey = "immeuble_ligements_list:$inputDto->id";
+    $cacheKey = "immeuble_logements_list:$inputDto->id";
     $cachedDto = $this->cache->get($cacheKey);
 
     if ($cachedDto instanceof ListLogementsOuputDto) {
       return $cachedDto;
     }
 
-    $rawData = $this->immeubleDataSource->fetchListLogementsByImmeuble($inputDto);
-    $dto = $this->immeubleTransformer->transformListLogementsByImmeuble($rawData);
+    $rawData = $this->immeubleDataSource->fetchListLogementsByImmeuble($inputDto); 
+    $dto = $this->logementTransformer->transformListLogements($rawData);
 
     $this->cache->set($cacheKey, $dto);
 
     return $dto;
+  }
+
+  public function listLogementsIndicatorsByImmeubleService(GetByIdIntInputDto $inputDto): ListIndicatorsOuputDto
+  {
+      $cacheKey = "immeuble_logements_indicators_list:$inputDto->id";
+      $cachedDto = $this->cache->get($cacheKey);
+
+      if ($cachedDto instanceof ListIndicatorsOuputDto) {
+        return $cachedDto;
+      }
+
+      $rawData = $this->immeubleDataSource->fetchListLogementsByImmeuble($inputDto); 
+      $dto = $this->sharedTransformer->transformListLogementsIndicators($rawData);
+
+      $this->cache->set($cacheKey, $dto);
+
+      return $dto;
   }
 }

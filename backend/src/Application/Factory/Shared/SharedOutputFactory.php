@@ -51,4 +51,9 @@ final class SharedOutputFactory
     {
         return new ListIndicatorsOuputDto($listIndicators);
     }
+
+    public function createListLogementsIndicators(array $listIndicators): ListIndicatorsOuputDto
+    {
+        return new ListIndicatorsOuputDto($listIndicators);
+    }
 }

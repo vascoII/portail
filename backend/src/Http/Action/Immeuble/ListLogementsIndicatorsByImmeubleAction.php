@@ -7,7 +7,7 @@ namespace App\Http\Action\Immeuble;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
-use App\Application\UseCase\Immeuble\ListLogementsByImmeubleUseCase;
+use App\Application\UseCase\Immeuble\ListLogementsIndicatorsByImmeubleUseCase;
 use App\Application\Factory\Shared\SharedInputFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,12 +15,12 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 
 #[AsController]
-#[Route(path: '/immeuble/{id}/logements', name: 'immeuble_logements_list', methods: ['GET'])]
-final class ListLogementsByImmeubleAction extends AbstractAction implements ActionInterface
+#[Route(path: '/immeuble/{id}/logements_indicators', name: 'immeuble_logements_indicators_list', methods: ['GET'])]
+final class ListLogementsIndicatorsByImmeubleAction extends AbstractAction implements ActionInterface
 {
   public function __construct(
     private readonly ResponderInterface $responder,
-    private readonly ListLogementsByImmeubleUseCase $useCase,
+    private readonly ListLogementsIndicatorsByImmeubleUseCase $useCase,
     private readonly SharedInputFactory $inputFactory
   ) {}
 

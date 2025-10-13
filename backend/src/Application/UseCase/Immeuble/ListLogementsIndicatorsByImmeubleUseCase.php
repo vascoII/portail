@@ -5,17 +5,17 @@ declare(strict_types=1);
 namespace App\Application\UseCase\Immeuble;
 
 use App\Application\Dto\Input\Shared\GetByIdIntInputDto;
-use App\Application\Dto\Output\Logement\ListLogementsOuputDto;
+use App\Application\Dto\Output\Shared\ListIndicatorsOuputDto;
 use App\Application\Service\DataProvider\ImmeubleDataProviderInterface;
 
-final class ListLogementsByImmeubleUseCase
+final class ListLogementsIndicatorsByImmeubleUseCase
 {
   public function __construct(
     private readonly ImmeubleDataProviderInterface $serviceDataProvider
   ) {}
 
-  public function execute(GetByIdIntInputDto $inputDto): ListLogementsOuputDto
+  public function execute(GetByIdIntInputDto $inputDto): ListIndicatorsOuputDto
   {
-    return $this->serviceDataProvider->listLogementsByImmeubleService($inputDto);
+    return $this->serviceDataProvider->listLogementsIndicatorsByImmeubleService($inputDto);
   }
 }

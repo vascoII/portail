@@ -94,8 +94,8 @@ final class ImmeubleSoap extends Soap implements ImmeubleDataSourceInterface
   {
       $authContext = $this->getAuthContext();
       $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-      $soapRequest = $this->hydrator->hydrateListLogementsByImmeuble($inputDto); 
-      return $this->safeCall('GetInfosLogements', $soapRequest);
+      $soapRequest = $this->hydrator->hydrateListLogementsByImmeuble($inputDto);
+      return $this->safeCall('GetInfosLogementsByImmeuble', $soapRequest);
   }
 
   

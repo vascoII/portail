@@ -61,6 +61,15 @@ final class ImmeubleHydrator
     {
       return (object) [
         'PkImmeuble' => $inputDto->id,
+        'ParamsFiltres' => "",
+        'ParamsInfos' => "",
+      ];
+    }
+
+    public function hydrateListDysfonctionnementsByLogement(GetByIdIntInputDto $inputDto): object
+    {
+      return (object) [
+        'PkImmeuble' => $inputDto->id,
         'ParamsFiltres' => ""
       ];
     }

@@ -511,4 +511,60 @@ final class SharedTransformer implements SharedTransformerInterface
 
       return $this->outputFactory->createListImmeublesIndicators($entityToArray);
   }
+
+  public function transformListLogementsIndicators(object $dataSourceResult): ListIndicatorsOuputDto
+  { 
+
+      $logementsRaw = is_array($rawLogement = $dataSourceResult->ListeInfosLogements->infosLogement ?? null) ?
+         $rawLogement : ($rawLogement ? [$rawLogement] : []);
+
+      $entitiesToArray = [];
+      foreach ($logementsRaw as $logement) {
+        $entitiesToArray[] = [
+            "pkImmeuble" => $logement->Immeuble->PkImmeuble,
+            "pkLogement" => $logement->Logement->PkLogement,
+            "nbAppareils" => $logement->NbAppareils,
+            "nbCompteursEC" => $logement->NbCompteursEC,
+            "nbCompteursEF" => $logement->NbCompteursEF,
+            "nbCompteursRepart" => $logement->NbCompteursRepart,
+            "nbCompteursCET" => $logement->NbCompteursCET,
+            "nbCompteursCapteur" => $logement->NbCompteursCapteur,
+            "nbCompteursElect" => $logement->NbCompteursElect,
+            "nbCompteursGaz" => $logement->NbCompteursGaz,
+            "nbFuites" => $logement->NbFuites,
+            "nbDepannages" => $logement->NbDepannages,
+            "nbDysfonctionnements" => $logement->NbDysfonctionnements,
+            "nbAnomalies" => $logement->NbAnomalies,
+            "nbTicketsInter" => $logement->NbTicketsInter,
+            "ticketsInterEnabled" => $logement->TicketsInterEnabled,
+            "listeAppareils" => $logement->ListeAppareils  
+        ];
+      }
+      //$entities = $this->entityFactory->createManyImmeublesIndocatorsFromRawList($immeublesRaw);
+
+      return $this->outputFactory->createListLogementsIndicators($entitiesToArray);
+  }
+
+  public function transformGetLogementIndicators(object $dataSourceResult): ListIndicatorsOuputDto
+  {
+      $entityToArray = [
+            "pkLogement" => $dataSourceResult->Logement->PkLogement,
+            "NbAppareils" => $dataSourceResult->NbAppareils,
+            "NbCompteursEC" => $dataSourceResult->NbCompteursEC,
+            "NbCompteursEF" => $dataSourceResult->NbCompteursEF,
+            "NbCompteursRepart" => $dataSourceResult->NbCompteursRepart,
+            "NbCompteursCET" => $dataSourceResult->NbCompteursCET,
+            "NbCompteursCapteur" => $dataSourceResult->NbCompteursCapteur,
+            "NbCompteursElect" => $dataSourceResult->NbCompteursElect,
+            "NbCompteursGaz" => $dataSourceResult->NbCompteursGaz,
+            "NbDepannages" => $dataSourceResult->NbDepannages,
+            "NbDepannagesTotal" => $dataSourceResult->NbDepannagesTotal,
+            "NbDysfonctionnements" => $dataSourceResult->NbDysfonctionnements,
+            "NbTicketsInter" => $dataSourceResult->NbTicketsInter,
+            "TicketsInterEnabled" => $dataSourceResult->TicketsInterEnabled
+        ];
+      //$entities = $this->entityFactory->createManyImmeublesIndocatorsFromRawList($immeublesRaw);
+
+      return $this->outputFactory->createListLogementsIndicators($entityToArray);
+  }
 }

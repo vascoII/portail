@@ -12,8 +12,7 @@ use App\Application\Dto\Output\Shared\ListDysfonctionnementsOuputDto;
 use App\Application\Dto\Output\Shared\ListFuitesOuputDto;
 use App\Application\Dto\Output\Shared\ListInternetionsOutputDto;
 use App\Application\Dto\Output\Shared\ListIndicatorsOuputDto;
-use App\Application\Dto\Output\Immeuble\ListLogementsOuputDto;
-
+use App\Application\Dto\Output\Logement\ListLogementsOuputDto;
 
 interface ImmeubleDataProviderInterface
 {
@@ -37,5 +36,7 @@ interface ImmeubleDataProviderInterface
   public function listDysfonctionnementsByImmeubleService(GetByIdIntInputDto $inputDto): ListDysfonctionnementsOuputDto;
   public function listFuitesByImmeubleService(GetByIdIntInputDto $inputDto): ListFuitesOuputDto;
   public function listInterventionsByImmeubleService(GetByIdIntInputDto $inputDto): ListInternetionsOutputDto;
+
   public function listLogementsByImmeubleService(GetByIdIntInputDto $inputDto): ListLogementsOuputDto;
+  public function listLogementsIndicatorsByImmeubleService(GetByIdIntInputDto $inputDto): ListIndicatorsOuputDto;
 }

@@ -1,0 +1,19 @@
+meta {
+  name: ListLogementsIndicatorsByImmeubleAction
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{localhost_backend}}/api/immeuble/4423/logements_indicators
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bearToken}}
+}
+
+settings {
+  encodeUrl: true
+}
