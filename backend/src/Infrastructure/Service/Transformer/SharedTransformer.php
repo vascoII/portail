@@ -15,7 +15,7 @@ use App\Application\Dto\Output\Shared\ListAlertesOuputDto;
 use App\Application\Factory\Shared\SharedEntityFactory;
 use App\Application\Factory\Shared\SharedOutputFactory;
 use App\Application\Service\Transformer\SharedTransformerInterface;
-
+use App\Application\Dto\Output\Shared\ListIndicatorsOuputDto;
 
 
 final class SharedTransformer implements SharedTransformerInterface
@@ -119,5 +119,35 @@ final class SharedTransformer implements SharedTransformerInterface
     $entities = $this->entityFactory->createManyAlertesFromRawList($alertesRaw);
 
     return $this->outputFactory->createListAlertes($entities);
+  }
+
+
+  public function transformListImmeublesIndicators(object $dataSourceResult): ListIndicatorsOuputDto
+  {
+      $immeublesRaw = is_array($rawImmeuble = $dataSourceResult->ListeInfosImmeubles->infosImmeuble ?? null) ?
+          $rawImmeuble : ($rawImmeuble ? [$rawImmeuble] : []);
+
+      $entitiesToArray = [];
+      foreach ($immeublesRaw as $immeuble) {
+        $entitiesToArray[] = [
+            "nbLogements" => $immeuble->NbLogements,
+            "nbAppareils" => $immeuble->NbAppareils,
+            "nbCompteursEC" => $immeuble->NbCompteursEC,
+            "nbCompteursEF" => $immeuble->NbCompteursEF,
+            "nbCompteursRepart" => $immeuble->NbCompteursRepart,
+            "nbCompteursCET" => $immeuble->NbCompteursCET,
+            "nbCompteursCapteur" => $immeuble->NbCompteursCapteur,
+            "nbCompteursElect" => $immeuble->NbCompteursElect,
+            "nbCompteursGaz" => $immeuble->NbCompteursGaz,
+            "nbFuites" => $immeuble->NbFuites,
+            "nbDepannages" => $immeuble->NbDepannages,
+            "nbDysfonctionnements" => $immeuble->NbDysfonctionnements,
+            "nbAnomalies" => $immeuble->NbAnomalies,
+            "nbChantiers" => $immeuble->NbChantiers   
+        ];
+      }
+      //$entities = $this->entityFactory->createManyImmeublesIndocatorsFromRawList($immeublesRaw);
+
+      return $this->outputFactory->createListImmeublesIndicators($entitiesToArray);
   }
 }

@@ -13,6 +13,7 @@ use App\Application\Dto\Output\Shared\ListDysfonctionnementsOuputDto;
 use App\Application\Dto\Output\Shared\ListFuitesOuputDto;
 use App\Application\Dto\Output\Shared\ListInternetionsOutputDto;
 use App\Application\Dto\Output\Immeuble\ListLogementsOuputDto;
+use App\Application\Dto\Output\Shared\ListIndicatorsOuputDto;
 
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
@@ -55,6 +56,24 @@ final class ImmeubleDataProvider implements ImmeubleDataProviderInterface
     return $dto;
   }
 
+  public function listImmeublesIndicatorsService(): ListIndicatorsOuputDto
+  {
+      $authContext = $this->getAuthContext();
+
+      $cacheKey = "immeuble_indicators_list:$authContext->pkUser";
+      $cachedDto = $this->cache->get($cacheKey);
+
+      if ($cachedDto instanceof ListIndicatorsOuputDto) {
+        return $cachedDto;
+      }
+
+      $rawData = $this->immeubleDataSource->fetchGetImmeublesIndicators();
+      $dto = $this->sharedTransformer->transformListImmeublesIndicators($rawData);
+
+      $this->cache->set($cacheKey, $dto);
+
+      return $dto;
+  }
   public function getImmeubleService(GetByIdIntInputDto $inputDto): GetImmeubleOutputDto
   {
     $cacheKey = "immeuble_get:$inputDto->id";

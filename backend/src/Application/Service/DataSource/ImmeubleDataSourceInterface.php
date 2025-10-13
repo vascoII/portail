@@ -10,6 +10,7 @@ interface ImmeubleDataSourceInterface
 {
 
     public function fetchGetImmeubles(): object;
+    public function fetchGetImmeublesIndicators(): object;
     public function fetchGetImmeuble(GetByIdIntInputDto $inputDto): object;
     public function fetchListAnomaliesByImmeuble(GetByIdIntInputDto $inputDto): object;
     public function fetchListDysfonctionnementsByImmeuble(GetByIdIntInputDto $inputDto): object;

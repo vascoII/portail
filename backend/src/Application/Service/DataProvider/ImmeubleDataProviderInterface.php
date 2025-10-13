@@ -11,12 +11,15 @@ use App\Application\Dto\Output\Shared\ListAnomaliesOuputDto;
 use App\Application\Dto\Output\Shared\ListDysfonctionnementsOuputDto;
 use App\Application\Dto\Output\Shared\ListFuitesOuputDto;
 use App\Application\Dto\Output\Shared\ListInternetionsOutputDto;
+use App\Application\Dto\Output\Shared\ListIndicatorsOuputDto;
 use App\Application\Dto\Output\Immeuble\ListLogementsOuputDto;
+
 
 interface ImmeubleDataProviderInterface
 {
 
   public function listImmeublesService(): ListImmeublesOutputDto;
+  public function listImmeublesIndicatorsService(): ListIndicatorsOuputDto;
   public function getImmeubleService(GetByIdIntInputDto $inputDto): GetImmeubleOutputDto;
   public function listAnomaliesByImmeubleService(GetByIdIntInputDto $inputDto): ListAnomaliesOuputDto;
   public function listDysfonctionnementsByImmeubleService(GetByIdIntInputDto $inputDto): ListDysfonctionnementsOuputDto;

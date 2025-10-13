@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Application\Factory\Shared;
 
 use App\Application\Dto\Output\Shared\UserDto;
+use App\Application\Dto\Output\Shared\ListIndicatorsOuputDto;
 use App\Domain\Entity\User;
 
 final class SharedOutputFactory 
@@ -44,5 +45,10 @@ final class SharedOutputFactory
             showChgtOccupant: $operator->showChgtOccupant,
             showChantiers: $operator->showChantiers
         );
+    }
+
+    public function createListImmeublesIndicators(array $listIndicators): ListIndicatorsOuputDto
+    {
+        return new ListIndicatorsOuputDto($listIndicators);
     }
 }

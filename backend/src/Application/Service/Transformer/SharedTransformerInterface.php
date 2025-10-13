@@ -12,6 +12,7 @@ use App\Application\Dto\Output\Shared\ListDysfonctionnementsOuputDto;
 use App\Application\Dto\Output\Shared\ListFuitesOuputDto;
 use App\Application\Dto\Output\Shared\ListInternetionsOutputDto;
 use App\Application\Dto\Output\Shared\ListAlertesOuputDto;
+use App\Application\Dto\Output\Shared\ListIndicatorsOuputDto;
 
 interface SharedTransformerInterface
 {
@@ -28,4 +29,6 @@ interface SharedTransformerInterface
   public function transformListFuites(object $dataSourceResult): ListFuitesOuputDto;
   public function transformListInterventions(object $dataSourceResult): ListInternetionsOutputDto;
   public function transformListAlertes(object $dataSourceResult): ListAlertesOuputDto;
+
+  public function transformListImmeublesIndicators(object $dataSourceResult): ListIndicatorsOuputDto;
 }
