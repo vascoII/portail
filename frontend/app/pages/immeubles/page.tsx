@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import BaseLayout from "../../components/Layout/BaseLayout";
 import Breadcrumb from "../../components/Layout/Breadcrumb";
 import { ImmeubleFilters, ImmeubleList } from "../../components/Immeuble";
+import IndicatorsPanel from "../../components/Immeuble/IndicatorsPanel";
 import { useImmeubles } from "../../hooks/useImmeubles";
 
 interface FilterState {
@@ -18,7 +19,19 @@ interface FilterState {
 }
 
 const ImmeublesListPage: React.FC = () => {
-  const { immeubles, loading, error } = useImmeubles();
+  const {
+    immeubles,
+    buildingsLoading,
+    buildingsError,
+    indicators,
+    indicatorsLoading,
+    indicatorsError,
+    loading,
+    error,
+    refetchBuildings,
+    refetchIndicators,
+  } = useImmeubles();
+
   const [filters, setFilters] = useState<FilterState>({
     energie: "",
     fuites: false,
@@ -44,14 +57,30 @@ const ImmeublesListPage: React.FC = () => {
           Liste des immeubles
         </h2>
 
+        {/* Filters */}
         <ImmeubleFilters onFiltersChange={setFilters} />
 
-        <ImmeubleList
-          immeubles={immeubles}
-          filters={filters}
-          loading={loading}
-          error={error}
-        />
+        {/* Buildings List */}
+        <div className="mb-8">
+          <ImmeubleList
+            immeubles={immeubles}
+            filters={filters}
+            loading={loading}
+            error={error}
+            buildingsLoading={buildingsLoading}
+            buildingsError={buildingsError}
+          />
+        </div>
+
+        {/* Indicators Panel */}
+        <div className="mt-12">
+          <IndicatorsPanel
+            indicators={indicators}
+            loading={indicatorsLoading}
+            error={indicatorsError}
+            onRefresh={refetchIndicators}
+          />
+        </div>
       </div>
     </BaseLayout>
   );

@@ -1,128 +1,229 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import { useDataStore } from "../store/dataStore";
 
+// Types matching backend DTOs
 interface Immeuble {
-  id: string;
-  numero: string;
-  adresse: string;
-  ville: string;
-  cp: string;
-  nbLogements: number;
-  nbAnomalies: number;
-  nbDysfonctionnements: number;
-  nbInterventions: number;
-  nbFuite: number;
+  Immeuble: {
+    PkImmeuble: number;
+    Ref: string;
+    Numero: string;
+    Nom?: string;
+    Adresse1: string;
+    Adresse2?: string;
+    Adresse3?: string;
+    Cp: string;
+    Ville: string;
+  };
+  NbLogements: number;
+  NbAppareils: number;
+  NbCompteursEF: number;
+  NbCompteursEC: number;
+  NbCompteursRepart: number;
+  NbCompteursCET: number;
+  NbCompteursElect: number;
+  NbCompteursGaz: number;
+  NbFuites: number;
+  NbAnomalies: number;
+  NbDysfonctionnements: number;
+  NbDepannages: number;
+  NbChantiers: number;
+}
+
+interface Indicator {
+  pkImmeuble: number;
+  [key: string]: any; // Flexible structure for different indicator types
 }
 
 interface UseImmeublesReturn {
+  // Buildings data (sync)
   immeubles: Immeuble[];
+  buildingsLoading: boolean;
+  buildingsError: string | null;
+
+  // Indicators data (async)
+  indicators: Indicator[];
+  indicatorsLoading: boolean;
+  indicatorsError: string | null;
+
+  // Combined loading state
   loading: boolean;
   error: string | null;
+
+  // Actions
   refetch: () => void;
-  createImmeuble: (data: Partial<Immeuble>) => Promise<void>;
-  updateImmeuble: (id: string, data: Partial<Immeuble>) => Promise<void>;
-  deleteImmeuble: (id: string) => Promise<void>;
+  refetchBuildings: () => void;
+  refetchIndicators: () => void;
 }
 
+// Cache for indicators data
+let indicatorsCache: Indicator[] | null = null;
+let indicatorsCacheTime: number = 0;
+const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+
 export const useImmeubles = (): UseImmeublesReturn => {
+  const { loginData } = useDataStore();
+
+  // Buildings state (sync)
   const [immeubles, setImmeubles] = useState<Immeuble[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [buildingsLoading, setBuildingsLoading] = useState(false);
+  const [buildingsError, setBuildingsError] = useState<string | null>(null);
 
-  const fetchImmeubles = async () => {
-    setLoading(true);
-    setError(null);
+  // Indicators state (async)
+  const [indicators, setIndicators] = useState<Indicator[]>([]);
+  const [indicatorsLoading, setIndicatorsLoading] = useState(false);
+  const [indicatorsError, setIndicatorsError] = useState<string | null>(null);
 
-    try {
-      const response = await fetch("/api/immeubles");
-      if (response.ok) {
-        const data = await response.json();
-        setImmeubles(data);
-      } else {
-        throw new Error("Failed to fetch immeubles");
-      }
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "An error occurred");
-    } finally {
-      setLoading(false);
+  // Helper function to get auth headers
+  const getAuthHeaders = useCallback(() => {
+    if (!loginData?.tokenJwt) {
+      throw new Error("No authentication token available");
     }
-  };
+    return {
+      Authorization: `Bearer ${loginData.tokenJwt}`,
+      "Content-Type": "application/json",
+    };
+  }, [loginData?.tokenJwt]);
 
-  const createImmeuble = async (data: Partial<Immeuble>) => {
+  // Fetch buildings (sync call)
+  const fetchBuildings = useCallback(async () => {
+    if (!loginData?.tokenJwt) {
+      setBuildingsError("No authentication token available");
+      return;
+    }
+
+    setBuildingsLoading(true);
+    setBuildingsError(null);
+
     try {
-      const response = await fetch("/api/immeubles", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
+      const response = await fetch("http://localhost:8000/api/immeubles", {
+        method: "GET",
+        headers: getAuthHeaders(),
       });
 
-      if (response.ok) {
-        const newImmeuble = await response.json();
-        setImmeubles((prev) => [...prev, newImmeuble]);
-      } else {
-        throw new Error("Failed to create immeuble");
-      }
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "An error occurred");
-      throw err;
-    }
-  };
-
-  const updateImmeuble = async (id: string, data: Partial<Immeuble>) => {
-    try {
-      const response = await fetch(`/api/immeubles/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (response.ok) {
-        const updatedImmeuble = await response.json();
-        setImmeubles((prev) =>
-          prev.map((immeuble) =>
-            immeuble.id === id ? updatedImmeuble : immeuble
-          )
+      if (!response.ok) {
+        throw new Error(
+          `Failed to fetch buildings: ${response.status} ${response.statusText}`
         );
-      } else {
-        throw new Error("Failed to update immeuble");
       }
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "An error occurred");
-      throw err;
-    }
-  };
 
-  const deleteImmeuble = async (id: string) => {
+      const data = await response.json();
+      setImmeubles(data.immeubleDto || []);
+    } catch (err) {
+      const errorMessage =
+        err instanceof Error
+          ? err.message
+          : "An error occurred while fetching buildings";
+      setBuildingsError(errorMessage);
+      console.error("Buildings fetch error:", err);
+    } finally {
+      setBuildingsLoading(false);
+    }
+  }, [loginData?.tokenJwt, getAuthHeaders]);
+
+  // Fetch indicators (async call with caching)
+  const fetchIndicators = useCallback(async () => {
+    if (!loginData?.tokenJwt) {
+      setIndicatorsError("No authentication token available");
+      return;
+    }
+
+    // Check cache first
+    const now = Date.now();
+    if (indicatorsCache && now - indicatorsCacheTime < CACHE_DURATION) {
+      setIndicators(indicatorsCache);
+      setIndicatorsLoading(false);
+      return;
+    }
+
+    setIndicatorsLoading(true);
+    setIndicatorsError(null);
+
     try {
-      const response = await fetch(`/api/immeubles/${id}`, {
-        method: "DELETE",
-      });
+      const response = await fetch(
+        "http://localhost:8000/api/immeubles_indicators",
+        {
+          method: "GET",
+          headers: getAuthHeaders(),
+        }
+      );
 
-      if (response.ok) {
-        setImmeubles((prev) => prev.filter((immeuble) => immeuble.id !== id));
-      } else {
-        throw new Error("Failed to delete immeuble");
+      if (!response.ok) {
+        throw new Error(
+          `Failed to fetch indicators: ${response.status} ${response.statusText}`
+        );
       }
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "An error occurred");
-      throw err;
-    }
-  };
 
+      const data = await response.json();
+      const indicatorsData = data.indicators || [];
+
+      // Update cache
+      indicatorsCache = indicatorsData;
+      indicatorsCacheTime = now;
+
+      setIndicators(indicatorsData);
+    } catch (err) {
+      const errorMessage =
+        err instanceof Error
+          ? err.message
+          : "An error occurred while fetching indicators";
+      setIndicatorsError(errorMessage);
+      console.error("Indicators fetch error:", err);
+    } finally {
+      setIndicatorsLoading(false);
+    }
+  }, [loginData?.tokenJwt, getAuthHeaders]);
+
+  // Combined refetch
+  const refetch = useCallback(() => {
+    fetchBuildings();
+    fetchIndicators();
+  }, [fetchBuildings, fetchIndicators]);
+
+  // Individual refetch functions
+  const refetchBuildings = useCallback(() => {
+    fetchBuildings();
+  }, [fetchBuildings]);
+
+  const refetchIndicators = useCallback(() => {
+    // Clear cache to force fresh fetch
+    indicatorsCache = null;
+    indicatorsCacheTime = 0;
+    fetchIndicators();
+  }, [fetchIndicators]);
+
+  // Initial load
   useEffect(() => {
-    fetchImmeubles();
-  }, []);
+    if (loginData?.tokenJwt) {
+      // Start with buildings (sync)
+      fetchBuildings();
+
+      // Then indicators (async)
+      fetchIndicators();
+    }
+  }, [loginData?.tokenJwt, fetchBuildings, fetchIndicators]);
+
+  // Computed states
+  const loading = buildingsLoading || indicatorsLoading;
+  const error = buildingsError || indicatorsError;
 
   return {
+    // Buildings data
     immeubles,
+    buildingsLoading,
+    buildingsError,
+
+    // Indicators data
+    indicators,
+    indicatorsLoading,
+    indicatorsError,
+
+    // Combined states
     loading,
     error,
-    refetch: fetchImmeubles,
-    createImmeuble,
-    updateImmeuble,
-    deleteImmeuble,
+
+    // Actions
+    refetch,
+    refetchBuildings,
+    refetchIndicators,
   };
 };
