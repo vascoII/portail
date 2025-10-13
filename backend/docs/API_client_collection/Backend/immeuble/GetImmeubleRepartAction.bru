@@ -1,0 +1,19 @@
+meta {
+  name: GetImmeubleRepartAction
+  type: http
+  seq: 16
+}
+
+get {
+  url: {{localhost_backend}}/api/immeuble_repart/4423
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bearToken}}
+}
+
+settings {
+  encodeUrl: true
+}

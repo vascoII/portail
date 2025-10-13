@@ -31,4 +31,14 @@ interface SharedTransformerInterface
   public function transformListAlertes(object $dataSourceResult): ListAlertesOuputDto;
 
   public function transformListImmeublesIndicators(object $dataSourceResult): ListIndicatorsOuputDto;
+  public function transformGetImmeubleIndicators(object $dataSourceResult): ListIndicatorsOuputDto;
+  public function transformGetImmeubleCapteur(object $dataSourceResult): ListIndicatorsOuputDto;
+  public function transformGetImmeubleCET(object $dataSourceResult): ListIndicatorsOuputDto;
+  public function transformGetImmeubleEC(object $dataSourceResult): ListIndicatorsOuputDto;
+  public function transformGetImmeubleEF(object $dataSourceResult): ListIndicatorsOuputDto;
+  public function transformGetImmeubleElect(object $dataSourceResult): ListIndicatorsOuputDto;
+  public function transformGetImmeubleGaz(object $dataSourceResult): ListIndicatorsOuputDto;
+  public function transformGetImmeubleRepart(object $dataSourceResult): ListIndicatorsOuputDto;
+  public function transformGetImmeubleSerieConsosCompteurGeneral(object $dataSourceResult): ListIndicatorsOuputDto;
+  public function transformGetImmeubleSerieConsosEAU(object $dataSourceResult): ListIndicatorsOuputDto;
 }

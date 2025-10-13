@@ -1,0 +1,19 @@
+meta {
+  name: GetImmeubleSerieConsosCompteurGeneralAction
+  type: http
+  seq: 17
+}
+
+get {
+  url: {{localhost_backend}}/api/immeuble_serie_consos_compteur_general/4423
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bearToken}}
+}
+
+settings {
+  encodeUrl: true
+}

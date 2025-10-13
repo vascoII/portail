@@ -74,6 +74,7 @@ final class ImmeubleDataProvider implements ImmeubleDataProviderInterface
 
       return $dto;
   }
+
   public function getImmeubleService(GetByIdIntInputDto $inputDto): GetImmeubleOutputDto
   {
     $cacheKey = "immeuble_get:$inputDto->id";
@@ -83,12 +84,182 @@ final class ImmeubleDataProvider implements ImmeubleDataProviderInterface
       return $cachedDto;
     }
 
-    $rawData = $this->immeubleDataSource->fetchGetImmeuble($inputDto);
+    $rawData = $this->immeubleDataSource->fetchGetImmeuble($inputDto); 
     $dto = $this->immeubleTransformer->transformGetImmeuble($rawData);
 
     $this->cache->set($cacheKey, $dto);
 
     return $dto;
+  }
+
+  public function getImmeubleIndicatorsService(GetByIdIntInputDto $inputDto): ListIndicatorsOuputDto
+  {
+      $cacheKey = "immeuble_indicators_get:$inputDto->id";
+      $cachedDto = $this->cache->get($cacheKey);
+
+      if ($cachedDto instanceof ListIndicatorsOuputDto) {
+        return $cachedDto;
+      }
+
+      $rawData = $this->immeubleDataSource->fetchGetImmeubleIndicators($inputDto);
+      $dto = $this->sharedTransformer->transformGetImmeubleIndicators($rawData);
+
+      $this->cache->set($cacheKey, $dto);
+
+      return $dto;
+  }
+
+  public function getImmeubleCapteurService(GetByIdIntInputDto $inputDto): ListIndicatorsOuputDto
+  {
+      $cacheKey = "immeuble_capteur_get:$inputDto->id";
+      $cachedDto = $this->cache->get($cacheKey);
+
+      if ($cachedDto instanceof ListIndicatorsOuputDto) {
+        return $cachedDto;
+      }
+
+      $rawData = $this->immeubleDataSource->fetchGetImmeubleIndicators($inputDto);
+      $dto = $this->sharedTransformer->transformGetImmeubleCapteur($rawData);
+
+      $this->cache->set($cacheKey, $dto);
+
+      return $dto;
+  }
+
+  public function getImmeubleCETService(GetByIdIntInputDto $inputDto): ListIndicatorsOuputDto
+  {
+      $cacheKey = "immeuble_cet_get:$inputDto->id";
+      $cachedDto = $this->cache->get($cacheKey);
+
+      if ($cachedDto instanceof ListIndicatorsOuputDto) {
+        return $cachedDto;
+      }
+
+      $rawData = $this->immeubleDataSource->fetchGetImmeubleIndicators($inputDto);
+      $dto = $this->sharedTransformer->transformGetImmeubleCET($rawData);
+
+      $this->cache->set($cacheKey, $dto);
+
+      return $dto;
+  }
+
+  public function getImmeubleECService(GetByIdIntInputDto $inputDto): ListIndicatorsOuputDto
+  {
+      $cacheKey = "immeuble_ec_get:$inputDto->id";
+      $cachedDto = $this->cache->get($cacheKey);
+
+      if ($cachedDto instanceof ListIndicatorsOuputDto) {
+        return $cachedDto;
+      }
+
+      $rawData = $this->immeubleDataSource->fetchGetImmeubleIndicators($inputDto);
+      $dto = $this->sharedTransformer->transformGetImmeubleEC($rawData);
+
+      $this->cache->set($cacheKey, $dto);
+
+      return $dto;
+  }
+
+  public function getImmeubleEFService(GetByIdIntInputDto $inputDto): ListIndicatorsOuputDto
+  {
+      $cacheKey = "immeuble_ef_get:$inputDto->id";
+      $cachedDto = $this->cache->get($cacheKey);
+
+      if ($cachedDto instanceof ListIndicatorsOuputDto) {
+        return $cachedDto;
+      }
+
+      $rawData = $this->immeubleDataSource->fetchGetImmeubleIndicators($inputDto);
+      $dto = $this->sharedTransformer->transformGetImmeubleEF($rawData);
+
+      $this->cache->set($cacheKey, $dto);
+
+      return $dto;
+  }
+
+  public function getImmeubleElectService(GetByIdIntInputDto $inputDto): ListIndicatorsOuputDto
+  {
+      $cacheKey = "immeuble_elect_get:$inputDto->id";
+      $cachedDto = $this->cache->get($cacheKey);
+
+      if ($cachedDto instanceof ListIndicatorsOuputDto) {
+        return $cachedDto;
+      }
+
+      $rawData = $this->immeubleDataSource->fetchGetImmeubleIndicators($inputDto);
+      $dto = $this->sharedTransformer->transformGetImmeubleElect($rawData);
+
+      $this->cache->set($cacheKey, $dto);
+
+      return $dto;
+  }
+
+  public function getImmeubleGazService(GetByIdIntInputDto $inputDto): ListIndicatorsOuputDto
+  {
+      $cacheKey = "immeuble_gaz_get:$inputDto->id";
+      $cachedDto = $this->cache->get($cacheKey);
+
+      if ($cachedDto instanceof ListIndicatorsOuputDto) {
+        return $cachedDto;
+      }
+
+      $rawData = $this->immeubleDataSource->fetchGetImmeubleIndicators($inputDto);
+      $dto = $this->sharedTransformer->transformGetImmeubleGaz($rawData);
+
+      $this->cache->set($cacheKey, $dto);
+
+      return $dto;
+  }
+
+  public function getImmeubleRepartService(GetByIdIntInputDto $inputDto): ListIndicatorsOuputDto
+  {
+      $cacheKey = "immeuble_repart_get:$inputDto->id";
+      $cachedDto = $this->cache->get($cacheKey);
+
+      if ($cachedDto instanceof ListIndicatorsOuputDto) {
+        return $cachedDto;
+      }
+
+      $rawData = $this->immeubleDataSource->fetchGetImmeubleIndicators($inputDto);
+      $dto = $this->sharedTransformer->transformGetImmeubleRepart($rawData);
+
+      $this->cache->set($cacheKey, $dto);
+
+      return $dto;
+  }
+
+  public function getImmeubleSerieConsosCompteurGeneralService(GetByIdIntInputDto $inputDto): ListIndicatorsOuputDto
+  {
+      $cacheKey = "immeuble_serie_consos_compteur_general_get:$inputDto->id";
+      $cachedDto = $this->cache->get($cacheKey);
+
+      if ($cachedDto instanceof ListIndicatorsOuputDto) {
+        return $cachedDto;
+      }
+
+      $rawData = $this->immeubleDataSource->fetchGetImmeubleIndicators($inputDto);
+      $dto = $this->sharedTransformer->transformGetImmeubleSerieConsosCompteurGeneral($rawData);
+
+      $this->cache->set($cacheKey, $dto);
+
+      return $dto;
+  }
+  
+  public function getImmeubleSerieConsosEAUService(GetByIdIntInputDto $inputDto): ListIndicatorsOuputDto
+  {
+      $cacheKey = "immeuble_serie_consos_eau_get:$inputDto->id";
+      $cachedDto = $this->cache->get($cacheKey);
+
+      if ($cachedDto instanceof ListIndicatorsOuputDto) {
+        return $cachedDto;
+      }
+
+      $rawData = $this->immeubleDataSource->fetchGetImmeubleIndicators($inputDto);
+      $dto = $this->sharedTransformer->transformGetImmeubleSerieConsosEAU($rawData);
+
+      $this->cache->set($cacheKey, $dto);
+
+      return $dto;
   }
 
   public function listAnomaliesByImmeubleService(GetByIdIntInputDto $inputDto): ListAnomaliesOuputDto

@@ -1,0 +1,19 @@
+meta {
+  name: GetImmeubleCETAction
+  type: http
+  seq: 11
+}
+
+get {
+  url: {{localhost_backend}}/api/immeuble_cet/4423
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bearToken}}
+}
+
+settings {
+  encodeUrl: true
+}

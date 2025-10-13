@@ -7,7 +7,7 @@ namespace App\Http\Action\Immeuble;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
-use App\Application\UseCase\Immeuble\GetImmeubleUseCase;
+use App\Application\UseCase\Immeuble\GetImmeubleSerieConsosEAUUseCase;
 use App\Application\Factory\Shared\SharedInputFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,12 +15,12 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 
 #[AsController]
-#[Route(path: '/immeuble/{id}', name: 'immeuble_get', methods: ['GET'])]
-final class GetImmeubleAction extends AbstractAction implements ActionInterface
+#[Route(path: '/immeuble_serie_conso_eau/{id}', name: 'immeuble_serie_conseau_eau_get', methods: ['GET'])]
+final class GetImmeubleSerieConsosEAUAction extends AbstractAction implements ActionInterface
 {
   public function __construct(
     private readonly ResponderInterface $responder,
-    private readonly GetImmeubleUseCase $useCase,
+    private readonly GetImmeubleSerieConsosEAUUseCase $useCase,
     private readonly SharedInputFactory $inputFactory
   ) {}
 

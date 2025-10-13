@@ -1,0 +1,19 @@
+meta {
+  name: GetImmeubleEFAction
+  type: http
+  seq: 13
+}
+
+get {
+  url: {{localhost_backend}}/api/immeuble_ef/4423
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bearToken}}
+}
+
+settings {
+  encodeUrl: true
+}

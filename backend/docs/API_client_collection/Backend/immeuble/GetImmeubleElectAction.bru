@@ -1,0 +1,19 @@
+meta {
+  name: GetImmeubleElectAction
+  type: http
+  seq: 14
+}
+
+get {
+  url: {{localhost_backend}}/api/immeuble_elect/4423
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bearToken}}
+}
+
+settings {
+  encodeUrl: true
+}

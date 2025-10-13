@@ -1,0 +1,19 @@
+meta {
+  name: GetImmeubleCapteurAction
+  type: http
+  seq: 10
+}
+
+get {
+  url: {{localhost_backend}}/api/immeuble_capteur/4423
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bearToken}}
+}
+
+settings {
+  encodeUrl: true
+}
