@@ -52,6 +52,8 @@ interface LogementListProps {
   showChgtOccupant?: boolean;
   loading?: boolean;
   error?: string | null;
+  logementsLoading?: boolean;
+  logementsError?: string | null;
 }
 
 const LogementList: React.FC<LogementListProps> = ({
@@ -61,6 +63,8 @@ const LogementList: React.FC<LogementListProps> = ({
   showChgtOccupant = false,
   loading = false,
   error = null,
+  logementsLoading = false,
+  logementsError = null,
 }) => {
   const [viewMode, setViewMode] = useState<"list" | "grid-big" | "grid-small">(
     "list"
@@ -139,19 +143,71 @@ const LogementList: React.FC<LogementListProps> = ({
     });
   }, [logements, filters]);
 
-  if (loading) {
+  if (logementsLoading) {
     return (
-      <div className="flex justify-center items-center py-12">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600"></div>
+      <div className="space-y-6">
+        {/* Header skeleton */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+          <div className="h-8 bg-gray-200 rounded w-48 mb-4 sm:mb-0 animate-pulse"></div>
+          <div className="flex items-center space-x-2">
+            <div className="h-4 bg-gray-200 rounded w-20 animate-pulse"></div>
+            <div className="flex bg-gray-100 rounded-lg p-1">
+              <div className="h-8 w-8 bg-gray-200 rounded animate-pulse"></div>
+              <div className="h-8 w-8 bg-gray-200 rounded ml-1 animate-pulse"></div>
+              <div className="h-8 w-8 bg-gray-200 rounded ml-1 animate-pulse"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Logements skeleton */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          {Array.from({ length: 6 }, (_, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-lg shadow-md p-6 animate-pulse"
+            >
+              <div className="h-6 bg-gray-200 rounded w-1/3 mb-4"></div>
+              <div className="space-y-2 mb-4">
+                <div className="h-4 bg-gray-200 rounded w-2/3"></div>
+                <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+                <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+              </div>
+              <div className="space-y-2 mb-4">
+                <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+                <div className="h-4 bg-gray-200 rounded w-1/3"></div>
+              </div>
+              <div className="grid grid-cols-2 gap-4 mb-4">
+                <div className="space-y-2">
+                  <div className="h-3 bg-gray-200 rounded w-16"></div>
+                  <div className="h-5 bg-gray-200 rounded w-8"></div>
+                </div>
+                <div className="space-y-2">
+                  <div className="h-3 bg-gray-200 rounded w-16"></div>
+                  <div className="h-5 bg-gray-200 rounded w-8"></div>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                <div className="h-6 bg-gray-200 rounded-full w-16"></div>
+                <div className="h-6 bg-gray-200 rounded-full w-16"></div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
 
-  if (error) {
+  if (logementsError) {
     return (
-      <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
-        <p className="font-bold">Erreur</p>
-        <p>{error}</p>
+      <div className="bg-red-50 border border-red-200 rounded-lg p-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h3 className="text-lg font-medium text-red-800 mb-2">
+              Erreur lors du chargement des logements
+            </h3>
+            <p className="text-red-600 text-sm">{logementsError}</p>
+          </div>
+        </div>
       </div>
     );
   }

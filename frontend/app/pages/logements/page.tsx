@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import BaseLayout from "../../components/Layout/BaseLayout";
 import Breadcrumb from "../../components/Layout/Breadcrumb";
 import { LogementFilters, LogementList } from "../../components/Logement";
+import LogementIndicatorsPanel from "../../components/Logement/LogementIndicatorsPanel";
 import { useLogements } from "../../hooks/useLogements";
 
 interface FilterState {
@@ -25,7 +26,19 @@ const LogementsListPage: React.FC = () => {
   const immeubleId = searchParams.get("immeuble");
   const gestion = searchParams.get("gestion") === "true";
 
-  const { logements, loading, error } = useLogements(immeubleId);
+  const {
+    logements,
+    logementsLoading,
+    logementsError,
+    indicators,
+    indicatorsLoading,
+    indicatorsError,
+    loading,
+    error,
+    refetchLogements,
+    refetchIndicators,
+  } = useLogements(immeubleId || undefined);
+
   const [filters, setFilters] = useState<FilterState>({
     energie: "",
     fuites: false,
@@ -64,6 +77,7 @@ const LogementsListPage: React.FC = () => {
           Liste des logements
         </h2>
 
+        {/* Filters */}
         <LogementFilters
           onFiltersChange={setFilters}
           filters={filterOptions}
@@ -71,13 +85,28 @@ const LogementsListPage: React.FC = () => {
           immeubleId={immeubleId ? parseInt(immeubleId) : undefined}
         />
 
-        <LogementList
-          logements={logements}
-          filters={filters}
-          isGestionMode={gestion}
-          loading={loading}
-          error={error}
-        />
+        {/* Logements List */}
+        <div className="mb-8">
+          <LogementList
+            logements={logements}
+            filters={filters}
+            isGestionMode={gestion}
+            loading={loading}
+            error={error}
+            logementsLoading={logementsLoading}
+            logementsError={logementsError}
+          />
+        </div>
+
+        {/* Indicators Panel */}
+        <div className="mt-12">
+          <LogementIndicatorsPanel
+            indicators={indicators}
+            loading={indicatorsLoading}
+            error={indicatorsError}
+            onRefresh={refetchIndicators}
+          />
+        </div>
       </div>
     </BaseLayout>
   );

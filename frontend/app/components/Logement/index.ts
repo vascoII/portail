@@ -4,3 +4,5 @@ export { default as LogementList } from "./LogementList";
 export { default as LogementDetail } from "./LogementDetail";
 export { default as LogementMenu } from "./LogementMenu";
 export { default as LogementEdit } from "./LogementEdit";
+export { default as LogementListSkeleton } from "./LogementListSkeleton";
+export { default as LogementIndicatorsPanel } from "./LogementIndicatorsPanel";

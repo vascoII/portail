@@ -1,141 +1,245 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import { useDataStore } from "./dataStore";
 
+// Types matching backend DTOs
 interface Logement {
-  id: string;
-  numero: string;
-  adresse: string;
-  ville: string;
-  cp: string;
-  occupant: {
-    ref: string;
-    nom: string;
-    dateArrivee: string;
+  infosLogement: {
+    Logement: {
+      PkLogement: number;
+      Ref?: string;
+      NumOrdre: string;
+      NumBatiment: string;
+      NumEscalier: string;
+      NumEtage: string;
+    };
+    Occupant: {
+      Ref: string;
+      Nom: string;
+    };
+    NbFuites: number;
+    NbAnomalies: number;
+    NbDysfonctionnements: number;
+    NbDepannages: number;
+    NbCompteursEF: number;
+    NbCompteursEC: number;
+    NbCompteursRepart: number;
+    NbCompteursCET: number;
+    NbCompteursElect: number;
+    NbCompteursGaz: number;
+    TicketsInterEnabled: boolean;
+    NbTicketsInter: number;
   };
-  nbAppareils: number;
-  nbCompteurs: {
-    eauFroide: number;
-    eauChaude: number;
-    repartiteurs: number;
-    cet: number;
-    electricite: number;
-    gaz: number;
-  };
+}
+
+interface Indicator {
+  pkLogement: number;
+  [key: string]: any; // Flexible structure for different indicator types
 }
 
 interface UseLogementsReturn {
+  // Logements data (sync)
   logements: Logement[];
+  logementsLoading: boolean;
+  logementsError: string | null;
+
+  // Indicators data (async)
+  indicators: Indicator[];
+  indicatorsLoading: boolean;
+  indicatorsError: string | null;
+
+  // Combined loading state
   loading: boolean;
   error: string | null;
+
+  // Actions
   refetch: () => void;
-  createLogement: (data: Partial<Logement>) => Promise<void>;
-  updateLogement: (id: string, data: Partial<Logement>) => Promise<void>;
-  deleteLogement: (id: string) => Promise<void>;
+  refetchLogements: () => void;
+  refetchIndicators: () => void;
 }
 
+// Cache for indicators data
+let indicatorsCache: Indicator[] | null = null;
+let indicatorsCacheTime: number = 0;
+const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+
 export const useLogements = (immeubleId?: string): UseLogementsReturn => {
+  const { loginData } = useDataStore();
+
+  // Logements state (sync)
   const [logements, setLogements] = useState<Logement[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [logementsLoading, setLogementsLoading] = useState(false);
+  const [logementsError, setLogementsError] = useState<string | null>(null);
 
-  const fetchLogements = async () => {
-    setLoading(true);
-    setError(null);
+  // Indicators state (async)
+  const [indicators, setIndicators] = useState<Indicator[]>([]);
+  const [indicatorsLoading, setIndicatorsLoading] = useState(false);
+  const [indicatorsError, setIndicatorsError] = useState<string | null>(null);
 
-    try {
-      const url = immeubleId
-        ? `/api/immeubles/${immeubleId}/logements`
-        : "/api/logements";
-      const response = await fetch(url);
-
-      if (response.ok) {
-        const data = await response.json();
-        setLogements(data);
-      } else {
-        throw new Error("Failed to fetch logements");
-      }
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "An error occurred");
-    } finally {
-      setLoading(false);
+  // Helper function to get auth headers
+  const getAuthHeaders = useCallback(() => {
+    if (!loginData?.tokenJwt) {
+      throw new Error("No authentication token available");
     }
-  };
+    return {
+      Authorization: `Bearer ${loginData.tokenJwt}`,
+      "Content-Type": "application/json",
+    };
+  }, [loginData?.tokenJwt]);
 
-  const createLogement = async (data: Partial<Logement>) => {
-    try {
-      const response = await fetch("/api/logements", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (response.ok) {
-        const newLogement = await response.json();
-        setLogements((prev) => [...prev, newLogement]);
-      } else {
-        throw new Error("Failed to create logement");
-      }
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "An error occurred");
-      throw err;
+  // Fetch logements (sync call)
+  const fetchLogements = useCallback(async () => {
+    if (!loginData?.tokenJwt) {
+      setLogementsError("No authentication token available");
+      return;
     }
-  };
 
-  const updateLogement = async (id: string, data: Partial<Logement>) => {
+    if (!immeubleId) {
+      setLogementsError("Immeuble ID is required");
+      return;
+    }
+
+    setLogementsLoading(true);
+    setLogementsError(null);
+
     try {
-      const response = await fetch(`/api/logements/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        `http://localhost:8000/api/immeuble/${immeubleId}/logements`,
+        {
+          method: "GET",
+          headers: getAuthHeaders(),
+        }
+      );
 
-      if (response.ok) {
-        const updatedLogement = await response.json();
-        setLogements((prev) =>
-          prev.map((logement) =>
-            logement.id === id ? updatedLogement : logement
-          )
+      if (!response.ok) {
+        throw new Error(
+          `Failed to fetch logements: ${response.status} ${response.statusText}`
         );
-      } else {
-        throw new Error("Failed to update logement");
       }
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "An error occurred");
-      throw err;
-    }
-  };
 
-  const deleteLogement = async (id: string) => {
+      const data = await response.json();
+      setLogements(data.logementDto || []);
+    } catch (err) {
+      const errorMessage =
+        err instanceof Error
+          ? err.message
+          : "An error occurred while fetching logements";
+      setLogementsError(errorMessage);
+      console.error("Logements fetch error:", err);
+    } finally {
+      setLogementsLoading(false);
+    }
+  }, [loginData?.tokenJwt, immeubleId, getAuthHeaders]);
+
+  // Fetch indicators (async call with caching)
+  const fetchIndicators = useCallback(async () => {
+    if (!loginData?.tokenJwt) {
+      setIndicatorsError("No authentication token available");
+      return;
+    }
+
+    if (!immeubleId) {
+      setIndicatorsError("Immeuble ID is required");
+      return;
+    }
+
+    // Check cache first
+    const now = Date.now();
+    const cacheKey = `logements-indicators-${immeubleId}`;
+    if (indicatorsCache && now - indicatorsCacheTime < CACHE_DURATION) {
+      setIndicators(indicatorsCache);
+      setIndicatorsLoading(false);
+      return;
+    }
+
+    setIndicatorsLoading(true);
+    setIndicatorsError(null);
+
     try {
-      const response = await fetch(`/api/logements/${id}`, {
-        method: "DELETE",
-      });
+      const response = await fetch(
+        `http://localhost:8000/api/immeuble/${immeubleId}/logements_indicators`,
+        {
+          method: "GET",
+          headers: getAuthHeaders(),
+        }
+      );
 
-      if (response.ok) {
-        setLogements((prev) => prev.filter((logement) => logement.id !== id));
-      } else {
-        throw new Error("Failed to delete logement");
+      if (!response.ok) {
+        throw new Error(
+          `Failed to fetch indicators: ${response.status} ${response.statusText}`
+        );
       }
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "An error occurred");
-      throw err;
-    }
-  };
 
-  useEffect(() => {
+      const data = await response.json();
+      const indicatorsData = data.indicators || [];
+
+      // Update cache
+      indicatorsCache = indicatorsData;
+      indicatorsCacheTime = now;
+
+      setIndicators(indicatorsData);
+    } catch (err) {
+      const errorMessage =
+        err instanceof Error
+          ? err.message
+          : "An error occurred while fetching indicators";
+      setIndicatorsError(errorMessage);
+      console.error("Indicators fetch error:", err);
+    } finally {
+      setIndicatorsLoading(false);
+    }
+  }, [loginData?.tokenJwt, immeubleId, getAuthHeaders]);
+
+  // Combined refetch
+  const refetch = useCallback(() => {
     fetchLogements();
-  }, [immeubleId]);
+    fetchIndicators();
+  }, [fetchLogements, fetchIndicators]);
+
+  // Individual refetch functions
+  const refetchLogements = useCallback(() => {
+    fetchLogements();
+  }, [fetchLogements]);
+
+  const refetchIndicators = useCallback(() => {
+    // Clear cache to force fresh fetch
+    indicatorsCache = null;
+    indicatorsCacheTime = 0;
+    fetchIndicators();
+  }, [fetchIndicators]);
+
+  // Initial load
+  useEffect(() => {
+    if (loginData?.tokenJwt) {
+      // Start with logements (sync)
+      fetchLogements();
+
+      // Then indicators (async)
+      fetchIndicators();
+    }
+  }, [loginData?.tokenJwt, immeubleId, fetchLogements, fetchIndicators]);
+
+  // Computed states
+  const loading = logementsLoading || indicatorsLoading;
+  const error = logementsError || indicatorsError;
 
   return {
+    // Logements data
     logements,
+    logementsLoading,
+    logementsError,
+
+    // Indicators data
+    indicators,
+    indicatorsLoading,
+    indicatorsError,
+
+    // Combined states
     loading,
     error,
-    refetch: fetchLogements,
-    createLogement,
-    updateLogement,
-    deleteLogement,
+
+    // Actions
+    refetch,
+    refetchLogements,
+    refetchIndicators,
   };
 };
