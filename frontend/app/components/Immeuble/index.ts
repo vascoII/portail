@@ -6,3 +6,6 @@ export { default as ImmeubleMenu } from "./ImmeubleMenu";
 export { default as ImmeubleListSkeleton } from "./ImmeubleListSkeleton";
 export { default as IndicatorsSkeleton } from "./IndicatorsSkeleton";
 export { default as IndicatorsPanel } from "./IndicatorsPanel";
+export { default as ImmeubleDetailSkeleton } from "./ImmeubleDetailSkeleton";
+export { default as DataPanelSkeleton } from "./DataPanelSkeleton";
+export { default as DataPanel } from "./DataPanel";
