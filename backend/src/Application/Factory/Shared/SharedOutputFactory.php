@@ -8,7 +8,7 @@ use App\Application\Dto\Output\Shared\UserDto;
 use App\Application\Dto\Output\Shared\ListIndicatorsOuputDto;
 use App\Domain\Entity\User;
 
-final class SharedOutputFactory 
+final class SharedOutputFactory
 {
     /**
      * @param User $operator
@@ -53,6 +53,11 @@ final class SharedOutputFactory
     }
 
     public function createListLogementsIndicators(array $listIndicators): ListIndicatorsOuputDto
+    {
+        return new ListIndicatorsOuputDto($listIndicators);
+    }
+
+    public function createListIndicators(array $listIndicators): ListIndicatorsOuputDto
     {
         return new ListIndicatorsOuputDto($listIndicators);
     }

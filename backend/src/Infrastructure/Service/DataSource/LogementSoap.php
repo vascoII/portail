@@ -41,6 +41,62 @@ final class LogementSoap extends Soap implements LogementDataSourceInterface
     return $this->safeCall('GetTableauBordLogement', $soapRequest);
   }
 
+  public function fetchGetLogementCapteur(GetByIdIntInputDto $inputDto): object
+  {
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
+    $soapRequest = $this->hydrator->hydrateGetLogementCapteur($inputDto);
+    return $this->safeCall('GetTableauBordLogement', $soapRequest);
+  }
+
+  public function fetchGetLogementCET(GetByIdIntInputDto $inputDto): object
+  {
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
+    $soapRequest = $this->hydrator->hydrateGetLogementCET($inputDto);
+    return $this->safeCall('GetTableauBordLogement', $soapRequest);
+  }
+
+  public function fetchGetLogementEC(GetByIdIntInputDto $inputDto): object
+  {
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
+    $soapRequest = $this->hydrator->hydrateGetLogementEC($inputDto);
+    return $this->safeCall('GetTableauBordLogement', $soapRequest);
+  }
+
+  public function fetchGetLogementEF(GetByIdIntInputDto $inputDto): object
+  {
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
+    $soapRequest = $this->hydrator->hydrateGetLogementEF($inputDto);
+    return $this->safeCall('GetTableauBordLogement', $soapRequest);
+  }
+
+  public function fetchGetLogementElect(GetByIdIntInputDto $inputDto): object
+  {
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
+    $soapRequest = $this->hydrator->hydrateGetLogementElect($inputDto);
+    return $this->safeCall('GetTableauBordLogement', $soapRequest);
+  }
+
+  public function fetchGetLogementGaz(GetByIdIntInputDto $inputDto): object
+  {
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
+    $soapRequest = $this->hydrator->hydrateGetLogementGaz($inputDto);
+    return $this->safeCall('GetTableauBordLogement', $soapRequest);
+  }
+
+  public function fetchGetLogementRepart(GetByIdIntInputDto $inputDto): object
+  {
+    $authContext = $this->getAuthContext();
+    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
+    $soapRequest = $this->hydrator->hydrateGetLogementRepart($inputDto);
+    return $this->safeCall('GetTableauBordLogement', $soapRequest);
+  }
+
   public function fetchListAnomaliesByLogement(GetByIdIntInputDto $inputDto): object
   {
     $authContext = $this->getAuthContext();
@@ -72,5 +128,4 @@ final class LogementSoap extends Soap implements LogementDataSourceInterface
     $soapRequest = $this->hydrator->hydrateListInterventionsByLogement($inputDto);
     return $this->safeCall('GetInfosDepannagesByLogement', $soapRequest);
   }
-
 }

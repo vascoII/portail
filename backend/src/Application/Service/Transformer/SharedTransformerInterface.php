@@ -44,4 +44,11 @@ interface SharedTransformerInterface
 
   public function transformListLogementsIndicators(object $dataSourceResult): ListIndicatorsOuputDto;
   public function transformGetLogementIndicators(object $dataSourceResult): ListIndicatorsOuputDto;
+  public function transformGetLogementCapteur(object $dataSourceResult): ListIndicatorsOuputDto;
+  public function transformGetLogementCET(object $dataSourceResult): ListIndicatorsOuputDto;
+  public function transformGetLogementEC(object $dataSourceResult): ListIndicatorsOuputDto;
+  public function transformGetLogementEF(object $dataSourceResult): ListIndicatorsOuputDto;
+  public function transformGetLogementElect(object $dataSourceResult): ListIndicatorsOuputDto;
+  public function transformGetLogementGaz(object $dataSourceResult): ListIndicatorsOuputDto;
+  public function transformGetLogementRepart(object $dataSourceResult): ListIndicatorsOuputDto;
 }

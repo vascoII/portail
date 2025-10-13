@@ -72,19 +72,138 @@ final class LogementDataProvider implements LogementDataProviderInterface
 
   public function getLogementIndicatorsService(GetByIdIntInputDto $inputDto): ListIndicatorsOuputDto
   {
-      $cacheKey = "logement_indicators_get:$inputDto->id";
-      $cachedDto = $this->cache->get($cacheKey);
+    $cacheKey = "logement_indicators_get:$inputDto->id";
+    $cachedDto = $this->cache->get($cacheKey);
 
-      if ($cachedDto instanceof ListIndicatorsOuputDto) {
-        return $cachedDto;
-      }
+    if ($cachedDto instanceof ListIndicatorsOuputDto) {
+      return $cachedDto;
+    }
 
-      $rawData = $this->logementDataSource->fetchGetLogement($inputDto);
-      $dto = $this->sharedTransformer->transformGetLogementIndicators($rawData);
+    $rawData = $this->logementDataSource->fetchGetLogement($inputDto);
+    $dto = $this->sharedTransformer->transformGetLogementIndicators($rawData);
 
-      $this->cache->set($cacheKey, $dto);
+    $this->cache->set($cacheKey, $dto);
 
-      return $dto;
+    return $dto;
+  }
+
+  public function getLogementCapteurService(GetByIdIntInputDto $inputDto): ListIndicatorsOuputDto
+  {
+    $cacheKey = "logement_capteur_get:$inputDto->id";
+    $cachedDto = $this->cache->get($cacheKey);
+
+    if ($cachedDto instanceof ListIndicatorsOuputDto) {
+      return $cachedDto;
+    }
+
+    $rawData = $this->logementDataSource->fetchGetLogementCapteur($inputDto);
+    $dto = $this->sharedTransformer->transformGetLogementCapteur($rawData);
+
+    $this->cache->set($cacheKey, $dto);
+
+    return $dto;
+  }
+
+  public function getLogementCETService(GetByIdIntInputDto $inputDto): ListIndicatorsOuputDto
+  {
+    $cacheKey = "logement_cet_get:$inputDto->id";
+    $cachedDto = $this->cache->get($cacheKey);
+
+    if ($cachedDto instanceof ListIndicatorsOuputDto) {
+      return $cachedDto;
+    }
+
+    $rawData = $this->logementDataSource->fetchGetLogementCET($inputDto);
+    $dto = $this->sharedTransformer->transformGetLogementCET($rawData);
+
+    $this->cache->set($cacheKey, $dto);
+
+    return $dto;
+  }
+
+  public function getLogementECService(GetByIdIntInputDto $inputDto): ListIndicatorsOuputDto
+  {
+    $cacheKey = "logement_ec_get:$inputDto->id";
+    $cachedDto = $this->cache->get($cacheKey);
+
+    if ($cachedDto instanceof ListIndicatorsOuputDto) {
+      return $cachedDto;
+    }
+
+    $rawData = $this->logementDataSource->fetchGetLogementEC($inputDto);
+    $dto = $this->sharedTransformer->transformGetLogementEC($rawData);
+
+    $this->cache->set($cacheKey, $dto);
+
+    return $dto;
+  }
+
+  public function getLogementEFService(GetByIdIntInputDto $inputDto): ListIndicatorsOuputDto
+  {
+    $cacheKey = "logement_ef_get:$inputDto->id";
+    $cachedDto = $this->cache->get($cacheKey);
+
+    if ($cachedDto instanceof ListIndicatorsOuputDto) {
+      return $cachedDto;
+    }
+
+    $rawData = $this->logementDataSource->fetchGetLogementEF($inputDto);
+    $dto = $this->sharedTransformer->transformGetLogementEF($rawData);
+
+    $this->cache->set($cacheKey, $dto);
+
+    return $dto;
+  }
+
+  public function getLogementElectService(GetByIdIntInputDto $inputDto): ListIndicatorsOuputDto
+  {
+    $cacheKey = "logement_elect_get:$inputDto->id";
+    $cachedDto = $this->cache->get($cacheKey);
+
+    if ($cachedDto instanceof ListIndicatorsOuputDto) {
+      return $cachedDto;
+    }
+
+    $rawData = $this->logementDataSource->fetchGetLogementElect($inputDto);
+    $dto = $this->sharedTransformer->transformGetLogementElect($rawData);
+
+    $this->cache->set($cacheKey, $dto);
+
+    return $dto;
+  }
+
+  public function getLogementGazService(GetByIdIntInputDto $inputDto): ListIndicatorsOuputDto
+  {
+    $cacheKey = "logement_gaz_get:$inputDto->id";
+    $cachedDto = $this->cache->get($cacheKey);
+
+    if ($cachedDto instanceof ListIndicatorsOuputDto) {
+      return $cachedDto;
+    }
+
+    $rawData = $this->logementDataSource->fetchGetLogementGaz($inputDto);
+    $dto = $this->sharedTransformer->transformGetLogementGaz($rawData);
+
+    $this->cache->set($cacheKey, $dto);
+
+    return $dto;
+  }
+
+  public function getLogementRepartService(GetByIdIntInputDto $inputDto): ListIndicatorsOuputDto
+  {
+    $cacheKey = "logement_repart_get:$inputDto->id";
+    $cachedDto = $this->cache->get($cacheKey);
+
+    if ($cachedDto instanceof ListIndicatorsOuputDto) {
+      return $cachedDto;
+    }
+
+    $rawData = $this->logementDataSource->fetchGetLogementRepart($inputDto);
+    $dto = $this->sharedTransformer->transformGetLogementRepart($rawData);
+
+    $this->cache->set($cacheKey, $dto);
+
+    return $dto;
   }
 
   public function listAnomaliesByLogementService(GetByIdIntInputDto $inputDto): ListAnomaliesOuputDto
@@ -113,7 +232,8 @@ final class LogementDataProvider implements LogementDataProviderInterface
       return $cachedDto;
     }
 
-    $rawData = $this->logementDataSource->fetchListDysfonctionnementsByLogement($inputDto); dd($rawData);
+    $rawData = $this->logementDataSource->fetchListDysfonctionnementsByLogement($inputDto);
+    dd($rawData);
     $dto = $this->sharedTransformer->transformListDysfonctionnements($rawData);
 
     $this->cache->set($cacheKey, $dto);
