@@ -24,6 +24,20 @@ final class JwtAuthMiddleware
     private readonly LoggerInterface $securityLogger
   ) {}
 
+  private function createCorsErrorResponse(string $message, int $status = 401, Request $request): JsonResponse
+  {
+      $response = new JsonResponse(['success' => false, 'error' => $message], $status);
+      $origin = $request->headers->get('Origin');
+
+      if ($origin) {
+          $response->headers->set('Access-Control-Allow-Origin', $origin);
+          $response->headers->set('Access-Control-Allow-Headers', 'Authorization, Content-Type');
+          $response->headers->set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+          $response->headers->set('Access-Control-Allow-Credentials', 'true');
+      }
+
+      return $response;
+  }
   public function __invoke(RequestEvent $event): void
   {
     $request = $event->getRequest();
@@ -42,7 +56,7 @@ final class JwtAuthMiddleware
         'ip' => $request->getClientIp(),
       ]);
 
-      $event->setResponse(new JsonResponse(['success' => false, 'error' => 'User not authenticated'], 401));
+      $event->setResponse($this->createCorsErrorResponse('User not authenticated', 401, $request));
       return;
     }
 
@@ -57,7 +71,7 @@ final class JwtAuthMiddleware
         'token_prefix' => substr($token, 0, 10) . '...',
       ]);
 
-      $event->setResponse(new JsonResponse(['success' => false, 'error' => 'User not authenticated'], 401));
+      $event->setResponse($this->createCorsErrorResponse('User not authenticated', 401, $request));
       return;
     }
 
@@ -70,7 +84,7 @@ final class JwtAuthMiddleware
         'ip' => $request->getClientIp(),
       ]);
 
-      $event->setResponse(new JsonResponse(['success' => false, 'error' => 'User not authenticated'], 401));
+      $event->setResponse($this->createCorsErrorResponse('User not authenticated', 401, $request));
       return;
     }
 
@@ -83,7 +97,7 @@ final class JwtAuthMiddleware
         'session_id_prefix' => substr($sessionId, 0, 8) . '...',
       ]);
 
-      $event->setResponse(new JsonResponse(['success' => false, 'error' => 'User not authenticated'], 401));
+      $event->setResponse($this->createCorsErrorResponse('User not authenticated', 401, $request));
       return;
     }
 

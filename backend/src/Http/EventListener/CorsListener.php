@@ -11,6 +11,10 @@ use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
+use Symfony\Component\HttpKernel\Event\ExceptionEvent;
+use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
+
+
 /**
  * CORS listener that handles preflight requests and adds CORS headers
  */
@@ -29,7 +33,25 @@ final class CorsListener implements EventSubscriberInterface
     return [
       KernelEvents::REQUEST => ['onKernelRequest', 100],
       KernelEvents::RESPONSE => ['onKernelResponse', -100],
+      KernelEvents::EXCEPTION => ['onKernelException', -100],
     ];
+  }
+
+  
+  public function onKernelException(ExceptionEvent $event): void
+  {
+      $request = $event->getRequest();
+
+      if (!str_starts_with($request->getPathInfo(), '/api/')) {
+          return;
+      }
+
+      $exception = $event->getThrowable();
+      $statusCode = $exception instanceof HttpExceptionInterface ? $exception->getStatusCode() : 500;
+
+      $response = new Response($exception->getMessage(), $statusCode);
+      $this->addCorsHeaders($response, $request);
+      $event->setResponse($response);
   }
 
   public function onKernelRequest(RequestEvent $event): void
