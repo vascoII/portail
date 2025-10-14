@@ -10,15 +10,6 @@ interface BaseLayoutProps {
   showHeader?: boolean;
   showSidebar?: boolean;
   className?: string;
-  user?: {
-    userName?: string;
-    firstName?: string;
-    pkUser?: number;
-  };
-  isAdmin?: boolean;
-  showFactures?: boolean;
-  locale?: string;
-  onLocaleChange?: (locale: string) => void;
   onSearch?: (query: string, type: string) => void;
 }
 
@@ -27,11 +18,6 @@ const BaseLayout: React.FC<BaseLayoutProps> = ({
   showHeader = true,
   showSidebar = true,
   className = "",
-  user,
-  isAdmin = false,
-  showFactures = false,
-  locale = "fr",
-  onLocaleChange,
   onSearch,
 }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -45,27 +31,9 @@ const BaseLayout: React.FC<BaseLayoutProps> = ({
     }
   };
 
-  const handleLocaleChange = (newLocale: string) => {
-    if (onLocaleChange) {
-      onLocaleChange(newLocale);
-    } else {
-      // Default locale change behavior
-      console.log("Locale changed to:", newLocale);
-    }
-  };
-
   return (
     <div className={`min-h-screen bg-gray-50 ${className}`}>
-      {showHeader && (
-        <Header
-          user={user}
-          isAdmin={isAdmin}
-          showFactures={showFactures}
-          locale={locale}
-          onLocaleChange={handleLocaleChange}
-          onSearch={handleSearch}
-        />
-      )}
+      {showHeader && <Header onSearch={handleSearch} />}
 
       <div className="flex">
         {showSidebar && (

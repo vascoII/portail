@@ -6,30 +6,14 @@ import UserMenu from "./UserMenu";
 import SearchBar from "./SearchBar";
 
 interface HeaderProps {
-  user?: {
-    userName?: string;
-    firstName?: string;
-    pkUser?: number;
-  };
-  isAdmin?: boolean;
-  showFactures?: boolean;
-  locale?: string;
-  onLocaleChange?: (locale: string) => void;
   onSearch?: (query: string, type: string) => void;
 }
 
-const Header: React.FC<HeaderProps> = ({
-  user,
-  isAdmin = false,
-  showFactures = false,
-  locale = "fr",
-  onLocaleChange,
-  onSearch,
-}) => {
+const Header: React.FC<HeaderProps> = ({ onSearch }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <header 
+    <header
       className="bg-white shadow-sm border-b border-gray-200 bg-cover bg-center"
       style={{ backgroundImage: "url('/images/login-bg.png')" }}
     >
@@ -57,13 +41,7 @@ const Header: React.FC<HeaderProps> = ({
 
           {/* User Menu and Language */}
           <div className="flex items-center space-x-4">
-            <UserMenu
-              user={user}
-              isAdmin={isAdmin}
-              showFactures={showFactures}
-              locale={locale}
-              onLocaleChange={onLocaleChange}
-            />
+            <UserMenu />
           </div>
 
           {/* Mobile Menu Button */}

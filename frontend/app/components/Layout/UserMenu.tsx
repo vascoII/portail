@@ -2,35 +2,23 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useDataStore } from "../../store/dataStore";
 
-interface UserMenuProps {
-  user?: {
-    userName?: string;
-    firstName?: string;
-    pkUser?: number;
-  };
-  isAdmin?: boolean;
-  showFactures?: boolean;
-  locale?: string;
-  onLocaleChange?: (locale: string) => void;
-}
-
-const UserMenu: React.FC<UserMenuProps> = ({
-  user,
-  isAdmin = false,
-  showFactures = false,
-  locale = "fr",
-  onLocaleChange,
-}) => {
+const UserMenu: React.FC = () => {
+  const { loginData, clearLoginData } = useDataStore();
+  const router = useRouter();
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-  const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
-  const languageMenuRef = useRef<HTMLDivElement>(null);
 
+  // Get user info from data store
   const displayName =
-    user?.userName || user?.firstName || `Utilisateur #${user?.pkUser}`;
+    loginData?.userName || loginData?.firstName || "Utilisateur";
+  const isAdmin =
+    loginData?.userRole === "ADMIN" || loginData?.userRole === "SUPER_ADMIN";
+  const showFactures = loginData?.showFactures === true;
 
-  // Close dropdowns when clicking outside
+  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -38,12 +26,6 @@ const UserMenu: React.FC<UserMenuProps> = ({
         !userMenuRef.current.contains(event.target as Node)
       ) {
         setIsUserMenuOpen(false);
-      }
-      if (
-        languageMenuRef.current &&
-        !languageMenuRef.current.contains(event.target as Node)
-      ) {
-        setIsLanguageMenuOpen(false);
       }
     };
 
@@ -53,10 +35,16 @@ const UserMenu: React.FC<UserMenuProps> = ({
     };
   }, []);
 
-  const handleLocaleChange = (newLocale: string) => {
-    onLocaleChange?.(newLocale);
-    setIsLanguageMenuOpen(false);
+  const handleLogout = () => {
+    clearLoginData();
+    setIsUserMenuOpen(false);
+    router.push("/login");
   };
+
+  // Don't render if user is not logged in
+  if (!loginData) {
+    return null;
+  }
 
   return (
     <div className="flex items-center space-x-4">
@@ -95,7 +83,14 @@ const UserMenu: React.FC<UserMenuProps> = ({
                     <p className="text-sm font-medium text-gray-900">
                       {displayName}
                     </p>
-                    <p className="text-xs text-gray-500">Gestionnaire</p>
+                    <p className="text-xs text-gray-500">
+                      {loginData?.userRole === "ADMIN" ||
+                      loginData?.userRole === "SUPER_ADMIN"
+                        ? "Administrateur"
+                        : loginData?.userRole === "GESTIONNAIRE"
+                        ? "Gestionnaire"
+                        : "Utilisateur"}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -157,14 +152,13 @@ const UserMenu: React.FC<UserMenuProps> = ({
                 )}
 
                 <div className="border-t border-gray-100 my-1"></div>
-                <Link
-                  href="/pages/logout"
-                  className="flex items-center px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors duration-200"
-                  onClick={() => setIsUserMenuOpen(false)}
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center w-full px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors duration-200"
                 >
                   <i className="fas fa-sign-out-alt w-4 h-4 mr-3"></i>
                   Déconnexion
-                </Link>
+                </button>
               </div>
             </div>
           </div>
