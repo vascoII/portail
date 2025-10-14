@@ -583,8 +583,7 @@ final class SharedTransformer implements SharedTransformerInterface
           "date" => $dataSourceResult->LogementCapteur->IndexRecapHumidite->Date,
           "moy" => $dataSourceResult->LogementCapteur->IndexRecapHumidite->Moy,
           "max" => $dataSourceResult->LogementCapteur->IndexRecapHumidite->Max,
-          "min" => $dataSourceResult->LogementCapteur->IndexRecapHumidite->Min,
-          "nb" => $dataSourceResult->LogementCapteur->IndexRecapHumidite->Nb
+          "min" => $dataSourceResult->LogementCapteur->IndexRecapHumidite->Min
         ],
         "SerieConsosTemperature" => [
           "erreur" => $dataSourceResult->LogementCapteur->SerieConsosTemperature->Erreur,
