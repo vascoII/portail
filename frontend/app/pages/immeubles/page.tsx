@@ -28,7 +28,6 @@ const ImmeublesListPage: React.FC = () => {
     indicatorsError,
     loading,
     error,
-    refetchBuildings,
     refetchIndicators,
   } = useImmeubles();
 

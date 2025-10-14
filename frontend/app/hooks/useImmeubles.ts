@@ -63,7 +63,6 @@ export const useImmeubles = (): UseImmeublesReturn => {
     immeublesCache,
     setImmeublesBuildings,
     setImmeublesIndicators,
-    isImmeublesCacheValid,
   } = useDataStore();
 
   // Buildings state (sync)
