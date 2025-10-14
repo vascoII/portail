@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { Immeuble, ImmeubleIndicators } from "../../hooks/useImmeuble";
 import ImmeubleCard from "./ImmeubleCard";
 import IndicatorsCard from "./IndicatorsCard";
@@ -58,9 +59,12 @@ const ImmeubleHeader: React.FC<ImmeubleHeaderProps> = ({
                 </div>
 
                 <div className="flex-1">
-                  <h1 className="text-2xl font-bold text-gray-800 mb-2">
+                  <Link
+                    href={`/pages/immeubles/${immeuble.pkImmeuble}/logements`}
+                    className="text-2xl font-bold text-blue-600 hover:text-blue-800 hover:underline transition-colors duration-200"
+                  >
                     {immeuble.nom}
-                  </h1>
+                  </Link>
                   <div className="grid grid-cols-2 gap-2 text-sm">
                     <div>
                       <span className="font-medium text-gray-600">

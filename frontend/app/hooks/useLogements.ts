@@ -1,39 +1,60 @@
 import { useState, useEffect, useCallback } from "react";
 import { useDataStore } from "../store/dataStore";
 
-// Types matching backend DTOs
-interface Logement {
-  infosLogement: {
-    Logement: {
-      PkLogement: number;
-      Ref?: string;
-      NumOrdre: string;
-      NumBatiment: string;
-      NumEscalier: string;
-      NumEtage: string;
-    };
-    Occupant: {
-      Ref: string;
-      Nom: string;
-    };
-    NbFuites: number;
-    NbAnomalies: number;
-    NbDysfonctionnements: number;
-    NbDepannages: number;
-    NbCompteursEF: number;
-    NbCompteursEC: number;
-    NbCompteursRepart: number;
-    NbCompteursCET: number;
-    NbCompteursElect: number;
-    NbCompteursGaz: number;
-    TicketsInterEnabled: boolean;
-    NbTicketsInter: number;
-  };
+// Types matching backend DTOs exactly
+export interface Logement {
+  pkLogement: number;
+  numBatiment: string;
+  adrBatiment: string;
+  numEscalier: string;
+  adrEscalier: string;
+  numEtage: string;
+  numOrdre: string;
+  type: string;
 }
 
-interface Indicator {
+// Response wrapper type
+interface ListLogementsResponse {
+  listLogementDto: Logement[];
+}
+
+// Types matching backend DTOs exactly
+export interface Appareil {
+  PkAppareil: number;
+  Numero: string;
+  Emplacement: string;
+  Fluide: string;
+  TypeAppareil: string;
+  Unite: string;
+}
+
+export interface ListeAppareils {
+  appareil: Appareil | Appareil[];
+}
+
+export interface LogementIndicator {
+  pkImmeuble: number;
   pkLogement: number;
-  [key: string]: any; // Flexible structure for different indicator types
+  nbAppareils: number;
+  nbCompteursEC: number;
+  nbCompteursEF: number;
+  nbCompteursRepart: number;
+  nbCompteursCET: number;
+  nbCompteursCapteur: number;
+  nbCompteursElect: number;
+  nbCompteursGaz: number;
+  nbFuites: number;
+  nbDepannages: number;
+  nbDysfonctionnements: number;
+  nbAnomalies: number;
+  nbTicketsInter: number;
+  ticketsInterEnabled: boolean;
+  listeAppareils: ListeAppareils;
+}
+
+// Response wrapper type
+interface ListLogementsIndicatorsResponse {
+  indicators: LogementIndicator[];
 }
 
 interface UseLogementsReturn {
@@ -43,13 +64,18 @@ interface UseLogementsReturn {
   logementsError: string | null;
 
   // Indicators data (async)
-  indicators: Indicator[];
+  indicators: LogementIndicator[];
   indicatorsLoading: boolean;
   indicatorsError: string | null;
 
   // Combined loading state
   loading: boolean;
   error: string | null;
+
+  // Helper functions
+  getIndicatorsForLogement: (
+    pkLogement: number
+  ) => LogementIndicator | undefined;
 
   // Actions
   refetch: () => void;
@@ -73,7 +99,7 @@ export const useLogements = (immeubleId?: string): UseLogementsReturn => {
   const [logementsError, setLogementsError] = useState<string | null>(null);
 
   // Indicators state (async)
-  const [indicators, setIndicators] = useState<Indicator[]>([]);
+  const [indicators, setIndicators] = useState<LogementIndicator[]>([]);
   const [indicatorsLoading, setIndicatorsLoading] = useState(false);
   const [indicatorsError, setIndicatorsError] = useState<string | null>(null);
 
@@ -125,8 +151,8 @@ export const useLogements = (immeubleId?: string): UseLogementsReturn => {
         );
       }
 
-      const data = await response.json();
-      const logementsData = data.logementDto || [];
+      const data: ListLogementsResponse = await response.json();
+      const logementsData = data.listLogementDto || [];
 
       // Cache the data
       setLogementsLogements(logementsData);
@@ -186,7 +212,7 @@ export const useLogements = (immeubleId?: string): UseLogementsReturn => {
         );
       }
 
-      const data = await response.json();
+      const data: ListLogementsIndicatorsResponse = await response.json();
       const indicatorsData = data.indicators || [];
 
       // Cache the data
@@ -246,6 +272,16 @@ export const useLogements = (immeubleId?: string): UseLogementsReturn => {
     }
   }, [loginData?.tokenJwt, immeubleId, fetchLogements, fetchIndicators]);
 
+  // Helper function to get indicators for a specific logement
+  const getIndicatorsForLogement = useCallback(
+    (pkLogement: number): LogementIndicator | undefined => {
+      return indicators.find(
+        (indicator) => indicator.pkLogement === pkLogement
+      );
+    },
+    [indicators]
+  );
+
   // Computed states
   const loading = logementsLoading || indicatorsLoading;
   const error = logementsError || indicatorsError;
@@ -264,6 +300,9 @@ export const useLogements = (immeubleId?: string): UseLogementsReturn => {
     // Combined states
     loading,
     error,
+
+    // Helper functions
+    getIndicatorsForLogement,
 
     // Actions
     refetch,

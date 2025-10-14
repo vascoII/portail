@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { Indicator } from "../../hooks/useImmeubles";
 import IndicatorsSkeleton from "./IndicatorsSkeleton";
 
@@ -68,12 +69,15 @@ const IndicatorsCard: React.FC<IndicatorsCardProps> = ({
 
       {/* Key Metrics Grid */}
       <div className="grid grid-cols-2 gap-4 mb-6">
-        <div className="text-center p-3 bg-blue-50 rounded-lg">
-          <div className="text-2xl font-bold text-blue-600">
+        <Link
+          href={`/pages/immeubles/${buildingId}/logements`}
+          className="text-center p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors duration-200 cursor-pointer"
+        >
+          <div className="text-2xl font-bold text-blue-600 hover:text-blue-800">
             {indicators.nbLogements}
           </div>
           <div className="text-sm text-blue-800">Logements</div>
-        </div>
+        </Link>
         <div className="text-center p-3 bg-green-50 rounded-lg">
           <div className="text-2xl font-bold text-green-600">
             {indicators.nbAppareils}
