@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { useDataStore } from "./dataStore";
+import { useDataStore } from "../store/dataStore";
 
 // Types matching backend DTOs
 interface Logement {
@@ -57,13 +57,15 @@ interface UseLogementsReturn {
   refetchIndicators: () => void;
 }
 
-// Cache for indicators data
-let indicatorsCache: Indicator[] | null = null;
-let indicatorsCacheTime: number = 0;
-const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+// Cache is now handled by the dataStore
 
 export const useLogements = (immeubleId?: string): UseLogementsReturn => {
-  const { loginData } = useDataStore();
+  const {
+    loginData,
+    logementsCache,
+    setLogementsLogements,
+    setLogementsIndicators,
+  } = useDataStore();
 
   // Logements state (sync)
   const [logements, setLogements] = useState<Logement[]>([]);
@@ -98,6 +100,13 @@ export const useLogements = (immeubleId?: string): UseLogementsReturn => {
       return;
     }
 
+    // Check cache first
+    if (logementsCache.logements && logementsCache.logements.data) {
+      setLogements(logementsCache.logements.data);
+      setLogementsLoading(false);
+      return;
+    }
+
     setLogementsLoading(true);
     setLogementsError(null);
 
@@ -117,7 +126,11 @@ export const useLogements = (immeubleId?: string): UseLogementsReturn => {
       }
 
       const data = await response.json();
-      setLogements(data.logementDto || []);
+      const logementsData = data.logementDto || [];
+
+      // Cache the data
+      setLogementsLogements(logementsData);
+      setLogements(logementsData);
     } catch (err) {
       const errorMessage =
         err instanceof Error
@@ -128,7 +141,13 @@ export const useLogements = (immeubleId?: string): UseLogementsReturn => {
     } finally {
       setLogementsLoading(false);
     }
-  }, [loginData?.tokenJwt, immeubleId, getAuthHeaders]);
+  }, [
+    loginData?.tokenJwt,
+    immeubleId,
+    getAuthHeaders,
+    logementsCache.logements,
+    setLogementsLogements,
+  ]);
 
   // Fetch indicators (async call with caching)
   const fetchIndicators = useCallback(async () => {
@@ -143,10 +162,8 @@ export const useLogements = (immeubleId?: string): UseLogementsReturn => {
     }
 
     // Check cache first
-    const now = Date.now();
-    const cacheKey = `logements-indicators-${immeubleId}`;
-    if (indicatorsCache && now - indicatorsCacheTime < CACHE_DURATION) {
-      setIndicators(indicatorsCache);
+    if (logementsCache.indicators && logementsCache.indicators.data) {
+      setIndicators(logementsCache.indicators.data);
       setIndicatorsLoading(false);
       return;
     }
@@ -172,10 +189,8 @@ export const useLogements = (immeubleId?: string): UseLogementsReturn => {
       const data = await response.json();
       const indicatorsData = data.indicators || [];
 
-      // Update cache
-      indicatorsCache = indicatorsData;
-      indicatorsCacheTime = now;
-
+      // Cache the data
+      setLogementsIndicators(indicatorsData);
       setIndicators(indicatorsData);
     } catch (err) {
       const errorMessage =
@@ -187,13 +202,27 @@ export const useLogements = (immeubleId?: string): UseLogementsReturn => {
     } finally {
       setIndicatorsLoading(false);
     }
-  }, [loginData?.tokenJwt, immeubleId, getAuthHeaders]);
+  }, [
+    loginData?.tokenJwt,
+    immeubleId,
+    getAuthHeaders,
+    logementsCache.indicators,
+    setLogementsIndicators,
+  ]);
 
   // Combined refetch
   const refetch = useCallback(() => {
+    // Clear both caches to force fresh fetch
+    setLogementsLogements([]);
+    setLogementsIndicators([]);
     fetchLogements();
     fetchIndicators();
-  }, [fetchLogements, fetchIndicators]);
+  }, [
+    fetchLogements,
+    fetchIndicators,
+    setLogementsLogements,
+    setLogementsIndicators,
+  ]);
 
   // Individual refetch functions
   const refetchLogements = useCallback(() => {
@@ -202,10 +231,9 @@ export const useLogements = (immeubleId?: string): UseLogementsReturn => {
 
   const refetchIndicators = useCallback(() => {
     // Clear cache to force fresh fetch
-    indicatorsCache = null;
-    indicatorsCacheTime = 0;
+    setLogementsIndicators([]);
     fetchIndicators();
-  }, [fetchIndicators]);
+  }, [fetchIndicators, setLogementsIndicators]);
 
   // Initial load
   useEffect(() => {

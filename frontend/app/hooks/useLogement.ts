@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { useDataStore } from "./dataStore";
+import { useDataStore } from "../store/dataStore";
 
 // Types matching backend DTOs
 interface Logement {
@@ -44,7 +44,7 @@ interface Logement {
 }
 
 interface AsyncData {
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 interface UseLogementReturn {
@@ -112,14 +112,11 @@ interface UseLogementReturn {
   refetchAsyncData: (dataType: string) => void;
 }
 
-// Cache for async data
-const asyncDataCache: {
-  [key: string]: { data: AsyncData; timestamp: number };
-} = {};
-const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+// Cache is now handled by the dataStore
 
 export const useLogement = (logementId: number): UseLogementReturn => {
-  const { loginData } = useDataStore();
+  const { loginData, singleLogementCache, setSingleLogementData } =
+    useDataStore();
 
   // Main logement state (sync)
   const [logement, setLogement] = useState<Logement | null>(null);
@@ -207,13 +204,9 @@ export const useLogement = (logementId: number): UseLogementReturn => {
       }
 
       // Check cache first
-      const cacheKey = `${dataType}-${logementId}`;
-      const now = Date.now();
-      if (
-        asyncDataCache[cacheKey] &&
-        now - asyncDataCache[cacheKey].timestamp < CACHE_DURATION
-      ) {
-        setData(asyncDataCache[cacheKey].data);
+      const cacheKey = logementId.toString();
+      if (singleLogementCache[cacheKey]?.[dataType]?.data) {
+        setData(singleLogementCache[cacheKey]![dataType]!.data);
         setLoading(false);
         return;
       }
@@ -236,8 +229,8 @@ export const useLogement = (logementId: number): UseLogementReturn => {
         const data = await response.json();
         const result = data.indicators || data;
 
-        // Update cache
-        asyncDataCache[cacheKey] = { data: result, timestamp: now };
+        // Cache the data
+        setSingleLogementData(cacheKey, dataType, result);
         setData(result);
       } catch (err) {
         const errorMessage =
@@ -250,13 +243,27 @@ export const useLogement = (logementId: number): UseLogementReturn => {
         setLoading(false);
       }
     },
-    [loginData?.tokenJwt, logementId, getAuthHeaders]
+    [
+      loginData?.tokenJwt,
+      logementId,
+      getAuthHeaders,
+      singleLogementCache,
+      setSingleLogementData,
+    ]
   );
 
   // Fetch main logement data (sync)
   const fetchLogement = useCallback(async () => {
     if (!loginData?.tokenJwt) {
       setLogementError("No authentication token available");
+      return;
+    }
+
+    // Check cache first
+    const cacheKey = logementId.toString();
+    if (singleLogementCache[cacheKey]?.logement?.data) {
+      setLogement(singleLogementCache[cacheKey]!.logement!.data);
+      setLogementLoading(false);
       return;
     }
 
@@ -279,6 +286,9 @@ export const useLogement = (logementId: number): UseLogementReturn => {
       }
 
       const data = await response.json();
+
+      // Cache the data
+      setSingleLogementData(cacheKey, "logement", data);
       setLogement(data);
     } catch (err) {
       const errorMessage =
@@ -290,7 +300,13 @@ export const useLogement = (logementId: number): UseLogementReturn => {
     } finally {
       setLogementLoading(false);
     }
-  }, [loginData?.tokenJwt, logementId, getAuthHeaders]);
+  }, [
+    loginData?.tokenJwt,
+    logementId,
+    getAuthHeaders,
+    singleLogementCache,
+    setSingleLogementData,
+  ]);
 
   // Fetch all async data
   const fetchAllAsyncData = useCallback(() => {
@@ -394,9 +410,25 @@ export const useLogement = (logementId: number): UseLogementReturn => {
 
   // Combined refetch
   const refetch = useCallback(() => {
+    // Clear all caches for this logement
+    const cacheKey = logementId.toString();
+    setSingleLogementData(cacheKey, "logement", null);
+    setSingleLogementData(cacheKey, "capteur", null);
+    setSingleLogementData(cacheKey, "cet", null);
+    setSingleLogementData(cacheKey, "ec", null);
+    setSingleLogementData(cacheKey, "ef", null);
+    setSingleLogementData(cacheKey, "elect", null);
+    setSingleLogementData(cacheKey, "gaz", null);
+    setSingleLogementData(cacheKey, "indicators", null);
+    setSingleLogementData(cacheKey, "repart", null);
+    setSingleLogementData(cacheKey, "anomalies", null);
+    setSingleLogementData(cacheKey, "dysfonctionnements", null);
+    setSingleLogementData(cacheKey, "fuites", null);
+    setSingleLogementData(cacheKey, "interventions", null);
+
     fetchLogement();
     fetchAllAsyncData();
-  }, [fetchLogement, fetchAllAsyncData]);
+  }, [fetchLogement, fetchAllAsyncData, logementId, setSingleLogementData]);
 
   // Individual refetch functions
   const refetchLogement = useCallback(() => {
@@ -405,9 +437,9 @@ export const useLogement = (logementId: number): UseLogementReturn => {
 
   const refetchAsyncData = useCallback(
     (dataType: string) => {
-      // Clear cache for specific data type
-      const cacheKey = `${dataType}-${logementId}`;
-      delete asyncDataCache[cacheKey];
+      // Clear cache for specific data type by setting empty data
+      const cacheKey = logementId.toString();
+      setSingleLogementData(cacheKey, dataType, null);
 
       // Refetch specific data type
       switch (dataType) {
@@ -523,7 +555,7 @@ export const useLogement = (logementId: number): UseLogementReturn => {
           console.warn(`Unknown data type: ${dataType}`);
       }
     },
-    [fetchAsyncData, logementId]
+    [fetchAsyncData, logementId, setSingleLogementData]
   );
 
   // Initial load

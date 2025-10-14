@@ -43,6 +43,47 @@ export interface ImmeublesCache {
   indicators: CachedData<any[]> | null;
 }
 
+export interface LogementsCache {
+  logements: CachedData<any[]> | null;
+  indicators: CachedData<any[]> | null;
+}
+
+export interface SingleImmeubleCache {
+  immeuble: CachedData<any> | null;
+  capteur: CachedData<any> | null;
+  cet: CachedData<any> | null;
+  ec: CachedData<any> | null;
+  ef: CachedData<any> | null;
+  elect: CachedData<any> | null;
+  gaz: CachedData<any> | null;
+  indicators: CachedData<any> | null;
+  repart: CachedData<any> | null;
+  serieConsosCompteurGeneral: CachedData<any> | null;
+  serieConsosEau: CachedData<any> | null;
+  anomalies: CachedData<any> | null;
+  dysfonctionnements: CachedData<any> | null;
+  fuites: CachedData<any> | null;
+  interventions: CachedData<any> | null;
+  [key: string]: CachedData<any> | null;
+}
+
+export interface SingleLogementCache {
+  logement: CachedData<any> | null;
+  capteur: CachedData<any> | null;
+  cet: CachedData<any> | null;
+  ec: CachedData<any> | null;
+  ef: CachedData<any> | null;
+  elect: CachedData<any> | null;
+  gaz: CachedData<any> | null;
+  indicators: CachedData<any> | null;
+  repart: CachedData<any> | null;
+  anomalies: CachedData<any> | null;
+  dysfonctionnements: CachedData<any> | null;
+  fuites: CachedData<any> | null;
+  interventions: CachedData<any> | null;
+  [key: string]: CachedData<any> | null;
+}
+
 interface DataStoreState {
   loginData: LoginOutputDto | null;
   setLoginData: (data: LoginOutputDto) => void;
@@ -50,10 +91,38 @@ interface DataStoreState {
 
   // Cache management
   immeublesCache: ImmeublesCache;
+  logementsCache: LogementsCache;
+  singleImmeubleCache: { [key: string]: SingleImmeubleCache };
+  singleLogementCache: { [key: string]: SingleLogementCache };
+
+  // Immeubles cache functions
   setImmeublesBuildings: (data: any[]) => void;
   setImmeublesIndicators: (data: any[]) => void;
   clearImmeublesCache: () => void;
-  isImmeublesCacheValid: () => boolean;
+
+  // Logements cache functions
+  setLogementsLogements: (data: any[]) => void;
+  setLogementsIndicators: (data: any[]) => void;
+  clearLogementsCache: () => void;
+
+  // Single Immeuble cache functions
+  setSingleImmeubleData: (
+    immeubleId: string,
+    dataType: string,
+    data: any
+  ) => void;
+  clearSingleImmeubleCache: (immeubleId: string) => void;
+
+  // Single Logement cache functions
+  setSingleLogementData: (
+    logementId: string,
+    dataType: string,
+    data: any
+  ) => void;
+  clearSingleLogementCache: (logementId: string) => void;
+
+  // Clear all caches
+  clearAllCaches: () => void;
 }
 
 // Helper function to get end of day timestamp (23:59:59)
@@ -94,6 +163,12 @@ export const useDataStore = create<DataStoreState>()(
         buildings: null,
         indicators: null,
       },
+      logementsCache: {
+        logements: null,
+        indicators: null,
+      },
+      singleImmeubleCache: {},
+      singleLogementCache: {},
 
       setLoginData: (data: LoginOutputDto) => set({ loginData: data }),
 
@@ -101,8 +176,12 @@ export const useDataStore = create<DataStoreState>()(
         set({
           loginData: null,
           immeublesCache: { buildings: null, indicators: null },
+          logementsCache: { logements: null, indicators: null },
+          singleImmeubleCache: {},
+          singleLogementCache: {},
         }),
 
+      // Immeubles cache functions
       setImmeublesBuildings: (data: any[]) => {
         const { loginData } = get();
         if (!loginData?.loginId) return;
@@ -146,13 +225,126 @@ export const useDataStore = create<DataStoreState>()(
           immeublesCache: { buildings: null, indicators: null },
         }),
 
-      isImmeublesCacheValid: () => {
-        const { immeublesCache, loginData } = get();
-        return (
-          isCacheValid(immeublesCache.buildings, loginData?.loginId || null) &&
-          isCacheValid(immeublesCache.indicators, loginData?.loginId || null)
-        );
+      // Logements cache functions
+      setLogementsLogements: (data: any[]) => {
+        const { loginData } = get();
+        if (!loginData?.loginId) return;
+
+        const cachedData: CachedData<any[]> = {
+          data,
+          loginId: loginData.loginId,
+          cachedAt: Date.now(),
+          expiresAt: getEndOfDayTimestamp(),
+        };
+
+        set((state) => ({
+          logementsCache: {
+            ...state.logementsCache,
+            logements: cachedData,
+          },
+        }));
       },
+
+      setLogementsIndicators: (data: any[]) => {
+        const { loginData } = get();
+        if (!loginData?.loginId) return;
+
+        const cachedData: CachedData<any[]> = {
+          data,
+          loginId: loginData.loginId,
+          cachedAt: Date.now(),
+          expiresAt: getEndOfDayTimestamp(),
+        };
+
+        set((state) => ({
+          logementsCache: {
+            ...state.logementsCache,
+            indicators: cachedData,
+          },
+        }));
+      },
+
+      clearLogementsCache: () =>
+        set({
+          logementsCache: { logements: null, indicators: null },
+        }),
+
+      // Single Immeuble cache functions
+      setSingleImmeubleData: (
+        immeubleId: string,
+        dataType: string,
+        data: any
+      ) => {
+        const { loginData } = get();
+        if (!loginData?.loginId) return;
+
+        const cachedData: CachedData<any> = {
+          data,
+          loginId: loginData.loginId,
+          cachedAt: Date.now(),
+          expiresAt: getEndOfDayTimestamp(),
+        };
+
+        set((state) => ({
+          singleImmeubleCache: {
+            ...state.singleImmeubleCache,
+            [immeubleId]: {
+              ...state.singleImmeubleCache[immeubleId],
+              [dataType]: cachedData,
+            },
+          },
+        }));
+      },
+
+      clearSingleImmeubleCache: (immeubleId: string) =>
+        set((state) => {
+          const newCache = { ...state.singleImmeubleCache };
+          delete newCache[immeubleId];
+          return { singleImmeubleCache: newCache };
+        }),
+
+      // Single Logement cache functions
+      setSingleLogementData: (
+        logementId: string,
+        dataType: string,
+        data: any
+      ) => {
+        const { loginData } = get();
+        if (!loginData?.loginId) return;
+
+        const cachedData: CachedData<any> = {
+          data,
+          loginId: loginData.loginId,
+          cachedAt: Date.now(),
+          expiresAt: getEndOfDayTimestamp(),
+        };
+
+        set((state) => ({
+          singleLogementCache: {
+            ...state.singleLogementCache,
+            [logementId]: {
+              ...state.singleLogementCache[logementId],
+              [dataType]: cachedData,
+            },
+          },
+        }));
+      },
+
+      clearSingleLogementCache: (logementId: string) =>
+        set((state) => {
+          const newCache = { ...state.singleLogementCache };
+          delete newCache[logementId];
+          return { singleLogementCache: newCache };
+        }),
+
+      // Clear all caches
+      clearAllCaches: () =>
+        set({
+          immeublesCache: { buildings: null, indicators: null },
+          logementsCache: { logements: null, indicators: null },
+          singleImmeubleCache: {},
+          singleLogementCache: {},
+        }),
     }),
     {
       name: "data-store", // unique name for localStorage key

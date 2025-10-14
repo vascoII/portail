@@ -32,7 +32,7 @@ interface Immeuble {
 }
 
 interface AsyncData {
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 interface UseImmeubleReturn {
@@ -104,14 +104,11 @@ interface UseImmeubleReturn {
   refetchAsyncData: (dataType: string) => void;
 }
 
-// Cache for async data
-const asyncDataCache: {
-  [key: string]: { data: AsyncData; timestamp: number };
-} = {};
-const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+// Cache is now handled by the dataStore
 
 export const useImmeuble = (immeubleId: number): UseImmeubleReturn => {
-  const { loginData } = useDataStore();
+  const { loginData, singleImmeubleCache, setSingleImmeubleData } =
+    useDataStore();
 
   // Main immeuble state (sync)
   const [immeuble, setImmeuble] = useState<Immeuble | null>(null);
@@ -193,7 +190,7 @@ export const useImmeuble = (immeubleId: number): UseImmeubleReturn => {
     };
   }, [loginData?.tokenJwt]);
 
-  // Generic async data fetcher with caching
+  // Generic async data fetcher with daily caching
   const fetchAsyncData = useCallback(
     async (
       endpoint: string,
@@ -208,13 +205,9 @@ export const useImmeuble = (immeubleId: number): UseImmeubleReturn => {
       }
 
       // Check cache first
-      const cacheKey = `${dataType}-${immeubleId}`;
-      const now = Date.now();
-      if (
-        asyncDataCache[cacheKey] &&
-        now - asyncDataCache[cacheKey].timestamp < CACHE_DURATION
-      ) {
-        setData(asyncDataCache[cacheKey].data);
+      const cacheKey = immeubleId.toString();
+      if (singleImmeubleCache[cacheKey]?.[dataType]?.data) {
+        setData(singleImmeubleCache[cacheKey]![dataType]!.data);
         setLoading(false);
         return;
       }
@@ -237,8 +230,8 @@ export const useImmeuble = (immeubleId: number): UseImmeubleReturn => {
         const data = await response.json();
         const result = data.indicators || data;
 
-        // Update cache
-        asyncDataCache[cacheKey] = { data: result, timestamp: now };
+        // Cache the data
+        setSingleImmeubleData(cacheKey, dataType, result);
         setData(result);
       } catch (err) {
         const errorMessage =
@@ -251,13 +244,27 @@ export const useImmeuble = (immeubleId: number): UseImmeubleReturn => {
         setLoading(false);
       }
     },
-    [loginData?.tokenJwt, immeubleId, getAuthHeaders]
+    [
+      loginData?.tokenJwt,
+      immeubleId,
+      getAuthHeaders,
+      singleImmeubleCache,
+      setSingleImmeubleData,
+    ]
   );
 
   // Fetch main immeuble data (sync)
   const fetchImmeuble = useCallback(async () => {
     if (!loginData?.tokenJwt) {
       setImmeubleError("No authentication token available");
+      return;
+    }
+
+    // Check cache first
+    const cacheKey = immeubleId.toString();
+    if (singleImmeubleCache[cacheKey]?.immeuble?.data) {
+      setImmeuble(singleImmeubleCache[cacheKey]!.immeuble!.data);
+      setImmeubleLoading(false);
       return;
     }
 
@@ -280,6 +287,9 @@ export const useImmeuble = (immeubleId: number): UseImmeubleReturn => {
       }
 
       const data = await response.json();
+
+      // Cache the data
+      setSingleImmeubleData(cacheKey, "immeuble", data);
       setImmeuble(data);
     } catch (err) {
       const errorMessage =
@@ -291,7 +301,13 @@ export const useImmeuble = (immeubleId: number): UseImmeubleReturn => {
     } finally {
       setImmeubleLoading(false);
     }
-  }, [loginData?.tokenJwt, immeubleId, getAuthHeaders]);
+  }, [
+    loginData?.tokenJwt,
+    immeubleId,
+    getAuthHeaders,
+    singleImmeubleCache,
+    setSingleImmeubleData,
+  ]);
 
   // Fetch all async data
   const fetchAllAsyncData = useCallback(() => {
@@ -403,9 +419,26 @@ export const useImmeuble = (immeubleId: number): UseImmeubleReturn => {
 
   // Combined refetch
   const refetch = useCallback(() => {
+    // Clear all caches for this immeuble
+    const cacheKey = immeubleId.toString();
+    setSingleImmeubleData(cacheKey, "immeuble", null);
+    setSingleImmeubleData(cacheKey, "capteur", null);
+    setSingleImmeubleData(cacheKey, "cet", null);
+    setSingleImmeubleData(cacheKey, "ec", null);
+    setSingleImmeubleData(cacheKey, "ef", null);
+    setSingleImmeubleData(cacheKey, "elect", null);
+    setSingleImmeubleData(cacheKey, "gaz", null);
+    setSingleImmeubleData(cacheKey, "indicators", null);
+    setSingleImmeubleData(cacheKey, "repart", null);
+    setSingleImmeubleData(cacheKey, "serieConsosCompteurGeneral", null);
+    setSingleImmeubleData(cacheKey, "serieConsosEau", null);
+    setSingleImmeubleData(cacheKey, "anomalies", null);
+    setSingleImmeubleData(cacheKey, "dysfonctionnements", null);
+    setSingleImmeubleData(cacheKey, "fuites", null);
+
     fetchImmeuble();
     fetchAllAsyncData();
-  }, [fetchImmeuble, fetchAllAsyncData]);
+  }, [fetchImmeuble, fetchAllAsyncData, immeubleId, setSingleImmeubleData]);
 
   // Individual refetch functions
   const refetchImmeuble = useCallback(() => {
@@ -414,9 +447,9 @@ export const useImmeuble = (immeubleId: number): UseImmeubleReturn => {
 
   const refetchAsyncData = useCallback(
     (dataType: string) => {
-      // Clear cache for specific data type
-      const cacheKey = `${dataType}-${immeubleId}`;
-      delete asyncDataCache[cacheKey];
+      // Clear cache for specific data type by setting empty data
+      const cacheKey = immeubleId.toString();
+      setSingleImmeubleData(cacheKey, dataType, null);
 
       // Refetch specific data type
       switch (dataType) {
@@ -443,7 +476,7 @@ export const useImmeuble = (immeubleId: number): UseImmeubleReturn => {
           console.warn(`Unknown data type: ${dataType}`);
       }
     },
-    [fetchAsyncData, immeubleId]
+    [fetchAsyncData, immeubleId, setSingleImmeubleData]
   );
 
   // Initial load
