@@ -58,7 +58,7 @@ const ConstructionPanel: React.FC<ConstructionPanelProps> = ({ data }) => {
         {/* Construction Status */}
         <div className="bg-blue-600 text-white p-6 rounded-lg">
           <Link
-            href="/immeubles?chantiers=1"
+            href="/pages/immeubles?chantiers=1"
             className="block text-white hover:text-blue-200 transition-colors duration-200"
           >
             <div className="text-lg font-bold uppercase mb-6">

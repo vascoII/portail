@@ -26,7 +26,7 @@ const ParcOverview: React.FC<ParcOverviewProps> = ({ data }) => {
         <div className="lg:col-span-7">
           <div className="bg-blue-600 text-white p-6 rounded-lg">
             <Link
-              href="/immeubles"
+              href="/pages/immeubles"
               className="block w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-4 px-6 rounded-lg transition-colors duration-200 flex items-center justify-between"
             >
               <div>

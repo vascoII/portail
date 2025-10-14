@@ -22,7 +22,7 @@ const ClientAlerts: React.FC<ClientAlertsProps> = ({ data }) => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Leaks Alert */}
           <Link
-            href="/immeubles?fuites=1"
+            href="/pages/immeubles?fuites=1"
             className="block hover:bg-gray-50 p-4 rounded-lg transition-colors duration-200"
           >
             <div className="flex items-center">
@@ -46,7 +46,7 @@ const ClientAlerts: React.FC<ClientAlertsProps> = ({ data }) => {
 
           {/* Consumption Anomalies Alert */}
           <Link
-            href="/immeubles?anomalies=1"
+            href="/pages/immeubles?anomalies=1"
             className="block hover:bg-gray-50 p-4 rounded-lg transition-colors duration-200"
           >
             <div className="flex items-center">
