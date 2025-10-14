@@ -3,34 +3,32 @@ import { useDataStore } from "../store/dataStore";
 
 // Types matching backend DTOs
 interface Immeuble {
-  Immeuble: {
-    PkImmeuble: number;
-    Ref: string;
-    Numero: string;
-    Nom?: string;
-    Adresse1: string;
-    Adresse2?: string;
-    Adresse3?: string;
-    Cp: string;
-    Ville: string;
-    HasTelereleve?: boolean;
-    HasTransfertFichiers?: boolean;
-  };
-  NbLogements: number;
-  NbAppareils: number;
-  NbCompteursEF: number;
-  NbCompteursEC: number;
-  NbCompteursRepart: number;
-  NbCompteursCET: number;
-  NbCompteursElect: number;
-  NbCompteursGaz: number;
-  NbCompteursCapteur: number;
-  NbFuites: number;
-  NbAnomalies: number;
-  NbDysfonctionnements: number;
-  NbDepannages: number;
-  NbDepannagesTotal: number;
-  NbChantiers: number;
+  pkImmeuble: number;
+  ref: string;
+  numero: string;
+  nom?: string;
+  adresse1: string;
+  adresse2?: string;
+  adresse3?: string;
+  cp: string;
+  ville: string;
+  hasTelereleve?: boolean;
+  hasTransfertFichiers?: boolean;
+  nbLogements: number;
+  nbAppareils: number;
+  nbCompteursEF: number;
+  nbCompteursEC: number;
+  nbCompteursRepart: number;
+  nbCompteursCET: number;
+  nbCompteursElect: number;
+  nbCompteursGaz: number;
+  nbCompteursCapteur: number;
+  nbFuites: number;
+  nbAnomalies: number;
+  nbDysfonctionnements: number;
+  nbDepannages: number;
+  nbDepannagesTotal: number;
+  nbChantiers: number;
 }
 
 interface AsyncData {

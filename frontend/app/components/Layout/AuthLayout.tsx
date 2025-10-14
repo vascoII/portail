@@ -17,7 +17,7 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({
   return (
     <div className={`auth-page ${className}`}>
       <div className="main-content">
-        <Link href="/dashboard" className="logo">
+        <Link href="/pages/dashboard" className="logo">
           <img src="/images/logo.svg" alt="Techem" />
         </Link>
 

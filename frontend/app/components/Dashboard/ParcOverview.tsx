@@ -38,7 +38,7 @@ const ParcOverview: React.FC<ParcOverviewProps> = ({ data }) => {
 
             {data.showChgtOccupant && (
               <Link
-                href="/gestion-parc"
+                href="/pages/gestion-parc"
                 className="block w-full bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded-lg mt-4 transition-colors duration-200 flex items-center"
               >
                 <i className="fas fa-clipboard mr-3"></i>

@@ -79,9 +79,9 @@ const ImmeubleDetailPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>("ef");
 
   const breadcrumbItems = [
-    { label: "Le parc", href: "/dashboard" },
-    { label: "Liste des immeubles", href: "/immeubles" },
-    { label: `Immeuble ${immeuble?.Immeuble.Ref || ""}`, href: "#" },
+    { label: "Le parc", href: "/pages/dashboard" },
+    { label: "Liste des immeubles", href: "/pages/immeubles" },
+    { label: `Immeuble ${immeuble?.ref || ""}`, href: "#" },
   ];
 
   // Show main skeleton while immeuble is loading
@@ -106,7 +106,7 @@ const ImmeubleDetailPage: React.FC = () => {
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="text-lg font-medium text-red-800 mb-2">
-                  Erreur lors du chargement de l'immeuble
+                  Erreur lors du chargement de l&apos;immeuble
                 </h3>
                 <p className="text-red-600 text-sm">{immeubleError}</p>
               </div>
@@ -133,7 +133,7 @@ const ImmeubleDetailPage: React.FC = () => {
               Immeuble non trouvé
             </h2>
             <p className="text-gray-600">
-              L'immeuble demandé n'existe pas ou n'est pas accessible.
+              L&apos;immeuble demandé n&apos;existe pas ou n&apos;est pas accessible.
             </p>
           </div>
         </div>
@@ -147,7 +147,7 @@ const ImmeubleDetailPage: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <h2 className="text-2xl font-bold text-gray-900 mb-8">
-          Aperçu de l'immeuble {immeuble.Immeuble.Ref}
+          Aperçu de l&apos;immeuble {immeuble.ref}
         </h2>
 
         {/* Main building info */}
@@ -160,23 +160,23 @@ const ImmeubleDetailPage: React.FC = () => {
                   <i className="fas fa-building text-2xl text-blue-600"></i>
                 </div>
                 <div className="flex-1">
-                  {immeuble.Immeuble.Nom && (
+                  {immeuble.nom && (
                     <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                      {immeuble.Immeuble.Nom}
+                      {immeuble.nom}
                     </h3>
                   )}
                   <p className="text-gray-600 mb-1">
-                    <strong>Référence:</strong> {immeuble.Immeuble.Ref}
+                    <strong>Référence:</strong> {immeuble.ref}
                   </p>
                   <p className="text-gray-600 mb-1">
-                    <strong>N° d'immeuble:</strong> {immeuble.Immeuble.Numero}
+                    <strong>N° d&apos;immeuble:</strong> {immeuble.numero}
                   </p>
                   <p className="text-gray-600 mb-1">
-                    {immeuble.Immeuble.Adresse1} {immeuble.Immeuble.Adresse2}{" "}
-                    {immeuble.Immeuble.Adresse3}
+                    {immeuble.adresse1} {immeuble.adresse2}{" "}
+                    {immeuble.adresse3}
                   </p>
                   <p className="text-gray-600">
-                    {immeuble.Immeuble.Cp} {immeuble.Immeuble.Ville}
+                    {immeuble.cp} {immeuble.ville}
                   </p>
                 </div>
               </div>
@@ -185,44 +185,44 @@ const ImmeubleDetailPage: React.FC = () => {
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
                 <div className="text-center">
                   <div className="text-2xl font-bold text-blue-600">
-                    {immeuble.NbLogements}
+                    {immeuble.nbLogements}
                   </div>
                   <div className="text-sm text-gray-600">Logements</div>
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-bold text-green-600">
-                    {immeuble.NbAppareils}
+                    {immeuble.nbAppareils}
                   </div>
                   <div className="text-sm text-gray-600">Appareils</div>
                 </div>
-                {immeuble.NbCompteursEF > 0 && (
+                {immeuble.nbCompteursEF > 0 && (
                   <div className="text-center">
                     <div className="text-2xl font-bold text-blue-500">
-                      {immeuble.NbCompteursEF}
+                      {immeuble.nbCompteursEF}
                     </div>
                     <div className="text-sm text-gray-600">Eau froide</div>
                   </div>
                 )}
-                {immeuble.NbCompteursEC > 0 && (
+                {immeuble.nbCompteursEC > 0 && (
                   <div className="text-center">
                     <div className="text-2xl font-bold text-red-500">
-                      {immeuble.NbCompteursEC}
+                      {immeuble.nbCompteursEC}
                     </div>
                     <div className="text-sm text-gray-600">Eau chaude</div>
                   </div>
                 )}
-                {immeuble.NbCompteursRepart > 0 && (
+                {immeuble.nbCompteursRepart > 0 && (
                   <div className="text-center">
                     <div className="text-2xl font-bold text-purple-500">
-                      {immeuble.NbCompteursRepart}
+                      {immeuble.nbCompteursRepart}
                     </div>
                     <div className="text-sm text-gray-600">Répartiteurs</div>
                   </div>
                 )}
-                {immeuble.NbCompteursCET > 0 && (
+                {immeuble.nbCompteursCET > 0 && (
                   <div className="text-center">
                     <div className="text-2xl font-bold text-orange-500">
-                      {immeuble.NbCompteursCET}
+                      {immeuble.nbCompteursCET}
                     </div>
                     <div className="text-sm text-gray-600">CET</div>
                   </div>
@@ -233,13 +233,13 @@ const ImmeubleDetailPage: React.FC = () => {
               <div className="border-t pt-4">
                 <p className="text-sm text-gray-600 mb-1">
                   <strong>Mode de relève:</strong>{" "}
-                  {immeuble.Immeuble.HasTelereleve
+                  {immeuble.hasTelereleve
                     ? "Réseau fixe TSS"
                     : "Relève planifiée (radio ou manuelle)"}
                 </p>
                 <p className="text-sm text-gray-600">
                   <strong>Transfert électronique:</strong>{" "}
-                  {immeuble.Immeuble.HasTransfertFichiers ? "Actif" : "Inactif"}
+                  {immeuble.hasTransfertFichiers ? "Actif" : "Inactif"}
                 </p>
               </div>
             </div>
@@ -251,15 +251,15 @@ const ImmeubleDetailPage: React.FC = () => {
             <div className="bg-white rounded-lg shadow-md p-6">
               <div className="text-center">
                 <h3 className="text-lg font-semibold text-gray-800 mb-4">
-                  Dépannages {immeuble.NbDepannages > 0 ? "en cours" : ""}
+                  Dépannages {immeuble.nbDepannages > 0 ? "en cours" : ""}
                 </h3>
                 <div className="w-32 h-32 bg-gray-100 rounded-full mx-auto mb-4 flex items-center justify-center">
                   <i className="fas fa-wrench text-3xl text-gray-400"></i>
                 </div>
                 <div className="text-3xl font-bold text-gray-800">
-                  {immeuble.NbDepannages > 0
-                    ? immeuble.NbDepannages
-                    : immeuble.NbDepannagesTotal}
+                  {immeuble.nbDepannages > 0
+                    ? immeuble.nbDepannages
+                    : immeuble.nbDepannagesTotal}
                 </div>
               </div>
             </div>
@@ -274,9 +274,9 @@ const ImmeubleDetailPage: React.FC = () => {
                   <i className="fas fa-bell text-3xl text-gray-400"></i>
                 </div>
                 <div className="text-3xl font-bold text-gray-800">
-                  {immeuble.NbDysfonctionnements === -1
+                  {immeuble.nbDysfonctionnements === -1
                     ? 0
-                    : immeuble.NbDysfonctionnements}
+                    : immeuble.nbDysfonctionnements}
                 </div>
               </div>
             </div>
@@ -288,7 +288,7 @@ const ImmeubleDetailPage: React.FC = () => {
           {/* Tab navigation */}
           <div className="border-b border-gray-200">
             <nav className="flex space-x-1 p-4">
-              {immeuble.NbCompteursEF > 0 && (
+              {immeuble.nbCompteursEF > 0 && (
                 <button
                   onClick={() => setActiveTab("ef")}
                   className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
@@ -301,7 +301,7 @@ const ImmeubleDetailPage: React.FC = () => {
                   Eau froide
                 </button>
               )}
-              {immeuble.NbCompteursEC > 0 && (
+              {immeuble.nbCompteursEC > 0 && (
                 <button
                   onClick={() => setActiveTab("ec")}
                   className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
@@ -314,7 +314,7 @@ const ImmeubleDetailPage: React.FC = () => {
                   Eau chaude
                 </button>
               )}
-              {immeuble.NbCompteursRepart > 0 && (
+              {immeuble.nbCompteursRepart > 0 && (
                 <button
                   onClick={() => setActiveTab("repart")}
                   className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
@@ -327,7 +327,7 @@ const ImmeubleDetailPage: React.FC = () => {
                   Répartiteur
                 </button>
               )}
-              {immeuble.NbCompteursCET > 0 && (
+              {immeuble.nbCompteursCET > 0 && (
                 <button
                   onClick={() => setActiveTab("cet")}
                   className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
@@ -340,7 +340,7 @@ const ImmeubleDetailPage: React.FC = () => {
                   CET
                 </button>
               )}
-              {immeuble.NbCompteursCapteur > 0 && (
+              {immeuble.nbCompteursCapteur > 0 && (
                 <button
                   onClick={() => setActiveTab("capteur")}
                   className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
@@ -353,7 +353,7 @@ const ImmeubleDetailPage: React.FC = () => {
                   Température
                 </button>
               )}
-              {immeuble.NbCompteursElect > 0 && (
+              {immeuble.nbCompteursElect > 0 && (
                 <button
                   onClick={() => setActiveTab("elect")}
                   className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
@@ -366,7 +366,7 @@ const ImmeubleDetailPage: React.FC = () => {
                   Électricité
                 </button>
               )}
-              {immeuble.NbCompteursGaz > 0 && (
+              {immeuble.nbCompteursGaz > 0 && (
                 <button
                   onClick={() => setActiveTab("gaz")}
                   className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${

@@ -60,12 +60,12 @@ const LogementsListPage: React.FC = () => {
   };
 
   const breadcrumbItems = [
-    { label: "Le parc", href: "/dashboard" },
-    { label: "Liste des immeubles", href: "/immeubles" },
+    { label: "Le parc", href: "/pages/dashboard" },
+    { label: "Liste des immeubles", href: "/pages/immeubles" },
     ...(immeubleId
-      ? [{ label: `Immeuble ${immeubleId}`, href: `/immeubles/${immeubleId}` }]
+      ? [{ label: `Immeuble ${immeubleId}`, href: `/pages/immeubles/${immeubleId}` }]
       : []),
-    { label: "Liste des logements", href: "/logements" },
+    { label: "Liste des logements", href: "/pages/logements" },
   ];
 
   return (

@@ -79,7 +79,7 @@ const OperatorCard: React.FC<OperatorCardProps> = ({ operator, onDelete }) => {
           {/* Actions */}
           <div className="flex space-x-2">
             <Link
-              href={`/operators/${operator.PKUser}/edit`}
+              href={`/pages/operators/${operator.PKUser}/edit`}
               className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors duration-200 flex items-center"
             >
               <i className="fas fa-edit mr-2"></i>
@@ -159,7 +159,7 @@ const OperatorCard: React.FC<OperatorCardProps> = ({ operator, onDelete }) => {
         {/* View Details Link */}
         <div className="mt-4 pt-4 border-t border-gray-200">
           <Link
-            href={`/operators/${operator.PKUser}`}
+            href={`/pages/operators/${operator.PKUser}`}
             className="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 px-4 py-2 rounded-lg transition-colors duration-200 flex items-center justify-center"
           >
             <i className="fas fa-eye mr-2"></i>

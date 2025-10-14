@@ -112,7 +112,7 @@ const InterventionCard: React.FC<InterventionCardProps> = ({
 
       <div className="panel-footer">
         <Link
-          href={`/interventions/${intervention.id}`}
+          href={`/pages/interventions/${intervention.id}`}
           className="btn btn-primary btn-sm"
         >
           Voir les détails

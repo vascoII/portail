@@ -2,44 +2,42 @@
 
 import React from "react";
 import Link from "next/link";
-
 interface ImmeubleCardProps {
   immeuble: {
-    Immeuble: {
-      PkImmeuble: number;
-      Ref: string;
-      Numero: string;
-      Nom?: string;
-      Adresse1: string;
-      Adresse2?: string;
-      Adresse3?: string;
-      Cp: string;
-      Ville: string;
-    };
-    NbLogements: number;
-    NbAppareils: number;
-    NbCompteursEF: number;
-    NbCompteursEC: number;
-    NbCompteursRepart: number;
-    NbCompteursCET: number;
-    NbCompteursElect: number;
-    NbCompteursGaz: number;
-    NbFuites: number;
-    NbAnomalies: number;
-    NbDysfonctionnements: number;
-    NbDepannages: number;
-    NbChantiers: number;
+    pkImmeuble: number;
+    ref: string;
+    numero: string;
+    nom?: string;
+    adresse1: string;
+    adresse2?: string;
+    adresse3?: string;
+    cp: string;
+    ville: string;
+    nbLogements: number;
+    nbAppareils: number;
+    nbCompteursEF: number;
+    nbCompteursEC: number;
+    nbCompteursRepart: number;
+    nbCompteursCET: number;
+    nbCompteursElect: number;
+    nbCompteursGaz: number;
+    nbFuites: number;
+    nbAnomalies: number;
+    nbDysfonctionnements: number;
+    nbDepannages: number;
+    nbChantiers: number;
   };
   isGestionMode?: boolean;
   showChgtOccupant?: boolean;
 }
+
 
 const ImmeubleCard: React.FC<ImmeubleCardProps> = ({
   immeuble,
   isGestionMode = false,
   showChgtOccupant = false,
 }) => {
-  const totalWaterMeters = immeuble.NbCompteursEF + immeuble.NbCompteursEC;
+  const totalWaterMeters = (immeuble.nbCompteursEF ?? 0) + (immeuble.nbCompteursEC ?? 0);
 
   const getAlertIcon = (type: string, count: number, href: string) => {
     if (count <= 0) return null;
@@ -90,26 +88,26 @@ const ImmeubleCard: React.FC<ImmeubleCardProps> = ({
                 <div>
                   <span className="font-medium text-gray-600">Référence :</span>
                   <div className="font-semibold text-gray-800">
-                    {immeuble.Immeuble.Ref}
+                    {immeuble.ref}
                   </div>
                 </div>
                 <div>
                   <span className="font-medium text-gray-600">
-                    N° d'immeuble :
+                    N° d&apos;immeuble :
                   </span>
                   <div className="font-semibold text-gray-800">
-                    {immeuble.Immeuble.Numero}
+                    {immeuble.numero}
                   </div>
                 </div>
               </div>
 
               <div className="mt-2 text-sm text-gray-600">
                 <div>
-                  {immeuble.Immeuble.Adresse1} {immeuble.Immeuble.Adresse2}{" "}
-                  {immeuble.Immeuble.Adresse3}
+                  {immeuble.adresse1} {immeuble.adresse2}{" "}
+                  {immeuble.adresse3}
                 </div>
                 <div>
-                  {immeuble.Immeuble.Cp} {immeuble.Immeuble.Ville}
+                  {immeuble.cp} {immeuble.ville}
                 </div>
               </div>
             </div>
@@ -120,23 +118,23 @@ const ImmeubleCard: React.FC<ImmeubleCardProps> = ({
             <div className="flex space-x-2">
               {getAlertIcon(
                 "dys",
-                immeuble.NbDysfonctionnements,
-                `/immeubles/${immeuble.Immeuble.PkImmeuble}/dysfunctions`
+                immeuble.nbDysfonctionnements,
+                `/pages/immeubles/${immeuble.pkImmeuble}/dysfunctions`
               )}
               {getAlertIcon(
                 "dep",
-                immeuble.NbDepannages,
-                `/immeubles/${immeuble.Immeuble.PkImmeuble}/interventions`
+                immeuble.nbDepannages,
+                `/pages/immeubles/${immeuble.pkImmeuble}/interventions`
               )}
               {getAlertIcon(
                 "fui",
-                immeuble.NbFuites,
-                `/immeubles/${immeuble.Immeuble.PkImmeuble}/leaks`
+                immeuble.nbFuites,
+                `/pages/immeubles/${immeuble.pkImmeuble}/leaks`
               )}
               {getAlertIcon(
                 "ano",
-                immeuble.NbAnomalies,
-                `/immeubles/${immeuble.Immeuble.PkImmeuble}/anomalies`
+                immeuble.nbAnomalies,
+                `/pages/immeubles/${immeuble.pkImmeuble}/anomalies`
               )}
             </div>
           )}
@@ -147,12 +145,12 @@ const ImmeubleCard: React.FC<ImmeubleCardProps> = ({
           <Link
             href={
               isGestionMode
-                ? `/gestion-parc/logement/${immeuble.Immeuble.PkImmeuble}`
-                : `/immeubles/${immeuble.Immeuble.PkImmeuble}`
+                ? `/pages/gestion-parc/logement/${immeuble.pkImmeuble}`
+                : `/pages/immeubles/${immeuble.pkImmeuble}`
             }
             className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors duration-200 flex items-center"
           >
-            <span className="font-semibold">{immeuble.NbLogements}</span>
+            <span className="font-semibold">{immeuble.nbLogements}</span>
             <span className="ml-2">Logements</span>
             <i className="fas fa-chevron-right ml-2"></i>
           </Link>
@@ -171,7 +169,7 @@ const ImmeubleCard: React.FC<ImmeubleCardProps> = ({
                 <div className="flex items-center text-green-600">
                   <i className="fas fa-th-large mr-1"></i>
                   <span className="font-semibold">
-                    {immeuble.NbCompteursRepart || 0}
+                    {immeuble.nbCompteursRepart || 0}
                   </span>
                 </div>
                 <div className="text-gray-600">Répartiteurs</div>
@@ -180,10 +178,10 @@ const ImmeubleCard: React.FC<ImmeubleCardProps> = ({
                 <div className="flex items-center text-purple-600">
                   <i className="fas fa-tachometer-alt mr-1"></i>
                   <span className="font-semibold">
-                    {immeuble.NbCompteursCET || 0}
+                    {immeuble.nbCompteursCET || 0}
                   </span>
                 </div>
-                <div className="text-gray-600">Compteur d'énergie</div>
+                <div className="text-gray-600">Compteur d&apos;énergie</div>
               </div>
             </div>
           )}
@@ -191,7 +189,7 @@ const ImmeubleCard: React.FC<ImmeubleCardProps> = ({
           {/* Gestion Mode Button */}
           {isGestionMode && showChgtOccupant && (
             <Link
-              href={`/gestion-parc/logement/${immeuble.Immeuble.PkImmeuble}`}
+              href={`/pages/gestion-parc/logement/${immeuble.pkImmeuble}`}
               className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors duration-200 flex items-center"
             >
               <i className="fas fa-file mr-2"></i>

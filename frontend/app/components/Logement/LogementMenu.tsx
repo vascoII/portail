@@ -41,28 +41,28 @@ const LogementMenu: React.FC<LogementMenuProps> = ({ logement, activeTab }) => {
 
   const menuItems = [
     {
-      href: "/dashboard",
+      href: "/pages/dashboard",
       icon: "fas fa-cog",
       title: "Le Parc",
       isActive: false,
       showBadge: false,
     },
     {
-      href: `/immeubles/${logement.Immeuble.PkImmeuble}`,
+      href: `/pages/immeubles/${logement.Immeuble.PkImmeuble}`,
       icon: "fas fa-building",
       title: `Immeuble ${logement.Immeuble.Ref}`,
       isActive: false,
       showBadge: false,
     },
     {
-      href: `/logements/${logement.Logement.PkLogement}`,
+      href: `/pages/logements/${logement.Logement.PkLogement}`,
       icon: "fas fa-home",
       title: `Logement ${logement.Occupant.Ref}`,
       isActive: !activeTab,
       showBadge: false,
     },
     {
-      href: `/logements/${logement.Logement.PkLogement}/leaks`,
+      href: `/pages/logements/${logement.Logement.PkLogement}/leaks`,
       icon: "fas fa-tint",
       title: "Fuites",
       count: totalFuites,
@@ -70,7 +70,7 @@ const LogementMenu: React.FC<LogementMenuProps> = ({ logement, activeTab }) => {
       showBadge: true,
     },
     {
-      href: `/logements/${logement.Logement.PkLogement}/dysfunctions`,
+      href: `/pages/logements/${logement.Logement.PkLogement}/dysfunctions`,
       icon: "fas fa-bell",
       title: "Alarmes techniques",
       count:
@@ -81,7 +81,7 @@ const LogementMenu: React.FC<LogementMenuProps> = ({ logement, activeTab }) => {
       showBadge: true,
     },
     {
-      href: `/logements/${logement.Logement.PkLogement}/anomalies`,
+      href: `/pages/logements/${logement.Logement.PkLogement}/anomalies`,
       icon: "fas fa-exclamation-triangle",
       title: "Anomalies de consommation",
       count: totalAnomalies,
@@ -91,8 +91,8 @@ const LogementMenu: React.FC<LogementMenuProps> = ({ logement, activeTab }) => {
     {
       href:
         logement.NbDepannages > 0
-          ? `/logements/${logement.Logement.PkLogement}/interventions?statut=ouvert`
-          : `/logements/${logement.Logement.PkLogement}/interventions`,
+          ? `/pages/logements/${logement.Logement.PkLogement}/interventions?statut=ouvert`
+          : `/pages/logements/${logement.Logement.PkLogement}/interventions`,
       icon: "fas fa-wrench",
       title: logement.NbDepannages > 0 ? "Dépannages en cours" : "Dépannages",
       count:

@@ -4,30 +4,28 @@ import React, { useState, useMemo } from "react";
 import ImmeubleCard from "./ImmeubleCard";
 
 interface Immeuble {
-  Immeuble: {
-    PkImmeuble: number;
-    Ref: string;
-    Numero: string;
-    Nom?: string;
-    Adresse1: string;
-    Adresse2?: string;
-    Adresse3?: string;
-    Cp: string;
-    Ville: string;
-  };
-  NbLogements: number;
-  NbAppareils: number;
-  NbCompteursEF: number;
-  NbCompteursEC: number;
-  NbCompteursRepart: number;
-  NbCompteursCET: number;
-  NbCompteursElect: number;
-  NbCompteursGaz: number;
-  NbFuites: number;
-  NbAnomalies: number;
-  NbDysfonctionnements: number;
-  NbDepannages: number;
-  NbChantiers: number;
+  pkImmeuble: number;
+  ref: string;
+  numero: string;
+  nom?: string;
+  adresse1: string;
+  adresse2?: string;
+  adresse3?: string;
+  cp: string;
+  ville: string;
+  nbLogements: number;
+  nbAppareils: number;
+  nbCompteursEF: number;
+  nbCompteursEC: number;
+  nbCompteursRepart: number;
+  nbCompteursCET: number;
+  nbCompteursElect: number;
+  nbCompteursGaz: number;
+  nbFuites: number;
+  nbAnomalies: number;
+  nbDysfonctionnements: number;
+  nbDepannages: number;
+  nbChantiers: number;
 }
 
 interface FilterState {
@@ -71,12 +69,12 @@ const ImmeubleList: React.FC<ImmeubleListProps> = ({
       // Energy type filter
       if (filters.energie) {
         const hasEnergy = {
-          energieef: immeuble.NbCompteursEF > 0,
-          energieec: immeuble.NbCompteursEC > 0,
-          energiecet: immeuble.NbCompteursCET > 0,
-          energierepart: immeuble.NbCompteursRepart > 0,
-          energieelect: immeuble.NbCompteursElect > 0,
-          energiegaz: immeuble.NbCompteursGaz > 0,
+          energieef: immeuble.nbCompteursEF > 0,
+          energieec: immeuble.nbCompteursEC > 0,
+          energiecet: immeuble.nbCompteursCET > 0,
+          energierepart: immeuble.nbCompteursRepart > 0,
+          energieelect: immeuble.nbCompteursElect > 0,
+          energiegaz: immeuble.nbCompteursGaz > 0,
         };
 
         if (!hasEnergy[filters.energie as keyof typeof hasEnergy]) {
@@ -85,29 +83,29 @@ const ImmeubleList: React.FC<ImmeubleListProps> = ({
       }
 
       // Alert filters
-      if (filters.fuites && immeuble.NbFuites <= 0) return false;
-      if (filters.anomalies && immeuble.NbAnomalies <= 0) return false;
-      if (filters.dysfonctionnements && immeuble.NbDysfonctionnements <= 0)
+      if (filters.fuites && immeuble.nbFuites <= 0) return false;
+      if (filters.anomalies && immeuble.nbAnomalies <= 0) return false;
+      if (filters.dysfonctionnements && immeuble.nbDysfonctionnements <= 0)
         return false;
-      if (filters.depannages && immeuble.NbDepannages <= 0) return false;
-      if (filters.chantiers && immeuble.NbChantiers <= 0) return false;
+      if (filters.depannages && immeuble.nbDepannages <= 0) return false;
+      if (filters.chantiers && immeuble.nbChantiers <= 0) return false;
 
       // Text filters
       if (filters.reference) {
-        const refMatch = immeuble.Immeuble.Ref.toLowerCase().includes(
+        const refMatch = immeuble.ref.toLowerCase().includes(
           filters.reference.toLowerCase()
         );
-        const numMatch = immeuble.Immeuble.Numero.toLowerCase().includes(
+        const numMatch = immeuble.numero.toLowerCase().includes(
           filters.reference.toLowerCase()
         );
         if (!refMatch && !numMatch) return false;
       }
 
       if (filters.location) {
-        const cpMatch = immeuble.Immeuble.Cp.toLowerCase().includes(
+        const cpMatch = immeuble.cp.toLowerCase().includes(
           filters.location.toLowerCase()
         );
-        const villeMatch = immeuble.Immeuble.Ville.toLowerCase().includes(
+        const villeMatch = immeuble.ville.toLowerCase().includes(
           filters.location.toLowerCase()
         );
         if (!cpMatch && !villeMatch) return false;
@@ -251,10 +249,31 @@ const ImmeubleList: React.FC<ImmeubleListProps> = ({
         ) : (
           filteredImmeubles.map((immeuble) => (
             <ImmeubleCard
-              key={immeuble.Immeuble.PkImmeuble}
-              immeuble={immeuble}
-              isGestionMode={isGestionMode}
-              showChgtOccupant={showChgtOccupant}
+              key={immeuble.pkImmeuble}
+              immeuble={{
+                pkImmeuble: immeuble.pkImmeuble,
+                ref: immeuble.ref,
+                numero: immeuble.numero,
+                nom: immeuble.nom,
+                adresse1: immeuble.adresse1,
+                adresse2: immeuble.adresse2,
+                adresse3: immeuble.adresse3,
+                cp: immeuble.cp,
+                ville: immeuble.ville,
+                nbLogements: immeuble.nbLogements,
+                nbAppareils: immeuble.nbAppareils,
+                nbCompteursEF: immeuble.nbCompteursEF,
+                nbCompteursEC: immeuble.nbCompteursEC,
+                nbCompteursRepart: immeuble.nbCompteursRepart,
+                nbCompteursCET: immeuble.nbCompteursCET,
+                nbCompteursElect: immeuble.nbCompteursElect,
+                nbCompteursGaz: immeuble.nbCompteursGaz,
+                nbFuites: immeuble.nbFuites,
+                nbAnomalies: immeuble.nbAnomalies,
+                nbDysfonctionnements: immeuble.nbDysfonctionnements,
+                nbDepannages: immeuble.nbDepannages,
+                nbChantiers: immeuble.nbChantiers,
+              }}
             />
           ))
         )}

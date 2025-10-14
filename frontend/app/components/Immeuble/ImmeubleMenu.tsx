@@ -46,14 +46,14 @@ const ImmeubleMenu: React.FC<ImmeubleMenuProps> = ({ immeuble, activeTab }) => {
       showBadge: false,
     },
     {
-      href: `/immeubles/${immeuble.Immeuble.PkImmeuble}`,
+      href: `/pages/immeubles/${immeuble.Immeuble.PkImmeuble}`,
       icon: "fas fa-building",
       title: `Immeuble ${immeuble.Immeuble.Ref}`,
       isActive: !activeTab,
       showBadge: false,
     },
     {
-      href: `/immeubles/${immeuble.Immeuble.PkImmeuble}/leaks`,
+      href: `/pages/immeubles/${immeuble.Immeuble.PkImmeuble}/leaks`,
       icon: "fas fa-tint",
       title: "Fuites",
       count: totalFuites,
@@ -61,7 +61,7 @@ const ImmeubleMenu: React.FC<ImmeubleMenuProps> = ({ immeuble, activeTab }) => {
       showBadge: true,
     },
     {
-      href: `/immeubles/${immeuble.Immeuble.PkImmeuble}/dysfunctions`,
+      href: `/pages/immeubles/${immeuble.Immeuble.PkImmeuble}/dysfunctions`,
       icon: "fas fa-bell",
       title: "Alarmes techniques",
       count:
@@ -72,7 +72,7 @@ const ImmeubleMenu: React.FC<ImmeubleMenuProps> = ({ immeuble, activeTab }) => {
       showBadge: true,
     },
     {
-      href: `/immeubles/${immeuble.Immeuble.PkImmeuble}/anomalies`,
+      href: `/pages/immeubles/${immeuble.Immeuble.PkImmeuble}/anomalies`,
       icon: "fas fa-exclamation-triangle",
       title: "Anomalies de consommation",
       count: totalAnomalies,
@@ -82,8 +82,8 @@ const ImmeubleMenu: React.FC<ImmeubleMenuProps> = ({ immeuble, activeTab }) => {
     {
       href:
         immeuble.NbDepannages > 0
-          ? `/immeubles/${immeuble.Immeuble.PkImmeuble}/interventions?statut=ouvert`
-          : `/immeubles/${immeuble.Immeuble.PkImmeuble}/interventions`,
+          ? `/pages/immeubles/${immeuble.Immeuble.PkImmeuble}/interventions?statut=ouvert`
+          : `/pages/immeubles/${immeuble.Immeuble.PkImmeuble}/interventions`,
       icon: "fas fa-wrench",
       title: immeuble.NbDepannages > 0 ? "Dépannages en cours" : "Dépannages",
       count:

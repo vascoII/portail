@@ -101,7 +101,7 @@ export const useImmeubles = (): UseImmeublesReturn => {
       });
 
       if (!response.ok) {
-        throw new Error(
+        throw new Error( 
           `Failed to fetch buildings: ${response.status} ${response.statusText}`
         );
       }

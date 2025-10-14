@@ -68,7 +68,7 @@ const ImmeubleCard: React.FC<ImmeubleCardProps> = ({
       </div>
 
       <div className="actions">
-        <Link href={`/immeubles/${immeuble.id}`} className="btn btn-primary">
+        <Link href={`/pages/immeubles/${immeuble.id}`} className="btn btn-primary">
           Voir les détails
         </Link>
       </div>

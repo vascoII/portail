@@ -81,7 +81,7 @@ const FactureDetail: React.FC<FactureDetailProps> = ({ facture }) => {
 
           <div className="flex space-x-3">
             <Link
-              href={`/factures/download/${facture.PKFacture}`}
+              href={`/pages/factures/download/${facture.PKFacture}`}
               target="_blank"
               className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors duration-200 flex items-center"
             >

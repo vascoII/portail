@@ -196,7 +196,7 @@ const LogementDetail: React.FC<LogementDetailProps> = ({
               {isGestionMode && showChgtOccupant && (
                 <div className="flex space-x-2">
                   <Link
-                    href={`/logements/${logement.Logement.PkLogement}/edit`}
+                    href={`/pages/logements/${logement.Logement.PkLogement}/edit`}
                     className="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-lg transition-colors duration-200 flex items-center"
                     title="Modifier les coordonnées de l'occupant"
                   >
@@ -204,7 +204,7 @@ const LogementDetail: React.FC<LogementDetailProps> = ({
                     Modifier
                   </Link>
                   <Link
-                    href={`/gestion-parc/declarer-occupant/${logement.Logement.PkLogement}`}
+                    href={`/pages/gestion-parc/declarer-occupant/${logement.Logement.PkLogement}`}
                     className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors duration-200 flex items-center"
                     title="Déclarer un nouvel occupant"
                   >
@@ -292,7 +292,7 @@ const LogementDetail: React.FC<LogementDetailProps> = ({
           }
           icon="fas fa-wrench"
           color="bg-yellow-500"
-          href={`/logements/${logement.Logement.PkLogement}/interventions${
+          href={`/pages/logements/${logement.Logement.PkLogement}/interventions${
             logement.NbDepannages > 0 ? "?statut=ouvert" : ""
           }`}
         />
@@ -306,7 +306,7 @@ const LogementDetail: React.FC<LogementDetailProps> = ({
           }
           icon="fas fa-bell"
           color="bg-orange-500"
-          href={`/logements/${logement.Logement.PkLogement}/dysfunctions`}
+          href={`/pages/logements/${logement.Logement.PkLogement}/dysfunctions`}
         />
       </div>
 
