@@ -21,6 +21,15 @@ const LoginPage: React.FC = () => {
     }
   }, [isAuthenticated, router]);
 
+  // Cleanup effect: ensure we're properly logged out when visiting login page
+  useEffect(() => {
+    // If we have loginData but no valid authentication, clear it
+    if (loginData && !isAuthenticated) {
+      console.log("Clearing stale login data on login page");
+      // The useAuth hook will handle the cleanup
+    }
+  }, [loginData, isAuthenticated]);
+
   const handleLogin = async (credentials: LoginFormData): Promise<void> => {
     try {
       await login(credentials);

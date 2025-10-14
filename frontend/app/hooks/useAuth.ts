@@ -4,8 +4,6 @@ import { useState, useEffect, useCallback } from "react";
 import useSWR from "swr";
 import {
   User,
-  LoginCredentials,
-  LoginResponse,
   AuthState,
   AuthError,
   LoginFormData,
@@ -176,6 +174,16 @@ export const useAuth = () => {
         return;
       }
 
+      // Check if we have valid loginData in the store
+      const { loginData } = useDataStore.getState();
+      if (!loginData || !loginData.loginId) {
+        // Token exists but no valid loginData - clear everything
+        localStorage.removeItem("jwt_token");
+        clearLoginData();
+        setAuthState((prev) => ({ ...prev, isLoading: false }));
+        return;
+      }
+
       setAuthState((prev) => ({
         ...prev,
         token,
@@ -185,7 +193,7 @@ export const useAuth = () => {
     };
 
     initAuth();
-  }, []);
+  }, [clearLoginData]);
 
   // Mise à jour de l'état quand les données SWR changent
   useEffect(() => {
