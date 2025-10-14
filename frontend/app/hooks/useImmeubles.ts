@@ -55,13 +55,16 @@ interface UseImmeublesReturn {
   refetchIndicators: () => void;
 }
 
-// Cache for indicators data
-let indicatorsCache: Indicator[] | null = null;
-let indicatorsCacheTime: number = 0;
-const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+// Cache is now handled by the dataStore
 
 export const useImmeubles = (): UseImmeublesReturn => {
-  const { loginData } = useDataStore();
+  const {
+    loginData,
+    immeublesCache,
+    setImmeublesBuildings,
+    setImmeublesIndicators,
+    isImmeublesCacheValid,
+  } = useDataStore();
 
   // Buildings state (sync)
   const [immeubles, setImmeubles] = useState<Immeuble[]>([]);
@@ -91,6 +94,13 @@ export const useImmeubles = (): UseImmeublesReturn => {
       return;
     }
 
+    // Check cache first
+    if (immeublesCache.buildings && immeublesCache.buildings.data) {
+      setImmeubles(immeublesCache.buildings.data);
+      setBuildingsLoading(false);
+      return;
+    }
+
     setBuildingsLoading(true);
     setBuildingsError(null);
 
@@ -101,13 +111,17 @@ export const useImmeubles = (): UseImmeublesReturn => {
       });
 
       if (!response.ok) {
-        throw new Error( 
+        throw new Error(
           `Failed to fetch buildings: ${response.status} ${response.statusText}`
         );
       }
 
       const data = await response.json();
-      setImmeubles(data.immeubleDto || []);
+      const buildingsData = data.immeubleDto || [];
+
+      // Cache the data
+      setImmeublesBuildings(buildingsData);
+      setImmeubles(buildingsData);
     } catch (err) {
       const errorMessage =
         err instanceof Error
@@ -118,7 +132,12 @@ export const useImmeubles = (): UseImmeublesReturn => {
     } finally {
       setBuildingsLoading(false);
     }
-  }, [loginData?.tokenJwt, getAuthHeaders]);
+  }, [
+    loginData?.tokenJwt,
+    getAuthHeaders,
+    immeublesCache.buildings,
+    setImmeublesBuildings,
+  ]);
 
   // Fetch indicators (async call with caching)
   const fetchIndicators = useCallback(async () => {
@@ -128,9 +147,8 @@ export const useImmeubles = (): UseImmeublesReturn => {
     }
 
     // Check cache first
-    const now = Date.now();
-    if (indicatorsCache && now - indicatorsCacheTime < CACHE_DURATION) {
-      setIndicators(indicatorsCache);
+    if (immeublesCache.indicators && immeublesCache.indicators.data) {
+      setIndicators(immeublesCache.indicators.data);
       setIndicatorsLoading(false);
       return;
     }
@@ -156,10 +174,8 @@ export const useImmeubles = (): UseImmeublesReturn => {
       const data = await response.json();
       const indicatorsData = data.indicators || [];
 
-      // Update cache
-      indicatorsCache = indicatorsData;
-      indicatorsCacheTime = now;
-
+      // Cache the data
+      setImmeublesIndicators(indicatorsData);
       setIndicators(indicatorsData);
     } catch (err) {
       const errorMessage =
@@ -171,13 +187,26 @@ export const useImmeubles = (): UseImmeublesReturn => {
     } finally {
       setIndicatorsLoading(false);
     }
-  }, [loginData?.tokenJwt, getAuthHeaders]);
+  }, [
+    loginData?.tokenJwt,
+    getAuthHeaders,
+    immeublesCache.indicators,
+    setImmeublesIndicators,
+  ]);
 
   // Combined refetch
   const refetch = useCallback(() => {
+    // Clear both caches to force fresh fetch
+    setImmeublesBuildings([]);
+    setImmeublesIndicators([]);
     fetchBuildings();
     fetchIndicators();
-  }, [fetchBuildings, fetchIndicators]);
+  }, [
+    fetchBuildings,
+    fetchIndicators,
+    setImmeublesBuildings,
+    setImmeublesIndicators,
+  ]);
 
   // Individual refetch functions
   const refetchBuildings = useCallback(() => {
@@ -186,10 +215,9 @@ export const useImmeubles = (): UseImmeublesReturn => {
 
   const refetchIndicators = useCallback(() => {
     // Clear cache to force fresh fetch
-    indicatorsCache = null;
-    indicatorsCacheTime = 0;
+    setImmeublesIndicators([]);
     fetchIndicators();
-  }, [fetchIndicators]);
+  }, [fetchIndicators, setImmeublesIndicators]);
 
   // Initial load
   useEffect(() => {
