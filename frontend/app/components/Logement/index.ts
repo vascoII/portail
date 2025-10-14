@@ -7,3 +7,6 @@ export { default as LogementEdit } from "./LogementEdit";
 export { default as LogementListSkeleton } from "./LogementListSkeleton";
 export { default as LogementIndicatorsPanel } from "./LogementIndicatorsPanel";
 export { default as LogementDetailSkeleton } from "./LogementDetailSkeleton";
+export { default as LogementHeader } from "./LogementHeader";
+export { default as LogementCapteurRepartPanel } from "./LogementCapteurRepartPanel";
+export { default as LogementWaterEnergyTabs } from "./LogementWaterEnergyTabs";

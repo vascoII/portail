@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { useParams } from "next/navigation";
 import BaseLayout from "../../../../components/Layout/BaseLayout";
 import Breadcrumb from "../../../../components/Layout/Breadcrumb";
@@ -96,9 +97,12 @@ const LogementsListPage: React.FC = () => {
                         </div>
 
                         <div className="flex-1">
-                          <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                          <Link
+                            href={`/pages/immeubles/${immeubleId}/logements/${logement.pkLogement}`}
+                            className="text-xl font-semibold text-green-600 hover:text-green-800 hover:underline transition-colors duration-200"
+                          >
                             Logement {logement.numOrdre}
-                          </h3>
+                          </Link>
                           <div className="grid grid-cols-2 gap-2 text-sm">
                             <div>
                               <span className="font-medium text-gray-600">
