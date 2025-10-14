@@ -1,34 +1,225 @@
 import { useState, useEffect, useCallback } from "react";
 import { useDataStore } from "../store/dataStore";
 
-// Types matching backend DTOs
-interface Immeuble {
+// Types matching backend DTOs exactly
+export interface Immeuble {
   pkImmeuble: number;
-  ref: string;
+  nom: string;
   numero: string;
-  nom?: string;
+  ref: string;
   adresse1: string;
-  adresse2?: string;
-  adresse3?: string;
+  adresse2: string;
+  adresse3: string;
   cp: string;
   ville: string;
-  hasTelereleve?: boolean;
-  hasTransfertFichiers?: boolean;
+  hasTelereleve: boolean;
+  fkClientTop: number;
+  actif: boolean;
+  dateActivationClient: string;
+  dateActivationOccupant: string;
+  hasNoteOccupant: boolean;
+  hasDecompteOccupant: boolean;
+  hasFactures: boolean;
+  hasChantiers: boolean;
+}
+
+// Types matching backend DTOs exactly
+export interface ImmeubleIndicators {
+  pkImmeuble: number;
   nbLogements: number;
   nbAppareils: number;
-  nbCompteursEF: number;
-  nbCompteursEC: number;
-  nbCompteursRepart: number;
-  nbCompteursCET: number;
-  nbCompteursElect: number;
-  nbCompteursGaz: number;
-  nbCompteursCapteur: number;
-  nbFuites: number;
-  nbAnomalies: number;
-  nbDysfonctionnements: number;
   nbDepannages: number;
   nbDepannagesTotal: number;
-  nbChantiers: number;
+  degresDepannages: number;
+  nbDysfonctionnements: number;
+  degresDysfonctionnements: number;
+  hasTelereleve: boolean;
+  nbCompteursEC: number;
+  nbCompteursEF: number;
+  nbCompteursRepart: number;
+  nbCompteursCET: number;
+  nbCompteursCapteur: number;
+  nbCompteursElect: number;
+  nbCompteursGaz: number;
+  nbCompteursTelereveleTotal: number;
+  nbCompteursTelereveleOK: number;
+  hasTransfertFichiers: boolean;
+}
+
+// Types matching backend DTOs exactly
+export interface IndexRecap {
+  date: string;
+  moy: string;
+  max: string;
+  min: string;
+}
+
+export interface SerieConsos {
+  defaultIntervalle: number;
+  valeursXYL: string;
+  annee: string;
+}
+
+export interface ImmeubleCapteur {
+  IndexRecapTemperature: IndexRecap;
+  indexRecapHumidite: IndexRecap;
+  serieConsosTemperature: SerieConsos;
+  SerieConsosHumidite: SerieConsos;
+}
+
+export interface ImmeubleCapteurData {
+  pkImmeuble: number;
+  immeubleCapteur: ImmeubleCapteur;
+}
+
+// Types matching backend DTOs exactly
+export interface Chantier {
+  pkChantier: number;
+  pkDevis: number;
+  pkImmeuble: number;
+  dateEntreeChantier: string;
+  nbCompteursPoses: number;
+  nbCompteursCommandes: number;
+}
+
+export interface TopConsos {
+  dateReleve: string;
+}
+
+export interface ImmeubleCET {
+  nbCompteursARelever: number;
+  nbCompteursReleves: number;
+  chantier: Chantier;
+  topConsos: TopConsos;
+  serieConsos: SerieConsos;
+  totURepart: string;
+  totTantChauff: string;
+  puTant: string;
+  prixURepart: string;
+  prixAbonn: string;
+  montARepartTant: string;
+  partRepartConsos: string;
+  ctCombust: string;
+  serieConsosTotale1: SerieConsos;
+  serieConsosTotale2: SerieConsos;
+  serieConsosDJU: SerieConsos;
+}
+
+export interface ImmeubleCETData {
+  pkImmeuble: number;
+  immeubleCET: ImmeubleCET;
+}
+
+// Types matching backend DTOs exactly
+export interface ConsoLogement {
+  pkLogement: number;
+  nomOcc: string;
+  refOcc: string;
+  fluide: number;
+  conso: string;
+}
+
+export interface TopConsosEC {
+  dateReleve: string;
+  consosGrandes: ConsoLogement[];
+  consosPetites: ConsoLogement[];
+}
+
+export interface ImmeubleEC {
+  nbCompteursARelever: number;
+  nbCompteursReleves: number;
+  nbFuites: number;
+  degresFuites: number;
+  nbAnomalies: number;
+  degresAnomalies: number;
+  chantier: Chantier;
+  topConsos: TopConsosEC;
+  serieConsos1: SerieConsos;
+  serieConsos2: SerieConsos;
+}
+
+export interface ImmeubleECData {
+  pkImmeuble: number;
+  immeubleEC: ImmeubleEC;
+}
+
+// Types matching backend DTOs exactly
+export interface TopConsosEF {
+  dateReleve: string;
+  consosGrandes: ConsoLogement[];
+  consosPetites: ConsoLogement[];
+}
+
+export interface ImmeubleEF {
+  pkImmeuble: number;
+  nbCompteursARelever: number;
+  nbCompteursReleves: number;
+  nbFuites: number;
+  degresFuites: number;
+  nbAnomalies: number;
+  degresAnomalies: number;
+  chantier: Chantier;
+  topConsos: TopConsosEF;
+  serieConsos1: SerieConsos;
+  serieConsos2: SerieConsos;
+}
+
+export interface ImmeubleEFData {
+  immeubleEF: ImmeubleEF;
+}
+
+// Types matching backend DTOs exactly
+export interface TopConsosRepart {
+  dateReleve: string;
+}
+
+export interface ImmeubleRepart {
+  nbCompteursARelever: number;
+  nbCompteursReleves: number;
+  chantier: Chantier;
+  topConsos: TopConsosRepart;
+  serieConsos: SerieConsos;
+  totURepart: string;
+  totTantChauff: string;
+  puTant: string;
+  prixURepart: string;
+  prixAbonn: string;
+  montARepartTant: string;
+  partRepartConsos: string;
+  ctCombust: string;
+  serieConsosTotale1: SerieConsos;
+  serieConsosTotale2: SerieConsos;
+  serieConsosDJU: SerieConsos;
+}
+
+export interface ImmeubleRepartData {
+  pkImmeuble: number;
+  immeubleRepart: ImmeubleRepart;
+}
+
+// Response wrapper types
+interface ImmeubleIndicatorsResponse {
+  indicators: ImmeubleIndicators;
+}
+
+interface ImmeubleCapteurResponse {
+  indicators: ImmeubleCapteurData;
+}
+
+interface ImmeubleCETResponse {
+  indicators: ImmeubleCETData;
+}
+
+interface ImmeubleECResponse {
+  indicators: ImmeubleECData;
+}
+
+interface ImmeubleEFResponse {
+  indicators: ImmeubleEFData;
+}
+
+interface ImmeubleRepartResponse {
+  indicators: ImmeubleRepartData;
 }
 
 interface AsyncData {
@@ -42,57 +233,29 @@ interface UseImmeubleReturn {
   immeubleError: string | null;
 
   // Async data sections
-  capteur: AsyncData | null;
-  capteurLoading: boolean;
-  capteurError: string | null;
-
-  cet: AsyncData | null;
-  cetLoading: boolean;
-  cetError: string | null;
-
-  ec: AsyncData | null;
-  ecLoading: boolean;
-  ecError: string | null;
-
-  ef: AsyncData | null;
-  efLoading: boolean;
-  efError: string | null;
-
-  elect: AsyncData | null;
-  electLoading: boolean;
-  electError: string | null;
-
-  gaz: AsyncData | null;
-  gazLoading: boolean;
-  gazError: string | null;
-
-  indicators: AsyncData | null;
+  indicators: ImmeubleIndicators | null;
   indicatorsLoading: boolean;
   indicatorsError: string | null;
 
-  repart: AsyncData | null;
+  capteur: ImmeubleCapteurData | null;
+  capteurLoading: boolean;
+  capteurError: string | null;
+
+  cet: ImmeubleCETData | null;
+  cetLoading: boolean;
+  cetError: string | null;
+
+  ec: ImmeubleECData | null;
+  ecLoading: boolean;
+  ecError: string | null;
+
+  ef: ImmeubleEFData | null;
+  efLoading: boolean;
+  efError: string | null;
+
+  repart: ImmeubleRepartData | null;
   repartLoading: boolean;
   repartError: string | null;
-
-  serieConsosCompteurGeneral: AsyncData | null;
-  serieConsosCompteurGeneralLoading: boolean;
-  serieConsosCompteurGeneralError: string | null;
-
-  serieConsosEau: AsyncData | null;
-  serieConsosEauLoading: boolean;
-  serieConsosEauError: string | null;
-
-  anomalies: AsyncData | null;
-  anomaliesLoading: boolean;
-  anomaliesError: string | null;
-
-  dysfonctionnements: AsyncData | null;
-  dysfonctionnementsLoading: boolean;
-  dysfonctionnementsError: string | null;
-
-  fuites: AsyncData | null;
-  fuitesLoading: boolean;
-  fuitesError: string | null;
 
   // Combined states
   loading: boolean;
@@ -116,68 +279,29 @@ export const useImmeuble = (immeubleId: number): UseImmeubleReturn => {
   const [immeubleError, setImmeubleError] = useState<string | null>(null);
 
   // Async data states
-  const [capteur, setCapteur] = useState<AsyncData | null>(null);
+  const [capteur, setCapteur] = useState<ImmeubleCapteurData | null>(null);
   const [capteurLoading, setCapteurLoading] = useState(false);
   const [capteurError, setCapteurError] = useState<string | null>(null);
 
-  const [cet, setCet] = useState<AsyncData | null>(null);
+  const [cet, setCet] = useState<ImmeubleCETData | null>(null);
   const [cetLoading, setCetLoading] = useState(false);
   const [cetError, setCetError] = useState<string | null>(null);
 
-  const [ec, setEc] = useState<AsyncData | null>(null);
+  const [ec, setEc] = useState<ImmeubleECData | null>(null);
   const [ecLoading, setEcLoading] = useState(false);
   const [ecError, setEcError] = useState<string | null>(null);
 
-  const [ef, setEf] = useState<AsyncData | null>(null);
+  const [ef, setEf] = useState<ImmeubleEFData | null>(null);
   const [efLoading, setEfLoading] = useState(false);
   const [efError, setEfError] = useState<string | null>(null);
 
-  const [elect, setElect] = useState<AsyncData | null>(null);
-  const [electLoading, setElectLoading] = useState(false);
-  const [electError, setElectError] = useState<string | null>(null);
-
-  const [gaz, setGaz] = useState<AsyncData | null>(null);
-  const [gazLoading, setGazLoading] = useState(false);
-  const [gazError, setGazError] = useState<string | null>(null);
-
-  const [indicators, setIndicators] = useState<AsyncData | null>(null);
+  const [indicators, setIndicators] = useState<ImmeubleIndicators | null>(null);
   const [indicatorsLoading, setIndicatorsLoading] = useState(false);
   const [indicatorsError, setIndicatorsError] = useState<string | null>(null);
 
-  const [repart, setRepart] = useState<AsyncData | null>(null);
+  const [repart, setRepart] = useState<ImmeubleRepartData | null>(null);
   const [repartLoading, setRepartLoading] = useState(false);
   const [repartError, setRepartError] = useState<string | null>(null);
-
-  const [serieConsosCompteurGeneral, setSerieConsosCompteurGeneral] =
-    useState<AsyncData | null>(null);
-  const [
-    serieConsosCompteurGeneralLoading,
-    setSerieConsosCompteurGeneralLoading,
-  ] = useState(false);
-  const [serieConsosCompteurGeneralError, setSerieConsosCompteurGeneralError] =
-    useState<string | null>(null);
-
-  const [serieConsosEau, setSerieConsosEau] = useState<AsyncData | null>(null);
-  const [serieConsosEauLoading, setSerieConsosEauLoading] = useState(false);
-  const [serieConsosEauError, setSerieConsosEauError] = useState<string | null>(
-    null
-  );
-
-  const [anomalies, setAnomalies] = useState<AsyncData | null>(null);
-  const [anomaliesLoading, setAnomaliesLoading] = useState(false);
-  const [anomaliesError, setAnomaliesError] = useState<string | null>(null);
-
-  const [dysfonctionnements, setDysfonctionnements] =
-    useState<AsyncData | null>(null);
-  const [dysfonctionnementsLoading, setDysfonctionnementsLoading] =
-    useState(false);
-  const [dysfonctionnementsError, setDysfonctionnementsError] = useState<
-    string | null
-  >(null);
-
-  const [fuites, setFuites] = useState<AsyncData | null>(null);
-  const [fuitesLoading, setFuitesLoading] = useState(false);
-  const [fuitesError, setFuitesError] = useState<string | null>(null);
 
   // Helper function to get auth headers
   const getAuthHeaders = useCallback(() => {
@@ -195,7 +319,7 @@ export const useImmeuble = (immeubleId: number): UseImmeubleReturn => {
     async (
       endpoint: string,
       dataType: string,
-      setData: (data: AsyncData | null) => void,
+      setData: (data: any) => void,
       setLoading: (loading: boolean) => void,
       setError: (error: string | null) => void
     ) => {
@@ -228,11 +352,44 @@ export const useImmeuble = (immeubleId: number): UseImmeubleReturn => {
         }
 
         const data = await response.json();
-        const result = data.indicators || data;
 
-        // Cache the data
-        setSingleImmeubleData(cacheKey, dataType, result);
-        setData(result);
+        // Handle different response structures
+        if (dataType === "indicators" && data.indicators) {
+          // For indicators endpoint, extract the nested data and type it properly
+          const indicatorsData: ImmeubleIndicators = data.indicators;
+          setSingleImmeubleData(cacheKey, dataType, indicatorsData);
+          setData(indicatorsData);
+        } else if (dataType === "capteur" && data.indicators) {
+          // For capteur endpoint, extract the nested data and type it properly
+          const capteurData: ImmeubleCapteurData = data.indicators;
+          setSingleImmeubleData(cacheKey, dataType, capteurData);
+          setData(capteurData);
+        } else if (dataType === "cet" && data.indicators) {
+          // For cet endpoint, extract the nested data and type it properly
+          const cetData: ImmeubleCETData = data.indicators;
+          setSingleImmeubleData(cacheKey, dataType, cetData);
+          setData(cetData);
+        } else if (dataType === "ec" && data.indicators) {
+          // For ec endpoint, extract the nested data and type it properly
+          const ecData: ImmeubleECData = data.indicators;
+          setSingleImmeubleData(cacheKey, dataType, ecData);
+          setData(ecData);
+        } else if (dataType === "ef" && data.indicators) {
+          // For ef endpoint, extract the nested data and type it properly
+          const efData: ImmeubleEFData = data.indicators;
+          setSingleImmeubleData(cacheKey, dataType, efData);
+          setData(efData);
+        } else if (dataType === "repart" && data.indicators) {
+          // For repart endpoint, extract the nested data and type it properly
+          const repartData: ImmeubleRepartData = data.indicators;
+          setSingleImmeubleData(cacheKey, dataType, repartData);
+          setData(repartData);
+        } else {
+          // For other endpoints, use data as-is
+          const result = data.indicators || data;
+          setSingleImmeubleData(cacheKey, dataType, result);
+          setData(result);
+        }
       } catch (err) {
         const errorMessage =
           err instanceof Error
@@ -286,7 +443,7 @@ export const useImmeuble = (immeubleId: number): UseImmeubleReturn => {
         );
       }
 
-      const data = await response.json();
+      const data: Immeuble = await response.json();
 
       // Cache the data
       setSingleImmeubleData(cacheKey, "immeuble", data);
@@ -345,22 +502,6 @@ export const useImmeuble = (immeubleId: number): UseImmeubleReturn => {
     );
 
     fetchAsyncData(
-      `/api/immeuble_elect/${immeubleId}`,
-      "elect",
-      setElect,
-      setElectLoading,
-      setElectError
-    );
-
-    fetchAsyncData(
-      `/api/immeuble_gaz/${immeubleId}`,
-      "gaz",
-      setGaz,
-      setGazLoading,
-      setGazError
-    );
-
-    fetchAsyncData(
       `/api/immeuble_indicators/${immeubleId}`,
       "indicators",
       setIndicators,
@@ -375,46 +516,6 @@ export const useImmeuble = (immeubleId: number): UseImmeubleReturn => {
       setRepartLoading,
       setRepartError
     );
-
-    fetchAsyncData(
-      `/api/immeuble_serie_consos_compteur_general/${immeubleId}`,
-      "serieConsosCompteurGeneral",
-      setSerieConsosCompteurGeneral,
-      setSerieConsosCompteurGeneralLoading,
-      setSerieConsosCompteurGeneralError
-    );
-
-    fetchAsyncData(
-      `/api/immeuble_serie_conso_eau/${immeubleId}`,
-      "serieConsosEau",
-      setSerieConsosEau,
-      setSerieConsosEauLoading,
-      setSerieConsosEauError
-    );
-
-    fetchAsyncData(
-      `/api/immeuble/${immeubleId}/anomalies`,
-      "anomalies",
-      setAnomalies,
-      setAnomaliesLoading,
-      setAnomaliesError
-    );
-
-    fetchAsyncData(
-      `/api/immeuble/${immeubleId}/dysfonctionnements`,
-      "dysfonctionnements",
-      setDysfonctionnements,
-      setDysfonctionnementsLoading,
-      setDysfonctionnementsError
-    );
-
-    fetchAsyncData(
-      `/api/immeuble/${immeubleId}/fuites`,
-      "fuites",
-      setFuites,
-      setFuitesLoading,
-      setFuitesError
-    );
   }, [fetchAsyncData, immeubleId]);
 
   // Combined refetch
@@ -426,15 +527,8 @@ export const useImmeuble = (immeubleId: number): UseImmeubleReturn => {
     setSingleImmeubleData(cacheKey, "cet", null);
     setSingleImmeubleData(cacheKey, "ec", null);
     setSingleImmeubleData(cacheKey, "ef", null);
-    setSingleImmeubleData(cacheKey, "elect", null);
-    setSingleImmeubleData(cacheKey, "gaz", null);
     setSingleImmeubleData(cacheKey, "indicators", null);
     setSingleImmeubleData(cacheKey, "repart", null);
-    setSingleImmeubleData(cacheKey, "serieConsosCompteurGeneral", null);
-    setSingleImmeubleData(cacheKey, "serieConsosEau", null);
-    setSingleImmeubleData(cacheKey, "anomalies", null);
-    setSingleImmeubleData(cacheKey, "dysfonctionnements", null);
-    setSingleImmeubleData(cacheKey, "fuites", null);
 
     fetchImmeuble();
     fetchAllAsyncData();
@@ -497,30 +591,16 @@ export const useImmeuble = (immeubleId: number): UseImmeubleReturn => {
     cetLoading ||
     ecLoading ||
     efLoading ||
-    electLoading ||
-    gazLoading ||
     indicatorsLoading ||
-    repartLoading ||
-    serieConsosCompteurGeneralLoading ||
-    serieConsosEauLoading ||
-    anomaliesLoading ||
-    dysfonctionnementsLoading ||
-    fuitesLoading;
+    repartLoading;
   const error =
     immeubleError ||
     capteurError ||
     cetError ||
     ecError ||
     efError ||
-    electError ||
-    gazError ||
     indicatorsError ||
-    repartError ||
-    serieConsosCompteurGeneralError ||
-    serieConsosEauError ||
-    anomaliesError ||
-    dysfonctionnementsError ||
-    fuitesError;
+    repartError;
 
   return {
     // Main immeuble data
@@ -545,14 +625,6 @@ export const useImmeuble = (immeubleId: number): UseImmeubleReturn => {
     efLoading,
     efError,
 
-    elect,
-    electLoading,
-    electError,
-
-    gaz,
-    gazLoading,
-    gazError,
-
     indicators,
     indicatorsLoading,
     indicatorsError,
@@ -560,26 +632,6 @@ export const useImmeuble = (immeubleId: number): UseImmeubleReturn => {
     repart,
     repartLoading,
     repartError,
-
-    serieConsosCompteurGeneral,
-    serieConsosCompteurGeneralLoading,
-    serieConsosCompteurGeneralError,
-
-    serieConsosEau,
-    serieConsosEauLoading,
-    serieConsosEauError,
-
-    anomalies,
-    anomaliesLoading,
-    anomaliesError,
-
-    dysfonctionnements,
-    dysfonctionnementsLoading,
-    dysfonctionnementsError,
-
-    fuites,
-    fuitesLoading,
-    fuitesError,
 
     // Combined states
     loading,

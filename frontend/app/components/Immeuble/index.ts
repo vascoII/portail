@@ -10,3 +10,6 @@ export { default as IndicatorsCard } from "./IndicatorsCard";
 export { default as ImmeubleDetailSkeleton } from "./ImmeubleDetailSkeleton";
 export { default as DataPanelSkeleton } from "./DataPanelSkeleton";
 export { default as DataPanel } from "./DataPanel";
+export { default as ImmeubleHeader } from "./ImmeubleHeader";
+export { default as CapteurRepartPanel } from "./CapteurRepartPanel";
+export { default as WaterEnergyTabs } from "./WaterEnergyTabs";
