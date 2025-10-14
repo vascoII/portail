@@ -2,11 +2,7 @@
 
 import React from "react";
 import IndicatorsSkeleton from "./IndicatorsSkeleton";
-
-interface Indicator {
-  pkImmeuble: number;
-  [key: string]: any;
-}
+import { Indicator } from "../../hooks/useImmeubles";
 
 interface IndicatorsPanelProps {
   indicators: Indicator[];

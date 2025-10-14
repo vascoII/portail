@@ -1,37 +1,53 @@
 import { useState, useEffect, useCallback } from "react";
 import { useDataStore } from "../store/dataStore";
 
-// Types matching backend DTOs
-interface Immeuble {
-  Immeuble: {
-    PkImmeuble: number;
-    Ref: string;
-    Numero: string;
-    Nom?: string;
-    Adresse1: string;
-    Adresse2?: string;
-    Adresse3?: string;
-    Cp: string;
-    Ville: string;
-  };
-  NbLogements: number;
-  NbAppareils: number;
-  NbCompteursEF: number;
-  NbCompteursEC: number;
-  NbCompteursRepart: number;
-  NbCompteursCET: number;
-  NbCompteursElect: number;
-  NbCompteursGaz: number;
-  NbFuites: number;
-  NbAnomalies: number;
-  NbDysfonctionnements: number;
-  NbDepannages: number;
-  NbChantiers: number;
+// Types matching backend DTOs exactly
+export interface Immeuble {
+  pkImmeuble: number;
+  nom: string;
+  numero: string;
+  ref: string;
+  adresse1: string;
+  adresse2: string;
+  adresse3: string;
+  cp: string;
+  ville: string;
+  hasTelereleve: boolean;
+  fkClientTop: number;
+  actif: boolean;
+  dateActivationClient: string;
+  dateActivationOccupant: string;
+  hasNoteOccupant: boolean;
+  hasDecompteOccupant: boolean;
+  hasFactures: boolean;
+  hasChantiers: boolean;
 }
 
-interface Indicator {
+export interface Indicator {
   pkImmeuble: number;
-  [key: string]: any; // Flexible structure for different indicator types
+  nbLogements: number;
+  nbAppareils: number;
+  nbCompteursEC: number;
+  nbCompteursEF: number;
+  nbCompteursRepart: number;
+  nbCompteursCET: number;
+  nbCompteursCapteur: number;
+  nbCompteursElect: number;
+  nbCompteursGaz: number;
+  nbFuites: number;
+  nbDepannages: number;
+  nbDysfonctionnements: number;
+  nbAnomalies: number;
+  nbChantiers: number;
+}
+
+// Response wrapper types
+interface ListImmeublesResponse {
+  immeubleDto: Immeuble[];
+}
+
+interface ListIndicatorsResponse {
+  indicators: Indicator[];
 }
 
 interface UseImmeublesReturn {
@@ -48,6 +64,9 @@ interface UseImmeublesReturn {
   // Combined loading state
   loading: boolean;
   error: string | null;
+
+  // Helper functions
+  getIndicatorsForImmeuble: (pkImmeuble: number) => Indicator | undefined;
 
   // Actions
   refetch: () => void;
@@ -115,7 +134,7 @@ export const useImmeubles = (): UseImmeublesReturn => {
         );
       }
 
-      const data = await response.json();
+      const data: ListImmeublesResponse = await response.json();
       const buildingsData = data.immeubleDto || [];
 
       // Cache the data
@@ -170,7 +189,7 @@ export const useImmeubles = (): UseImmeublesReturn => {
         );
       }
 
-      const data = await response.json();
+      const data: ListIndicatorsResponse = await response.json();
       const indicatorsData = data.indicators || [];
 
       // Cache the data
@@ -229,6 +248,16 @@ export const useImmeubles = (): UseImmeublesReturn => {
     }
   }, [loginData?.tokenJwt, fetchBuildings, fetchIndicators]);
 
+  // Helper function to get indicators for a specific immeuble
+  const getIndicatorsForImmeuble = useCallback(
+    (pkImmeuble: number): Indicator | undefined => {
+      return indicators.find(
+        (indicator) => indicator.pkImmeuble === pkImmeuble
+      );
+    },
+    [indicators]
+  );
+
   // Computed states
   const loading = buildingsLoading || indicatorsLoading;
   const error = buildingsError || indicatorsError;
@@ -247,6 +276,9 @@ export const useImmeubles = (): UseImmeublesReturn => {
     // Combined states
     loading,
     error,
+
+    // Helper functions
+    getIndicatorsForImmeuble,
 
     // Actions
     refetch,

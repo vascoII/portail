@@ -28,6 +28,7 @@ const ImmeublesListPage: React.FC = () => {
     indicatorsError,
     loading,
     error,
+    getIndicatorsForImmeuble,
     refetchIndicators,
   } = useImmeubles();
 
@@ -59,15 +60,17 @@ const ImmeublesListPage: React.FC = () => {
         {/* Filters */}
         <ImmeubleFilters onFiltersChange={setFilters} />
 
-        {/* Buildings List */}
+        {/* Buildings List with Indicators */}
         <div className="mb-8">
           <ImmeubleList
             immeubles={immeubles}
+            indicators={indicators}
             filters={filters}
-            loading={loading}
-            error={error}
             buildingsLoading={buildingsLoading}
             buildingsError={buildingsError}
+            indicatorsLoading={indicatorsLoading}
+            indicatorsError={indicatorsError}
+            getIndicatorsForImmeuble={getIndicatorsForImmeuble}
           />
         </div>
 

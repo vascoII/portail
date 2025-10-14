@@ -2,31 +2,8 @@
 
 import React, { useState, useMemo } from "react";
 import ImmeubleCard from "./ImmeubleCard";
-
-interface Immeuble {
-  pkImmeuble: number;
-  ref: string;
-  numero: string;
-  nom?: string;
-  adresse1: string;
-  adresse2?: string;
-  adresse3?: string;
-  cp: string;
-  ville: string;
-  nbLogements: number;
-  nbAppareils: number;
-  nbCompteursEF: number;
-  nbCompteursEC: number;
-  nbCompteursRepart: number;
-  nbCompteursCET: number;
-  nbCompteursElect: number;
-  nbCompteursGaz: number;
-  nbFuites: number;
-  nbAnomalies: number;
-  nbDysfonctionnements: number;
-  nbDepannages: number;
-  nbChantiers: number;
-}
+import IndicatorsCard from "./IndicatorsCard";
+import { Immeuble, Indicator } from "../../hooks/useImmeubles";
 
 interface FilterState {
   energie: string;
@@ -41,24 +18,28 @@ interface FilterState {
 
 interface ImmeubleListProps {
   immeubles: Immeuble[];
+  indicators: Indicator[];
   filters: FilterState;
   isGestionMode?: boolean;
   showChgtOccupant?: boolean;
-  loading?: boolean;
-  error?: string | null;
   buildingsLoading?: boolean;
   buildingsError?: string | null;
+  indicatorsLoading?: boolean;
+  indicatorsError?: string | null;
+  getIndicatorsForImmeuble: (pkImmeuble: number) => Indicator | undefined;
 }
 
 const ImmeubleList: React.FC<ImmeubleListProps> = ({
   immeubles,
+  indicators,
   filters,
   isGestionMode = false,
   showChgtOccupant = false,
-  loading = false,
-  error = null,
   buildingsLoading = false,
   buildingsError = null,
+  indicatorsLoading = false,
+  indicatorsError = null,
+  getIndicatorsForImmeuble,
 }) => {
   const [viewMode, setViewMode] = useState<"list" | "grid-big" | "grid-small">(
     "list"
@@ -66,15 +47,18 @@ const ImmeubleList: React.FC<ImmeubleListProps> = ({
 
   const filteredImmeubles = useMemo(() => {
     return immeubles.filter((immeuble) => {
-      // Energy type filter
-      if (filters.energie) {
+      // Get indicators for this building
+      const buildingIndicators = getIndicatorsForImmeuble(immeuble.pkImmeuble);
+
+      // Energy type filter (using indicators data)
+      if (filters.energie && buildingIndicators) {
         const hasEnergy = {
-          energieef: immeuble.nbCompteursEF > 0,
-          energieec: immeuble.nbCompteursEC > 0,
-          energiecet: immeuble.nbCompteursCET > 0,
-          energierepart: immeuble.nbCompteursRepart > 0,
-          energieelect: immeuble.nbCompteursElect > 0,
-          energiegaz: immeuble.nbCompteursGaz > 0,
+          energieef: buildingIndicators.nbCompteursEF > 0,
+          energieec: buildingIndicators.nbCompteursEC > 0,
+          energiecet: buildingIndicators.nbCompteursCET > 0,
+          energierepart: buildingIndicators.nbCompteursRepart > 0,
+          energieelect: buildingIndicators.nbCompteursElect > 0,
+          energiegaz: buildingIndicators.nbCompteursGaz > 0,
         };
 
         if (!hasEnergy[filters.energie as keyof typeof hasEnergy]) {
@@ -82,38 +66,46 @@ const ImmeubleList: React.FC<ImmeubleListProps> = ({
         }
       }
 
-      // Alert filters
-      if (filters.fuites && immeuble.nbFuites <= 0) return false;
-      if (filters.anomalies && immeuble.nbAnomalies <= 0) return false;
-      if (filters.dysfonctionnements && immeuble.nbDysfonctionnements <= 0)
-        return false;
-      if (filters.depannages && immeuble.nbDepannages <= 0) return false;
-      if (filters.chantiers && immeuble.nbChantiers <= 0) return false;
+      // Alert filters (using indicators data)
+      if (buildingIndicators) {
+        if (filters.fuites && buildingIndicators.nbFuites <= 0) return false;
+        if (filters.anomalies && buildingIndicators.nbAnomalies <= 0)
+          return false;
+        if (
+          filters.dysfonctionnements &&
+          buildingIndicators.nbDysfonctionnements <= 0
+        )
+          return false;
+        if (filters.depannages && buildingIndicators.nbDepannages <= 0)
+          return false;
+        if (filters.chantiers && buildingIndicators.nbChantiers <= 0)
+          return false;
+      }
 
-      // Text filters
+      // Text filters (using building data)
       if (filters.reference) {
-        const refMatch = immeuble.ref.toLowerCase().includes(
-          filters.reference.toLowerCase()
-        );
-        const numMatch = immeuble.numero.toLowerCase().includes(
-          filters.reference.toLowerCase()
-        );
+        const refMatch = immeuble.ref
+          .toLowerCase()
+          .includes(filters.reference.toLowerCase());
+        const numMatch = immeuble.numero
+          .toLowerCase()
+          .includes(filters.reference.toLowerCase());
         if (!refMatch && !numMatch) return false;
       }
 
       if (filters.location) {
-        const cpMatch = immeuble.cp.toLowerCase().includes(
-          filters.location.toLowerCase()
-        );
-        const villeMatch = immeuble.ville.toLowerCase().includes(
-          filters.location.toLowerCase()
-        );
+        const cpMatch = immeuble.cp
+          .toLowerCase()
+          .includes(filters.location.toLowerCase());
+        const villeMatch = immeuble.ville
+          .toLowerCase()
+          .includes(filters.location.toLowerCase());
         if (!cpMatch && !villeMatch) return false;
       }
 
       return true;
     });
-  }, [immeubles, filters]);
+  }, [immeubles, indicators, filters, getIndicatorsForImmeuble]);
 
   if (buildingsLoading) {
     return (
@@ -228,18 +220,10 @@ const ImmeubleList: React.FC<ImmeubleListProps> = ({
         </div>
       </div>
 
-      {/* Immeubles Grid/List */}
-      <div
-        className={`${
-          viewMode === "list"
-            ? "space-y-4"
-            : viewMode === "grid-big"
-            ? "grid grid-cols-1 lg:grid-cols-2 gap-6"
-            : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
-        }`}
-      >
+      {/* Immeubles with Indicators - Two Column Layout */}
+      <div className="space-y-6">
         {filteredImmeubles.length === 0 ? (
-          <div className="col-span-full text-center py-12">
+          <div className="text-center py-12">
             <i className="fas fa-building text-4xl text-gray-400 mb-4"></i>
             <p className="text-gray-500 text-lg">Aucun immeuble trouvé</p>
             <p className="text-gray-400 text-sm">
@@ -248,33 +232,27 @@ const ImmeubleList: React.FC<ImmeubleListProps> = ({
           </div>
         ) : (
           filteredImmeubles.map((immeuble) => (
-            <ImmeubleCard
+            <div
               key={immeuble.pkImmeuble}
-              immeuble={{
-                pkImmeuble: immeuble.pkImmeuble,
-                ref: immeuble.ref,
-                numero: immeuble.numero,
-                nom: immeuble.nom,
-                adresse1: immeuble.adresse1,
-                adresse2: immeuble.adresse2,
-                adresse3: immeuble.adresse3,
-                cp: immeuble.cp,
-                ville: immeuble.ville,
-                nbLogements: immeuble.nbLogements,
-                nbAppareils: immeuble.nbAppareils,
-                nbCompteursEF: immeuble.nbCompteursEF,
-                nbCompteursEC: immeuble.nbCompteursEC,
-                nbCompteursRepart: immeuble.nbCompteursRepart,
-                nbCompteursCET: immeuble.nbCompteursCET,
-                nbCompteursElect: immeuble.nbCompteursElect,
-                nbCompteursGaz: immeuble.nbCompteursGaz,
-                nbFuites: immeuble.nbFuites,
-                nbAnomalies: immeuble.nbAnomalies,
-                nbDysfonctionnements: immeuble.nbDysfonctionnements,
-                nbDepannages: immeuble.nbDepannages,
-                nbChantiers: immeuble.nbChantiers,
-              }}
-            />
+              className="grid grid-cols-1 lg:grid-cols-2 gap-6"
+            >
+              {/* Left Column - Building Info */}
+              <ImmeubleCard
+                immeuble={immeuble}
+                isGestionMode={isGestionMode}
+                showChgtOccupant={showChgtOccupant}
+                loading={buildingsLoading}
+                error={buildingsError}
+              />
+
+              {/* Right Column - Indicators */}
+              <IndicatorsCard
+                buildingId={immeuble.pkImmeuble}
+                indicators={getIndicatorsForImmeuble(immeuble.pkImmeuble)}
+                loading={indicatorsLoading}
+                error={indicatorsError}
+              />
+            </div>
           ))
         )}
       </div>
