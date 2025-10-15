@@ -42,19 +42,55 @@ final class JwtService implements JwtServiceInterface
     return JWT::encode($payload, $this->jwtSecret, self::ALGORITHM);
   }
 
-  public function validateToken(string $token): ?array
+  public function validateToken(string $token): array
   {
     try {
       $decoded = JWT::decode($token, new Key($this->jwtSecret, self::ALGORITHM));
-      return json_decode(json_encode($decoded), true);
+      return [
+        'success' => true,
+        'payload' => json_decode(json_encode($decoded), true)
+      ];
+    } catch (\Firebase\JWT\ExpiredException $e) {
+      return [
+        'success' => false,
+        'error' => 'expired',
+        'message' => 'Authentication token has expired',
+        'code' => 'TOKEN_EXPIRED'
+      ];
+    } catch (\Firebase\JWT\SignatureInvalidException $e) {
+      return [
+        'success' => false,
+        'error' => 'invalid_signature',
+        'message' => 'Authentication token has invalid signature',
+        'code' => 'INVALID_SIGNATURE'
+      ];
+    } catch (\Firebase\JWT\BeforeValidException $e) {
+      return [
+        'success' => false,
+        'error' => 'not_yet_valid',
+        'message' => 'Authentication token is not yet valid',
+        'code' => 'TOKEN_NOT_YET_VALID'
+      ];
+    } catch (\InvalidArgumentException $e) {
+      return [
+        'success' => false,
+        'error' => 'malformed',
+        'message' => 'Authentication token is malformed',
+        'code' => 'MALFORMED_TOKEN'
+      ];
     } catch (\Exception $e) {
-      return null;
+      return [
+        'success' => false,
+        'error' => 'validation_failed',
+        'message' => 'Authentication token validation failed',
+        'code' => 'VALIDATION_FAILED'
+      ];
     }
   }
 
   public function getTokenPayload(string $token): ?array
   {
-    $decoded = $this->validateToken($token);
-    return $decoded ? $decoded['data'] : null;
+    $result = $this->validateToken($token);
+    return $result['success'] ? $result['payload']['data'] : null;
   }
 }
