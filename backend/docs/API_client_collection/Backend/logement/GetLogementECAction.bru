@@ -1,0 +1,19 @@
+meta {
+  name: GetLogementECAction
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{localhost_backend}}/api/logement_ec/1036204
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bearToken}}
+}
+
+settings {
+  encodeUrl: true
+}

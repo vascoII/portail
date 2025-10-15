@@ -1,0 +1,19 @@
+meta {
+  name: GetLogementIndicatorsAction
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{localhost_backend}}/api/logement_indicators/1036204
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bearToken}}
+}
+
+settings {
+  encodeUrl: true
+}

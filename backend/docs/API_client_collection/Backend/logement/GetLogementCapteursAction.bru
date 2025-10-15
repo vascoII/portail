@@ -1,0 +1,19 @@
+meta {
+  name: GetLogementCapteursAction
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{localhost_backend}}/api/logement_capteur/1036204
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bearToken}}
+}
+
+settings {
+  encodeUrl: true
+}

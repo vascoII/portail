@@ -1,0 +1,19 @@
+meta {
+  name: GetLogementRespartAction
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{localhost_backend}}/api/logement_repart/1036204
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bearToken}}
+}
+
+settings {
+  encodeUrl: true
+}
