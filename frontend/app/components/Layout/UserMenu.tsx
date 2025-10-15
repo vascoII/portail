@@ -38,7 +38,7 @@ const UserMenu: React.FC = () => {
   const handleLogout = () => {
     clearLoginData();
     setIsUserMenuOpen(false);
-    router.push("/login");
+    router.push("/pages/login");
   };
 
   // Don't render if user is not logged in

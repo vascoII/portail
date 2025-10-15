@@ -59,9 +59,9 @@ const PaidFacturesPage: React.FC = () => {
   ];
 
   const breadcrumbItems = [
-    { label: "Le parc", href: "/dashboard" },
-    { label: "Liste des factures", href: "/factures" },
-    { label: "Factures payées", href: "/factures/paid" },
+    { label: "Le parc", href: "/pages/dashboard" },
+    { label: "Liste des factures", href: "/pages/factures" },
+    { label: "Factures payées", href: "/pages/factures/paid" },
   ];
 
   return (

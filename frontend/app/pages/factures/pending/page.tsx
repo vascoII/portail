@@ -71,9 +71,9 @@ const PendingFacturesPage: React.FC = () => {
   ];
 
   const breadcrumbItems = [
-    { label: "Le parc", href: "/dashboard" },
-    { label: "Liste des factures", href: "/factures" },
-    { label: "Factures en attente", href: "/factures/pending" },
+    { label: "Le parc", href: "/pages/dashboard" },
+    { label: "Liste des factures", href: "/pages/factures" },
+    { label: "Factures en attente", href: "/pages/factures/pending" },
   ];
 
   return (

@@ -12,8 +12,8 @@ const ImmeubleInterventionsPage: React.FC = () => {
   const { interventions, loading, error } = useInterventions(id as string);
 
   const breadcrumbItems = [
-    { label: "Le parc", href: "/dashboard" },
-    { label: `Immeuble ${id}`, href: `/immeubles/${id}` },
+    { label: "Le parc", href: "/pages/dashboard" },
+    { label: `Immeuble ${id}`, href: `/pages/immeubles/${id}` },
     { label: "Interventions" },
   ];
 

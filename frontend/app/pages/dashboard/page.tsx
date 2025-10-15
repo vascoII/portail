@@ -45,7 +45,7 @@ const DashboardPage: React.FC = () => {
     isDemo: true,
   };
 
-  const breadcrumbItems = [{ label: "Le parc", href: "/dashboard" }];
+  const breadcrumbItems = [{ label: "Le parc", href: "/pages/dashboard" }];
 
   return (
     <BaseLayout>

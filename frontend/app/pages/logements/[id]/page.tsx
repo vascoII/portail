@@ -75,8 +75,8 @@ const LogementDetailPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>("ef");
 
   const breadcrumbItems = [
-    { label: "Le parc", href: "/dashboard" },
-    { label: "Liste des immeubles", href: "/immeubles" },
+    { label: "Le parc", href: "/pages/dashboard" },
+    { label: "Liste des immeubles", href: "/pages/immeubles" },
     ...(logement?.Immeuble
       ? [
           {

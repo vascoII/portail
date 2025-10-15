@@ -17,9 +17,9 @@ const LogementInterventionDetailPage: React.FC = () => {
   const intervention = interventions.find((i) => i.id === interventionId);
 
   const breadcrumbItems = [
-    { label: "Le parc", href: "/dashboard" },
-    { label: `Logement ${id}`, href: `/logements/${id}` },
-    { label: "Interventions", href: `/logements/${id}/interventions` },
+    { label: "Le parc", href: "/pages/dashboard" },
+    { label: `Logement ${id}`, href: `/pages/logements/${id}` },
+    { label: "Interventions", href: `/pages/logements/${id}/interventions` },
     { label: `Intervention ${intervention?.numero || interventionId}` },
   ];
 

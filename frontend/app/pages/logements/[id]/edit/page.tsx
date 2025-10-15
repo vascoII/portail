@@ -45,8 +45,8 @@ const LogementEditPage: React.FC = () => {
   };
 
   const breadcrumbItems = [
-    { label: "Le parc", href: "/dashboard" },
-    { label: "Liste des immeubles", href: "/immeubles" },
+    { label: "Le parc", href: "/pages/dashboard" },
+    { label: "Liste des immeubles", href: "/pages/immeubles" },
     {
       label: `Immeuble ${logementData.Immeuble.Ref}`,
       href: `/immeubles/${logementData.Immeuble.PkImmeuble}`,

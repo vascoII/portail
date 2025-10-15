@@ -2,6 +2,7 @@
 
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { getEndOfCurrentDayTimestamp } from "./helperStore";
 
 // Interface matching the backend LoginOutputDto
 export interface LoginOutputDto {
@@ -125,21 +126,6 @@ interface DataStoreState {
   clearAllCaches: () => void;
 }
 
-// Helper function to get end of day timestamp (23:59:59)
-const getEndOfDayTimestamp = (): number => {
-  const now = new Date();
-  const endOfDay = new Date(
-    now.getFullYear(),
-    now.getMonth(),
-    now.getDate(),
-    23,
-    59,
-    59,
-    999
-  );
-  return endOfDay.getTime();
-};
-
 // Helper function to check if cache is valid
 const isCacheValid = (
   cachedData: CachedData<any> | null,
@@ -175,10 +161,10 @@ export const useDataStore = create<DataStoreState>()(
       clearLoginData: () =>
         set({
           loginData: null,
-          immeublesCache: { buildings: null, indicators: null },
-          logementsCache: { logements: null, indicators: null },
-          singleImmeubleCache: {},
-          singleLogementCache: {},
+      //    immeublesCache: { buildings: null, indicators: null },
+      //    logementsCache: { logements: null, indicators: null },
+      //    singleImmeubleCache: {},
+      //    singleLogementCache: {},
         }),
 
       // Immeubles cache functions
@@ -190,7 +176,7 @@ export const useDataStore = create<DataStoreState>()(
           data,
           loginId: loginData.loginId,
           cachedAt: Date.now(),
-          expiresAt: getEndOfDayTimestamp(),
+          expiresAt: getEndOfCurrentDayTimestamp (),
         };
 
         set((state) => ({
@@ -209,7 +195,7 @@ export const useDataStore = create<DataStoreState>()(
           data,
           loginId: loginData.loginId,
           cachedAt: Date.now(),
-          expiresAt: getEndOfDayTimestamp(),
+          expiresAt: getEndOfCurrentDayTimestamp (),
         };
 
         set((state) => ({
@@ -234,7 +220,7 @@ export const useDataStore = create<DataStoreState>()(
           data,
           loginId: loginData.loginId,
           cachedAt: Date.now(),
-          expiresAt: getEndOfDayTimestamp(),
+          expiresAt: getEndOfCurrentDayTimestamp (),
         };
 
         set((state) => ({
@@ -253,7 +239,7 @@ export const useDataStore = create<DataStoreState>()(
           data,
           loginId: loginData.loginId,
           cachedAt: Date.now(),
-          expiresAt: getEndOfDayTimestamp(),
+          expiresAt: getEndOfCurrentDayTimestamp (),
         };
 
         set((state) => ({
@@ -282,7 +268,7 @@ export const useDataStore = create<DataStoreState>()(
           data,
           loginId: loginData.loginId,
           cachedAt: Date.now(),
-          expiresAt: getEndOfDayTimestamp(),
+          expiresAt: getEndOfCurrentDayTimestamp (),
         };
 
         set((state) => ({
@@ -316,7 +302,7 @@ export const useDataStore = create<DataStoreState>()(
           data,
           loginId: loginData.loginId,
           cachedAt: Date.now(),
-          expiresAt: getEndOfDayTimestamp(),
+          expiresAt: getEndOfCurrentDayTimestamp (),
         };
 
         set((state) => ({

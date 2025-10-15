@@ -15,8 +15,8 @@ const LogementInterventionsPage: React.FC = () => {
   );
 
   const breadcrumbItems = [
-    { label: "Le parc", href: "/dashboard" },
-    { label: `Logement ${id}`, href: `/logements/${id}` },
+    { label: "Le parc", href: "/pages/dashboard" },
+    { label: `Logement ${id}`, href: `/pages/logements/${id}` },
     { label: "Interventions" },
   ];
 

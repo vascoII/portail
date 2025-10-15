@@ -64,6 +64,7 @@ const LogementDetailPage: React.FC = () => {
         <div className="container mx-auto px-4 py-6">
           <Breadcrumb
             items={[
+              { label: "Le parc", href: "/pages/dashboard" },
               { label: "Immeubles", href: "/pages/immeubles" },
               {
                 label: `Immeuble ${immeubleId}`,
@@ -139,8 +140,7 @@ const LogementDetailPage: React.FC = () => {
             {
               label: "Logements",
               href: `/pages/immeubles/${immeubleId}/logements`,
-            },
-            { label: `Logement ${logement.numOrdre}`, href: "#" },
+            }
           ]}
         />
 
