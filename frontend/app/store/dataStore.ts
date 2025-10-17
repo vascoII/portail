@@ -2,7 +2,7 @@
 
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { getEndOfCurrentDayTimestamp } from "./helperStore";
+import { getEndOfCurrentDayTimestamp, getEndOfCurrentWeekTimestamp } from "./helperStore";
 
 // Interface matching the backend LoginOutputDto
 export interface LoginOutputDto {
@@ -176,7 +176,7 @@ export const useDataStore = create<DataStoreState>()(
           data,
           loginId: loginData.loginId,
           cachedAt: Date.now(),
-          expiresAt: getEndOfCurrentDayTimestamp (),
+          expiresAt: getEndOfCurrentWeekTimestamp (),
         };
 
         set((state) => ({
@@ -195,7 +195,7 @@ export const useDataStore = create<DataStoreState>()(
           data,
           loginId: loginData.loginId,
           cachedAt: Date.now(),
-          expiresAt: getEndOfCurrentDayTimestamp (),
+          expiresAt: getEndOfCurrentWeekTimestamp (),
         };
 
         set((state) => ({
@@ -220,7 +220,7 @@ export const useDataStore = create<DataStoreState>()(
           data,
           loginId: loginData.loginId,
           cachedAt: Date.now(),
-          expiresAt: getEndOfCurrentDayTimestamp (),
+          expiresAt: getEndOfCurrentWeekTimestamp (),
         };
 
         set((state) => ({
@@ -239,7 +239,7 @@ export const useDataStore = create<DataStoreState>()(
           data,
           loginId: loginData.loginId,
           cachedAt: Date.now(),
-          expiresAt: getEndOfCurrentDayTimestamp (),
+          expiresAt: getEndOfCurrentWeekTimestamp (),
         };
 
         set((state) => ({
@@ -268,7 +268,7 @@ export const useDataStore = create<DataStoreState>()(
           data,
           loginId: loginData.loginId,
           cachedAt: Date.now(),
-          expiresAt: getEndOfCurrentDayTimestamp (),
+          expiresAt: getEndOfCurrentWeekTimestamp (),
         };
 
         set((state) => ({
@@ -302,7 +302,7 @@ export const useDataStore = create<DataStoreState>()(
           data,
           loginId: loginData.loginId,
           cachedAt: Date.now(),
-          expiresAt: getEndOfCurrentDayTimestamp (),
+          expiresAt: getEndOfCurrentWeekTimestamp (),
         };
 
         set((state) => ({
