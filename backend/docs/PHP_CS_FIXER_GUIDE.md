@@ -19,6 +19,7 @@ PHP CS Fixer is a tool to automatically fix PHP code to follow a coding standard
 ## What is PHP CS Fixer?
 
 PHP CS Fixer is a tool that:
+
 - **Automatically fixes** PHP code to follow coding standards
 - **Enforces consistency** across your codebase
 - **Supports multiple standards** (PSR-12, Symfony, etc.)
@@ -29,10 +30,12 @@ PHP CS Fixer is a tool that:
 ## Installation & Setup
 
 ### Prerequisites
+
 - PHP 8.2 or higher
 - Composer
 
 ### Installation
+
 ```bash
 # Install PHP CS Fixer
 composer require --dev friendsofphp/php-cs-fixer
@@ -42,6 +45,7 @@ composer require --dev friendsofphp/php-cs-fixer
 ```
 
 ### Verify Installation
+
 ```bash
 # Check if PHP CS Fixer is installed
 ./vendor/bin/php-cs-fixer --version
@@ -52,6 +56,7 @@ composer require --dev friendsofphp/php-cs-fixer
 ## Configuration
 
 ### Basic Configuration (`.php-cs-fixer.php`)
+
 ```php
 <?php
 
@@ -83,6 +88,7 @@ return $config;
 ```
 
 ### Advanced Configuration
+
 ```php
 <?php
 
@@ -103,13 +109,13 @@ $config
         '@PSR12' => true,
         '@Symfony' => true,
         '@PhpCsFixer' => true,
-        
+
         // Array rules
         'array_syntax' => ['syntax' => 'short'],
         'array_indentation' => true,
         'trim_array_spaces' => true,
         'whitespace_after_comma_in_array' => true,
-        
+
         // Class rules
         'class_attributes_separation' => [
             'elements' => [
@@ -123,7 +129,7 @@ $config
             'sort_algorithm' => 'alpha',
             'imports_order' => ['class', 'function', 'const'],
         ],
-        
+
         // Function rules
         'function_declaration' => [
             'closure_function_spacing' => 'one',
@@ -131,12 +137,12 @@ $config
         'method_argument_space' => [
             'on_multiline' => 'ensure_fully_multiline',
         ],
-        
+
         // String rules
         'single_quote' => true,
         'concat_space' => ['spacing' => 'one'],
         'escape_implicit_backslashes' => true,
-        
+
         // Control structure rules
         'control_structure_braces' => true,
         'control_structure_continuation_position' => true,
@@ -145,7 +151,7 @@ $config
         'no_superfluous_elseif' => true,
         'no_useless_else' => true,
         'switch_continue_to_break' => true,
-        
+
         // Operator rules
         'binary_operator_spaces' => [
             'default' => 'single_space',
@@ -172,17 +178,17 @@ $config
         'unary_operator_spaces' => true,
         'not_operator_with_successor_space' => true,
         'object_operator_without_whitespace' => true,
-        
+
         // Cast rules
         'cast_spaces' => true,
         'no_short_bool_cast' => true,
-        
+
         // Comment rules
         'single_line_comment_style' => [
             'comment_types' => ['hash'],
         ],
         'multiline_comment_opening_closing' => true,
-        
+
         // General rules
         'blank_line_after_namespace' => true,
         'blank_line_after_opening_tag' => true,
@@ -304,6 +310,7 @@ return $config;
 ## Running PHP CS Fixer
 
 ### Basic Commands
+
 ```bash
 # Fix all files
 ./vendor/bin/php-cs-fixer fix
@@ -325,6 +332,7 @@ return $config;
 ```
 
 ### Advanced Commands
+
 ```bash
 # Use custom configuration
 ./vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.php
@@ -349,7 +357,9 @@ return $config;
 ```
 
 ### Composer Scripts
+
 Add to `composer.json`:
+
 ```json
 {
   "scripts": {
@@ -362,6 +372,7 @@ Add to `composer.json`:
 ```
 
 Then run:
+
 ```bash
 composer run cs-fix
 composer run cs-fix:dry-run
@@ -372,6 +383,7 @@ composer run cs-fix:cache-clear
 ## Understanding Results
 
 ### Exit Codes
+
 - **0**: No errors found, all files are properly formatted
 - **1**: General error (e.g., configuration error)
 - **4**: Some files have invalid syntax
@@ -380,6 +392,7 @@ composer run cs-fix:cache-clear
 ### Common Output Formats
 
 #### Dry Run Output
+
 ```bash
 $ ./vendor/bin/php-cs-fixer fix --dry-run --diff
 
@@ -391,11 +404,11 @@ Loaded config default from "/path/to/.php-cs-fixer.php".
 +++ /path/to/file.php
 @@ -1,7 +1,7 @@
  <?php
- 
+
  declare(strict_types=1);
- 
+
  namespace App\Application\UseCase\Security;
- 
+
  final class LoginUseCase
  {
 -  public function __construct(
@@ -409,6 +422,7 @@ Loaded config default from "/path/to/.php-cs-fixer.php".
 ```
 
 #### Fixed Files Output
+
 ```bash
 $ ./vendor/bin/php-cs-fixer fix
 
@@ -421,6 +435,7 @@ Fixed all files in 0.123 seconds, 2.00 MB memory used.
 ### Common Fixes Applied
 
 #### 1. Indentation
+
 ```php
 // Before
 public function __construct(
@@ -434,6 +449,7 @@ public function __construct(
 ```
 
 #### 2. Array Syntax
+
 ```php
 // Before
 $array = array('key' => 'value');
@@ -443,6 +459,7 @@ $array = ['key' => 'value'];
 ```
 
 #### 3. String Quotes
+
 ```php
 // Before
 $string = "Hello World";
@@ -452,6 +469,7 @@ $string = 'Hello World';
 ```
 
 #### 4. Import Organization
+
 ```php
 // Before
 use App\Application\Service\DataProvider\SecurityDataProviderInterface;
@@ -465,6 +483,7 @@ use App\Application\UseCase\Security\LoginUseCase;
 ```
 
 #### 5. Method Spacing
+
 ```php
 // Before
 public function method1() {
@@ -489,6 +508,7 @@ public function method2()
 ## Integration with CI/CD
 
 ### GitHub Actions
+
 ```yaml
 # .github/workflows/php-cs-fixer.yml
 name: PHP CS Fixer
@@ -502,24 +522,25 @@ on:
 jobs:
   php-cs-fixer:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - uses: actions/checkout@v3
-    
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.2'
-        extensions: mbstring, xml, ctype, iconv, intl
-        
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress
-      
-    - name: Run PHP CS Fixer
-      run: ./vendor/bin/php-cs-fixer fix --dry-run --diff --verbose
+      - uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          extensions: mbstring, xml, ctype, iconv, intl
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Run PHP CS Fixer
+        run: ./vendor/bin/php-cs-fixer fix --dry-run --diff --verbose
 ```
 
 ### GitLab CI
+
 ```yaml
 # .gitlab-ci.yml
 php-cs-fixer:
@@ -535,10 +556,11 @@ php-cs-fixer:
 ```
 
 ### Jenkins Pipeline
+
 ```groovy
 pipeline {
     agent any
-    
+
     stages {
         stage('PHP CS Fixer') {
             steps {
@@ -553,6 +575,7 @@ pipeline {
 ## Best Practices
 
 ### 1. Start with Basic Rules
+
 ```php
 // Start with these rules
 '@PSR12' => true,
@@ -560,12 +583,14 @@ pipeline {
 ```
 
 ### 2. Use Dry Run First
+
 ```bash
 # Always check what will be changed first
 ./vendor/bin/php-cs-fixer fix --dry-run --diff
 ```
 
 ### 3. Exclude Generated Code
+
 ```php
 $finder = PhpCsFixer\Finder::create()
     ->in(__DIR__ . '/src')
@@ -577,6 +602,7 @@ $finder = PhpCsFixer\Finder::create()
 ```
 
 ### 4. Use Specific Rules for Your Project
+
 ```php
 // Add rules specific to your clean architecture
 'declare_strict_types' => true,
@@ -593,6 +619,7 @@ $finder = PhpCsFixer\Finder::create()
 ```
 
 ### 5. Integrate with Pre-commit Hooks
+
 ```bash
 # .git/hooks/pre-commit
 #!/bin/sh
@@ -604,16 +631,18 @@ fi
 ```
 
 ### 6. Use IDE Integration
+
 ```json
 // .vscode/settings.json
 {
-    "php-cs-fixer.enable": true,
-    "php-cs-fixer.config": ".php-cs-fixer.php",
-    "php-cs-fixer.onsave": true
+  "php-cs-fixer.enable": true,
+  "php-cs-fixer.config": ".php-cs-fixer.php",
+  "php-cs-fixer.onsave": true
 }
 ```
 
 ### 7. Regular Maintenance
+
 ```bash
 # Run weekly to keep code clean
 composer run cs-fix
@@ -627,6 +656,7 @@ composer run cs-fix:check
 ### Common Issues
 
 #### 1. Configuration Errors
+
 ```bash
 # Error: Invalid configuration
 # Solution: Check your .php-cs-fixer.php syntax
@@ -634,12 +664,14 @@ php -l .php-cs-fixer.php
 ```
 
 #### 2. Memory Issues
+
 ```bash
 # Error: Fatal error: Allowed memory size exhausted
 ./vendor/bin/php-cs-fixer fix --memory-limit=2G
 ```
 
 #### 3. Slow Performance
+
 ```bash
 # Use parallel processing
 ./vendor/bin/php-cs-fixer fix --parallel
@@ -651,6 +683,7 @@ $finder = PhpCsFixer\Finder::create()
 ```
 
 #### 4. Rule Conflicts
+
 ```php
 // Some rules conflict with each other
 // Solution: Remove conflicting rules or adjust configuration
@@ -660,12 +693,14 @@ $finder = PhpCsFixer\Finder::create()
 ```
 
 #### 5. File Permission Issues
+
 ```bash
 # Error: Permission denied
 chmod +x .git/hooks/pre-commit
 ```
 
 ### Debug Mode
+
 ```bash
 # Run with debug information
 ./vendor/bin/php-cs-fixer fix --verbose --diff
@@ -677,6 +712,7 @@ chmod +x .git/hooks/pre-commit
 ## Advanced Usage
 
 ### Custom Rules
+
 ```php
 // Create custom rule
 class CustomRule implements \PhpCsFixer\Fixer\FixerInterface
@@ -722,6 +758,7 @@ class CustomRule implements \PhpCsFixer\Fixer\FixerInterface
 ```
 
 ### Configuration per Directory
+
 ```php
 $config = new PhpCsFixer\Config();
 $config
@@ -741,6 +778,7 @@ $config->setRules([
 ```
 
 ### Integration with Other Tools
+
 ```bash
 # Run PHP CS Fixer before PHPStan
 composer run cs-fix
@@ -754,6 +792,7 @@ composer run phpstan
 ```
 
 ### Custom Fixer Sets
+
 ```php
 // Create custom fixer set
 $config->setRules([
@@ -772,6 +811,7 @@ $config->setRules([
 ## Project-Specific Configuration
 
 ### For Our Clean Architecture
+
 ```php
 $finder = PhpCsFixer\Finder::create()
     ->in(__DIR__ . '/src')
@@ -792,7 +832,7 @@ $config
         '@PSR12' => true,
         '@Symfony' => true,
         '@PhpCsFixer' => true,
-        
+
         // Clean architecture specific
         'declare_strict_types' => true,
         'ordered_imports' => [
@@ -818,6 +858,7 @@ $config
 ```
 
 ### Recommended Workflow
+
 1. **Start with dry run**: `composer run cs-fix:dry-run`
 2. **Review changes**: Check the diff output
 3. **Apply fixes**: `composer run cs-fix`
@@ -828,6 +869,7 @@ $config
 ## Quick Reference
 
 ### Essential Commands
+
 ```bash
 # Basic fix
 ./vendor/bin/php-cs-fixer fix
@@ -846,6 +888,7 @@ $config
 ```
 
 ### Composer Scripts
+
 ```bash
 # Fix all files
 composer run cs-fix
@@ -861,6 +904,7 @@ composer run cs-fix:cache-clear
 ```
 
 ### Common Rule Sets
+
 - `@PSR12` - PSR-12 coding standard
 - `@Symfony` - Symfony coding standard
 - `@PhpCsFixer` - PHP CS Fixer recommended rules
@@ -869,6 +913,7 @@ composer run cs-fix:cache-clear
 - `@PHP81Migration` - PHP 8.1 migration rules
 
 ### Exit Codes
+
 - **0**: No errors found
 - **1**: General error
 - **4**: Some files have invalid syntax

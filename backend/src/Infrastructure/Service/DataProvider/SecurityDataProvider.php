@@ -7,6 +7,7 @@ namespace App\Infrastructure\Service\DataProvider;
 use App\Application\Dto\Input\Security\LoginFromParamInputDto;
 use App\Application\Dto\Input\Security\ResetOrCreateInputDto;
 use App\Application\Dto\Output\Security\ResetPasswordFromPKUserOutputDto;
+use App\Application\Dto\Output\Security\ResetPasswordOutputDto;
 use App\Application\Dto\Input\Security\UpdatePasswordInputDto;
 use App\Application\Dto\Output\Security\UpdatePasswordOutputDto;
 use App\Application\Dto\Input\Security\ResetPasswordInputDto;

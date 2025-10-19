@@ -19,6 +19,7 @@ PHPStan is a static analysis tool for PHP that helps catch bugs before they reac
 ## What is PHPStan?
 
 PHPStan is a static analysis tool that:
+
 - **Finds bugs** without running code
 - **Analyzes types** and catches type-related errors
 - **Detects dead code** and unused variables
@@ -29,10 +30,12 @@ PHPStan is a static analysis tool that:
 ## Installation & Setup
 
 ### Prerequisites
+
 - PHP 8.1 or higher
 - Composer
 
 ### Installation
+
 ```bash
 # Install PHPStan
 composer require --dev phpstan/phpstan
@@ -45,6 +48,7 @@ composer require --dev phpstan/phpstan-doctrine
 ```
 
 ### Verify Installation
+
 ```bash
 # Check if PHPStan is installed
 ./vendor/bin/phpstan --version
@@ -55,6 +59,7 @@ composer require --dev phpstan/phpstan-doctrine
 ## Configuration
 
 ### Basic Configuration (`phpstan.neon`)
+
 ```neon
 parameters:
     level: 6
@@ -75,6 +80,7 @@ parameters:
 ```
 
 ### Advanced Configuration
+
 ```neon
 parameters:
     level: 8
@@ -85,23 +91,23 @@ parameters:
         - var
         - vendor
         - tests
-    
+
     # Include additional rules
     includes:
         - vendor/phpstan/phpstan-symfony/extension.neon
         - vendor/phpstan/phpstan-doctrine/extension.neon
-    
+
     # Ignore specific errors
     ignoreErrors:
         - '#Call to an undefined method#'
         - '#Call to an undefined method SoapClient#'
         - '#Property .* has no type specified#'
-    
+
     # Custom rules
     checkMissingIterableValueType: false
     checkGenericClassInNonGenericObjectType: false
     reportUnmatchedIgnoredErrors: false
-    
+
     # Memory limit
     memoryLimitFile: 2G
 ```
@@ -109,6 +115,7 @@ parameters:
 ## Running PHPStan
 
 ### Basic Commands
+
 ```bash
 # Run PHPStan on entire codebase
 ./vendor/bin/phpstan analyse
@@ -130,6 +137,7 @@ parameters:
 ```
 
 ### Advanced Commands
+
 ```bash
 # Run with memory limit
 ./vendor/bin/phpstan analyse --memory-limit=2G
@@ -148,18 +156,21 @@ parameters:
 ```
 
 ### Composer Scripts
+
 Add to `composer.json`:
+
 ```json
 {
-    "scripts": {
-        "phpstan": "phpstan analyse",
-        "phpstan:baseline": "phpstan analyse --generate-baseline",
-        "phpstan:ci": "phpstan analyse --error-format=github"
-    }
+  "scripts": {
+    "phpstan": "phpstan analyse",
+    "phpstan:baseline": "phpstan analyse --generate-baseline",
+    "phpstan:ci": "phpstan analyse --error-format=github"
+  }
 }
 ```
 
 Then run:
+
 ```bash
 composer run phpstan
 composer run phpstan:baseline
@@ -169,6 +180,7 @@ composer run phpstan:ci
 ## Understanding Results
 
 ### Error Levels
+
 PHPStan uses levels 0-9, where higher levels catch more issues:
 
 - **Level 0**: Basic checks (undefined variables, unknown classes)
@@ -185,6 +197,7 @@ PHPStan uses levels 0-9, where higher levels catch more issues:
 ### Common Error Types
 
 #### 1. Undefined Variable
+
 ```php
 // Error: Undefined variable $name
 function greet() {
@@ -193,6 +206,7 @@ function greet() {
 ```
 
 #### 2. Undefined Method
+
 ```php
 // Error: Call to an undefined method
 $user = new User();
@@ -200,6 +214,7 @@ $user->getFullName(); // Method doesn't exist
 ```
 
 #### 3. Type Mismatch
+
 ```php
 // Error: Parameter #1 $id of method expects int, string given
 function getUser(int $id): User {
@@ -210,6 +225,7 @@ getUser("123"); // String instead of int
 ```
 
 #### 4. Nullable Type Issues
+
 ```php
 // Error: Cannot call method on nullable type
 function processUser(?User $user): string {
@@ -218,6 +234,7 @@ function processUser(?User $user): string {
 ```
 
 #### 5. Array Access Issues
+
 ```php
 // Error: Cannot access offset on mixed type
 function getValue(array $data): string {
@@ -226,6 +243,7 @@ function getValue(array $data): string {
 ```
 
 ### Reading Error Messages
+
 ```
  ------ -------------------------------------------------------------------------
   Line   src/Application/UseCase/Security/LoginUseCase.php
@@ -235,6 +253,7 @@ function getValue(array $data): string {
 ```
 
 **Translation:**
+
 - **File**: `src/Application/UseCase/Security/LoginUseCase.php`
 - **Line**: 25
 - **Issue**: Method `loginService()` doesn't exist on `SecurityDataProviderInterface`
@@ -242,37 +261,39 @@ function getValue(array $data): string {
 ## Integration with CI/CD
 
 ### GitHub Actions
+
 ```yaml
 # .github/workflows/phpstan.yml
 name: PHPStan
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [main, develop]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   phpstan:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - uses: actions/checkout@v3
-    
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.2'
-        extensions: mbstring, xml, ctype, iconv, intl
-        
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress
-      
-    - name: Run PHPStan
-      run: ./vendor/bin/phpstan analyse --error-format=github
+      - uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          extensions: mbstring, xml, ctype, iconv, intl
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Run PHPStan
+        run: ./vendor/bin/phpstan analyse --error-format=github
 ```
 
 ### GitLab CI
+
 ```yaml
 # .gitlab-ci.yml
 phpstan:
@@ -288,10 +309,11 @@ phpstan:
 ```
 
 ### Jenkins Pipeline
+
 ```groovy
 pipeline {
     agent any
-    
+
     stages {
         stage('PHPStan') {
             steps {
@@ -307,12 +329,14 @@ pipeline {
 ## Best Practices
 
 ### 1. Start with Level 6
+
 ```bash
 # Begin with level 6 for good balance
 ./vendor/bin/phpstan analyse --level=6
 ```
 
 ### 2. Use Baselines
+
 ```bash
 # Generate baseline to ignore current errors
 ./vendor/bin/phpstan analyse --generate-baseline
@@ -322,12 +346,14 @@ pipeline {
 ```
 
 ### 3. Focus on Critical Issues First
+
 ```bash
 # Run with specific error types
 ./vendor/bin/phpstan analyse --error-format=table | grep "Call to an undefined method"
 ```
 
 ### 4. Exclude Generated Code
+
 ```neon
 parameters:
     excludePaths:
@@ -337,6 +363,7 @@ parameters:
 ```
 
 ### 5. Use Specific Ignores
+
 ```neon
 parameters:
     ignoreErrors:
@@ -349,6 +376,7 @@ parameters:
 ```
 
 ### 6. Add Type Hints
+
 ```php
 // Before
 function processUser($user) {
@@ -362,6 +390,7 @@ function processUser(User $user): string {
 ```
 
 ### 7. Use PHPDoc
+
 ```php
 /**
  * @param array<string, mixed> $data
@@ -377,12 +406,14 @@ function processData(array $data): array {
 ### Common Issues
 
 #### 1. Memory Limit
+
 ```bash
 # Error: Fatal error: Allowed memory size exhausted
 ./vendor/bin/phpstan analyse --memory-limit=2G
 ```
 
 #### 2. Slow Analysis
+
 ```bash
 # Use parallel processing
 ./vendor/bin/phpstan analyse --parallel
@@ -392,6 +423,7 @@ function processData(array $data): array {
 ```
 
 #### 3. False Positives
+
 ```neon
 # In phpstan.neon
 parameters:
@@ -402,6 +434,7 @@ parameters:
 ```
 
 #### 4. Missing Extensions
+
 ```bash
 # Install missing extensions
 composer require --dev phpstan/phpstan-symfony
@@ -409,6 +442,7 @@ composer require --dev phpstan/phpstan-doctrine
 ```
 
 ### Debug Mode
+
 ```bash
 # Run with debug information
 ./vendor/bin/phpstan analyse --debug
@@ -420,6 +454,7 @@ composer require --dev phpstan/phpstan-doctrine
 ## Advanced Usage
 
 ### Custom Rules
+
 ```php
 // Create custom rule
 class CustomRule implements \PHPStan\Rules\Rule
@@ -438,11 +473,12 @@ class CustomRule implements \PHPStan\Rules\Rule
 ```
 
 ### Configuration per Directory
+
 ```neon
 parameters:
     paths:
         - src
-    
+
     # Different rules for different directories
     rules:
         - PHPStan\Rules\Methods\CallToStaticMethodStaticallyRule
@@ -450,16 +486,18 @@ parameters:
 ```
 
 ### Integration with IDE
+
 ```json
 // .vscode/settings.json
 {
-    "phpstan.enabled": true,
-    "phpstan.configFile": "phpstan.neon",
-    "phpstan.level": 6
+  "phpstan.enabled": true,
+  "phpstan.configFile": "phpstan.neon",
+  "phpstan.level": 6
 }
 ```
 
 ### Custom Error Formatters
+
 ```php
 // Create custom formatter
 class CustomFormatter implements \PHPStan\Command\ErrorFormatter\ErrorFormatter
@@ -477,6 +515,7 @@ class CustomFormatter implements \PHPStan\Command\ErrorFormatter\ErrorFormatter
 ## Project-Specific Configuration
 
 ### For Our Clean Architecture
+
 ```neon
 parameters:
     level: 6
@@ -486,14 +525,14 @@ parameters:
         - src/Http  # Controllers are thin, focus on business logic
         - var
         - vendor
-    
+
     # Focus on Application and Infrastructure layers
     ignoreErrors:
         # SOAP client is external dependency
         - '#Call to an undefined method SoapClient#'
         # Symfony container is external
         - '#Call to an undefined method Symfony\\Component\\DependencyInjection\\ContainerInterface#'
-    
+
     # Check for common issues in our architecture
     checkMissingIterableValueType: false
     checkGenericClassInNonGenericObjectType: false
@@ -501,6 +540,7 @@ parameters:
 ```
 
 ### Recommended Workflow
+
 1. **Start with baseline**: `./vendor/bin/phpstan analyse --generate-baseline`
 2. **Fix critical issues**: Focus on undefined methods and type errors
 3. **Gradually increase level**: Move from level 6 to 8 over time
@@ -510,6 +550,7 @@ parameters:
 ## Quick Reference
 
 ### Essential Commands
+
 ```bash
 # Basic analysis
 ./vendor/bin/phpstan analyse
@@ -531,6 +572,7 @@ parameters:
 ```
 
 ### Configuration Levels
+
 - **Level 0-2**: Basic checks (start here)
 - **Level 3-4**: Good balance for most projects
 - **Level 5-6**: Recommended for production
@@ -538,6 +580,7 @@ parameters:
 - **Level 9**: Maximum strictness (advanced)
 
 ### Common Error Patterns
+
 - `Call to an undefined method` → Method doesn't exist
 - `Parameter #X expects Y, Z given` → Type mismatch
 - `Cannot call method on nullable type` → Null safety issue

@@ -19,6 +19,7 @@ Security auditing is a critical part of maintaining a secure codebase. This guid
 ## What is Security Auditing?
 
 Security auditing involves:
+
 - **Scanning dependencies** for known vulnerabilities (CVEs)
 - **Analyzing code** for security anti-patterns
 - **Checking configurations** for security misconfigurations
@@ -27,13 +28,13 @@ Security auditing involves:
 
 ## Security vs Clean Code
 
-| Aspect | Security Auditing | Clean Code Tools |
-|--------|------------------|------------------|
-| **Purpose** | Find vulnerabilities & threats | Improve code quality & maintainability |
-| **Focus** | Security risks, CVEs, exploits | Style, consistency, type safety |
-| **Tools** | Security scanners, vulnerability DBs | Linters, formatters, static analyzers |
-| **Priority** | Critical (security breaches) | Important (code quality) |
-| **Frequency** | Daily/continuous | Pre-commit/CI |
+| Aspect        | Security Auditing                    | Clean Code Tools                       |
+| ------------- | ------------------------------------ | -------------------------------------- |
+| **Purpose**   | Find vulnerabilities & threats       | Improve code quality & maintainability |
+| **Focus**     | Security risks, CVEs, exploits       | Style, consistency, type safety        |
+| **Tools**     | Security scanners, vulnerability DBs | Linters, formatters, static analyzers  |
+| **Priority**  | Critical (security breaches)         | Important (code quality)               |
+| **Frequency** | Daily/continuous                     | Pre-commit/CI                          |
 
 ### Complete Development Toolchain
 
@@ -54,18 +55,21 @@ composer run test
 ## Tools Overview
 
 ### 1. **Dependency Security Tools**
+
 - **`composer audit`** - Built-in Composer security (Composer 2.4+)
 - **`security-checker`** - Symfony Security Checker
 - **`snyk`** - Commercial security platform
 - **`github/dependabot`** - Automated dependency updates
 
 ### 2. **Code Security Tools**
+
 - **`phpcs-security-audit`** - PHP CodeSniffer security rules
 - **`psalm`** - Static analysis with security focus
 - **`phpstan-security-rules`** - PHPStan security extensions
 - **`roave/security-advisories`** - Composer security constraints
 
 ### 3. **Infrastructure Security**
+
 - **`docker scout`** - Container vulnerability scanning
 - **`trivy`** - Container and filesystem scanning
 - **`bandit`** - Python security linter (if using Python tools)
@@ -75,6 +79,7 @@ composer run test
 ### Using Security Checker
 
 #### Basic Commands
+
 ```bash
 # Check all dependencies for vulnerabilities
 composer run security:check
@@ -90,6 +95,7 @@ composer run security:check:table
 ```
 
 #### Advanced Commands
+
 ```bash
 # Check specific lock file
 ./vendor/bin/security-checker security:check composer.lock
@@ -107,12 +113,14 @@ composer run security:check:table
 ### Understanding Security Checker Output
 
 #### ✅ **No Vulnerabilities Found**
+
 ```bash
 $ composer run security:check
 [OK] 0 packages have known vulnerabilities
 ```
 
 #### ⚠️ **Vulnerabilities Found**
+
 ```bash
 $ composer run security:check
 [WARNING] 2 packages have known vulnerabilities
@@ -127,6 +135,7 @@ monolog/monolog (v2.8.0)
 ```
 
 #### JSON Output (for CI/CD)
+
 ```json
 {
   "advisories": {
@@ -173,6 +182,7 @@ composer require --dev phpcs-security-audit/phpcs-security-audit
 ### Security Rules Examples
 
 #### 1. **SQL Injection Prevention**
+
 ```php
 // ❌ Vulnerable
 $query = "SELECT * FROM users WHERE id = " . $_GET['id'];
@@ -184,6 +194,7 @@ $stmt->execute([$_GET['id']]);
 ```
 
 #### 2. **XSS Prevention**
+
 ```php
 // ❌ Vulnerable
 echo $_GET['name'];
@@ -193,6 +204,7 @@ echo htmlspecialchars($_GET['name'], ENT_QUOTES, 'UTF-8');
 ```
 
 #### 3. **File Upload Security**
+
 ```php
 // ❌ Vulnerable
 move_uploaded_file($_FILES['file']['tmp_name'], 'uploads/' . $_FILES['file']['name']);
@@ -201,7 +213,7 @@ move_uploaded_file($_FILES['file']['tmp_name'], 'uploads/' . $_FILES['file']['na
 $allowedTypes = ['image/jpeg', 'image/png'];
 $maxSize = 2 * 1024 * 1024; // 2MB
 
-if (in_array($_FILES['file']['type'], $allowedTypes) && 
+if (in_array($_FILES['file']['type'], $allowedTypes) &&
     $_FILES['file']['size'] <= $maxSize) {
     $filename = uniqid() . '.' . pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
     move_uploaded_file($_FILES['file']['tmp_name'], 'uploads/' . $filename);
@@ -217,10 +229,10 @@ Create custom security rules for your clean architecture:
 <?xml version="1.0"?>
 <ruleset name="Security Rules">
     <description>Custom security rules for clean architecture</description>
-    
+
     <!-- Include security rules -->
     <rule ref="Security"/>
-    
+
     <!-- Custom rules for our architecture -->
     <rule ref="Generic.PHP.ForbiddenFunctions">
         <properties>
@@ -233,7 +245,7 @@ Create custom security rules for your clean architecture:
             </property>
         </properties>
     </rule>
-    
+
     <!-- Check for direct database queries in Application layer -->
     <rule ref="Generic.Files.LineLength">
         <properties>
@@ -258,35 +270,35 @@ on:
   pull_request:
     branches: [main]
   schedule:
-    - cron: '0 2 * * *' # Daily at 2 AM
+    - cron: "0 2 * * *" # Daily at 2 AM
 
 jobs:
   security-audit:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - uses: actions/checkout@v3
-    
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.2'
-        extensions: mbstring, xml, ctype, iconv, intl
-        
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress
-      
-    - name: Security Check
-      run: composer run security:check
-      
-    - name: Security Check JSON (for reporting)
-      run: composer run security:check:json > security-report.json
-      
-    - name: Upload security report
-      uses: actions/upload-artifact@v3
-      with:
-        name: security-report
-        path: security-report.json
+      - uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          extensions: mbstring, xml, ctype, iconv, intl
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Security Check
+        run: composer run security:check
+
+      - name: Security Check JSON (for reporting)
+        run: composer run security:check:json > security-report.json
+
+      - name: Upload security report
+        uses: actions/upload-artifact@v3
+        with:
+          name: security-report
+          path: security-report.json
 ```
 
 ### GitLab CI Security Pipeline
@@ -313,7 +325,7 @@ security-audit:
 ```groovy
 pipeline {
     agent any
-    
+
     stages {
         stage('Security Audit') {
             steps {
@@ -321,7 +333,7 @@ pipeline {
                 sh 'composer run security:check'
             }
         }
-        
+
         stage('Security Report') {
             steps {
                 sh 'composer run security:check:json > security-report.json'
@@ -335,6 +347,7 @@ pipeline {
 ## Best Practices
 
 ### 1. **Daily Security Checks**
+
 ```bash
 # Add to your daily routine
 composer run security:check
@@ -343,6 +356,7 @@ composer run phpstan
 ```
 
 ### 2. **Automated Dependency Updates**
+
 ```json
 // composer.json
 {
@@ -356,15 +370,13 @@ composer run phpstan
     }
   },
   "scripts": {
-    "post-update-cmd": [
-      "@auto-scripts",
-      "composer run security:check"
-    ]
+    "post-update-cmd": ["@auto-scripts", "composer run security:check"]
   }
 }
 ```
 
 ### 3. **Security-First Development**
+
 ```php
 // Always validate input
 class LoginInputDto
@@ -375,13 +387,13 @@ class LoginInputDto
     ) {
         $this->validate();
     }
-    
+
     private function validate(): void
     {
         if (empty($this->username) || empty($this->password)) {
             throw new ValidationException('Username and password are required');
         }
-        
+
         if (strlen($this->username) > 255) {
             throw new ValidationException('Username too long');
         }
@@ -390,34 +402,36 @@ class LoginInputDto
 ```
 
 ### 4. **Secure Configuration**
+
 ```yaml
 # config/packages/security.yaml
 security:
-    password_hashers:
-        App\Domain\Entity\User:
-            algorithm: auto
-            cost: 12
-            
-    providers:
-        app_user_provider:
-            entity:
-                class: App\Domain\Entity\User
-                property: email
-                
-    firewalls:
-        main:
-            provider: app_user_provider
-            form_login:
-                login_path: login
-                check_path: login
-            logout:
-                path: logout
-            remember_me:
-                secret: '%kernel.secret%'
-                lifetime: 604800 # 1 week
+  password_hashers:
+    App\Domain\Entity\User:
+      algorithm: auto
+      cost: 12
+
+  providers:
+    app_user_provider:
+      entity:
+        class: App\Domain\Entity\User
+        property: email
+
+  firewalls:
+    main:
+      provider: app_user_provider
+      form_login:
+        login_path: login
+        check_path: login
+      logout:
+        path: logout
+      remember_me:
+        secret: "%kernel.secret%"
+        lifetime: 604800 # 1 week
 ```
 
 ### 5. **Environment-Specific Security**
+
 ```bash
 # .env.local (never commit)
 APP_ENV=prod
@@ -437,6 +451,7 @@ REDIS_URL="redis://localhost:6379"
 ### Common Security Issues
 
 #### 1. **Outdated Dependencies**
+
 ```bash
 # Check for outdated packages
 composer outdated
@@ -449,6 +464,7 @@ composer update
 ```
 
 #### 2. **Vulnerability False Positives**
+
 ```bash
 # Check specific package
 ./vendor/bin/security-checker security:check symfony/http-foundation
@@ -458,12 +474,14 @@ composer update
 ```
 
 #### 3. **Memory Issues**
+
 ```bash
 # Increase memory limit
 php -d memory_limit=2G ./vendor/bin/security-checker security:check
 ```
 
 #### 4. **Network Issues**
+
 ```bash
 # Check with timeout
 ./vendor/bin/security-checker security:check --timeout=30
@@ -479,10 +497,10 @@ Create a configuration file for custom settings:
 ```yaml
 # security-checker.yaml
 security_checker:
-    timeout: 30
-    format: table
-    exit_code: true
-    cache_dir: var/cache/security
+  timeout: 30
+  format: table
+  exit_code: true
+  cache_dir: var/cache/security
 ```
 
 ## Advanced Security
@@ -515,7 +533,7 @@ class CustomSecurityRule implements \PhpCsFixer\Fixer\FixerInterface
         // Custom security logic
         for ($index = 0; $index < $tokens->count(); ++$index) {
             $token = $tokens[$index];
-            
+
             if ($token->isGivenKind(T_STRING) && $token->getContent() === 'eval') {
                 throw new \RuntimeException('eval() function is not allowed for security reasons');
             }
@@ -575,39 +593,39 @@ name: Security Alerts
 
 on:
   schedule:
-    - cron: '0 9 * * *' # Daily at 9 AM
+    - cron: "0 9 * * *" # Daily at 9 AM
   workflow_dispatch:
 
 jobs:
   security-alerts:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - uses: actions/checkout@v3
-    
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.2'
-        
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress
-      
-    - name: Security Check
-      run: composer run security:check
-      
-    - name: Create Issue on Vulnerability
-      if: failure()
-      uses: actions/github-script@v6
-      with:
-        script: |
-          github.rest.issues.create({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            title: '🚨 Security Vulnerability Detected',
-            body: 'A security vulnerability was detected in dependencies. Please review and update.',
-            labels: ['security', 'urgent']
-          })
+      - uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Security Check
+        run: composer run security:check
+
+      - name: Create Issue on Vulnerability
+        if: failure()
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: '🚨 Security Vulnerability Detected',
+              body: 'A security vulnerability was detected in dependencies. Please review and update.',
+              labels: ['security', 'urgent']
+            })
 ```
 
 ## Project-Specific Security
@@ -638,6 +656,7 @@ echo "✅ All security and quality checks passed"
 ## Quick Reference
 
 ### Essential Commands
+
 ```bash
 # Security audit
 composer run security:check
@@ -656,6 +675,7 @@ composer run security:check && composer run cs-fix:check && composer run phpstan
 ```
 
 ### Security Tools Integration
+
 ```bash
 # 1. Security Check (Dependencies)
 composer run security:check
@@ -671,6 +691,7 @@ composer run phpstan
 ```
 
 ### Exit Codes
+
 - **0**: No vulnerabilities found
 - **1**: Vulnerabilities found
 - **2**: Error occurred
