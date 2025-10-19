@@ -36,7 +36,14 @@ final class SecurityTransformer implements SecurityTransformerInterface
     */
    public function transformLoginFromParam(object $dataSourceResult): SessionDto
    {
-      return new SessionDto();
+      $userRaw = $dataSourceResult->User ?? null;
+      $SessionIdRaw = $dataSourceResult->SessionID ?? null;
+      $isConnected =  $dataSourceResult->Connected ?? false;
+
+      $user = $this->entityFactory->createUserFromRaw($userRaw);
+      $session = $this->entityFactory->createSessionFromRaw($isConnected, $SessionIdRaw, $user);
+
+      return $this->outputFactory->createSessionDto($session);
    }
 
    /**
@@ -50,9 +57,9 @@ final class SecurityTransformer implements SecurityTransformerInterface
    /**
     * Transform raw response to ResetPasswordOutputDto
     */
-   public function transformResetPassword(object $dataSourceResult): ResetPasswordOutputDto
+   public function transformResetPassword(object $dataSourceResult): bool
    {
-      return new ResetPasswordOutputDto(true);
+      return (bool) $dataSourceResult->ResetPasswordResult ?? true;
    }
 
    /**
@@ -69,13 +76,13 @@ final class SecurityTransformer implements SecurityTransformerInterface
     */
    public function transformLoginToSession(object $dataSourceResult): SessionDto
    {
-      $userRaw = $dataSourceResult->User ?? null; 
+      $userRaw = $dataSourceResult->User ?? null;
       $SessionIdRaw = $dataSourceResult->SessionID ?? null;
       $isConnected =  $dataSourceResult->Connected ?? false;
 
       $user = $this->entityFactory->createUserFromRaw($userRaw);
       $session = $this->entityFactory->createSessionFromRaw($isConnected, $SessionIdRaw, $user);
-     
+
       return $this->outputFactory->createSessionDto($session);
    }
 
@@ -101,5 +108,4 @@ final class SecurityTransformer implements SecurityTransformerInterface
       $loggedOut = (bool) $dataSourceResult->LogoutResult;
       return new LogoutOutputDto($loggedOut);
    }
-
 }

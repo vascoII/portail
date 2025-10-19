@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Infrastructure\Service\DataSource;
 
 use App\Application\Dto\Input\Security\LoginInputDto;
+use App\Application\Dto\Input\Security\LoginFromParamInputDto;
+use App\Application\Dto\Input\Security\ResetPasswordInputDto;
 use App\Application\Dto\Input\Security\ResetPasswordFromPKUserInputDto;
 use App\Application\Dto\Input\Security\UpdatePasswordInputDto;
 use App\Application\Service\DataSource\SecurityDataSourceInterface;
@@ -54,4 +56,15 @@ final class SecuritySoap extends Soap implements SecurityDataSourceInterface
     return $this->safeCall('UpdatePassword', $soapRequest);
   }
 
+  public function fetchLoginFromParam(LoginFromParamInputDto $inputDto): object
+  {
+    $soapRequest = $this->hydrator->hydrateLoginFromParam($inputDto);
+    return $this->safeCall('LoginFromParam', $soapRequest);
+  }
+
+  public function fetchResetPassword(ResetPasswordInputDto $inputDto): object
+  {
+    $soapRequest = $this->hydrator->hydrateResetPassword($inputDto);
+    return $this->safeCall('ResetPassword', $soapRequest);
+  }
 }

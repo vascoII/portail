@@ -39,7 +39,13 @@ final class SecurityDataProvider implements SecurityDataProviderInterface
   public function loginFromParamService(LoginFromParamInputDto $inputDto): LoginOutputDto
   {
     $rawData = $this->securityDataSource->fetchLoginFromParam($inputDto);
-    return $this->securityTransformer->transformLoginFromParam($rawData);
+    $sessionDto = $this->securityTransformer->transformLoginFromParam($rawData);
+
+    $token = $this->serviceJwt->generateToken($sessionDto);
+    // Store session keyed by the backend sessionId for consistency with middleware
+    $this->serviceRedis->storeSession($sessionDto->session->sessionId, $sessionDto);
+
+    return $this->securityTransformer->transformToLoginOutput($sessionDto, $token);
   }
 
   public function logoutService(): LogoutOutputDto
@@ -70,10 +76,11 @@ final class SecurityDataProvider implements SecurityDataProviderInterface
     return $this->securityTransformer->transformUpdatePassword($rawData);
   }
 
-  public function resetPasswordService(ResetPasswordInputDto $inputDto): bool
+  public function resetPasswordService(ResetPasswordInputDto $inputDto): ResetPasswordOutputDto
   {
     $rawData = $this->securityDataSource->fetchResetPassword($inputDto);
-    return $this->securityTransformer->transformResetPassword($rawData);
+    $success = $this->securityTransformer->transformResetPassword($rawData);
+    return new ResetPasswordOutputDto($success);
   }
 
   public function loginService(LoginInputDto $inputDto): LoginOutputDto

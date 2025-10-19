@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Infrastructure\Service\Hydrator;
 
 use App\Application\Dto\Input\Security\LoginInputDto;
+use App\Application\Dto\Input\Security\LoginFromParamInputDto;
+use App\Application\Dto\Input\Security\ResetPasswordInputDto;
 use App\Application\Dto\Input\Security\ResetPasswordFromPKUserInputDto;
 use App\Application\Dto\Input\Security\UpdatePasswordInputDto;
 
@@ -36,4 +38,19 @@ final class SecurityHydrator
     ];
   }
 
+  public function hydrateLoginFromParam(LoginFromParamInputDto $inputDto): object
+  {
+    return (object) [
+      'LoginID' => $inputDto->username,
+      'Password' => $inputDto->password,
+      'Param' => $inputDto->param,
+    ];
+  }
+
+  public function hydrateResetPassword(ResetPasswordInputDto $inputDto): object
+  {
+    return (object) [
+      'Email' => $inputDto->email,
+    ];
+  }
 }

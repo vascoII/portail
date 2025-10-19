@@ -6,7 +6,7 @@ namespace App\Application\Dto\Output\Security;
 
 use App\Application\Dto\Output\Shared\SuccessOutputDto;
 
-final class LogoutOutputDto extends SuccessOutputDto
+final class CreateOutputDto extends SuccessOutputDto
 {
   public function __construct(bool $success)
   {

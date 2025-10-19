@@ -19,43 +19,43 @@ interface SecurityTransformerInterface
     * Transform raw response to CreateOutputDto
     */
    public function transformCreate(object $dataSourceResult): CreateOutputDto;
-   
+
 
    /**
     * Transform raw response to LoginFromParamOutputDto
     */
    public function transformLoginFromParam(object $dataSourceResult): SessionDto;
-   
+
 
    /**
     * Transform raw response to ResetOrCreateOutputDto
     */
    public function transformResetOrCreate(object $dataSourceResult): ResetOrCreateOutputDto;
-   
+
 
    /**
     * Transform raw response to ResetPasswordOutputDto
     */
-   public function transformResetPassword(object $dataSourceResult): ResetPasswordOutputDto;
-   
+   public function transformResetPassword(object $dataSourceResult): bool;
+
 
    /**
     * Transform raw response to UpdatePasswordOutputDto
     */
    public function transformUpdatePassword(object $dataSourceResult): UpdatePasswordOutputDto;
-   
+
 
    /**
     * Transform raw response to LoginOutputDto
     */
    public function transformLoginToSession(object $dataSourceResult): SessionDto;
-   
+
 
    /**
     * Transform raw response to ResetPasswordFromPKUserOutputDto
     */
    public function transformResetPasswordFromPKUser(object $dataSourceResult): ResetPasswordFromPKUserOutputDto;
-   
+
 
    /**
     * Transform raw response to LogoutOutputDto
@@ -64,5 +64,4 @@ interface SecurityTransformerInterface
 
 
    public function transformToLoginOutput(SessionDto $sessionDto, string $token): LoginOutputDto;
-  
 }
