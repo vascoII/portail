@@ -2,24 +2,24 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Action\Ocupant;
+namespace App\Http\Action\Occupant;
 
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
-use App\Application\UseCase\Occupant\ListAlertesByOccupantUseCase;
+use App\Application\UseCase\Occupant\GetOccupantReleveRepartUseCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 
 #[AsController]
-#[Route(path: '/occupant/alertes', name: 'occupant_alertes_list', methods: ['GET'])]
-final class ListAlertesByOccupantAction extends AbstractAction implements ActionInterface
+#[Route(path: '/occupant/releve_repart', name: 'occupant_releve_repart', methods: ['GET'])]
+final class GetOccupantReleveRepartAction extends AbstractAction implements ActionInterface
 {
   public function __construct(
     private readonly ResponderInterface $responder,
-    private readonly ListAlertesByOccupantUseCase $useCase
+    private readonly GetOccupantReleveRepartUseCase $useCase
   ) {}
 
   public function __invoke(Request $request, array $args = []): Response

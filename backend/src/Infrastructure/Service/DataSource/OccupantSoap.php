@@ -5,81 +5,40 @@ declare(strict_types=1);
 namespace App\Infrastructure\Service\DataSource;
 
 use App\Application\Dto\Input\Shared\GetByIdIntInputDto;
-
+use App\Application\Dto\Input\Shared\GetByEnergyStringInputDto;
 use App\Application\Service\DataSource\OccupantDataSourceInterface;
-use App\Application\Service\Auth\AuthServiceInterface;
-use App\Infrastructure\Service\Hydrator\ImmeubleHydrator;
-use App\Infrastructure\Service\Auth\AuthenticationContext;
+use App\Infrastructure\Service\Hydrator\OccupantHydrator;
 
 final class OccupantSoap extends Soap implements OccupantDataSourceInterface
 {
   public function __construct(
     SoapClient $soapClient,
-    private readonly ImmeubleHydrator $hydrator,
-    private readonly AuthServiceInterface $authService
+    private readonly OccupantHydrator $hydrator
   ) {
     parent::__construct($soapClient);
   }
 
-  private function getAuthContext(): AuthenticationContext
+  public function fetchGetOccupantReleveEau(): object
   {
-    return AuthenticationContext::fromAuthService($this->authService);
+    $soapRequest = $this->hydrator->hydrateGetOccupantReleveEau();
+    return $this->safeCall('GetOccupantReleveEau', $soapRequest);
   }
 
-  public function fetchGetOccupant(): object
+  public function fetchGetOccupantReleveRepart(): object
   {
-    $authContext = $this->getAuthContext();
-    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    $soapRequest = $this->hydrator->hydrateGetOccupant($inputDto);
-    return $this->safeCall('GetTableauBordOccupant', $soapRequest);
+    $soapRequest = $this->hydrator->hydrateGetOccupantReleveRepart();
+    return $this->safeCall('GetOccupantReleveRepart', $soapRequest);
   }
 
-  public function fetchListAlertesByOccupant(): object
+  public function fetchGetOccupantReleveNote(GetByEnergyStringInputDto $inputDto): object
   {
-    $authContext = $this->getAuthContext();
-    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    return $this->safeCall('GetInfosAnomaliesByOccupant', (object) []);
+    $soapRequest = $this->hydrator->hydrateGetOccupantReleveNote($inputDto);
+    return $this->safeCall('GetOccupantReleveNote', $soapRequest);
   }
 
-  public function fetchListAnomaliesByOccupant(): object
+  public function fetchGetOccupantIntervention(GetByIdIntInputDto $inputDto): object
   {
-    $authContext = $this->getAuthContext();
-    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    return $this->safeCall('GetInfosAnomaliesByOccupant', (object) []);
-  }
-
-  public function fetchListDysfonctionnementsByOccupant(): object
-  {
-    $authContext = $this->getAuthContext();
-    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    return $this->safeCall('GetInfosDysfonctionnementsByOccupant', (object) []);
-  }
-
-  public function fetchListFuitesByOccupant(): object
-  {
-    $authContext = $this->getAuthContext();
-    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    return $this->safeCall('GetInfosFuitesByOccupant', (object) []);
-  }
-
-  public function fetchListInterventionsByOccupant(): object
-  {
-    $authContext = $this->getAuthContext();
-    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    return $this->safeCall('GetInfosDepannagesByOccupant', (object) []);
-  }
-
-  public function fetchListOccupantsByOccupant(): object
-  {
-    $authContext = $this->getAuthContext();
-    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    return $this->safeCall('GetInfosOccupants', (object) []);
-  }
-
-  public function fetchGetOccupantAccount(): object
-  {
-    $authContext = $this->getAuthContext();
-    $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-    return $this->safeCall('GetInfosOccupantAccount', (object) []);
+    $soapRequest = $this->hydrator->hydrateGetOccupantIntervention($inputDto);
+    return $this->safeCall('GetOccupantIntervention', $soapRequest);
   }
 }
