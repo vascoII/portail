@@ -69,7 +69,12 @@
     ],
     "post-update-cmd": [
       "@auto-scripts"
-    ]
+    ],
+    "phpstan": "phpstan analyse",
+    "phpstan:baseline": "phpstan analyse --generate-baseline",
+    "phpstan:ci": "phpstan analyse --error-format=github",
+    "phpstan:level0": "phpstan analyse --level=0",
+    "phpstan:level6": "phpstan analyse --level=6"
   },
   "conflict": {
     "symfony/symfony": "*"
@@ -79,5 +84,8 @@
       "allow-contrib": false,
       "require": "^7.0"
     }
+  },
+  "require-dev": {
+    "phpstan/phpstan": "^2.1"
   }
 }
