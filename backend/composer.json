@@ -74,7 +74,11 @@
     "phpstan:baseline": "phpstan analyse --generate-baseline",
     "phpstan:ci": "phpstan analyse --error-format=github",
     "phpstan:level0": "phpstan analyse --level=0",
-    "phpstan:level6": "phpstan analyse --level=6"
+    "phpstan:level6": "phpstan analyse --level=6",
+    "cs-fix": "php-cs-fixer fix",
+    "cs-fix:dry-run": "php-cs-fixer fix --dry-run --diff",
+    "cs-fix:check": "php-cs-fixer fix --dry-run --diff --verbose",
+    "cs-fix:cache-clear": "php-cs-fixer fix --cache-clear"
   },
   "conflict": {
     "symfony/symfony": "*"
@@ -86,6 +90,7 @@
     }
   },
   "require-dev": {
+    "friendsofphp/php-cs-fixer": "^3.89",
     "phpstan/phpstan": "^2.1"
   }
 }
