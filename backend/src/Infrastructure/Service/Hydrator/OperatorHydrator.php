@@ -6,6 +6,8 @@ namespace App\Infrastructure\Service\Hydrator;
 
 use App\Application\Dto\Input\Operator\ListOperatorsInputDto;
 use App\Application\Dto\Input\Operator\CreateOperatorInputDto;
+use App\Application\Dto\Input\Operator\CreateOperationImmeubleInputDto;
+use App\Application\Dto\Input\Operator\PatchOperatorImmeubleInputDto;
 use App\Application\Dto\Input\Operator\PutOperatorInputDto;
 use App\Application\Dto\Input\Operator\PatchOperatorInputDto;
 use App\Application\Dto\Input\Shared\GetByIdIntInputDto;
@@ -15,24 +17,31 @@ final class OperatorHydrator
 
   public function hydrateGetListOperators(ListOperatorsInputDto $inputDto): object
   {
-      return (object) [
-          'type' => $inputDto->type
-      ];
+    return (object) [
+      'type' => $inputDto->type
+    ];
   }
 
   public function hydratePostOperator(CreateOperatorInputDto $inputDto): object
   {
-      return (object) [
-          'LoginID'     => $inputDto->email,
-          'UserName'    => $inputDto->lastname,
-          'FirstName'   => $inputDto->firstname,
-          'PhoneNumber' => $inputDto->phone,
-          'Email'       => $inputDto->email,
-          'UserRole'    => $inputDto->job,
-      ];
+    return (object) [
+      'LoginID'     => $inputDto->email,
+      'UserName'    => $inputDto->lastname,
+      'FirstName'   => $inputDto->firstname,
+      'PhoneNumber' => $inputDto->phone,
+      'Email'       => $inputDto->email,
+      'UserRole'    => $inputDto->job,
+    ];
   }
-  
+
   public function hydrateGetOperator(GetByIdIntInputDto $inputDto): object
+  {
+    return (object) [
+      'PkUserChild' => $inputDto->id,
+    ];
+  }
+
+  public function hydrateGetOperatorStat(GetByIdIntInputDto $inputDto): object
   {
     return (object) [
       'PkUserChild' => $inputDto->id,
@@ -66,5 +75,20 @@ final class OperatorHydrator
       'Password'    => $inputDto->password,
     ];
   }
-  
+
+  public function hydrateCreateOperationImmeuble(CreateOperationImmeubleInputDto $inputDto): object
+  {
+    return (object) [
+      'PkUserChild' => $inputDto->operatorId,
+      'PkImmeuble'  => $inputDto->immeubleId,
+    ];
+  }
+
+  public function hydratePatchOperatorImmeuble(PatchOperatorImmeubleInputDto $inputDto): object
+  {
+    return (object) [
+      'PkUserChild' => $inputDto->operatorId,
+      'PkImmeuble'  => $inputDto->immeubleId,
+    ];
+  }
 }
