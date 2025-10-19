@@ -78,7 +78,11 @@
     "cs-fix": "php-cs-fixer fix",
     "cs-fix:dry-run": "php-cs-fixer fix --dry-run --diff",
     "cs-fix:check": "php-cs-fixer fix --dry-run --diff --verbose",
-    "cs-fix:cache-clear": "php-cs-fixer fix --cache-clear"
+    "cs-fix:cache-clear": "php-cs-fixer fix --cache-clear",
+    "security:check": "security-checker security:check",
+    "security:check:json": "security-checker security:check --format=json",
+    "security:check:ansi": "security-checker security:check --format=ansi",
+    "security:check:table": "security-checker security:check --format=table"
   },
   "conflict": {
     "symfony/symfony": "*"
@@ -90,6 +94,7 @@
     }
   },
   "require-dev": {
+    "enlightn/security-checker": "^2.0",
     "friendsofphp/php-cs-fixer": "^3.89",
     "phpstan/phpstan": "^2.1"
   }
