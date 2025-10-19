@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+         cacheDirectory=".phpunit.cache"
+         executionOrder="depends,defects"
+         requireCoverageMetadata="true"
+         beStrictAboutCoverageMetadata="true"
+         beStrictAboutOutputDuringTests="true"
+         failOnRisky="true"
+         failOnWarning="true"
+         stopOnFailure="false"
+         stopOnError="false"
+         stopOnIncomplete="false"
+         stopOnSkipped="false">
+    <testsuites>
+        <testsuite name="E2E Tests">
+            <directory>tests/E2E</directory>
+        </testsuite>
+    </testsuites>
+
+    <source>
+        <include>
+            <directory>src</directory>
+        </include>
+        <exclude>
+            <directory>src/Kernel.php</directory>
+        </exclude>
+    </source>
+
+    <php>
+        <ini name="error_reporting" value="-1" />
+        <ini name="memory_limit" value="-1" />
+        <ini name="max_execution_time" value="300" />
+        <env name="APP_ENV" value="test" />
+        <env name="APP_DEBUG" value="1" />
+        <env name="E2E_BASE_URL" value="http://localhost:8000" />
+        <env name="E2E_TEST_USER_EMAIL" value="test@example.com" />
+        <env name="E2E_TEST_USER_PASSWORD" value="password123" />
+        <env name="E2E_ADMIN_EMAIL" value="admin@example.com" />
+        <env name="E2E_ADMIN_PASSWORD" value="admin123" />
+    </php>
+</phpunit>
