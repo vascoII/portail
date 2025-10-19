@@ -19,7 +19,7 @@ const NotFoundPage: React.FC = () => {
       <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10">
         {/* Logo */}
         <div className="flex justify-center">
-          <Link href="/pages/dashboard" className="flex items-center">
+          <Link href="/dashboard" className="flex items-center">
             <div className="flex-shrink-0">
               <Image
                 width={0}
@@ -86,7 +86,7 @@ const NotFoundPage: React.FC = () => {
             {/* Boutons d'action */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/pages/dashboard"
+                href="/dashboard"
                 className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
               >
                 <svg

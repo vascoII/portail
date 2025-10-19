@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 
-export default function HomePage() {
-  // Rediriger vers le dashboard par défaut
+export default function PagesIndex() {
+  // Rediriger vers le dashboard
   redirect("/dashboard");
 }
