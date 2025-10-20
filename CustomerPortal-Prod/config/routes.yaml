@@ -2,26 +2,45 @@
 #   path: /login_check
 #   controller: 'App\Controller\SecurityController::loginCheck'
 front:
-    path: /
-    controller: 'App\Controller\FrontController::indexAction'
+  path: /
+  controller: 'App\Controller\FrontController::indexAction'
 
 logout:
-    path: /logout
-    controller: 'App\Controller\SecurityController::logoutAction'
+  path: /logout
+  controller: 'App\Controller\SecurityController::logoutAction'
 
 app_login:
-    path: /login
-    controller: 'App\Controller\SecurityController::loginAction'
+  path: /login
+  controller: 'App\Controller\SecurityController::loginAction'
 
 app_login_param:
-    path: /login/{param}
-    controller: 'App\Controller\SecurityController::loginFromParamAction'
+  path: /login/{param}
+  controller: 'App\Controller\SecurityController::loginFromParamAction'
 
 reset_password:
-    path: /reset-password
-    controller: 'App\Controller\SecurityController::resetPasswordAction'
-    
+  path: /reset-password
+  controller: 'App\Controller\SecurityController::resetPasswordAction'
 
+# Routes pour l'accès externe aux documents d'intervention
+external_interventions_form:
+  path: /interventions/{pkUser}
+  controller: 'App\Controller\ExternalController::interventionsForm'
+  methods: [GET, POST]
+
+external_interventions_list:
+  path: /interventions/list
+  controller: 'App\Controller\ExternalController::interventionsList'
+  methods: [GET]
+
+external_interventions_details:
+  path: /interventions/details/{id}
+  controller: 'App\Controller\ExternalController::interventionsDetails'
+  methods: [GET]
+
+external_interventions_download:
+  path: /interventions/download/{id}
+  controller: 'App\Controller\ExternalController::downloadDocument'
+  methods: [GET]
 # TechemCoreBundle_Immeuble_export_anomalies:
 #   path: /immeuble/{pkImmeuble}/anomalies/export
 #   defaults: { _controller: TechemCoreBundle:Immeuble:exportAnomalies }
@@ -215,8 +234,8 @@ reset_password:
 #   defaults: { _controller: TechemCoreBundle:Occupant:listDysfunctions }
 
 # TechemCoreBundle_Occupant_listleaks:
-  # path: /occupant/fuites
-  # defaults: { _controller: TechemCoreBundle:Occupant:listLeaks }
+# path: /occupant/fuites
+# defaults: { _controller: TechemCoreBundle:Occupant:listLeaks }
 
 # TechemCoreBundle_Occupant_listanomalies:
 #   path: /occupant/anomalies

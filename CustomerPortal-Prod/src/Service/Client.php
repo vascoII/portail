@@ -421,10 +421,10 @@ class Client extends BaseClient
      *
      * @return mixed
      */
-    public function getFile($file )
+    public function getFile($file)
     {
-				
-		$request = (object) [
+
+        $request = (object) [
             'superLoginID'  => $this->superLoginID,
             'superPassword' => $this->superPassword,
             'FileName'      => $file,
@@ -1322,13 +1322,13 @@ class Client extends BaseClient
     public function setOccupants4Chgt($PkOccupant, $data, $IsNew)
     {
         if (isset($data['email'])) {
-			$newEmail = $data['email'];
-			$occupantToUpdate = [
-				'PkOccupant'=> (int)$PkOccupant,
-				'newEmail' 	=> $newEmail,
-				'isNew'		=> $IsNew
-			];
-		}
+            $newEmail = $data['email'];
+            $occupantToUpdate = [
+                'PkOccupant' => (int)$PkOccupant,
+                'newEmail'     => $newEmail,
+                'isNew'        => $IsNew
+            ];
+        }
 
         if (isset($data['phone'])) {
             $occupantToUpdate['newTelmobile'] = $data['phone'];
@@ -1346,7 +1346,7 @@ class Client extends BaseClient
 
         if (isset($data['name'])) {
             $occupantToUpdate['newNom'] = $data['name'];
-        } 
+        }
 
         $listOccupant = (object)[
             'occupant4Chgt' => (object)$occupantToUpdate,
@@ -1356,7 +1356,7 @@ class Client extends BaseClient
             'SessionID' => $this->getSessionId(),
             'PkUser' => (int)$this->getPkUser(),
             'occupants' => $listOccupant,
-			'isNew'		 => $IsNew,
+            'isNew'         => $IsNew,
         ];
 
         return $this->sendRequest('setOccupants4Chgt', $request, false, true);
@@ -1377,7 +1377,7 @@ class Client extends BaseClient
             'PkUser'     => (int) $this->getPkUser(),
             'PkImmeuble' => (int) $pkImmeuble,
             'PkOccupant' => (int) $pkOccupant,
-			'isNew'		 => $IsNew,
+            'isNew'         => $IsNew,
         ];
         return $this->sendRequest('getOccupants4Chgt', $request, false, true);
     }
@@ -1402,10 +1402,10 @@ class Client extends BaseClient
 
         return $this->sendRequest('SetSeuilConso', $request);
     }
-	
-	public function getSousTraitants($params = null, $use_cache = false)
+
+    public function getSousTraitants($params = null, $use_cache = false)
     {
-		
+
         $request =  [
             //'SessionID' => $this->adminSessionId,
             'SuperLoginID'  => $this->superLoginID,
@@ -1417,24 +1417,68 @@ class Client extends BaseClient
 
         return $this->sendRequest('GetSousTraitants',  $request, false);
     }
-	
+
     public function getStatOccupants($params = null, $use_cache = false)
     {
-		$modelgraph = 'CONNEXIONS_UNIQUES';
-		//$modelgraph = 'CONNEXIONS_TOTALES';
-		
+        $modelgraph = 'CONNEXIONS_UNIQUES';
+        //$modelgraph = 'CONNEXIONS_TOTALES';
+
         $request = [
             'SessionID'     => $this->getSessionId(),
-            'PkUser'     	=> (int) $this->getPkUser(),
-            'typeGraph' 	=> $modelgraph,
-            'startDate' 	=> '',
-			'endDate'		=> '',
+            'PkUser'         => (int) $this->getPkUser(),
+            'typeGraph'     => $modelgraph,
+            'startDate'     => '',
+            'endDate'        => '',
         ];
-		
+
         return $this->sendRequest('GetStatOccupantsGraph', $request, false);
     }
-    
 
+    /**
+     * Récupère les documents par email et pkUser (pour accès externe)
+     *
+     * @param string $email
+     * @param int $pkUser
+     * @return array
+     */
+    public function getDocumentsByEmail(string $email, int $pkUser): array
+    {
+        $request = (object) [
+            'Email' => $email,
+            'PkUser' => $pkUser,
+        ];
 
-	
+        $result = $this->sendRequest('GetDocumentsByEmail', $request, false);
+
+        if (!isset($result->ListeDocuments) || !isset($result->ListeDocuments->document)) {
+            return [];
+        }
+
+        if (!is_array($result->ListeDocuments->document)) {
+            $result->ListeDocuments->document = [$result->ListeDocuments->document];
+        }
+
+        return $result->ListeDocuments->document;
+    }
+
+    /**
+     * Génère le PDF d'un document
+     *
+     * @param int $documentId
+     * @return string
+     */
+    public function generateDocumentPdf(int $documentId): string
+    {
+        $request = (object) [
+            'DocumentId' => $documentId,
+        ];
+
+        $result = $this->sendRequest('GenerateDocumentPdf', $request, false);
+
+        if (!isset($result->PdfContent)) {
+            throw new RuntimeException('Erreur lors de la génération du PDF');
+        }
+
+        return base64_decode($result->PdfContent);
+    }
 }

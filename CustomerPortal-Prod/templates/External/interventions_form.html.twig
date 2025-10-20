@@ -1,0 +1,30 @@
+{% extends "Security/base.html.twig" %}
+
+{% block main_content %}
+
+	<div class="main-content">
+		<a href="#" class="logo">
+			<img src="{{ asset('bundles/techemcore/images/fidesio/logo.svg') }}"/>
+		</a>
+
+		<form action="{{ path('external_interventions_form', {'pkUser': pkUser}) }}" method="post" class="form">
+			{% for message in app.flashes('error') %}
+				<div class="alert alert-danger" role="alert">
+					<span>{{ message }}</span>
+				</div>
+			{% endfor %}
+
+			<div class="form-group">
+				{{ form_widget(form.email) }}
+				{{ form_errors(form.email) }}
+			</div>
+
+			<div class="hint">
+				<p>Veuillez saisir votre adresse email pour accéder à vos documents d'intervention.</p>
+			</div>
+
+			<input type="submit" name="submit" value="Accéder aux documents" class="submit"/>
+		</form>
+	</div>
+
+{% endblock %}
