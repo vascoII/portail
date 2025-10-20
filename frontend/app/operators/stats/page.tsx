@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import BaseLayout from "../../../components/Layout/BaseLayout";
-import Breadcrumb from "../../../components/Layout/Breadcrumb";
-import { OperatorStats } from "../../../components/Operator";
+import BaseLayout from "../../../src/components/Layout/BaseLayout";
+import Breadcrumb from "../../../src/components/Layout/Breadcrumb";
+import { OperatorStats } from "../../../src/components/Operator";
 
 const OperatorStatsPage: React.FC = () => {
   // Mock data - in a real app, this would come from an API

@@ -60,7 +60,7 @@ const ImmeubleHeader: React.FC<ImmeubleHeaderProps> = ({
 
                 <div className="flex-1">
                   <Link
-                    href={`/pages/immeubles/${immeuble.pkImmeuble}/logements`}
+                    href={`/immeubles/${immeuble.pkImmeuble}/logements`}
                     className="text-2xl font-bold text-blue-600 hover:text-blue-800 hover:underline transition-colors duration-200"
                   >
                     {immeuble.nom}

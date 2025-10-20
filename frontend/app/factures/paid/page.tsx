@@ -1,13 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
-import BaseLayout from "../../../components/Layout/BaseLayout";
-import Breadcrumb from "../../../components/Layout/Breadcrumb";
+import BaseLayout from "../../../src/components/Layout/BaseLayout";
+import Breadcrumb from "../../../src/components/Layout/Breadcrumb";
 import {
   FactureFilters,
   FactureList,
   FactureMenu,
-} from "../../../components/Facture";
+} from "../../../src/components/Facture";
 
 interface FilterState {
   search: string;

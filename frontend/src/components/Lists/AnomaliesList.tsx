@@ -185,7 +185,7 @@ const AnomaliesList: React.FC<AnomaliesListProps> = ({
                 <td>{anomalie.dateCreation}</td>
                 <td>
                   <Link
-                    href={`/pages/anomalies/${anomalie.id}`}
+                    href={`/anomalies/${anomalie.id}`}
                     className="btn btn-sm btn-primary"
                   >
                     Voir

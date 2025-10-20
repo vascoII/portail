@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
 import { useRouter } from "next/navigation";
-import BaseLayout from "../../../../components/Layout/BaseLayout";
-import Breadcrumb from "../../../../components/Layout/Breadcrumb";
-import Button from "../../../../components/UI/Button";
-import Alert from "../../../../components/UI/Alert";
+import BaseLayout from "@/components/Layout/BaseLayout";
+import Breadcrumb from "@/components/Layout/Breadcrumb";
+import Button from "@/components/UI/Button";
+import Alert from "@/components/UI/Alert";
 
 const OperatorViewPage: React.FC = () => {
   const router = useRouter();

@@ -5,67 +5,67 @@ export const ROUTES = {
   PAGES: "/pages",
 
   // Authentification
-  LOGIN: "/pages/login",
-  RESET_PASSWORD: "/pages/reset-password",
-  UPDATE_PASSWORD: "/pages/update-password",
+  LOGIN: "/login",
+  RESET_PASSWORD: "/reset-password",
+  UPDATE_PASSWORD: "/update-password",
 
   // Pages légales
-  LEGAL_NOTICES: "/pages/legal/legal-notices",
-  CGU: "/pages/legal/cgu",
-  RGPD: "/pages/legal/rgpd",
+  LEGAL_NOTICES: "/legal/legal-notices",
+  CGU: "/legal/cgu",
+  RGPD: "/legal/rgpd",
 
   // Dashboard et navigation
-  DASHBOARD: "/pages/dashboard",
-  SEARCH: "/pages/search",
-  PROFILE: "/pages/profile",
+  DASHBOARD: "/dashboard",
+  SEARCH: "/search",
+  PROFILE: "/profile",
 
   // Immeubles
-  IMMEUBLES: "/pages/immeubles",
-  IMMEUBLE_DETAIL: (id: string) => `/pages/immeubles/${id}`,
-  IMMEUBLE_ANOMALIES: (id: string) => `/pages/immeubles/${id}/anomalies`,
-  IMMEUBLE_DYSFUNCTIONS: (id: string) => `/pages/immeubles/${id}/dysfunctions`,
+  IMMEUBLES: "/immeubles",
+  IMMEUBLE_DETAIL: (id: string) => `/immeubles/${id}`,
+  IMMEUBLE_ANOMALIES: (id: string) => `/immeubles/${id}/anomalies`,
+  IMMEUBLE_DYSFUNCTIONS: (id: string) => `/immeubles/${id}/dysfunctions`,
   IMMEUBLE_INTERVENTIONS: (id: string) =>
-    `/pages/immeubles/${id}/interventions`,
-  IMMEUBLE_LEAKS: (id: string) => `/pages/immeubles/${id}/leaks`,
+    `/immeubles/${id}/interventions`,
+  IMMEUBLE_LEAKS: (id: string) => `/immeubles/${id}/leaks`,
 
   // Logements
-  LOGEMENTS: "/pages/logements",
-  LOGEMENT_DETAIL: (id: string) => `/pages/logements/${id}`,
-  LOGEMENT_EDIT: (id: string) => `/pages/logements/${id}/edit`,
-  LOGEMENT_ANOMALIES: (id: string) => `/pages/logements/${id}/anomalies`,
-  LOGEMENT_DYSFUNCTIONS: (id: string) => `/pages/logements/${id}/dysfunctions`,
+  LOGEMENTS: "/logements",
+  LOGEMENT_DETAIL: (id: string) => `/logements/${id}`,
+  LOGEMENT_EDIT: (id: string) => `/logements/${id}/edit`,
+  LOGEMENT_ANOMALIES: (id: string) => `/logements/${id}/anomalies`,
+  LOGEMENT_DYSFUNCTIONS: (id: string) => `/logements/${id}/dysfunctions`,
   LOGEMENT_INTERVENTIONS: (id: string) =>
-    `/pages/logements/${id}/interventions`,
-  LOGEMENT_LEAKS: (id: string) => `/pages/logements/${id}/leaks`,
+    `/logements/${id}/interventions`,
+  LOGEMENT_LEAKS: (id: string) => `/logements/${id}/leaks`,
   LOGEMENT_INTERVENTION_DETAIL: (id: string, interventionId: string) =>
-    `/pages/logements/${id}/intervention/${interventionId}`,
+    `/logements/${id}/intervention/${interventionId}`,
 
   // Occupant
-  OCCUPANT_DASHBOARD: "/pages/occupant/dashboard",
-  OCCUPANT_LOGEMENT: (id: string) => `/pages/occupant/logement/${id}`,
-  OCCUPANT_ALERTES: "/pages/occupant/alertes",
-  OCCUPANT_SIMULATEUR: "/pages/occupant/simulateur",
-  OCCUPANT_ACCOUNT: "/pages/occupant/account",
+  OCCUPANT_DASHBOARD: "/occupant/dashboard",
+  OCCUPANT_LOGEMENT: (id: string) => `/occupant/logement/${id}`,
+  OCCUPANT_ALERTES: "/occupant/alertes",
+  OCCUPANT_SIMULATEUR: "/occupant/simulateur",
+  OCCUPANT_ACCOUNT: "/occupant/account",
 
   // Opérateurs
-  OPERATORS: "/pages/operators",
-  OPERATOR_CREATE: "/pages/operators/create",
-  OPERATOR_EDIT: (id: string) => `/pages/operators/${id}/edit`,
-  OPERATOR_VIEW: (id: string) => `/pages/operators/${id}/view`,
-  OPERATORS_STATS: "/pages/operators/stats",
+  OPERATORS: "/operators",
+  OPERATOR_CREATE: "/operators/create",
+  OPERATOR_EDIT: (id: string) => `/operators/${id}/edit`,
+  OPERATOR_VIEW: (id: string) => `/operators/${id}/view`,
+  OPERATORS_STATS: "/operators/stats",
 
   // Factures
-  FACTURES: "/pages/factures",
-  FACTURE_DETAIL: (id: string) => `/pages/factures/${id}`,
+  FACTURES: "/factures",
+  FACTURE_DETAIL: (id: string) => `/factures/${id}`,
 
   // Tickets
-  TICKETS: "/pages/tickets",
-  TICKET_CREATE: "/pages/tickets/create",
-  TICKET_DETAIL: (id: string) => `/pages/tickets/${id}`,
+  TICKETS: "/tickets",
+  TICKET_CREATE: "/tickets/create",
+  TICKET_DETAIL: (id: string) => `/tickets/${id}`,
 
   // Interventions
-  INTERVENTIONS: "/pages/interventions",
-  INTERVENTION_DETAIL: (id: string) => `/pages/interventions/${id}`,
+  INTERVENTIONS: "/interventions",
+  INTERVENTION_DETAIL: (id: string) => `/interventions/${id}`,
 };
 
 // Helper pour la navigation

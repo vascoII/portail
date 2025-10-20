@@ -204,14 +204,14 @@ const OperatorList: React.FC<OperatorListProps> = ({
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                       <div className="flex space-x-2">
                         <a
-                          href={`/pages/operators/${operator.PKUser}`}
+                          href={`/operators/${operator.PKUser}`}
                           className="text-blue-600 hover:text-blue-900 transition-colors duration-200"
                         >
                           <i className="fas fa-eye mr-1"></i>
                           Voir
                         </a>
                         <a
-                          href={`/pages/operators/${operator.PKUser}/edit`}
+                          href={`/operators/${operator.PKUser}/edit`}
                           className="text-green-600 hover:text-green-900 transition-colors duration-200"
                         >
                           <i className="fas fa-edit mr-1"></i>

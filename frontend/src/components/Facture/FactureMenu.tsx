@@ -10,35 +10,35 @@ interface FactureMenuProps {
 const FactureMenu: React.FC<FactureMenuProps> = ({ activeTab }) => {
   const menuItems = [
     {
-      href: "/pages/dashboard",
+      href: "/dashboard",
       icon: "fas fa-cog",
       title: "Le Parc",
       isActive: false,
       showBadge: false,
     },
     {
-      href: "/pages/factures",
+      href: "/factures",
       icon: "fas fa-file-invoice",
       title: "Liste des factures",
       isActive: !activeTab || activeTab === "list",
       showBadge: false,
     },
     {
-      href: "/pages/factures/pending",
+      href: "/factures/pending",
       icon: "fas fa-clock",
       title: "Factures en attente",
       isActive: activeTab === "pending",
       showBadge: true,
     },
     {
-      href: "/pages/factures/paid",
+      href: "/factures/paid",
       icon: "fas fa-check-circle",
       title: "Factures payées",
       isActive: activeTab === "paid",
       showBadge: false,
     },
     {
-      href: "/pages/factures/overdue",
+      href: "/factures/overdue",
       icon: "fas fa-exclamation-triangle",
       title: "Factures en retard",
       isActive: activeTab === "overdue",

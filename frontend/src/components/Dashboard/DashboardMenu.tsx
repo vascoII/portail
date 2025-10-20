@@ -15,35 +15,35 @@ interface DashboardMenuProps {
 const DashboardMenu: React.FC<DashboardMenuProps> = ({ data }) => {
   const menuItems = [
     {
-      href: "/pages/dashboard",
+      href: "/dashboard",
       icon: "fas fa-cog",
       title: "Le Parc",
       isActive: true,
       showBadge: false,
     },
     {
-      href: "/pages/immeubles?fuites=1",
+      href: "/immeubles?fuites=1",
       icon: "fas fa-tint",
       title: "Fuites",
       count: data.NbFuites === -1 ? 0 : data.NbFuites,
       showBadge: true,
     },
     {
-      href: "/pages/immeubles?dysfonctionnements=1",
+      href: "/immeubles?dysfonctionnements=1",
       icon: "fas fa-bell",
       title: "Alarmes techniques",
       count: data.NbDysfonctionnements === -1 ? 0 : data.NbDysfonctionnements,
       showBadge: true,
     },
     {
-      href: "/pages/immeubles?anomalies=1",
+      href: "/immeubles?anomalies=1",
       icon: "fas fa-exclamation-triangle",
       title: "Anomalies de consommation",
       count: data.NbAnomalies === -1 ? 0 : data.NbAnomalies,
       showBadge: true,
     },
     {
-      href: "/pages/immeubles?depannages=1",
+      href: "/immeubles?depannages=1",
       icon: "fas fa-wrench",
       title: "Dépannages en cours",
       count: data.NbDepannages === -1 ? 0 : data.NbDepannages,

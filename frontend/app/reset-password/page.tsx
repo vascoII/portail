@@ -9,7 +9,7 @@ import {
   AUTH_ENDPOINTS,
   DEFAULT_HEADERS,
   handleApiError,
-} from "../../config/api";
+} from "../../src/config/api";
 
 const ResetPasswordPage: React.FC = () => {
   const [email, setEmail] = useState("");

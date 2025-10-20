@@ -134,7 +134,7 @@ const ImmeubleDetail: React.FC<ImmeubleDetailProps> = ({
         </div>
 
         <Link
-          href={`/pages/logements?immeuble=${immeuble.Immeuble.PkImmeuble}`}
+          href={`/logements?immeuble=${immeuble.Immeuble.PkImmeuble}`}
           className="inline-flex items-center bg-blue-700 hover:bg-blue-800 text-white px-6 py-3 rounded-lg transition-colors duration-200"
         >
           <span className="font-semibold text-lg">{immeuble.NbLogements}</span>
@@ -200,7 +200,7 @@ const ImmeubleDetail: React.FC<ImmeubleDetailProps> = ({
           }
           icon="fas fa-wrench"
           color="bg-yellow-500"
-          href={`/pages/immeubles/${immeuble.Immeuble.PkImmeuble}/interventions${
+          href={`/immeubles/${immeuble.Immeuble.PkImmeuble}/interventions${
             immeuble.NbDepannages > 0 ? "?statut=ouvert" : ""
           }`}
         />
@@ -214,7 +214,7 @@ const ImmeubleDetail: React.FC<ImmeubleDetailProps> = ({
           }
           icon="fas fa-bell"
           color="bg-orange-500"
-          href={`/pages/immeubles/${immeuble.Immeuble.PkImmeuble}/dysfunctions`}
+          href={`/immeubles/${immeuble.Immeuble.PkImmeuble}/dysfunctions`}
         />
       </div>
 

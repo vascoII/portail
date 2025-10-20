@@ -2,9 +2,9 @@
 
 import React from "react";
 import { useParams } from "next/navigation";
-import BaseLayout from "../../../../components/Layout/BaseLayout";
-import Breadcrumb from "../../../../components/Layout/Breadcrumb";
-import { OperatorForm } from "../../../../components/Operator";
+import BaseLayout from "@/components/Layout/BaseLayout";
+import Breadcrumb from "@/components/Layout/Breadcrumb";
+import { OperatorForm } from "@/components/Operator";
 
 const EditOperatorPage: React.FC = () => {
   const params = useParams();

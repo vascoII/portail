@@ -38,7 +38,7 @@ const UserMenu: React.FC = () => {
   const handleLogout = () => {
     clearLoginData();
     setIsUserMenuOpen(false);
-    router.push("/pages/login");
+    router.push("/login");
   };
 
   // Don't render if user is not logged in
@@ -98,7 +98,7 @@ const UserMenu: React.FC = () => {
               {/* Menu Items */}
               <div className="py-1">
                 <Link
-                  href="/pages/update-password"
+                  href="/update-password"
                   className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
                   onClick={() => setIsUserMenuOpen(false)}
                 >
@@ -115,7 +115,7 @@ const UserMenu: React.FC = () => {
                       </p>
                     </div>
                     <Link
-                      href="/pages/operators/create"
+                      href="/operators/create"
                       className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
                       onClick={() => setIsUserMenuOpen(false)}
                     >
@@ -123,7 +123,7 @@ const UserMenu: React.FC = () => {
                       Créer un compte
                     </Link>
                     <Link
-                      href="/pages/operators"
+                      href="/operators"
                       className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
                       onClick={() => setIsUserMenuOpen(false)}
                     >
@@ -132,7 +132,7 @@ const UserMenu: React.FC = () => {
                     </Link>
                     {showFactures && (
                       <Link
-                        href="/pages/factures"
+                        href="/factures"
                         className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
                         onClick={() => setIsUserMenuOpen(false)}
                       >
@@ -141,7 +141,7 @@ const UserMenu: React.FC = () => {
                       </Link>
                     )}
                     <Link
-                      href="/pages/operators/stats"
+                      href="/operators/stats"
                       className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
                       onClick={() => setIsUserMenuOpen(false)}
                     >

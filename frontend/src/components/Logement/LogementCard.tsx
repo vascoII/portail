@@ -161,22 +161,22 @@ const LogementCard: React.FC<LogementCardProps> = ({
               {getAlertIcon(
                 "dys",
                 logement.infosLogement.NbDysfonctionnements,
-                `/pages/logements/${logement.infosLogement.Logement.PkLogement}/dysfunctions`
+                `/logements/${logement.infosLogement.Logement.PkLogement}/dysfunctions`
               )}
               {getAlertIcon(
                 "dep",
                 logement.infosLogement.NbDepannages,
-                `/pages/logements/${logement.infosLogement.Logement.PkLogement}/interventions`
+                `/logements/${logement.infosLogement.Logement.PkLogement}/interventions`
               )}
               {getAlertIcon(
                 "fui",
                 logement.infosLogement.NbFuites,
-                `/pages/logements/${logement.infosLogement.Logement.PkLogement}/leaks`
+                `/logements/${logement.infosLogement.Logement.PkLogement}/leaks`
               )}
               {getAlertIcon(
                 "ano",
                 logement.infosLogement.NbAnomalies,
-                `/pages/logements/${logement.infosLogement.Logement.PkLogement}/anomalies`
+                `/logements/${logement.infosLogement.Logement.PkLogement}/anomalies`
               )}
             </div>
           )}
@@ -186,12 +186,12 @@ const LogementCard: React.FC<LogementCardProps> = ({
             <div className="flex space-x-2">
               {getManagementIcon(
                 "edit",
-                `/pages/logements/${logement.infosLogement.Logement.PkLogement}/edit`,
+                `/logements/${logement.infosLogement.Logement.PkLogement}/edit`,
                 "Modifier les coordonnées de l'occupant"
               )}
               {getManagementIcon(
                 "user",
-                `/pages/gestion-parc/declarer-occupant/${logement.infosLogement.Logement.PkLogement}`,
+                `/gestion-parc/declarer-occupant/${logement.infosLogement.Logement.PkLogement}`,
                 "Déclarer un nouvel occupant"
               )}
             </div>
@@ -203,8 +203,8 @@ const LogementCard: React.FC<LogementCardProps> = ({
           <Link
             href={
               isGestionMode
-                ? `/pages/gestion-parc/show/${logement.infosLogement.Logement.PkLogement}?gestion=true`
-                : `/pages/logements/${logement.infosLogement.Logement.PkLogement}`
+                ? `/gestion-parc/show/${logement.infosLogement.Logement.PkLogement}?gestion=true`
+                : `/logements/${logement.infosLogement.Logement.PkLogement}`
             }
             className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors duration-200 flex items-center"
           >

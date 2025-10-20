@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import BaseLayout from "../../../components/Layout/BaseLayout";
-import Breadcrumb from "../../../components/Layout/Breadcrumb";
-import { OccupantAccount, OccupantMenu } from "../../../components/Occupant";
+import BaseLayout from "../../../src/components/Layout/BaseLayout";
+import Breadcrumb from "../../../src/components/Layout/Breadcrumb";
+import { OccupantAccount, OccupantMenu } from "../../../src/components/Occupant";
 
 const AccountPage: React.FC = () => {
   // Mock data - in a real app, this would come from an API

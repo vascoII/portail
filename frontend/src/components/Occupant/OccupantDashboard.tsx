@@ -249,7 +249,7 @@ const OccupantDashboard: React.FC<OccupantDashboardProps> = ({
           }
           icon="fas fa-wrench"
           color="bg-orange-500"
-          href={`/pages/occupant/interventions${
+          href={`/occupant/interventions${
             logement.NbDepannages > 0 ? "?statut=ouvert" : ""
           }`}
         />
@@ -263,7 +263,7 @@ const OccupantDashboard: React.FC<OccupantDashboardProps> = ({
           }
           icon="fas fa-bell"
           color="bg-yellow-500"
-          href="/pages/occupant/dysfunctions"
+          href="/occupant/dysfunctions"
         />
       </div>
 

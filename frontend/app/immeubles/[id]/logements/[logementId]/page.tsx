@@ -2,15 +2,15 @@
 
 import React from "react";
 import { useParams } from "next/navigation";
-import BaseLayout from "../../../../../components/Layout/BaseLayout";
-import Breadcrumb from "../../../../../components/Layout/Breadcrumb";
-import { LogementDetailSkeleton } from "../../../../../components/Logement";
-import { useLogement } from "../../../../../hooks/useLogement";
+import BaseLayout from "../@/components/Layout/BaseLayout";
+import Breadcrumb from "../@/components/Layout/Breadcrumb";
+import { LogementDetailSkeleton } from "../@/components/Logement";
+import { useLogement } from "../@/hooks/useLogement";
 
 // Placeholder components - will be created next
-import LogementHeader from "../../../../../components/Logement/LogementHeader";
-import LogementCapteurRepartPanel from "../../../../../components/Logement/LogementCapteurRepartPanel";
-import LogementWaterEnergyTabs from "../../../../../components/Logement/LogementWaterEnergyTabs";
+import LogementHeader from "../@/components/Logement/LogementHeader";
+import LogementCapteurRepartPanel from "../@/components/Logement/LogementCapteurRepartPanel";
+import LogementWaterEnergyTabs from "../@/components/Logement/LogementWaterEnergyTabs";
 
 const LogementDetailPage: React.FC = () => {
   const params = useParams();

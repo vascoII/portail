@@ -192,7 +192,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
 
         <div className="text-sm">
           <a
-            href="/pages/reset-password"
+            href="/reset-password"
             className="font-medium text-blue-600 hover:text-blue-500 transition-colors"
           >
             Mot de passe oublié ?

@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import BaseLayout from "../../../components/Layout/BaseLayout";
-import Breadcrumb from "../../../components/Layout/Breadcrumb";
-import { OperatorForm } from "../../../components/Operator";
+import BaseLayout from "../../../src/components/Layout/BaseLayout";
+import Breadcrumb from "../../../src/components/Layout/Breadcrumb";
+import { OperatorForm } from "../../../src/components/Operator";
 
 const CreateOperatorPage: React.FC = () => {
   const breadcrumbItems = [

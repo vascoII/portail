@@ -120,7 +120,7 @@ const LogementCard: React.FC<LogementCardProps> = ({
       </div>
 
       <div className="actions">
-        <Link href={`/pages/logements/${logement.id}`} className="btn btn-primary">
+        <Link href={`/logements/${logement.id}`} className="btn btn-primary">
           Voir les détails
         </Link>
       </div>

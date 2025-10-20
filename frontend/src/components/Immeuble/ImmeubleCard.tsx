@@ -88,8 +88,8 @@ const ImmeubleCard: React.FC<ImmeubleCardProps> = ({
           <Link
             href={
               isGestionMode
-                ? `/pages/gestion-parc/logement/${immeuble.pkImmeuble}`
-                : `/pages/immeubles/${immeuble.pkImmeuble}`
+                ? `/gestion-parc/logement/${immeuble.pkImmeuble}`
+                : `/immeubles/${immeuble.pkImmeuble}`
             }
             className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors duration-200 flex items-center"
           >
@@ -100,7 +100,7 @@ const ImmeubleCard: React.FC<ImmeubleCardProps> = ({
           {/* Gestion Mode Button */}
           {isGestionMode && showChgtOccupant && (
             <Link
-              href={`/pages/gestion-parc/logement/${immeuble.pkImmeuble}`}
+              href={`/gestion-parc/logement/${immeuble.pkImmeuble}`}
               className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors duration-200 flex items-center"
             >
               <i className="fas fa-file mr-2"></i>

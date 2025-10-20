@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
 import { useRouter } from "next/navigation";
-import BaseLayout from "../../../../components/Layout/BaseLayout";
-import Breadcrumb from "../../../../components/Layout/Breadcrumb";
-import AnomaliesList from "../../../../components/Lists/AnomaliesList";
-import { useInterventions } from "../../../../hooks/useInterventions";
+import BaseLayout from "@/components/Layout/BaseLayout";
+import Breadcrumb from "@/components/Layout/Breadcrumb";
+import AnomaliesList from "@/components/Lists/AnomaliesList";
+import { useInterventions } from "@/hooks/useInterventions";
 
 const LogementAnomaliesPage: React.FC = () => {
   const router = useRouter();

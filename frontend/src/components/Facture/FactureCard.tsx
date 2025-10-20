@@ -65,7 +65,7 @@ const FactureCard: React.FC<FactureCardProps> = ({ facture }) => {
 
           {/* Download Button */}
           <Link
-            href={`/pages/factures/download/${facture.PKFacture}`}
+            href={`/factures/download/${facture.PKFacture}`}
             target="_blank"
             className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors duration-200 flex items-center"
           >

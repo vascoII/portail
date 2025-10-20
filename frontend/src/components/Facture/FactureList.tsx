@@ -325,7 +325,7 @@ const FactureList: React.FC<FactureListProps> = ({
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                       <a
-                        href={`/pages/factures/download/${facture.PKFacture}`}
+                        href={`/factures/download/${facture.PKFacture}`}
                         target="_blank"
                         className="text-blue-600 hover:text-blue-900 transition-colors duration-200"
                       >
