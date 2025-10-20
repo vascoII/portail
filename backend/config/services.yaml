@@ -195,22 +195,35 @@ services:
     arguments:
       $responder: '@App\Http\Responder\JsonResponder'
 
-  #Operator
-  App\Http\Action\Operator\:
-    resource: "../src/Http/Action/Operator/*"
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'
-
   #Immeuble
   App\Http\Action\Immeuble\:
     resource: "../src/Http/Action/Immeuble/*"
     arguments:
       $responder: '@App\Http\Responder\JsonResponder'
 
-  #ReportToken
-  # App\Http\Action\ReportToken\ReportAction:
-  #   arguments:
-  #     $responder: '@App\Http\Responder\PdfResponder'
+  #Logement
+  App\Http\Action\Logement\:
+    resource: "../src/Http/Action/Logement/*"
+    arguments:
+      $responder: '@App\Http\Responder\JsonResponder'
+
+  #Occupant
+  App\Http\Action\Occupant\:
+    resource: "../src/Http/Action/Occupant/*"
+    arguments:
+      $responder: '@App\Http\Responder\JsonResponder'
+
+  #Operator
+  App\Http\Action\Operator\:
+    resource: "../src/Http/Action/Operator/*"
+    arguments:
+      $responder: '@App\Http\Responder\JsonResponder'
+
+  #Parc
+  App\Http\Action\Parc\:
+    resource: "../src/Http/Action/Parc/*"
+    arguments:
+      $responder: '@App\Http\Responder\JsonResponder'
 
   #Security
   App\Http\Action\Security\:
@@ -218,11 +231,12 @@ services:
     arguments:
       $responder: '@App\Http\Responder\JsonResponder'
 
-  #Ocupant
-  App\Http\Action\Ocupant\:
-    resource: "../src/Http/Action/Ocupant/*"
+  #Ticket
+  App\Http\Action\Ticket\:
+    resource: "../src/Http/Action/Ticket/*"
     arguments:
       $responder: '@App\Http\Responder\JsonResponder'
+
 
   #AdminHydrator
   App\Infrastructure\Service\Hydrator\AdminHydrator:

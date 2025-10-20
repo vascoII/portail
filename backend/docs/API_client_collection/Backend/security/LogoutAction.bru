@@ -1,0 +1,19 @@
+meta {
+  name: LogoutAction
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{localhost_backend}}/api/security/logout
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bearToken}}
+}
+
+settings {
+  encodeUrl: true
+}
