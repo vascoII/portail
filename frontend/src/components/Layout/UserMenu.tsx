@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useDataStore } from "../../store/dataStore";
+import { useDataStore } from "@/store/dataStore";
 
 const UserMenu: React.FC = () => {
   const { loginData, clearLoginData } = useDataStore();

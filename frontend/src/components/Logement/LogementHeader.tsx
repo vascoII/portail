@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { Logement, LogementIndicators } from "../../hooks/useLogement";
+import { Logement, LogementIndicators } from "@/hooks/useLogement";
 
 interface LogementHeaderProps {
   logement: Logement;

@@ -2,7 +2,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import NavLink from "./NavLink";
-import { ROUTES } from "../../config/routes";
+import { ROUTES } from "@/config/routes";
 
 interface BreadcrumbItem {
   label: string;

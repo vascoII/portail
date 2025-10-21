@@ -6,7 +6,7 @@ import {
   SerieConsos,
   LogementRepartData,
   LogementRepart,
-} from "../../hooks/useLogement";
+} from "@/hooks/useLogement";
 
 interface LogementCapteurRepartPanelProps {
   capteur: LogementCapteurData | null;

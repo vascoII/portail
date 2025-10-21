@@ -2,7 +2,7 @@
 
 import React from "react";
 import IndicatorsSkeleton from "./IndicatorsSkeleton";
-import { Indicator } from "../../hooks/useImmeubles";
+import { Indicator } from "@/hooks/useImmeubles";
 
 interface IndicatorsPanelProps {
   indicators: Indicator[];

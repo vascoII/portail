@@ -7,7 +7,7 @@ import {
   UserIcon,
   LockClosedIcon,
 } from "@heroicons/react/24/outline";
-import { LoginFormData } from "../../types/auth";
+import { LoginFormData } from "@/types/auth";
 
 interface LoginFormProps {
   onSubmit: (data: LoginFormData) => Promise<void>;

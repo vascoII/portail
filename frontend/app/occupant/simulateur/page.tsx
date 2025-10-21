@@ -1,12 +1,12 @@
 "use client";
 
 import React from "react";
-import BaseLayout from "../../../src/components/Layout/BaseLayout";
-import Breadcrumb from "../../../src/components/Layout/Breadcrumb";
+import BaseLayout from "@/components/Layout/BaseLayout";
+import Breadcrumb from "@/components/Layout/Breadcrumb";
 import {
   ConsumptionSimulator,
   OccupantMenu,
-} from "../../../src/components/Occupant";
+} from "@/components/Occupant";
 
 const SimulateurPage: React.FC = () => {
   // Mock data - in a real app, this would come from an API

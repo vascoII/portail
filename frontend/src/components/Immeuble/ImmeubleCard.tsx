@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { Immeuble } from "../../hooks/useImmeubles";
+import { Immeuble } from "@/hooks/useImmeubles";
 import ImmeubleListSkeleton from "./ImmeubleListSkeleton";
 
 interface ImmeubleCardProps {

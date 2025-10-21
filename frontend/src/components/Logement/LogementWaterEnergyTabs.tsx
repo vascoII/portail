@@ -10,7 +10,7 @@ import {
   InfosAppareilEAU,
   Appareil,
   Releve,
-} from "../../hooks/useLogement";
+} from "@/hooks/useLogement";
 
 // Helper function to format date
 const formatDate = (dateString: string): string => {

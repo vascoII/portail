@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { Immeuble, ImmeubleIndicators } from "../../hooks/useImmeuble";
+import { Immeuble, ImmeubleIndicators } from "@/hooks/useImmeuble";
 import ImmeubleCard from "./ImmeubleCard";
 import IndicatorsCard from "./IndicatorsCard";
 

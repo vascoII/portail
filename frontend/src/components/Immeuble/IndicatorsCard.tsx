@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { Indicator } from "../../hooks/useImmeubles";
+import { Indicator } from "@/hooks/useImmeubles";
 import IndicatorsSkeleton from "./IndicatorsSkeleton";
 
 interface IndicatorsCardProps {

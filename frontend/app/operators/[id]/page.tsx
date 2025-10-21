@@ -2,9 +2,9 @@
 
 import React from "react";
 import { useParams } from "next/navigation";
-import BaseLayout from "../../../src/components/Layout/BaseLayout";
-import Breadcrumb from "../../../src/components/Layout/Breadcrumb";
-import { OperatorDetail } from "../../../src/components/Operator";
+import BaseLayout from "@/components/Layout/BaseLayout";
+import Breadcrumb from "@/components/Layout/Breadcrumb";
+import { OperatorDetail } from "@/components/Operator";
 
 const OperatorDetailPage: React.FC = () => {
   const params = useParams();

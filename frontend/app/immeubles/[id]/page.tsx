@@ -2,15 +2,15 @@
 
 import React from "react";
 import { useParams } from "next/navigation";
-import BaseLayout from "../../../src/components/Layout/BaseLayout";
-import Breadcrumb from "../../../src/components/Layout/Breadcrumb";
-import ImmeubleDetailSkeleton from "../../../src/components/Immeuble/ImmeubleDetailSkeleton";
+import BaseLayout from "@/components/Layout/BaseLayout";
+import Breadcrumb from "@/components/Layout/Breadcrumb";
+import ImmeubleDetailSkeleton from "@/components/Immeuble/ImmeubleDetailSkeleton";
 import {
   ImmeubleHeader,
   CapteurRepartPanel,
   WaterEnergyTabs,
-} from "../../../src/components/Immeuble";
-import { useImmeuble } from "../../../hooks/useImmeuble";
+} from "@/components/Immeuble";
+import { useImmeuble } from "@/hooks/useImmeuble";
 
 const ImmeubleDetailPage: React.FC = () => {
   const params = useParams();

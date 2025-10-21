@@ -5,7 +5,7 @@ import {
   ImmeubleCETData,
   ImmeubleECData,
   ImmeubleEFData,
-} from "../../hooks/useImmeuble";
+} from "@/hooks/useImmeuble";
 
 interface WaterEnergyTabsProps {
   cet: ImmeubleCETData | null;

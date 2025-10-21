@@ -4,7 +4,7 @@ import React from "react";
 import {
   ImmeubleCapteurData,
   ImmeubleRepartData,
-} from "../../hooks/useImmeuble";
+} from "@/hooks/useImmeuble";
 
 interface CapteurRepartPanelProps {
   capteur: ImmeubleCapteurData | null;

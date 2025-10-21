@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from "react";
 import ImmeubleCard from "./ImmeubleCard";
 import IndicatorsCard from "./IndicatorsCard";
-import { Immeuble, Indicator } from "../../hooks/useImmeubles";
+import { Immeuble, Indicator } from "@/hooks/useImmeubles";
 
 interface FilterState {
   energie: string;
