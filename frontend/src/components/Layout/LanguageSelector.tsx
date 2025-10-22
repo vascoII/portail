@@ -15,7 +15,7 @@ const LanguageSelector: React.FC = () => {
   return (
     <div className="dropdown language-menu input-group">
       <button
-        className="btn btn-primary btn-lg dropdown-toggle hidden-sm hidden-xs"
+        className="btn btn-primary btn-lg dropdown-toggle -sm -xs"
         type="button"
         onClick={() => setIsOpen(!isOpen)}
       >

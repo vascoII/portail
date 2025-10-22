@@ -51,7 +51,7 @@ const UserMenu: React.FC = () => {
       {/* User Menu */}
       <div className="relative" ref={userMenuRef}>
         <button
-          className="hidden sm:flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200 text-sm font-medium"
+          className=" sm:flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200 text-sm font-medium"
           type="button"
           onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
         >
@@ -62,7 +62,7 @@ const UserMenu: React.FC = () => {
 
         {/* Mobile User Menu Button */}
         <button
-          className="sm:hidden flex items-center justify-center w-10 h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200"
+          className="sm: flex items-center justify-center w-10 h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200"
           type="button"
           onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
         >

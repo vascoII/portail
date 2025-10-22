@@ -13,7 +13,7 @@ interface BreadcrumbProps {
 
 const Breadcrumb: React.FC<BreadcrumbProps> = ({ items, className = "" }) => {
   return (
-    <ul className={`breadcrumb hidden-xs ${className}`}>
+    <ul className={`breadcrumb -xs ${className}`}>
       {items.map((item, index) => (
         <li key={index}>
           {item.href ? (
