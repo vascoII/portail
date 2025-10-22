@@ -89,7 +89,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
       {/* Advanced Search Dropdown */}
       <div className="relative" ref={advancedRef}>
         <button
-          className=" sm:flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200 text-sm font-medium"
+          className="flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200 text-sm font-medium"
           type="button"
           onClick={() => setIsAdvancedOpen(!isAdvancedOpen)}
         >
@@ -229,7 +229,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
       </form>
 
       {/* Code Search */}
-      <form className=" sm:block">
+      <form className="sm:block">
         <div className="relative">
           <input
             type="text"

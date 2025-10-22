@@ -44,17 +44,24 @@ const UserMenu: React.FC = () => {
     router.push("/login");
   };
 
+  // Debug: Log loginData
+  console.log("UserMenu - loginData:", loginData);
+
   // Don't render if user is not logged in
   if (!loginData) {
-    return null;
+    console.log("UserMenu - No loginData, returning null");
+    return <div className="text-xs text-red-500">No loginData</div>;
   }
+
+  console.log("UserMenu - Rendering with loginData:", loginData);
+  console.log("UserMenu - displayName:", displayName);
 
   return (
     <div className="flex items-center space-x-4">
       {/* User Menu */}
       <div className="relative" ref={userMenuRef}>
         <button
-          className=" sm:flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200 text-sm font-medium"
+          className="flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200 text-sm font-medium"
           type="button"
           onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
         >
@@ -65,7 +72,7 @@ const UserMenu: React.FC = () => {
 
         {/* Mobile User Menu Button */}
         <button
-          className="sm: flex items-center justify-center w-10 h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200"
+          className="flex items-center justify-center w-10 h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200"
           type="button"
           onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
         >
@@ -74,7 +81,7 @@ const UserMenu: React.FC = () => {
 
         {/* User Dropdown Menu */}
         {isUserMenuOpen && (
-          <div className="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+          <div className="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 z-[100]">
             <div className="py-2">
               {/* User Info Header */}
               <div className="px-4 py-3 border-b border-gray-100">
@@ -87,11 +94,16 @@ const UserMenu: React.FC = () => {
                       {displayName}
                     </p>
                     <p className="text-xs text-gray-500">
-                      {isSuperAdmin ? "Super Administrateur"
-                        : isAdmin ? "Administrateur" 
-                        : isClient ? "Client"
-                        : isGestionnaire ? "Gestionnaire"
-                        : isOccupant ? "Occupant" 
+                      {isSuperAdmin
+                        ? "Super Administrateur"
+                        : isAdmin
+                        ? "Administrateur"
+                        : isClient
+                        ? "Client"
+                        : isGestionnaire
+                        ? "Gestionnaire"
+                        : isOccupant
+                        ? "Occupant"
                         : "Invité"}
                     </p>
                   </div>
@@ -110,7 +122,7 @@ const UserMenu: React.FC = () => {
                     Mon Compte
                   </Link>
                 )}
-                {(isClient) && (
+                {isClient && (
                   <Link
                     href="/operators/create"
                     className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
@@ -120,17 +132,17 @@ const UserMenu: React.FC = () => {
                     Créer un compte
                   </Link>
                 )}
-                {(isClient) && (
+                {isClient && (
                   <Link
-                      href="/operators"
-                      className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
-                      onClick={() => setIsUserMenuOpen(false)}
-                    >
-                      <i className="fas fa-edit w-4 h-4 mr-3 text-gray-400"></i>
-                      Gérer les comptes
+                    href="/operators"
+                    className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                    onClick={() => setIsUserMenuOpen(false)}
+                  >
+                    <i className="fas fa-edit w-4 h-4 mr-3 text-gray-400"></i>
+                    Gérer les comptes
                   </Link>
                 )}
-                {((isClient || isGestionnaire) && showFactures) && (
+                {(isClient || isGestionnaire) && showFactures && (
                   <Link
                     href="/factures"
                     className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
@@ -140,14 +152,14 @@ const UserMenu: React.FC = () => {
                     Factures
                   </Link>
                 )}
-                {(isClient) && (
+                {isClient && (
                   <Link
-                      href="/operators/stats"
-                      className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
-                      onClick={() => setIsUserMenuOpen(false)}
-                    >
-                      <i className="fas fa-edit w-4 h-4 mr-3 text-gray-400"></i>
-                       Stats Connexion Occupants
+                    href="/operators/stats"
+                    className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                    onClick={() => setIsUserMenuOpen(false)}
+                  >
+                    <i className="fas fa-edit w-4 h-4 mr-3 text-gray-400"></i>
+                    Stats Connexion Occupants
                   </Link>
                 )}
                 <div className="border-t border-gray-100 my-1"></div>

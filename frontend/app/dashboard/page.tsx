@@ -1,6 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useDataStore } from "@/store/dataStore";
 import BaseLayout from "@/components/Layout/BaseLayout";
 import Breadcrumb from "@/components/Layout/Breadcrumb";
 import {
@@ -49,6 +51,7 @@ const DashboardPage: React.FC = () => {
 
   return (
     <BaseLayout>
+      {/* Test Button for UserMenu */}
       <Breadcrumb items={breadcrumbItems} />
 
       {/* Dashboard Menu */}

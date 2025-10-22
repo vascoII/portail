@@ -25,7 +25,7 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
               <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mr-3">
                 <i className="fas fa-building text-white text-xl"></i>
               </div>
-              <div className=" sm:block">
+              <div className="block">
                 <h1 className="text-xl font-bold text-gray-900">Techem</h1>
                 <p className="text-xs text-gray-500">Portail Client</p>
               </div>
@@ -33,19 +33,19 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
           </div>
 
           {/* Welcome Message - Desktop */}
-          <div className=" lg:block flex-1 ml-8">
+          <div className="flex-1 flex justify-center">
             <h3 className="text-lg font-medium text-gray-700">
               Bienvenue dans votre espace client
             </h3>
           </div>
 
           {/* User Menu and Language */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4 relative z-[70]">
             <UserMenu />
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="lg:">
+          <div className="lg:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
@@ -57,7 +57,7 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg: border-t border-gray-200 py-4">
+          <div className="lg:hidden border-t border-gray-200 py-4">
             <div className="space-y-4">
               <div className="text-center">
                 <h3 className="text-lg font-medium text-gray-700">
@@ -70,7 +70,7 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
         )}
 
         {/* Search Bar - Desktop */}
-        <div className=" lg:block border-t border-gray-200 py-4">
+        <div className="block border-t border-gray-200 py-4">
           <SearchBar onSearch={onSearch} />
         </div>
       </div>
