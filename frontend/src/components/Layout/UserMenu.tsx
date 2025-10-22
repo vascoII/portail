@@ -14,9 +14,12 @@ const UserMenu: React.FC = () => {
   // Get user info from data store
   const displayName =
     loginData?.userName || loginData?.firstName || "Utilisateur";
-  const isAdmin =
-    loginData?.userRole === "ADMIN" || loginData?.userRole === "SUPER_ADMIN";
-  const showFactures = loginData?.showFactures === true;
+  const isAdmin = loginData?.userType === "A" ? true : false;
+  const isSuperAdmin = loginData?.userType === "SA" ? true : false;
+  const isClient = loginData?.userType === "C" ? true : false;
+  const isGestionnaire = loginData?.userType === "G" ? true : false;
+  const isOccupant = loginData?.userType === "O" ? true : false;
+  const showFactures = loginData?.showFactures === true ? true : false;
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -84,12 +87,12 @@ const UserMenu: React.FC = () => {
                       {displayName}
                     </p>
                     <p className="text-xs text-gray-500">
-                      {loginData?.userRole === "ADMIN" ||
-                      loginData?.userRole === "SUPER_ADMIN"
-                        ? "Administrateur"
-                        : loginData?.userRole === "GESTIONNAIRE"
-                        ? "Gestionnaire"
-                        : "Utilisateur"}
+                      {isSuperAdmin ? "Super Administrateur"
+                        : isAdmin ? "Administrateur" 
+                        : isClient ? "Client"
+                        : isGestionnaire ? "Gestionnaire"
+                        : isOccupant ? "Occupant" 
+                        : "Invité"}
                     </p>
                   </div>
                 </div>
@@ -97,60 +100,56 @@ const UserMenu: React.FC = () => {
 
               {/* Menu Items */}
               <div className="py-1">
-                <Link
-                  href="/update-password"
-                  className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
-                  onClick={() => setIsUserMenuOpen(false)}
-                >
-                  <i className="fas fa-edit w-4 h-4 mr-3 text-gray-400"></i>
-                  Mon Compte
-                </Link>
-
-                {isAdmin && (
-                  <>
-                    <div className="border-t border-gray-100 my-1"></div>
-                    <div className="px-4 py-2">
-                      <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                        Administration
-                      </p>
-                    </div>
-                    <Link
-                      href="/operators/create"
-                      className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
-                      onClick={() => setIsUserMenuOpen(false)}
-                    >
-                      <i className="fas fa-user-plus w-4 h-4 mr-3 text-gray-400"></i>
-                      Créer un compte
-                    </Link>
-                    <Link
+                {(isClient || isGestionnaire || isOccupant) && (
+                  <Link
+                    href="/update-password"
+                    className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                    onClick={() => setIsUserMenuOpen(false)}
+                  >
+                    <i className="fas fa-edit w-4 h-4 mr-3 text-gray-400"></i>
+                    Mon Compte
+                  </Link>
+                )}
+                {(isClient) && (
+                  <Link
+                    href="/operators/create"
+                    className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                    onClick={() => setIsUserMenuOpen(false)}
+                  >
+                    <i className="fas fa-edit w-4 h-4 mr-3 text-gray-400"></i>
+                    Créer un compte
+                  </Link>
+                )}
+                {(isClient) && (
+                  <Link
                       href="/operators"
                       className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
                       onClick={() => setIsUserMenuOpen(false)}
                     >
-                      <i className="fas fa-users-cog w-4 h-4 mr-3 text-gray-400"></i>
+                      <i className="fas fa-edit w-4 h-4 mr-3 text-gray-400"></i>
                       Gérer les comptes
-                    </Link>
-                    {showFactures && (
-                      <Link
-                        href="/factures"
-                        className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
-                        onClick={() => setIsUserMenuOpen(false)}
-                      >
-                        <i className="fas fa-file-invoice w-4 h-4 mr-3 text-gray-400"></i>
-                        Factures
-                      </Link>
-                    )}
-                    <Link
+                  </Link>
+                )}
+                {((isClient || isGestionnaire) && showFactures) && (
+                  <Link
+                    href="/factures"
+                    className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                    onClick={() => setIsUserMenuOpen(false)}
+                  >
+                    <i className="fas fa-edit w-4 h-4 mr-3 text-gray-400"></i>
+                    Factures
+                  </Link>
+                )}
+                {(isClient) && (
+                  <Link
                       href="/operators/stats"
                       className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
                       onClick={() => setIsUserMenuOpen(false)}
                     >
-                      <i className="fas fa-chart-line w-4 h-4 mr-3 text-gray-400"></i>
-                      Stats Connexion Occupants
-                    </Link>
-                  </>
+                      <i className="fas fa-edit w-4 h-4 mr-3 text-gray-400"></i>
+                       Stats Connexion Occupants
+                  </Link>
                 )}
-
                 <div className="border-t border-gray-100 my-1"></div>
                 <button
                   onClick={handleLogout}
