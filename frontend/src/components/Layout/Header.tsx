@@ -40,7 +40,7 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
           </div>
 
           {/* User Menu and Language */}
-          <div className="flex items-center space-x-4 relative z-[70]">
+          <div className="flex items-center space-x-4 relative z-[9998]">
             <UserMenu />
           </div>
 

@@ -81,7 +81,7 @@ const UserMenu: React.FC = () => {
 
         {/* User Dropdown Menu */}
         {isUserMenuOpen && (
-          <div className="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 z-[100]">
+          <div className="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 z-[9999]">
             <div className="py-2">
               {/* User Info Header */}
               <div className="px-4 py-3 border-b border-gray-100">
