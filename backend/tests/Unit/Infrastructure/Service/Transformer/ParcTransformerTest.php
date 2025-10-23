@@ -6,17 +6,6 @@ namespace App\Tests\Unit\Infrastructure\Service\Transformer;
 
 use App\Infrastructure\Service\Transformer\ParcTransformer;
 use App\Application\Dto\Output\Parc\GetParcOutputDto;
-use App\Application\Dto\Output\Parc\ListParcInterventionsOutputDto;
-use App\Application\Dto\Output\Parc\GetParcIndicatorsOutputDto;
-use App\Application\Dto\Output\Parc\GetParcCapteurOutputDto;
-use App\Application\Dto\Output\Parc\GetParcCETOutputDto;
-use App\Application\Dto\Output\Parc\GetParcECOutputDto;
-use App\Application\Dto\Output\Parc\GetParcEFOutputDto;
-use App\Application\Dto\Output\Parc\GetParcElectOutputDto;
-use App\Application\Dto\Output\Parc\GetParcGazOutputDto;
-use App\Application\Dto\Output\Parc\GetParcRepartOutputDto;
-use App\Application\Dto\Output\Parc\GetParcSerieConsosCompteurGeneralOutputDto;
-use App\Application\Dto\Output\Parc\GetParcSerieConsosEAUOutputDto;
 
 class ParcTransformerTest extends BaseTransformerTest
 {
@@ -31,7 +20,33 @@ class ParcTransformerTest extends BaseTransformerTest
   {
     // Arrange
     $dataSourceResult = $this->createDataSourceResult([
-      'parc_data' => 'some_data'
+      'NbImmeubles' => 26,
+      'NbImmeublesTelereleve' => 2,
+      'NbImmeublesTransfertFichiers' => 1,
+      'NbCompteursARelever' => 2571,
+      'NbCompteursReleves' => 2427,
+      'NbLogements' => 1505,
+      'NbCompteurs' => 2744,
+      'NbCompteursEC' => 1403,
+      'NbCompteursEF' => 1341,
+      'NbCompteursRepart' => 0,
+      'NbCompteursCET' => 0,
+      'NbCompteursCapteur' => 0,
+      'NbCompteursElect' => -1,
+      'NbCompteursGaz' => -1,
+      'NbFuites' => 12,
+      'DegresFuites' => -1,
+      'NbDepannages' => 0,
+      'DegresDepannages' => -1,
+      'NbDysfonctionnements' => 1,
+      'DegresDysfonctionnements' => -1,
+      'NbAnomalies' => 171,
+      'DegresAnomalies' => -1,
+      'NbChantiers' => 0,
+      'NbCompteursPoses' => 0,
+      'NbCompteursCommandes' => 0,
+      'PcImmeublesTelereleve' => 94,
+      'PcImmeublesTransfertFichiers' => 4
     ]);
 
     // Act
@@ -39,193 +54,33 @@ class ParcTransformerTest extends BaseTransformerTest
 
     // Assert
     $this->assertInstanceOf(GetParcOutputDto::class, $result);
-    $this->assertEquals(1, $result->pkParc);
-    $this->assertEquals('Parc Principal', $result->nom);
-    $this->assertEquals('Description du parc principal', $result->description);
-    $this->assertTrue($result->actif);
-  }
-
-  public function testTransformListParcInterventions(): void
-  {
-    // Arrange
-    $dataSourceResult = $this->createDataSourceResult([
-      'interventions' => 'some_data'
-    ]);
-
-    // Act
-    $result = $this->transformer->transformListParcInterventions($dataSourceResult);
-
-    // Assert
-    $this->assertInstanceOf(ListParcInterventionsOutputDto::class, $result);
-    $this->assertEquals([], $result->interventions);
-  }
-
-  public function testTransformGetParcIndicators(): void
-  {
-    // Arrange
-    $dataSourceResult = $this->createDataSourceResult([
-      'indicators' => 'some_data'
-    ]);
-
-    // Act
-    $result = $this->transformer->transformGetParcIndicators($dataSourceResult);
-
-    // Assert
-    $this->assertInstanceOf(GetParcIndicatorsOutputDto::class, $result);
-    $this->assertEquals(0, $result->totalInterventions);
-    $this->assertEquals(0, $result->totalAnomalies);
-    $this->assertEquals(0, $result->totalDysfonctionnements);
-    $this->assertEquals(0, $result->totalFuites);
-  }
-
-  public function testTransformGetParcCapteur(): void
-  {
-    // Arrange
-    $dataSourceResult = $this->createDataSourceResult([
-      'capteurs' => 'some_data'
-    ]);
-
-    // Act
-    $result = $this->transformer->transformGetParcCapteur($dataSourceResult);
-
-    // Assert
-    $this->assertInstanceOf(GetParcCapteurOutputDto::class, $result);
-    $this->assertEquals([], $result->capteurs);
-  }
-
-  public function testTransformGetParcCET(): void
-  {
-    // Arrange
-    $dataSourceResult = $this->createDataSourceResult([
-      'cet_data' => 'some_data'
-    ]);
-
-    // Act
-    $result = $this->transformer->transformGetParcCET($dataSourceResult);
-
-    // Assert
-    $this->assertInstanceOf(GetParcCETOutputDto::class, $result);
-    $this->assertEquals(0.0, $result->consommation);
-    $this->assertEquals('kWh', $result->unite);
-    $this->assertNull($result->dateDebut);
-    $this->assertNull($result->dateFin);
-  }
-
-  public function testTransformGetParcEC(): void
-  {
-    // Arrange
-    $dataSourceResult = $this->createDataSourceResult([
-      'ec_data' => 'some_data'
-    ]);
-
-    // Act
-    $result = $this->transformer->transformGetParcEC($dataSourceResult);
-
-    // Assert
-    $this->assertInstanceOf(GetParcECOutputDto::class, $result);
-    $this->assertEquals(0.0, $result->consommation);
-    $this->assertEquals('kWh', $result->unite);
-    $this->assertNull($result->dateDebut);
-    $this->assertNull($result->dateFin);
-  }
-
-  public function testTransformGetParcEF(): void
-  {
-    // Arrange
-    $dataSourceResult = $this->createDataSourceResult([
-      'ef_data' => 'some_data'
-    ]);
-
-    // Act
-    $result = $this->transformer->transformGetParcEF($dataSourceResult);
-
-    // Assert
-    $this->assertInstanceOf(GetParcEFOutputDto::class, $result);
-    $this->assertEquals(0.0, $result->consommation);
-    $this->assertEquals('kWh', $result->unite);
-    $this->assertNull($result->dateDebut);
-    $this->assertNull($result->dateFin);
-  }
-
-  public function testTransformGetParcElect(): void
-  {
-    // Arrange
-    $dataSourceResult = $this->createDataSourceResult([
-      'elect_data' => 'some_data'
-    ]);
-
-    // Act
-    $result = $this->transformer->transformGetParcElect($dataSourceResult);
-
-    // Assert
-    $this->assertInstanceOf(GetParcElectOutputDto::class, $result);
-    $this->assertEquals(0.0, $result->consommation);
-    $this->assertEquals('kWh', $result->unite);
-    $this->assertNull($result->dateDebut);
-    $this->assertNull($result->dateFin);
-  }
-
-  public function testTransformGetParcGaz(): void
-  {
-    // Arrange
-    $dataSourceResult = $this->createDataSourceResult([
-      'gaz_data' => 'some_data'
-    ]);
-
-    // Act
-    $result = $this->transformer->transformGetParcGaz($dataSourceResult);
-
-    // Assert
-    $this->assertInstanceOf(GetParcGazOutputDto::class, $result);
-    $this->assertEquals(0.0, $result->consommation);
-    $this->assertEquals('m³', $result->unite);
-    $this->assertNull($result->dateDebut);
-    $this->assertNull($result->dateFin);
-  }
-
-  public function testTransformGetParcRepart(): void
-  {
-    // Arrange
-    $dataSourceResult = $this->createDataSourceResult([
-      'repart_data' => 'some_data'
-    ]);
-
-    // Act
-    $result = $this->transformer->transformGetParcRepart($dataSourceResult);
-
-    // Assert
-    $this->assertInstanceOf(GetParcRepartOutputDto::class, $result);
-    $this->assertEquals([], $result->repartitions);
-  }
-
-  public function testTransformGetParcSerieConsosCompteurGeneral(): void
-  {
-    // Arrange
-    $dataSourceResult = $this->createDataSourceResult([
-      'serie_consos' => 'some_data'
-    ]);
-
-    // Act
-    $result = $this->transformer->transformGetParcSerieConsosCompteurGeneral($dataSourceResult);
-
-    // Assert
-    $this->assertInstanceOf(GetParcSerieConsosCompteurGeneralOutputDto::class, $result);
-    $this->assertEquals([], $result->seriesConsos);
-  }
-
-  public function testTransformGetParcSerieConsosEAU(): void
-  {
-    // Arrange
-    $dataSourceResult = $this->createDataSourceResult([
-      'serie_consos_eau' => 'some_data'
-    ]);
-
-    // Act
-    $result = $this->transformer->transformGetParcSerieConsosEAU($dataSourceResult);
-
-    // Assert
-    $this->assertInstanceOf(GetParcSerieConsosEAUOutputDto::class, $result);
-    $this->assertEquals([], $result->seriesConsos);
+    $this->assertEquals(26, $result->nbImmeubles);
+    $this->assertEquals(2, $result->nbImmeublesTelereleve);
+    $this->assertEquals(1, $result->nbImmeublesTransfertFichiers);
+    $this->assertEquals(2571, $result->nbCompteursARelever);
+    $this->assertEquals(2427, $result->nbCompteursReleves);
+    $this->assertEquals(1505, $result->nbLogements);
+    $this->assertEquals(2744, $result->nbCompteurs);
+    $this->assertEquals(1403, $result->nbCompteursEC);
+    $this->assertEquals(1341, $result->nbCompteursEF);
+    $this->assertEquals(0, $result->nbCompteursRepart);
+    $this->assertEquals(0, $result->nbCompteursCET);
+    $this->assertEquals(0, $result->nbCompteursCapteur);
+    $this->assertEquals(-1, $result->nbCompteursElect);
+    $this->assertEquals(-1, $result->nbCompteursGaz);
+    $this->assertEquals(12, $result->nbFuites);
+    $this->assertEquals(-1, $result->degresFuites);
+    $this->assertEquals(0, $result->nbDepannages);
+    $this->assertEquals(-1, $result->degresDepannages);
+    $this->assertEquals(1, $result->nbDysfonctionnements);
+    $this->assertEquals(-1, $result->degresDysfonctionnements);
+    $this->assertEquals(171, $result->nbAnomalies);
+    $this->assertEquals(-1, $result->degresAnomalies);
+    $this->assertEquals(0, $result->nbChantiers);
+    $this->assertEquals(0, $result->nbCompteursPoses);
+    $this->assertEquals(0, $result->nbCompteursCommandes);
+    $this->assertEquals(94, $result->pcImmeublesTelereleve);
+    $this->assertEquals(4, $result->pcImmeublesTransfertFichiers);
   }
 
   public function testAllMethodsReturnCorrectTypes(): void
@@ -235,17 +90,6 @@ class ParcTransformerTest extends BaseTransformerTest
 
     // Act & Assert
     $this->assertInstanceOf(GetParcOutputDto::class, $this->transformer->transformGetParc($dataSourceResult));
-    $this->assertInstanceOf(ListParcInterventionsOutputDto::class, $this->transformer->transformListParcInterventions($dataSourceResult));
-    $this->assertInstanceOf(GetParcIndicatorsOutputDto::class, $this->transformer->transformGetParcIndicators($dataSourceResult));
-    $this->assertInstanceOf(GetParcCapteurOutputDto::class, $this->transformer->transformGetParcCapteur($dataSourceResult));
-    $this->assertInstanceOf(GetParcCETOutputDto::class, $this->transformer->transformGetParcCET($dataSourceResult));
-    $this->assertInstanceOf(GetParcECOutputDto::class, $this->transformer->transformGetParcEC($dataSourceResult));
-    $this->assertInstanceOf(GetParcEFOutputDto::class, $this->transformer->transformGetParcEF($dataSourceResult));
-    $this->assertInstanceOf(GetParcElectOutputDto::class, $this->transformer->transformGetParcElect($dataSourceResult));
-    $this->assertInstanceOf(GetParcGazOutputDto::class, $this->transformer->transformGetParcGaz($dataSourceResult));
-    $this->assertInstanceOf(GetParcRepartOutputDto::class, $this->transformer->transformGetParcRepart($dataSourceResult));
-    $this->assertInstanceOf(GetParcSerieConsosCompteurGeneralOutputDto::class, $this->transformer->transformGetParcSerieConsosCompteurGeneral($dataSourceResult));
-    $this->assertInstanceOf(GetParcSerieConsosEAUOutputDto::class, $this->transformer->transformGetParcSerieConsosEAU($dataSourceResult));
   }
 
   public function testMethodsAreConsistent(): void
@@ -259,9 +103,32 @@ class ParcTransformerTest extends BaseTransformerTest
     $result2 = $this->transformer->transformGetParc($dataSourceResult2);
 
     // Assert
-    $this->assertEquals($result1->pkParc, $result2->pkParc);
-    $this->assertEquals($result1->nom, $result2->nom);
-    $this->assertEquals($result1->description, $result2->description);
-    $this->assertEquals($result1->actif, $result2->actif);
+    $this->assertEquals($result1->nbImmeubles, $result2->nbImmeubles);
+    $this->assertEquals($result1->nbImmeublesTelereleve, $result2->nbImmeublesTelereleve);
+    $this->assertEquals($result1->nbImmeublesTransfertFichiers, $result2->nbImmeublesTransfertFichiers);
+    $this->assertEquals($result1->nbCompteursARelever, $result2->nbCompteursARelever);
+    $this->assertEquals($result1->nbCompteursReleves, $result2->nbCompteursReleves);
+    $this->assertEquals($result1->nbLogements, $result2->nbLogements);
+    $this->assertEquals($result1->nbCompteurs, $result2->nbCompteurs);
+    $this->assertEquals($result1->nbCompteursEC, $result2->nbCompteursEC);
+    $this->assertEquals($result1->nbCompteursEF, $result2->nbCompteursEF);
+    $this->assertEquals($result1->nbCompteursRepart, $result2->nbCompteursRepart);
+    $this->assertEquals($result1->nbCompteursCET, $result2->nbCompteursCET);
+    $this->assertEquals($result1->nbCompteursCapteur, $result2->nbCompteursCapteur);
+    $this->assertEquals($result1->nbCompteursElect, $result2->nbCompteursElect);
+    $this->assertEquals($result1->nbCompteursGaz, $result2->nbCompteursGaz);
+    $this->assertEquals($result1->nbFuites, $result2->nbFuites);
+    $this->assertEquals($result1->degresFuites, $result2->degresFuites);
+    $this->assertEquals($result1->nbDepannages, $result2->nbDepannages);
+    $this->assertEquals($result1->degresDepannages, $result2->degresDepannages);
+    $this->assertEquals($result1->nbDysfonctionnements, $result2->nbDysfonctionnements);
+    $this->assertEquals($result1->degresDysfonctionnements, $result2->degresDysfonctionnements);
+    $this->assertEquals($result1->nbAnomalies, $result2->nbAnomalies);
+    $this->assertEquals($result1->degresAnomalies, $result2->degresAnomalies);
+    $this->assertEquals($result1->nbChantiers, $result2->nbChantiers);
+    $this->assertEquals($result1->nbCompteursPoses, $result2->nbCompteursPoses);
+    $this->assertEquals($result1->nbCompteursCommandes, $result2->nbCompteursCommandes);
+    $this->assertEquals($result1->pcImmeublesTelereleve, $result2->pcImmeublesTelereleve);
+    $this->assertEquals($result1->pcImmeublesTransfertFichiers, $result2->pcImmeublesTransfertFichiers);
   }
 }
