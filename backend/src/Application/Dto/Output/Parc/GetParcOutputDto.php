@@ -7,9 +7,34 @@ namespace App\Application\Dto\Output\Parc;
 final class GetParcOutputDto
 {
   public function __construct(
-    public readonly ?int $pkParc,
-    public readonly ?string $nom,
-    public readonly ?string $description,
-    public readonly ?bool $actif
+    public readonly int $nbImmeubles,
+    public readonly int $nbImmeublesTelereleve,
+    public readonly int $nbImmeublesTransfertFichiers,
+    public readonly int $nbCompteursARelever,
+    public readonly int $nbCompteursReleves,
+    public readonly int $nbLogements,
+    public readonly int $nbCompteurs,
+    public readonly int $nbCompteursEC,
+    public readonly int $nbCompteursEF,
+    public readonly int $nbCompteursRepart,
+    public readonly int $nbCompteursCET,
+    public readonly int $nbCompteursCapteur,
+    public readonly int $nbCompteursElect,
+    public readonly int $nbCompteursGaz,
+    public readonly int $nbFuites,
+    public readonly int $degresFuites,
+    public readonly int $nbDepannages,
+    public readonly int $degresDepannages,
+    public readonly int $nbDysfonctionnements,
+    public readonly int $degresDysfonctionnements,
+    public readonly int $nbAnomalies,
+    public readonly int $degresAnomalies,
+    public readonly int $nbChantiers,
+    public readonly int $nbCompteursPoses,
+    public readonly int $nbCompteursCommandes,
+    public readonly int $pcImmeublesTelereleve,
+    public readonly int $pcImmeublesTransfertFichiers
   ) {}
 }
+
+
