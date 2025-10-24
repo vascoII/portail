@@ -11,28 +11,31 @@ use App\Infrastructure\Service\Hydrator\TicketHydrator;
 
 final class TicketSoap extends Soap implements TicketDataSourceInterface
 {
-  public function __construct(
-    SoapClient $soapClient,
-    private readonly TicketHydrator $hydrator
-  ) {
-    parent::__construct($soapClient);
-  }
+    public function __construct(
+        SoapClient $soapClient,
+        private readonly TicketHydrator $hydrator
+    ) {
+        parent::__construct($soapClient);
+    }
 
-  public function fetchListTickets(): object
-  {
-    $soapRequest = $this->hydrator->hydrateListTickets();
-    return $this->safeCall('GetTicketsIntersUser', $soapRequest);
-  }
+    public function fetchCreateTicket(CreateTicketInterInputDto $inputDto): object
+    {
+        $soapRequest = $this->hydrator->hydrateCreateTicket($inputDto);
 
-  public function fetchCreateTicket(CreateTicketInterInputDto $inputDto): object
-  {
-    $soapRequest = $this->hydrator->hydrateCreateTicket($inputDto);
-    return $this->safeCall('CreateTicket', $soapRequest);
-  }
+        return $this->safeCall('CreateTicket', $soapRequest);
+    }
 
-  public function fetchPatchTicket(GetByIdIntInputDto $inputDto): object
-  {
-    $soapRequest = $this->hydrator->hydratePatchTicket($inputDto);
-    return $this->safeCall('SetTicketStatus', $soapRequest);
-  }
+    public function fetchListTickets(): object
+    {
+        $soapRequest = $this->hydrator->hydrateListTickets();
+
+        return $this->safeCall('GetTicketsIntersUser', $soapRequest);
+    }
+
+    public function fetchPatchTicket(GetByIdIntInputDto $inputDto): object
+    {
+        $soapRequest = $this->hydrator->hydratePatchTicket($inputDto);
+
+        return $this->safeCall('SetTicketStatus', $soapRequest);
+    }
 }

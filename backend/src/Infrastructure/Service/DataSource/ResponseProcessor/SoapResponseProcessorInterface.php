@@ -6,10 +6,10 @@ namespace App\Infrastructure\Service\DataSource\ResponseProcessor;
 
 interface SoapResponseProcessorInterface
 {
-    public const GET_REPORT = "GetReport";
-    public const CREATE_GESTIONNAIRE = "CreateGestionnaire";
-
-    public function supports(string $method): bool;
+    public const CREATE_GESTIONNAIRE = 'CreateGestionnaire';
+    public const GET_REPORT = 'GetReport';
 
     public function process(string $method, mixed $response): mixed;
+
+    public function supports(string $method): bool;
 }

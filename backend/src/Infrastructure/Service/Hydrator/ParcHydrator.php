@@ -6,11 +6,10 @@ namespace App\Infrastructure\Service\Hydrator;
 
 final class ParcHydrator
 {
-  public function hydrateGetParc(): object
-  {
-    return (object) [
-      // TODO: Add specific parameters when SOAP method is known
-    ];
-  }
-
+    public function hydrateGetParc(): object
+    {
+        return (object) [
+            // TODO: Add specific parameters when SOAP method is known
+        ];
+    }
 }

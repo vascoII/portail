@@ -6,8 +6,8 @@ namespace App\Infrastructure\Service\Hydrator;
 
 use App\Application\Dto\Input\Shared\GetDetailsDepannageInpuDto;
 use App\Application\Dto\Input\Shared\GetExcelInpuDto;
-use App\Application\Dto\Input\Shared\GetReportInputDto;
 use App\Application\Dto\Input\Shared\GetReportByTokenInputDto;
+use App\Application\Dto\Input\Shared\GetReportInputDto;
 
 final class SharedHydrator
 {
@@ -27,23 +27,23 @@ final class SharedHydrator
     public function hydrateGetExcel(GetExcelInpuDto $inputDto): object
     {
         return (object) [
-            'ReportType'    => $inputDto->type,
-            'ParamsFiltres' => $inputDto->params
+            'ReportType' => $inputDto->type,
+            'ParamsFiltres' => $inputDto->params,
         ];
     }
 
     public function hydrateGetReport(GetReportInputDto $inputDto): object
     {
         return (object) [
-            'ReportType'    => $inputDto->type,
-            'ParamsFiltres' => $inputDto->params
+            'ReportType' => $inputDto->type,
+            'ParamsFiltres' => $inputDto->params,
         ];
     }
 
     public function hydrateGetReportByToken(GetReportByTokenInputDto $inputDto): object
     {
         return (object) [
-            'token'    => $inputDto->token
+            'token' => $inputDto->token,
         ];
     }
 }

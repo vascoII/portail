@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Service\DataSource;
 
-use App\Infrastructure\Service\DataSource\SoapClient;
 use App\Domain\Exception\DomainExceptionFactory;
 
 class Soap
 {
     public function __construct(
-      public readonly SoapClient $soapClient,
+        public readonly SoapClient $soapClient,
     ) {}
 
     public function safeCall(string $operation, object $request): mixed
@@ -24,5 +23,4 @@ class Soap
             ]);
         }
     }
-
 }

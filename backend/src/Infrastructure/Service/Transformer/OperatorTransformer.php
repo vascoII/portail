@@ -4,54 +4,55 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Service\Transformer;
 
-use App\Application\Dto\Output\Operator\ListOperatorsOutputDto;
 use App\Application\Dto\Output\Operator\GetOperatorOutputDto;
+use App\Application\Dto\Output\Operator\ListOperatorsOutputDto;
 use App\Application\Dto\Output\Shared\SuccessOutputDto;
-use App\Application\Service\Transformer\OperatorTransformerInterface;
-use App\Application\Factory\Shared\SharedEntityFactory;
 use App\Application\Factory\Operator\OperatorOutputFactory;
+use App\Application\Factory\Shared\SharedEntityFactory;
+use App\Application\Service\Transformer\OperatorTransformerInterface;
 
 final class OperatorTransformer implements OperatorTransformerInterface
 {
-   public function __construct(
-      private readonly SharedEntityFactory $entityFactory,
-      private readonly OperatorOutputFactory $outputFactory
-   ) {}
+    public function __construct(
+        private readonly SharedEntityFactory $entityFactory,
+        private readonly OperatorOutputFactory $outputFactory
+    ) {}
 
-   /**
-    * Transform raw response to ListOperatorsOutputDto
-    */
-   public function transformListOperators(object $dataSourceResult): ListOperatorsOutputDto
-   {
-      $operatorsRaw = is_array($rawUser = $dataSourceResult->ListeUsers->user ?? null) ?
-         $rawUser : ($rawUser ? [$rawUser] : []);
+    public function transformCreateOperationImmeuble(object $dataSourceResult): SuccessOutputDto
+    {
+        // TODO: Transform actual response when SOAP method is known
+        return new SuccessOutputDto(true);
+    }
 
-      $entities = $this->entityFactory->createManyUsersFromRawList($operatorsRaw);
+    public function transformGetOperator(object $dataSourceResult): GetOperatorOutputDto
+    {
+        $entity = $this->entityFactory->createUserFromRaw($dataSourceResult);
 
-      return $this->outputFactory->createListOperators($entities);
-   }
+        return $this->outputFactory->createGetOperator($entity);
+    }
 
-   public function transformGetOperator(object $dataSourceResult): GetOperatorOutputDto
-   {
-      $entity = $this->entityFactory->createUserFromRaw($dataSourceResult);
-      return $this->outputFactory->createGetOperator($entity);
-   }
+    public function transformGetOperatorStat(object $dataSourceResult): SuccessOutputDto
+    {
+        // TODO: Transform actual response when SOAP method is known
+        return new SuccessOutputDto(true);
+    }
 
-   public function transformGetOperatorStat(object $dataSourceResult): SuccessOutputDto
-   {
-      // TODO: Transform actual response when SOAP method is known
-      return new SuccessOutputDto(true);
-   }
+    /**
+     * Transform raw response to ListOperatorsOutputDto.
+     */
+    public function transformListOperators(object $dataSourceResult): ListOperatorsOutputDto
+    {
+        $operatorsRaw = is_array($rawUser = $dataSourceResult->ListeUsers->user ?? null)
+           ? $rawUser : ($rawUser ? [$rawUser] : []);
 
-   public function transformCreateOperationImmeuble(object $dataSourceResult): SuccessOutputDto
-   {
-      // TODO: Transform actual response when SOAP method is known
-      return new SuccessOutputDto(true);
-   }
+        $entities = $this->entityFactory->createManyUsersFromRawList($operatorsRaw);
 
-   public function transformPatchOperatorImmeuble(object $dataSourceResult): SuccessOutputDto
-   {
-      // TODO: Transform actual response when SOAP method is known
-      return new SuccessOutputDto(true);
-   }
+        return $this->outputFactory->createListOperators($entities);
+    }
+
+    public function transformPatchOperatorImmeuble(object $dataSourceResult): SuccessOutputDto
+    {
+        // TODO: Transform actual response when SOAP method is known
+        return new SuccessOutputDto(true);
+    }
 }

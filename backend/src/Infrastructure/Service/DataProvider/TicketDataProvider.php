@@ -13,26 +13,29 @@ use App\Application\Service\Transformer\TicketTransformerInterface;
 
 final class TicketDataProvider implements TicketDataProviderInterface
 {
-  public function __construct(
-    private readonly TicketDataSourceInterface $dataSource,
-    private readonly TicketTransformerInterface $transformer
-  ) {}
+    public function __construct(
+        private readonly TicketDataSourceInterface $dataSource,
+        private readonly TicketTransformerInterface $transformer
+    ) {}
 
-  public function listTicketsService(): SuccessOutputDto
-  {
-    $rawData = $this->dataSource->fetchListTickets();
-    return $this->transformer->transformListTickets($rawData);
-  }
+    public function createTicketService(CreateTicketInterInputDto $inputDto): SuccessOutputDto
+    {
+        $rawData = $this->dataSource->fetchCreateTicket($inputDto);
 
-  public function createTicketService(CreateTicketInterInputDto $inputDto): SuccessOutputDto
-  {
-    $rawData = $this->dataSource->fetchCreateTicket($inputDto);
-    return $this->transformer->transformCreateTicket($rawData);
-  }
+        return $this->transformer->transformCreateTicket($rawData);
+    }
 
-  public function patchTicketService(GetByIdIntInputDto $inputDto): SuccessOutputDto
-  {
-    $rawData = $this->dataSource->fetchPatchTicket($inputDto);
-    return $this->transformer->transformPatchTicket($rawData);
-  }
+    public function listTicketsService(): SuccessOutputDto
+    {
+        $rawData = $this->dataSource->fetchListTickets();
+
+        return $this->transformer->transformListTickets($rawData);
+    }
+
+    public function patchTicketService(GetByIdIntInputDto $inputDto): SuccessOutputDto
+    {
+        $rawData = $this->dataSource->fetchPatchTicket($inputDto);
+
+        return $this->transformer->transformPatchTicket($rawData);
+    }
 }

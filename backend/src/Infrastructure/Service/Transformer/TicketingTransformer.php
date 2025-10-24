@@ -4,79 +4,81 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Service\Transformer;
 
-use App\Application\Dto\Output\Ticketing\GetAttachmentOutputDto;
 use App\Application\Dto\Output\Ticketing\CheckTicketsInterEnabledOutputDto;
 use App\Application\Dto\Output\Ticketing\CreateTicketInterOutputDto;
+use App\Application\Dto\Output\Ticketing\GetAttachmentOutputDto;
 use App\Application\Dto\Output\Ticketing\GetNbTicketsIntersUserOutputDto;
 use App\Application\Dto\Output\Ticketing\GetTicketInterInitOutputDto;
-use App\Application\Dto\Output\Ticketing\TicketInterInitDto;
 use App\Application\Dto\Output\Ticketing\GetTicketsIntersUserOutputDto;
-use App\Application\Dto\Output\Ticketing\TicketInterDto;
 use App\Application\Dto\Output\Ticketing\SetTicketStatusOutputDto;
-use App\Application\Service\Transformer\TicketingTransformerInterface;
+use App\Application\Dto\Output\Ticketing\TicketInterDto;
+use App\Application\Dto\Output\Ticketing\TicketInterInitDto;
 use App\Application\Factory\Ticketing\TicketingEntityFactory;
 use App\Application\Factory\Ticketing\TicketingOutputFactory;
+use App\Application\Service\Transformer\TicketingTransformerInterface;
 
 final class TicketingTransformer implements TicketingTransformerInterface
 {
-   public function __construct(
-      private readonly TicketingEntityFactory $entityFactory,
-      private readonly TicketingOutputFactory $outputFactory
-   ) {}
+    public function __construct(
+        private readonly TicketingEntityFactory $entityFactory,
+        private readonly TicketingOutputFactory $outputFactory
+    ) {}
 
-   public function transformCheckTicketsInterEnabled(object $dataSourceResult): CheckTicketsInterEnabledOutputDto
-   {
-      return new CheckTicketsInterEnabledOutputDto((bool) $dataSourceResult->CheckTicketsInterEnabledResult);
-   }
+    public function transformCheckTicketsInterEnabled(object $dataSourceResult): CheckTicketsInterEnabledOutputDto
+    {
+        return new CheckTicketsInterEnabledOutputDto((bool) $dataSourceResult->CheckTicketsInterEnabledResult);
+    }
 
-   public function transformCreateTicketInter(object $dataSourceResult): CreateTicketInterOutputDto
-   {
-      return new CreateTicketInterOutputDto((int) $dataSourceResult->CreateTicketInterResult);
-   }
+    public function transformCreateTicketInter(object $dataSourceResult): CreateTicketInterOutputDto
+    {
+        return new CreateTicketInterOutputDto((int) $dataSourceResult->CreateTicketInterResult);
+    }
 
-   public function transformGetAttachment(object $dataSourceResult): GetAttachmentOutputDto
-   {
-      // Placeholder: depends on actual attachment structure; return empty list for now
-      return new GetAttachmentOutputDto([]);
-   }
+    public function transformGetAttachment(object $dataSourceResult): GetAttachmentOutputDto
+    {
+        // Placeholder: depends on actual attachment structure; return empty list for now
+        return new GetAttachmentOutputDto([]);
+    }
 
-   public function transformGetTicketInterInit(object $dataSourceResult): GetTicketInterInitOutputDto
-   {
-      $s = $dataSourceResult->GetTicketInterInitResult;
-      $dto = new TicketInterInitDto(
-         fkLogement: (int) $s->FkLogement,
-         nom: (string) $s->Nom,
-         email: (string) $s->Email,
-         telFixe: (string) $s->TelFixe,
-         telMobile: (string) $s->TelMobile
-      );
-      return new GetTicketInterInitOutputDto($dto);
-   }
+    public function transformGetNbTicketsIntersUser(object $dataSourceResult): GetNbTicketsIntersUserOutputDto
+    {
+        return new GetNbTicketsIntersUserOutputDto((int) $dataSourceResult->GetNbTicketsIntersUserResult);
+    }
 
-   public function transformGetTicketsIntersUser(object $dataSourceResult): GetTicketsIntersUserOutputDto
-   {
-      $tickets = [];
-      $src = $dataSourceResult->GetTicketsIntersUserResult;
-      if (isset($src->ListeTicketsInter) && is_array($src->ListeTicketsInter)) {
-         foreach ($src->ListeTicketsInter as $t) {
-            $tickets[] = new TicketInterDto(
-               id: (int) ($t->Id ?? 0),
-               status: (string) ($t->Status ?? ''),
-               createdAt: (string) ($t->CreatedAt ?? ''),
-               title: (string) ($t->Title ?? '')
-            );
-         }
-      }
-      return new GetTicketsIntersUserOutputDto($tickets);
-   }
+    public function transformGetTicketInterInit(object $dataSourceResult): GetTicketInterInitOutputDto
+    {
+        $s = $dataSourceResult->GetTicketInterInitResult;
+        $dto = new TicketInterInitDto(
+            fkLogement: (int) $s->FkLogement,
+            nom: (string) $s->Nom,
+            email: (string) $s->Email,
+            telFixe: (string) $s->TelFixe,
+            telMobile: (string) $s->TelMobile
+        );
 
-   public function transformSetTicketStatus(object $dataSourceResult): SetTicketStatusOutputDto
-   {
-      return new SetTicketStatusOutputDto((bool) $dataSourceResult->SetTicketStatusResult);
-   }
+        return new GetTicketInterInitOutputDto($dto);
+    }
 
-   public function transformGetNbTicketsIntersUser(object $dataSourceResult): GetNbTicketsIntersUserOutputDto
-   {
-      return new GetNbTicketsIntersUserOutputDto((int) $dataSourceResult->GetNbTicketsIntersUserResult);
-   }
+    public function transformGetTicketsIntersUser(object $dataSourceResult): GetTicketsIntersUserOutputDto
+    {
+        $tickets = [];
+        $src = $dataSourceResult->GetTicketsIntersUserResult;
+        if (isset($src->ListeTicketsInter) && is_array($src->ListeTicketsInter)) {
+            foreach ($src->ListeTicketsInter as $t) {
+                $tickets[] = new TicketInterDto(
+                    id: (int) ($t->Id ?? 0),
+                    status: (string) ($t->Status ?? ''),
+                    createdAt: (string) ($t->CreatedAt ?? ''),
+                    title: (string) ($t->Title ?? '')
+                );
+            }
+        }
+
+        return new GetTicketsIntersUserOutputDto($tickets);
+    }
+
+    public function transformSetTicketStatus(object $dataSourceResult): SetTicketStatusOutputDto
+    {
+        return new SetTicketStatusOutputDto((bool) $dataSourceResult->SetTicketStatusResult);
+    }
 }

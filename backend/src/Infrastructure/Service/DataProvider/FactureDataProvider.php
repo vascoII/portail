@@ -4,73 +4,71 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Service\DataProvider;
 
-use App\Application\Service\DataProvider\FactureDataProviderInterface;
 use App\Application\Dto\Input\Shared\GetReportInputDto;
-use App\Application\Dto\Output\Shared\GetReportOutputDto;
 use App\Application\Dto\Output\Facture\ListFacturesOutputDto;
+use App\Application\Dto\Output\Shared\GetReportOutputDto;
+use App\Application\Service\Auth\AuthServiceInterface;
+use App\Application\Service\DataProvider\FactureDataProviderInterface;
 use App\Application\Service\DataSource\FactureDataSourceInterface;
 use App\Application\Service\DataSource\SharedDataSourceInterface;
-use App\Application\Service\Auth\AuthServiceInterface;
-use App\Infrastructure\Service\Auth\AuthenticationContext;
-use App\Infrastructure\Service\Redis\RedisService;
 use App\Application\Service\Transformer\FactureTransformerInterface;
 use App\Application\Service\Transformer\SharedTransformerInterface;
-
+use App\Infrastructure\Service\Auth\AuthenticationContext;
+use App\Infrastructure\Service\Redis\RedisService;
 
 final class FactureDataProvider implements FactureDataProviderInterface
 {
+    public function __construct(
+        private RedisService $cache,
+        private FactureDataSourceInterface $factureDataSource,
+        private SharedDataSourceInterface $sharedDataSource,
+        private readonly FactureTransformerInterface $factureTransformer,
+        private readonly SharedTransformerInterface $sharedTransformer,
+        private readonly AuthServiceInterface $authService
+    ) {}
 
-  public function __construct(
-    private RedisService $cache,
-    private FactureDataSourceInterface $factureDataSource,
-    private SharedDataSourceInterface $sharedDataSource,
-    private readonly FactureTransformerInterface $factureTransformer,
-    private readonly SharedTransformerInterface $sharedTransformer,
-    private readonly AuthServiceInterface $authService
-  ) {}
+    public function generateFacturePdfService(GetReportInputDto $inputDto): GetReportOutputDto
+    {
+        $filename = 'releve-facture-' . date('Y-m-d') . '.pdf';
 
-  private function getAuthContext(): AuthenticationContext
-  {
-    return AuthenticationContext::fromAuthService($this->authService);
-  }
+        $authContext = $this->getAuthContext();
 
-  public function listFacturesService(): ListFacturesOutputDto
-  {
-    $authContext = $this->getAuthContext();
+        $cacheKey = "facture_generate:{$authContext->pkUser}:{$inputDto->params}";
+        $cachedDto = $this->cache->get($cacheKey);
 
-    $cacheKey = "facture_list:$authContext->pkUser";
-    $cachedDto = $this->cache->get($cacheKey);
+        if ($cachedDto instanceof GetReportOutputDto) {
+            return $cachedDto;
+        }
 
-    if ($cachedDto instanceof ListFacturesOutputDto) {
-      return $cachedDto;
+        $rawData = $this->sharedDataSource->fetchGetReport($inputDto);
+        $dto = $this->sharedTransformer->transformGetReport($rawData, $filename);
+
+        $this->cache->set($cacheKey, $dto);
+
+        return $dto;
     }
 
-    $rawData = $this->factureDataSource->fetchGetFactures();
-    $dto = $this->factureTransformer->transformListFactures($rawData);
+    public function listFacturesService(): ListFacturesOutputDto
+    {
+        $authContext = $this->getAuthContext();
 
-    $this->cache->set($cacheKey, $dto);
+        $cacheKey = "facture_list:{$authContext->pkUser}";
+        $cachedDto = $this->cache->get($cacheKey);
 
-    return $dto;
-  }
+        if ($cachedDto instanceof ListFacturesOutputDto) {
+            return $cachedDto;
+        }
 
-  public function generateFacturePdfService(GetReportInputDto $inputDto): GetReportOutputDto
-  {
-    $filename = 'releve-facture-' . date('Y-m-d') . '.pdf';
-    
-    $authContext = $this->getAuthContext();
+        $rawData = $this->factureDataSource->fetchGetFactures();
+        $dto = $this->factureTransformer->transformListFactures($rawData);
 
-    $cacheKey = "facture_generate:$authContext->pkUser:$inputDto->params";
-    $cachedDto = $this->cache->get($cacheKey);
+        $this->cache->set($cacheKey, $dto);
 
-    if ($cachedDto instanceof GetReportOutputDto) {
-      return $cachedDto;
+        return $dto;
     }
 
-    $rawData = $this->sharedDataSource->fetchGetReport($inputDto);
-    $dto = $this->sharedTransformer->transformGetReport($rawData, $filename);
-
-    $this->cache->set($cacheKey, $dto);
-
-    return $dto;
-  }
+    private function getAuthContext(): AuthenticationContext
+    {
+        return AuthenticationContext::fromAuthService($this->authService);
+    }
 }

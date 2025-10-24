@@ -4,115 +4,100 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Service\DataProvider;
 
-use App\Application\Service\DataProvider\DocumentDataProviderInterface;
 use App\Application\Dto\Input\Shared\GetByIdStringInputDto;
 use App\Application\Dto\Output\Shared\SuccessOutputDto;
+use App\Application\Service\DataProvider\DocumentDataProviderInterface;
 use App\Application\Service\DataSource\DocumentDataSourceInterface;
 use App\Application\Service\Transformer\SharedTransformerInterface;
 
-
 final class DocumentDataProvider implements DocumentDataProviderInterface
 {
+    public function __construct(
+        private DocumentDataSourceInterface $documentDataSource,
+        private readonly SharedTransformerInterface $sharedTransformer
+    ) {}
 
-  public function __construct(
-    private DocumentDataSourceInterface $documentDataSource,
-    private readonly SharedTransformerInterface $sharedTransformer
-  ) {}
+    public function generateImmeubleAnomaliesExcelService(GetByIdStringInputDto $inputDto): SuccessOutputDto
+    {
+        $rawData = $this->documentDataSource->fetchImmeubleAnomalies($inputDto);
 
-  public function generateImmeubleAnomaliesExcelService(GetByIdStringInputDto $inputDto): SuccessOutputDto
-  {
-    $rawData = $this->documentDataSource->fetchImmeubleAnomalies($inputDto);
-    $dto = $this->sharedTransformer->transformSuccess();
+        return $this->sharedTransformer->transformSuccess();
+    }
 
-    return $dto;
-  }
+    public function generateImmeubleDysfonctionnementsExcelService(GetByIdStringInputDto $inputDto): SuccessOutputDto
+    {
+        $rawData = $this->documentDataSource->fetchImmeubleDysfonctionnements($inputDto);
 
-  public function generateImmeubleDysfonctionnementsExcelService(GetByIdStringInputDto $inputDto): SuccessOutputDto
-  {
-    $rawData = $this->documentDataSource->fetchImmeubleDysfonctionnements($inputDto);
-    $dto = $this->sharedTransformer->transformSuccess();
+        return $this->sharedTransformer->transformSuccess();
+    }
 
-    return $dto;
-  }
+    public function generateImmeubleFuitesExcelService(GetByIdStringInputDto $inputDto): SuccessOutputDto
+    {
+        $rawData = $this->documentDataSource->fetchImmeubleFuites($inputDto);
 
-  public function generateImmeubleFuitesExcelService(GetByIdStringInputDto $inputDto): SuccessOutputDto
+        return $this->sharedTransformer->transformSuccess();
+    }
 
-  {
-    $rawData = $this->documentDataSource->fetchImmeubleFuites($inputDto);
-    $dto = $this->sharedTransformer->transformSuccess();
+    public function generateImmeubleInterventionsExcelService(GetByIdStringInputDto $inputDto): SuccessOutputDto
+    {
+        $rawData = $this->documentDataSource->fetchImmeubleInterventions($inputDto);
 
-    return $dto;
-  }
+        return $this->sharedTransformer->transformSuccess();
+    }
 
-  public function generateImmeubleInterventionsExcelService(GetByIdStringInputDto $inputDto): SuccessOutputDto
-  {
-    $rawData = $this->documentDataSource->fetchImmeubleInterventions($inputDto);
-    $dto = $this->sharedTransformer->transformSuccess();
+    public function generateLogementAnomaliesExcelService(GetByIdStringInputDto $inputDto): SuccessOutputDto
+    {
+        $rawData = $this->documentDataSource->fetchLogementAnomalies($inputDto);
 
-    return $dto;
-  }
+        return $this->sharedTransformer->transformSuccess();
+    }
 
-  public function generateLogementAnomaliesExcelService(GetByIdStringInputDto $inputDto): SuccessOutputDto
-  {
-    $rawData = $this->documentDataSource->fetchLogementAnomalies($inputDto);
-    $dto = $this->sharedTransformer->transformSuccess();
+    public function generateLogementDysfonctionnementsExcelService(GetByIdStringInputDto $inputDto): SuccessOutputDto
+    {
+        $rawData = $this->documentDataSource->fetchLogementDysfonctionnements($inputDto);
 
-    return $dto;
-  }
+        return $this->sharedTransformer->transformSuccess();
+    }
 
-  public function generateLogementDysfonctionnementsExcelService(GetByIdStringInputDto $inputDto): SuccessOutputDto
-  {
-    $rawData = $this->documentDataSource->fetchLogementDysfonctionnements($inputDto);
-    $dto = $this->sharedTransformer->transformSuccess();
+    public function generateLogementFuitesExcelService(GetByIdStringInputDto $inputDto): SuccessOutputDto
+    {
+        $rawData = $this->documentDataSource->fetchLogementFuites($inputDto);
 
-    return $dto;
-  }
+        return $this->sharedTransformer->transformSuccess();
+    }
 
-  public function generateLogementFuitesExcelService(GetByIdStringInputDto $inputDto): SuccessOutputDto
-  {
-    $rawData = $this->documentDataSource->fetchLogementFuites($inputDto);
-    $dto = $this->sharedTransformer->transformSuccess();
+    public function generateLogementInterventionsExcelService(GetByIdStringInputDto $inputDto): SuccessOutputDto
+    {
+        $rawData = $this->documentDataSource->fetchLogementInterventions($inputDto);
 
-    return $dto;
-  }
+        return $this->sharedTransformer->transformSuccess();
+    }
 
-  public function generateLogementInterventionsExcelService(GetByIdStringInputDto $inputDto): SuccessOutputDto
-  {
-    $rawData = $this->documentDataSource->fetchLogementInterventions($inputDto);
-    $dto = $this->sharedTransformer->transformSuccess();
+    public function generateOccupantAnomaliesExcelService(GetByIdStringInputDto $inputDto): SuccessOutputDto
+    {
+        $rawData = $this->documentDataSource->fetchOccupantAnomalies($inputDto);
 
-    return $dto;
-  }
+        return $this->sharedTransformer->transformSuccess();
+    }
 
-  public function generateOccupantAnomaliesExcelService(GetByIdStringInputDto $inputDto): SuccessOutputDto
-  {
-    $rawData = $this->documentDataSource->fetchOccupantAnomalies($inputDto);
-    $dto = $this->sharedTransformer->transformSuccess();
+    public function generateOccupantDysfonctionnementsExcelService(GetByIdStringInputDto $inputDto): SuccessOutputDto
+    {
+        $rawData = $this->documentDataSource->fetchOccupantDysfonctionnements($inputDto);
 
-    return $dto;
-  }
+        return $this->sharedTransformer->transformSuccess();
+    }
 
-  public function generateOccupantDysfonctionnementsExcelService(GetByIdStringInputDto $inputDto): SuccessOutputDto
-  {
-    $rawData = $this->documentDataSource->fetchOccupantDysfonctionnements($inputDto);
-    $dto = $this->sharedTransformer->transformSuccess();
+    public function generateOccupantFuitesExcelService(GetByIdStringInputDto $inputDto): SuccessOutputDto
+    {
+        $rawData = $this->documentDataSource->fetchOccupantFuites($inputDto);
 
-    return $dto;
-  }
+        return $this->sharedTransformer->transformSuccess();
+    }
 
-  public function generateOccupantFuitesExcelService(GetByIdStringInputDto $inputDto): SuccessOutputDto
-  {
-    $rawData = $this->documentDataSource->fetchOccupantFuites($inputDto);
-    $dto = $this->sharedTransformer->transformSuccess();
+    public function generateOccupantInterventionsExcelService(GetByIdStringInputDto $inputDto): SuccessOutputDto
+    {
+        $rawData = $this->documentDataSource->fetchOccupantInterventions($inputDto);
 
-    return $dto;
-  }
-
-  public function generateOccupantInterventionsExcelService(GetByIdStringInputDto $inputDto): SuccessOutputDto
-  {
-    $rawData = $this->documentDataSource->fetchOccupantInterventions($inputDto);
-    $dto = $this->sharedTransformer->transformSuccess();
-
-    return $dto;
-  }
+        return $this->sharedTransformer->transformSuccess();
+    }
 }

@@ -6,8 +6,8 @@ namespace App\Infrastructure\Service\Hydrator;
 
 use App\Application\Dto\Input\Admin\LoginFromParamInputDto;
 use App\Application\Dto\Input\Admin\ResetPasswordFromEmailInputDto;
-use App\Application\Dto\Input\Admin\UpdateEmailFromPKUserInputDto;
 use App\Application\Dto\Input\Admin\UpdateCGUFromPKUserInputDto;
+use App\Application\Dto\Input\Admin\UpdateEmailFromPKUserInputDto;
 
 final class AdminHydrator
 {
@@ -17,12 +17,20 @@ final class AdminHydrator
         private readonly string $adminSessionId
     ) {}
 
+    public function hydrateGetSousTraitants(): object
+    {
+        return (object) [
+            'SuperLoginID' => $this->superLoginID,
+            'SuperPassword' => $this->superPassword,
+        ];
+    }
+
     public function hydrateLoginFromParam(LoginFromParamInputDto $inputDto): object
     {
         return (object) [
-            'SuperLoginID'  => $this->superLoginID,
+            'SuperLoginID' => $this->superLoginID,
             'SuperPassword' => $this->superPassword,
-            'Param'         => $inputDto->param,
+            'Param' => $inputDto->param,
         ];
     }
 
@@ -30,17 +38,7 @@ final class AdminHydrator
     {
         return (object) [
             'SessionID' => $this->adminSessionId,
-            'PkUser'    => -1,
-            'Email'     => $inputDto->email,
-        ];
-    }
-
-    public function hydrateUpdateEmailFromPKUser(UpdateEmailFromPKUserInputDto $inputDto): object
-    {
-        return (object) [
-            'SuperLoginID' => $this->superLoginID,
-            'SuperPassword' => $this->superPassword,
-            'PKUser' => $inputDto->pkUser,
+            'PkUser' => -1,
             'Email' => $inputDto->email,
         ];
     }
@@ -55,12 +53,13 @@ final class AdminHydrator
         ];
     }
 
-    public function hydrateGetSousTraitants(): object
+    public function hydrateUpdateEmailFromPKUser(UpdateEmailFromPKUserInputDto $inputDto): object
     {
         return (object) [
             'SuperLoginID' => $this->superLoginID,
-            'SuperPassword' => $this->superPassword
+            'SuperPassword' => $this->superPassword,
+            'PKUser' => $inputDto->pkUser,
+            'Email' => $inputDto->email,
         ];
     }
-
 }
