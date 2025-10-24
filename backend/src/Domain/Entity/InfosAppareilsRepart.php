@@ -7,8 +7,8 @@ namespace App\Domain\Entity;
 final class InfosAppareilsRepart
 {
     /**
-    * @param InfosAppareilRepart[] $listeInfosAppareils
-    */
+     * @param InfosAppareilRepart[] $listeInfosAppareils
+     */
     public function __construct(
         public ?array $listeInfosAppareils = null, // InfosAppareilRepart[]
         public ?\DateTimeImmutable $dateR6 = null,

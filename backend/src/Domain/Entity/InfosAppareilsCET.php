@@ -6,9 +6,9 @@ namespace App\Domain\Entity;
 
 final class InfosAppareilsCET
 {
-   /**
-   * @param InfosAppareilCET[] $listeInfosAppareils
-   */
+    /**
+     * @param InfosAppareilCET[] $listeInfosAppareils
+     */
     public function __construct(
         public ?array $listeInfosAppareils = null, // InfosAppareilCET[]
         public ?\DateTimeImmutable $dateR6 = null,

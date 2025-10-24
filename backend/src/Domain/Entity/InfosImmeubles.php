@@ -6,10 +6,10 @@ namespace App\Domain\Entity;
 
 final class InfosImmeubles
 {
-  /**
-   * @param InfosImmeuble[] $listeInfosImmeubles
-   */
-  public function __construct(
-    public readonly array $listeInfosImmeubles
-  ) {}
+    /**
+     * @param InfosImmeuble[] $listeInfosImmeubles
+     */
+    public function __construct(
+        public readonly array $listeInfosImmeubles
+    ) {}
 }

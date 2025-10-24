@@ -6,13 +6,13 @@ namespace App\Domain\Entity;
 
 final class TopConsos
 {
-  /**
-   * @param Conso[] $consosGrandes
-   * @param Conso[] $consosPetites
-   */
-  public function __construct(
-    public readonly ?\DateTimeImmutable $dateReleve,
-    public readonly array $consosGrandes,
-    public readonly array $consosPetites
-  ) {}
+    /**
+     * @param Conso[] $consosGrandes
+     * @param Conso[] $consosPetites
+     */
+    public function __construct(
+        public readonly ?\DateTimeImmutable $dateReleve,
+        public readonly array $consosGrandes,
+        public readonly array $consosPetites
+    ) {}
 }

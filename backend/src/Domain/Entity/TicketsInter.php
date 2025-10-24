@@ -6,10 +6,10 @@ namespace App\Domain\Entity;
 
 final class TicketsInter
 {
-  /**
-   * @param TicketInter[] $listeTicketsInter
-   */
-  public function __construct(
-    public readonly array $listeTicketsInter
-  ) {}
+    /**
+     * @param TicketInter[] $listeTicketsInter
+     */
+    public function __construct(
+        public readonly array $listeTicketsInter
+    ) {}
 }

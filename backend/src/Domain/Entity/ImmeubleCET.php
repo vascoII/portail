@@ -6,9 +6,9 @@ namespace App\Domain\Entity;
 
 final class ImmeubleCET
 {
-   /**
-   * @param Releve[] $listeReleves
-   */
+    /**
+     * @param Releve[] $listeReleves
+     */
     public function __construct(
         public ?int $nbCompteursARelever = null,
         public ?int $nbCompteursReleves = null,
@@ -27,5 +27,5 @@ final class ImmeubleCET
         public ?Serie $serieConsosTotale1 = null,
         public ?Serie $serieConsosTotale2 = null,
         public ?Serie $serieConsosDJU = null
-     ) {}
+    ) {}
 }

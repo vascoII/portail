@@ -6,10 +6,10 @@ namespace App\Domain\Entity;
 
 final class InfosDysfonctionnement
 {
-  public function __construct(
-    public readonly ?Logement $logement,
-    public readonly ?Occupant $occupant,
-    public readonly ?Appareil $appareil,
-    public readonly ?Dysfonctionnement $dysfonctionnement
-  ) {}
+    public function __construct(
+        public readonly ?Logement $logement,
+        public readonly ?Occupant $occupant,
+        public readonly ?Appareil $appareil,
+        public readonly ?Dysfonctionnement $dysfonctionnement
+    ) {}
 }

@@ -6,8 +6,8 @@ namespace App\Domain\Entity;
 
 final class Retour
 {
-  public function __construct(
-    public readonly ?string $erreur,
-    public readonly ?string $info
-  ) {}
+    public function __construct(
+        public readonly ?string $erreur,
+        public readonly ?string $info
+    ) {}
 }

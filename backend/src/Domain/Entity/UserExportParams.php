@@ -6,8 +6,8 @@ namespace App\Domain\Entity;
 
 final class UserExportParams
 {
-  public function __construct(
-    public readonly bool $exportAll,
-    public readonly string $exportFormat
-  ) {}
+    public function __construct(
+        public readonly bool $exportAll,
+        public readonly string $exportFormat
+    ) {}
 }

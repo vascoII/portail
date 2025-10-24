@@ -6,9 +6,9 @@ namespace App\Domain\Entity;
 
 final class Anomalie
 {
-  public function __construct(
-    public readonly ?float $index,
-    public readonly ?float $conso,
-    public readonly ?string $observations
-  ) {}
+    public function __construct(
+        public readonly ?float $index,
+        public readonly ?float $conso,
+        public readonly ?string $observations
+    ) {}
 }

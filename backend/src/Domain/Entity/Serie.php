@@ -6,9 +6,9 @@ namespace App\Domain\Entity;
 
 final class Serie
 {
-  public function __construct(
-    public readonly ?int $defaultIntervalle,
-    public readonly ?string $valeursXyl,
-    public readonly ?string $annee
-  ) {}
+    public function __construct(
+        public readonly ?int $defaultIntervalle,
+        public readonly ?string $valeursXyl,
+        public readonly ?string $annee
+    ) {}
 }

@@ -6,10 +6,10 @@ namespace App\Domain\Entity;
 
 final class Factures
 {
-  /**
-   * @param Facture[] $listeFactures
-   */
-  public function __construct(
-    public readonly array $listeFactures
-  ) {}
+    /**
+     * @param Facture[] $listeFactures
+     */
+    public function __construct(
+        public readonly array $listeFactures
+    ) {}
 }

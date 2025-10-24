@@ -6,9 +6,9 @@ namespace App\Domain\Entity;
 
 final class Session
 {
-  public function __construct(
-    public readonly ?bool $connected,
-    public readonly ?string $sessionId,
-    public readonly ?User $user
-  ) {}
+    public function __construct(
+        public readonly ?bool $connected,
+        public readonly ?string $sessionId,
+        public readonly ?User $user
+    ) {}
 }

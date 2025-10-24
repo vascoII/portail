@@ -7,8 +7,8 @@ namespace App\Domain\Entity;
 final class LogementEAU
 {
     /**
-    * @param InfosAppareilEAU[] $listeInfosAppareils
-    */
+     * @param InfosAppareilEAU[] $listeInfosAppareils
+     */
     public function __construct(
         public ?int $nbFuites = null,
         public ?int $nbAnomalies = null,

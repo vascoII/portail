@@ -6,8 +6,8 @@ namespace App\Domain\Entity;
 
 final class UserLog
 {
-  public function __construct(
-    public readonly string $loginId,
-    public readonly \DateTimeImmutable $loginTime
-  ) {}
+    public function __construct(
+        public readonly string $loginId,
+        public readonly \DateTimeImmutable $loginTime
+    ) {}
 }

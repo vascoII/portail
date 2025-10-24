@@ -7,8 +7,8 @@ namespace App\Domain\Entity;
 final class InfosAppareilsElect
 {
     /**
-    * @param InfosAppareilElect[] $listeInfosAppareils
-    */
+     * @param InfosAppareilElect[] $listeInfosAppareils
+     */
     public function __construct(
         public ?array $listeInfosAppareils = null // InfosAppareilElect[]
     ) {}

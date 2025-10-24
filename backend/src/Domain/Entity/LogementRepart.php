@@ -7,9 +7,9 @@ namespace App\Domain\Entity;
 final class LogementRepart
 {
     /**
-    * @param InfosAppareilRepart[] $listeInfosAppareils
-    * @param ConsoPieceRepart[] $consosPieces
-    */
+     * @param InfosAppareilRepart[] $listeInfosAppareils
+     * @param ConsoPieceRepart[]    $consosPieces
+     */
     public function __construct(
         public ?array $listeInfosAppareils = null, // InfosAppareilRepart[]
         public ?float $totURepart = null,

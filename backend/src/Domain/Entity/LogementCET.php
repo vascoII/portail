@@ -7,8 +7,8 @@ namespace App\Domain\Entity;
 final class LogementCET
 {
     /**
-    * @param InfosAppareilCET[] $listeInfosAppareils
-    */
+     * @param InfosAppareilCET[] $listeInfosAppareils
+     */
     public function __construct(
         public ?array $listeInfosAppareils = null, // InfosAppareilCET[]
         public ?float $totURepart = null,

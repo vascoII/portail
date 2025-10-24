@@ -6,9 +6,9 @@ namespace App\Domain\Entity;
 
 final class IndexReleve
 {
-  public function __construct(
-    public readonly ?\DateTimeImmutable $dateReleve,
-    public readonly ?float $index,
-    public readonly ?float $conso
-  ) {}
+    public function __construct(
+        public readonly ?\DateTimeImmutable $dateReleve,
+        public readonly ?float $index,
+        public readonly ?float $conso
+    ) {}
 }

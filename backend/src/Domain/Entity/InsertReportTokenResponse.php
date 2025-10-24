@@ -6,7 +6,7 @@ namespace App\Domain\Entity;
 
 final class InsertReportTokenResponse
 {
-  public function __construct(
-    public readonly ?string $insertReportTokenResult
-  ) {}
+    public function __construct(
+        public readonly ?string $insertReportTokenResult
+    ) {}
 }

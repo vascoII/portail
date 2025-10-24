@@ -6,11 +6,11 @@ namespace App\Domain\Entity;
 
 final class DetailsDepannage
 {
-  /**
-   * @param Depannage[] $listeDepannagesOccupant
-   */
-  public function __construct(
-    public readonly ?InfosDepannage $infosDepannage,
-    public readonly array $listeDepannagesOccupant
-  ) {}
+    /**
+     * @param Depannage[] $listeDepannagesOccupant
+     */
+    public function __construct(
+        public readonly ?InfosDepannage $infosDepannage,
+        public readonly array $listeDepannagesOccupant
+    ) {}
 }
