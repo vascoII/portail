@@ -4,27 +4,28 @@ declare(strict_types=1);
 
 namespace App\Http\Action\Immeuble;
 
+use App\Application\UseCase\Immeuble\ListImmeublesIndicatorsUseCase;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
-use App\Application\UseCase\Immeuble\ListImmeublesIndicatorsUseCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpKernel\Attribute\AsController;
+use Symfony\Component\Routing\Annotation\Route;
 
 #[AsController]
 #[Route(path: '/immeubles_indicators', name: 'immeuble_indicators_list', methods: ['GET'])]
 final class ListImmeublesIndicatorsAction extends AbstractAction implements ActionInterface
 {
-  public function __construct(
-    private readonly ResponderInterface $responder,
-    private readonly ListImmeublesIndicatorsUseCase $useCase
-  ) {}
+    public function __construct(
+        private readonly ResponderInterface $responder,
+        private readonly ListImmeublesIndicatorsUseCase $useCase
+    ) {}
 
-  public function __invoke(Request $request, array $args = []): Response
-  {
-    $output = $this->useCase->execute();
-    return $this->responder->respond($output);
-  }
+    public function __invoke(Request $request, array $args = []): Response
+    {
+        $output = $this->useCase->execute();
+
+        return $this->responder->respond($output);
+    }
 }

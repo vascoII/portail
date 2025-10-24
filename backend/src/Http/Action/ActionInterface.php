@@ -9,5 +9,5 @@ use Symfony\Component\HttpFoundation\Response;
 
 interface ActionInterface
 {
-  public function __invoke(Request $request, array $args = []): Response;
+    public function __invoke(Request $request, array $args = []): Response;
 }

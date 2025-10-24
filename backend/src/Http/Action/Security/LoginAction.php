@@ -4,30 +4,31 @@ declare(strict_types=1);
 
 namespace App\Http\Action\Security;
 
+use App\Application\Factory\Security\SecurityInputFactory;
+use App\Application\UseCase\Security\LoginUseCase;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
-use App\Application\UseCase\Security\LoginUseCase;
-use App\Application\Factory\Security\SecurityInputFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpKernel\Attribute\AsController;
+use Symfony\Component\Routing\Annotation\Route;
 
 #[AsController]
 #[Route(path: '/security/login', name: 'security_login', methods: ['POST'])]
 final class LoginAction extends AbstractAction implements ActionInterface
 {
-  public function __construct(
-    private readonly ResponderInterface $responder,
-    private readonly LoginUseCase $useCase,
-    private readonly SecurityInputFactory $inputFactory
-  ) {}
+    public function __construct(
+        private readonly ResponderInterface $responder,
+        private readonly LoginUseCase $useCase,
+        private readonly SecurityInputFactory $inputFactory
+    ) {}
 
-  public function __invoke(Request $request, array $args = []): Response
-  {
-    $input = $this->inputFactory->createLoginFromRequest($request);
-    $output = $this->useCase->execute($input);
-    return $this->responder->respond($output);
-  }
+    public function __invoke(Request $request, array $args = []): Response
+    {
+        $input = $this->inputFactory->createLoginFromRequest($request);
+        $output = $this->useCase->execute($input);
+
+        return $this->responder->respond($output);
+    }
 }

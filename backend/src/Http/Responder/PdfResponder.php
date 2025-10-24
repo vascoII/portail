@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Http\Responder;
 
 use Psr\Log\LoggerInterface;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 final class PdfResponder implements ResponderInterface
 {
@@ -20,7 +20,7 @@ final class PdfResponder implements ResponderInterface
 
         $response = new Response($payload->data);
         $response->headers->set('Content-Type', 'application/pdf');
-        $response->headers->set('Content-Disposition', 'inline; filename='. $payload->filename);
+        $response->headers->set('Content-Disposition', 'inline; filename=' . $payload->filename);
         $response->headers->set('Content-Transfer-Encoding', 'binary');
         $response->headers->set('Expires', '0');
         $response->headers->set('Cache-Control', 'no-cache');
