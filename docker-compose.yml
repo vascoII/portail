@@ -2,7 +2,7 @@
 
 services:
   backend:
-    image: php:8.2-fpm
+    image: php:8.4-fpm
     container_name: backend
     working_dir: /var/www/backend
     volumes:
