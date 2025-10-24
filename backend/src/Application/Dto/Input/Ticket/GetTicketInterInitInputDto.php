@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Application\Dto\Input\Ticketing;
+namespace App\Application\Dto\Input\Ticket;
 
 final class GetTicketInterInitInputDto 
 {

@@ -5,37 +5,37 @@ declare(strict_types=1);
 namespace App\Infrastructure\Service\Hydrator;
 
 use App\Application\Dto\Input\Shared\GetByIdIntInputDto;
+use App\Application\Dto\Input\Ticket\CreateTicketInterInputDto;
 
 final class TicketHydrator
 {
   public function hydrateListTickets(): object
   {
     return (object) [
-      // TODO: Add specific parameters when SOAP method is known
+      'SHOWALL' => null
     ];
   }
 
-  public function hydrateGetTicket(GetByIdIntInputDto $inputDto): object
+  public function hydrateCreateTicket(CreateTicketInterInputDto $inputDto): object
   {
     return (object) [
-      'Id' => $inputDto->id,
-      // TODO: Add specific parameters when SOAP method is known
-    ];
-  }
-
-  public function hydrateCreateTicket(GetByIdIntInputDto $inputDto): object
-  {
-    return (object) [
-      'Id' => $inputDto->id,
-      // TODO: Add specific parameters when SOAP method is known
+      'PkLogement' => $inputDto->pkLogement,
+      'Nom'        => $inputDto->name,
+      'Email'      => $inputDto->email,
+      'TelFixe'    => $inputDto->phone,
+      'TelMobile'  => $inputDto->mobile,
+      'Objet'      => $inputDto->objet,
+      'MotifLibre' => $inputDto->message,
+      'AttachmentName' => $inputDto->attachmentName,
+      'AttachmentContent' => $inputDto->attachmentContent,
     ];
   }
 
   public function hydratePatchTicket(GetByIdIntInputDto $inputDto): object
   {
     return (object) [
-      'Id' => $inputDto->id,
-      // TODO: Add specific parameters when SOAP method is known
+      'pkticket' => $inputDto->id,
+      'statut' => 'Clos'
     ];
   }
 }

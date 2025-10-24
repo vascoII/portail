@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Application\Dto\Input\Admin;
+namespace App\Application\Dto\Input\Security;
 
 final class UpdateEmailFromPKUserInputDto
 {
