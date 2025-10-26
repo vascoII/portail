@@ -69,6 +69,15 @@ final class SecuritySoap extends Soap implements SecurityDataSourceInterface
         return $this->safeCall('UpdatePassword', $soapRequest);
     }
 
+    public function fetchPatchCgu(): object
+    {
+        $authContext = $this->getAuthContext();
+        $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
+        $soapRequest = $this->hydrator->hydratePatchCgu();
+
+        return $this->safeCall('', $soapRequest);
+    }
+
     private function getAuthContext(): AuthenticationContext
     {
         return AuthenticationContext::fromAuthService($this->authService);

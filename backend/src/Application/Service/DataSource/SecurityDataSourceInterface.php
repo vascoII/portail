@@ -19,4 +19,5 @@ interface SecurityDataSourceInterface
   public function fetchResetPassword(ResetPasswordInputDto $inputDto): object;
   public function fetchResetPasswordFromPKUser(ResetPasswordFromPKUserInputDto $inputDto): object;
   public function fetchUpdatePassword(UpdatePasswordInputDto $inputDto): object;
+  public function fetchPatchCgu(): object;
 }

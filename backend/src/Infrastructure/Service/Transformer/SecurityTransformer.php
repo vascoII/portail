@@ -12,6 +12,7 @@ use App\Application\Dto\Output\Security\ResetPasswordFromPKUserOutputDto;
 use App\Application\Dto\Output\Security\ResetPasswordOutputDto;
 use App\Application\Dto\Output\Security\UpdatePasswordOutputDto;
 use App\Application\Dto\Output\Shared\SessionDto;
+use App\Application\Dto\Output\Shared\SuccessOutputDto;
 use App\Application\Factory\Security\SecurityOutputFactory;
 use App\Application\Factory\Shared\SharedEntityFactory;
 use App\Application\Service\Transformer\SecurityTransformerInterface;
@@ -110,5 +111,13 @@ final class SecurityTransformer implements SecurityTransformerInterface
         $updated = (bool) $dataSourceResult->UpdatePasswordResult;
 
         return new UpdatePasswordOutputDto($updated);
+    }
+
+    /**
+     * Transform raw response to PatchCguOutputDto.
+     */
+    public function transformPatchCgu(object $dataSourceResult): SuccessOutputDto
+    {
+        return new SuccessOutputDto(true);
     }
 }

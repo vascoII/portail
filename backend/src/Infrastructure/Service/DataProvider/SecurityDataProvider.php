@@ -14,6 +14,7 @@ use App\Application\Dto\Output\Security\LogoutOutputDto;
 use App\Application\Dto\Output\Security\ResetPasswordFromPKUserOutputDto;
 use App\Application\Dto\Output\Security\ResetPasswordOutputDto;
 use App\Application\Dto\Output\Security\UpdatePasswordOutputDto;
+use App\Application\Dto\Output\Shared\SuccessOutputDto;
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Application\Service\DataProvider\SecurityDataProviderInterface;
 use App\Application\Service\DataSource\SecurityDataSourceInterface;
@@ -31,6 +32,12 @@ final class SecurityDataProvider implements SecurityDataProviderInterface
         private readonly JwtServiceInterface $serviceJwt,
         private readonly RedisServiceInterface $serviceRedis
     ) {}
+
+    public function patchCguService(): SuccessOutputDto
+    {
+        $rawData = $this->securityDataSource->fetchPatchCgu();
+        return $this->securityTransformer->transformPatchCgu($rawData);
+    }
 
     public function loginFromParamService(LoginFromParamInputDto $inputDto): LoginOutputDto
     {

@@ -12,6 +12,7 @@ use App\Application\Dto\Output\Security\ResetPasswordOutputDto;
 use App\Application\Dto\Output\Security\ResetPasswordFromPKUserOutputDto;
 use App\Application\Dto\Output\Security\UpdatePasswordOutputDto;
 use App\Application\Dto\Output\Security\LogoutOutputDto;
+use App\Application\Dto\Output\Shared\SuccessOutputDto;
 
 interface SecurityTransformerInterface
 {
@@ -64,4 +65,10 @@ interface SecurityTransformerInterface
 
 
    public function transformToLoginOutput(SessionDto $sessionDto, string $token): LoginOutputDto;
+
+
+   /**
+    * Transform raw response to PatchCguOutputDto
+    */
+   public function transformPatchCgu(object $dataSourceResult): SuccessOutputDto;
 }
