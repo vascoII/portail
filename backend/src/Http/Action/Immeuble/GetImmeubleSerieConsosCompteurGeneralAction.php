@@ -8,6 +8,7 @@ use App\Application\Factory\Shared\SharedInputFactory;
 use App\Application\UseCase\Immeuble\GetImmeubleSerieConsosCompteurGeneralUseCase;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
+use App\Http\Attribute\RequireUserType;
 use App\Http\Responder\ResponderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,6 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 #[AsController]
 #[Route(path: '/immeuble_serie_consos_compteur_general/{id}', name: 'immeuble_serie_comsos_compteur_general_get', methods: ['GET'])]
+#[RequireUserType(['C', 'G'])] // Seuls Client et Gestionnaire
 final class GetImmeubleSerieConsosCompteurGeneralAction extends AbstractAction implements ActionInterface
 {
     public function __construct(

@@ -8,6 +8,7 @@ use App\Application\Factory\Shared\SharedInputFactory;
 use App\Application\UseCase\Immeuble\ListInterventionsByImmeubleUseCase;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
+use App\Http\Attribute\RequireUserType;
 use App\Http\Responder\ResponderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,6 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 #[AsController]
 #[Route(path: '/immeuble/{immeubleId}/interventions', name: 'immeuble_interventions_list', methods: ['GET'])]
+#[RequireUserType(['C', 'G'])] // Seuls Client et Gestionnaire
 final class ListInterventionsByImmeubleAction extends AbstractAction implements ActionInterface
 {
     public function __construct(

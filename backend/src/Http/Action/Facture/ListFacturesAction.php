@@ -7,6 +7,7 @@ namespace App\Http\Action\Facture;
 use App\Application\UseCase\Facture\ListFacturesUseCase;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
+use App\Http\Attribute\RequireUserType;
 use App\Http\Responder\ResponderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,6 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 #[AsController]
 #[Route(path: '/factures', name: 'facture_list', methods: ['GET'])]
+#[RequireUserType(['C', 'G'])] // Seuls Client et Gestionnaire
 final class ListFacturesAction extends AbstractAction implements ActionInterface
 {
     public function __construct(
@@ -25,7 +27,6 @@ final class ListFacturesAction extends AbstractAction implements ActionInterface
     public function __invoke(Request $request, array $args = []): Response
     {
         $output = $this->useCase->execute();
-
         return $this->responder->respond($output);
     }
 }

@@ -7,6 +7,7 @@ namespace App\Http\Action\Ticket;
 use App\Application\UseCase\Ticket\ListTicketsUseCase;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
+use App\Http\Attribute\RequireUserType;
 use App\Http\Responder\ResponderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,6 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 #[AsController]
 #[Route(path: '/tickets', name: 'ticket_list', methods: ['GET'])]
+#[RequireUserType(['C', 'G'])] // Seuls Client et Gestionnaire
 final class ListTicketsAction extends AbstractAction implements ActionInterface
 {
     public function __construct(

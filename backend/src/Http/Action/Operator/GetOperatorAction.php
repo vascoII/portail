@@ -8,6 +8,7 @@ use App\Application\Factory\Operator\OperatorInputFactory;
 use App\Application\UseCase\Operator\GetOperatorUseCase;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
+use App\Http\Attribute\RequireUserType;
 use App\Http\Responder\ResponderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,6 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 #[AsController]
 #[Route(path: '/operator/{operatorId}', name: 'operator_get', methods: ['GET'])]
+#[RequireUserType(['C'])] // Seuls Client
 final class GetOperatorAction extends AbstractAction implements ActionInterface
 {
     public function __construct(

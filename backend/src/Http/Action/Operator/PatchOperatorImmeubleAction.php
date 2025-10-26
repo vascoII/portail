@@ -8,6 +8,7 @@ use App\Application\Factory\Operator\OperatorInputFactory;
 use App\Application\UseCase\Operator\PatchOperatorImmeubleUseCase;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
+use App\Http\Attribute\RequireUserType;
 use App\Http\Responder\ResponderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,6 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 #[AsController]
 #[Route(path: '/operator/{id}/immeuble', name: 'operator_patch_immeuble', methods: ['PATCH'])]
+#[RequireUserType(['C'])] // Seuls Client
 final class PatchOperatorImmeubleAction extends AbstractAction implements ActionInterface
 {
     public function __construct(

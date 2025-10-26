@@ -8,6 +8,7 @@ use App\Application\Factory\Ticket\TicketInputFactory;
 use App\Application\UseCase\Ticket\PatchTicketUseCase;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
+use App\Http\Attribute\RequireUserType;
 use App\Http\Responder\ResponderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,6 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 #[AsController]
 #[Route(path: '/ticket/{id}', name: 'ticket_patch', methods: ['PATCH'])]
+#[RequireUserType(['C', 'G'])] // Seuls Client et Gestionnaire
 final class PatchTicketAction extends AbstractAction implements ActionInterface
 {
     public function __construct(

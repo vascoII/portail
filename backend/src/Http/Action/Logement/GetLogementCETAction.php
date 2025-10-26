@@ -8,6 +8,7 @@ use App\Application\Factory\Shared\SharedInputFactory;
 use App\Application\UseCase\Logement\GetLogementCETUseCase;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
+use App\Http\Attribute\RequireUserType;
 use App\Http\Responder\ResponderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,6 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 #[AsController]
 #[Route(path: '/logement_cet/{id}', name: 'logement_cet_get', methods: ['GET'])]
+#[RequireUserType(['C', 'G'])] // Seuls Client et Gestionnaire
 final class GetLogementCETAction extends AbstractAction implements ActionInterface
 {
     public function __construct(

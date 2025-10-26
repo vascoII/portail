@@ -6,6 +6,12 @@
 parameters:
 
 services:
+  App\Http\Middleware\UserTypeAuthorizationMiddleware:
+    tags:
+      - { name: kernel.event_listener, event: kernel.request, priority: 10 }
+    arguments:
+      $authorizationService: '@App\Application\Service\AuthorizationService'
+      $securityLogger: "@monolog.logger.security"
   # default configuration for services in *this* file
   _defaults:
     autowire: true # Automatically injects dependencies in your services.
@@ -236,7 +242,6 @@ services:
     resource: "../src/Http/Action/Ticket/*"
     arguments:
       $responder: '@App\Http\Responder\JsonResponder'
-
 
   #AdminHydrator
   App\Infrastructure\Service\Hydrator\AdminHydrator:
