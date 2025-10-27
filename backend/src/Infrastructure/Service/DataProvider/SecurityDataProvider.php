@@ -9,6 +9,7 @@ use App\Application\Dto\Input\Security\LoginInputDto;
 use App\Application\Dto\Input\Security\ResetOrCreateInputDto;
 use App\Application\Dto\Input\Security\ResetPasswordInputDto;
 use App\Application\Dto\Input\Security\UpdatePasswordInputDto;
+use App\Application\Dto\Input\Security\PatchEmailInputDto;
 use App\Application\Dto\Output\Security\LoginOutputDto;
 use App\Application\Dto\Output\Security\LogoutOutputDto;
 use App\Application\Dto\Output\Security\ResetPasswordFromPKUserOutputDto;
@@ -99,6 +100,13 @@ final class SecurityDataProvider implements SecurityDataProviderInterface
         $rawData = $this->securityDataSource->fetchUpdatePassword($inputDto);
 
         return $this->securityTransformer->transformUpdatePassword($rawData);
+    }
+
+    public function patchEmailService(PatchEmailInputDto $inputDto): SuccessOutputDto
+    {
+        $rawData = $this->securityDataSource->fetchUpdateEmailFromPKUser($inputDto);
+
+        return $this->securityTransformer->transformUpdateEmail($rawData);
     }
 
     private function getAuthContext(): AuthenticationContext

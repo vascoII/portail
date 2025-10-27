@@ -53,9 +53,4 @@ final class SecurityHydrator
             'Password' => $inputDto->password,
         ];
     }
-
-    public function hydratePatchCgu(): object
-    {
-        return (object) [];
-    }
 }

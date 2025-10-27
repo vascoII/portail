@@ -9,6 +9,7 @@ use App\Application\Dto\Input\Security\LoginFromParamInputDto;
 use App\Application\Dto\Input\Security\ResetPasswordInputDto;
 use App\Application\Dto\Input\Security\ResetPasswordFromPKUserInputDto;
 use App\Application\Dto\Input\Security\UpdatePasswordInputDto;
+use App\Application\Dto\Input\Security\PatchEmailInputDto;
 
 interface SecurityDataSourceInterface
 {
@@ -20,4 +21,5 @@ interface SecurityDataSourceInterface
   public function fetchResetPasswordFromPKUser(ResetPasswordFromPKUserInputDto $inputDto): object;
   public function fetchUpdatePassword(UpdatePasswordInputDto $inputDto): object;
   public function fetchPatchCgu(): object;
+  public function fetchUpdateEmailFromPKUser(PatchEmailInputDto $inputDto): object;
 }

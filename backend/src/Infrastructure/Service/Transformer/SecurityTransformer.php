@@ -120,4 +120,12 @@ final class SecurityTransformer implements SecurityTransformerInterface
     {
         return new SuccessOutputDto(true);
     }
+
+    /**
+     * Transform raw response to UpdateEmailOutputDto.
+     */
+    public function transformUpdateEmail(object $dataSourceResult): SuccessOutputDto
+    {
+        return new SuccessOutputDto(true);
+    }
 }

@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace App\Application\Dto\Input\Security;
 
-final class UpdatePasswordInputDto
+final class PatchEmailInputDto
 {
   public function __construct(
-    public readonly string $pkUser,
-    public readonly string $password
+    public readonly string $email
   ) {}
 }

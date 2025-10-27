@@ -71,4 +71,9 @@ interface SecurityTransformerInterface
     * Transform raw response to PatchCguOutputDto
     */
    public function transformPatchCgu(object $dataSourceResult): SuccessOutputDto;
+
+   /**
+    * Transform raw response to UpdateEmailOutputDto
+    */
+   public function transformUpdateEmail(object $dataSourceResult): SuccessOutputDto;
 }

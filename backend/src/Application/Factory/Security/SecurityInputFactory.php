@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Application\Dto\Input\Security\CreateInputDto;
 use App\Application\Dto\Input\Security\LoginInputDto;
 use App\Application\Dto\Input\Security\LoginFromParamInputDto;
+use App\Application\Dto\Input\Security\PatchEmailInputDto;
 use App\Application\Dto\Input\Security\LogoutInputDto;
 use App\Application\Dto\Input\Security\ResetOrCreateInputDto;
 use App\Application\Dto\Input\Security\ResetPasswordFromPKUserInputDto;
@@ -76,6 +77,24 @@ final class SecurityInputFactory
     return new UpdatePasswordInputDto(
       (string) $request->request->get('pkUser'),
       (string) $request->request->get('password')
+    );
+  }
+
+  public function createUpdateEmailFromPKUserFromRequest(Request $request): PatchEmailInputDto
+  {
+    $raw = (string) $request->getContent();
+    $data = json_decode($raw, true);
+
+    if (!is_array($data)) {
+      $data = [];
+    }
+
+    $email = array_key_exists('email', $data) && $data['email'] !== null
+      ? (string) $data['email']
+      : '';
+
+    return new PatchEmailInputDto(
+      $email
     );
   }
 }

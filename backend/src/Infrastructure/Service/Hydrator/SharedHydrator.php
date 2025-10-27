@@ -46,4 +46,24 @@ final class SharedHydrator
             'token' => $inputDto->token,
         ];
     }
+
+    public function hydratePatchCgu(int $pkUser): object
+    {
+        return (object) [
+            'SuperLoginID' => $this->superLoginID,
+            'SuperPassword' => $this->superPassword,
+            'PKUser' => $pkUser,
+            'CGU' => "O",
+        ];
+    }
+
+    public function hydrateUpdateEmailFromPKUser(int $pkUser, string $email): object
+    {
+        return (object) [
+            'SuperLoginID' => $this->superLoginID,
+            'SuperPassword' => $this->superPassword,
+            'PKUser' => $pkUser,
+            'Email' => $email,
+        ];
+    }
 }

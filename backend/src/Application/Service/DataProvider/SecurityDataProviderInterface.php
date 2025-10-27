@@ -16,6 +16,7 @@ use App\Application\Dto\Output\Security\LogoutOutputDto;
 use App\Application\Dto\Input\Security\ResetOrCreateInputDto;
 use App\Application\Dto\Output\Shared\SuccessOutputDto;
 use Symfony\Component\HttpFoundation\Request;
+use App\Application\Dto\Input\Security\PatchEmailInputDto;
 
 interface SecurityDataProviderInterface
 {
@@ -27,4 +28,5 @@ interface SecurityDataProviderInterface
   public function resetPasswordService(ResetPasswordInputDto $inputDto): ResetPasswordOutputDto;
   public function loginService(LoginInputDto $inputDto): LoginOutputDto;
   public function patchCguService(): SuccessOutputDto;
+  public function patchEmailService(PatchEmailInputDto $inputDto): SuccessOutputDto;
 }

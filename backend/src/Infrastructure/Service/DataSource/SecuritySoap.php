@@ -6,6 +6,7 @@ namespace App\Infrastructure\Service\DataSource;
 
 use App\Application\Dto\Input\Security\LoginFromParamInputDto;
 use App\Application\Dto\Input\Security\LoginInputDto;
+use App\Application\Dto\Input\Security\PatchEmailInputDto;
 use App\Application\Dto\Input\Security\ResetPasswordFromPKUserInputDto;
 use App\Application\Dto\Input\Security\ResetPasswordInputDto;
 use App\Application\Dto\Input\Security\UpdatePasswordInputDto;
@@ -13,12 +14,14 @@ use App\Application\Service\Auth\AuthServiceInterface;
 use App\Application\Service\DataSource\SecurityDataSourceInterface;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
 use App\Infrastructure\Service\Hydrator\SecurityHydrator;
+use App\Infrastructure\Service\Hydrator\SharedHydrator;
 
 final class SecuritySoap extends Soap implements SecurityDataSourceInterface
 {
     public function __construct(
         SoapClient $soapClient,
         private readonly SecurityHydrator $hydrator,
+        private readonly SharedHydrator $sharedHydrator,
         private readonly AuthServiceInterface $authService
     ) {
         parent::__construct($soapClient);
@@ -72,10 +75,20 @@ final class SecuritySoap extends Soap implements SecurityDataSourceInterface
     public function fetchPatchCgu(): object
     {
         $authContext = $this->getAuthContext();
-        $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-        $soapRequest = $this->hydrator->hydratePatchCgu();
+        $soapRequest = $this->sharedHydrator->hydratePatchCgu($authContext->pkUser);
 
-        return $this->safeCall('', $soapRequest);
+        return $this->safeCall('UpdateCGUFromPKUser', $soapRequest);
+    }
+
+    public function fetchUpdateEmailFromPKUser(PatchEmailInputDto $inputDto): object
+    {
+        $authContext = $this->getAuthContext();
+        $soapRequest = $this->sharedHydrator->hydrateUpdateEmailFromPKUser(
+            $authContext->pkUser,
+            $inputDto->email
+        );
+
+        return $this->safeCall('UpdateEmailFromPKUser', $soapRequest);
     }
 
     private function getAuthContext(): AuthenticationContext
