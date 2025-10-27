@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Action\Document\Pdf;
 
+use App\Application\Factory\Document\DocumentInputFactory;
 use App\Application\UseCase\Document\GenerateDocumentPdfUseCase;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
@@ -19,14 +20,14 @@ final class GenerateInterventionPdfAction extends AbstractAction implements Acti
 {
   public function __construct(
     private readonly ResponderInterface $responder,
-    private readonly GenerateDocumentPdfUseCase $useCase
+    private readonly GenerateDocumentPdfUseCase $useCase,
+    private readonly DocumentInputFactory $inputFactory
   ) {}
 
   public function __invoke(Request $request, array $args = []): Response
   {
-    $workOrderNumber = $request->attributes->get('workOrderNumber');
-
-    $output = $this->useCase->execute('INTERVENTION', ['WORKORDERNUMBER' => $workOrderNumber]);
+    $input = $this->inputFactory->createInterventionFromRequest($request);
+    $output = $this->useCase->execute('INTERVENTION', $input);
 
     return $this->responder->respond($output);
   }

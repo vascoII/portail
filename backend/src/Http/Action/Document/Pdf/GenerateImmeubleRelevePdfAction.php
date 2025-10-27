@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Action\Document\Pdf;
 
+use App\Application\Factory\Document\DocumentInputFactory;
 use App\Application\UseCase\Document\GenerateDocumentPdfUseCase;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
@@ -19,27 +20,23 @@ final class GenerateImmeubleRelevePdfAction extends AbstractAction implements Ac
 {
   public function __construct(
     private readonly ResponderInterface $responder,
-    private readonly GenerateDocumentPdfUseCase $useCase
+    private readonly GenerateDocumentPdfUseCase $useCase,
+    private readonly DocumentInputFactory $inputFactory
   ) {}
 
   public function __invoke(Request $request, array $args = []): Response
   {
-    $pkImmeuble = $request->attributes->get('pkImmeuble');
-    $date = $request->query->get('date', '');
-    $energie = $request->query->get('energie', 'EAU');
+    $input = $this->inputFactory->createImmeubleReleveFromRequest($request);
 
     // Déterminer le ReportType selon l'énergie
-    $reportType = match ($energie) {
+    $reportType = match ($input->energie) {
       'EAU' => 'RELEVE_EAU_IMMEUBLE',
       'REPART' => 'RELEVE_REPART_IMMEUBLE',
       'CET' => 'RELEVE_CET_IMMEUBLE',
       default => 'RELEVE_EAU_IMMEUBLE'
     };
 
-    $output = $this->useCase->execute($reportType, [
-      'PKIMMEUBLE' => $pkImmeuble,
-      'DATE' => $date
-    ]);
+    $output = $this->useCase->execute($reportType, $input);
 
     return $this->responder->respond($output);
   }

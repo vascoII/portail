@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Action\Document\Excel;
 
+use App\Application\Factory\Document\DocumentInputFactory;
 use App\Application\UseCase\Document\GenerateDocumentExcelUseCase;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
@@ -19,20 +20,14 @@ final class GenerateInterventionsExcelAction extends AbstractAction implements A
 {
   public function __construct(
     private readonly ResponderInterface $responder,
-    private readonly GenerateDocumentExcelUseCase $useCase
+    private readonly GenerateDocumentExcelUseCase $useCase,
+    private readonly DocumentInputFactory $inputFactory
   ) {}
 
   public function __invoke(Request $request, array $args = []): Response
   {
-    $pkImmeuble = $request->query->get('pkImmeuble', '');
-    $pkLogement = $request->query->get('pkLogement');
-    $pkOccupant = $request->query->get('pkOccupant');
-
-    $params = ['PKIMMEUBLE' => $pkImmeuble];
-    if ($pkLogement) $params['PKLOGEMENT'] = $pkLogement;
-    if ($pkOccupant) $params['PKOCCUPANT'] = $pkOccupant;
-
-    $output = $this->useCase->execute('GetInfosDepannagesByImmeuble', $params);
+    $input = $this->inputFactory->createInterventionsFromRequest($request);
+    $output = $this->useCase->execute('GetInfosDepannagesByImmeuble', $input);
 
     return $this->responder->respond($output);
   }

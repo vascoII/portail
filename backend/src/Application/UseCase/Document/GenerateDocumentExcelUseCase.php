@@ -17,11 +17,32 @@ final class GenerateDocumentExcelUseCase
 
   /**
    * @param string $reportType Type de rapport (ex: GetInfosAnomaliesByImmeuble, etc.)
-   * @param array<string, string> $paramsFiltres Paramètres pour le filtrage
+   * @param mixed $inputDto Input DTO (any of the Generate*DocumentInputDto)
    * @return SoapOutputDto
    */
-  public function execute(string $reportType, array $paramsFiltres): SoapOutputDto
+  public function execute(string $reportType, mixed $inputDto): SoapOutputDto
   {
+    // Extract params array from inputDto based on its type
+    $paramsFiltres = $this->extractParamsFromInput($reportType, $inputDto);
+
     return $this->documentDataProvider->generateDocumentService('EXCEL', $reportType, $paramsFiltres);
+  }
+
+  private function extractParamsFromInput(string $reportType, mixed $inputDto): array
+  {
+    return match ($reportType) {
+      'GetInfosAnomaliesByImmeuble', 'GetInfosFuitesByImmeuble' => array_filter([
+        'PKIMMEUBLE' => $inputDto->pkImmeuble,
+        'PKLOGEMENT' => $inputDto->pkLogement,
+        'PKOCCUPANT' => $inputDto->pkOccupant,
+        'PKAPPAREIL' => $inputDto->pkAppareil
+      ], fn($val) => $val !== null),
+      'GetInfosDepannagesByImmeuble', 'GetInfosDysfonctionnementsByImmeuble' => array_filter([
+        'PKIMMEUBLE' => $inputDto->pkImmeuble,
+        'PKLOGEMENT' => $inputDto->pkLogement,
+        'PKOCCUPANT' => $inputDto->pkOccupant
+      ], fn($val) => $val !== null),
+      default => []
+    };
   }
 }

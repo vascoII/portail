@@ -16,12 +16,53 @@ final class GenerateDocumentPdfUseCase
   ) {}
 
   /**
-   * @param string $reportType Type de rapport (ex: FACTURE, RELEVE_EAU_IMMEUBLE, etc.)
-   * @param array<string, string> $paramsFiltres Paramètres pour le filtrage
+   * @param string $reportType Type de rapport (ex: FACTURE, RELEvergEAU_IMMEUBLE, etc.)
+   * @param mixed $inputDto Input DTO (any of the Generate*DocumentInputDto)
    * @return SoapOutputDto
    */
-  public function execute(string $reportType, array $paramsFiltres): SoapOutputDto
+  public function execute(string $reportType, mixed $inputDto): SoapOutputDto
   {
+    // Extract params array from inputDto based on its type
+    $paramsFiltres = $this->extractParamsFromInput($reportType, $inputDto);
+
     return $this->documentDataProvider->generateDocumentService('PDF', $reportType, $paramsFiltres);
+  }
+
+  private function extractParamsFromInput(string $reportType, mixed $inputDto): array
+  {
+    return match ($reportType) {
+      'FACTURE' => ['PKFACTURE' => $inputDto->pkFacture],
+      'INTERVENTION' => ['WORKORDERNUMBER' => $inputDto->workOrderNumber],
+      'RELEVE_EAU_IMMEUBLE', 'RELEVE_REPART_IMMEUBLE', 'RELEVE_CET_IMMEUBLE' => [
+        'PKIMMEUBLE' => $inputDto->pkImmeuble,
+        'DATE' => $inputDto->date
+      ],
+      'LIVRET_INTER_SYNTHESE' => array_filter([
+        'PKIMMEUBLE' => $inputDto->pkImmeuble,
+        'PKUSER' => $inputDto->pkUser,
+        'DATE1' => $inputDto->date1,
+        'DATE2' => $inputDto->date2
+      ], fn($val) => $val !== null),
+      'LIVRET_INTER_DETAIL' => [
+        'PKIMMEUBLE' => $inputDto->pkImmeuble,
+        'DATE1' => $inputDto->date1,
+        'DATE2' => $inputDto->date2
+      ],
+      'REPART_LOGEMENT' => [
+        'PKIMMEUBLE' => $inputDto->pkImmeuble,
+        'PKLOGEMENT' => $inputDto->pkLogement
+      ],
+      'RELEVE_EAU_OCCUPANT' => ['PKOCCUPANT' => $inputDto->pkOccupant],
+      'REPART_OCCUPANT' => [
+        'PKIMMEUBLE' => $inputDto->pkImmeuble,
+        'PKOCCUPANT' => $inputDto->pkOccupant
+      ],
+      'NOTE_INFO_MENSUELLE' => array_filter([
+        'PKOCCUPANT' => $inputDto->pkOccupant,
+        'PKIMMEUBLE' => $inputDto->pkImmeuble,
+        'TYPEERC' => $inputDto->typeEnergie
+      ], fn($val) => $val !== null),
+      default => []
+    };
   }
 }

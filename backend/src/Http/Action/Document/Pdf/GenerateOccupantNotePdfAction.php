@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Action\Document\Pdf;
 
+use App\Application\Factory\Document\DocumentInputFactory;
 use App\Application\UseCase\Document\GenerateDocumentPdfUseCase;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
@@ -19,20 +20,14 @@ final class GenerateOccupantNotePdfAction extends AbstractAction implements Acti
 {
   public function __construct(
     private readonly ResponderInterface $responder,
-    private readonly GenerateDocumentPdfUseCase $useCase
+    private readonly GenerateDocumentPdfUseCase $useCase,
+    private readonly DocumentInputFactory $inputFactory
   ) {}
 
   public function __invoke(Request $request, array $args = []): Response
   {
-    $pkOccupant = $request->attributes->get('pkOccupant');
-    $pkImmeuble = $request->query->get('pkImmeuble', '');
-    $typeEnergie = $request->query->get('typeEnergie', 'EAU'); // EAU ou CHAUFFAGE
-
-    $output = $this->useCase->execute('NOTE_INFO_MENSUELLE', [
-      'PKOCCUPANT' => $pkOccupant,
-      'PKIMMEUBLE' => $pkImmeuble,
-      'TYPEERC' => $typeEnergie
-    ]);
+    $input = $this->inputFactory->createOccupantNoteFromRequest($request);
+    $output = $this->useCase->execute('NOTE_INFO_MENSUELLE', $input);
 
     return $this->responder->respond($output);
   }
