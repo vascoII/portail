@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Action\Document\Pdf;
 
-use App\Application\Factory\Shared\SharedInputFactory;
-use App\Application\UseCase\Document\GenerateInterventionPdfUseCase;
+use App\Application\UseCase\Document\GenerateDocumentPdfUseCase;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
@@ -15,20 +14,20 @@ use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[AsController]
-#[Route(path: '/document/intervention/{pkIntervention}/generate', name: 'intervention_generate', methods: ['GET'])]
+#[Route(path: '/document/intervention/{workOrderNumber}/pdf', name: 'document_intervention_pdf', methods: ['POST'])]
 final class GenerateInterventionPdfAction extends AbstractAction implements ActionInterface
 {
-    public function __construct(
-        private readonly ResponderInterface $responder,
-        private readonly GenerateInterventionPdfUseCase $useCase,
-        private readonly SharedInputFactory $inputFactory
-    ) {}
+  public function __construct(
+    private readonly ResponderInterface $responder,
+    private readonly GenerateDocumentPdfUseCase $useCase
+  ) {}
 
-    public function __invoke(Request $request, array $args = []): Response
-    {
-        $input = $this->inputFactory->createGetReportFromRouteWithCustomParams($request, self::INTERVENTION, self::PARAM_PK_INTERVENTION, 'WORKORDERNUMBER');
-        $output = $this->useCase->execute($input);
+  public function __invoke(Request $request, array $args = []): Response
+  {
+    $workOrderNumber = $request->attributes->get('workOrderNumber');
 
-        return $this->responder->respond($output);
-    }
+    $output = $this->useCase->execute('INTERVENTION', ['WORKORDERNUMBER' => $workOrderNumber]);
+
+    return $this->responder->respond($output);
+  }
 }

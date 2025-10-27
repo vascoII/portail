@@ -14,8 +14,8 @@ use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[AsController]
-#[Route(path: '/document/facture/{pkFacture}/pdf', name: 'document_facture_pdf', methods: ['POST'])]
-final class GenerateFacturePdfAction extends AbstractAction implements ActionInterface
+#[Route(path: '/document/immeuble/synthese/pdf', name: 'document_immeuble_synthese_pdf', methods: ['POST'])]
+final class GenerateImmeubleSynthesePdfAction extends AbstractAction implements ActionInterface
 {
   public function __construct(
     private readonly ResponderInterface $responder,
@@ -24,9 +24,19 @@ final class GenerateFacturePdfAction extends AbstractAction implements ActionInt
 
   public function __invoke(Request $request, array $args = []): Response
   {
-    $pkFacture = $request->attributes->get('pkFacture');
+    $pkImmeuble = $request->query->get('pkImmeuble');
+    $pkUser = $request->query->get('pkUser');
+    $date1 = $request->query->get('date1', '');
+    $date2 = $request->query->get('date2', '');
 
-    $output = $this->useCase->execute('FACTURE', ['PKFACTURE' => $pkFacture]);
+    $params = ['DATE1' => $date1, 'DATE2' => $date2];
+    if ($pkImmeuble) {
+      $params['PKIMMEUBLE'] = $pkImmeuble;
+    } elseif ($pkUser) {
+      $params['PKUSER'] = $pkUser;
+    }
+
+    $output = $this->useCase->execute('LIVRET_INTER_SYNTHESE', $params);
 
     return $this->responder->respond($output);
   }

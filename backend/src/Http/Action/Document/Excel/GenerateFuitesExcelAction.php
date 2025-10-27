@@ -14,8 +14,8 @@ use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[AsController]
-#[Route(path: '/document/immeuble/{pkImmeuble}/interventions/excel', name: 'document_immeuble_interventions_excel', methods: ['POST'])]
-final class GenerateImmeubleInterventionsExcelAction extends AbstractAction implements ActionInterface
+#[Route(path: '/document/fuites/excel', name: 'document_fuites_excel', methods: ['POST'])]
+final class GenerateFuitesExcelAction extends AbstractAction implements ActionInterface
 {
   public function __construct(
     private readonly ResponderInterface $responder,
@@ -24,15 +24,17 @@ final class GenerateImmeubleInterventionsExcelAction extends AbstractAction impl
 
   public function __invoke(Request $request, array $args = []): Response
   {
-    $pkImmeuble = $request->attributes->get('pkImmeuble');
+    $pkImmeuble = $request->query->get('pkImmeuble', '');
     $pkLogement = $request->query->get('pkLogement');
     $pkOccupant = $request->query->get('pkOccupant');
+    $pkAppareil = $request->query->get('pkAppareil');
 
     $params = ['PKIMMEUBLE' => $pkImmeuble];
     if ($pkLogement) $params['PKLOGEMENT'] = $pkLogement;
     if ($pkOccupant) $params['PKOCCUPANT'] = $pkOccupant;
+    if ($pkAppareil) $params['PKAPPAREIL'] = $pkAppareil;
 
-    $output = $this->useCase->execute('GetInfosDepannagesByImmeuble', $params);
+    $output = $this->useCase->execute('GetInfosFuitesByImmeuble', $params);
 
     return $this->responder->respond($output);
   }

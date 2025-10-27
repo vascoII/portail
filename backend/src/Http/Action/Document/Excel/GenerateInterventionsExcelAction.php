@@ -14,8 +14,8 @@ use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[AsController]
-#[Route(path: '/document/immeuble/{pkImmeuble}/interventions/excel', name: 'document_immeuble_interventions_excel', methods: ['POST'])]
-final class GenerateImmeubleInterventionsExcelAction extends AbstractAction implements ActionInterface
+#[Route(path: '/document/interventions/excel', name: 'document_interventions_excel', methods: ['POST'])]
+final class GenerateInterventionsExcelAction extends AbstractAction implements ActionInterface
 {
   public function __construct(
     private readonly ResponderInterface $responder,
@@ -24,7 +24,7 @@ final class GenerateImmeubleInterventionsExcelAction extends AbstractAction impl
 
   public function __invoke(Request $request, array $args = []): Response
   {
-    $pkImmeuble = $request->attributes->get('pkImmeuble');
+    $pkImmeuble = $request->query->get('pkImmeuble', '');
     $pkLogement = $request->query->get('pkLogement');
     $pkOccupant = $request->query->get('pkOccupant');
 

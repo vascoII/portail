@@ -14,8 +14,8 @@ use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[AsController]
-#[Route(path: '/document/facture/{pkFacture}/pdf', name: 'document_facture_pdf', methods: ['POST'])]
-final class GenerateFacturePdfAction extends AbstractAction implements ActionInterface
+#[Route(path: '/document/immeuble/{pkImmeuble}/detail/pdf', name: 'document_immeuble_detail_pdf', methods: ['POST'])]
+final class GenerateImmeubleDetailPdfAction extends AbstractAction implements ActionInterface
 {
   public function __construct(
     private readonly ResponderInterface $responder,
@@ -24,9 +24,15 @@ final class GenerateFacturePdfAction extends AbstractAction implements ActionInt
 
   public function __invoke(Request $request, array $args = []): Response
   {
-    $pkFacture = $request->attributes->get('pkFacture');
+    $pkImmeuble = $request->attributes->get('pkImmeuble');
+    $date1 = $request->query->get('date1', '');
+    $date2 = $request->query->get('date2', '');
 
-    $output = $this->useCase->execute('FACTURE', ['PKFACTURE' => $pkFacture]);
+    $output = $this->useCase->execute('LIVRET_INTER_DETAIL', [
+      'PKIMMEUBLE' => $pkImmeuble,
+      'DATE1' => $date1,
+      'DATE2' => $date2
+    ]);
 
     return $this->responder->respond($output);
   }

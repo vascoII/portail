@@ -14,8 +14,8 @@ use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[AsController]
-#[Route(path: '/document/facture/{pkFacture}/pdf', name: 'document_facture_pdf', methods: ['POST'])]
-final class GenerateFacturePdfAction extends AbstractAction implements ActionInterface
+#[Route(path: '/document/immeuble/{pkImmeuble}/releve/pdf', name: 'document_immeuble_releve_pdf', methods: ['POST'])]
+final class GenerateImmeubleRelevePdfAction extends AbstractAction implements ActionInterface
 {
   public function __construct(
     private readonly ResponderInterface $responder,
@@ -24,9 +24,22 @@ final class GenerateFacturePdfAction extends AbstractAction implements ActionInt
 
   public function __invoke(Request $request, array $args = []): Response
   {
-    $pkFacture = $request->attributes->get('pkFacture');
+    $pkImmeuble = $request->attributes->get('pkImmeuble');
+    $date = $request->query->get('date', '');
+    $energie = $request->query->get('energie', 'EAU');
 
-    $output = $this->useCase->execute('FACTURE', ['PKFACTURE' => $pkFacture]);
+    // Déterminer le ReportType selon l'énergie
+    $reportType = match ($energie) {
+      'EAU' => 'RELEVE_EAU_IMMEUBLE',
+      'REPART' => 'RELEVE_REPART_IMMEUBLE',
+      'CET' => 'RELEVE_CET_IMMEUBLE',
+      default => 'RELEVE_EAU_IMMEUBLE'
+    };
+
+    $output = $this->useCase->execute($reportType, [
+      'PKIMMEUBLE' => $pkImmeuble,
+      'DATE' => $date
+    ]);
 
     return $this->responder->respond($output);
   }

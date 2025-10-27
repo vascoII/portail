@@ -8,6 +8,8 @@ use App\Application\Dto\Input\Shared\GetByIdStringInputDto;
 
 interface DocumentDataSourceInterface
 {
+  public function fetchInsertPrintJobs(string $reportType, array $paramsFiltres): object;
+
   public function fetchImmeubleAnomalies(GetByIdStringInputDto $inputDto): bool;
   public function fetchImmeubleDysfonctionnements(GetByIdStringInputDto $inputDto): bool;
   public function fetchImmeubleFuites(GetByIdStringInputDto $inputDto): bool;
