@@ -33,7 +33,6 @@ final class ImmeubleTransformer implements ImmeubleTransformerInterface
            ? $rawImmeuble : ($rawImmeuble ? [$rawImmeuble] : []);
 
         $entities = $this->entityFactory->createManyImmeublesFromRawList($immeublesRaw);
-
         return $this->outputFactory->createListImmeubles($entities);
     }
 }

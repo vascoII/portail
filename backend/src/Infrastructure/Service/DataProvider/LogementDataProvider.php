@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace App\Infrastructure\Service\DataProvider;
 
 use App\Application\Dto\Input\Shared\GetByIdIntInputDto;
+use App\Application\Dto\Input\Logement\GetImmeubleIdAndLogementIdInputDto;
 use App\Application\Dto\Output\Logement\ListLogementsOuputDto;
 use App\Application\Dto\Output\Logement\LogementOutputDto;
 use App\Application\Dto\Output\Shared\ListAnomaliesOuputDto;
 use App\Application\Dto\Output\Shared\ListDysfonctionnementsOuputDto;
 use App\Application\Dto\Output\Shared\ListFuitesOuputDto;
 use App\Application\Dto\Output\Shared\ListIndicatorsOuputDto;
-use App\Application\Dto\Output\Shared\ListInternetionsOutputDto;
+use App\Application\Dto\Output\Shared\ListInterventionsOutputDto ;
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Application\Service\DataProvider\LogementDataProviderInterface;
 use App\Application\Service\DataSource\LogementDataSourceInterface;
@@ -183,9 +184,9 @@ final class LogementDataProvider implements LogementDataProviderInterface
         return $dto;
     }
 
-    public function listAnomaliesByLogementService(GetByIdIntInputDto $inputDto): ListAnomaliesOuputDto
+    public function listAnomaliesByLogementService(GetImmeubleIdAndLogementIdInputDto $inputDto): ListAnomaliesOuputDto
     {
-        $cacheKey = "logement_anomalies_list:{$inputDto->id}";
+        $cacheKey = "logement_anomalies_list:{$inputDto->pkLogement}";
         $cachedDto = $this->cache->get($cacheKey);
 
         if ($cachedDto instanceof ListAnomaliesOuputDto) {
@@ -235,12 +236,12 @@ final class LogementDataProvider implements LogementDataProviderInterface
         return $dto;
     }
 
-    public function listInterventionsByLogementService(GetByIdIntInputDto $inputDto): ListInternetionsOutputDto
+    public function listInterventionsByLogementService(GetByIdIntInputDto $inputDto): ListInterventionsOutputDto 
     {
         $cacheKey = "logement_interventions_list:{$inputDto->id}";
         $cachedDto = $this->cache->get($cacheKey);
 
-        if ($cachedDto instanceof ListInternetionsOutputDto) {
+        if ($cachedDto instanceof ListInterventionsOutputDto ) {
             return $cachedDto;
         }
 

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Application\Factory\Immeuble;
 
 use App\Application\Dto\Output\Immeuble\ListImmeublesOutputDto;
-use App\Application\Dto\Output\Immeuble\ListInternetionsOutputDto;
+use App\Application\Dto\Output\Immeuble\ListInterventionsOutputDto ;
 use App\Application\Dto\Output\Immeuble\GetImmeubleOutputDto;
 use App\Domain\Entity\Immeuble;
 use App\Domain\Entity\Depannage;
@@ -18,14 +18,6 @@ final class ImmeubleOutputFactory
     public function createListImmeubles(array $immeubles): ListImmeublesOutputDto
     {
         return new ListImmeublesOutputDto($immeubles);
-    }
-
-    /**
-     * @param Depannage[] $interventions
-     */
-    public function createListInterventionsByImmeuble(array $interventions): ListInternetionsOutputDto
-    {
-        return new ListInternetionsOutputDto($interventions);
     }
 
     /**
@@ -51,7 +43,24 @@ final class ImmeubleOutputFactory
             hasNoteOccupant: $immeuble->hasNoteOccupant,
             hasDecompteOccupant: $immeuble->hasDecompteOccupant,
             hasFactures: $immeuble->hasFactures,
-            hasChantiers: $immeuble->hasChantiers    
+            hasChantiers: $immeuble->hasChantiers,
+            nbLogements: $immeuble->nbLogements,
+            nbAppareils: $immeuble->nbAppareils,
+            nbDepannages: $immeuble->nbDepannages,
+            nbDepannagesTotal: $immeuble->nbDepannagesTotal,
+            degresDepannages: $immeuble->degresDepannages,
+            nbDysfonctionnements: $immeuble->nbDysfonctionnements,
+            degresDysfonctionnements: $immeuble->degresDysfonctionnements,
+            nbCompteursEC: $immeuble->nbCompteursEC,
+            nbCompteursEF: $immeuble->nbCompteursEF,
+            nbCompteursRepart: $immeuble->nbCompteursRepart,
+            nbCompteursCET: $immeuble->nbCompteursCET,
+            nbCompteursCapteur: $immeuble->nbCompteursCapteur,
+            nbCompteursElect: $immeuble->nbCompteursElect,
+            nbCompteursGaz: $immeuble->nbCompteursGaz,
+            nbCompteursTelereveleTotal: $immeuble->nbCompteursTelereveleTotal,
+            nbCompteursTelereveleOK: $immeuble->nbCompteursTelereveleOK,
+            hasTransfertFichiers: $immeuble->hasTransfertFichiers    
         );
     }
 }

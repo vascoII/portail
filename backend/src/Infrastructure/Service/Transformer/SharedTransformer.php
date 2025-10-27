@@ -10,7 +10,7 @@ use App\Application\Dto\Output\Shared\ListAnomaliesOuputDto;
 use App\Application\Dto\Output\Shared\ListDysfonctionnementsOuputDto;
 use App\Application\Dto\Output\Shared\ListFuitesOuputDto;
 use App\Application\Dto\Output\Shared\ListIndicatorsOuputDto;
-use App\Application\Dto\Output\Shared\ListInternetionsOutputDto;
+use App\Application\Dto\Output\Shared\ListInterventionsOutputDto ;
 use App\Application\Dto\Output\Shared\SuccessOutputDto;
 use App\Application\Dto\Output\Shared\UserDto;
 use App\Application\Factory\Shared\SharedEntityFactory;
@@ -679,7 +679,7 @@ final class SharedTransformer implements SharedTransformerInterface
 
     public function transformListAlertes(object $dataSourceResult): ListAlertesOuputDto
     {
-        $alertesRaw = is_array($rawAlerte = $dataSourceResult->ListeInfosDepannages->infosDepannage ?? null)
+        $alertesRaw = is_array($rawAlerte = $dataSourceResult->ListeInfosAlertes->infosAlertes ?? null)
           ? $rawAlerte : ($rawAlerte ? [$rawAlerte] : []);
 
         $entities = $this->entityFactory->createManyAlertesFromRawList($alertesRaw);
@@ -689,7 +689,7 @@ final class SharedTransformer implements SharedTransformerInterface
 
     public function transformListAnomalies(object $dataSourceResult): ListAnomaliesOuputDto
     {
-        $anomaliesRaw = is_array($rawAnomalies = $dataSourceResult->ListeInfosDepannages->infosDepannage ?? null)
+        $anomaliesRaw = is_array($rawAnomalies = $dataSourceResult->ListeInfosAnomalies->infosAnomalie ?? null)
           ? $rawAnomalies : ($rawAnomalies ? [$rawAnomalies] : []);
 
         $entities = $this->entityFactory->createManyAnomaliesFromRawList($anomaliesRaw);
@@ -699,7 +699,7 @@ final class SharedTransformer implements SharedTransformerInterface
 
     public function transformListDysfonctionnements(object $dataSourceResult): ListDysfonctionnementsOuputDto
     {
-        $dysfonctionnementsRaw = is_array($rawDysfonctionnement = $dataSourceResult->ListeInfosDepannages->infosDepannage ?? null)
+        $dysfonctionnementsRaw = is_array($rawDysfonctionnement = $dataSourceResult->ListeInfosDepannages->infosDysfonctionnement ?? null)
           ? $rawDysfonctionnement : ($rawDysfonctionnement ? [$rawDysfonctionnement] : []);
 
         $entities = $this->entityFactory->createManyDysfonctionnementsFromRawList($dysfonctionnementsRaw);
@@ -709,7 +709,7 @@ final class SharedTransformer implements SharedTransformerInterface
 
     public function transformListFuites(object $dataSourceResult): ListFuitesOuputDto
     {
-        $fuitesRaw = is_array($rawFuite = $dataSourceResult->ListeInfosDepannages->infosDepannage ?? null)
+        $fuitesRaw = is_array($rawFuite = $dataSourceResult->ListeInfosFuites->infosfuite ?? null)
           ? $rawFuite : ($rawFuite ? [$rawFuite] : []);
 
         $entities = $this->entityFactory->createManyFuitesFromRawList($fuitesRaw);
@@ -747,7 +747,7 @@ final class SharedTransformer implements SharedTransformerInterface
         return $this->outputFactory->createListImmeublesIndicators($entitiesToArray);
     }
 
-    public function transformListInterventions(object $dataSourceResult): ListInternetionsOutputDto
+    public function transformListInterventions(object $dataSourceResult): ListInterventionsOutputDto 
     {
         $interventionsRaw = is_array($rawIntervention = $dataSourceResult->ListeInfosDepannages->infosDepannage ?? null)
           ? $rawIntervention : ($rawIntervention ? [$rawIntervention] : []);

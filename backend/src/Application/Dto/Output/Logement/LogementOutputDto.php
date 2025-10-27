@@ -8,8 +8,8 @@ use App\Domain\Entity\Logement;
 
 final class LogementOutputDto
 {
-  /** @param Logement $logementDto */
+
   public function __construct(
-    public readonly Logement $logementDto
+    public readonly array $logementDto
   ) {}
 }

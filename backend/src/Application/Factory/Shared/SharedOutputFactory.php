@@ -6,6 +6,12 @@ namespace App\Application\Factory\Shared;
 
 use App\Application\Dto\Output\Shared\UserDto;
 use App\Application\Dto\Output\Shared\ListIndicatorsOuputDto;
+use App\Application\Dto\Output\Shared\ListAnomaliesOuputDto;
+use App\Application\Dto\Output\Shared\ListDysfonctionnementsOuputDto;
+use App\Application\Dto\Output\Shared\ListAlertesOuputDto;
+use App\Application\Dto\Output\Shared\ListFuitesOuputDto;
+use App\Application\Dto\Output\Shared\ListInterventionsOutputDto;
+
 use App\Domain\Entity\User;
 
 final class SharedOutputFactory
@@ -55,6 +61,31 @@ final class SharedOutputFactory
     public function createListLogementsIndicators(array $listIndicators): ListIndicatorsOuputDto
     {
         return new ListIndicatorsOuputDto($listIndicators);
+    }
+
+    public function createListAnomalies(array $entities): ListAnomaliesOuputDto
+    {
+        return new ListAnomaliesOuputDto($entities);
+    }
+
+    public function createListFuites(array $entities): ListFuitesOuputDto
+    {
+        return new ListFuitesOuputDto($entities);
+    }
+
+    public function createListAlertes(array $entities): ListAlertesOuputDto
+    {
+        return new ListAlertesOuputDto($entities);
+    }
+
+    public function createListDysfonctionnements(array $entities): ListDysfonctionnementsOuputDto
+    {
+        return new ListDysfonctionnementsOuputDto($entities);
+    }
+
+    public function createListInterventions(array $entities): ListInterventionsOutputDto
+    {
+        return new ListInterventionsOutputDto($entities);
     }
 
     public function createListIndicators(array $listIndicators): ListIndicatorsOuputDto

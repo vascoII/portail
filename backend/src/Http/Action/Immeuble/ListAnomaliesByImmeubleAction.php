@@ -16,7 +16,7 @@ use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[AsController]
-#[Route(path: '/immeuble/{immeubleId}/anomalies', name: 'immeuble_anomalies_list', methods: ['GET'])]
+#[Route(path: '/immeuble/{id}/anomalies', name: 'immeuble_anomalies_list', methods: ['GET'])]
 #[RequireUserType(['C', 'G'])] // Seuls Client et Gestionnaire
 final class ListAnomaliesByImmeubleAction extends AbstractAction implements ActionInterface
 {

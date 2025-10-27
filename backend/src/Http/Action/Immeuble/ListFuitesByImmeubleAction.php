@@ -16,7 +16,7 @@ use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[AsController]
-#[Route(path: '/immeuble/{immeubleId}/fuites', name: 'immeuble_fuites_list', methods: ['GET'])]
+#[Route(path: '/immeuble/{id}/fuites', name: 'immeuble_fuites_list', methods: ['GET'])]
 #[RequireUserType(['C', 'G'])] // Seuls Client et Gestionnaire
 final class ListFuitesByImmeubleAction extends AbstractAction implements ActionInterface
 {
@@ -27,7 +27,7 @@ final class ListFuitesByImmeubleAction extends AbstractAction implements ActionI
     ) {}
 
     public function __invoke(Request $request, array $args = []): Response
-    {
+    {   
         $input = $this->inputFactory->getIdIntFromRoute($request);
         $output = $this->useCase->execute($input);
 

@@ -24,6 +24,26 @@ final class Immeuble
         public readonly ?bool $hasNoteOccupant,
         public readonly ?bool $hasDecompteOccupant,
         public readonly ?bool $hasFactures,
-        public readonly ?bool $hasChantiers
+        public readonly ?bool $hasChantiers,
+        public readonly ?int $nbLogements,
+        public readonly ?int $nbAppareils,
+        public readonly ?int $nbDepannages,
+        public readonly ?int $nbDepannagesTotal,
+        public readonly ?int $degresDepannages,
+        public readonly ?int $nbDysfonctionnements,
+        public readonly ?int $degresDysfonctionnements,
+        public readonly ?int $nbCompteursEC,
+        public readonly ?int $nbCompteursEF,
+        public readonly ?int $nbCompteursRepart,
+        public readonly ?int $nbCompteursCET,
+        public readonly ?int $nbCompteursCapteur,
+        public readonly ?int $nbCompteursElect,
+        public readonly ?int $nbCompteursGaz,
+        public readonly ?int $nbCompteursTelereveleTotal,
+        public readonly ?int $nbCompteursTelereveleOK,
+        public readonly ?bool $hasTransfertFichiers,
+        public readonly ?int $nbFuites,
+        public readonly ?int $nbAnomalies,
+        public readonly ?int $nbChantiers
     ) {}
 }

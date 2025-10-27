@@ -207,6 +207,12 @@ services:
     arguments:
       $responder: '@App\Http\Responder\JsonResponder'
 
+  #Intervention
+  App\Http\Action\Intervention\:
+    resource: "../src/Http/Action/Intervention/*"
+    arguments:
+      $responder: '@App\Http\Responder\JsonResponder'    
+
   #Logement
   App\Http\Action\Logement\:
     resource: "../src/Http/Action/Logement/*"
@@ -231,6 +237,12 @@ services:
     arguments:
       $responder: '@App\Http\Responder\JsonResponder'
 
+  #Releve
+  App\Http\Action\Releve\:
+    resource: "../src/Http/Action/Releve/*"
+    arguments:
+      $responder: '@App\Http\Responder\JsonResponder'
+
   #Security
   App\Http\Action\Security\:
     resource: "../src/Http/Action/Security/*"
@@ -249,6 +261,13 @@ services:
       $superLoginID: "%env(SUPER_LOGIN_ID)%"
       $superPassword: "%env(SUPER_PASSWORD)%"
       $adminSessionId: "%env(ADMIN_SESSION_ID)%"
+
+  #InterventionHydrator
+  App\Infrastructure\Service\Hydrator\InterventionHydrator:
+    arguments:
+      $superLoginID: "%env(SUPER_LOGIN_ID)%"
+      $superPassword: "%env(SUPER_PASSWORD)%"
+      $adminSessionId: "%env(ADMIN_SESSION_ID)%"    
 
   #SharedHydrator
   App\Infrastructure\Service\Hydrator\SharedHydrator:

@@ -21,9 +21,9 @@ final class LogementOutputFactory
 
    
     /**
-     * @param Logement $logement
+     * @param array $logement
      */
-    public function createGetLogement(Logement $logement): LogementOutputDto
+    public function createGetLogement(array $logement): LogementOutputDto
     {
         return new LogementOutputDto($logement);
     }

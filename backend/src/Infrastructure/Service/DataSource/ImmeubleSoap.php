@@ -29,7 +29,52 @@ final class ImmeubleSoap extends Soap implements ImmeubleDataSourceInterface
         return $this->safeCall('GetTableauBordImmeuble', $soapRequest);
     }
 
-    public function fetchGetImmeubleIndicators(GetByIdIntInputDto $inputDto): object
+    public function fetchGetImmeubleCapteur(GetByIdIntInputDto $inputDto): object
+    {
+        $authContext = $this->getAuthContext();
+        $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
+        $soapRequest = $this->hydrator->hydrateGetImmeuble($inputDto);
+
+        return $this->safeCall('GetTableauBordImmeuble', $soapRequest);
+    }
+
+    public function fetchGetImmeubleCET(GetByIdIntInputDto $inputDto): object
+    {
+        $authContext = $this->getAuthContext();
+        $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
+        $soapRequest = $this->hydrator->hydrateGetImmeuble($inputDto);
+
+        return $this->safeCall('GetTableauBordImmeuble', $soapRequest);
+    }
+
+    public function fetchGetImmeubleEC(GetByIdIntInputDto $inputDto): object
+    {
+        $authContext = $this->getAuthContext();
+        $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
+        $soapRequest = $this->hydrator->hydrateGetImmeuble($inputDto);
+
+        return $this->safeCall('GetTableauBordImmeuble', $soapRequest);
+    }
+
+    public function fetchGetImmeubleEF(GetByIdIntInputDto $inputDto): object
+    {
+        $authContext = $this->getAuthContext();
+        $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
+        $soapRequest = $this->hydrator->hydrateGetImmeuble($inputDto);
+
+        return $this->safeCall('GetTableauBordImmeuble', $soapRequest);
+    }
+
+    public function fetchGetImmeubleRepart(GetByIdIntInputDto $inputDto): object
+    {
+        $authContext = $this->getAuthContext();
+        $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
+        $soapRequest = $this->hydrator->hydrateGetImmeuble($inputDto);
+
+        return $this->safeCall('GetTableauBordImmeuble', $soapRequest);
+    }
+
+    public function fetchGetImmeubleSerieConsosEAU(GetByIdIntInputDto $inputDto): object
     {
         $authContext = $this->getAuthContext();
         $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);

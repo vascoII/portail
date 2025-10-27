@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Action\Operator;
 
-use App\Application\Factory\Operator\OperatorInputFactory;
-use App\Application\UseCase\Operator\CreateOperationImmeubleUseCase;
+use App\Application\Dto\Input\Operator\RemoveBuildingInputDto;
+use App\Application\UseCase\Operator\RemoveBuildingUseCase;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Attribute\RequireUserType;
@@ -16,19 +16,19 @@ use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[AsController]
-#[Route(path: '/operator/{id}/immeuble', name: 'operator_create_operation_immeuble', methods: ['POST'])]
+#[Route(path: '/operator/{id}/immeuble/supprimer', name: 'operator_remove_building', methods: ['POST'])]
 #[RequireUserType(['C'])] // Seuls Client
-final class CreateOperationImmeubleAction extends AbstractAction implements ActionInterface
+final class RemoveBuildingToOperatorAction extends AbstractAction implements ActionInterface
 {
     public function __construct(
-        private readonly ResponderInterface $responder,
-        private readonly CreateOperationImmeubleUseCase $useCase,
-        private readonly OperatorInputFactory $inputFactory
+        private readonly ResponderInterface $responder, 
+        private readonly RemoveBuildingUseCase $useCase
     ) {}
 
     public function __invoke(Request $request, array $args = []): Response
     {
-        $input = $this->inputFactory->createOperationImmeubleFromRequest($request);
+        $id = (string) $request->attributes->get(self::PARAM_ID);
+        $input = new RemoveBuildingInputDto($id);
         $output = $this->useCase->execute($input);
 
         return $this->responder->respond($output);

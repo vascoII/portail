@@ -2,13 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Action\Operator;
+namespace App\Http\Action\Releve;
 
-use App\Application\Factory\Operator\OperatorInputFactory;
-use App\Application\UseCase\Operator\PatchOperatorImmeubleUseCase;
+use App\Application\Factory\Releve\ReleveInputFactory;
+use App\Application\UseCase\Releve\PostReleveUseCase;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
-use App\Http\Attribute\RequireUserType;
 use App\Http\Responder\ResponderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,19 +15,18 @@ use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[AsController]
-#[Route(path: '/operator/{id}/immeuble', name: 'operator_patch_immeuble', methods: ['PATCH'])]
-#[RequireUserType(['C'])] // Seuls Client
-final class PatchOperatorImmeubleAction extends AbstractAction implements ActionInterface
+#[Route(path: '/releve', name: 'releve_post', methods: ['POST'])]
+final class PostReleveAction extends AbstractAction implements ActionInterface
 {
     public function __construct(
         private readonly ResponderInterface $responder,
-        private readonly PatchOperatorImmeubleUseCase $useCase,
-        private readonly OperatorInputFactory $inputFactory
+        private readonly PostReleveUseCase $useCase,
+        private readonly ReleveInputFactory $inputFactory
     ) {}
 
     public function __invoke(Request $request, array $args = []): Response
     {
-        $input = $this->inputFactory->patchOperatorImmeubleFromRequest($request);
+        $input = $this->inputFactory->createPostReleveFromRequest($request, $args);
         $output = $this->useCase->execute($input);
 
         return $this->responder->respond($output);

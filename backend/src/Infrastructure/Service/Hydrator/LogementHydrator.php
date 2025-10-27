@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Infrastructure\Service\Hydrator;
 
 use App\Application\Dto\Input\Shared\GetByIdIntInputDto;
+use App\Application\Dto\Input\Logement\GetImmeubleIdAndLogementIdInputDto;
 
 final class LogementHydrator
 {
@@ -69,6 +70,21 @@ final class LogementHydrator
         return (object) [
             'PkLogement' => $inputDto->id,
             'PkOccupant' => $inputDto->pkOccupant ?? -1,
+        ];
+    }
+
+    public function hydrateListAnomaliesByLogement(GetImmeubleIdAndLogementIdInputDto $inputDto): object
+    {
+        return (object) [
+            'PkImmeuble' => $inputDto->pkImmeuble,
+            'ParamsFiltres' => "PKLOGEMENT=$inputDto->pkLogement"
+        ];
+    }
+
+    public function hydrateListDysfonctionnementsByLogement(GetByIdIntInputDto $inputDto): object
+    {
+        return (object) [
+            'PkLogement' => $inputDto->id,
         ];
     }
 }

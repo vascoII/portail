@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Infrastructure\Service\DataSource;
 
 use App\Application\Dto\Input\Shared\GetByIdIntInputDto;
+use App\Application\Dto\Input\Logement\GetImmeubleIdAndLogementIdInputDto;
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Application\Service\DataSource\LogementDataSourceInterface;
 use App\Infrastructure\Service\Auth\AuthenticationContext;
@@ -100,13 +101,14 @@ final class LogementSoap extends Soap implements LogementDataSourceInterface
         return $this->safeCall('GetInfosLogementsByImmeuble', (object) []);
     }
 
-    public function fetchListAnomaliesByLogement(GetByIdIntInputDto $inputDto): object
+    public function fetchListAnomaliesByLogement(GetImmeubleIdAndLogementIdInputDto $inputDto): object
     {
         $authContext = $this->getAuthContext();
         $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
+
         $soapRequest = $this->hydrator->hydrateListAnomaliesByLogement($inputDto);
 
-        return $this->safeCall('GetInfosAnomaliesByLogement', $soapRequest);
+        return $this->safeCall('GetInfosAnomaliesByImmeuble', $soapRequest);
     }
 
     public function fetchListDysfonctionnementsByLogement(GetByIdIntInputDto $inputDto): object

@@ -10,6 +10,9 @@ use App\Domain\Entity\Fuite;
 use App\Domain\Entity\Dysfonctionnement;
 use App\Domain\Entity\Depannage;
 use App\Domain\Entity\Anomalie;
+use App\Domain\Entity\Logement;
+use App\Domain\Entity\Occupant;
+use App\Domain\Entity\Appareil;
 
 final class SharedEntityFactory
 {
@@ -68,57 +71,154 @@ final class SharedEntityFactory
         return array_map([$this, 'createUserFromRaw'], $rawList);
     }
 
-    public function createFuiteFromRaw(object $raw): Fuite
+    public function createFuiteFromRaw(object $raw): array
     {
-        return new Fuite(
-            duree: $raw->Duree,
-            dateDebut: new \DateTimeImmutable($raw->DateDebut),
-            indexDebut: $raw->IndexDebut,
-            conso: $raw->Conso
-        );
+        return [
+            new Logement(
+                pkLogement: $raw->Logement->PkLogement,
+                numBatiment: $raw->Logement->NumBatiment,
+                adrBatiment: $raw->Logement->AdrBatiment,
+                numEscalier: $raw->Logement->NumEscalier,
+                adrEscalier: $raw->Logement->AdrEscalier,
+                numEtage: $raw->Logement->NumEtage,
+                numOrdre: $raw->Logement->NumOrdre,
+                type:  $raw->Logement->Type
+            ), 
+            new Occupant(
+                pkOccupant: $raw->Occupant->PkOccupant,
+                nom: $raw->Occupant->Nom,
+                ref: $raw->Occupant->Ref,
+                dateArrivee: new \DateTimeImmutable($raw->Occupant->DateArrivee),
+                dateDepart: new \DateTimeImmutable($raw->Occupant->DateDepart),
+            ), 
+            new Appareil(
+                pkAppareil: $raw->Appareil->PkAppareil,
+                numero: $raw->Appareil->Numero,
+                emplacement: $raw->Appareil->Emplacement,
+                fluide: $raw->Appareil->Fluide,
+                typeAppareil: $raw->Appareil->TypeAppareil,
+                unite: $raw->Appareil->Unite,
+            ), 
+            new Fuite(
+                duree: $raw->Fuite->Duree,
+                dateDebut: new \DateTimeImmutable($raw->Fuite->DateDebut),
+                indexDebut: $raw->Fuite->IndexDebut,
+                conso: $raw->Fuite->Conso
+            )
+        ];
     }
 
-    public function createDysfonctionnementFromRaw(object $raw): Dysfonctionnement
+    public function createDysfonctionnementFromRaw(object $raw): array
     {
-        return new Dysfonctionnement(
-            duree: $raw->Duree,
-            dateDebut: new \DateTimeImmutable($raw->DateDebut),
-            indexDebut: $raw->IndexDebut,
-            conso: $raw->Conso,
-            type: $raw->Type
-        );
+        return [
+            new Logement(
+                pkLogement: $raw->Logement->PkLogement,
+                numBatiment: $raw->Logement->NumBatiment,
+                adrBatiment: $raw->Logement->AdrBatiment,
+                numEscalier: $raw->Logement->NumEscalier,
+                adrEscalier: $raw->Logement->AdrEscalier,
+                numEtage: $raw->Logement->NumEtage,
+                numOrdre: $raw->Logement->NumOrdre,
+                type:  $raw->Logement->Type
+            ), 
+            new Occupant(
+                pkOccupant: $raw->Occupant->PkOccupant,
+                nom: $raw->Occupant->Nom,
+                ref: $raw->Occupant->Ref,
+                dateArrivee: new \DateTimeImmutable($raw->Occupant->DateArrivee),
+                dateDepart: new \DateTimeImmutable($raw->Occupant->DateDepart),
+            ), 
+            new Appareil(
+                pkAppareil: $raw->Appareil->PkAppareil,
+                numero: $raw->Appareil->Numero,
+                emplacement: $raw->Appareil->Emplacement,
+                fluide: $raw->Appareil->Fluide,
+                typeAppareil: $raw->Appareil->TypeAppareil,
+                unite: $raw->Appareil->Unite,
+            ), 
+            new Dysfonctionnement(
+                duree: $raw->Dysfonctionnement->Duree,
+                dateDebut: new \DateTimeImmutable($raw->Dysfonctionnement->DateDebut),
+                indexDebut: $raw->Dysfonctionnement->IndexDebut,
+                conso: $raw->Dysfonctionnement->Conso,
+                type: $raw->Dysfonctionnement->Type
+            )
+        ];
     }
 
-    public function createInterventionFromRaw(object $raw): Depannage
+    public function createInterventionFromRaw(object $raw): array
     {
-        return new Depannage(
-            workOrderNumber: $raw->Depannage->WorkOrderNumber,
-            numero: $raw->Depannage->Numero,
-            statut: $raw->Depannage->Statut,
-            statutAbrege: $raw->Depannage->StatutAbrege,
-            date: new \DateTimeImmutable($raw->Depannage->Date),
-            motif: $raw->Depannage->Motif,
-            motifAbrege: $raw->Depannage->MotifAbrege,
-            compteRendu: $raw->Depannage->CompteRendu
-        );
+        return [
+            new Logement(
+                pkLogement: $raw->Logement->PkLogement,
+                numBatiment: $raw->Logement->NumBatiment,
+                adrBatiment: $raw->Logement->AdrBatiment,
+                numEscalier: $raw->Logement->NumEscalier,
+                adrEscalier: $raw->Logement->AdrEscalier ?? null,
+                numEtage: $raw->Logement->NumEtage,
+                numOrdre: $raw->Logement->NumOrdre,
+                type:  $raw->Logement->Type ?? null
+            ), 
+            new Occupant(
+                pkOccupant: $raw->Occupant->PkOccupant,
+                nom: $raw->Occupant->Nom,
+                ref: $raw->Occupant->Ref ?? null,
+                dateArrivee: new \DateTimeImmutable($raw->Occupant->DateArrivee),
+                dateDepart: new \DateTimeImmutable($raw->Occupant->DateDepart),
+            ), 
+            new Depannage(
+                workOrderNumber: $raw->Depannage->WorkOrderNumber,
+                numero: $raw->Depannage->Numero,
+                statut: $raw->Depannage->Statut,
+                statutAbrege: $raw->Depannage->StatutAbrege,
+                date: new \DateTimeImmutable($raw->Depannage->Date),
+                motif: $raw->Depannage->Motif,
+                motifAbrege: $raw->Depannage->MotifAbrege,
+                compteRendu: $raw->Depannage->CompteRendu
+            )
+        ];
     }
 
-    public function createAnomalieFromRaw(object $raw): Anomalie
-    {
-        return new Anomalie(
-            index: $raw->Index,
-            conso: $raw->Conso,
-            observations: $raw->observations
-        );
-    }
-
-    public function createAlerteFromRaw(object $raw): Alerte
-    {
-        return new Alerte(
-            index: $raw->Index,
-            conso: $raw->Conso,
-            observations: $raw->observations
-        );
+    /**
+     * Undocumented function
+     *
+     * @param object $raw
+     * @return array
+     */
+    public function createAnomalieFromRaw(object $raw): array
+    {   
+        return [
+            new Logement(
+                pkLogement: $raw->Logement->PkLogement,
+                numBatiment: $raw->Logement->NumBatiment,
+                adrBatiment: $raw->Logement->AdrBatiment,
+                numEscalier: $raw->Logement->NumEscalier,
+                adrEscalier: $raw->Logement->AdrEscalier,
+                numEtage: $raw->Logement->NumEtage,
+                numOrdre: $raw->Logement->NumOrdre,
+                type:  $raw->Logement->Type
+            ), 
+            new Occupant(
+                pkOccupant: $raw->Occupant->PkOccupant,
+                nom: $raw->Occupant->Nom,
+                ref: $raw->Occupant->Ref,
+                dateArrivee: new \DateTimeImmutable($raw->Occupant->DateArrivee),
+                dateDepart: new \DateTimeImmutable($raw->Occupant->DateDepart),
+            ), 
+            new Appareil(
+                pkAppareil: $raw->Appareil->PkAppareil,
+                numero: $raw->Appareil->Numero,
+                emplacement: $raw->Appareil->Emplacement,
+                fluide: $raw->Appareil->Fluide,
+                typeAppareil: $raw->Appareil->TypeAppareil,
+                unite: $raw->Appareil->Unite,
+            ), 
+            new Anomalie(
+                index: (float) $raw->Anomalie->Index,
+                conso: (float) $raw->Anomalie->Conso,
+                observations: $raw->Anomalie->Observations
+            )
+        ];
     }
 
     /**

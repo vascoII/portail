@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Application\Service\DataSource;
 
 use App\Application\Dto\Input\Shared\GetByIdIntInputDto;
+use App\Application\Dto\Input\Logement\GetImmeubleIdAndLogementIdInputDto;
 
 interface LogementDataSourceInterface
 {
@@ -18,7 +19,7 @@ interface LogementDataSourceInterface
 	public function fetchGetLogementElect(GetByIdIntInputDto $inputDto): object;
 	public function fetchGetLogementGaz(GetByIdIntInputDto $inputDto): object;
 	public function fetchGetLogementRepart(GetByIdIntInputDto $inputDto): object;
-	public function fetchListAnomaliesByLogement(GetByIdIntInputDto $inputDto): object;
+	public function fetchListAnomaliesByLogement(GetImmeubleIdAndLogementIdInputDto $inputDto): object;
 	public function fetchListDysfonctionnementsByLogement(GetByIdIntInputDto $inputDto): object;
 	public function fetchListFuitesByLogement(GetByIdIntInputDto $inputDto): object;
 	public function fetchListInterventionsByLogement(GetByIdIntInputDto $inputDto): object;

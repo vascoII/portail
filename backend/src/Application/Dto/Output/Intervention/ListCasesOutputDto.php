@@ -6,10 +6,10 @@ namespace App\Application\Dto\Output\Intervention;
 
 use App\Domain\Entity\Immeuble;
 
-final class ListInternetionsOutputDto
+final class ListCasesOutputDto
 {
-  /** @param Immeuble[] $immeubleDto */
+ 
   public function __construct(
-    public readonly array $immeubleDto
+    public readonly bool $success
   ) {}
 }

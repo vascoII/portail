@@ -30,6 +30,7 @@ use App\Application\Dto\Input\Logement\SetSeuilConsoInputDto;
 use App\Application\Dto\Input\Logement\ShowInputDto;
 use App\Application\Dto\Input\Logement\ShowInterventionInputDto;
 use App\Application\Dto\Input\Logement\ShowRepartReleveInputDto;
+use App\Application\Dto\Input\Logement\GetImmeubleIdAndLogementIdInputDto;
 
 final class LogementInputFactory
 {
@@ -280,5 +281,13 @@ final class LogementInputFactory
     $pkImmeuble = (string) $request->attributes->get($pkImmeubleParam);
     $pkLogement = (string) $request->attributes->get($pkLogementParam);
     return new ShowRepartReleveInputDto($pkImmeuble, $pkLogement);
+  }
+
+  public function getImmeubleIdAndLogementIdFromRoute(Request $request): GetImmeubleIdAndLogementIdInputDto
+  {
+    return new GetImmeubleIdAndLogementIdInputDto(
+      (int) $request->attributes->get('pkImmeuble'), 
+      (int) $request->attributes->get('pkLogement')
+    );
   }
 }

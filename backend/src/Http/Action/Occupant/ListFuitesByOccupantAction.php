@@ -14,7 +14,7 @@ use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[AsController]
-#[Route(path: '/immeuble/{immeubleId}/fuites', name: 'immeuble_fuites_list', methods: ['GET'])]
+#[Route(path: '/occupant/fuites', name: 'occupant_fuites_list', methods: ['GET'])]
 final class ListFuitesByOccupantAction extends AbstractAction implements ActionInterface
 {
     public function __construct(

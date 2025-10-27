@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Application\UseCase\Logement;
 
-use App\Application\Dto\Input\Shared\GetByIdIntInputDto;
-use App\Application\Dto\Output\Shared\ListInternetionsOutputDto;
+use App\Application\Dto\Input\Logement\GetImmeubleIdAndLogementIdInputDto;
+use App\Application\Dto\Output\Shared\ListInterventionsOutputDto ;
 use App\Application\Service\DataProvider\LogementDataProviderInterface;
 
 final class ListInterventionsByLogementUseCase
@@ -14,7 +14,7 @@ final class ListInterventionsByLogementUseCase
     private readonly LogementDataProviderInterface $serviceDataProvider
   ) {}
 
-  public function execute(GetByIdIntInputDto $inputDto): ListInternetionsOutputDto
+  public function execute(GetImmeubleIdAndLogementIdInputDto $inputDto): ListInterventionsOutputDto 
   {
     return $this->serviceDataProvider->listInterventionsByLogementService($inputDto);
   }
