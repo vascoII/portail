@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useDataStore } from "@/src/store/dataStore";
 import { CGUForm } from "@/src/components/CGU/CGUForm";
 import { OccupantCGUContent } from "@/src/components/CGU/OccupantCGUContent";
@@ -88,10 +89,12 @@ export default function CGUPage() {
       <div className="max-w-2xl w-full space-y-8">
         {/* Logo */}
         <div className="text-center">
-          <img
+          <Image
+            width={0}
+            height={0}
+            className="h-20 w-auto mx-auto"
             src="/images/logo.svg"
             alt="Techem Logo"
-            className="h-20 mx-auto"
           />
         </div>
 
