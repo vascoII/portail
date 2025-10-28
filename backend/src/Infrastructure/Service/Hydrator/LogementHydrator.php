@@ -81,10 +81,27 @@ final class LogementHydrator
         ];
     }
 
-    public function hydrateListDysfonctionnementsByLogement(GetByIdIntInputDto $inputDto): object
+    public function hydrateListDysfonctionnementsByLogement(GetImmeubleIdAndLogementIdInputDto $inputDto): object
     {
         return (object) [
-            'PkLogement' => $inputDto->id,
+            'PkImmeuble' => $inputDto->pkImmeuble,
+            'ParamsFiltres' => "PKLOGEMENT=$inputDto->pkLogement"
+        ];
+    }
+
+    public function hydrateListFuitesByLogement(GetImmeubleIdAndLogementIdInputDto $inputDto): object
+    {
+        return (object) [
+            'PkImmeuble' => $inputDto->pkImmeuble,
+            'ParamsFiltres' => "PKLOGEMENT=$inputDto->pkLogement"
+        ];
+    }
+
+    public function hydrateListInterventionsByLogement(GetImmeubleIdAndLogementIdInputDto $inputDto): object
+    {
+        return (object) [
+            'PkImmeuble' => $inputDto->pkImmeuble,
+            'ParamsFiltres' => "PKLOGEMENT=$inputDto->pkLogement"
         ];
     }
 }

@@ -8,8 +8,8 @@ use App\Domain\Entity\Immeuble;
 
 final class ListImmeublesOutputDto
 {
-  /** @param Immeuble[] $immeubleDto */
+  /** @param Immeuble[] $listImmeubleDto */
   public function __construct(
-    public readonly array $immeubleDto
+    public readonly array $listImmeubleDto
   ) {}
 }

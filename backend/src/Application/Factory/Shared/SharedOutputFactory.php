@@ -9,7 +9,7 @@ use App\Application\Dto\Output\Shared\ListIndicatorsOuputDto;
 use App\Application\Dto\Output\Shared\ListAnomaliesOuputDto;
 use App\Application\Dto\Output\Shared\ListDysfonctionnementsOuputDto;
 use App\Application\Dto\Output\Shared\ListAlertesOuputDto;
-use App\Application\Dto\Output\Shared\ListFuitesOuputDto;
+use App\Application\Dto\Output\Shared\ListFuitesOutputDto;
 use App\Application\Dto\Output\Shared\ListInterventionsOutputDto;
 
 use App\Domain\Entity\User;
@@ -68,9 +68,9 @@ final class SharedOutputFactory
         return new ListAnomaliesOuputDto($entities);
     }
 
-    public function createListFuites(array $entities): ListFuitesOuputDto
+    public function createListFuites(array $entities): ListFuitesOutputDto
     {
-        return new ListFuitesOuputDto($entities);
+        return new ListFuitesOutputDto($entities);
     }
 
     public function createListAlertes(array $entities): ListAlertesOuputDto

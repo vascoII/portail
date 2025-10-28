@@ -20,7 +20,7 @@ interface LogementDataSourceInterface
 	public function fetchGetLogementGaz(GetByIdIntInputDto $inputDto): object;
 	public function fetchGetLogementRepart(GetByIdIntInputDto $inputDto): object;
 	public function fetchListAnomaliesByLogement(GetImmeubleIdAndLogementIdInputDto $inputDto): object;
-	public function fetchListDysfonctionnementsByLogement(GetByIdIntInputDto $inputDto): object;
-	public function fetchListFuitesByLogement(GetByIdIntInputDto $inputDto): object;
-	public function fetchListInterventionsByLogement(GetByIdIntInputDto $inputDto): object;
+	public function fetchListDysfonctionnementsByLogement(GetImmeubleIdAndLogementIdInputDto $inputDto): object;
+	public function fetchListFuitesByLogement(GetImmeubleIdAndLogementIdInputDto  $inputDto): object;
+	public function fetchListInterventionsByLogement(GetImmeubleIdAndLogementIdInputDto $inputDto): object;
 }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Application\UseCase\Occupant;
 
-use App\Application\Dto\Output\Shared\ListFuitesOuputDto;
+use App\Application\Dto\Output\Shared\ListFuitesOutputDto;
 use App\Application\Service\DataProvider\OccupantDataProviderInterface;
 
 final class ListFuitesByOccupantUseCase
@@ -13,7 +13,7 @@ final class ListFuitesByOccupantUseCase
     private readonly OccupantDataProviderInterface $serviceDataProvider
   ) {}
 
-  public function execute(): ListFuitesOuputDto
+  public function execute(): ListFuitesOutputDto
   {
     return $this->serviceDataProvider->listFuitesByOccupantService();
   }

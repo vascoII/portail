@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Application\UseCase\Immeuble;
 
 use App\Application\Dto\Input\Shared\GetByIdIntInputDto;
-use App\Application\Dto\Output\Shared\ListFuitesOuputDto;
+use App\Application\Dto\Output\Shared\ListFuitesOutputDto;
 use App\Application\Service\DataProvider\ImmeubleDataProviderInterface;
 
 final class ListFuitesByImmeubleUseCase
@@ -14,7 +14,7 @@ final class ListFuitesByImmeubleUseCase
     private readonly ImmeubleDataProviderInterface $serviceDataProvider
   ) {}
 
-  public function execute(GetByIdIntInputDto $inputDto): ListFuitesOuputDto
+  public function execute(GetByIdIntInputDto $inputDto): ListFuitesOutputDto
   {
     return $this->serviceDataProvider->listFuitesByImmeubleService($inputDto);
   }

@@ -111,31 +111,31 @@ final class LogementSoap extends Soap implements LogementDataSourceInterface
         return $this->safeCall('GetInfosAnomaliesByImmeuble', $soapRequest);
     }
 
-    public function fetchListDysfonctionnementsByLogement(GetByIdIntInputDto $inputDto): object
+    public function fetchListDysfonctionnementsByLogement(GetImmeubleIdAndLogementIdInputDto $inputDto): object
     {
         $authContext = $this->getAuthContext();
         $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
         $soapRequest = $this->hydrator->hydrateListDysfonctionnementsByLogement($inputDto);
 
-        return $this->safeCall('GetInfosDysfonctionnementsByLogement', $soapRequest);
+        return $this->safeCall('GetInfosDysfonctionnementsByImmeuble', $soapRequest);
     }
 
-    public function fetchListFuitesByLogement(GetByIdIntInputDto $inputDto): object
+    public function fetchListFuitesByLogement(GetImmeubleIdAndLogementIdInputDto $inputDto): object
     {
         $authContext = $this->getAuthContext();
         $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
         $soapRequest = $this->hydrator->hydrateListFuitesByLogement($inputDto);
 
-        return $this->safeCall('GetInfosFuitesByLogement', $soapRequest);
+        return $this->safeCall('GetInfosFuitesByImmeuble', $soapRequest);
     }
 
-    public function fetchListInterventionsByLogement(GetByIdIntInputDto $inputDto): object
+    public function fetchListInterventionsByLogement(GetImmeubleIdAndLogementIdInputDto $inputDto): object
     {
         $authContext = $this->getAuthContext();
         $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
         $soapRequest = $this->hydrator->hydrateListInterventionsByLogement($inputDto);
 
-        return $this->safeCall('GetInfosDepannagesByLogement', $soapRequest);
+        return $this->safeCall('GetInfosDepannagesByImmeuble', $soapRequest);
     }
 
     private function getAuthContext(): AuthenticationContext
