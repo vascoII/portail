@@ -1,0 +1,68 @@
+{
+  "anomalies": [
+    [
+      {
+        "pkLogement": 74145,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "",
+        "numEtage": "5",
+        "numOrdre": "3",
+        "type": ""
+      },
+      {
+        "pkOccupant": 1589697,
+        "nom": "Demo",
+        "ref": "",
+        "dateArrivee": "2016-09-06T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      {
+        "pkAppareil": 2798402,
+        "numero": "61203724",
+        "emplacement": "CHAMBRE",
+        "fluide": "EF",
+        "typeAppareil": "EF",
+        "unite": "m3"
+      },
+      {
+        "index": 0,
+        "conso": 0,
+        "observations": "Dernière consommation le :\nPoint de comptage non utilisé"
+      }
+    ],
+    [
+      {
+        "pkLogement": 74148,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "",
+        "numEtage": "5",
+        "numOrdre": "6",
+        "type": "  "
+      },
+      {
+        "pkOccupant": 149751,
+        "nom": "Demo",
+        "ref": "",
+        "dateArrivee": "1998-01-15T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      {
+        "pkAppareil": 2788261,
+        "numero": "61210298",
+        "emplacement": "EXTERIEUR",
+        "fluide": "EF",
+        "typeAppareil": "EF",
+        "unite": "m3"
+      },
+      {
+        "index": 0,
+        "conso": 0,
+        "observations": "Dernière consommation le :\nPoint de comptage non utilisé"
+      }
+    ]
+  ]
+}

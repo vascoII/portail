@@ -1,0 +1,28 @@
+{
+  "indicators": {
+    "pkLogement": 1036204,
+    "logementRepart": {
+      "ListeInfosAppareils": [],
+      "Tot_URepart": "-1",
+      "Tot_TantChauff": "-1",
+      "PU_Tant": "-1",
+      "Prix_URepart": "-1",
+      "Prix_Abonn": "-1",
+      "Mont_ARepartTant": "-1",
+      "Part_RepartConsos": "-1",
+      "CT_Combust": "-1",
+      "URepartLog": "-1",
+      "TantLog": "-1",
+      "Prix_ChauffTantLog": "-1",
+      "CT_ChauffLog": "-1",
+      "SerieConsosDJU": {
+        "erreur": "",
+        "info": "",
+        "defaultIntervalle": 365,
+        "valeursXYL": "",
+        "annee": ""
+      },
+      "ConsosPieces": []
+    }
+  }
+}

@@ -1,0 +1,207 @@
+{
+  "interventions": [
+    [
+      {
+        "pkLogement": -1,
+        "numBatiment": "",
+        "adrBatiment": "",
+        "numEscalier": "0",
+        "adrEscalier": null,
+        "numEtage": "",
+        "numOrdre": "0",
+        "type": null
+      },
+      {
+        "pkOccupant": -1,
+        "nom": "Demo",
+        "ref": null,
+        "dateArrivee": "0001-01-01T00:00:00+00:00",
+        "dateDepart": "0001-01-01T00:00:00+00:00"
+      },
+      {
+        "workOrderNumber": "00118278",
+        "numero": "00118278",
+        "statut": "Realise",
+        "statutAbrege": "",
+        "date": "2024-02-09T00:00:00+00:00",
+        "motif": "1 - Compteur d'eau : 249634-4 () (EC) (..) : Vérification consommation  compteur d'eau\n2 - Compteur d'eau : 662179-3 () (EF) (WC - WC) : Vérification consommation  compteur d'eau\n3 - Compteur d'eau : B12NA527290 () (EC) (SB - SALLE DE BAINS) : Vérification consommation  compteur d'eau\n4 - Compteur d'eau : 662223-3 () (EF) (SB - SALLE DE BAINS) : Vérification consommation  compteur d'eau\n",
+        "motifAbrege": "Vérification consommation  compteur d'eau",
+        "compteRendu": "1 - Compteur mal attribué\n2 - Compteur eau froide fonctionne normalement\n3 - Compteur eau chaude fonctionne normalement\n4 - Compteur mal attribué\n"
+      }
+    ],
+    [
+      {
+        "pkLogement": 1036239,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "6",
+        "numOrdre": "5",
+        "type": "  "
+      },
+      {
+        "pkOccupant": 2502461,
+        "nom": "Demo",
+        "ref": "LOT 36",
+        "dateArrivee": "2023-11-24T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      {
+        "workOrderNumber": "00118290",
+        "numero": "00118290",
+        "statut": "Realise",
+        "statutAbrege": "",
+        "date": "2024-02-09T00:00:00+00:00",
+        "motif": "1 - Compteur d'eau : 384145-4 () (EC) (PL - PLACARD - PENDERIE) : Vérification consommation  compteur d'eau\n2 - Compteur d'eau : 662189-3 () (EF) (PL - PLACARD - PENDERIE) : Vérification consommation  compteur d'eau\n3 - Compteur d'eau : 68450-4 () (EC) (SB - SALLE DE BAINS) : Vérification consommation  compteur d'eau\n4 - Compteur d'eau : 14072-06 () (EF) (SB - SALLE DE BAINS) : Vérification consommation  compteur d'eau\n",
+        "motifAbrege": "Vérification consommation  compteur d'eau",
+        "compteRendu": "1 - Compteur eau chaude fonctionne normalement\n2 - Compteur eau froide fonctionne normalement\n3 - Compteur eau froide fonctionne normalement\n4 - Compteur eau froide fonctionne normalement\n\nInformations techniques détaillées : \n> Le compteur fonctionne normalement : 384145-4 (--)(EC)(PL) à 171 m3\n> Le compteur fonctionne normalement : 662189-3 (--)(EF)(PL) à 149 m3\n> Le compteur fonctionne normalement : 68450-4 (--)(EC)(SB) à 900 m3\n> Le compteur fonctionne normalement : 14072-06 (--)(EF)(SB) à 598 m3"
+      }
+    ],
+    [
+      {
+        "pkLogement": 1036210,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "1",
+        "numOrdre": "5",
+        "type": "  "
+      },
+      {
+        "pkOccupant": 2502558,
+        "nom": "Demo",
+        "ref": "LOT 7",
+        "dateArrivee": "2023-11-24T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      {
+        "workOrderNumber": "00118292",
+        "numero": "00118292",
+        "statut": "Realise",
+        "statutAbrege": "",
+        "date": "2024-02-09T00:00:00+00:00",
+        "motif": "1 - Compteur d'eau : 05PA064471 () (EC) (WC) : Vérification consommation  compteur d'eau\n2 - Compteur d'eau : 662256-3 () (EF) (WC) : Vérification consommation  compteur d'eau\n3 - Compteur d'eau : 20131525 (14955698-06-95-TCH) (EF) (SB) : Vérification consommation  compteur d'eau\n4 - Compteur d'eau : 21147130 (20866928-07-95-TCH) (EC) (SB) : Vérification consommation  compteur d'eau\n",
+        "motifAbrege": "Vérification consommation  compteur d'eau",
+        "compteRendu": "1 - Compteur eau chaude fonctionne normalement\n2 - Compteur eau froide fonctionne normalement\n3 - Compteur mal attribué\n4 - Compteur mal attribué\n\nInformations techniques détaillées : \n> Le compteur fonctionne normalement : 05PA064471 ()(EC)(WC) à 55 m3\n> Le compteur fonctionne normalement : 662256-3 ()(EF)(WC) à 869 m3\n> Le compteur était mal attribué : 21147130 ()(EF)(SB) à 6 m3\n> Le compteur était mal attribué : 20131525 ()(EC)(SB) à 10 m3\n> Le compteur fonctionne normalement : 05PA064471 ()(EC)(WC) à 55 m3\n> Le compteur fonctionne normalement : 662256-3 ()(EF)(WC) à 869 m3\n> Le compteur était mal attribué : 21147130 ()(EF)(SB) à 6 m3\n> Le compteur était mal attribué : 20131525 ()(EC)(SB) à 10 m3"
+      }
+    ],
+    [
+      {
+        "pkLogement": 1036206,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "1",
+        "numOrdre": "1",
+        "type": "  "
+      },
+      {
+        "pkOccupant": 1643534,
+        "nom": "Demo",
+        "ref": "LOT 3",
+        "dateArrivee": "2016-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      {
+        "workOrderNumber": "00146041",
+        "numero": "00146041",
+        "statut": "Realise",
+        "statutAbrege": "",
+        "date": "2024-09-17T00:00:00+00:00",
+        "motif": "1 - Compteur d'eau : 435928-4 () (EC) (..) : Vérification consommation  compteur d'eau\n2 - Compteur d'eau : 662233-4 () (EF) (..) : Vérification consommation  compteur d'eau\n3 - Compteur d'eau : 376639-4 () (EC) (..) : Vérification consommation  compteur d'eau\n4 - Compteur d'eau : 662236-4 () (EF) (..) : Vérification consommation  compteur d'eau\n",
+        "motifAbrege": "Vérification consommation  compteur d'eau",
+        "compteRendu": "1 - Compteur remplacé\n2 - Compteur remplacé\n3 - Compteur eau chaude fonctionne normalement\n4 - Compteur eau froide fonctionne normalement\n\nInformations techniques détaillées : \n> Le compteur fonctionne normalement : 435928-4 ()(EC)(WC) à 896 m3\n> Le compteur fonctionne normalement : 662233-3 ()(EF)(WC) à 1562 m3\n> Le compteur fonctionne normalement : 376639-4 ()(EC)(CU) à 315 m3\n> Remplacement de compteur réalisé : 662236-3 ()(EF)(CU) à 299 m3 par 40619175 ()(EF)(CU) à 0 m3"
+      }
+    ],
+    [
+      {
+        "pkLogement": 1036210,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "1",
+        "numOrdre": "5",
+        "type": "  "
+      },
+      {
+        "pkOccupant": 2502558,
+        "nom": "Demo",
+        "ref": "LOT 7",
+        "dateArrivee": "2023-11-24T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      {
+        "workOrderNumber": "00146042",
+        "numero": "00146042",
+        "statut": "Realise",
+        "statutAbrege": "",
+        "date": "2024-09-17T00:00:00+00:00",
+        "motif": "1 - Compteur d'eau : 05PA064471 () (EC) (WC) : Vérification consommation  compteur d'eau\n2 - Compteur d'eau : 21147130 (20866928-07-95-TCH) (EC) (SB) : Vérification consommation  compteur d'eau\n3 - Compteur d'eau : 662256-3 () (EF) (WC) : Vérification consommation  compteur d'eau\n4 - Compteur d'eau : 20131525 (14955698-06-95-TCH) (EF) (SB) : Vérification consommation  compteur d'eau\n",
+        "motifAbrege": "Vérification consommation  compteur d'eau",
+        "compteRendu": "1 - Compteur eau chaude fonctionne normalement\n2 - Compteur mal attribué\n3 - Compteur eau froide fonctionne normalement\n4 - Compteur mal attribué\n\nInformations techniques détaillées : \n> Le compteur était mal attribué : 21147130 ()(EF)(SB) à 16 m3\n> Le compteur fonctionne normalement : 05PA064471 ()(EC)(WC) à 56 m3\n> Le compteur était mal attribué : 20131525 ()(EC)(SB) à 20 m3\n> Le compteur fonctionne normalement : 662256-3 (--)(EF)(WC) à 884 m3"
+      }
+    ],
+    [
+      {
+        "pkLogement": 1036211,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "2",
+        "numOrdre": "1",
+        "type": "  "
+      },
+      {
+        "pkOccupant": 1764184,
+        "nom": "Demo",
+        "ref": "LOT 8",
+        "dateArrivee": "2018-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      {
+        "workOrderNumber": "00146043",
+        "numero": "00146043",
+        "statut": "Nonrealise",
+        "statutAbrege": "",
+        "date": "2024-09-17T00:00:00+00:00",
+        "motif": "1 - Compteur d'eau : 02PA517475 () (EC) (..) : Vérification consommation  compteur d'eau\n2 - Compteur d'eau : 662225-3 () (EF) (..) : Vérification consommation  compteur d'eau\n3 - Compteur d'eau : 436243-4 () (EC) (..) : Vérification consommation  compteur d'eau\n4 - Compteur d'eau : 662249-3 () (EF) (..) : Vérification consommation  compteur d'eau\n",
+        "motifAbrege": "Vérification consommation  compteur d'eau",
+        "compteRendu": "1 - Occupant absent\n2 - Occupant absent\n3 - Occupant absent\n4 - Occupant absent\n\nInformations techniques détaillées : \n> Occupant absent\n> Occupant absent\n> Occupant absent\n> Occupant absent"
+      }
+    ],
+    [
+      {
+        "pkLogement": 1036239,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "6",
+        "numOrdre": "5",
+        "type": "  "
+      },
+      {
+        "pkOccupant": 2502461,
+        "nom": "Demo",
+        "ref": "LOT 36",
+        "dateArrivee": "2023-11-24T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      {
+        "workOrderNumber": "00146045",
+        "numero": "00146045",
+        "statut": "Nonrealise",
+        "statutAbrege": "",
+        "date": "2024-09-17T00:00:00+00:00",
+        "motif": "1 - Compteur d'eau : 384145-4 () (EC) (PL - PLACARD - PENDERIE) : Vérification consommation  compteur d'eau\n",
+        "motifAbrege": "Vérification consommation  compteur d'eau",
+        "compteRendu": "1 - Occupant absent\n\nInformations techniques détaillées : \n> Occupant absent"
+      }
+    ]
+  ]
+}

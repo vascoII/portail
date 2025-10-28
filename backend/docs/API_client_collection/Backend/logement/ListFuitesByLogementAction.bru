@@ -1,11 +1,11 @@
 meta {
-  name: GenerateInterventionPdfAction
+  name: ListFuitesByLogementAction
   type: http
-  seq: 1
+  seq: 9
 }
 
 get {
-  url: {{localhost_backend}}/api/intervention/{{pkIntervention}}/generate
+  url: {{localhost_backend}}/api/immeuble/4423/logement/1036204/fuites
   body: none
   auth: bearer
 }

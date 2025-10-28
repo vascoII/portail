@@ -1,0 +1,19 @@
+meta {
+  name: ListInterventionsByLogementAction
+  type: http
+  seq: 10
+}
+
+get {
+  url: {{localhost_backend}}/api/immeuble/4423/logement/1036204/interventions
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bearToken}}
+}
+
+settings {
+  encodeUrl: true
+}

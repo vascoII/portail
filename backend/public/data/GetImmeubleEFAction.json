@@ -1,0 +1,109 @@
+{
+  "indicators": {
+    "pkImmeuble": 4423,
+    "immeubleEF": {
+      "pkImmeuble": 4423,
+      "nbCompteursARelever": 82,
+      "nbCompteursReleves": 70,
+      "nbFuites": 12,
+      "degresFuites": -1,
+      "nbAnomalies": 0,
+      "degresAnomalies": -1,
+      "chantier": {
+        "pkChantier": -1,
+        "pkDevis": -1,
+        "pkImmeuble": -1,
+        "dateEntreeChantier": "0001-01-01T00:00:00",
+        "nbCompteursPoses": -1,
+        "nbCompteursCommandes": -1
+      },
+      "topConsos": {
+        "dateReleve": "2016-01-05T00:00:00",
+        "consosGrandes": [
+          {
+            "pkLogement": 1036205,
+            "nomOcc": "M Mme Onois_1643533",
+            "refOcc": "LOT 148",
+            "fluide": 2,
+            "conso": "3430"
+          },
+          {
+            "pkLogement": 1036235,
+            "nomOcc": "M Mme Onois_1643565",
+            "refOcc": "LOT 32",
+            "fluide": 2,
+            "conso": "3128"
+          },
+          {
+            "pkLogement": 1036281,
+            "nomOcc": "M Mme Onois_1643613",
+            "refOcc": "LOT 150",
+            "fluide": 2,
+            "conso": "2124"
+          },
+          {
+            "pkLogement": 1036211,
+            "nomOcc": "M Mme Onois_1764184",
+            "refOcc": "LOT 8",
+            "fluide": 2,
+            "conso": "1905"
+          },
+          {
+            "pkLogement": 1036214,
+            "nomOcc": "M Mme Onois_1643542",
+            "refOcc": "LOT 11",
+            "fluide": 2,
+            "conso": "1574"
+          }
+        ],
+        "consosPetites": [
+          {
+            "pkLogement": 1036254,
+            "nomOcc": "M Mme Onois_2104161",
+            "refOcc": "LOT 46",
+            "fluide": 2,
+            "conso": "0"
+          },
+          {
+            "pkLogement": 1036246,
+            "nomOcc": "M Mme Onois_1643578",
+            "refOcc": "LOT 43",
+            "fluide": 2,
+            "conso": "0"
+          },
+          {
+            "pkLogement": 1036231,
+            "nomOcc": "M Mme Onois_1643560",
+            "refOcc": "LOT 28",
+            "fluide": 2,
+            "conso": "14"
+          },
+          {
+            "pkLogement": 1036216,
+            "nomOcc": "M Mme Onois_1643544",
+            "refOcc": "LOT 13",
+            "fluide": 2,
+            "conso": "32"
+          },
+          {
+            "pkLogement": 1036216,
+            "nomOcc": "M Mme Onois_1643544",
+            "refOcc": "LOT 13",
+            "fluide": 2,
+            "conso": "33"
+          }
+        ]
+      },
+      "serieConsos1": {
+        "defaultIntervalle": 365,
+        "valeursXYL": "",
+        "annee": "2025"
+      },
+      "serieConsos2": {
+        "defaultIntervalle": 365,
+        "valeursXYL": "",
+        "annee": "2024"
+      }
+    }
+  }
+}
