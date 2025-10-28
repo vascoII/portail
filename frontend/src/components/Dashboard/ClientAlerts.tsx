@@ -13,76 +13,83 @@ interface ClientAlertsProps {
 
 const ClientAlerts: React.FC<ClientAlertsProps> = ({ data }) => {
   return (
-    <div className="col-span-8 lg:col-span-8 md:col-span-6">
-      <div className="bg-white rounded-lg shadow-md p-6">
-        <div className="text-lg font-semibold text-gray-800 mb-6">
-          Alertes client
-        </div>
+    <div className="panel">
+      <div className="block-title text-lg font-semibold text-gray-800 mb-6">
+        Alertes client
+      </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Leaks Alert */}
+      <div className="row">
+        {/* Leaks Alert - Bootstrap col-lg-6 */}
+        <div className="col-span-6 lg:col-span-6 md:col-span-12">
           <Link
             href="/immeubles?fuites=1"
-            className="block hover:bg-gray-50 p-4 rounded-lg transition-colors duration-200"
+            className="fui block hover:bg-gray-50 p-4 rounded-lg transition-colors duration-200"
           >
-            <div className="flex items-center">
-              <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                <i className="fas fa-tint text-blue-600 text-xl"></i>
+            <div className="panel-default">
+              <div className="icons blue">
+                <span className="icon-water33 text-2xl"></span>
               </div>
-              <div className="flex-1">
-                <div className="text-sm font-medium text-gray-600 mb-1">
-                  Nombre de fuites
-                </div>
-                <div
-                  className={`text-2xl font-bold ${
-                    data.NbFuites === 0 ? "text-gray-400" : "text-gray-800"
-                  }`}
-                >
-                  {data.NbFuites}
-                </div>
+
+              <div className="title text-sm font-medium text-gray-600 mb-1">
+                Nombre de fuites
+              </div>
+
+              <div
+                className={`value text-2xl font-bold ${
+                  data.NbFuites === 0 ? "empty text-gray-400" : "text-gray-800"
+                }`}
+              >
+                {data.NbFuites}
               </div>
             </div>
           </Link>
 
-          {/* Consumption Anomalies Alert */}
-          <Link
-            href="/immeubles?anomalies=1"
-            className="block hover:bg-gray-50 p-4 rounded-lg transition-colors duration-200"
-          >
-            <div className="flex items-center">
-              <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mr-4">
-                <i className="fas fa-exclamation-triangle text-red-600 text-xl"></i>
+          {data.isDemo && (
+            <a href="">
+              <div className="btn-alarme-tech bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg text-sm transition-colors duration-200 text-center mt-2 demo-feature">
+                <span className="demo-badge mr-2">DEMO</span>
+                Synthèse patrimoine
               </div>
-              <div className="flex-1">
-                <div className="text-sm font-medium text-gray-600 mb-1">
-                  Nombre d'anomalies de consommation
-                </div>
-                <div
-                  className={`text-2xl font-bold ${
-                    data.NbAnomalies === 0 ? "text-gray-400" : "text-gray-800"
-                  }`}
-                >
-                  {data.NbAnomalies}
-                </div>
-              </div>
-            </div>
-          </Link>
+            </a>
+          )}
         </div>
 
-        {/* Demo buttons */}
-        {data.isDemo && (
-          <div className="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <button className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg text-sm transition-colors duration-200">
-              Synthèse patrimoine
-            </button>
-            <a
-              href="/xlsx/export-anomalies-global.xlsx"
-              className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg text-sm transition-colors duration-200 text-center block"
-            >
-              Synthèse patrimoine
+        {/* Consumption Anomalies Alert - Bootstrap col-lg-6 */}
+        <div className="col-span-6 lg:col-span-6 md:col-span-12">
+          <Link
+            href="/immeubles?anomalies=1"
+            className="ano block hover:bg-gray-50 p-4 rounded-lg transition-colors duration-200"
+          >
+            <div className="panel-default">
+              <div className="icons red">
+                <span className="icon-caution text-2xl"></span>
+              </div>
+
+              <div className="title text-sm font-medium text-gray-600 mb-1">
+                Nombre d'anomalies de consommation
+              </div>
+
+              <div
+                className={`value text-2xl font-bold ${
+                  data.NbAnomalies === 0
+                    ? "empty text-gray-400"
+                    : "text-gray-800"
+                }`}
+              >
+                {data.NbAnomalies}
+              </div>
+            </div>
+          </Link>
+
+          {data.isDemo && (
+            <a href="/xlsx/export-anomalies-global.xlsx">
+              <div className="btn-alarme-tech bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg text-sm transition-colors duration-200 text-center mt-2 demo-feature">
+                <span className="demo-badge mr-2">DEMO</span>
+                Synthèse patrimoine
+              </div>
             </a>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );

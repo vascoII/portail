@@ -2,8 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import CircularGauge from "../UI/CircularGauge";
-import { motion } from "framer-motion";
+import CircularGauge from "./CircularGauge";
 
 interface StatusGaugeProps {
   title: string;
@@ -34,13 +33,7 @@ const StatusGauge: React.FC<StatusGaugeProps> = ({
   const backgroundColor = "#e5e7eb";
 
   return (
-    <motion.div
-      className={`status-gauge ${className}`}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      whileHover={{ scale: 1.02 }}
-    >
+    <div className={`status-gauge ${className}`}>
       <div className="panel-default">
         <Link
           href={href}
@@ -48,16 +41,11 @@ const StatusGauge: React.FC<StatusGaugeProps> = ({
         >
           <div className="panel-body">
             {/* Title */}
-            <motion.div
-              className="intitule"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-            >
+            <div className="intitule">
               <span className="text-sm font-medium text-dashboard-textSecondary">
                 {title}
               </span>
-            </motion.div>
+            </div>
 
             {/* Canvas area for gauge */}
             <div className="canvas">
@@ -82,15 +70,12 @@ const StatusGauge: React.FC<StatusGaugeProps> = ({
                       isActive ? color : "bg-gray-300"
                     }`}
                   >
-                    <motion.div
+                    <div
                       className={`h-2 rounded-full transition-all duration-500 ${
                         isActive ? color : "bg-gray-300"
                       }`}
                       style={{ width: isActive ? "100%" : "0%" }}
-                      initial={{ width: 0 }}
-                      animate={{ width: isActive ? "100%" : "0%" }}
-                      transition={{ duration: 1, delay: 0.5 }}
-                    ></motion.div>
+                    ></div>
                   </div>
 
                   {/* Icon */}
@@ -106,20 +91,15 @@ const StatusGauge: React.FC<StatusGaugeProps> = ({
             </div>
 
             {/* Count display */}
-            <motion.div
-              className="taux"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4 }}
-            >
+            <div className="taux">
               <div className="text-2xl font-bold text-dashboard-textPrimary">
                 {displayCount}
               </div>
-            </motion.div>
+            </div>
           </div>
         </Link>
       </div>
-    </motion.div>
+    </div>
   );
 };
 

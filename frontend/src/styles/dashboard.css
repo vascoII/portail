@@ -1,0 +1,670 @@
+/* Dashboard Custom CSS - Complex components that can't be replicated with Tailwind */
+
+/* Dashboard Layout */
+.dashboard-container {
+  background: #e8e8e9;
+  min-height: 100vh;
+}
+
+/* Bootstrap Grid Compatibility */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.col-span-8 {
+  flex: 0 0 66.66666667%;
+  max-width: 66.66666667%;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.col-span-4 {
+  flex: 0 0 33.33333333%;
+  max-width: 33.33333333%;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.col-span-12 {
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Additional Bootstrap grid classes */
+.col-span-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.col-span-7 {
+  flex: 0 0 58.33333333%;
+  max-width: 58.33333333%;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.col-span-5 {
+  flex: 0 0 41.66666667%;
+  max-width: 41.66666667%;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .col-span-8,
+  .col-span-4,
+  .col-span-6,
+  .col-span-7,
+  .col-span-5 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+/* Clearfix for Bootstrap compatibility */
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Block positioning */
+.block {
+  margin-bottom: 20px;
+}
+
+.block-1 {
+  /* Parc overview block */
+}
+
+.block-2 {
+  /* Status gauges block */
+}
+
+.block-3 {
+  /* Client alerts block */
+}
+
+.block-4 {
+  /* Technical alerts block */
+}
+
+.block-5 {
+  /* Construction panel block */
+}
+
+/* Panel Area */
+.panel-area {
+  margin-bottom: 20px;
+}
+
+/* Specific component classes from old template */
+.panel-info {
+  /* Panel info styling */
+}
+
+.panel-left {
+  /* Left panel styling */
+}
+
+.panel-right {
+  /* Right panel styling */
+}
+
+.block-left {
+  /* Left block styling */
+}
+
+.block-right {
+  /* Right block styling */
+}
+
+.block-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.button {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.button-parc {
+  /* Parc button styling */
+}
+
+.gestion-parc {
+  /* Gestion parc button styling */
+}
+
+.app {
+  /* App section styling */
+}
+
+.app .inner {
+  /* Inner app styling */
+}
+
+.stats {
+  /* Stats section styling */
+}
+
+.stats .item {
+  /* Stats item styling */
+}
+
+.stats .value {
+  /* Stats value styling */
+}
+
+.stats .title {
+  /* Stats title styling */
+}
+
+.chart {
+  /* Chart styling */
+}
+
+.chart .number {
+  /* Chart number styling */
+}
+
+.chart .text {
+  /* Chart text styling */
+}
+
+.chart .number.dark {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.chart .number.blue {
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.icons {
+  /* Icons styling */
+}
+
+.icons.blue {
+  color: #007bff;
+}
+
+.icons.red {
+  color: #dc3545;
+}
+
+/* Responsive behavior for mobile/tablet */
+@media (max-width: 1024px) {
+  .dashboard-container {
+    padding: 0 10px;
+  }
+  
+  .panel-primary {
+    min-height: 280px;
+    padding: 15px;
+  }
+  
+  .panel-default {
+    min-height: 160px;
+  }
+  
+  .status-gauge .canvas {
+    height: 100px;
+  }
+  
+  .status-gauge .taux {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 0 5px;
+  }
+  
+  .panel-primary {
+    min-height: 250px;
+    padding: 10px;
+  }
+  
+  .panel-default {
+    min-height: 140px;
+  }
+  
+  .status-gauge .canvas {
+    height: 80px;
+  }
+  
+  .status-gauge .taux {
+    font-size: 16px;
+  }
+  
+  .block-title {
+    font-size: 16px;
+  }
+  
+  .chart .number {
+    font-size: 14px;
+    padding: 3px;
+  }
+  
+  .chart .text {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 640px) {
+  .row {
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+  
+  .col-span-8,
+  .col-span-4,
+  .col-span-6,
+  .col-span-7,
+  .col-span-5 {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  .panel-primary {
+    min-height: 200px;
+    padding: 8px;
+  }
+  
+  .panel-default {
+    min-height: 120px;
+  }
+  
+  .status-gauge .canvas {
+    height: 60px;
+  }
+  
+  .status-gauge .taux {
+    font-size: 14px;
+  }
+  
+  .block-title {
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+  
+  .stats .value {
+    font-size: 16px;
+  }
+  
+  .stats .title {
+    font-size: 12px;
+  }
+}
+
+/* Demo mode styling */
+.demo-mode {
+  position: relative;
+}
+
+.demo-mode::before {
+  content: "DEMO";
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #8b5cf6;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 3px;
+  z-index: 10;
+}
+
+.demo-badge {
+  background: linear-gradient(45deg, #8b5cf6, #a855f7);
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.demo-feature {
+  opacity: 0.8;
+  border: 2px dashed #8b5cf6;
+  background: rgba(139, 92, 246, 0.05);
+}
+
+.demo-feature:hover {
+  opacity: 1;
+  background: rgba(139, 92, 246, 0.1);
+}
+
+/* Panel Styles - Exact match to old CSS */
+.panel-primary {
+  min-height: 310px;
+  overflow: hidden;
+  padding: 20px;
+  border-bottom: 1px solid #c3c3c3;
+  border-radius: 0;
+}
+
+.panel-primary.parc_summary {
+  min-height: 310px;
+  padding: 15px 25px;
+}
+
+.panel-default {
+  min-height: 195px;
+  background: #f4f5f9;
+  border: 1px solid #d3d7db;
+  box-shadow: 0px 0px 6px #d3d7db;
+}
+
+.panel-default:hover {
+  box-shadow: none;
+}
+
+/* Status Gauge Styles */
+.status-gauge {
+  position: relative;
+}
+
+.status-gauge .panel-body {
+  position: relative;
+}
+
+.status-gauge .canvas {
+  height: 132px;
+  text-align: center;
+}
+
+.status-gauge .intitule {
+  height: 36px;
+  line-height: 36px;
+}
+
+.status-gauge .intitule span {
+  line-height: 1.2;
+  text-align: center;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.status-gauge .taux {
+  position: absolute;
+  right: 4%;
+  top: 7px;
+}
+
+/* Status Gauge Background Images */
+.status-gaugeb.gauge-fuites.on .canvas {
+  background: url('../images/fidesio/fuite_on.jpg') center center no-repeat;
+  height: 190px;
+}
+
+.status-gaugeb.gauge-fuites.off .canvas {
+  background: url('../images/fidesio/fuite_off.jpg') center center no-repeat;
+  height: 190px;
+}
+
+.status-gaugeb.gauge-anomalies.on .canvas {
+  background: url('../images/fidesio/anno_on.jpg') center center no-repeat;
+  height: 190px;
+}
+
+.status-gaugeb.gauge-anomalies.off .canvas {
+  background: url('../images/fidesio/anno_off.jpg') center center no-repeat;
+  height: 190px;
+}
+
+.status-gaugeb .canvas.on {
+  background: url('../images/fidesio/alarm_fui_on.jpg') -2px -2px no-repeat;
+}
+
+.status-gaugeb .canvas.off {
+  background: url('../images/fidesio/alarm_off.png') -2px -2px no-repeat;
+}
+
+.status-gauge.gauge-depannages .canvas {
+  background: url('../images/fidesio/bg-gauge-depannages.png') center center no-repeat;
+}
+
+.status-gauge.gauge-dysfonctionnements .canvas {
+  background: url('../images/fidesio/bg-gauge-dysfonctionnements.png') center center no-repeat;
+}
+
+/* Status Gauge Colors */
+.status-gaugeb.gauge-fuites .taux {
+  color: #8e98a2;
+}
+
+.status-gaugeb.gauge-anomalies .taux {
+  color: #ff6633;
+}
+
+.status-gauge.gauge-depannages .taux {
+  color: #8e98a2;
+}
+
+.status-gauge.gauge-dysfonctionnements .taux {
+  color: #8e98a2;
+}
+
+.status-gaugeb.on .taux {
+  color: #ff6633;
+}
+
+.status-gaugeb.off .taux {
+  color: #8e98a2;
+}
+
+/* Performance Gauge */
+.performance-gauge .canvas {
+  text-align: center;
+}
+
+/* Construction Panel Styles */
+.chantier {
+  height: 295px;
+}
+
+.chantier .panel-body,
+.transfert .panel-body,
+.performance .panel-body {
+  padding: 0;
+}
+
+.chantier i,
+.chantier i:before {
+  font-size: 30px;
+  display: block;
+  margin: 0 0 20px 0;
+}
+
+.chantier .taux {
+  margin-bottom: 15px;
+  color: #303030;
+}
+
+.chantier .txlab {
+  font-weight: bold;
+  margin-bottom: 25px;
+  color: #333333;
+}
+
+.chantier div.date {
+  margin-bottom: 10px;
+  color: #333333;
+}
+
+.chantier span.date {
+  font-weight: bold;
+}
+
+/* Construction Graph Styles */
+.chantier .graph {
+  width: 100%;
+  height: 100px;
+}
+
+.chantier .graph.bordered {
+  border: 1px solid #ccc;
+}
+
+.chantier .graph td {
+  vertical-align: bottom;
+  text-align: center;
+  padding: 0;
+}
+
+.chantier .graph td.ok {
+  background-color: #5cb85c;
+  color: white;
+}
+
+.chantier .graph td.not {
+  background-color: #d9534f;
+  color: white;
+}
+
+.chantier .graph td.glabel {
+  background-color: #f9f9f9;
+  color: #333;
+  font-size: 12px;
+  padding: 5px;
+}
+
+/* Panel Headers */
+.panel h3 {
+  margin-top: 0;
+  margin-left: 0;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.panel-primary.parc_summary h3 {
+  padding-left: 0;
+}
+
+.panel.parc_summary h3 {
+  text-transform: none;
+  margin-bottom: 4px;
+}
+
+.panel-primary.parc_summary h4,
+.panel-primary.parc_summary h4 strong {
+  padding-left: 0;
+}
+
+/* Icon Styles */
+.panel-primary.parc_summary i {
+  font-size: 32px;
+  color: #ff0000;
+  width: 35px;
+  display: inline-block;
+  margin-right: 25px;
+}
+
+.panel-primary.parc_summary i:before {
+  margin: 0 25px 0 0;
+}
+
+.panel-primary.parc_summary .icon-indicator {
+  color: #626b79;
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 767px) {
+  .panel-primary {
+    padding: 15px;
+  }
+  
+  .panel-primary.parc_summary {
+    padding: 10px 15px;
+  }
+  
+  .status-gauge .canvas {
+    height: 100px;
+  }
+  
+  .status-gaugeb.gauge-fuites.on .canvas,
+  .status-gaugeb.gauge-fuites.off .canvas,
+  .status-gaugeb.gauge-anomalies.on .canvas,
+  .status-gaugeb.gauge-anomalies.off .canvas {
+    height: 150px;
+  }
+}
+
+/* Loading States */
+.loader {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 300px;
+  background: rgba(45, 45, 45, 0.7);
+  transition: transform 0.3s;
+  transform: translateX(100%) translateY(-100%) rotate(45deg);
+  pointer-events: none;
+}
+
+.loader.animate {
+  transform: translateX(50%) translateY(-50%) rotate(45deg);
+}
+
+.loader::before,
+.loader::after {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  display: block;
+  border: 5px solid #fff;
+  border-radius: 50%;
+  content: '';
+}
+
+.loader::before {
+  margin-left: -40px;
+  width: 80px;
+  height: 80px;
+  border-right-color: #bb344f;
+  border-left-color: #bb344f;
+  animation: rotation 3s linear infinite;
+}
+
+.loader::after {
+  bottom: 50px;
+  margin-left: -20px;
+  width: 40px;
+  height: 40px;
+  border-top-color: #bb344f;
+  border-bottom-color: #bb344f;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(180deg); }
+  100% { transform: rotate(360deg); }
+}

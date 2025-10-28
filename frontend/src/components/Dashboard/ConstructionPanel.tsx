@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import PerformanceGauge from "../UI/PerformanceGauge";
 
 interface ConstructionPanelProps {
   data: {
@@ -10,42 +11,71 @@ interface ConstructionPanelProps {
     NbCompteursPoses: number;
     DateEntreeChantier?: string;
   };
+  constructionStats?: {
+    installed: number;
+    installed_percent: number;
+    remaining: number;
+    remaining_percent: number;
+    total: number;
+  };
 }
 
-const ConstructionPanel: React.FC<ConstructionPanelProps> = ({ data }) => {
-  const remainingCount = data.NbCompteursCommandes - data.NbCompteursPoses;
-  const installedPercent =
-    data.NbCompteursCommandes > 0
-      ? (data.NbCompteursPoses * 200) / data.NbCompteursCommandes
-      : 0;
-  const remainingPercent =
-    data.NbCompteursCommandes > 0
-      ? (remainingCount * 200) / data.NbCompteursCommandes
-      : 0;
+const ConstructionPanel: React.FC<ConstructionPanelProps> = ({
+  data,
+  constructionStats,
+}) => {
+  // Use constructionStats if available, otherwise calculate from data
+  const stats = constructionStats || {
+    installed: data.NbCompteursPoses,
+    installed_percent:
+      data.NbCompteursCommandes > 0
+        ? Math.round((100 * data.NbCompteursPoses) / data.NbCompteursCommandes)
+        : 0,
+    remaining: data.NbCompteursCommandes - data.NbCompteursPoses,
+    remaining_percent:
+      data.NbCompteursCommandes > 0
+        ? Math.round(
+            (100 * (data.NbCompteursCommandes - data.NbCompteursPoses)) /
+              data.NbCompteursCommandes
+          )
+        : 0,
+    total: data.NbCompteursCommandes,
+  };
+
+  const remainingCount = stats.remaining;
+  const installedPercent = (stats.installed_percent * 200) / 100;
+  const remainingPercent = (stats.remaining_percent * 200) / 100;
 
   if (data.NbChantiers <= 0) {
     return (
-      <div className="col-span-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="bg-blue-600 text-white p-6 rounded-lg">
-            <div className="text-lg font-bold uppercase text-center">
-              Aucun chantier en cours
-            </div>
-            <div className="mt-8 text-center">
-              <i className="fas fa-tachometer-alt text-4xl mb-4"></i>
-              <div className="text-lg">Aucune commande en cours</div>
-            </div>
+      <div className="row">
+        <div className="col-span-6 panel panel-primary panel-left">
+          <div className="block-title text-lg font-bold uppercase text-center">
+            Aucun chantier en cours
           </div>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+        </div>
 
-          <div className="bg-blue-600 text-white p-6 rounded-lg">
-            <div className="text-lg font-semibold mb-4">Vos relevés</div>
-            {/* This would be replaced with actual gauge component */}
-            <div className="text-center">
-              <div className="text-2xl font-bold">
-                0<sup>%</sup>
-              </div>
-              <div className="text-sm">des appareils relevés</div>
+        <div className="col-span-6 panel panel-primary panel-right performance-gauge">
+          <div className="block-title text-lg font-semibold mb-4">
+            Vos relevés
+          </div>
+          <div className="text-center">
+            <div className="text-2xl font-bold">
+              0<sup>%</sup>
             </div>
+            <div className="text-sm">des appareils relevés</div>
           </div>
         </div>
       </div>
@@ -53,80 +83,77 @@ const ConstructionPanel: React.FC<ConstructionPanelProps> = ({ data }) => {
   }
 
   return (
-    <div className="col-span-12">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Construction Status */}
-        <div className="bg-blue-600 text-white p-6 rounded-lg">
-          <Link
-            href="/immeubles?chantiers=1"
-            className="block text-white hover:text-blue-200 transition-colors duration-200"
-          >
-            <div className="text-lg font-bold uppercase mb-6">
-              Chantiers en cours <i className="fas fa-chevron-right ml-2"></i>
+    <div className="row">
+      {/* Construction Status - Bootstrap col-sm-6 */}
+      <div className="col-span-6 panel panel-primary panel-left">
+        <Link
+          href="/immeubles?chantiers=1"
+          className="button block text-white hover:text-blue-200 transition-colors duration-200"
+        >
+          <div className="text-lg font-bold uppercase mb-6">
+            Chantiers en cours <i className="fa fa-chevron-right ml-2"></i>
+          </div>
+        </Link>
+
+        <div className="row">
+          <div className="col-span-6 block-left">
+            <div className="number text-2xl font-bold">
+              <i className="icon-compteur mr-2"></i> {stats.total}
             </div>
-          </Link>
+            <div className="text text-sm">Appareils commandés</div>
+            <br />
+            <br />
+            <br />
+            {/* Date would go here if available */}
+          </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div className="text-center">
-              <div className="flex items-center justify-center mb-2">
-                <i className="fas fa-calculator mr-2"></i>
-                <span className="text-2xl font-bold">
-                  {data.NbCompteursCommandes}
-                </span>
+          <div className="col-span-6 block-right">
+            <div className="chart clearfix">
+              <div
+                className="number dark"
+                style={{ height: `${remainingPercent}px` }}
+              >
+                {remainingCount}
               </div>
-              <div className="text-sm">Appareils commandés</div>
+              <div className="text text-sm">Appareils à poser</div>
             </div>
 
-            <div className="space-y-4">
-              {/* Remaining devices chart */}
-              <div className="bg-blue-500 p-4 rounded-lg">
-                <div
-                  className="bg-blue-800 text-white text-center py-2 rounded"
-                  style={{ height: `${remainingPercent}px`, minHeight: "20px" }}
-                >
-                  {remainingCount}
-                </div>
-                <div className="text-xs text-center mt-2">
-                  Appareils à poser
-                </div>
+            <div className="chart clearfix">
+              <div
+                className="number blue"
+                style={{ height: `${installedPercent}px` }}
+              >
+                {stats.installed}
               </div>
-
-              {/* Installed devices chart */}
-              <div className="bg-blue-500 p-4 rounded-lg">
-                <div
-                  className="bg-white text-blue-600 text-center py-2 rounded"
-                  style={{ height: `${installedPercent}px`, minHeight: "20px" }}
-                >
-                  {data.NbCompteursPoses}
-                </div>
-                <div className="text-xs text-center mt-2">Appareils posés</div>
-              </div>
+              <div className="text text-sm">Appareils posés</div>
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Readings Gauge */}
-        <div className="bg-blue-600 text-white p-6 rounded-lg">
-          <div className="text-lg font-semibold mb-4">Vos relevés</div>
+      {/* Readings Gauge - Bootstrap col-sm-6 */}
+      <div className="col-span-6 panel panel-primary panel-right performance-gauge">
+        <div className="block-title text-lg font-semibold mb-4">
+          Vos relevés
+        </div>
 
-          <div className="flex justify-center mb-4">
-            <div className="relative w-48 h-32">
-              {/* Gauge visualization would go here */}
-              <div className="w-full h-2 bg-blue-800 rounded-full">
-                <div
-                  className="h-2 bg-white rounded-full transition-all duration-500"
-                  style={{ width: "75%" }}
-                ></div>
-              </div>
-            </div>
-          </div>
+        <div className="canvas flex justify-center mb-4">
+          <PerformanceGauge
+            value={75} // This would come from real data
+            max={100}
+            size={120}
+            strokeWidth={8}
+            needleColor="#46b5fc"
+            gaugeColor="#46b5fc"
+            backgroundColor="rgba(70, 181, 252, 0.3)"
+            showValue={true}
+            showPercentage={true}
+          />
+        </div>
 
-          <div className="text-center">
-            <div className="text-2xl font-bold">
-              75<sup>%</sup>
-            </div>
-            <div className="text-sm">des appareils relevés</div>
-          </div>
+        <div className="text text-center">
+          <strong>75</strong>
+          <sup>%</sup> des appareils relevés
         </div>
       </div>
     </div>
