@@ -19,7 +19,7 @@ services:
       REDIS_URL: "redis://redis:6379"
       JWT_SECRET: "your-super-secret-jwt-key-change-this-in-production"
       JWT_EXPIRATION: "3600"
-      SOAP_WSDL_URL: "http://techn5292.eu.techem.corp:8081/Main.asmx?wsdl"
+      SOAP_WSDL_URL: "http://techn5292.eu.techem.corp:8083/Main.asmx?wsdl"
     ports:
       - "8000:8000"
     command: php -S 0.0.0.0:8000 -t public  
