@@ -1,0 +1,15 @@
+meta {
+  name: GetInterventionAction
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{localhost_backend}}/api/suivi/workorder/123
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

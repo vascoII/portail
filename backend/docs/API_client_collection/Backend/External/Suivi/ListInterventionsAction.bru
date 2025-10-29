@@ -1,0 +1,22 @@
+meta {
+  name: ListInterventionsAction
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{localhost_backend}}/api/suivi/workorders
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "caseId": 123,
+    "email": "email@email.fr"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

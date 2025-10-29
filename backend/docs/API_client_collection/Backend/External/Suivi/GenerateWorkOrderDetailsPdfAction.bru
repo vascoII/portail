@@ -1,0 +1,15 @@
+meta {
+  name: GenerateWorkOrderDetailsPdfAction
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{localhost_backend}}/api/suivi/workorder/123/pdf
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

@@ -1,0 +1,22 @@
+meta {
+  name: ReceiveGeneratedDocumentAction
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{localhost_backend}}/api/document/receive
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "id": 123,
+    "content": "content"
+  }
+}
+
+settings {
+  encodeUrl: true
+}
