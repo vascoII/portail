@@ -29,8 +29,26 @@ final class JwtAuthMiddleware
 
         // Skip authentication for public login endpoint (with or without /api prefix)
         $path = $request->getPathInfo();
-        if ('/security/login' === $path || '/api/security/login' === $path) {
-            return;
+        
+        $regexToBypass = [
+            '#^/api/security/login$#',
+            '#^/security/login$#',
+            '#^/api/document/receive$#',
+            '#^/document/receive$#',
+            '#^/api/releve/create$#',
+            '#^/releve/create$#',
+            '#^/api/suivi/workorder/\d+$#',
+            '#^/suivi/workorder/\d+$#',
+            '#^/api/suivi/workorders$#',
+            '#^/suivi/workorders$#',
+            '#^/api/suivi/workorder/\d+/pdf$#',
+            '#^/suivi/workorder/\d+/pdf$#',
+        ];
+
+        foreach ($regexToBypass as $pattern) {
+            if (preg_match($pattern, $path)) {
+                return;
+            }
         }
 
         $authHeader = $request->headers->get('Authorization');

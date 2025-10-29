@@ -6,6 +6,7 @@ namespace App\Application\Factory\Document;
 
 use Symfony\Component\HttpFoundation\Request;
 use App\Application\Dto\Input\Document\GenerateFactureDocumentInputDto;
+use App\Application\Dto\Input\Document\GenerateReportByTokenDocumentInputDto;
 use App\Application\Dto\Input\Document\GenerateInterventionDocumentInputDto;
 use App\Application\Dto\Input\Document\GenerateImmeubleReleveDocumentInputDto;
 use App\Application\Dto\Input\Document\GenerateImmeubleSyntheseDocumentInputDto;
@@ -25,6 +26,13 @@ final class DocumentInputFactory
   {
     return new GenerateFactureDocumentInputDto(
       (string) $request->attributes->get('pkFacture')
+    );
+  }
+
+  public function createReportByTokenFromRequest(Request $request): GenerateReportByTokenDocumentInputDto
+  {
+    return new GenerateReportByTokenDocumentInputDto(
+      (string) $request->attributes->get('tokenId')
     );
   }
 

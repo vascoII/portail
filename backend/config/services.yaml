@@ -193,7 +193,24 @@ services:
   App\Http\Action\Document\Excel\:
     resource: "../src/Http/Action/Document/Excel/*"
     arguments:
+      $responder: '@App\Http\Responder\PdfResponder'
+
+  #External
+  App\Http\Action\External\Document\ReceiveGeneratedDocumentAction:
+    arguments:
       $responder: '@App\Http\Responder\JsonResponder'
+  App\Http\Action\External\Releve\CreateReleveAction:
+    arguments:
+      $responder: '@App\Http\Responder\JsonResponder'
+  App\Http\Action\External\Suivi\ListWorkOrdersAction:
+    arguments:
+      $responder: '@App\Http\Responder\JsonResponder'
+  App\Http\Action\External\Suivi\GetWorkOrderAction:
+    arguments:
+      $responder: '@App\Http\Responder\JsonResponder' 
+  App\Http\Action\External\Suivi\GenerateWorkOrderDetailsPdfAction:      
+    arguments:
+      $responder: '@App\Http\Responder\PdfResponder'   
 
   #Facture
   App\Http\Action\Facture\:
