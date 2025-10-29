@@ -1,0 +1,26 @@
+meta {
+  name: GenerateOccupantRepartPdfAction
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{localhost_backend}}/api/document/occupant/repart/pdf
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bearToken}}
+}
+
+body:json {
+  {
+    "idImmeuble": 123456,
+    "idOccupant": 456789
+  }
+}
+
+settings {
+  encodeUrl: true
+}

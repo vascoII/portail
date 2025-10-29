@@ -1,0 +1,25 @@
+meta {
+  name: GenerateOccupantRelevePdfAction
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{localhost_backend}}/api/document/occupant/repart/pdf
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bearToken}}
+}
+
+body:json {
+  {
+    "idOccupant": 456789
+  }
+}
+
+settings {
+  encodeUrl: true
+}

@@ -1,0 +1,27 @@
+meta {
+  name: GenerateOccupantNotePdfAction
+  type: http
+  seq: 9
+}
+
+post {
+  url: {{localhost_backend}}/api/document/occupant/note/pdf
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bearToken}}
+}
+
+body:json {
+  {
+    "idImmeuble": 123456,
+    "idOccupant": 456789,
+    "typeErc": "CHAUFFAGE"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

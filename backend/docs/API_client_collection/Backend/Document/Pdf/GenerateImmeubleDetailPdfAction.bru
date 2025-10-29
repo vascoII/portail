@@ -1,0 +1,27 @@
+meta {
+  name: GenerateImmeubleDetailPdfAction
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{localhost_backend}}/api/document/immeuble/detail/pdf
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bearToken}}
+}
+
+body:json {
+  {
+    "id": 123456,
+    "date1": "01/01/2020",
+    "date2": "01/01/2025"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

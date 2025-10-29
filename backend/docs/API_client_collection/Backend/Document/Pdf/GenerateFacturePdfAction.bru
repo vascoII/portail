@@ -1,0 +1,25 @@
+meta {
+  name: GenerateFacturePdfAction
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{localhost_backend}}/api/document/facture/pdf
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bearToken}}
+}
+
+body:json {
+  {
+    "id": "123456"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

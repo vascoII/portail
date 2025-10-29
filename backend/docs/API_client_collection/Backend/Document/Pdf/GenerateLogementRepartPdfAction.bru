@@ -1,0 +1,26 @@
+meta {
+  name: GenerateLogementRepartPdfAction
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{localhost_backend}}/api/document/logement/repart/pdf
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bearToken}}
+}
+
+body:json {
+  {
+    "idImmeuble": 123456,
+    "idLogement": 456789
+  }
+}
+
+settings {
+  encodeUrl: true
+}
