@@ -17,10 +17,10 @@ import { useParcData, useUserData } from "@/hooks/useParcData";
 import {
   transformParcData,
   calculateConstructionStats,
-} from "@/utils/dataTransform";
-import type { DashboardData, ConstructionStats } from "@/types/api";
+} from "@/src/utils/dataTransform";
+import type { DashboardData, ConstructionStats } from "@/src/types/api";
 import { LoadingCard, ErrorMessage } from "@/components/UI/LoadingSpinner";
-import "@/styles/dashboard.css";
+import "../../src/styles/dashboard.css";
 
 const DashboardPage: React.FC = () => {
   const [isInterventionModalOpen, setIsInterventionModalOpen] = useState(false);
