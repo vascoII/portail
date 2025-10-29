@@ -15,7 +15,7 @@ use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[AsController]
-#[Route(path: '/document/occupant/{pkOccupant}/note/pdf', name: 'document_occupant_note_pdf', methods: ['POST'])]
+#[Route(path: '/document/occupant/note/pdf', name: 'document_occupant_note_pdf', methods: ['POST'])]
 final class GenerateOccupantNotePdfAction extends AbstractAction implements ActionInterface
 {
   public function __construct(

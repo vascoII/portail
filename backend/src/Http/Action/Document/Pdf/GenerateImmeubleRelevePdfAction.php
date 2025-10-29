@@ -8,6 +8,7 @@ use App\Application\Factory\Document\DocumentInputFactory;
 use App\Application\UseCase\Document\GenerateDocumentPdfUseCase;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
+use App\Http\Attribute\RequireUserType;
 use App\Http\Responder\ResponderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,7 +16,8 @@ use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[AsController]
-#[Route(path: '/document/immeuble/{pkImmeuble}/releve/pdf', name: 'document_immeuble_releve_pdf', methods: ['POST'])]
+#[Route(path: '/document/immeuble/releve/pdf', name: 'document_immeuble_releve_pdf', methods: ['POST'])]
+#[RequireUserType(['C', 'G'])] // Seuls Client et Gestionnaire
 final class GenerateImmeubleRelevePdfAction extends AbstractAction implements ActionInterface
 {
   public function __construct(
@@ -28,15 +30,7 @@ final class GenerateImmeubleRelevePdfAction extends AbstractAction implements Ac
   {
     $input = $this->inputFactory->createImmeubleReleveFromRequest($request);
 
-    // Déterminer le ReportType selon l'énergie
-    $reportType = match ($input->energie) {
-      'EAU' => 'RELEVE_EAU_IMMEUBLE',
-      'REPART' => 'RELEVE_REPART_IMMEUBLE',
-      'CET' => 'RELEVE_CET_IMMEUBLE',
-      default => 'RELEVE_EAU_IMMEUBLE'
-    };
-
-    $output = $this->useCase->execute($reportType, $input);
+    $output = $this->useCase->execute('RELEVE_IMMEUBLE', $input);
 
     return $this->responder->respond($output);
   }

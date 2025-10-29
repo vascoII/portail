@@ -53,7 +53,7 @@ final class SensitiveDataProcessor implements ProcessorInterface
         foreach ($data as $key => $value) {
             if (is_array($value)) {
                 $data[$key] = $this->scrubArray($value);
-            } elseif (is_string($value) && $this->isSensitiveKey($key)) {
+            } elseif (is_string($value) && $this->isSensitiveKey((string) $key)) {
                 $data[$key] = $this->maskSensitiveValue($value);
             }
         }

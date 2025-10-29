@@ -16,7 +16,7 @@ final class GenerateDocumentPdfUseCase
   ) {}
 
   /**
-   * @param string $reportType Type de rapport (ex: FACTURE, RELEvergEAU_IMMEUBLE, etc.)
+   * @param string $reportType Type de rapport (ex: FACTURE, RELEVE_EAU_IMMEUBLE, etc.)
    * @param mixed $inputDto Input DTO (any of the Generate*DocumentInputDto)
    * @return SoapOutputDto
    */
@@ -32,27 +32,28 @@ final class GenerateDocumentPdfUseCase
   {
     return match ($reportType) {
       'FACTURE' => ['PKFACTURE' => $inputDto->pkFacture],
-      'INTERVENTION' => ['WORKORDERNUMBER' => $inputDto->workOrderNumber],
-      'RELEVE_EAU_IMMEUBLE', 'RELEVE_REPART_IMMEUBLE', 'RELEVE_CET_IMMEUBLE' => [
-        'PKIMMEUBLE' => $inputDto->pkImmeuble,
-        'DATE' => $inputDto->date
+      'CR_INTERVENTION' => ['WORKORDERNUMBER' => $inputDto->workOrderNumber],
+      'RELEVE_IMMEUBLE' => [
+        'PKRELEVE' => $inputDto->pkReleve,
       ],
       'LIVRET_INTER_SYNTHESE' => array_filter([
-        'PKIMMEUBLE' => $inputDto->pkImmeuble,
-        'PKUSER' => $inputDto->pkUser,
+        'PKIMMEUBLE' => $inputDto->pkImmeuble ?? null,
         'DATE1' => $inputDto->date1,
         'DATE2' => $inputDto->date2
       ], fn($val) => $val !== null),
-      'LIVRET_INTER_DETAIL' => [
-        'PKIMMEUBLE' => $inputDto->pkImmeuble,
+      'LIVRET_INTER_DETAIL' => array_filter([
+        'PKIMMEUBLE' => $inputDto->pkImmeuble ?? null,
         'DATE1' => $inputDto->date1,
         'DATE2' => $inputDto->date2
-      ],
+      ], fn($val) => $val !== null),
       'REPART_LOGEMENT' => [
         'PKIMMEUBLE' => $inputDto->pkImmeuble,
         'PKLOGEMENT' => $inputDto->pkLogement
       ],
-      'RELEVE_EAU_OCCUPANT' => ['PKOCCUPANT' => $inputDto->pkOccupant],
+      'RELEVE_OCCUPANT' => [
+        'PKOCCUPANT' => $inputDto->pkOccupant,
+        'TYPEERC' => 'EAU'
+      ],
       'REPART_OCCUPANT' => [
         'PKIMMEUBLE' => $inputDto->pkImmeuble,
         'PKOCCUPANT' => $inputDto->pkOccupant
