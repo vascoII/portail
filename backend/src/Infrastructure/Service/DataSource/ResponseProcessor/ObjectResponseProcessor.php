@@ -10,7 +10,7 @@ class ObjectResponseProcessor implements SoapResponseProcessorInterface
         private readonly bool $debug = false
     ) {}
 
-    public function process(string $method, mixed $response): object
+    public function process(string $method, mixed $response): object|string
     {
         return $this->processResponse($method, $response);
     }
