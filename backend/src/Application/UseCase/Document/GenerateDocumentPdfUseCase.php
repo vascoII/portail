@@ -25,7 +25,7 @@ final class GenerateDocumentPdfUseCase
     // Extract params array from inputDto based on its type
     $paramsFiltres = $this->extractParamsFromInput($reportType, $inputDto);
 
-    return $this->documentDataProvider->generateDocumentService('PDF', $reportType, $paramsFiltres);
+    return $this->documentDataProvider->generatePdfDocumentService('PDF', $reportType, $paramsFiltres);
   }
 
   private function extractParamsFromInput(string $reportType, mixed $inputDto): array

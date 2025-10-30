@@ -18,7 +18,14 @@ final class DocumentDataProvider implements DocumentDataProviderInterface
         private readonly DocumentTransformerInterface $documentTransformer
     ) {}
 
-    public function generateDocumentService(string $format, string $reportType, array $paramsFiltres): SoapOutputDto
+    public function generatePdfDocumentService(string $format, string $reportType, array $paramsFiltres): SoapOutputDto
+    {
+        $rawData = $this->documentDataSource->fetchInsertPrintJobs($reportType, $paramsFiltres);
+
+        return $this->documentTransformer->transformInsertPrintJobs($rawData);
+    }
+
+    public function generateExcelDocumentService(string $format, string $reportType, array $paramsFiltres): SoapOutputDto
     {
         $rawData = $this->documentDataSource->fetchInsertPrintJobs($reportType, $paramsFiltres);
 

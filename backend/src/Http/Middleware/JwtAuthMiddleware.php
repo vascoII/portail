@@ -27,7 +27,7 @@ final class JwtAuthMiddleware
     {
         $request = $event->getRequest();
 
-        // Skip authentication for public login endpoint (with or without /api prefix)
+        // Skip authentication for public endpoint (with or without /api prefix)
         $path = $request->getPathInfo();
         
         $regexToBypass = [
@@ -43,6 +43,8 @@ final class JwtAuthMiddleware
             '#^/suivi/workorders$#',
             '#^/api/suivi/workorder/\d+/pdf$#',
             '#^/suivi/workorder/\d+/pdf$#',
+            '#^/api/reporttoken/[^/]+$#',
+            '#^/reporttoken/[^/]+$#',
         ];
 
         foreach ($regexToBypass as $pattern) {

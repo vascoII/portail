@@ -8,5 +8,6 @@ use App\Application\Dto\Output\Document\SoapOutputDto;
 
 interface DocumentDataProviderInterface
 {
-  public function generateDocumentService(string $format, string $reportType, array $paramsFiltres): SoapOutputDto;
+  public function generatePdfDocumentService(string $format, string $reportType, array $paramsFiltres): SoapOutputDto;
+  public function generateExcelDocumentService(string $format, string $reportType, array $paramsFiltres): SoapOutputDto;
 }

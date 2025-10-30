@@ -193,12 +193,15 @@ services:
   App\Http\Action\Document\Excel\:
     resource: "../src/Http/Action/Document/Excel/*"
     arguments:
-      $responder: '@App\Http\Responder\PdfResponder'
+      $responder: '@App\Http\Responder\ExcelResponder'
 
   #External
+  App\Http\Action\External\Document\GetReportByTokenPdfAction:
+    arguments:
+      $responder: '@App\Http\Responder\PdfResponder'
   App\Http\Action\External\Document\ReceiveGeneratedDocumentAction:
     arguments:
-      $responder: '@App\Http\Responder\JsonResponder'
+      $responder: '@App\Http\Responder\JsonResponder'    
   App\Http\Action\External\Releve\CreateReleveAction:
     arguments:
       $responder: '@App\Http\Responder\JsonResponder'
@@ -278,6 +281,13 @@ services:
       $superLoginID: "%env(SUPER_LOGIN_ID)%"
       $superPassword: "%env(SUPER_PASSWORD)%"
       $adminSessionId: "%env(ADMIN_SESSION_ID)%"
+
+  #ExternalHydrator
+  App\Infrastructure\Service\Hydrator\ExternalHydrator:
+    arguments:
+      $superLoginID: "%env(SUPER_LOGIN_ID)%"
+      $superPassword: "%env(SUPER_PASSWORD)%"
+      $adminSessionId: "%env(ADMIN_SESSION_ID)%"    
 
   #InterventionHydrator
   App\Infrastructure\Service\Hydrator\InterventionHydrator:

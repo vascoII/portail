@@ -15,17 +15,17 @@ final class PdfResponder implements ResponderInterface
     ) {}
 
     public function respond(mixed $payload, int $status = Response::HTTP_OK, array $headers = []): Response
-    {
+    { 
         $startTime = microtime(true);
 
-        $response = new Response($payload->data);
+        $response = new Response($payload->content);
         $response->headers->set('Content-Type', 'application/pdf');
-        $response->headers->set('Content-Disposition', 'inline; filename=' . $payload->filename);
+        $response->headers->set('Content-Disposition', 'attachment; filename=' . $payload->filename);
         $response->headers->set('Content-Transfer-Encoding', 'binary');
         $response->headers->set('Expires', '0');
         $response->headers->set('Cache-Control', 'no-cache');
         $response->headers->set('Pragma', 'no-cache');
-        $response->headers->set('Content-Length', $payload->length);
+        $response->headers->set('Content-Length', (string) $payload->length);
 
         // Ajout de l'ID de requête si disponible
         $request = $this->getCurrentRequest();
@@ -42,6 +42,7 @@ final class PdfResponder implements ResponderInterface
             'filename' => $payload->filename,
             'headers' => array_keys($headers),
         ]);
+
 
         return $response;
     }
