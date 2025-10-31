@@ -20,7 +20,7 @@ import {
 } from "@/src/utils/dataTransform";
 import type { DashboardData, ConstructionStats } from "@/src/types/api";
 import { LoadingCard, ErrorMessage } from "@/components/UI/LoadingSpinner";
-import "../../src/styles/dashboard.css";
+import "../../public/styles/dashboard.css";
 
 const DashboardPage: React.FC = () => {
   const [isInterventionModalOpen, setIsInterventionModalOpen] = useState(false);
