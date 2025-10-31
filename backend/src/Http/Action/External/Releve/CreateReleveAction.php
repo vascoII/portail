@@ -7,11 +7,11 @@ namespace App\Http\Action\External\Releve;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\JsonResponse;
 
 #[AsController]
 #[Route(path: '/releve/create', name: 'releve_create', methods: ['POST'])]
@@ -25,7 +25,7 @@ final class CreateReleveAction extends AbstractAction implements ActionInterface
     {
         $data = json_decode($request->getContent(), true);
 
-        if (!is_array($data) || !isset($data['id']) || !isset($data['content'])) {
+        if (! is_array($data) || ! isset($data['id']) || ! isset($data['content'])) {
             return new JsonResponse(['error' => 'Invalid payload'], Response::HTTP_BAD_REQUEST);
         }
 

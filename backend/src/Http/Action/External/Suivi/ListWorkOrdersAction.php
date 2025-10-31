@@ -7,11 +7,11 @@ namespace App\Http\Action\External\Suivi;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\JsonResponse;
 
 #[AsController]
 #[Route(path: '/suivi/workorders', name: 'suivi_workorders_list', methods: ['POST'])]
@@ -25,7 +25,7 @@ final class ListWorkOrdersAction extends AbstractAction implements ActionInterfa
     {
         $data = json_decode($request->getContent(), true);
 
-        if (!is_array($data) || !isset($data['caseId']) || !isset($data['email'])) {
+        if (! is_array($data) || ! isset($data['caseId']) || ! isset($data['email'])) {
             return new JsonResponse(['error' => 'Invalid payload'], Response::HTTP_BAD_REQUEST);
         }
 

@@ -18,17 +18,17 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route(path: '/document/occupant/note/pdf', name: 'document_occupant_note_pdf', methods: ['POST'])]
 final class GenerateOccupantNotePdfAction extends AbstractAction implements ActionInterface
 {
-  public function __construct(
-    private readonly ResponderInterface $responder,
-    private readonly GenerateDocumentPdfUseCase $useCase,
-    private readonly DocumentInputFactory $inputFactory
-  ) {}
+    public function __construct(
+        private readonly ResponderInterface $responder,
+        private readonly GenerateDocumentPdfUseCase $useCase,
+        private readonly DocumentInputFactory $inputFactory
+    ) {}
 
-  public function __invoke(Request $request, array $args = []): Response
-  {
-    $input = $this->inputFactory->createOccupantNoteFromRequest($request);
-    $output = $this->useCase->execute('NOTE_INFO_MENSUELLE', $input);
+    public function __invoke(Request $request, array $args = []): Response
+    {
+        $input = $this->inputFactory->createOccupantNoteFromRequest($request);
+        $output = $this->useCase->execute('NOTE_INFO_MENSUELLE', $input);
 
-    return $this->responder->respond($output);
-  }
+        return $this->responder->respond($output);
+    }
 }

@@ -18,17 +18,17 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route(path: '/document/interventions/excel', name: 'document_interventions_excel', methods: ['POST'])]
 final class GenerateInterventionsExcelAction extends AbstractAction implements ActionInterface
 {
-  public function __construct(
-    private readonly ResponderInterface $responder,
-    private readonly GenerateDocumentExcelUseCase $useCase,
-    private readonly DocumentInputFactory $inputFactory
-  ) {}
+    public function __construct(
+        private readonly ResponderInterface $responder,
+        private readonly GenerateDocumentExcelUseCase $useCase,
+        private readonly DocumentInputFactory $inputFactory
+    ) {}
 
-  public function __invoke(Request $request, array $args = []): Response
-  {
-    $input = $this->inputFactory->createInterventionsFromRequest($request);
-    $output = $this->useCase->execute('GetInfosDepannagesByImmeuble', $input);
+    public function __invoke(Request $request, array $args = []): Response
+    {
+        $input = $this->inputFactory->createInterventionsFromRequest($request);
+        $output = $this->useCase->execute('LIVRET_INTER_LISTE', $input);
 
-    return $this->responder->respond($output);
-  }
+        return $this->responder->respond($output);
+    }
 }

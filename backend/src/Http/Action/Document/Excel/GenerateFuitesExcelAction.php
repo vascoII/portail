@@ -18,17 +18,17 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route(path: '/document/fuites/excel', name: 'document_fuites_excel', methods: ['POST'])]
 final class GenerateFuitesExcelAction extends AbstractAction implements ActionInterface
 {
-  public function __construct(
-    private readonly ResponderInterface $responder,
-    private readonly GenerateDocumentExcelUseCase $useCase,
-    private readonly DocumentInputFactory $inputFactory
-  ) {}
+    public function __construct(
+        private readonly ResponderInterface $responder,
+        private readonly GenerateDocumentExcelUseCase $useCase,
+        private readonly DocumentInputFactory $inputFactory
+    ) {}
 
-  public function __invoke(Request $request, array $args = []): Response
-  {
-    $input = $this->inputFactory->createFuitesFromRequest($request);
-    $output = $this->useCase->execute('GetInfosFuitesByImmeuble', $input);
+    public function __invoke(Request $request, array $args = []): Response
+    {
+        $input = $this->inputFactory->createFuitesFromRequest($request);
+        $output = $this->useCase->execute('GetInfosFuitesByImmeuble', $input);
 
-    return $this->responder->respond($output);
-  }
+        return $this->responder->respond($output);
+    }
 }

@@ -27,7 +27,7 @@ final class ListFuitesByImmeubleAction extends AbstractAction implements ActionI
     ) {}
 
     public function __invoke(Request $request, array $args = []): Response
-    {   
+    {
         $input = $this->inputFactory->getIdIntFromRoute($request);
         $output = $this->useCase->execute($input);
 

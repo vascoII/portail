@@ -21,7 +21,7 @@ use Symfony\Component\Routing\Annotation\Route;
 final class RemoveBuildingToOperatorAction extends AbstractAction implements ActionInterface
 {
     public function __construct(
-        private readonly ResponderInterface $responder, 
+        private readonly ResponderInterface $responder,
         private readonly RemoveBuildingUseCase $useCase
     ) {}
 

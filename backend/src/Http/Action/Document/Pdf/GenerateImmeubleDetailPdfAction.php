@@ -20,17 +20,17 @@ use Symfony\Component\Routing\Annotation\Route;
 #[RequireUserType(['C', 'G'])] // Seuls Client et Gestionnaire
 final class GenerateImmeubleDetailPdfAction extends AbstractAction implements ActionInterface
 {
-  public function __construct(
-    private readonly ResponderInterface $responder,
-    private readonly GenerateDocumentPdfUseCase $useCase,
-    private readonly DocumentInputFactory $inputFactory
-  ) {}
+    public function __construct(
+        private readonly ResponderInterface $responder,
+        private readonly GenerateDocumentPdfUseCase $useCase,
+        private readonly DocumentInputFactory $inputFactory
+    ) {}
 
-  public function __invoke(Request $request, array $args = []): Response
-  {
-    $input = $this->inputFactory->createImmeubleDetailFromRequest($request);
-    $output = $this->useCase->execute('LIVRET_INTER_DETAIL', $input);
+    public function __invoke(Request $request, array $args = []): Response
+    {
+        $input = $this->inputFactory->createImmeubleDetailFromRequest($request);
+        $output = $this->useCase->execute('LIVRET_INTER_DETAIL', $input);
 
-    return $this->responder->respond($output);
-  }
+        return $this->responder->respond($output);
+    }
 }

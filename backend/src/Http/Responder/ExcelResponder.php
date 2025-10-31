@@ -8,7 +8,7 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-final class PdfResponder implements ResponderInterface
+final class ExcelResponder implements ResponderInterface
 {
     public function __construct(
         private readonly LoggerInterface $httpLogger
@@ -18,8 +18,10 @@ final class PdfResponder implements ResponderInterface
     {
         $startTime = microtime(true);
 
-        $response = new Response($payload->content);
-        $response->headers->set('Content-Type', 'application/pdf');
+        $response = new Response($payload->content, $status, $headers);
+
+        // Headers spécifiques pour le téléchargement Excel
+        $response->headers->set('Content-Type', $payload->mimeType);
         $response->headers->set('Content-Disposition', 'attachment; filename=' . $payload->filename);
         $response->headers->set('Content-Transfer-Encoding', 'binary');
         $response->headers->set('Expires', '0');
@@ -35,7 +37,7 @@ final class PdfResponder implements ResponderInterface
 
         $duration = (microtime(true) - $startTime) * 1000;
 
-        $this->httpLogger->debug('PDF response prepared', [
+        $this->httpLogger->debug('Excel response prepared', [
             'status_code' => $status,
             'duration_ms' => round($duration, 2),
             'response_size' => $payload->length,
@@ -48,6 +50,6 @@ final class PdfResponder implements ResponderInterface
 
     private function getCurrentRequest(): ?Request
     {
-        return Request::createFromGlobals();
+        return Request::createFromGlobals(); // Option à améliorer avec RequestStack si besoin
     }
 }

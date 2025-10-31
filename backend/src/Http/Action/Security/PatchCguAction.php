@@ -19,15 +19,15 @@ use Symfony\Component\Routing\Annotation\Route;
 #[RequireUserType(['C', 'G', 'O'])]
 final class PatchCguAction extends AbstractAction implements ActionInterface
 {
-  public function __construct(
-    private readonly ResponderInterface $responder,
-    private readonly PatchCguUseCase $useCase
-  ) {}
+    public function __construct(
+        private readonly ResponderInterface $responder,
+        private readonly PatchCguUseCase $useCase
+    ) {}
 
-  public function __invoke(Request $request, array $args = []): Response
-  {
-    $output = $this->useCase->execute();
+    public function __invoke(Request $request, array $args = []): Response
+    {
+        $output = $this->useCase->execute();
 
-    return $this->responder->respond($output);
-  }
+        return $this->responder->respond($output);
+    }
 }

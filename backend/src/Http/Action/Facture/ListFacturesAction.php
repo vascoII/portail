@@ -27,6 +27,7 @@ final class ListFacturesAction extends AbstractAction implements ActionInterface
     public function __invoke(Request $request, array $args = []): Response
     {
         $output = $this->useCase->execute();
+
         return $this->responder->respond($output);
     }
 }

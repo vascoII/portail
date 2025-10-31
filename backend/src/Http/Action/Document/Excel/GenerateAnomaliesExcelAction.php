@@ -18,17 +18,17 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route(path: '/document/anomalies/excel', name: 'document_anomalies_excel', methods: ['POST'])]
 final class GenerateAnomaliesExcelAction extends AbstractAction implements ActionInterface
 {
-  public function __construct(
-    private readonly ResponderInterface $responder,
-    private readonly GenerateDocumentExcelUseCase $useCase,
-    private readonly DocumentInputFactory $inputFactory
-  ) {}
+    public function __construct(
+        private readonly ResponderInterface $responder,
+        private readonly GenerateDocumentExcelUseCase $useCase,
+        private readonly DocumentInputFactory $inputFactory
+    ) {}
 
-  public function __invoke(Request $request, array $args = []): Response
-  {
-    $input = $this->inputFactory->createAnomaliesFromRequest($request);
-    $output = $this->useCase->execute('GetInfosAnomaliesByImmeuble', $input);
+    public function __invoke(Request $request, array $args = []): Response
+    {
+        $input = $this->inputFactory->createAnomaliesFromRequest($request);
+        $output = $this->useCase->execute('GetInfosAnomaliesByImmeuble', $input);
 
-    return $this->responder->respond($output);
-  }
+        return $this->responder->respond($output);
+    }
 }

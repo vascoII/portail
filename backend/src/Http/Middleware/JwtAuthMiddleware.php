@@ -29,7 +29,7 @@ final class JwtAuthMiddleware
 
         // Skip authentication for public endpoint (with or without /api prefix)
         $path = $request->getPathInfo();
-        
+
         $regexToBypass = [
             '#^/api/security/login$#',
             '#^/security/login$#',

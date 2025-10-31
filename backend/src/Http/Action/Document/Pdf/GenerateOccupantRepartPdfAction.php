@@ -20,17 +20,17 @@ use Symfony\Component\Routing\Annotation\Route;
 #[RequireUserType(['C', 'G', 'O'])] // Tous
 final class GenerateOccupantRepartPdfAction extends AbstractAction implements ActionInterface
 {
-  public function __construct(
-    private readonly ResponderInterface $responder,
-    private readonly GenerateDocumentPdfUseCase $useCase,
-    private readonly DocumentInputFactory $inputFactory
-  ) {}
+    public function __construct(
+        private readonly ResponderInterface $responder,
+        private readonly GenerateDocumentPdfUseCase $useCase,
+        private readonly DocumentInputFactory $inputFactory
+    ) {}
 
-  public function __invoke(Request $request, array $args = []): Response
-  {
-    $input = $this->inputFactory->createOccupantRepartFromRequest($request);
-    $output = $this->useCase->execute('REPART_OCCUPANT', $input);
+    public function __invoke(Request $request, array $args = []): Response
+    {
+        $input = $this->inputFactory->createOccupantRepartFromRequest($request);
+        $output = $this->useCase->execute('REPART_OCCUPANT', $input);
 
-    return $this->responder->respond($output);
-  }
+        return $this->responder->respond($output);
+    }
 }

@@ -7,11 +7,11 @@ namespace App\Http\Action\External\Suivi;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\JsonResponse;
 
 #[AsController]
 #[Route(path: '/suivi/workorder/{id}', name: 'suivi_workorder_get', methods: ['GET'])]

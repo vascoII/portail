@@ -18,17 +18,17 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route(path: '/document/dysfonctionnements/excel', name: 'document_dysfonctionnements_excel', methods: ['POST'])]
 final class GenerateDysfonctionnementsExcelAction extends AbstractAction implements ActionInterface
 {
-  public function __construct(
-    private readonly ResponderInterface $responder,
-    private readonly GenerateDocumentExcelUseCase $useCase,
-    private readonly DocumentInputFactory $inputFactory
-  ) {}
+    public function __construct(
+        private readonly ResponderInterface $responder,
+        private readonly GenerateDocumentExcelUseCase $useCase,
+        private readonly DocumentInputFactory $inputFactory
+    ) {}
 
-  public function __invoke(Request $request, array $args = []): Response
-  {
-    $input = $this->inputFactory->createDysfonctionnementsFromRequest($request);
-    $output = $this->useCase->execute('GetInfosDysfonctionnementsByImmeuble', $input);
+    public function __invoke(Request $request, array $args = []): Response
+    {
+        $input = $this->inputFactory->createDysfonctionnementsFromRequest($request);
+        $output = $this->useCase->execute('GetInfosDysfonctionnementsByImmeuble', $input);
 
-    return $this->responder->respond($output);
-  }
+        return $this->responder->respond($output);
+    }
 }

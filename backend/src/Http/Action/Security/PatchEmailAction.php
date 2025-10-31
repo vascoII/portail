@@ -20,17 +20,17 @@ use Symfony\Component\Routing\Annotation\Route;
 #[RequireUserType(['C', 'G', 'O'])]
 final class PatchEmailAction extends AbstractAction implements ActionInterface
 {
-  public function __construct(
-    private readonly ResponderInterface $responder,
-    private readonly PatchEmailUseCase $useCase,
-    private readonly SecurityInputFactory $inputFactory
-  ) {}
+    public function __construct(
+        private readonly ResponderInterface $responder,
+        private readonly PatchEmailUseCase $useCase,
+        private readonly SecurityInputFactory $inputFactory
+    ) {}
 
-  public function __invoke(Request $request, array $args = []): Response
-  {
-    $input = $this->inputFactory->createUpdateEmailFromPKUserFromRequest($request);
-    $output = $this->useCase->execute($input);
+    public function __invoke(Request $request, array $args = []): Response
+    {
+        $input = $this->inputFactory->createUpdateEmailFromPKUserFromRequest($request);
+        $output = $this->useCase->execute($input);
 
-    return $this->responder->respond($output);
-  }
+        return $this->responder->respond($output);
+    }
 }

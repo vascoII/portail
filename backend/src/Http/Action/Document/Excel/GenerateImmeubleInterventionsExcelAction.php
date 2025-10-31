@@ -15,20 +15,20 @@ use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[AsController]
-#[Route(path: '/document/immeuble/{pkImmeuble}/interventions/excel', name: 'document_immeuble_interventions_excel', methods: ['POST'])]
+#[Route(path: '/document/immeuble/interventions/excel', name: 'document_immeuble_interventions_excel', methods: ['POST'])]
 final class GenerateImmeubleInterventionsExcelAction extends AbstractAction implements ActionInterface
 {
-  public function __construct(
-    private readonly ResponderInterface $responder,
-    private readonly GenerateDocumentExcelUseCase $useCase,
-    private readonly DocumentInputFactory $inputFactory
-  ) {}
+    public function __construct(
+        private readonly ResponderInterface $responder,
+        private readonly GenerateDocumentExcelUseCase $useCase,
+        private readonly DocumentInputFactory $inputFactory
+    ) {}
 
-  public function __invoke(Request $request, array $args = []): Response
-  {
-    $input = $this->inputFactory->createInterventionsFromRoute($request);
-    $output = $this->useCase->execute('GetInfosDepannagesByImmeuble', $input);
+    public function __invoke(Request $request, array $args = []): Response
+    {
+        $input = $this->inputFactory->createImmeubleInterventionsFromRequest($request);
+        $output = $this->useCase->execute('GetInfosDepannagesByImmeuble', $input);
 
-    return $this->responder->respond($output);
-  }
+        return $this->responder->respond($output);
+    }
 }
