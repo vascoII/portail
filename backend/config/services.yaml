@@ -275,33 +275,71 @@ services:
     arguments:
       $responder: '@App\Http\Responder\JsonResponder'
 
-  #AdminHydrator
-  App\Infrastructure\Service\Hydrator\AdminHydrator:
+  #Hydrator
+  App\Infrastructure\Service\Hydrator\Hydrator:
+    autowire: true
+    autoconfigure: true
     arguments:
       $superLoginID: "%env(SUPER_LOGIN_ID)%"
       $superPassword: "%env(SUPER_PASSWORD)%"
       $adminSessionId: "%env(ADMIN_SESSION_ID)%"
 
-  #ExternalHydrator
+  # DocumentHydrator
+  App\Infrastructure\Service\Hydrator\DocumentHydrator:
+      parent: App\Infrastructure\Service\Hydrator\Hydrator
+      autowire: true
+      autoconfigure: true
+  # ExternalHydrator
   App\Infrastructure\Service\Hydrator\ExternalHydrator:
-    arguments:
-      $superLoginID: "%env(SUPER_LOGIN_ID)%"
-      $superPassword: "%env(SUPER_PASSWORD)%"
-      $adminSessionId: "%env(ADMIN_SESSION_ID)%"    
-
-  #InterventionHydrator
+      parent: App\Infrastructure\Service\Hydrator\Hydrator
+      autowire: true
+      autoconfigure: true
+  # ImmeubleHydrator
+  App\Infrastructure\Service\Hydrator\ImmeubleHydrator:
+      parent: App\Infrastructure\Service\Hydrator\Hydrator
+      autowire: true
+      autoconfigure: true
+  # InterventionHydrator
   App\Infrastructure\Service\Hydrator\InterventionHydrator:
-    arguments:
-      $superLoginID: "%env(SUPER_LOGIN_ID)%"
-      $superPassword: "%env(SUPER_PASSWORD)%"
-      $adminSessionId: "%env(ADMIN_SESSION_ID)%"    
-
-  #SharedHydrator
+      parent: App\Infrastructure\Service\Hydrator\Hydrator
+      autowire: true
+      autoconfigure: true
+  # LogementHydrator
+  App\Infrastructure\Service\Hydrator\LogementHydrator:
+      parent: App\Infrastructure\Service\Hydrator\Hydrator
+      autowire: true
+      autoconfigure: true
+  # OccupantHydrator
+  App\Infrastructure\Service\Hydrator\OccupantHydrator:
+      parent: App\Infrastructure\Service\Hydrator\Hydrator
+      autowire: true
+      autoconfigure: true
+  # OperatorHydrator
+  App\Infrastructure\Service\Hydrator\OperatorHydrator:
+      parent: App\Infrastructure\Service\Hydrator\Hydrator
+      autowire: true
+      autoconfigure: true
+  # ParcHydrator
+  App\Infrastructure\Service\Hydrator\ParcHydrator:
+      parent: App\Infrastructure\Service\Hydrator\Hydrator
+      autowire: true
+      autoconfigure: true
+  # SecurityHydrator
+  App\Infrastructure\Service\Hydrator\SecurityHydrator:
+      parent: App\Infrastructure\Service\Hydrator\Hydrator
+      autowire: true
+      autoconfigure: true
+  # SharedHydrator
   App\Infrastructure\Service\Hydrator\SharedHydrator:
-    arguments:
-      $superLoginID: "%env(SUPER_LOGIN_ID)%"
-      $superPassword: "%env(SUPER_PASSWORD)%"
-      $adminSessionId: "%env(ADMIN_SESSION_ID)%"
+      parent: App\Infrastructure\Service\Hydrator\Hydrator
+      autowire: true
+      autoconfigure: true
+  # TicketHydrator
+  App\Infrastructure\Service\Hydrator\TicketHydrator:
+      parent: App\Infrastructure\Service\Hydrator\Hydrator
+      autowire: true
+      autoconfigure: true
+
 
   #ResponseProcessor
   App\Infrastructure\Service\DataSource\ResponseProcessor\ObjectResponseProcessor: ~
