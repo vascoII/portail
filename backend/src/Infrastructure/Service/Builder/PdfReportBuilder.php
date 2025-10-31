@@ -10,7 +10,8 @@ use App\Application\Service\Builder\PdfReportBuilderInterface;
 
 final class PdfReportBuilder implements PdfReportBuilderInterface
 {
-    public function generateDocumentReportByTokenService(GetReportByTokenDataSourceOutputDto $outputDto): GetReportByTokenOutputDto {
+    public function generateDocumentReportByTokenService(GetReportByTokenDataSourceOutputDto $outputDto): GetReportByTokenOutputDto
+    {
         if (empty($outputDto->pdfContent)) {
             throw new \RuntimeException('Le contenu PDF est vide.');
         }
@@ -29,11 +30,10 @@ final class PdfReportBuilder implements PdfReportBuilderInterface
         );
     }
 
-    
     private function isValidBase64(string $data): bool
     {
         $decoded = base64_decode($data, true);
-        return $decoded !== false && base64_encode($decoded) === $data;
-    }
 
+        return false !== $decoded && base64_encode($decoded) === $data;
+    }
 }

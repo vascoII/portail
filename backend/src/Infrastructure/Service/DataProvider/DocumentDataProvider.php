@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Service\DataProvider;
 
+use App\Application\Dto\Output\Document\GetReportExcelDataSourceOutputDto;
 use App\Application\Dto\Output\Document\SoapOutputDto;
 use App\Application\Service\DataProvider\DocumentDataProviderInterface;
 use App\Application\Service\DataSource\DocumentDataSourceInterface;
-use App\Application\Service\Transformer\SharedTransformerInterface;
 use App\Application\Service\Transformer\DocumentTransformerInterface;
+use App\Application\Service\Transformer\SharedTransformerInterface;
 
 final class DocumentDataProvider implements DocumentDataProviderInterface
 {
@@ -18,14 +19,14 @@ final class DocumentDataProvider implements DocumentDataProviderInterface
         private readonly DocumentTransformerInterface $documentTransformer
     ) {}
 
-    public function generatePdfDocumentService(string $format, string $reportType, array $paramsFiltres): SoapOutputDto
+    public function generateExcelDataDocumentService(string $format, string $reportType, array $paramsFiltres): GetReportExcelDataSourceOutputDto
     {
-        $rawData = $this->documentDataSource->fetchInsertPrintJobs($reportType, $paramsFiltres);
+        $rawData = $this->documentDataSource->getExcel($reportType, $paramsFiltres);
 
-        return $this->documentTransformer->transformInsertPrintJobs($rawData);
+        return $this->documentTransformer->transformGetExcel($rawData);
     }
 
-    public function generateExcelDocumentService(string $format, string $reportType, array $paramsFiltres): SoapOutputDto
+    public function generatePdfDocumentService(string $format, string $reportType, array $paramsFiltres): SoapOutputDto
     {
         $rawData = $this->documentDataSource->fetchInsertPrintJobs($reportType, $paramsFiltres);
 

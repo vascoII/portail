@@ -9,14 +9,8 @@ use App\Application\Dto\Input\Shared\GetExcelInpuDto;
 use App\Application\Dto\Input\Shared\GetReportByTokenInputDto;
 use App\Application\Dto\Input\Shared\GetReportInputDto;
 
-final class SharedHydrator
+final class SharedHydrator extends Hydrator
 {
-    public function __construct(
-        private readonly string $superLoginID,
-        private readonly string $superPassword,
-        private readonly string $adminSessionId
-    ) {}
-
     public function hydrateGetDetailsDepannage(GetDetailsDepannageInpuDto $inputDto): object
     {
         return (object) [
@@ -53,7 +47,7 @@ final class SharedHydrator
             'SuperLoginID' => $this->superLoginID,
             'SuperPassword' => $this->superPassword,
             'PKUser' => $pkUser,
-            'CGU' => "O",
+            'CGU' => 'O',
         ];
     }
 

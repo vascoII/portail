@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Service\DataSource;
 
-use App\Application\Dto\Input\Shared\GetByIdIntInputDto;
 use App\Application\Dto\Input\Logement\GetImmeubleIdAndLogementIdInputDto;
+use App\Application\Dto\Input\Shared\GetByIdIntInputDto;
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Application\Service\DataSource\LogementDataSourceInterface;
 use App\Infrastructure\Service\Auth\AuthenticationContext;

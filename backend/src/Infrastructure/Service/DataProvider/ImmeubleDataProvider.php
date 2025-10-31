@@ -178,7 +178,7 @@ final class ImmeubleDataProvider implements ImmeubleDataProviderInterface
             return $cachedDto;
         }
 
-        $rawData = $this->immeubleDataSource->fetchListDysfonctionnementsByImmeuble($inputDto); 
+        $rawData = $this->immeubleDataSource->fetchListDysfonctionnementsByImmeuble($inputDto);
         $dto = $this->sharedTransformer->transformListDysfonctionnements($rawData);
 
         $this->cache->set($cacheKey, $dto);

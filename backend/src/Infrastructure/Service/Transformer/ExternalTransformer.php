@@ -16,7 +16,7 @@ final class ExternalTransformer implements ExternalTransformerInterface
     {
         // Extract the ID from the SOAP response
         // Assuming the SOAP response is string
-        $pdfContent = is_string($dataSourceResult) && !is_null($dataSourceResult)
+        $pdfContent = is_string($dataSourceResult) && ! is_null($dataSourceResult)
         ? $dataSourceResult
         : null;
 

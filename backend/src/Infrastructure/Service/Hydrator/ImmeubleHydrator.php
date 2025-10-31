@@ -6,7 +6,7 @@ namespace App\Infrastructure\Service\Hydrator;
 
 use App\Application\Dto\Input\Shared\GetByIdIntInputDto;
 
-final class ImmeubleHydrator
+final class ImmeubleHydrator extends Hydrator
 {
     public function hydrateGetImmeuble(GetByIdIntInputDto $inputDto): object
     {

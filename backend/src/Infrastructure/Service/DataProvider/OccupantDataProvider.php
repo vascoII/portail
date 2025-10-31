@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Service\DataProvider;
 
-use App\Application\Dto\Input\Shared\GetByEnergyStringInputDto;
-use App\Application\Dto\Input\Shared\GetByIdIntInputDto;
 use App\Application\Dto\Input\Occupant\PatchOccupantInputDto;
 use App\Application\Dto\Input\Occupant\PostOccupantInputDto;
+use App\Application\Dto\Input\Shared\GetByEnergyStringInputDto;
+use App\Application\Dto\Input\Shared\GetByIdIntInputDto;
 use App\Application\Dto\Output\Shared\SuccessOutputDto;
 use App\Application\Service\DataProvider\OccupantDataProviderInterface;
 use App\Application\Service\DataSource\OccupantDataSourceInterface;
@@ -48,17 +48,17 @@ final class OccupantDataProvider implements OccupantDataProviderInterface
         return $this->transformer->transformGetOccupantReleveRepart($rawData);
     }
 
+    public function listFuitesByOccupantService(): SuccessOutputDto
+    {
+        return new SuccessOutputDto(true);
+    }
+
     public function patchOccupantService(PatchOccupantInputDto $inputDto): SuccessOutputDto
     {
         return new SuccessOutputDto(true);
     }
 
     public function postOccupantService(PostOccupantInputDto $inputDto): SuccessOutputDto
-    {
-        return new SuccessOutputDto(true);
-    }
-
-    public function listFuitesByOccupantService(): SuccessOutputDto
     {
         return new SuccessOutputDto(true);
     }

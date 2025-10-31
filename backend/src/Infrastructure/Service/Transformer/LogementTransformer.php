@@ -6,11 +6,11 @@ namespace App\Infrastructure\Service\Transformer;
 
 use App\Application\Dto\Output\Logement\ListLogementsOuputDto;
 use App\Application\Dto\Output\Logement\LogementOutputDto;
+use App\Application\Dto\Output\Shared\ListIndicatorsOuputDto;
 use App\Application\Factory\Logement\LogementEntityFactory;
 use App\Application\Factory\Logement\LogementOutputFactory;
-use App\Application\Service\Transformer\LogementTransformerInterface;
-use App\Application\Dto\Output\Shared\ListIndicatorsOuputDto;
 use App\Application\Factory\Shared\SharedOutputFactory;
+use App\Application\Service\Transformer\LogementTransformerInterface;
 
 final class LogementTransformer implements LogementTransformerInterface
 {
@@ -25,16 +25,6 @@ final class LogementTransformer implements LogementTransformerInterface
         $entity = $this->entityFactory->createLogementFromRaw($dataSourceResult);
 
         return $this->outputFactory->createGetLogement($entity);
-    }
-
-    public function transformListLogements(object $dataSourceResult): ListLogementsOuputDto
-    {
-        $logementsRaw = is_array($rawLogement = $dataSourceResult->ListeInfosLogements->infosLogement ?? null)
-           ? $rawLogement : ($rawLogement ? [$rawLogement] : []);
-
-        $entities = $this->entityFactory->createManyLogementsFromRawList($logementsRaw);
-
-        return $this->outputFactory->createListLogements($entities);
     }
 
     public function transformGetLogementCapteur(object $dataSourceResult): ListIndicatorsOuputDto
@@ -255,5 +245,15 @@ final class LogementTransformer implements LogementTransformerInterface
         ];
 
         return $this->sharedOutputFactory->createListIndicators($entityToArray);
+    }
+
+    public function transformListLogements(object $dataSourceResult): ListLogementsOuputDto
+    {
+        $logementsRaw = is_array($rawLogement = $dataSourceResult->ListeInfosLogements->infosLogement ?? null)
+           ? $rawLogement : ($rawLogement ? [$rawLogement] : []);
+
+        $entities = $this->entityFactory->createManyLogementsFromRawList($logementsRaw);
+
+        return $this->outputFactory->createListLogements($entities);
     }
 }

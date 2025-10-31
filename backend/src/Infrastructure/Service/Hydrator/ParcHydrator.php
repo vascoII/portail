@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Service\Hydrator;
 
-final class ParcHydrator
+final class ParcHydrator extends Hydrator
 {
     public function hydrateGetParc(): object
     {

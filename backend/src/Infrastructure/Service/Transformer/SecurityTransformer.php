@@ -73,6 +73,14 @@ final class SecurityTransformer implements SecurityTransformerInterface
     }
 
     /**
+     * Transform raw response to PatchCguOutputDto.
+     */
+    public function transformPatchCgu(object $dataSourceResult): SuccessOutputDto
+    {
+        return new SuccessOutputDto(true);
+    }
+
+    /**
      * Transform raw response to ResetOrCreateOutputDto.
      */
     public function transformResetOrCreate(object $dataSourceResult): ResetOrCreateOutputDto
@@ -104,6 +112,14 @@ final class SecurityTransformer implements SecurityTransformerInterface
     }
 
     /**
+     * Transform raw response to UpdateEmailOutputDto.
+     */
+    public function transformUpdateEmail(object $dataSourceResult): SuccessOutputDto
+    {
+        return new SuccessOutputDto(true);
+    }
+
+    /**
      * Transform raw response to UpdatePasswordOutputDto.
      */
     public function transformUpdatePassword(object $dataSourceResult): UpdatePasswordOutputDto
@@ -111,21 +127,5 @@ final class SecurityTransformer implements SecurityTransformerInterface
         $updated = (bool) $dataSourceResult->UpdatePasswordResult;
 
         return new UpdatePasswordOutputDto($updated);
-    }
-
-    /**
-     * Transform raw response to PatchCguOutputDto.
-     */
-    public function transformPatchCgu(object $dataSourceResult): SuccessOutputDto
-    {
-        return new SuccessOutputDto(true);
-    }
-
-    /**
-     * Transform raw response to UpdateEmailOutputDto.
-     */
-    public function transformUpdateEmail(object $dataSourceResult): SuccessOutputDto
-    {
-        return new SuccessOutputDto(true);
     }
 }

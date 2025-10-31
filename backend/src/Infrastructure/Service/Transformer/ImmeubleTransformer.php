@@ -6,11 +6,11 @@ namespace App\Infrastructure\Service\Transformer;
 
 use App\Application\Dto\Output\Immeuble\GetImmeubleOutputDto;
 use App\Application\Dto\Output\Immeuble\ListImmeublesOutputDto;
+use App\Application\Dto\Output\Shared\ListIndicatorsOuputDto;
 use App\Application\Factory\Immeuble\ImmeubleEntityFactory;
 use App\Application\Factory\Immeuble\ImmeubleOutputFactory;
-use App\Application\Service\Transformer\ImmeubleTransformerInterface;
-use App\Application\Dto\Output\Shared\ListIndicatorsOuputDto;
 use App\Application\Factory\Shared\SharedOutputFactory;
+use App\Application\Service\Transformer\ImmeubleTransformerInterface;
 
 final class ImmeubleTransformer implements ImmeubleTransformerInterface
 {
@@ -25,18 +25,6 @@ final class ImmeubleTransformer implements ImmeubleTransformerInterface
         $entity = $this->entityFactory->createImmeubleFromRaw($dataSourceResult);
 
         return $this->outputFactory->createGetImmeuble($entity);
-    }
-
-    /**
-     * Transform raw response to ListImmeublesOutputDto.
-     */
-    public function transformListImmeubles(object $dataSourceResult): ListImmeublesOutputDto
-    {
-        $immeublesRaw = is_array($rawImmeuble = $dataSourceResult->ListeInfosImmeubles->infosImmeuble ?? null)
-           ? $rawImmeuble : ($rawImmeuble ? [$rawImmeuble] : []);
-
-        $entities = $this->entityFactory->createManyImmeublesFromRawList($immeublesRaw);
-        return $this->outputFactory->createListImmeubles($entities);
     }
 
     public function transformGetImmeubleCapteur(object $dataSourceResult): ListIndicatorsOuputDto
@@ -305,5 +293,18 @@ final class ImmeubleTransformer implements ImmeubleTransformerInterface
         // $entities = $this->entityFactory->createManyImmeublesIndocatorsFromRawList($immeublesRaw);
 
         return $this->sharedOutputFactory->createListImmeublesIndicators($entityToArray);
+    }
+
+    /**
+     * Transform raw response to ListImmeublesOutputDto.
+     */
+    public function transformListImmeubles(object $dataSourceResult): ListImmeublesOutputDto
+    {
+        $immeublesRaw = is_array($rawImmeuble = $dataSourceResult->ListeInfosImmeubles->infosImmeuble ?? null)
+           ? $rawImmeuble : ($rawImmeuble ? [$rawImmeuble] : []);
+
+        $entities = $this->entityFactory->createManyImmeublesFromRawList($immeublesRaw);
+
+        return $this->outputFactory->createListImmeubles($entities);
     }
 }

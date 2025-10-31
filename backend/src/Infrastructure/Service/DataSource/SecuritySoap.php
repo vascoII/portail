@@ -49,6 +49,14 @@ final class SecuritySoap extends Soap implements SecurityDataSourceInterface
         return $this->safeCall('Logout', (object) []);
     }
 
+    public function fetchPatchCgu(): object
+    {
+        $authContext = $this->getAuthContext();
+        $soapRequest = $this->sharedHydrator->hydratePatchCgu($authContext->pkUser);
+
+        return $this->safeCall('UpdateCGUFromPKUser', $soapRequest);
+    }
+
     public function fetchResetPassword(ResetPasswordInputDto $inputDto): object
     {
         $soapRequest = $this->hydrator->hydrateResetPassword($inputDto);
@@ -63,23 +71,6 @@ final class SecuritySoap extends Soap implements SecurityDataSourceInterface
         return $this->safeCall('ResetPasswordFromPKUser', $soapRequest);
     }
 
-    public function fetchUpdatePassword(UpdatePasswordInputDto $inputDto): object
-    {
-        $authContext = $this->getAuthContext();
-        $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-        $soapRequest = $this->hydrator->hydrateUpdatePassword($inputDto);
-
-        return $this->safeCall('UpdatePassword', $soapRequest);
-    }
-
-    public function fetchPatchCgu(): object
-    {
-        $authContext = $this->getAuthContext();
-        $soapRequest = $this->sharedHydrator->hydratePatchCgu($authContext->pkUser);
-
-        return $this->safeCall('UpdateCGUFromPKUser', $soapRequest);
-    }
-
     public function fetchUpdateEmailFromPKUser(PatchEmailInputDto $inputDto): object
     {
         $authContext = $this->getAuthContext();
@@ -89,6 +80,15 @@ final class SecuritySoap extends Soap implements SecurityDataSourceInterface
         );
 
         return $this->safeCall('UpdateEmailFromPKUser', $soapRequest);
+    }
+
+    public function fetchUpdatePassword(UpdatePasswordInputDto $inputDto): object
+    {
+        $authContext = $this->getAuthContext();
+        $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
+        $soapRequest = $this->hydrator->hydrateUpdatePassword($inputDto);
+
+        return $this->safeCall('UpdatePassword', $soapRequest);
     }
 
     private function getAuthContext(): AuthenticationContext

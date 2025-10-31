@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Service\Hydrator;
 
-use App\Application\Dto\Input\Shared\GetByIdIntInputDto;
 use App\Application\Dto\Input\Logement\GetImmeubleIdAndLogementIdInputDto;
+use App\Application\Dto\Input\Shared\GetByIdIntInputDto;
 
-final class LogementHydrator
+final class LogementHydrator extends Hydrator
 {
     public function hydrateGetLogement(GetByIdIntInputDto $inputDto): object
     {
@@ -77,7 +77,7 @@ final class LogementHydrator
     {
         return (object) [
             'PkImmeuble' => $inputDto->pkImmeuble,
-            'ParamsFiltres' => "PKLOGEMENT=$inputDto->pkLogement"
+            'ParamsFiltres' => "PKLOGEMENT={$inputDto->pkLogement}",
         ];
     }
 
@@ -85,7 +85,7 @@ final class LogementHydrator
     {
         return (object) [
             'PkImmeuble' => $inputDto->pkImmeuble,
-            'ParamsFiltres' => "PKLOGEMENT=$inputDto->pkLogement"
+            'ParamsFiltres' => "PKLOGEMENT={$inputDto->pkLogement}",
         ];
     }
 
@@ -93,7 +93,7 @@ final class LogementHydrator
     {
         return (object) [
             'PkImmeuble' => $inputDto->pkImmeuble,
-            'ParamsFiltres' => "PKLOGEMENT=$inputDto->pkLogement"
+            'ParamsFiltres' => "PKLOGEMENT={$inputDto->pkLogement}",
         ];
     }
 
@@ -101,7 +101,7 @@ final class LogementHydrator
     {
         return (object) [
             'PkImmeuble' => $inputDto->pkImmeuble,
-            'ParamsFiltres' => "PKLOGEMENT=$inputDto->pkLogement"
+            'ParamsFiltres' => "PKLOGEMENT={$inputDto->pkLogement}",
         ];
     }
 }

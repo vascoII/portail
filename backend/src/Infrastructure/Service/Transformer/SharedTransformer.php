@@ -10,7 +10,7 @@ use App\Application\Dto\Output\Shared\ListAnomaliesOuputDto;
 use App\Application\Dto\Output\Shared\ListDysfonctionnementsOuputDto;
 use App\Application\Dto\Output\Shared\ListFuitesOutputDto;
 use App\Application\Dto\Output\Shared\ListIndicatorsOuputDto;
-use App\Application\Dto\Output\Shared\ListInterventionsOutputDto ;
+use App\Application\Dto\Output\Shared\ListInterventionsOutputDto;
 use App\Application\Dto\Output\Shared\SuccessOutputDto;
 use App\Application\Dto\Output\Shared\UserDto;
 use App\Application\Factory\Shared\SharedEntityFactory;
@@ -120,7 +120,7 @@ final class SharedTransformer implements SharedTransformerInterface
         return $this->outputFactory->createListImmeublesIndicators($entitiesToArray);
     }
 
-    public function transformListInterventions(object $dataSourceResult): ListInterventionsOutputDto 
+    public function transformListInterventions(object $dataSourceResult): ListInterventionsOutputDto
     {
         $interventionsRaw = is_array($rawIntervention = $dataSourceResult->ListeInfosDepannages->infosDepannage ?? null)
           ? $rawIntervention : ($rawIntervention ? [$rawIntervention] : []);

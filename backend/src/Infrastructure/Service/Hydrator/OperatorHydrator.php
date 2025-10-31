@@ -12,7 +12,7 @@ use App\Application\Dto\Input\Operator\PatchOperatorInputDto;
 use App\Application\Dto\Input\Operator\PutOperatorInputDto;
 use App\Application\Dto\Input\Shared\GetByIdIntInputDto;
 
-final class OperatorHydrator
+final class OperatorHydrator extends Hydrator
 {
     public function hydrateCreateOperationImmeuble(CreateOperationImmeubleInputDto $inputDto): object
     {

@@ -7,7 +7,7 @@ namespace App\Infrastructure\Service\Hydrator;
 use App\Application\Dto\Input\Shared\GetByEnergyStringInputDto;
 use App\Application\Dto\Input\Shared\GetByIdIntInputDto;
 
-final class OccupantHydrator
+final class OccupantHydrator extends Hydrator
 {
     public function hydrateGetOccupantIntervention(GetByIdIntInputDto $inputDto): object
     {

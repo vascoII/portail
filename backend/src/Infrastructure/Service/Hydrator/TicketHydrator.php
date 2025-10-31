@@ -7,7 +7,7 @@ namespace App\Infrastructure\Service\Hydrator;
 use App\Application\Dto\Input\Shared\GetByIdIntInputDto;
 use App\Application\Dto\Input\Ticket\CreateTicketInterInputDto;
 
-final class TicketHydrator
+final class TicketHydrator extends Hydrator
 {
     public function hydrateCreateTicket(CreateTicketInterInputDto $inputDto): object
     {

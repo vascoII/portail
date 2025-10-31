@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Infrastructure\Service\Transformer;
 
 use App\Application\Dto\Output\Parc\GetParcOutputDto;
-use App\Application\Service\Transformer\ParcTransformerInterface;
-use App\Application\Factory\Parc\GetParcOutputFactory;
 use App\Application\Factory\Parc\GetParcEntityFactory;
+use App\Application\Factory\Parc\GetParcOutputFactory;
+use App\Application\Service\Transformer\ParcTransformerInterface;
 
 final class ParcTransformer implements ParcTransformerInterface
 {

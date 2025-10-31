@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Service\DataSource;
 
+use App\Application\Dto\Input\Intervention\GetCasesByEmailInpuDto;
 use App\Application\Service\DataSource\InterventionDataSourceInterface;
 use App\Infrastructure\Service\Hydrator\InterventionHydrator;
-use App\Application\Dto\Input\Intervention\GetCasesByEmailInpuDto;
 
 final class InterventionSoap extends Soap implements InterventionDataSourceInterface
 {
@@ -23,5 +23,4 @@ final class InterventionSoap extends Soap implements InterventionDataSourceInter
 
         return $this->safeCall('getCase', $soapRequest);
     }
-
 }

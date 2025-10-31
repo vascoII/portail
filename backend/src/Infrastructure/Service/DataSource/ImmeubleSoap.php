@@ -74,15 +74,6 @@ final class ImmeubleSoap extends Soap implements ImmeubleDataSourceInterface
         return $this->safeCall('GetTableauBordImmeuble', $soapRequest);
     }
 
-    public function fetchGetImmeubleSerieConsosEAU(GetByIdIntInputDto $inputDto): object
-    {
-        $authContext = $this->getAuthContext();
-        $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
-        $soapRequest = $this->hydrator->hydrateGetImmeuble($inputDto);
-
-        return $this->safeCall('GetTableauBordImmeuble', $soapRequest);
-    }
-
     public function fetchGetImmeubles(): object
     {
         $authContext = $this->getAuthContext();
@@ -90,6 +81,15 @@ final class ImmeubleSoap extends Soap implements ImmeubleDataSourceInterface
         $soapRequest = $this->hydrator->hydrateGetListImmeubles();
 
         return $this->safeCall('GetInfosImmeubles', $soapRequest);
+    }
+
+    public function fetchGetImmeubleSerieConsosEAU(GetByIdIntInputDto $inputDto): object
+    {
+        $authContext = $this->getAuthContext();
+        $this->soapClient->setAuthentication($authContext->sessionId, $authContext->pkUser);
+        $soapRequest = $this->hydrator->hydrateGetImmeuble($inputDto);
+
+        return $this->safeCall('GetTableauBordImmeuble', $soapRequest);
     }
 
     public function fetchGetImmeublesIndicators(): object

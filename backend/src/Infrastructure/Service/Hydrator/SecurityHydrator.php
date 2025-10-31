@@ -10,7 +10,7 @@ use App\Application\Dto\Input\Security\ResetPasswordFromPKUserInputDto;
 use App\Application\Dto\Input\Security\ResetPasswordInputDto;
 use App\Application\Dto\Input\Security\UpdatePasswordInputDto;
 
-final class SecurityHydrator
+final class SecurityHydrator extends Hydrator
 {
     public function hydrateLogin(LoginInputDto $inputDto): object
     {

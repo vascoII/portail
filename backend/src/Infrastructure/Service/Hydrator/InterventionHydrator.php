@@ -6,21 +6,15 @@ namespace App\Infrastructure\Service\Hydrator;
 
 use App\Application\Dto\Input\Intervention\GetCasesByEmailInpuDto;
 
-final class InterventionHydrator
+final class InterventionHydrator extends Hydrator
 {
-    public function __construct(
-        private readonly string $superLoginID,
-        private readonly string $superPassword,
-        private readonly string $adminSessionId
-    ) {}
-
     public function hydrateGetCases(GetCasesByEmailInpuDto $inputDto): object
     {
-       return (object) [
+        return (object) [
             'SuperLoginID' => $this->superLoginID,
             'SuperPassword' => $this->superPassword,
             'Id' => $inputDto->id,
-            'Email' => $inputDto->email
+            'Email' => $inputDto->email,
         ];
     }
 }

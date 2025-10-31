@@ -6,10 +6,10 @@ namespace App\Infrastructure\Service\DataProvider;
 
 use App\Application\Dto\Input\Security\LoginFromParamInputDto;
 use App\Application\Dto\Input\Security\LoginInputDto;
+use App\Application\Dto\Input\Security\PatchEmailInputDto;
 use App\Application\Dto\Input\Security\ResetOrCreateInputDto;
 use App\Application\Dto\Input\Security\ResetPasswordInputDto;
 use App\Application\Dto\Input\Security\UpdatePasswordInputDto;
-use App\Application\Dto\Input\Security\PatchEmailInputDto;
 use App\Application\Dto\Output\Security\LoginOutputDto;
 use App\Application\Dto\Output\Security\LogoutOutputDto;
 use App\Application\Dto\Output\Security\ResetPasswordFromPKUserOutputDto;
@@ -33,12 +33,6 @@ final class SecurityDataProvider implements SecurityDataProviderInterface
         private readonly JwtServiceInterface $serviceJwt,
         private readonly RedisServiceInterface $serviceRedis
     ) {}
-
-    public function patchCguService(): SuccessOutputDto
-    {
-        $rawData = $this->securityDataSource->fetchPatchCgu();
-        return $this->securityTransformer->transformPatchCgu($rawData);
-    }
 
     public function loginFromParamService(LoginFromParamInputDto $inputDto): LoginOutputDto
     {
@@ -80,6 +74,20 @@ final class SecurityDataProvider implements SecurityDataProviderInterface
         return $output;
     }
 
+    public function patchCguService(): SuccessOutputDto
+    {
+        $rawData = $this->securityDataSource->fetchPatchCgu();
+
+        return $this->securityTransformer->transformPatchCgu($rawData);
+    }
+
+    public function patchEmailService(PatchEmailInputDto $inputDto): SuccessOutputDto
+    {
+        $rawData = $this->securityDataSource->fetchUpdateEmailFromPKUser($inputDto);
+
+        return $this->securityTransformer->transformUpdateEmail($rawData);
+    }
+
     public function resetOrCreateService(ResetOrCreateInputDto $inputDto): ResetPasswordFromPKUserOutputDto
     {
         $rawData = $this->securityDataSource->fetchResetOrCreate($inputDto);
@@ -100,13 +108,6 @@ final class SecurityDataProvider implements SecurityDataProviderInterface
         $rawData = $this->securityDataSource->fetchUpdatePassword($inputDto);
 
         return $this->securityTransformer->transformUpdatePassword($rawData);
-    }
-
-    public function patchEmailService(PatchEmailInputDto $inputDto): SuccessOutputDto
-    {
-        $rawData = $this->securityDataSource->fetchUpdateEmailFromPKUser($inputDto);
-
-        return $this->securityTransformer->transformUpdateEmail($rawData);
     }
 
     private function getAuthContext(): AuthenticationContext

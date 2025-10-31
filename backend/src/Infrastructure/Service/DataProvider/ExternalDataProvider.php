@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Service\DataProvider;
 
-use App\Application\Dto\Input\Shared\GetByIdStringInputDto ;
+use App\Application\Dto\Input\Shared\GetByIdStringInputDto;
 use App\Application\Dto\Output\External\GetReportByTokenDataSourceOutputDto;
 use App\Application\Service\DataProvider\ExternalDataProviderInterface;
 use App\Application\Service\DataSource\ExternalDataSourceInterface;
@@ -19,7 +19,7 @@ final class ExternalDataProvider implements ExternalDataProviderInterface
         private ExternalTransformerInterface $externalTransformer
     ) {}
 
-    public function getReportByTokenService(GetByIdStringInputDto  $inputDto): GetReportByTokenDataSourceOutputDto
+    public function getReportByTokenService(GetByIdStringInputDto $inputDto): GetReportByTokenDataSourceOutputDto
     {
         $cacheKey = "report_by_token_get:{$inputDto->id}";
         $cachedDto = $this->cache->get($cacheKey);

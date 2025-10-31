@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Service\DataProvider;
 
-use App\Application\Dto\Output\Intervention\ListCasesOutputDto;
 use App\Application\Dto\Input\Intervention\GetCasesByEmailInpuDto;
+use App\Application\Dto\Output\Intervention\ListCasesOutputDto;
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Application\Service\DataProvider\InterventionDataProviderInterface;
 use App\Application\Service\DataSource\InterventionDataSourceInterface;
