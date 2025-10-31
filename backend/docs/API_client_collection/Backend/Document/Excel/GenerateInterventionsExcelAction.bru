@@ -1,0 +1,26 @@
+meta {
+  name: GenerateInterventionsExcelAction
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{localhost_backend}}/api/document/interventions/excel
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bearToken}}
+}
+
+body:json {
+  {
+   "date1": "01/01/2025",
+    "date2": "31/10/2025"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

@@ -1,0 +1,26 @@
+meta {
+  name: GenerateImmeubleInterventionsExcelAction
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{localhost_backend}}/api/document/immeuble/interventions/excel
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bearToken}}
+}
+
+body:json {
+  {
+    "idImmeuble": 123456, "idLogement": 234567,
+    "idOccupant": 345678
+  }
+}
+
+settings {
+  encodeUrl: true
+}

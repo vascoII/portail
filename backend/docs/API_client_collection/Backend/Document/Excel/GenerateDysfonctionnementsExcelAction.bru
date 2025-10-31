@@ -1,0 +1,26 @@
+meta {
+  name: GenerateDysfonctionnementsExcelAction
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{localhost_backend}}/api/document/dysfonctionnements/excel
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bearToken}}
+}
+
+body:json {
+  {
+    "idImmeuble": 123456, "idLogement": 234567,
+    "idOccupant": 345678
+  }
+}
+
+settings {
+  encodeUrl: true
+}
