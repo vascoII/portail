@@ -6,7 +6,7 @@ namespace App\Application\Dto\Input\Logement;
 
 final class IndexInputDto
 {
-  public function __construct(
-    public readonly string $pkImmeuble
-  ) {}
+    public function __construct(
+        public readonly string $pkImmeuble
+    ) {}
 }

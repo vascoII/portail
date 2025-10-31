@@ -10,12 +10,12 @@ use App\Application\Service\DataProvider\TicketDataProviderInterface;
 
 final class CreateTicketUseCase
 {
-  public function __construct(
-    private readonly TicketDataProviderInterface $dataProvider
-  ) {}
+    public function __construct(
+        private readonly TicketDataProviderInterface $dataProvider
+    ) {}
 
-  public function execute(CreateTicketInterInputDto $inputDto): SuccessOutputDto
-  {
-    return $this->dataProvider->createTicketService($inputDto);
-  }
+    public function execute(CreateTicketInterInputDto $inputDto): SuccessOutputDto
+    {
+        return $this->dataProvider->createTicketService($inputDto);
+    }
 }

@@ -6,5 +6,5 @@ namespace App\Application\Dto\Input\Logement;
 
 final class GetStatOccupantsGraphInputDto
 {
-  public function __construct(public readonly string $pkLogement) {}
+    public function __construct(public readonly string $pkLogement) {}
 }

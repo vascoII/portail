@@ -6,8 +6,7 @@ namespace App\Application\Dto\Output\Shared;
 
 final class ListFuitesOutputDto
 {
-
-  public function __construct(
-      public readonly array $fuites
-  ) {}
+    public function __construct(
+        public readonly array $fuites
+    ) {}
 }

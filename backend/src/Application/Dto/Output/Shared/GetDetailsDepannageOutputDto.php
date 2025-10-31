@@ -8,7 +8,7 @@ use App\Domain\Entity\DetailsDepannage;
 
 final class GetDetailsDepannageOutputDto
 {
-  public function __construct(
-    public readonly DetailsDepannage $detailsDepannage
-  ) {}
+    public function __construct(
+        public readonly DetailsDepannage $detailsDepannage
+    ) {}
 }

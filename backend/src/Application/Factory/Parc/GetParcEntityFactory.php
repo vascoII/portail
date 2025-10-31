@@ -6,7 +6,7 @@ namespace App\Application\Factory\Parc;
 
 use App\Domain\Entity\TableauDeBordClient;
 
-final class GetParcEntityFactory 
+final class GetParcEntityFactory
 {
     public function createTableauDeBordClientFromRaw(object $raw): TableauDeBordClient
     {

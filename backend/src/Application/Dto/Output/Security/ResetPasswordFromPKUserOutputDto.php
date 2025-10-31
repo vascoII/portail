@@ -8,7 +8,7 @@ use App\Domain\Entity\User;
 
 final class ResetPasswordFromPKUserOutputDto
 {
-  public function __construct(
-    public readonly User $user
-  ) {}
+    public function __construct(
+        public readonly User $user
+    ) {}
 }

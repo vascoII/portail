@@ -9,12 +9,12 @@ use App\Application\Service\DataProvider\OccupantDataProviderInterface;
 
 final class ListAlertesByOccupantUseCase
 {
-  public function __construct(
-    private readonly OccupantDataProviderInterface $serviceDataProvider
-  ) {}
+    public function __construct(
+        private readonly OccupantDataProviderInterface $serviceDataProvider
+    ) {}
 
-  public function execute(): ListAlertesOuputDto
-  {
-    return $this->serviceDataProvider->listAlertesByOccupantService();
-  }
+    public function execute(): ListAlertesOuputDto
+    {
+        return $this->serviceDataProvider->listAlertesByOccupantService();
+    }
 }

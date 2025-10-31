@@ -9,12 +9,12 @@ use App\Application\Service\DataProvider\OccupantDataProviderInterface;
 
 final class ListFuitesByOccupantUseCase
 {
-  public function __construct(
-    private readonly OccupantDataProviderInterface $serviceDataProvider
-  ) {}
+    public function __construct(
+        private readonly OccupantDataProviderInterface $serviceDataProvider
+    ) {}
 
-  public function execute(): ListFuitesOutputDto
-  {
-    return $this->serviceDataProvider->listFuitesByOccupantService();
-  }
+    public function execute(): ListFuitesOutputDto
+    {
+        return $this->serviceDataProvider->listFuitesByOccupantService();
+    }
 }

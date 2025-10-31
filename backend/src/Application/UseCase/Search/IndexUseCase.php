@@ -10,12 +10,12 @@ use App\Application\Service\DataProvider\SearchDataProviderInterface;
 
 final class IndexUseCase
 {
-  public function __construct(
-    private readonly SearchDataProviderInterface $serviceDataProvider
-  ) {}
+    public function __construct(
+        private readonly SearchDataProviderInterface $serviceDataProvider
+    ) {}
 
-  public function execute(IndexInputDto $inputDto): IndexOutputDto
-  {
-    return $this->serviceDataProvider->indexService($inputDto);
-  }
+    public function execute(IndexInputDto $inputDto): IndexOutputDto
+    {
+        return $this->serviceDataProvider->indexService($inputDto);
+    }
 }

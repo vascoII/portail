@@ -8,7 +8,7 @@ use App\Domain\Entity\Retour;
 
 final class SetImmeublesOutputDto
 {
-  public function __construct(
-    public readonly Retour $retour
-  ) {}
+    public function __construct(
+        public readonly Retour $retour
+    ) {}
 }

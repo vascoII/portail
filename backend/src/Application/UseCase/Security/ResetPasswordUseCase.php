@@ -10,12 +10,12 @@ use App\Application\Service\DataProvider\SecurityDataProviderInterface;
 
 final class ResetPasswordUseCase
 {
-  public function __construct(
-    private readonly SecurityDataProviderInterface $serviceDataProvider
-  ) {}
+    public function __construct(
+        private readonly SecurityDataProviderInterface $serviceDataProvider
+    ) {}
 
-  public function execute(ResetPasswordInputDto $inputDto): ResetPasswordOutputDto
-  {
-    return $this->serviceDataProvider->resetPasswordService($inputDto);
-  }
+    public function execute(ResetPasswordInputDto $inputDto): ResetPasswordOutputDto
+    {
+        return $this->serviceDataProvider->resetPasswordService($inputDto);
+    }
 }

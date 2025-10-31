@@ -10,12 +10,12 @@ use App\Application\Service\DataProvider\FactureDataProviderInterface;
 
 final class GenerateFacturePdfUseCase
 {
-  public function __construct(
-    private readonly FactureDataProviderInterface $serviceDataProvider
-  ) {}
+    public function __construct(
+        private readonly FactureDataProviderInterface $serviceDataProvider
+    ) {}
 
-  public function execute(GetReportInputDto $inputDto): GetReportOutputDto
-  {
-    return $this->serviceDataProvider->generateFacturePdfService($inputDto);
-  }
+    public function execute(GetReportInputDto $inputDto): GetReportOutputDto
+    {
+        return $this->serviceDataProvider->generateFacturePdfService($inputDto);
+    }
 }

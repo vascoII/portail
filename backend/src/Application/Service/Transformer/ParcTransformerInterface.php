@@ -8,6 +8,5 @@ use App\Application\Dto\Output\Parc\GetParcOutputDto;
 
 interface ParcTransformerInterface
 {
-  public function transformGetParc(object $dataSourceResult): GetParcOutputDto;
-  
+    public function transformGetParc(object $dataSourceResult): GetParcOutputDto;
 }

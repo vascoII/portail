@@ -6,8 +6,8 @@ namespace App\Application\Dto\Input\Logement;
 
 final class GetInfosLogementsInputDto
 {
-  public function __construct(
-    public readonly string $paramsFiltres,
-    public readonly string $paramsInfos    
-  ) {}
+    public function __construct(
+        public readonly string $paramsFiltres,
+        public readonly string $paramsInfos
+    ) {}
 }

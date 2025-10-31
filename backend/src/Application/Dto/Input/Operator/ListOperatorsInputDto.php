@@ -6,7 +6,7 @@ namespace App\Application\Dto\Input\Operator;
 
 final class ListOperatorsInputDto
 {
-  public function __construct(
-    public readonly string $type
-  ) {}
+    public function __construct(
+        public readonly string $type
+    ) {}
 }

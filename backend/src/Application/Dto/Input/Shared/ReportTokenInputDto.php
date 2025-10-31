@@ -6,5 +6,5 @@ namespace App\Application\Dto\Input\Shared;
 
 final class ReportTokenInputDto
 {
-  public function __construct(public readonly string $token) {}
+    public function __construct(public readonly string $token) {}
 }

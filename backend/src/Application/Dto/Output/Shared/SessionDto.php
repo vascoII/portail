@@ -8,7 +8,7 @@ use App\Domain\Entity\Session;
 
 final class SessionDto
 {
-  public function __construct(
-    public readonly Session $session
-  ) {}
+    public function __construct(
+        public readonly Session $session
+    ) {}
 }

@@ -6,8 +6,7 @@ namespace App\Application\Dto\Output\Shared;
 
 final class ListInterventionsOutputDto
 {
-
-  public function __construct(
-      public readonly array $interventions
-  ) {}
+    public function __construct(
+        public readonly array $interventions
+    ) {}
 }

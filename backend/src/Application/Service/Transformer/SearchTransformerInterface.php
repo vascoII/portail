@@ -8,9 +8,8 @@ use App\Application\Dto\Output\Search\IndexOutputDto;
 
 interface SearchTransformerInterface
 {
-   /**
-    * Transform raw response to IndexOutputDto
-    */
-   public function transformIndex(object $dataSourceResult): IndexOutputDto;
-   
+    /**
+     * Transform raw response to IndexOutputDto.
+     */
+    public function transformIndex(object $dataSourceResult): IndexOutputDto;
 }

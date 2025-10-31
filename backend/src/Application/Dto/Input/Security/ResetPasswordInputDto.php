@@ -6,5 +6,5 @@ namespace App\Application\Dto\Input\Security;
 
 final class ResetPasswordInputDto
 {
-  public function __construct(public readonly ?string $email = null) {}
+    public function __construct(public readonly ?string $email = null) {}
 }

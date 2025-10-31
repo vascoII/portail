@@ -6,7 +6,7 @@ namespace App\Application\Dto\Input\Occupant;
 
 final class ShowInterventionInputDto
 {
-  public function __construct(
-    public readonly string $pkIntervention
-  ) {}
+    public function __construct(
+        public readonly string $pkIntervention
+    ) {}
 }

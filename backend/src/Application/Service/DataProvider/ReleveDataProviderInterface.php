@@ -8,5 +8,5 @@ use App\Application\Dto\Output\Shared\SuccessOutputDto;
 
 interface ReleveDataProviderInterface
 {
-  public function listCasesService(): SuccessOutputDto;
+    public function listCasesService(): SuccessOutputDto;
 }

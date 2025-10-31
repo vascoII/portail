@@ -10,12 +10,12 @@ use App\Application\Service\DataProvider\LogementDataProviderInterface;
 
 final class ListDysfonctionnementsByLogementUseCase
 {
-  public function __construct(
-    private readonly LogementDataProviderInterface $serviceDataProvider
-  ) {}
+    public function __construct(
+        private readonly LogementDataProviderInterface $serviceDataProvider
+    ) {}
 
-  public function execute(GetImmeubleIdAndLogementIdInputDto $inputDto): ListDysfonctionnementsOuputDto
-  {
-    return $this->serviceDataProvider->listDysfonctionnementsByLogementService($inputDto);
-  }
+    public function execute(GetImmeubleIdAndLogementIdInputDto $inputDto): ListDysfonctionnementsOuputDto
+    {
+        return $this->serviceDataProvider->listDysfonctionnementsByLogementService($inputDto);
+    }
 }

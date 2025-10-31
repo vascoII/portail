@@ -9,12 +9,12 @@ use App\Application\Service\DataProvider\OccupantDataProviderInterface;
 
 final class ListAnomaliesByOccupantUseCase
 {
-  public function __construct(
-    private readonly OccupantDataProviderInterface $serviceDataProvider
-  ) {}
+    public function __construct(
+        private readonly OccupantDataProviderInterface $serviceDataProvider
+    ) {}
 
-  public function execute(): ListAnomaliesOuputDto
-  {
-    return $this->serviceDataProvider->listAnomaliesByOccupantService();
-  }
+    public function execute(): ListAnomaliesOuputDto
+    {
+        return $this->serviceDataProvider->listAnomaliesByOccupantService();
+    }
 }

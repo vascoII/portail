@@ -8,9 +8,9 @@ use App\Application\Dto\Output\Shared\SessionDto;
 
 interface JwtServiceInterface
 {
-  public function generateToken(SessionDto $sessionDto): string;
+    public function generateToken(SessionDto $sessionDto): string;
 
-  public function validateToken(string $token): ?array;
+    public function getTokenPayload(string $token): ?array;
 
-  public function getTokenPayload(string $token): ?array;
+    public function validateToken(string $token): ?array;
 }

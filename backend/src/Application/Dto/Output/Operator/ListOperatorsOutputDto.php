@@ -8,8 +8,8 @@ use App\Application\Dto\Output\Shared\UserDto;
 
 final class ListOperatorsOutputDto
 {
-  /** @param UserDto[] $userDto */
-  public function __construct(
-    public readonly array $userDto
-  ) {}
+    /** @param UserDto[] $userDto */
+    public function __construct(
+        public readonly array $userDto
+    ) {}
 }

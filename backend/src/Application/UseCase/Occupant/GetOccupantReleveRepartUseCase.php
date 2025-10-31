@@ -9,12 +9,12 @@ use App\Application\Service\DataProvider\OccupantDataProviderInterface;
 
 final class GetOccupantReleveRepartUseCase
 {
-  public function __construct(
-    private readonly OccupantDataProviderInterface $dataProvider
-  ) {}
+    public function __construct(
+        private readonly OccupantDataProviderInterface $dataProvider
+    ) {}
 
-  public function execute(): SuccessOutputDto
-  {
-    return $this->dataProvider->getOccupantReleveRepartService();
-  }
+    public function execute(): SuccessOutputDto
+    {
+        return $this->dataProvider->getOccupantReleveRepartService();
+    }
 }

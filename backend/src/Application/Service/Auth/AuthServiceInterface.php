@@ -8,13 +8,13 @@ use App\Application\Dto\Output\Shared\UserDto;
 
 interface AuthServiceInterface
 {
-  public function setAuthenticatedUser(UserDto $user, string $sessionId): void;
+    public function clearAuthenticatedUser(): void;
 
-  public function clearAuthenticatedUser(): void;
+    public function getCurrentSessionId(): ?string;
 
-  public function getCurrentUser(): ?UserDto;
+    public function getCurrentUser(): ?UserDto;
 
-  public function getCurrentSessionId(): ?string;
+    public function isAuthenticated(): bool;
 
-  public function isAuthenticated(): bool;
+    public function setAuthenticatedUser(UserDto $user, string $sessionId): void;
 }

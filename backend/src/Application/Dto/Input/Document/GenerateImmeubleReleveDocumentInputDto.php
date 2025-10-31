@@ -6,7 +6,7 @@ namespace App\Application\Dto\Input\Document;
 
 final class GenerateImmeubleReleveDocumentInputDto
 {
-  public function __construct(
-    public readonly string $pkReleve
-  ) {}
+    public function __construct(
+        public readonly string $pkReleve
+    ) {}
 }

@@ -4,23 +4,12 @@ declare(strict_types=1);
 
 namespace App\Application\Factory\Operator;
 
-use App\Application\Dto\Output\Operator\ListOperatorsOutputDto;
 use App\Application\Dto\Output\Operator\GetOperatorOutputDto;
+use App\Application\Dto\Output\Operator\ListOperatorsOutputDto;
 use App\Domain\Entity\User;
 
-final class OperatorOutputFactory 
+final class OperatorOutputFactory
 {
-    /**
-     * @param User[] $operators
-     */
-    public function createListOperators(array $operators): ListOperatorsOutputDto
-    {
-        return new ListOperatorsOutputDto($operators);
-    }
-
-    /**
-     * @param User $operator
-     */
     public function createGetOperator(User $operator): GetOperatorOutputDto
     {
         return new GetOperatorOutputDto(
@@ -50,7 +39,15 @@ final class OperatorOutputFactory
             showImmeublesArc: $operator->showImmeublesArc,
             showFactures: $operator->showFactures,
             showChgtOccupant: $operator->showChgtOccupant,
-            showChantiers: $operator->showChantiers      
+            showChantiers: $operator->showChantiers
         );
+    }
+
+    /**
+     * @param User[] $operators
+     */
+    public function createListOperators(array $operators): ListOperatorsOutputDto
+    {
+        return new ListOperatorsOutputDto($operators);
     }
 }

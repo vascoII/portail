@@ -9,12 +9,12 @@ use App\Application\Service\DataProvider\FactureDataProviderInterface;
 
 final class ListFacturesUseCase
 {
-  public function __construct(
-    private readonly FactureDataProviderInterface $serviceDataProvider
-  ) {}
+    public function __construct(
+        private readonly FactureDataProviderInterface $serviceDataProvider
+    ) {}
 
-  public function execute(): ListFacturesOutputDto
-  {
-    return $this->serviceDataProvider->listFacturesService();
-  }
+    public function execute(): ListFacturesOutputDto
+    {
+        return $this->serviceDataProvider->listFacturesService();
+    }
 }

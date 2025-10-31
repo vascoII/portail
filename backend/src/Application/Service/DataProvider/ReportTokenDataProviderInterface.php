@@ -9,6 +9,5 @@ use App\Application\Dto\Output\Shared\GetReportByTokenOutputDto;
 
 interface ReportTokenDataProviderInterface
 {
-
-  public function reportService(GetReportByTokenInputDto $inputDto): GetReportByTokenOutputDto;
+    public function reportService(GetReportByTokenInputDto $inputDto): GetReportByTokenOutputDto;
 }

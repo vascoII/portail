@@ -6,8 +6,8 @@ namespace App\Application\Dto\Input\Immeuble;
 
 final class GetInfosDepannagesByImmeubleInputDto
 {
-  public function __construct(
-    public readonly string $pkImmeuble,
-    public readonly string $paramsFiltres    
-  ) {}
+    public function __construct(
+        public readonly string $pkImmeuble,
+        public readonly string $paramsFiltres
+    ) {}
 }

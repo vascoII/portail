@@ -10,12 +10,12 @@ use App\Application\Service\DataProvider\DocumentDataProviderInterface;
 
 final class GenerateOccupantFuitesExcelUseCase
 {
-  public function __construct(
-    private readonly DocumentDataProviderInterface $serviceDataProvider
-  ) {}
+    public function __construct(
+        private readonly DocumentDataProviderInterface $serviceDataProvider
+    ) {}
 
-  public function execute(GetByIdStringInputDto $inputDto): SuccessOutputDto
-  {
-    return $this->serviceDataProvider->generateOccupantFuitesExcelService($inputDto);
-  }
+    public function execute(GetByIdStringInputDto $inputDto): SuccessOutputDto
+    {
+        return $this->serviceDataProvider->generateOccupantFuitesExcelService($inputDto);
+    }
 }

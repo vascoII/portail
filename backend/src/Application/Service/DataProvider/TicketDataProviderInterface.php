@@ -10,7 +10,9 @@ use App\Application\Dto\Output\Shared\SuccessOutputDto;
 
 interface TicketDataProviderInterface
 {
-  public function listTicketsService(): SuccessOutputDto;
-  public function createTicketService(CreateTicketInterInputDto $inputDto): SuccessOutputDto;
-  public function patchTicketService(GetByIdIntInputDto $inputDto): SuccessOutputDto;
+    public function createTicketService(CreateTicketInterInputDto $inputDto): SuccessOutputDto;
+
+    public function listTicketsService(): SuccessOutputDto;
+
+    public function patchTicketService(GetByIdIntInputDto $inputDto): SuccessOutputDto;
 }

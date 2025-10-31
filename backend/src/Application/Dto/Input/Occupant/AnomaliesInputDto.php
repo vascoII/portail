@@ -6,5 +6,5 @@ namespace App\Application\Dto\Input\Occupant;
 
 final class AnomaliesInputDto
 {
-  public function __construct() {}
+    public function __construct() {}
 }

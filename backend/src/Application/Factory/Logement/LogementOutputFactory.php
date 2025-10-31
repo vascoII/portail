@@ -8,9 +8,13 @@ use App\Application\Dto\Output\Logement\ListLogementsOuputDto;
 use App\Application\Dto\Output\Logement\LogementOutputDto;
 use App\Domain\Entity\Logement;
 
-
-final class LogementOutputFactory 
+final class LogementOutputFactory
 {
+    public function createGetLogement(array $logement): LogementOutputDto
+    {
+        return new LogementOutputDto($logement);
+    }
+
     /**
      * @param Logement[] $logements
      */
@@ -18,15 +22,4 @@ final class LogementOutputFactory
     {
         return new ListLogementsOuputDto($logements);
     }
-
-   
-    /**
-     * @param array $logement
-     */
-    public function createGetLogement(array $logement): LogementOutputDto
-    {
-        return new LogementOutputDto($logement);
-    }
-
-    
 }

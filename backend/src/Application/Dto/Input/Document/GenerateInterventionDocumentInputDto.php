@@ -6,7 +6,7 @@ namespace App\Application\Dto\Input\Document;
 
 final class GenerateInterventionDocumentInputDto
 {
-  public function __construct(
-    public readonly string $workOrderNumber
-  ) {}
+    public function __construct(
+        public readonly string $workOrderNumber
+    ) {}
 }

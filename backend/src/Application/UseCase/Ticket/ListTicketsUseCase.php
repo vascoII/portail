@@ -9,12 +9,12 @@ use App\Application\Service\DataProvider\TicketDataProviderInterface;
 
 final class ListTicketsUseCase
 {
-  public function __construct(
-    private readonly TicketDataProviderInterface $dataProvider
-  ) {}
+    public function __construct(
+        private readonly TicketDataProviderInterface $dataProvider
+    ) {}
 
-  public function execute(): SuccessOutputDto
-  {
-    return $this->dataProvider->listTicketsService();
-  }
+    public function execute(): SuccessOutputDto
+    {
+        return $this->dataProvider->listTicketsService();
+    }
 }

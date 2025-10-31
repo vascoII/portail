@@ -6,5 +6,5 @@ namespace App\Application\Service\DataSource;
 
 interface ParcDataSourceInterface
 {
-  public function fetchGetParc(): object;
+    public function fetchGetParc(): object;
 }

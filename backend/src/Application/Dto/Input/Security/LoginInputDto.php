@@ -6,8 +6,8 @@ namespace App\Application\Dto\Input\Security;
 
 final class LoginInputDto
 {
-  public function __construct(
-    public readonly string $username, 
-    public readonly string $password
-  ) {}
+    public function __construct(
+        public readonly string $username,
+        public readonly string $password
+    ) {}
 }

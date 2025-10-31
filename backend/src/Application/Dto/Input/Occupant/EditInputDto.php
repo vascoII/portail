@@ -6,7 +6,7 @@ namespace App\Application\Dto\Input\Occupant;
 
 final class EditInputDto
 {
-  public function __construct(
-    public readonly string $pkLogement
-  ) {}
+    public function __construct(
+        public readonly string $pkLogement
+    ) {}
 }

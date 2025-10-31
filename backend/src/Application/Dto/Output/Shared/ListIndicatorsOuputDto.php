@@ -6,8 +6,8 @@ namespace App\Application\Dto\Output\Shared;
 
 final class ListIndicatorsOuputDto
 {
-  /** @param [] $indicators */
-  public function __construct(
-    public readonly array $indicators
-  ) {}
+    /** @param [] $indicators */
+    public function __construct(
+        public readonly array $indicators
+    ) {}
 }

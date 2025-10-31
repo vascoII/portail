@@ -9,5 +9,5 @@ use App\Application\Dto\Output\External\GetReportByTokenOutputDto;
 
 interface PdfReportBuilderInterface
 {
-  public function generateDocumentReportByTokenService(GetReportByTokenDataSourceOutputDto $reportByTokenDataSourceOutputDto): GetReportByTokenOutputDto;
+    public function generateDocumentReportByTokenService(GetReportByTokenDataSourceOutputDto $reportByTokenDataSourceOutputDto): GetReportByTokenOutputDto;
 }

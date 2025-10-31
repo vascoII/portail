@@ -4,22 +4,12 @@ declare(strict_types=1);
 
 namespace App\Application\Factory\Immeuble;
 
-use App\Application\Dto\Output\Immeuble\ListImmeublesOutputDto;
-use App\Application\Dto\Output\Immeuble\ListInterventionsOutputDto ;
 use App\Application\Dto\Output\Immeuble\GetImmeubleOutputDto;
+use App\Application\Dto\Output\Immeuble\ListImmeublesOutputDto;
 use App\Domain\Entity\Immeuble;
-use App\Domain\Entity\Depannage;
 
-final class ImmeubleOutputFactory 
+final class ImmeubleOutputFactory
 {
-    /**
-     * @param User[] $immeubles
-     */
-    public function createListImmeubles(array $immeubles): ListImmeublesOutputDto
-    {
-        return new ListImmeublesOutputDto($immeubles);
-    }
-
     /**
      * @param User $immeuble
      */
@@ -60,7 +50,15 @@ final class ImmeubleOutputFactory
             nbCompteursGaz: $immeuble->nbCompteursGaz,
             nbCompteursTelereveleTotal: $immeuble->nbCompteursTelereveleTotal,
             nbCompteursTelereveleOK: $immeuble->nbCompteursTelereveleOK,
-            hasTransfertFichiers: $immeuble->hasTransfertFichiers    
+            hasTransfertFichiers: $immeuble->hasTransfertFichiers
         );
+    }
+
+    /**
+     * @param User[] $immeubles
+     */
+    public function createListImmeubles(array $immeubles): ListImmeublesOutputDto
+    {
+        return new ListImmeublesOutputDto($immeubles);
     }
 }

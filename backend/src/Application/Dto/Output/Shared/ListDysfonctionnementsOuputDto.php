@@ -6,7 +6,7 @@ namespace App\Application\Dto\Output\Shared;
 
 final class ListDysfonctionnementsOuputDto
 {
-  public function __construct(
-      public readonly array $dysfonctionnements
-  ) {}
+    public function __construct(
+        public readonly array $dysfonctionnements
+    ) {}
 }

@@ -6,5 +6,7 @@ namespace App\Application\Service\DataSource;
 
 interface DocumentDataSourceInterface
 {
-  public function fetchInsertPrintJobs(string $reportType, array $paramsFiltres): object;
+    public function fetchInsertPrintJobs(string $reportType, array $paramsFiltres): object;
+
+    public function getExcel(string $reportType, array $paramsFiltres): object|string;
 }

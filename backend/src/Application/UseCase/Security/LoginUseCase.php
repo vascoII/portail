@@ -10,13 +10,13 @@ use App\Application\Service\DataProvider\SecurityDataProviderInterface;
 
 final class LoginUseCase
 {
-  public function __construct(
-    private readonly SecurityDataProviderInterface $serviceDataProvider
-  ) {}
+    public function __construct(
+        private readonly SecurityDataProviderInterface $serviceDataProvider
+    ) {}
 
-  public function execute(LoginInputDto $inputDto): LoginOutputDto
-  {
-    // Delegate to data provider; let exceptions bubble to be handled centrally
-    return $this->serviceDataProvider->loginService($inputDto);
-  }
+    public function execute(LoginInputDto $inputDto): LoginOutputDto
+    {
+        // Delegate to data provider; let exceptions bubble to be handled centrally
+        return $this->serviceDataProvider->loginService($inputDto);
+    }
 }

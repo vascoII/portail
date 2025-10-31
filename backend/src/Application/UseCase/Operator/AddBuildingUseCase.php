@@ -10,12 +10,12 @@ use App\Application\Service\DataProvider\OperatorDataProviderInterface;
 
 final class AddBuildingUseCase
 {
-  public function __construct(
-    private readonly OperatorDataProviderInterface $serviceDataProvider
-  ) {}
+    public function __construct(
+        private readonly OperatorDataProviderInterface $serviceDataProvider
+    ) {}
 
-  public function execute(AddBuildingInputDto $inputDto): AddBuildingOutputDto
-  {
-    return $this->serviceDataProvider->addBuildingService($inputDto);
-  }
+    public function execute(AddBuildingInputDto $inputDto): AddBuildingOutputDto
+    {
+        return $this->serviceDataProvider->addBuildingService($inputDto);
+    }
 }

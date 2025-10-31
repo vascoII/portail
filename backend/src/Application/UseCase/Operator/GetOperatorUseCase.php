@@ -10,12 +10,12 @@ use App\Application\Service\DataProvider\OperatorDataProviderInterface;
 
 final class GetOperatorUseCase
 {
-  public function __construct(
-    private readonly OperatorDataProviderInterface $serviceDataProvider
-  ) {}
+    public function __construct(
+        private readonly OperatorDataProviderInterface $serviceDataProvider
+    ) {}
 
-  public function execute(GetByIdIntInputDto $inputDto): GetOperatorOutputDto
-  {
-    return $this->serviceDataProvider->getOperatorService($inputDto);
-  }
+    public function execute(GetByIdIntInputDto $inputDto): GetOperatorOutputDto
+    {
+        return $this->serviceDataProvider->getOperatorService($inputDto);
+    }
 }

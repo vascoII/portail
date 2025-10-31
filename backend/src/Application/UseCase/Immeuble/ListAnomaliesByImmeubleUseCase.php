@@ -10,12 +10,12 @@ use App\Application\Service\DataProvider\ImmeubleDataProviderInterface;
 
 final class ListAnomaliesByImmeubleUseCase
 {
-  public function __construct(
-    private readonly ImmeubleDataProviderInterface $serviceDataProvider
-  ) {}
+    public function __construct(
+        private readonly ImmeubleDataProviderInterface $serviceDataProvider
+    ) {}
 
-  public function execute(GetByIdIntInputDto $inputDto): ListAnomaliesOuputDto
-  {
-    return $this->serviceDataProvider->listAnomaliesByImmeubleService($inputDto);
-  }
+    public function execute(GetByIdIntInputDto $inputDto): ListAnomaliesOuputDto
+    {
+        return $this->serviceDataProvider->listAnomaliesByImmeubleService($inputDto);
+    }
 }

@@ -6,5 +6,5 @@ namespace App\Application\UseCase;
 
 interface UseCaseInterface
 {
-  public function execute(object $inputDto): object;
+    public function execute(object $inputDto): object;
 }

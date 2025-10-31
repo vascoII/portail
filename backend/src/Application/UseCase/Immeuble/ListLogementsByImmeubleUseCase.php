@@ -10,12 +10,12 @@ use App\Application\Service\DataProvider\ImmeubleDataProviderInterface;
 
 final class ListLogementsByImmeubleUseCase
 {
-  public function __construct(
-    private readonly ImmeubleDataProviderInterface $serviceDataProvider
-  ) {}
+    public function __construct(
+        private readonly ImmeubleDataProviderInterface $serviceDataProvider
+    ) {}
 
-  public function execute(GetByIdIntInputDto $inputDto): ListLogementsOuputDto
-  {
-    return $this->serviceDataProvider->listLogementsByImmeubleService($inputDto);
-  }
+    public function execute(GetByIdIntInputDto $inputDto): ListLogementsOuputDto
+    {
+        return $this->serviceDataProvider->listLogementsByImmeubleService($inputDto);
+    }
 }

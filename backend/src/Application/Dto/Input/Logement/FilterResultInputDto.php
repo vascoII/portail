@@ -6,5 +6,5 @@ namespace App\Application\Dto\Input\Logement;
 
 final class FilterResultInputDto
 {
-  public function __construct() {}
+    public function __construct() {}
 }

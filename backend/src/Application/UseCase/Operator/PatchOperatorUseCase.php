@@ -10,12 +10,12 @@ use App\Application\Service\DataProvider\OperatorDataProviderInterface;
 
 final class PatchOperatorUseCase
 {
-  public function __construct(
-    private readonly OperatorDataProviderInterface $serviceDataProvider
-  ) {}
+    public function __construct(
+        private readonly OperatorDataProviderInterface $serviceDataProvider
+    ) {}
 
-  public function execute(PatchOperatorInputDto $inputDto): SuccessOutputDto
-  {
-    return $this->serviceDataProvider->patchOperatorService($inputDto);
-  }
+    public function execute(PatchOperatorInputDto $inputDto): SuccessOutputDto
+    {
+        return $this->serviceDataProvider->patchOperatorService($inputDto);
+    }
 }

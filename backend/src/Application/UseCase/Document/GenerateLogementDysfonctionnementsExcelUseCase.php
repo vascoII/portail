@@ -10,12 +10,12 @@ use App\Application\Service\DataProvider\DocumentDataProviderInterface;
 
 final class GenerateLogementDysfonctionnementsExcelUseCase
 {
-  public function __construct(
-    private readonly DocumentDataProviderInterface $serviceDataProvider
-  ) {}
+    public function __construct(
+        private readonly DocumentDataProviderInterface $serviceDataProvider
+    ) {}
 
-  public function execute(GetByIdStringInputDto $inputDto): SuccessOutputDto
-  {
-    return $this->serviceDataProvider->generateLogementDysfonctionnementsExcelService($inputDto);
-  }
+    public function execute(GetByIdStringInputDto $inputDto): SuccessOutputDto
+    {
+        return $this->serviceDataProvider->generateLogementDysfonctionnementsExcelService($inputDto);
+    }
 }

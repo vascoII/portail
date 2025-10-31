@@ -6,8 +6,8 @@ namespace App\Application\Dto\Input\Operator;
 
 final class CreateOperationImmeubleInputDto
 {
-  public function __construct(
-    public readonly int $operatorId,
-    public readonly int $immeubleId
-  ) {}
+    public function __construct(
+        public readonly int $operatorId,
+        public readonly int $immeubleId
+    ) {}
 }

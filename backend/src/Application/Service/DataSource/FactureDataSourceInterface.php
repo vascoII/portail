@@ -6,5 +6,5 @@ namespace App\Application\Service\DataSource;
 
 interface FactureDataSourceInterface
 {
-  public function fetchGetFactures(): object;
+    public function fetchGetFactures(): object;
 }

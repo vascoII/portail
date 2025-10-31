@@ -10,12 +10,12 @@ use App\Application\Service\DataProvider\OccupantDataProviderInterface;
 
 final class GetOccupantInterventionUseCase
 {
-  public function __construct(
-    private readonly OccupantDataProviderInterface $dataProvider
-  ) {}
+    public function __construct(
+        private readonly OccupantDataProviderInterface $dataProvider
+    ) {}
 
-  public function execute(GetByIdIntInputDto $inputDto): SuccessOutputDto
-  {
-    return $this->dataProvider->getOccupantInterventionService($inputDto);
-  }
+    public function execute(GetByIdIntInputDto $inputDto): SuccessOutputDto
+    {
+        return $this->dataProvider->getOccupantInterventionService($inputDto);
+    }
 }

@@ -10,12 +10,12 @@ use App\Application\Service\DataProvider\InterventionDataProviderInterface;
 
 final class GenerateInterventionPdfUseCase
 {
-  public function __construct(
-    private readonly InterventionDataProviderInterface $serviceDataProvider
-  ) {}
+    public function __construct(
+        private readonly InterventionDataProviderInterface $serviceDataProvider
+    ) {}
 
-  public function execute(GetReportInputDto $inputDto): GetReportOutputDto
-  {
-    return $this->serviceDataProvider->generateInterventionPdfService($inputDto);
-  }
+    public function execute(GetReportInputDto $inputDto): GetReportOutputDto
+    {
+        return $this->serviceDataProvider->generateInterventionPdfService($inputDto);
+    }
 }

@@ -6,7 +6,7 @@ namespace App\Application\Dto\Output\Shared;
 
 final class ListAlertesOuputDto
 {
-  public function __construct(
-      public readonly array $alertes
-  ) {}
+    public function __construct(
+        public readonly array $alertes
+    ) {}
 }

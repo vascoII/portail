@@ -6,10 +6,7 @@ namespace App\Application\Dto\Output\External;
 
 final class GetReportByTokenDataSourceOutputDto
 {
-  
-  public function __construct(
-      public readonly ?string $pdfContent
-  ) {
-
-  }
+    public function __construct(
+        public readonly ?string $pdfContent
+    ) {}
 }

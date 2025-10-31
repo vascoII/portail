@@ -10,12 +10,12 @@ use App\Application\Service\DataProvider\SecurityDataProviderInterface;
 
 final class UpdatePasswordUseCase
 {
-  public function __construct(
-    private readonly SecurityDataProviderInterface $serviceDataProvider
-  ) {}
+    public function __construct(
+        private readonly SecurityDataProviderInterface $serviceDataProvider
+    ) {}
 
-  public function execute(UpdatePasswordInputDto $inputDto): UpdatePasswordOutputDto
-  {
-    return $this->serviceDataProvider->updatePasswordService($inputDto);
-  }
+    public function execute(UpdatePasswordInputDto $inputDto): UpdatePasswordOutputDto
+    {
+        return $this->serviceDataProvider->updatePasswordService($inputDto);
+    }
 }

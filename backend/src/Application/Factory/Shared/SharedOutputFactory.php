@@ -4,21 +4,57 @@ declare(strict_types=1);
 
 namespace App\Application\Factory\Shared;
 
-use App\Application\Dto\Output\Shared\UserDto;
-use App\Application\Dto\Output\Shared\ListIndicatorsOuputDto;
+use App\Application\Dto\Output\Shared\ListAlertesOuputDto;
 use App\Application\Dto\Output\Shared\ListAnomaliesOuputDto;
 use App\Application\Dto\Output\Shared\ListDysfonctionnementsOuputDto;
-use App\Application\Dto\Output\Shared\ListAlertesOuputDto;
 use App\Application\Dto\Output\Shared\ListFuitesOutputDto;
+use App\Application\Dto\Output\Shared\ListIndicatorsOuputDto;
 use App\Application\Dto\Output\Shared\ListInterventionsOutputDto;
-
+use App\Application\Dto\Output\Shared\UserDto;
 use App\Domain\Entity\User;
 
 final class SharedOutputFactory
 {
-    /**
-     * @param User $operator
-     */
+    public function createListAlertes(array $entities): ListAlertesOuputDto
+    {
+        return new ListAlertesOuputDto($entities);
+    }
+
+    public function createListAnomalies(array $entities): ListAnomaliesOuputDto
+    {
+        return new ListAnomaliesOuputDto($entities);
+    }
+
+    public function createListDysfonctionnements(array $entities): ListDysfonctionnementsOuputDto
+    {
+        return new ListDysfonctionnementsOuputDto($entities);
+    }
+
+    public function createListFuites(array $entities): ListFuitesOutputDto
+    {
+        return new ListFuitesOutputDto($entities);
+    }
+
+    public function createListImmeublesIndicators(array $listIndicators): ListIndicatorsOuputDto
+    {
+        return new ListIndicatorsOuputDto($listIndicators);
+    }
+
+    public function createListIndicators(array $listIndicators): ListIndicatorsOuputDto
+    {
+        return new ListIndicatorsOuputDto($listIndicators);
+    }
+
+    public function createListInterventions(array $entities): ListInterventionsOutputDto
+    {
+        return new ListInterventionsOutputDto($entities);
+    }
+
+    public function createListLogementsIndicators(array $listIndicators): ListIndicatorsOuputDto
+    {
+        return new ListIndicatorsOuputDto($listIndicators);
+    }
+
     public function createUser(User $operator): UserDto
     {
         return new UserDto(
@@ -51,45 +87,5 @@ final class SharedOutputFactory
             showChgtOccupant: $operator->showChgtOccupant,
             showChantiers: $operator->showChantiers
         );
-    }
-
-    public function createListImmeublesIndicators(array $listIndicators): ListIndicatorsOuputDto
-    {
-        return new ListIndicatorsOuputDto($listIndicators);
-    }
-
-    public function createListLogementsIndicators(array $listIndicators): ListIndicatorsOuputDto
-    {
-        return new ListIndicatorsOuputDto($listIndicators);
-    }
-
-    public function createListAnomalies(array $entities): ListAnomaliesOuputDto
-    {
-        return new ListAnomaliesOuputDto($entities);
-    }
-
-    public function createListFuites(array $entities): ListFuitesOutputDto
-    {
-        return new ListFuitesOutputDto($entities);
-    }
-
-    public function createListAlertes(array $entities): ListAlertesOuputDto
-    {
-        return new ListAlertesOuputDto($entities);
-    }
-
-    public function createListDysfonctionnements(array $entities): ListDysfonctionnementsOuputDto
-    {
-        return new ListDysfonctionnementsOuputDto($entities);
-    }
-
-    public function createListInterventions(array $entities): ListInterventionsOutputDto
-    {
-        return new ListInterventionsOutputDto($entities);
-    }
-
-    public function createListIndicators(array $listIndicators): ListIndicatorsOuputDto
-    {
-        return new ListIndicatorsOuputDto($listIndicators);
     }
 }

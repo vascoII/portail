@@ -6,9 +6,8 @@ namespace App\Application\Dto\Input\Intervention;
 
 final class GetCasesByEmailInpuDto
 {
-  public function __construct(
-    public readonly string $id,
-    public readonly string $email,
-  ) {}
+    public function __construct(
+        public readonly string $id,
+        public readonly string $email,
+    ) {}
 }
-

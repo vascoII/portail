@@ -10,12 +10,12 @@ use App\Application\Service\DataProvider\OccupantDataProviderInterface;
 
 final class GetOccupantReleveNoteUseCase
 {
-  public function __construct(
-    private readonly OccupantDataProviderInterface $dataProvider
-  ) {}
+    public function __construct(
+        private readonly OccupantDataProviderInterface $dataProvider
+    ) {}
 
-  public function execute(GetByEnergyStringInputDto $inputDto): SuccessOutputDto
-  {
-    return $this->dataProvider->getOccupantReleveNoteService($inputDto);
-  }
+    public function execute(GetByEnergyStringInputDto $inputDto): SuccessOutputDto
+    {
+        return $this->dataProvider->getOccupantReleveNoteService($inputDto);
+    }
 }

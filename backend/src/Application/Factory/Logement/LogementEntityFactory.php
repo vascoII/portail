@@ -7,9 +7,8 @@ namespace App\Application\Factory\Logement;
 use App\Domain\Entity\Immeuble;
 use App\Domain\Entity\Logement;
 use App\Domain\Entity\Occupant;
-use DateTimeImmutable;
 
-final class LogementEntityFactory 
+final class LogementEntityFactory
 {
     public function createLogementFromRaw(object $raw): array
     {
@@ -27,8 +26,8 @@ final class LogementEntityFactory
                 hasTelereleve: $raw->Immeuble->HasTelereleve,
                 fkClientTop: $raw->Immeuble->FkClientTop,
                 actif: $raw->Immeuble->Actif,
-                dateActivationClient: new DateTimeImmutable($raw->Immeuble->DateActivationClient),
-                dateActivationOccupant: new DateTimeImmutable($raw->Immeuble->DateActivationOccupant),
+                dateActivationClient: new \DateTimeImmutable($raw->Immeuble->DateActivationClient),
+                dateActivationOccupant: new \DateTimeImmutable($raw->Immeuble->DateActivationOccupant),
                 hasNoteOccupant: $raw->Immeuble->HasNoteOccupant,
                 hasDecompteOccupant: $raw->Immeuble->HasDecompteOccupant,
                 hasFactures: $raw->Immeuble->HasFactures,
@@ -85,11 +84,13 @@ final class LogementEntityFactory
             'nbAnomalies' => $raw->NbAnomalies ?? null,
             'nbTicketsInter' => $raw->NbTicketsInter,
             'ticketsInterEnabled' => $raw->TicketsInterEnabled,
-            'listeAppareils' => $raw->ListeAppareils ?? null
+            'listeAppareils' => $raw->ListeAppareils ?? null,
         ];
     }
+
     /**
      * @param object[] $rawList
+     *
      * @return Logement[]
      */
     public function createManyLogementsFromRawList(array $rawList): array

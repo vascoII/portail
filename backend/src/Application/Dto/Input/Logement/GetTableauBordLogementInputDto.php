@@ -6,8 +6,8 @@ namespace App\Application\Dto\Input\Logement;
 
 final class GetTableauBordLogementInputDto
 {
-  public function __construct(
-    public readonly int $pkLogement,
-    public readonly int $pkOccupant
-  ) {}
+    public function __construct(
+        public readonly int $pkLogement,
+        public readonly int $pkOccupant
+    ) {}
 }

@@ -6,7 +6,7 @@ namespace App\Application\Dto\Output\Shared;
 
 final class GetReportByTokenOutputDto
 {
-  public function __construct(
-    public readonly string $reportContent
-  ) {}
+    public function __construct(
+        public readonly string $reportContent
+    ) {}
 }

@@ -6,7 +6,7 @@ namespace App\Application\Dto\Input\Security;
 
 final class PatchEmailInputDto
 {
-  public function __construct(
-    public readonly string $email
-  ) {}
+    public function __construct(
+        public readonly string $email
+    ) {}
 }

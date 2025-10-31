@@ -8,7 +8,7 @@ use App\Domain\Entity\Occupant;
 
 final class GetOccupantAccountOutputDto
 {
-  public function __construct(
-    public readonly Occupant $occupantAccount
-  ) {}
+    public function __construct(
+        public readonly Occupant $occupantAccount
+    ) {}
 }

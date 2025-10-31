@@ -10,12 +10,12 @@ use App\Application\Service\DataProvider\SecurityDataProviderInterface;
 
 final class LoginFromParamUseCase
 {
-  public function __construct(
-    private readonly SecurityDataProviderInterface $serviceDataProvider
-  ) {}
+    public function __construct(
+        private readonly SecurityDataProviderInterface $serviceDataProvider
+    ) {}
 
-  public function execute(LoginFromParamInputDto $inputDto): LoginOutputDto
-  {
-    return $this->serviceDataProvider->loginFromParamService($inputDto);
-  }
+    public function execute(LoginFromParamInputDto $inputDto): LoginOutputDto
+    {
+        return $this->serviceDataProvider->loginFromParamService($inputDto);
+    }
 }

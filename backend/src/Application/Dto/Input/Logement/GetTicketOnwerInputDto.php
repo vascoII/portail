@@ -6,7 +6,7 @@ namespace App\Application\Dto\Input\Logement;
 
 final class GetTicketOnwerInputDto
 {
-  public function __construct(
-    public readonly string $pkImmeuble
-  ) {}
+    public function __construct(
+        public readonly string $pkImmeuble
+    ) {}
 }

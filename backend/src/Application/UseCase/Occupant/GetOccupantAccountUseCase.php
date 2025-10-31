@@ -9,12 +9,12 @@ use App\Application\Service\DataProvider\OccupantDataProviderInterface;
 
 final class GetOccupantAccountUseCase
 {
-  public function __construct(
-    private readonly OccupantDataProviderInterface $serviceDataProvider
-  ) {}
+    public function __construct(
+        private readonly OccupantDataProviderInterface $serviceDataProvider
+    ) {}
 
-  public function execute(): GetOccupantAccountOutputDto
-  {
-    return $this->serviceDataProvider->getOccupantAccountService();
-  }
+    public function execute(): GetOccupantAccountOutputDto
+    {
+        return $this->serviceDataProvider->getOccupantAccountService();
+    }
 }

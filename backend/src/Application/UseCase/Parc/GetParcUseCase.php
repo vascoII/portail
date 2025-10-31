@@ -9,12 +9,12 @@ use App\Application\Service\DataProvider\ParcDataProviderInterface;
 
 final class GetParcUseCase
 {
-  public function __construct(
-    private readonly ParcDataProviderInterface $serviceDataProvider
-  ) {}
+    public function __construct(
+        private readonly ParcDataProviderInterface $serviceDataProvider
+    ) {}
 
-  public function execute(): GetParcOutputDto
-  {
-    return $this->serviceDataProvider->getParcService();
-  }
+    public function execute(): GetParcOutputDto
+    {
+        return $this->serviceDataProvider->getParcService();
+    }
 }

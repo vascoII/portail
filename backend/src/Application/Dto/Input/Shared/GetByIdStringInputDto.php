@@ -6,7 +6,7 @@ namespace App\Application\Dto\Input\Shared;
 
 final class GetByIdStringInputDto
 {
-  public function __construct(
-      public readonly string $id
-  ) {}
+    public function __construct(
+        public readonly string $id
+    ) {}
 }

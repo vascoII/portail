@@ -6,5 +6,5 @@ namespace App\Application\Dto\Input\Search;
 
 final class IndexInputDto
 {
-  public function __construct() {}
+    public function __construct() {}
 }

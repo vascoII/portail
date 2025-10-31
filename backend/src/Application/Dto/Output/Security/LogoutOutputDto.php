@@ -8,8 +8,8 @@ use App\Application\Dto\Output\Shared\SuccessOutputDto;
 
 final class LogoutOutputDto extends SuccessOutputDto
 {
-  public function __construct(bool $success)
-  {
-    parent::__construct($success);
-  }
+    public function __construct(bool $success)
+    {
+        parent::__construct($success);
+    }
 }

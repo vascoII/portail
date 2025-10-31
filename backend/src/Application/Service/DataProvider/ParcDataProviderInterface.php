@@ -8,5 +8,5 @@ use App\Application\Dto\Output\Parc\GetParcOutputDto;
 
 interface ParcDataProviderInterface
 {
-  public function getParcService(): GetParcOutputDto;
+    public function getParcService(): GetParcOutputDto;
 }

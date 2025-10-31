@@ -8,9 +8,8 @@ use App\Application\Dto\Output\External\GetReportByTokenDataSourceOutputDto;
 
 interface ExternalTransformerInterface
 {
-  /**
-   * Transform raw response to GetReportByTokenDataSourceOutputDto
-   */
-  public function transformGetReportByToken(string $dataSourceResult): GetReportByTokenDataSourceOutputDto;
-  
+    /**
+     * Transform raw response to GetReportByTokenDataSourceOutputDto.
+     */
+    public function transformGetReportByToken(string $dataSourceResult): GetReportByTokenDataSourceOutputDto;
 }

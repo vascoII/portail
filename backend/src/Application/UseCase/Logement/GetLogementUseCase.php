@@ -10,12 +10,12 @@ use App\Application\Service\DataProvider\LogementDataProviderInterface;
 
 final class GetLogementUseCase
 {
-  public function __construct(
-    private readonly LogementDataProviderInterface $serviceDataProvider
-  ) {}
+    public function __construct(
+        private readonly LogementDataProviderInterface $serviceDataProvider
+    ) {}
 
-  public function execute(GetByIdIntInputDto $inputDto): LogementOutputDto
-  {
-    return $this->serviceDataProvider->getLogementService($inputDto);
-  }
+    public function execute(GetByIdIntInputDto $inputDto): LogementOutputDto
+    {
+        return $this->serviceDataProvider->getLogementService($inputDto);
+    }
 }

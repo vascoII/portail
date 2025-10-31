@@ -6,8 +6,8 @@ namespace App\Application\Dto\Input\Logement;
 
 final class GetImmeubleIdAndLogementIdInputDto
 {
-  public function __construct(
-    public readonly int $pkImmeuble,
-    public readonly int $pkLogement
-  ) {}
+    public function __construct(
+        public readonly int $pkImmeuble,
+        public readonly int $pkLogement
+    ) {}
 }

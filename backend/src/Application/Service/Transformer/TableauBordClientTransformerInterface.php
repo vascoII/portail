@@ -8,9 +8,8 @@ use App\Application\Dto\Output\TableauBordClient\GetTableauBordClientOutputDto;
 
 interface TableauBordClientTransformerInterface
 {
-   /**
-    * Transform raw response to GetTableauBordClientOutputDto
-    */
-   public function transformGetTableauBordClient(object $dataSourceResult): GetTableauBordClientOutputDto;
-   
+    /**
+     * Transform raw response to GetTableauBordClientOutputDto.
+     */
+    public function transformGetTableauBordClient(object $dataSourceResult): GetTableauBordClientOutputDto;
 }

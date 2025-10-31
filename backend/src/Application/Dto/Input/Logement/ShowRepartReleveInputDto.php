@@ -6,8 +6,8 @@ namespace App\Application\Dto\Input\Logement;
 
 final class ShowRepartReleveInputDto
 {
-  public function __construct(
-    public readonly string $pkImmeuble,
-    public readonly string $pkLogement
-  ) {}
+    public function __construct(
+        public readonly string $pkImmeuble,
+        public readonly string $pkLogement
+    ) {}
 }

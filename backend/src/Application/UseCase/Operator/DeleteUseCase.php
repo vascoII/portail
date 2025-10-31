@@ -10,12 +10,12 @@ use App\Application\Service\DataProvider\OperatorDataProviderInterface;
 
 final class DeleteUseCase
 {
-  public function __construct(
-    private readonly OperatorDataProviderInterface $serviceDataProvider
-  ) {}
+    public function __construct(
+        private readonly OperatorDataProviderInterface $serviceDataProvider
+    ) {}
 
-  public function execute(GetByIdIntInputDto $inputDto): SuccessOutputDto
-  {
-    return $this->serviceDataProvider->deleteOperatorService($inputDto);
-  }
+    public function execute(GetByIdIntInputDto $inputDto): SuccessOutputDto
+    {
+        return $this->serviceDataProvider->deleteOperatorService($inputDto);
+    }
 }

@@ -6,12 +6,10 @@ namespace App\Application\Factory\Immeuble;
 
 use App\Domain\Entity\Immeuble;
 
-
-
 final class ImmeubleEntityFactory
 {
     public function createImmeubleFromRaw(object $raw): Immeuble
-    { 
+    {
         return new Immeuble(
             pkImmeuble: $raw->Immeuble->PkImmeuble,
             nom: $raw->Immeuble->Nom,
@@ -51,12 +49,12 @@ final class ImmeubleEntityFactory
             nbFuites: $raw->NbFuites ?? null,
             nbAnomalies: $raw->NbAnomalies ?? null,
             nbChantiers: $raw->NbChantiers ?? null
-
         );
     }
 
     /**
      * @param object[] $rawList
+     *
      * @return Immeuble[]
      */
     public function createManyImmeublesFromRawList(array $rawList): array

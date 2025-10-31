@@ -10,12 +10,12 @@ use App\Application\Service\DataProvider\SecurityDataProviderInterface;
 
 final class ResetOrCreateUseCase
 {
-  public function __construct(
-    private readonly SecurityDataProviderInterface $serviceDataProvider
-  ) {}
+    public function __construct(
+        private readonly SecurityDataProviderInterface $serviceDataProvider
+    ) {}
 
-  public function execute(ResetOrCreateInputDto $inputDto): ResetOrCreateOutputDto
-  {
-    return $this->serviceDataProvider->resetOrCreateService($inputDto);
-  }
+    public function execute(ResetOrCreateInputDto $inputDto): ResetOrCreateOutputDto
+    {
+        return $this->serviceDataProvider->resetOrCreateService($inputDto);
+    }
 }

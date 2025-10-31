@@ -6,8 +6,7 @@ namespace App\Application\Dto\Input\Immeuble;
 
 final class LeaksInputDto
 {
-  public function __construct(
-    public readonly string $pkImmeuble
-  ) {}
+    public function __construct(
+        public readonly string $pkImmeuble
+    ) {}
 }
-

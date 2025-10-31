@@ -6,9 +6,11 @@ namespace App\Application\Dto\Input\Document;
 
 final class GenerateInterventionsDocumentInputDto
 {
-  public function __construct(
-    public readonly string $pkImmeuble,
-    public readonly ?string $pkLogement = null,
-    public readonly ?string $pkOccupant = null
-  ) {}
+    public function __construct(
+        public readonly string $pkImmeuble,
+        public readonly ?string $pkLogement = null,
+        public readonly ?string $pkOccupant = null,
+        public readonly ?string $date1 = null,
+        public readonly ?string $date2 = null,
+    ) {}
 }

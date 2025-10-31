@@ -6,7 +6,7 @@ namespace App\Application\Dto\Output\Operator;
 
 final class CreateGestionnaireOutputDto
 {
-  public function __construct(
-    public readonly bool $success
-  ) {}
+    public function __construct(
+        public readonly bool $success
+    ) {}
 }

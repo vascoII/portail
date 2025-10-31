@@ -10,12 +10,12 @@ use App\Application\Service\DataProvider\OccupantDataProviderInterface;
 
 final class PatchOccupantUseCase
 {
-  public function __construct(
-    private readonly OccupantDataProviderInterface $serviceDataProvider
-  ) {}
+    public function __construct(
+        private readonly OccupantDataProviderInterface $serviceDataProvider
+    ) {}
 
-  public function execute(PatchOccupantInputDto $inputDto): SuccessOutputDto
-  {
-    return $this->serviceDataProvider->patchOccupantService($inputDto);
-  }
+    public function execute(PatchOccupantInputDto $inputDto): SuccessOutputDto
+    {
+        return $this->serviceDataProvider->patchOccupantService($inputDto);
+    }
 }

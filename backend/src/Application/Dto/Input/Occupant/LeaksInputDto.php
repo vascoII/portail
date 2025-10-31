@@ -6,5 +6,5 @@ namespace App\Application\Dto\Input\Occupant;
 
 final class LeaksInputDto
 {
-  public function __construct() {}
+    public function __construct() {}
 }

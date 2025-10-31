@@ -6,7 +6,7 @@ namespace App\Application\Dto\Output\Shared;
 
 final class GetExcelOutputDto
 {
-  public function __construct(
-    public readonly string $excelContent
-  ) {}
+    public function __construct(
+        public readonly string $excelContent
+    ) {}
 }

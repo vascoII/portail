@@ -8,9 +8,8 @@ use App\Application\Dto\Output\Intervention\ListCasesOutputDto;
 
 interface InterventionTransformerInterface
 {
-   /**
-    * Transform raw response to ListCasesOutputDto
-    */
-   public function transformGetCases(object $dataSourceResult): ListCasesOutputDto;
-  
+    /**
+     * Transform raw response to ListCasesOutputDto.
+     */
+    public function transformGetCases(object $dataSourceResult): ListCasesOutputDto;
 }

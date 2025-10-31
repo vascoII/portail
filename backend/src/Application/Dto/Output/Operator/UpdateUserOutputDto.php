@@ -8,7 +8,7 @@ use App\Domain\Entity\Retour;
 
 final class UpdateUserOutputDto
 {
-  public function __construct(
-    public readonly Retour $retour
-  ) {}
+    public function __construct(
+        public readonly Retour $retour
+    ) {}
 }

@@ -10,12 +10,12 @@ use App\Application\Service\DataProvider\ImmeubleDataProviderInterface;
 
 final class GetImmeubleCETUseCase
 {
-  public function __construct(
-    private readonly ImmeubleDataProviderInterface $serviceDataProvider
-  ) {}
+    public function __construct(
+        private readonly ImmeubleDataProviderInterface $serviceDataProvider
+    ) {}
 
-  public function execute(GetByIdIntInputDto $inputDto): ListIndicatorsOuputDto
-  {
-    return $this->serviceDataProvider->getImmeubleCETService($inputDto);
-  }
+    public function execute(GetByIdIntInputDto $inputDto): ListIndicatorsOuputDto
+    {
+        return $this->serviceDataProvider->getImmeubleCETService($inputDto);
+    }
 }

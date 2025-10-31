@@ -9,12 +9,12 @@ use App\Application\Service\DataProvider\ReleveDataProviderInterface;
 
 final class PostReleveUseCase
 {
-  public function __construct(
-    private readonly ReleveDataProviderInterface $serviceDataProvider
-  ) {}
+    public function __construct(
+        private readonly ReleveDataProviderInterface $serviceDataProvider
+    ) {}
 
-  public function execute(): SuccessOutputDto
-  {
-    return $this->serviceDataProvider->listCasesService();
-  }
+    public function execute(): SuccessOutputDto
+    {
+        return $this->serviceDataProvider->listCasesService();
+    }
 }

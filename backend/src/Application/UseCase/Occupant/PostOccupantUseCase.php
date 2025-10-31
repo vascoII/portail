@@ -10,12 +10,12 @@ use App\Application\Service\DataProvider\OccupantDataProviderInterface;
 
 final class PostOccupantUseCase
 {
-  public function __construct(
-    private readonly OccupantDataProviderInterface $serviceDataProvider
-  ) {}
+    public function __construct(
+        private readonly OccupantDataProviderInterface $serviceDataProvider
+    ) {}
 
-  public function execute(PostOccupantInputDto $inputDto): SuccessOutputDto
-  {
-    return $this->serviceDataProvider->postOccupantService($inputDto);
-  }
+    public function execute(PostOccupantInputDto $inputDto): SuccessOutputDto
+    {
+        return $this->serviceDataProvider->postOccupantService($inputDto);
+    }
 }

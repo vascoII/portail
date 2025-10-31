@@ -5,21 +5,21 @@ declare(strict_types=1);
 namespace App\Application\Validator\Input\Operator;
 
 use App\Application\Validator\Input\InputValidatorInterface;
+use App\Domain\Exception\DomainExceptionFactory;
 use App\Http\Action\Operator\CreateOperatorAction;
 use App\Http\Action\Operator\PatchOperatorAction;
-use App\Domain\Exception\DomainExceptionFactory;
 
 final class CreateOperatorInputValidator implements InputValidatorInterface
-{            
+{
     public function validate(array $data): void
     {
         $errors = [];
 
-        if (!filter_var($data['email'] ?? '', FILTER_VALIDATE_EMAIL)) {
+        if (! filter_var($data['email'] ?? '', FILTER_VALIDATE_EMAIL)) {
             $errors[] = DomainExceptionFactory::invalidFormat('email', 'email', CreateOperatorAction::class);
         }
 
-        if (!preg_match('/^\+?[0-9]{7,15}$/', $data['phone'] ?? '')) {
+        if (! preg_match('/^\+?[0-9]{7,15}$/', $data['phone'] ?? '')) {
             $errors[] = DomainExceptionFactory::invalidFormat('phone', 'international phone number', CreateOperatorAction::class);
         }
 
@@ -35,12 +35,11 @@ final class CreateOperatorInputValidator implements InputValidatorInterface
             $errors[] = DomainExceptionFactory::requiredField('job', CreateOperatorAction::class);
         }
 
-        
         if ($errors) {
             throw DomainExceptionFactory::dtoValidation(CreateOperatorAction::class, $errors);
         }
-    }  
-    
+    }
+
     public function validatePassword(array $data): void
     {
         $errors = [];
@@ -48,9 +47,9 @@ final class CreateOperatorInputValidator implements InputValidatorInterface
         if (empty($data['password'])) {
             $errors[] = DomainExceptionFactory::requiredField('password', PatchOperatorAction::class);
         }
-        
+
         if ($errors) {
             throw DomainExceptionFactory::dtoValidation(CreateOperatorAction::class, $errors);
         }
-    }  
+    }
 }

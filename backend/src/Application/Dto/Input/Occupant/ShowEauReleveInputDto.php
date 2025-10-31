@@ -6,7 +6,7 @@ namespace App\Application\Dto\Input\Occupant;
 
 final class ShowEauReleveInputDto
 {
-  public function __construct(
-    public readonly string $pkOccupant
-  ) {}
+    public function __construct(
+        public readonly string $pkOccupant
+    ) {}
 }

@@ -6,5 +6,5 @@ namespace App\Application\Dto\Input\Logement;
 
 final class GetInfosAppareilsByLogementInpuDto
 {
-  public function __construct(public readonly int $pkLogement) {}
+    public function __construct(public readonly int $pkLogement) {}
 }

@@ -10,12 +10,12 @@ use App\Application\Service\DataProvider\OperatorDataProviderInterface;
 
 final class CreateOperationImmeubleUseCase
 {
-  public function __construct(
-    private readonly OperatorDataProviderInterface $serviceDataProvider
-  ) {}
+    public function __construct(
+        private readonly OperatorDataProviderInterface $serviceDataProvider
+    ) {}
 
-  public function execute(CreateOperationImmeubleInputDto $inputDto): SuccessOutputDto
-  {
-    return $this->serviceDataProvider->createOperationImmeubleService($inputDto);
-  }
+    public function execute(CreateOperationImmeubleInputDto $inputDto): SuccessOutputDto
+    {
+        return $this->serviceDataProvider->createOperationImmeubleService($inputDto);
+    }
 }

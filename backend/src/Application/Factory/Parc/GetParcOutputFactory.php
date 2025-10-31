@@ -7,12 +7,8 @@ namespace App\Application\Factory\Parc;
 use App\Application\Dto\Output\Parc\GetParcOutputDto;
 use App\Domain\Entity\TableauDeBordClient;
 
-
-final class GetParcOutputFactory 
+final class GetParcOutputFactory
 {
-    /**
-     * @param TableauDeBordClient $tableauDeBordClient
-     */
     public function createGetOperator(TableauDeBordClient $tableauDeBordClient): GetParcOutputDto
     {
         return new GetParcOutputDto(
@@ -45,6 +41,4 @@ final class GetParcOutputFactory
             pcImmeublesTransfertFichiers: (int) ($tableauDeBordClient->nbImmeubles > 0 ? round((100 * $tableauDeBordClient->nbImmeublesTransfertFichiers) / $tableauDeBordClient->nbImmeubles) : 100)
         );
     }
-
-    
 }

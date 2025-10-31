@@ -8,5 +8,5 @@ use App\Application\Dto\Input\Intervention\GetCasesByEmailInpuDto;
 
 interface InterventionDataSourceInterface
 {
-  public function fetchGetCases(GetCasesByEmailInpuDto $input): object;
+    public function fetchGetCases(GetCasesByEmailInpuDto $input): object;
 }

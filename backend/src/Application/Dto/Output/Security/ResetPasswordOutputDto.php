@@ -8,8 +8,8 @@ use App\Application\Dto\Output\Shared\SuccessOutputDto;
 
 final class ResetPasswordOutputDto extends SuccessOutputDto
 {
-  public function __construct(bool $success)
-  {
-    parent::__construct($success);
-  }
+    public function __construct(bool $success)
+    {
+        parent::__construct($success);
+    }
 }

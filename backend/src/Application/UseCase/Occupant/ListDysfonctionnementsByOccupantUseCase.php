@@ -9,12 +9,12 @@ use App\Application\Service\DataProvider\OccupantDataProviderInterface;
 
 final class ListDysfonctionnementsByOccupantUseCase
 {
-  public function __construct(
-    private readonly OccupantDataProviderInterface $serviceDataProvider
-  ) {}
+    public function __construct(
+        private readonly OccupantDataProviderInterface $serviceDataProvider
+    ) {}
 
-  public function execute(): ListDysfonctionnementsOuputDto
-  {
-    return $this->serviceDataProvider->listDysfonctionnementsByOccupantService();
-  }
+    public function execute(): ListDysfonctionnementsOuputDto
+    {
+        return $this->serviceDataProvider->listDysfonctionnementsByOccupantService();
+    }
 }

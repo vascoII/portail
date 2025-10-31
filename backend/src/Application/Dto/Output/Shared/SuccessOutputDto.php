@@ -6,7 +6,7 @@ namespace App\Application\Dto\Output\Shared;
 
 class SuccessOutputDto
 {
-  public function __construct(
-    public readonly bool $bool
-  ) {}
+    public function __construct(
+        public readonly bool $bool
+    ) {}
 }
