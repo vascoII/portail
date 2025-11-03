@@ -202,7 +202,7 @@ services:
   App\Http\Action\External\Document\ReceiveGeneratedDocumentAction:
     arguments:
       $responder: '@App\Http\Responder\JsonResponder'    
-  App\Http\Action\External\Releve\CreateReleveAction:
+  App\Http\Action\External\Releve\GenerateReleveAction:
     arguments:
       $responder: '@App\Http\Responder\JsonResponder'
   App\Http\Action\External\Suivi\ListWorkOrdersAction:
@@ -254,12 +254,6 @@ services:
   #Parc
   App\Http\Action\Parc\:
     resource: "../src/Http/Action/Parc/*"
-    arguments:
-      $responder: '@App\Http\Responder\JsonResponder'
-
-  #Releve
-  App\Http\Action\Releve\:
-    resource: "../src/Http/Action/Releve/*"
     arguments:
       $responder: '@App\Http\Responder\JsonResponder'
 

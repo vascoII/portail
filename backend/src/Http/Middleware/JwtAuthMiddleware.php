@@ -45,6 +45,8 @@ final class JwtAuthMiddleware
             '#^/suivi/workorder/\d+/pdf$#',
             '#^/api/reporttoken/[^/]+$#',
             '#^/reporttoken/[^/]+$#',
+            '#^/api/releve/generate$#',
+            '#^/releve/generate$#',
         ];
 
         foreach ($regexToBypass as $pattern) {

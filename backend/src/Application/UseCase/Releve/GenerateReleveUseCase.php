@@ -7,7 +7,7 @@ namespace App\Application\UseCase\Releve;
 use App\Application\Dto\Output\Shared\SuccessOutputDto;
 use App\Application\Service\DataProvider\ReleveDataProviderInterface;
 
-final class PostReleveUseCase
+final class GenerateReleveUseCase
 {
     public function __construct(
         private readonly ReleveDataProviderInterface $serviceDataProvider
