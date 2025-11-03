@@ -1,0 +1,5 @@
+prometheus_metrics:
+    namespace: 'symfony'
+    enable_console_commands: true
+    collectors:
+        - default

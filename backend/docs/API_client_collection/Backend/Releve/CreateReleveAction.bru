@@ -5,9 +5,38 @@ meta {
 }
 
 post {
-  url: 
-  body: none
-  auth: inherit
+  url: {{localhost_backend}}/api/releve/generate
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bearToken}}
+}
+
+body:json {
+  {
+    "numeroImmeuble": "123", 
+    "batiment": "234",
+    "escalier": "345",
+    "etage": "456",
+    "datePassage": "01/01/2025",
+    "prenom": "prenom",
+    "nom": "nom",
+    "adresse": "adresse",
+    "codePostal": "codePostal",
+    "ville": "ville",
+    "telephone": "0102030405",
+    "email": "email@email.fr",
+    "cuisine_ef": 1,
+    "salleDeBains_ef": 2,
+    "wc_ef": 3,
+    "autreEmplacement_ef": null,
+    "cuisine_ec": 4,
+    "salleDeBains_ec": 5,
+    "wc_ec": 6,
+    "autreEmplacement_ec": null 
+  }
 }
 
 settings {

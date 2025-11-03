@@ -1,4 +1,17 @@
 {
+    "artprima/prometheus-metrics-bundle": {
+        "version": "1.20",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "1.14",
+            "ref": "9522bce04594caddf6c61ec78c88fea5f5ffa121"
+        },
+        "files": [
+            "./config/packages/prometheus_metrics.yaml",
+            "./config/routes/metrics.yaml"
+        ]
+    },
     "doctrine/deprecations": {
         "version": "1.1",
         "recipe": {
@@ -125,6 +138,18 @@
             "public/index.php",
             "src/Controller/.gitignore",
             "src/Kernel.php"
+        ]
+    },
+    "symfony/mercure-bundle": {
+        "version": "0.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "0.3",
+            "ref": "528285147494380298f8f991ee8c47abebaf79db"
+        },
+        "files": [
+            "./config/packages/mercure.yaml"
         ]
     },
     "symfony/monolog-bundle": {
