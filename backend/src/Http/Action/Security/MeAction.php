@@ -7,6 +7,7 @@ namespace App\Http\Action\Security;
 use App\Application\Service\Auth\AuthServiceInterface;
 use App\Http\Action\AbstractAction;
 use App\Http\Action\ActionInterface;
+use App\Http\Attribute\RequireUserType;
 use App\Http\Responder\ResponderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,6 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 #[AsController]
 #[Route(path: '/security/me', name: 'security_me', methods: ['GET'])]
+#[RequireUserType(['C', 'G', 'O'])]
 final class MeAction extends AbstractAction implements ActionInterface
 {
     public function __construct(
