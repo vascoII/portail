@@ -1,0 +1,872 @@
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Dto\Output\Logement\LogementOutputDto.php
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------
+  9      Method App\Application\Dto\Output\Logement\LogementOutputDto::__construct() has parameter $logementDto with no value type specified in iterable
+         type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Dto\Output\Shared\ListAlertesOuputDto.php
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------
+  9      Method App\Application\Dto\Output\Shared\ListAlertesOuputDto::__construct() has parameter $alertes with no value type specified in iterable type
+         array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Dto\Output\Shared\ListAnomaliesOuputDto.php
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------
+  9      Method App\Application\Dto\Output\Shared\ListAnomaliesOuputDto::__construct() has parameter $anomalies with no value type specified in iterable
+         type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Dto\Output\Shared\ListDysfonctionnementsOuputDto.php
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------
+  9      Method App\Application\Dto\Output\Shared\ListDysfonctionnementsOuputDto::__construct() has parameter $dysfonctionnements with no value type
+         specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Dto\Output\Shared\ListFuitesOutputDto.php
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------
+  9      Method App\Application\Dto\Output\Shared\ListFuitesOutputDto::__construct() has parameter $fuites with no value type specified in iterable type
+         array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Dto\Output\Shared\ListIndicatorsOuputDto.php
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------
+  9      PHPDoc tag @param has invalid value ([] $indicators): Unexpected token "[", expected type at offset 11 on line 1
+         🪪  phpDoc.parseError
+  10     Method App\Application\Dto\Output\Shared\ListIndicatorsOuputDto::__construct() has parameter $indicators with no value type specified in iterable
+         type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Dto\Output\Shared\ListInterventionsOutputDto.php
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------
+  9      Method App\Application\Dto\Output\Shared\ListInterventionsOutputDto::__construct() has parameter $interventions with no value type specified in
+         iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Exception\ApplicationException.php
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  26     Property App\Application\Exception\ApplicationException::$inputData type has no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  36     Property App\Application\Exception\ApplicationException::$outputData type has no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  38     Method App\Application\Exception\ApplicationException::__construct() has parameter $context with no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  38     Method App\Application\Exception\ApplicationException::__construct() has parameter $inputData with no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  38     Method App\Application\Exception\ApplicationException::__construct() has parameter $outputData with no value type specified in iterable type
+         array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  83     Method App\Application\Exception\ApplicationException::getInputData() return type has no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  107    Method App\Application\Exception\ApplicationException::getOutputData() return type has no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  123    Method App\Application\Exception\ApplicationException::recursiveSanitize() has parameter $data with no value type specified in iterable type
+         array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  123    Method App\Application\Exception\ApplicationException::recursiveSanitize() has parameter $sensitiveKeys with no value type specified in iterable
+         type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  123    Method App\Application\Exception\ApplicationException::recursiveSanitize() return type has no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  139    Method App\Application\Exception\ApplicationException::sanitizeData() has parameter $data with no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  139    Method App\Application\Exception\ApplicationException::sanitizeData() return type has no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Exception\ApplicationExceptionFactory.php
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  15     Method App\Application\Exception\ApplicationExceptionFactory::authServiceFailed() has parameter $inputData with no value type specified in
+         iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  29     Method App\Application\Exception\ApplicationExceptionFactory::factureUseCaseFailed() has parameter $inputData with no value type specified in
+         iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  46     Method App\Application\Exception\ApplicationExceptionFactory::immeubleUseCaseFailed() has parameter $inputData with no value type specified in
+         iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  63     Method App\Application\Exception\ApplicationExceptionFactory::jwtServiceFailed() has parameter $inputData with no value type specified in iterable
+         type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  80     Method App\Application\Exception\ApplicationExceptionFactory::loginUseCaseFailed() has parameter $inputData with no value type specified in
+         iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  96     Method App\Application\Exception\ApplicationExceptionFactory::redisServiceFailed() has parameter $inputData with no value type specified in
+         iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  110    Method App\Application\Exception\ApplicationExceptionFactory::serviceBusinessLogicViolation() has parameter $context with no value type specified
+         in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  110    Method App\Application\Exception\ApplicationExceptionFactory::serviceBusinessLogicViolation() has parameter $inputData with no value type
+         specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  128    Method App\Application\Exception\ApplicationExceptionFactory::serviceConfigurationError() has parameter $serviceConfig with no value type
+         specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  144    Method App\Application\Exception\ApplicationExceptionFactory::serviceDependencyFailed() has parameter $inputData with no value type specified in
+         iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  163    Method App\Application\Exception\ApplicationExceptionFactory::serviceInitializationFailed() has parameter $serviceConfig with no value type
+         specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  177    Method App\Application\Exception\ApplicationExceptionFactory::serviceMethodFailed() has parameter $inputData with no value type specified in
+         iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  196    Method App\Application\Exception\ApplicationExceptionFactory::soapServiceFailed() has parameter $inputData with no value type specified in
+         iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  212    Method App\Application\Exception\ApplicationExceptionFactory::useCaseBusinessLogicViolation() has parameter $context with no value type specified
+         in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  212    Method App\Application\Exception\ApplicationExceptionFactory::useCaseBusinessLogicViolation() has parameter $inputData with no value type
+         specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  235    Method App\Application\Exception\ApplicationExceptionFactory::useCaseExecutionFailed() has parameter $inputData with no value type specified in
+         iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  255    Method App\Application\Exception\ApplicationExceptionFactory::useCaseServiceOrchestrationFailed() has parameter $inputData with no value type
+         specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  277    Method App\Application\Exception\ApplicationExceptionFactory::useCaseTransformationFailed() has parameter $inputData with no value type specified
+         in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  302    Method App\Application\Exception\ApplicationExceptionFactory::wrapDomainException() has parameter $inputData with no value type specified in
+         iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  318    Method App\Application\Exception\ApplicationExceptionFactory::wrapInfrastructureException() has parameter $inputData with no value type specified
+         in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  334    Method App\Application\Exception\ApplicationExceptionFactory::wrapInfrastructureExceptionAsService() has parameter $inputData with no value type
+         specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Exception\ServiceException.php
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  26     Property App\Application\Exception\ServiceException::$serviceConfig type has no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  33     Method App\Application\Exception\ServiceException::__construct() has parameter $context with no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  33     Method App\Application\Exception\ServiceException::__construct() has parameter $inputData with no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  33     Method App\Application\Exception\ServiceException::__construct() has parameter $outputData with no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  33     Method App\Application\Exception\ServiceException::__construct() has parameter $serviceConfig with no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  72     Method App\Application\Exception\ServiceException::businessLogicViolation() has parameter $context with no value type specified in iterable type
+         array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  72     Method App\Application\Exception\ServiceException::businessLogicViolation() has parameter $inputData with no value type specified in iterable type
+         array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  94     Method App\Application\Exception\ServiceException::configurationError() has parameter $serviceConfig with no value type specified in iterable type
+         array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  120    Method App\Application\Exception\ServiceException::dependencyFailed() has parameter $inputData with no value type specified in iterable type
+         array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  146    Method App\Application\Exception\ServiceException::fromInfrastructureException() has parameter $inputData with no value type specified in iterable
+         type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  184    Method App\Application\Exception\ServiceException::getServiceConfig() return type has no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  200    Method App\Application\Exception\ServiceException::initializationFailed() has parameter $serviceConfig with no value type specified in iterable
+         type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  222    Method App\Application\Exception\ServiceException::methodFailed() has parameter $inputData with no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  253    Method App\Application\Exception\ServiceException::recursiveSanitize() has parameter $data with no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  253    Method App\Application\Exception\ServiceException::recursiveSanitize() has parameter $sensitiveKeys with no value type specified in iterable type
+         array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  253    Method App\Application\Exception\ServiceException::recursiveSanitize() return type has no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  269    Method App\Application\Exception\ServiceException::sanitizeConfig() has parameter $config with no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  269    Method App\Application\Exception\ServiceException::sanitizeConfig() return type has no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Exception\UseCaseException.php
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  34     Method App\Application\Exception\UseCaseException::__construct() has parameter $context with no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  34     Method App\Application\Exception\UseCaseException::__construct() has parameter $inputData with no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  34     Method App\Application\Exception\UseCaseException::__construct() has parameter $outputData with no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  75     Method App\Application\Exception\UseCaseException::businessLogicViolation() has parameter $context with no value type specified in iterable type
+         array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  75     Method App\Application\Exception\UseCaseException::businessLogicViolation() has parameter $inputData with no value type specified in iterable type
+         array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  99     Method App\Application\Exception\UseCaseException::executionFailed() has parameter $inputData with no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  124    Method App\Application\Exception\UseCaseException::fromDomainException() has parameter $inputData with no value type specified in iterable type
+         array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  147    Method App\Application\Exception\UseCaseException::fromInfrastructureException() has parameter $inputData with no value type specified in iterable
+         type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  202    Method App\Application\Exception\UseCaseException::serviceOrchestrationFailed() has parameter $inputData with no value type specified in iterable
+         type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  241    Method App\Application\Exception\UseCaseException::transformationFailed() has parameter $inputData with no value type specified in iterable type
+         array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Factory\Document\DocumentInputFactory.php
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------
+  27     Property App\Application\Factory\Document\DocumentInputFactory::$data type has no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  34     Method App\Application\Factory\Document\DocumentInputFactory::getInt() invoked with 2 parameters, 1 required.
+         🪪  arguments.count
+  35     Method App\Application\Factory\Document\DocumentInputFactory::getInt() invoked with 2 parameters, 1 required.
+         🪪  arguments.count
+  36     Method App\Application\Factory\Document\DocumentInputFactory::getInt() invoked with 2 parameters, 1 required.
+         🪪  arguments.count
+  51     Method App\Application\Factory\Document\DocumentInputFactory::getInt() invoked with 2 parameters, 1 required.
+         🪪  arguments.count
+  52     Method App\Application\Factory\Document\DocumentInputFactory::getInt() invoked with 2 parameters, 1 required.
+         🪪  arguments.count
+  77     Method App\Application\Factory\Document\DocumentInputFactory::getInt() invoked with 2 parameters, 1 required.
+         🪪  arguments.count
+  78     Method App\Application\Factory\Document\DocumentInputFactory::getInt() invoked with 2 parameters, 1 required.
+         🪪  arguments.count
+  79     Method App\Application\Factory\Document\DocumentInputFactory::getInt() invoked with 2 parameters, 1 required.
+         🪪  arguments.count
+  107    Method App\Application\Factory\Document\DocumentInputFactory::getInt() invoked with 2 parameters, 1 required.
+         🪪  arguments.count
+  108    Method App\Application\Factory\Document\DocumentInputFactory::getInt() invoked with 2 parameters, 1 required.
+         🪪  arguments.count
+  159    Method App\Application\Factory\Document\DocumentInputFactory::getString() invoked with 2 parameters, 1 required.
+         🪪  arguments.count
+  160    Method App\Application\Factory\Document\DocumentInputFactory::getString() invoked with 2 parameters, 1 required.
+         🪪  arguments.count
+  223    Negated boolean expression is always false.
+         🪪  booleanNot.alwaysFalse
+         💡  Because the type is coming from a PHPDoc, you can turn off this check by setting treatPhpDocTypesAsCertain: false in your phpstan.neon.
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Factory\Immeuble\ImmeubleOutputFactory.php
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  16     PHPDoc tag @param for parameter $immeuble with type App\Application\Factory\Immeuble\User is not subtype of native type
+         App\Domain\Entity\Immeuble.
+         🪪  parameter.phpDocType
+  16     Parameter $immeuble of method App\Application\Factory\Immeuble\ImmeubleOutputFactory::createGetImmeuble() has invalid type
+         App\Application\Factory\Immeuble\User.
+         🪪  class.notFound
+  60     Parameter $immeubles of method App\Application\Factory\Immeuble\ImmeubleOutputFactory::createListImmeubles() has invalid type
+         App\Application\Factory\Immeuble\User.
+         🪪  class.notFound
+  62     Parameter #1 $listImmeubleDto of class App\Application\Dto\Output\Immeuble\ListImmeublesOutputDto constructor expects array<App\Domain\Entity\Imme
+         uble>, array<App\Application\Factory\Immeuble\User> given.
+         🪪  argument.type
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ --------------------------------------------------------------------------------------------------------------------------------
+  Line   Factory\Intervention\InterventionInputFactory.php
+ ------ --------------------------------------------------------------------------------------------------------------------------------
+  26     Parameter #1 $id of class App\Application\Dto\Input\Intervention\GetCasesByEmailInpuDto constructor expects string, int given.
+         🪪  argument.type
+ ------ --------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Factory\Logement\LogementEntityFactory.php
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  13     Method App\Application\Factory\Logement\LogementEntityFactory::createLogementFromRaw() return type has no value type specified in iterable type
+         array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  98     Method App\Application\Factory\Logement\LogementEntityFactory::createManyLogementsFromRawList() should return array<App\Domain\Entity\Logement> bu
+         t returns array<array>.
+         🪪  return.type
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ---------------------------------------------------------------------------------------------------------------------
+  Line   Factory\Logement\LogementInputFactory.php
+ ------ ---------------------------------------------------------------------------------------------------------------------
+  125    Class App\Application\Dto\Input\Logement\GetInfosAppareilInputDto constructor invoked with 1 parameter, 0 required.
+         🪪  arguments.count
+ ------ ---------------------------------------------------------------------------------------------------------------------
+
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Factory\Logement\LogementOutputFactory.php
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------
+  13     Method App\Application\Factory\Logement\LogementOutputFactory::createGetLogement() has parameter $logement with no value type specified in
+         iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Factory\Occupant\OccupantInputFactory.php
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  15     Method App\Application\Factory\Occupant\OccupantInputFactory::createGetByEnergyFromRequest() has parameter $args with no value type specified in
+         iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  22     Method App\Application\Factory\Occupant\OccupantInputFactory::createGetByIdFromRequest() has parameter $args with no value type specified in
+         iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  29     Method App\Application\Factory\Occupant\OccupantInputFactory::createPatchOccupantFromRequest() has parameter $args with no value type specified in
+         iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  62     Method App\Application\Factory\Occupant\OccupantInputFactory::createPostOccupantFromRequest() has parameter $args with no value type specified in
+         iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Factory\Operator\OperatorOutputFactory.php
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  51     Parameter #1 $userDto of class App\Application\Dto\Output\Operator\ListOperatorsOutputDto constructor expects array<App\Application\Dto\Output\Sha
+         red\UserDto>, array<App\Domain\Entity\User> given.
+         🪪  argument.type
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Factory\Releve\ReleveInputFactory.php
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------
+  14     Property App\Application\Factory\Releve\ReleveInputFactory::$data type has no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  17     Property App\Application\Factory\Releve\ReleveInputFactory::$validator is never read, only written.
+         🪪  property.onlyWritten
+         💡  See: https://phpstan.org/developing-extensions/always-read-written-properties
+  25     Method App\Application\Factory\Releve\ReleveInputFactory::getString() invoked with 2 parameters, 1 required.
+         🪪  arguments.count
+  26     Method App\Application\Factory\Releve\ReleveInputFactory::getString() invoked with 2 parameters, 1 required.
+         🪪  arguments.count
+  27     Method App\Application\Factory\Releve\ReleveInputFactory::getString() invoked with 2 parameters, 1 required.
+         🪪  arguments.count
+  38     Method App\Application\Factory\Releve\ReleveInputFactory::getInt() invoked with 2 parameters, 1 required.
+         🪪  arguments.count
+  39     Method App\Application\Factory\Releve\ReleveInputFactory::getInt() invoked with 2 parameters, 1 required.
+         🪪  arguments.count
+  40     Method App\Application\Factory\Releve\ReleveInputFactory::getInt() invoked with 2 parameters, 1 required.
+         🪪  arguments.count
+  41     Method App\Application\Factory\Releve\ReleveInputFactory::getString() invoked with 2 parameters, 1 required.
+         🪪  arguments.count
+  43     Method App\Application\Factory\Releve\ReleveInputFactory::getString() invoked with 2 parameters, 1 required.
+         🪪  arguments.count
+  44     Method App\Application\Factory\Releve\ReleveInputFactory::getInt() invoked with 2 parameters, 1 required.
+         🪪  arguments.count
+  45     Method App\Application\Factory\Releve\ReleveInputFactory::getInt() invoked with 2 parameters, 1 required.
+         🪪  arguments.count
+  46     Method App\Application\Factory\Releve\ReleveInputFactory::getInt() invoked with 2 parameters, 1 required.
+         🪪  arguments.count
+  49     Class App\Application\Dto\Input\Releve\ReleveCompteursDto does not have a constructor and must be instantiated without any parameters.
+         🪪  new.noConstructor
+  56     Class App\Application\Dto\Input\Releve\ReleveCompteursDto does not have a constructor and must be instantiated without any parameters.
+         🪪  new.noConstructor
+  63     Class App\Application\Dto\Input\Releve\GenerateReleveInputDto does not have a constructor and must be instantiated without any parameters.
+         🪪  new.noConstructor
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ------------------------------------------------
+  Line   Factory\Security\SecurityInputFactory.php
+ ------ ------------------------------------------------
+  30     Expression on left side of ?? is not nullable.
+         🪪  nullCoalesce.expr
+  31     Expression on left side of ?? is not nullable.
+         🪪  nullCoalesce.expr
+ ------ ------------------------------------------------
+
+ ------ -----------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Factory\Security\SecurityOutputFactory.php
+ ------ -----------------------------------------------------------------------------------------------------------------------------------------------
+  15     Method App\Application\Factory\Security\SecurityOutputFactory::arrayToSessionDto() has parameter $sessionData with no value type specified in
+         iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ -----------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Factory\Shared\SharedEntityFactory.php
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  22     Method App\Application\Factory\Shared\SharedEntityFactory::createAnomalieFromRaw() return type has no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  58     Method App\Application\Factory\Shared\SharedEntityFactory::createDysfonctionnementFromRaw() return type has no value type specified in iterable
+         type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  96     Method App\Application\Factory\Shared\SharedEntityFactory::createFuiteFromRaw() return type has no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  133    Method App\Application\Factory\Shared\SharedEntityFactory::createInterventionFromRaw() return type has no value type specified in iterable type
+         array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  171    Method App\Application\Factory\Shared\SharedEntityFactory::createManyAlertesFromRawList() has invalid return type
+         App\Application\Factory\Shared\Alertes.
+         🪪  class.notFound
+  173    Parameter #1 $callback of function array_map expects (callable(object): mixed)|null,
+         array{$this(App\Application\Factory\Shared\SharedEntityFactory), 'createAlerteFromRaw'} given.
+         🪪  argument.type
+  183    Method App\Application\Factory\Shared\SharedEntityFactory::createManyAnomaliesFromRawList() should return array<App\Domain\Entity\Anomalie> but re
+         turns array<array>.
+         🪪  return.type
+  193    Method App\Application\Factory\Shared\SharedEntityFactory::createManyDysfonctionnementsFromRawList() should return array<App\Domain\Entity\Dysfonc
+         tionnement> but returns array<array>.
+         🪪  return.type
+  203    Method App\Application\Factory\Shared\SharedEntityFactory::createManyFuitesFromRawList() should return array<App\Domain\Entity\Fuite> but returns
+         array<array>.
+         🪪  return.type
+  211    Method App\Application\Factory\Shared\SharedEntityFactory::createManyInterventionsFromRawList() has invalid return type
+         App\Application\Factory\Shared\Intervention.
+         🪪  class.notFound
+  213    Method App\Application\Factory\Shared\SharedEntityFactory::createManyInterventionsFromRawList() should return array<App\Application\Factory\Shared
+         \Intervention> but returns array<array>.
+         🪪  return.type
+  226    Method App\Application\Factory\Shared\SharedEntityFactory::createSessionFromRaw() has no return type specified.
+         🪪  missingType.return
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Factory\Shared\SharedOutputFactory.php
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------
+  18     Method App\Application\Factory\Shared\SharedOutputFactory::createListAlertes() has parameter $entities with no value type specified in iterable
+         type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  23     Method App\Application\Factory\Shared\SharedOutputFactory::createListAnomalies() has parameter $entities with no value type specified in iterable
+         type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  28     Method App\Application\Factory\Shared\SharedOutputFactory::createListDysfonctionnements() has parameter $entities with no value type specified in
+         iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  33     Method App\Application\Factory\Shared\SharedOutputFactory::createListFuites() has parameter $entities with no value type specified in iterable
+         type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  38     Method App\Application\Factory\Shared\SharedOutputFactory::createListImmeublesIndicators() has parameter $listIndicators with no value type
+         specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  43     Method App\Application\Factory\Shared\SharedOutputFactory::createListIndicators() has parameter $listIndicators with no value type specified in
+         iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  48     Method App\Application\Factory\Shared\SharedOutputFactory::createListInterventions() has parameter $entities with no value type specified in
+         iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  53     Method App\Application\Factory\Shared\SharedOutputFactory::createListLogementsIndicators() has parameter $listIndicators with no value type
+         specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Factory\Ticket\TicketInputFactory.php
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------
+  12     Method App\Application\Factory\Ticket\TicketInputFactory::createGetByIdFromRequest() has parameter $args with no value type specified in iterable
+         type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Service\AuthorizationService.php
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  34     Method App\Application\Service\AuthorizationService::isUserTypeAllowed() has parameter $allowedTypes with no value type specified in iterable type
+         array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Service\DataProvider\DocumentDataProviderInterface.php
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  12     Method App\Application\Service\DataProvider\DocumentDataProviderInterface::generateExcelDataDocumentService() has parameter $paramsFiltres with no
+         value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  14     Method App\Application\Service\DataProvider\DocumentDataProviderInterface::generatePdfDocumentService() has parameter $paramsFiltres with no value
+         type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Service\DataSource\AdminDataSourceInterface.php
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------
+  16     Parameter $inputDto of method App\Application\Service\DataSource\AdminDataSourceInterface::fetchLoginFromParam() has invalid type
+         App\Application\Dto\Input\Admin\LoginFromParamInputDto.
+         🪪  class.notFound
+  18     Parameter $inputDto of method App\Application\Service\DataSource\AdminDataSourceInterface::fetchResetPasswordFromEmail() has invalid type
+         App\Application\Dto\Input\Admin\ResetPasswordFromEmailInputDto.
+         🪪  class.notFound
+  20     Parameter $inputDto of method App\Application\Service\DataSource\AdminDataSourceInterface::fetchUpdateCGUFromPKUser() has invalid type
+         App\Application\Dto\Input\Admin\UpdateCGUFromPKUserInputDto.
+         🪪  class.notFound
+  22     Parameter $inputDto of method App\Application\Service\DataSource\AdminDataSourceInterface::fetchUpdateEmailFromPKUser() has invalid type
+         App\Application\Dto\Input\Admin\UpdateEmailFromPKUserInputDto.
+         🪪  class.notFound
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Service\DataSource\DocumentDataSourceInterface.php
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------
+  9      Method App\Application\Service\DataSource\DocumentDataSourceInterface::fetchInsertPrintJobs() has parameter $paramsFiltres with no value type
+         specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  11     Method App\Application\Service\DataSource\DocumentDataSourceInterface::getExcel() has parameter $paramsFiltres with no value type specified in
+         iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Service\Jwt\JwtServiceInterface.php
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------
+  13     Method App\Application\Service\Jwt\JwtServiceInterface::getTokenPayload() return type has no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  15     Method App\Application\Service\Jwt\JwtServiceInterface::validateToken() return type has no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ -----------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Service\Redis\RedisServiceInterface.php
+ ------ -----------------------------------------------------------------------------------------------------------------------------------------------
+  15     Method App\Application\Service\Redis\RedisServiceInterface::getUserData() return type has no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  19     Method App\Application\Service\Redis\RedisServiceInterface::storeUserData() has parameter $data with no value type specified in iterable type
+         array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ -----------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------
+  Line   Service\Transformer\AdminTransformerInterface.php
+ ------ ---------------------------------------------------------------------------------------------------------------------------------
+  18     Method App\Application\Service\Transformer\AdminTransformerInterface::transformGetSousTraitants() has invalid return type
+         App\Application\Dto\Output\Admin\GetSousTraitantsOutputDto.
+         🪪  class.notFound
+  23     Method App\Application\Service\Transformer\AdminTransformerInterface::transformLoginFromParam() has invalid return type
+         App\Application\Dto\Output\Admin\LoginFromParamOutputDto.
+         🪪  class.notFound
+  28     Method App\Application\Service\Transformer\AdminTransformerInterface::transformResetPasswordFromEmail() has invalid return type
+         App\Application\Dto\Output\Admin\ResetPasswordFromEmailOutputDto.
+         🪪  class.notFound
+  33     Method App\Application\Service\Transformer\AdminTransformerInterface::transformUpdateCGUFromPKUser() has invalid return type
+         App\Application\Dto\Output\Admin\UpdateCGUFromPKUserOutputDto.
+         🪪  class.notFound
+  38     Method App\Application\Service\Transformer\AdminTransformerInterface::transformUpdateEmailFromPKUser() has invalid return type
+         App\Application\Dto\Output\Admin\UpdateEmailFromPKUserOutputDto.
+         🪪  class.notFound
+ ------ ---------------------------------------------------------------------------------------------------------------------------------
+
+ ------ -----------------------------------------------------------------------------------------------------------------------
+  Line   Service\Transformer\FrontTransformerInterface.php
+ ------ -----------------------------------------------------------------------------------------------------------------------
+  14     Method App\Application\Service\Transformer\FrontTransformerInterface::transformPersonalData() has invalid return type
+         App\Application\Dto\Output\Admin\GetSousTraitantsOutputDto.
+         🪪  class.notFound
+ ------ -----------------------------------------------------------------------------------------------------------------------
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------------
+  Line   Service\Transformer\GestionParcTransformerInterface.php
+ ------ ----------------------------------------------------------------------------------------------------------------------------------
+  21     Method App\Application\Service\Transformer\GestionParcTransformerInterface::transformFilterResult() has invalid return type
+         App\Application\Dto\Output\Immeuble\GetInfosImmeublesOutputDto.
+         🪪  class.notFound
+  26     Method App\Application\Service\Transformer\GestionParcTransformerInterface::transformIndex() has invalid return type
+         App\Application\Dto\Output\TableauBordClient\GetTableauBordClientOutputDto.
+         🪪  class.notFound
+  36     Method App\Application\Service\Transformer\GestionParcTransformerInterface::transformListAnomalies() has invalid return type
+         App\Application\Dto\Output\Immeuble\GetInfosAnomaliesByImmeubleOutputDto.
+         🪪  class.notFound
+  41     Method App\Application\Service\Transformer\GestionParcTransformerInterface::transformListDysfunctions() has invalid return type
+         App\Application\Dto\Output\Immeuble\GetInfosDysfonctionnementsByImmeubleOutputDto.
+         🪪  class.notFound
+  46     Method App\Application\Service\Transformer\GestionParcTransformerInterface::transformListInterventions() has invalid return type
+         App\Application\Dto\Output\Immeuble\GetInfosDepannagesByImmeubleOutputDto.
+         🪪  class.notFound
+  51     Method App\Application\Service\Transformer\GestionParcTransformerInterface::transformListLeaks() has invalid return type
+         App\Application\Dto\Output\Immeuble\GetInfosFuitesByImmeubleOutputDto.
+         🪪  class.notFound
+  61     Method App\Application\Service\Transformer\GestionParcTransformerInterface::transformShow() has invalid return type
+         App\Application\Dto\Output\Immeuble\GetTableauBordImmeubleOutputDto.
+         🪪  class.notFound
+  66     Method App\Application\Service\Transformer\GestionParcTransformerInterface::transformShowIntervention() has invalid return type
+         App\Application\Dto\Output\Immeuble\GetInfosDepannagesByImmeubleOutputDto.
+         🪪  class.notFound
+ ------ ----------------------------------------------------------------------------------------------------------------------------------
+
+ ------ -----------------------------------------------------------------------------------------------------------------
+  Line   Service\Transformer\SearchTransformerInterface.php
+ ------ -----------------------------------------------------------------------------------------------------------------
+  14     Method App\Application\Service\Transformer\SearchTransformerInterface::transformIndex() has invalid return type
+         App\Application\Dto\Output\Search\IndexOutputDto.
+         🪪  class.notFound
+ ------ -----------------------------------------------------------------------------------------------------------------
+
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Service\Transformer\TableauBordClientTransformerInterface.php
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------
+  14     Method App\Application\Service\Transformer\TableauBordClientTransformerInterface::transformGetTableauBordClient() has invalid return type
+         App\Application\Dto\Output\TableauBordClient\GetTableauBordClientOutputDto.
+         🪪  class.notFound
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------
+  Line   Service\Transformer\TicketingTransformerInterface.php
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------
+  17     Method App\Application\Service\Transformer\TicketingTransformerInterface::transformCheckTicketsInterEnabled() has invalid return type
+         App\Application\Dto\Output\Ticketing\CheckTicketsInterEnabledOutputDto.
+         🪪  class.notFound
+  19     Method App\Application\Service\Transformer\TicketingTransformerInterface::transformCreateTicketInter() has invalid return type
+         App\Application\Dto\Output\Ticketing\CreateTicketInterOutputDto.
+         🪪  class.notFound
+  21     Method App\Application\Service\Transformer\TicketingTransformerInterface::transformGetAttachment() has invalid return type
+         App\Application\Dto\Output\Ticketing\GetAttachmentOutputDto.
+         🪪  class.notFound
+  23     Method App\Application\Service\Transformer\TicketingTransformerInterface::transformGetNbTicketsIntersUser() has invalid return type
+         App\Application\Dto\Output\Ticketing\GetNbTicketsIntersUserOutputDto.
+         🪪  class.notFound
+  25     Method App\Application\Service\Transformer\TicketingTransformerInterface::transformGetTicketInterInit() has invalid return type
+         App\Application\Dto\Output\Ticketing\GetTicketInterInitOutputDto.
+         🪪  class.notFound
+  27     Method App\Application\Service\Transformer\TicketingTransformerInterface::transformGetTicketsIntersUser() has invalid return type
+         App\Application\Dto\Output\Ticketing\GetTicketsIntersUserOutputDto.
+         🪪  class.notFound
+  29     Method App\Application\Service\Transformer\TicketingTransformerInterface::transformSetTicketStatus() has invalid return type
+         App\Application\Dto\Output\Ticketing\SetTicketStatusOutputDto.
+         🪪  class.notFound
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   UseCase\Document\GenerateDocumentExcelUseCase.php
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  17     Property App\Application\UseCase\Document\GenerateDocumentExcelUseCase::$authService is never read, only written.
+         🪪  property.onlyWritten
+         💡  See: https://phpstan.org/developing-extensions/always-read-written-properties
+  33     Unreachable statement - code above always terminates.
+         🪪  deadCode.unreachable
+  36     Method App\Application\UseCase\Document\GenerateDocumentExcelUseCase::extractParamsFromInput() return type has no value type specified in iterable
+         type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   UseCase\Document\GenerateDocumentPdfUseCase.php
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------
+  15     Property App\Application\UseCase\Document\GenerateDocumentPdfUseCase::$authService is never read, only written.
+         🪪  property.onlyWritten
+         💡  See: https://phpstan.org/developing-extensions/always-read-written-properties
+  30     Method App\Application\UseCase\Document\GenerateDocumentPdfUseCase::extractParamsFromInput() return type has no value type specified in iterable
+         type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------
+  Line   UseCase\Document\GenerateInterventionPdfUseCase.php
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------
+  14     Parameter $serviceDataProvider of method App\Application\UseCase\Document\GenerateInterventionPdfUseCase::__construct() has invalid type
+         App\Application\Service\DataProvider\InterventionDataProviderInterface.
+         🪪  class.notFound
+  14     Property App\Application\UseCase\Document\GenerateInterventionPdfUseCase::$serviceDataProvider has unknown class
+         App\Application\Service\DataProvider\InterventionDataProviderInterface as its type.
+         🪪  class.notFound
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols
+  19     Call to method generateInterventionPdfService() on an unknown class App\Application\Service\DataProvider\InterventionDataProviderInterface.
+         🪪  class.notFound
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   UseCase\Occupant\ListFuitesByOccupantUseCase.php
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  18     Method App\Application\UseCase\Occupant\ListFuitesByOccupantUseCase::execute() should return App\Application\Dto\Output\Shared\ListFuitesOutputDto
+         but returns App\Application\Dto\Output\Shared\SuccessOutputDto.
+         🪪  return.type
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ---------------------------------------------------------------------------------------------------------------
+  Line   UseCase\Operator\AddBuildingUseCase.php
+ ------ ---------------------------------------------------------------------------------------------------------------
+  17     Method App\Application\UseCase\Operator\AddBuildingUseCase::execute() has invalid return type
+         App\Application\Dto\Output\Operator\AddBuildingOutputDto.
+         🪪  class.notFound
+  17     Parameter $inputDto of method App\Application\UseCase\Operator\AddBuildingUseCase::execute() has invalid type
+         App\Application\Dto\Input\Operator\AddBuildingInputDto.
+         🪪  class.notFound
+ ------ ---------------------------------------------------------------------------------------------------------------
+
+ ------ ------------------------------------------------------------------------------------------------------------------
+  Line   UseCase\Operator\RemoveBuildingUseCase.php
+ ------ ------------------------------------------------------------------------------------------------------------------
+  17     Method App\Application\UseCase\Operator\RemoveBuildingUseCase::execute() has invalid return type
+         App\Application\Dto\Output\Operator\RemoveBuildingOutputDto.
+         🪪  class.notFound
+  17     Parameter $inputDto of method App\Application\UseCase\Operator\RemoveBuildingUseCase::execute() has invalid type
+         App\Application\Dto\Input\Operator\RemoveBuildingInputDto.
+         🪪  class.notFound
+ ------ ------------------------------------------------------------------------------------------------------------------
+
+ ------ -----------------------------------------------------------------------------------------------------------------------------------------
+  Line   UseCase\Search\IndexUseCase.php
+ ------ -----------------------------------------------------------------------------------------------------------------------------------------
+  17     Method App\Application\UseCase\Search\IndexUseCase::execute() has invalid return type App\Application\Dto\Output\Search\IndexOutputDto.
+         🪪  class.notFound
+ ------ -----------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ------------------------------------------------------------------------------------------------------
+  Line   UseCase\Security\PatchCguUseCase.php
+ ------ ------------------------------------------------------------------------------------------------------
+  15     Property App\Application\UseCase\Security\PatchCguUseCase::$authService is never read, only written.
+         🪪  property.onlyWritten
+         💡  See: https://phpstan.org/developing-extensions/always-read-written-properties
+ ------ ------------------------------------------------------------------------------------------------------
+
+ ------ --------------------------------------------------------------------------------------------------------
+  Line   UseCase\Security\PatchEmailUseCase.php
+ ------ --------------------------------------------------------------------------------------------------------
+  16     Property App\Application\UseCase\Security\PatchEmailUseCase::$authService is never read, only written.
+         🪪  property.onlyWritten
+         💡  See: https://phpstan.org/developing-extensions/always-read-written-properties
+ ------ --------------------------------------------------------------------------------------------------------
+
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   UseCase\Security\ResetOrCreateUseCase.php
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------
+  19     Method App\Application\UseCase\Security\ResetOrCreateUseCase::execute() should return App\Application\Dto\Output\Security\ResetOrCreateOutputDto
+         but returns App\Application\Dto\Output\Security\ResetPasswordFromPKUserOutputDto.
+         🪪  return.type
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Validator\Input\InputValidatorInterface.php
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------
+  9      Method App\Application\Validator\Input\InputValidatorInterface::validate() has parameter $data with no value type specified in iterable type
+         array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Validator\Input\Operator\CreateOperatorInputValidator.php
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------
+  14     Method App\Application\Validator\Input\Operator\CreateOperatorInputValidator::validate() has parameter $data with no value type specified in
+         iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  43     Method App\Application\Validator\Input\Operator\CreateOperatorInputValidator::validatePassword() has parameter $data with no value type specified
+         in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Validator\Input\Releve\GenerateReleveInputValidator.php
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------
+  13     Method App\Application\Validator\Input\Releve\GenerateReleveInputValidator::validate() has parameter $data with no value type specified in
+         iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------

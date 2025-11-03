@@ -1,0 +1,89 @@
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Exception\BusinessRuleException.php
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  32     Method App\Domain\Exception\BusinessRuleException::__construct() has parameter $context with no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  61     Method App\Domain\Exception\BusinessRuleException::authenticationRuleViolation() has parameter $context with no value type specified in iterable
+         type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  96     Method App\Domain\Exception\BusinessRuleException::sessionRuleViolation() has parameter $context with no value type specified in iterable type
+         array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  107    Method App\Domain\Exception\BusinessRuleException::userRuleViolation() has parameter $context with no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------
+  Line   Exception\DomainException.php
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------
+  20     Property App\Domain\Exception\DomainException::$context type has no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  32     Method App\Domain\Exception\DomainException::__construct() has parameter $context with no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  58     Method App\Domain\Exception\DomainException::getContext() return type has no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  100    Method App\Domain\Exception\DomainException::toArray() return type has no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Exception\DomainExceptionFactory.php
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  20     Method App\Domain\Exception\DomainExceptionFactory::authenticationBusinessRule() has parameter $context with no value type specified in iterable
+         type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  31     Method App\Domain\Exception\DomainExceptionFactory::dtoValidation() has parameter $errors with no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  93     Method App\Domain\Exception\DomainExceptionFactory::sessionBusinessRule() has parameter $context with no value type specified in iterable type
+         array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  119    Method App\Domain\Exception\DomainExceptionFactory::soapCallFailed() has parameter $context with no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  136    Method App\Domain\Exception\DomainExceptionFactory::userBusinessRule() has parameter $context with no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Exception\Soap\SoapCallFailedException.php
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------
+  11     Method App\Domain\Exception\Soap\SoapCallFailedException::fromOperation() has parameter $context with no value type specified in iterable type
+         array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Exception\ValidationException.php
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------
+  20     Property App\Domain\Exception\ValidationException::$errors type has no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  27     Method App\Domain\Exception\ValidationException::__construct() has parameter $context with no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  27     Method App\Domain\Exception\ValidationException::__construct() has parameter $errors with no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  94     Method App\Domain\Exception\ValidationException::getErrors() return type has no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  102    Method App\Domain\Exception\ValidationException::getFieldErrors() return type has no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  150    Method App\Domain\Exception\ValidationException::multipleFields() has parameter $errors with no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------

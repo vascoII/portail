@@ -47,8 +47,8 @@ final class JwtAuthMiddleware
             '#^/document/reporttoken/[^/]+$#',
             '#^/api/releve/generate$#',
             '#^/releve/generate$#',
-            '/api/admin/mercure_metrics#',
-            '/admin/mercure_metrics#',
+            '#^/api/admin/mercure_metrics#',
+            '#^/admin/mercure_metrics#',
         ];
 
         foreach ($regexToBypass as $pattern) {

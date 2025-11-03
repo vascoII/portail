@@ -1,0 +1,661 @@
+------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Exception\InfrastructureException.php
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  30     Property App\Infrastructure\Exception\InfrastructureException::$technicalDetails type has no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  32     Method App\Infrastructure\Exception\InfrastructureException::__construct() has parameter $context with no value type specified in iterable type
+         array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  32     Method App\Infrastructure\Exception\InfrastructureException::__construct() has parameter $technicalDetails with no value type specified in
+         iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  109    Method App\Infrastructure\Exception\InfrastructureException::getTechnicalDetails() return type has no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ --------------------------------------------------------------------------------------
+  Line   Exception\InfrastructureExceptionFactory.php
+ ------ --------------------------------------------------------------------------------------
+  17     Instantiated class App\Infrastructure\Exception\InfrastructureException is abstract.
+         🪪  new.abstract
+  32     Instantiated class App\Infrastructure\Exception\InfrastructureException is abstract.
+         🪪  new.abstract
+  136    Instantiated class App\Infrastructure\Exception\InfrastructureException is abstract.
+         🪪  new.abstract
+ ------ --------------------------------------------------------------------------------------
+
+ ------ -----------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Exception\JwtException.php
+ ------ -----------------------------------------------------------------------------------------------------------------------------------------------
+  30     Method App\Infrastructure\Exception\JwtException::__construct() has parameter $context with no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  30     Method App\Infrastructure\Exception\JwtException::__construct() has parameter $technicalDetails with no value type specified in iterable type
+         array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ -----------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Exception\RedisException.php
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------
+  30     Method App\Infrastructure\Exception\RedisException::__construct() has parameter $context with no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  30     Method App\Infrastructure\Exception\RedisException::__construct() has parameter $technicalDetails with no value type specified in iterable type
+         array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Exception\SoapBusinessException.php
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  37     Method App\Infrastructure\Exception\SoapBusinessException::__construct() has parameter $context with no value type specified in iterable type
+         array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  37     Method App\Infrastructure\Exception\SoapBusinessException::__construct() has parameter $requestData with no value type specified in iterable type
+         array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  37     Method App\Infrastructure\Exception\SoapBusinessException::__construct() has parameter $responseData with no value type specified in iterable type
+         array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  80     Method App\Infrastructure\Exception\SoapBusinessException::fromSoapFault() has parameter $requestData with no value type specified in iterable
+         type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  106    Method App\Infrastructure\Exception\SoapBusinessException::fromSoapResponse() has parameter $requestData with no value type specified in iterable
+         type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  106    Method App\Infrastructure\Exception\SoapBusinessException::fromSoapResponse() has parameter $soapResponse with no value type specified in iterable
+         type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Exception\SoapException.php
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------
+  15     Property App\Infrastructure\Exception\SoapException::$requestData type has no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  20     Property App\Infrastructure\Exception\SoapException::$responseData type has no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  32     Method App\Infrastructure\Exception\SoapException::__construct() has parameter $context with no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  32     Method App\Infrastructure\Exception\SoapException::__construct() has parameter $requestData with no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  32     Method App\Infrastructure\Exception\SoapException::__construct() has parameter $responseData with no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  32     Method App\Infrastructure\Exception\SoapException::__construct() has parameter $technicalDetails with no value type specified in iterable type
+         array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  71     Method App\Infrastructure\Exception\SoapException::getRequestData() return type has no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  79     Method App\Infrastructure\Exception\SoapException::getResponseData() return type has no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  103    Method App\Infrastructure\Exception\SoapException::recursiveSanitize() has parameter $data with no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  103    Method App\Infrastructure\Exception\SoapException::recursiveSanitize() has parameter $sensitiveKeys with no value type specified in iterable type
+         array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  103    Method App\Infrastructure\Exception\SoapException::recursiveSanitize() return type has no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  119    Method App\Infrastructure\Exception\SoapException::sanitizeData() has parameter $data with no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  119    Method App\Infrastructure\Exception\SoapException::sanitizeData() return type has no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Exception\SoapTransportException.php
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  30     Method App\Infrastructure\Exception\SoapTransportException::__construct() has parameter $context with no value type specified in iterable type
+         array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  30     Method App\Infrastructure\Exception\SoapTransportException::__construct() has parameter $requestData with no value type specified in iterable type
+         array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  30     Method App\Infrastructure\Exception\SoapTransportException::__construct() has parameter $responseData with no value type specified in iterable
+         type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  70     Method App\Infrastructure\Exception\SoapTransportException::fromCurlError() has parameter $requestData with no value type specified in iterable
+         type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  114    Method App\Infrastructure\Exception\SoapTransportException::fromSoapFault() has parameter $requestData with no value type specified in iterable
+         type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Logger\Processor\SensitiveDataProcessor.php
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------
+  51     Method App\Infrastructure\Logger\Processor\SensitiveDataProcessor::scrubArray() has parameter $data with no value type specified in iterable type
+         array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  51     Method App\Infrastructure\Logger\Processor\SensitiveDataProcessor::scrubArray() return type has no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ---------------------------------------------
+  Line   Logger\Subscriber\HttpLoggingSubscriber.php
+ ------ ---------------------------------------------
+  118    Ternary operator condition is always true.
+         🪪  ternary.alwaysTrue
+ ------ ---------------------------------------------
+
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Service\Auth\AuthenticationContext.php
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------
+  39     Method App\Infrastructure\Service\Auth\AuthenticationContext::fromHeaders() has parameter $headers with no value type specified in iterable type
+         array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Service\DataProvider\DocumentDataProvider.php
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  18     Property App\Infrastructure\Service\DataProvider\DocumentDataProvider::$sharedTransformer is never read, only written.
+         🪪  property.onlyWritten
+         💡  See: https://phpstan.org/developing-extensions/always-read-written-properties
+  22     Method App\Infrastructure\Service\DataProvider\DocumentDataProvider::generateExcelDataDocumentService() has parameter $paramsFiltres with no value
+         type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  29     Method App\Infrastructure\Service\DataProvider\DocumentDataProvider::generatePdfDocumentService() has parameter $paramsFiltres with no value type
+         specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ----------------------------------------------------------------------------------------------------------------
+  Line   Service\DataProvider\ReleveDataProvider.php
+ ------ ----------------------------------------------------------------------------------------------------------------
+  15     Property App\Infrastructure\Service\DataProvider\ReleveDataProvider::$dataSource is never read, only written.
+         🪪  property.onlyWritten
+         💡  See: https://phpstan.org/developing-extensions/always-read-written-properties
+  16     Property App\Infrastructure\Service\DataProvider\ReleveDataProvider::$transformer is never read, only written.
+         🪪  property.onlyWritten
+         💡  See: https://phpstan.org/developing-extensions/always-read-written-properties
+ ------ ----------------------------------------------------------------------------------------------------------------
+
+ ------ --------------------------------------------------------------------------------------------------
+  Line   Service\DataProvider\SecurityDataProvider.php
+ ------ --------------------------------------------------------------------------------------------------
+  66     Access to an undefined property App\Application\Dto\Output\Security\LogoutOutputDto::$success.
+         🪪  property.notFound
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property
+  113    Method App\Infrastructure\Service\DataProvider\SecurityDataProvider::getAuthContext() is unused.
+         🪪  method.unused
+ ------ --------------------------------------------------------------------------------------------------
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Service\DataSource\AdminSoap.php
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------
+  18     Parameter $hydrator of method App\Infrastructure\Service\DataSource\AdminSoap::__construct() has invalid type
+         App\Infrastructure\Service\Hydrator\AdminHydrator.
+         🪪  class.notFound
+  18     Property App\Infrastructure\Service\DataSource\AdminSoap::$hydrator has unknown class App\Infrastructure\Service\Hydrator\AdminHydrator as its
+         type.
+         🪪  class.notFound
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols
+  25     Call to method hydrateGetSousTraitants() on an unknown class App\Infrastructure\Service\Hydrator\AdminHydrator.
+         🪪  class.notFound
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols
+  30     Parameter $inputDto of method App\Infrastructure\Service\DataSource\AdminSoap::fetchLoginFromParam() has invalid type
+         App\Application\Dto\Input\Admin\LoginFromParamInputDto.
+         🪪  class.notFound
+  32     Call to method hydrateLoginFromParam() on an unknown class App\Infrastructure\Service\Hydrator\AdminHydrator.
+         🪪  class.notFound
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols
+  37     Parameter $inputDto of method App\Infrastructure\Service\DataSource\AdminSoap::fetchResetPasswordFromEmail() has invalid type
+         App\Application\Dto\Input\Admin\ResetPasswordFromEmailInputDto.
+         🪪  class.notFound
+  39     Call to method hydrateResetPasswordFromEmail() on an unknown class App\Infrastructure\Service\Hydrator\AdminHydrator.
+         🪪  class.notFound
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols
+  44     Parameter $inputDto of method App\Infrastructure\Service\DataSource\AdminSoap::fetchUpdateCGUFromPKUser() has invalid type
+         App\Application\Dto\Input\Admin\UpdateCGUFromPKUserInputDto.
+         🪪  class.notFound
+  46     Call to method hydrateUpdateCGUFromPKUser() on an unknown class App\Infrastructure\Service\Hydrator\AdminHydrator.
+         🪪  class.notFound
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols
+  51     Parameter $inputDto of method App\Infrastructure\Service\DataSource\AdminSoap::fetchUpdateEmailFromPKUser() has invalid type
+         App\Application\Dto\Input\Admin\UpdateEmailFromPKUserInputDto.
+         🪪  class.notFound
+  53     Call to method hydrateUpdateEmailFromPKUser() on an unknown class App\Infrastructure\Service\Hydrator\AdminHydrator.
+         🪪  class.notFound
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Service\DataSource\DocumentSoap.php
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------
+  25     Method App\Infrastructure\Service\DataSource\DocumentSoap::fetchInsertPrintJobs() has parameter $paramsFiltres with no value type specified in
+         iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  35     Method App\Infrastructure\Service\DataSource\DocumentSoap::getExcel() has parameter $paramsFiltres with no value type specified in iterable type
+         array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ -------------------------------------------------------------------------------------------
+  Line   Service\DataSource\InterventionSoap.php
+ ------ -------------------------------------------------------------------------------------------
+  11     Class App\Infrastructure\Service\DataSource\InterventionSoap implements unknown interface
+         App\Application\Service\DataSource\InterventionDataSourceInterface.
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols
+ ------ -------------------------------------------------------------------------------------------
+
+ ------ -------------------------------------------------------
+  Line   Service\DataSource\OperatorSoap.php
+ ------ -------------------------------------------------------
+  99     Unreachable statement - code above always terminates.
+         🪪  deadCode.unreachable
+ ------ -------------------------------------------------------
+
+ ------ -------------------------------------------------------------------------------------------------
+  Line   Service\DataSource\ParcSoap.php
+ ------ -------------------------------------------------------------------------------------------------
+  16     Property App\Infrastructure\Service\DataSource\ParcSoap::$hydrator is never read, only written.
+         🪪  property.onlyWritten
+         💡  See: https://phpstan.org/developing-extensions/always-read-written-properties
+ ------ -------------------------------------------------------------------------------------------------
+
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Service\DataSource\ResponseProcessor\BoolResponseProcessor.php
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------
+  9      Method App\Infrastructure\Service\DataSource\ResponseProcessor\BoolResponseProcessor::process() has parameter $response with no type specified.
+         🪪  missingType.parameter
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Service\DataSource\ResponseProcessor\StringResponseProcessor.php
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------
+  9      Method App\Infrastructure\Service\DataSource\ResponseProcessor\StringResponseProcessor::process() has parameter $response with no type specified.
+         🪪  missingType.parameter
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Service\DataSource\SoapClient.php
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------
+  19     Property App\Infrastructure\Service\DataSource\SoapClient::$processors has unknown class
+         App\Infrastructure\Service\DataSource\SoapResponseProcessorInterface as its type.
+         🪪  class.notFound
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols
+  23     Method App\Infrastructure\Service\DataSource\SoapClient::__construct() has parameter $processors with no value type specified in iterable type
+         array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  25     Property App\Infrastructure\Service\DataSource\SoapClient::$cache is never read, only written.
+         🪪  property.onlyWritten
+         💡  See: https://phpstan.org/developing-extensions/always-read-written-properties
+  27     Property App\Infrastructure\Service\DataSource\SoapClient::$debug is never read, only written.
+         🪪  property.onlyWritten
+         💡  See: https://phpstan.org/developing-extensions/always-read-written-properties
+  28     Deprecated in PHP 8.1: Required parameter $processors follows optional parameter $debug.
+         🪪  parameter.requiredAfterOptional
+  61     Call to method supports() on an unknown class App\Infrastructure\Service\DataSource\SoapResponseProcessorInterface.
+         🪪  class.notFound
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols
+  62     Call to method process() on an unknown class App\Infrastructure\Service\DataSource\SoapResponseProcessorInterface.
+         🪪  class.notFound
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols
+  68     Variable $result might not be defined.
+         🪪  variable.undefined
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ------------------------------------------------------------------------------------------------
+  Line   Service\DataSource\TableauBordClientSoap.php
+ ------ ------------------------------------------------------------------------------------------------
+  11     Class App\Infrastructure\Service\DataSource\TableauBordClientSoap implements unknown interface
+         App\Application\Service\DataSource\TableauBordClientDataSourceInterface.
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols
+ ------ ------------------------------------------------------------------------------------------------
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Service\Hydrator\DocumentHydrator.php
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  11     Method App\Infrastructure\Service\Hydrator\DocumentHydrator::hydrateGetExcel() has parameter $paramsFiltres with no value type specified in
+         iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  35     Method App\Infrastructure\Service\Hydrator\DocumentHydrator::hydrateInsertPrintJobs() has parameter $paramsFiltres with no value type specified in
+         iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Service\Hydrator\Hydrator.php
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------
+  15     Method App\Infrastructure\Service\Hydrator\Hydrator::toParamsFiltresString() has parameter $params with no value type specified in iterable type
+         array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  31     Strict comparison using === between '0' and '' will always evaluate to false.
+         🪪  identical.alwaysFalse
+ ------ --------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ---------------------------------------------------------------------------------------------------
+  Line   Service\Hydrator\LogementHydrator.php
+ ------ ---------------------------------------------------------------------------------------------------
+  16     Access to an undefined property App\Application\Dto\Input\Shared\GetByIdIntInputDto::$pkOccupant.
+         🪪  property.notFound
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property
+  24     Access to an undefined property App\Application\Dto\Input\Shared\GetByIdIntInputDto::$pkOccupant.
+         🪪  property.notFound
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property
+  32     Access to an undefined property App\Application\Dto\Input\Shared\GetByIdIntInputDto::$pkOccupant.
+         🪪  property.notFound
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property
+  40     Access to an undefined property App\Application\Dto\Input\Shared\GetByIdIntInputDto::$pkOccupant.
+         🪪  property.notFound
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property
+  48     Access to an undefined property App\Application\Dto\Input\Shared\GetByIdIntInputDto::$pkOccupant.
+         🪪  property.notFound
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property
+  56     Access to an undefined property App\Application\Dto\Input\Shared\GetByIdIntInputDto::$pkOccupant.
+         🪪  property.notFound
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property
+  64     Access to an undefined property App\Application\Dto\Input\Shared\GetByIdIntInputDto::$pkOccupant.
+         🪪  property.notFound
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property
+  72     Access to an undefined property App\Application\Dto\Input\Shared\GetByIdIntInputDto::$pkOccupant.
+         🪪  property.notFound
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property
+ ------ ---------------------------------------------------------------------------------------------------
+
+ ------ -------------------------------------------------------------------------------------------------------------------------------------
+  Line   Service\Jwt\JwtService.php
+ ------ -------------------------------------------------------------------------------------------------------------------------------------
+  48     Method App\Infrastructure\Service\Jwt\JwtService::getTokenPayload() return type has no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  55     Method App\Infrastructure\Service\Jwt\JwtService::validateToken() return type has no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ -------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Service\Redis\RedisService.php
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------
+  33     Method App\Infrastructure\Service\Redis\RedisService::get() has no return type specified.
+         🪪  missingType.return
+  67     Method App\Infrastructure\Service\Redis\RedisService::getUserData() return type has no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  83     Method App\Infrastructure\Service\Redis\RedisService::set() has parameter $dto with no type specified.
+         🪪  missingType.parameter
+  114    Method App\Infrastructure\Service\Redis\RedisService::storeUserData() has parameter $data with no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  126    Method App\Infrastructure\Service\Redis\RedisService::arrayToSession() has parameter $sessionData with no value type specified in iterable type
+         array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+  147    Method App\Infrastructure\Service\Redis\RedisService::sessionToArray() return type has no value type specified in iterable type array.
+         🪪  missingType.iterableValue
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------
+  Line   Service\Transformer\AdminTransformer.php
+ ------ ----------------------------------------------------------------------------------------------------------------------------
+  20     Parameter $entityFactory of method App\Infrastructure\Service\Transformer\AdminTransformer::__construct() has invalid type
+         App\Application\Factory\Admin\AdminEntityFactory.
+         🪪  class.notFound
+  20     Property App\Infrastructure\Service\Transformer\AdminTransformer::$entityFactory has unknown class
+         App\Application\Factory\Admin\AdminEntityFactory as its type.
+         🪪  class.notFound
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols
+  20     Property App\Infrastructure\Service\Transformer\AdminTransformer::$entityFactory is never read, only written.
+         🪪  property.onlyWritten
+         💡  See: https://phpstan.org/developing-extensions/always-read-written-properties
+  21     Parameter $outputFactory of method App\Infrastructure\Service\Transformer\AdminTransformer::__construct() has invalid type
+         App\Application\Factory\Admin\AdminOutputFactory.
+         🪪  class.notFound
+  21     Property App\Infrastructure\Service\Transformer\AdminTransformer::$outputFactory has unknown class
+         App\Application\Factory\Admin\AdminOutputFactory as its type.
+         🪪  class.notFound
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols
+  21     Property App\Infrastructure\Service\Transformer\AdminTransformer::$outputFactory is never read, only written.
+         🪪  property.onlyWritten
+         💡  See: https://phpstan.org/developing-extensions/always-read-written-properties
+  27     Method App\Infrastructure\Service\Transformer\AdminTransformer::transformGetSousTraitants() has invalid return type
+         App\Application\Dto\Output\Admin\GetSousTraitantsOutputDto.
+         🪪  class.notFound
+  36     Instantiated class App\Application\Dto\Output\Admin\GetSousTraitantsOutputDto not found.
+         🪪  class.notFound
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols
+  42     Method App\Infrastructure\Service\Transformer\AdminTransformer::transformLoginFromParam() has invalid return type
+         App\Application\Dto\Output\Admin\LoginFromParamOutputDto.
+         🪪  class.notFound
+  46     Instantiated class App\Application\Dto\Output\Admin\LoginFromParamOutputDto not found.
+         🪪  class.notFound
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols
+  52     Method App\Infrastructure\Service\Transformer\AdminTransformer::transformResetPasswordFromEmail() has invalid return type
+         App\Application\Dto\Output\Admin\ResetPasswordFromEmailOutputDto.
+         🪪  class.notFound
+  56     Instantiated class App\Application\Dto\Output\Admin\ResetPasswordFromEmailOutputDto not found.
+         🪪  class.notFound
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols
+  62     Method App\Infrastructure\Service\Transformer\AdminTransformer::transformUpdateCGUFromPKUser() has invalid return type
+         App\Application\Dto\Output\Admin\UpdateCGUFromPKUserOutputDto.
+         🪪  class.notFound
+  66     Instantiated class App\Application\Dto\Output\Admin\UpdateCGUFromPKUserOutputDto not found.
+         🪪  class.notFound
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols
+  72     Method App\Infrastructure\Service\Transformer\AdminTransformer::transformUpdateEmailFromPKUser() has invalid return type
+         App\Application\Dto\Output\Admin\UpdateEmailFromPKUserOutputDto.
+         🪪  class.notFound
+  76     Instantiated class App\Application\Dto\Output\Admin\UpdateEmailFromPKUserOutputDto not found.
+         🪪  class.notFound
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols
+ ------ ----------------------------------------------------------------------------------------------------------------------------
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Service\Transformer\DocumentTransformer.php
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------
+  17     Call to function is_null() with string will always evaluate to false.
+         🪪  function.impossibleType
+  17     Call to function is_string() with string will always evaluate to true.
+         🪪  function.alreadyNarrowedType
+  17     Result of && is always true.
+         🪪  booleanAnd.alwaysTrue
+         💡  Because the type is coming from a PHPDoc, you can turn off this check by setting treatPhpDocTypesAsCertain: false in your phpstan.neon.
+  28     Call to function is_object() with object will always evaluate to true.
+         🪪  function.alreadyNarrowedType
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Service\Transformer\ExternalTransformer.php
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------
+  19     Call to function is_null() with string will always evaluate to false.
+         🪪  function.impossibleType
+  19     Call to function is_string() with string will always evaluate to true.
+         🪪  function.alreadyNarrowedType
+  19     Result of && is always true.
+         🪪  booleanAnd.alwaysTrue
+         💡  Because the type is coming from a PHPDoc, you can turn off this check by setting treatPhpDocTypesAsCertain: false in your phpstan.neon.
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  Line   Service\Transformer\ImmeubleTransformer.php
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+  308    Parameter #1 $immeubles of method App\Application\Factory\Immeuble\ImmeubleOutputFactory::createListImmeubles() expects array<App\Application\Fact
+         ory\Immeuble\User>, array<App\Domain\Entity\Immeuble> given.
+         🪪  argument.type
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ -----------------------------------------------------------------------------------------------------------------------------
+  Line   Service\Transformer\SearchTransformer.php
+ ------ -----------------------------------------------------------------------------------------------------------------------------
+  15     Parameter $entityFactory of method App\Infrastructure\Service\Transformer\SearchTransformer::__construct() has invalid type
+         App\Application\Factory\Search\SearchEntityFactory.
+         🪪  class.notFound
+  15     Property App\Infrastructure\Service\Transformer\SearchTransformer::$entityFactory has unknown class
+         App\Application\Factory\Search\SearchEntityFactory as its type.
+         🪪  class.notFound
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols
+  15     Property App\Infrastructure\Service\Transformer\SearchTransformer::$entityFactory is never read, only written.
+         🪪  property.onlyWritten
+         💡  See: https://phpstan.org/developing-extensions/always-read-written-properties
+  16     Parameter $outputFactory of method App\Infrastructure\Service\Transformer\SearchTransformer::__construct() has invalid type
+         App\Application\Factory\Search\SearchOutputFactory.
+         🪪  class.notFound
+  16     Property App\Infrastructure\Service\Transformer\SearchTransformer::$outputFactory has unknown class
+         App\Application\Factory\Search\SearchOutputFactory as its type.
+         🪪  class.notFound
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols
+  16     Property App\Infrastructure\Service\Transformer\SearchTransformer::$outputFactory is never read, only written.
+         🪪  property.onlyWritten
+         💡  See: https://phpstan.org/developing-extensions/always-read-written-properties
+  22     Method App\Infrastructure\Service\Transformer\SearchTransformer::transformIndex() has invalid return type
+         App\Application\Dto\Output\Search\IndexOutputDto.
+         🪪  class.notFound
+  24     Instantiated class App\Application\Dto\Output\Search\IndexOutputDto not found.
+         🪪  class.notFound
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols
+ ------ -----------------------------------------------------------------------------------------------------------------------------
+
+ ------ ------------------------------------------------
+  Line   Service\Transformer\SecurityTransformer.php
+ ------ ------------------------------------------------
+  96     Expression on left side of ?? is not nullable.
+         🪪  nullCoalesce.expr
+ ------ ------------------------------------------------
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------
+  Line   Service\Transformer\TableauBordClientTransformer.php
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------
+  15     Parameter $entityFactory of method App\Infrastructure\Service\Transformer\TableauBordClientTransformer::__construct() has invalid type
+         App\Application\Factory\TableauBordClient\TableauBordClientEntityFactory.
+         🪪  class.notFound
+  15     Property App\Infrastructure\Service\Transformer\TableauBordClientTransformer::$entityFactory has unknown class
+         App\Application\Factory\TableauBordClient\TableauBordClientEntityFactory as its type.
+         🪪  class.notFound
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols
+  15     Property App\Infrastructure\Service\Transformer\TableauBordClientTransformer::$entityFactory is never read, only written.
+         🪪  property.onlyWritten
+         💡  See: https://phpstan.org/developing-extensions/always-read-written-properties
+  16     Parameter $outputFactory of method App\Infrastructure\Service\Transformer\TableauBordClientTransformer::__construct() has invalid type
+         App\Application\Factory\TableauBordClient\TableauBordClientOutputFactory.
+         🪪  class.notFound
+  16     Property App\Infrastructure\Service\Transformer\TableauBordClientTransformer::$outputFactory has unknown class
+         App\Application\Factory\TableauBordClient\TableauBordClientOutputFactory as its type.
+         🪪  class.notFound
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols
+  16     Property App\Infrastructure\Service\Transformer\TableauBordClientTransformer::$outputFactory is never read, only written.
+         🪪  property.onlyWritten
+         💡  See: https://phpstan.org/developing-extensions/always-read-written-properties
+  22     Method App\Infrastructure\Service\Transformer\TableauBordClientTransformer::transformGetTableauBordClient() has invalid return type
+         App\Application\Dto\Output\TableauBordClient\GetTableauBordClientOutputDto.
+         🪪  class.notFound
+  26     Instantiated class App\Application\Dto\Output\TableauBordClient\GetTableauBordClientOutputDto not found.
+         🪪  class.notFound
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols
+ ------ ----------------------------------------------------------------------------------------------------------------------------------------
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------
+  Line   Service\Transformer\TicketingTransformer.php
+ ------ ---------------------------------------------------------------------------------------------------------------------------------
+  23     Parameter $entityFactory of method App\Infrastructure\Service\Transformer\TicketingTransformer::__construct() has invalid type
+         App\Application\Factory\Ticketing\TicketingEntityFactory.
+         🪪  class.notFound
+  23     Property App\Infrastructure\Service\Transformer\TicketingTransformer::$entityFactory has unknown class
+         App\Application\Factory\Ticketing\TicketingEntityFactory as its type.
+         🪪  class.notFound
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols
+  23     Property App\Infrastructure\Service\Transformer\TicketingTransformer::$entityFactory is never read, only written.
+         🪪  property.onlyWritten
+         💡  See: https://phpstan.org/developing-extensions/always-read-written-properties
+  24     Parameter $outputFactory of method App\Infrastructure\Service\Transformer\TicketingTransformer::__construct() has invalid type
+         App\Application\Factory\Ticketing\TicketingOutputFactory.
+         🪪  class.notFound
+  24     Property App\Infrastructure\Service\Transformer\TicketingTransformer::$outputFactory has unknown class
+         App\Application\Factory\Ticketing\TicketingOutputFactory as its type.
+         🪪  class.notFound
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols
+  24     Property App\Infrastructure\Service\Transformer\TicketingTransformer::$outputFactory is never read, only written.
+         🪪  property.onlyWritten
+         💡  See: https://phpstan.org/developing-extensions/always-read-written-properties
+  27     Method App\Infrastructure\Service\Transformer\TicketingTransformer::transformCheckTicketsInterEnabled() has invalid return type
+         App\Application\Dto\Output\Ticketing\CheckTicketsInterEnabledOutputDto.
+         🪪  class.notFound
+  29     Instantiated class App\Application\Dto\Output\Ticketing\CheckTicketsInterEnabledOutputDto not found.
+         🪪  class.notFound
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols
+  32     Method App\Infrastructure\Service\Transformer\TicketingTransformer::transformCreateTicketInter() has invalid return type
+         App\Application\Dto\Output\Ticketing\CreateTicketInterOutputDto.
+         🪪  class.notFound
+  34     Instantiated class App\Application\Dto\Output\Ticketing\CreateTicketInterOutputDto not found.
+         🪪  class.notFound
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols
+  37     Method App\Infrastructure\Service\Transformer\TicketingTransformer::transformGetAttachment() has invalid return type
+         App\Application\Dto\Output\Ticketing\GetAttachmentOutputDto.
+         🪪  class.notFound
+  40     Instantiated class App\Application\Dto\Output\Ticketing\GetAttachmentOutputDto not found.
+         🪪  class.notFound
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols
+  43     Method App\Infrastructure\Service\Transformer\TicketingTransformer::transformGetNbTicketsIntersUser() has invalid return type
+         App\Application\Dto\Output\Ticketing\GetNbTicketsIntersUserOutputDto.
+         🪪  class.notFound
+  45     Instantiated class App\Application\Dto\Output\Ticketing\GetNbTicketsIntersUserOutputDto not found.
+         🪪  class.notFound
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols
+  48     Method App\Infrastructure\Service\Transformer\TicketingTransformer::transformGetTicketInterInit() has invalid return type
+         App\Application\Dto\Output\Ticketing\GetTicketInterInitOutputDto.
+         🪪  class.notFound
+  51     Instantiated class App\Application\Dto\Output\Ticketing\TicketInterInitDto not found.
+         🪪  class.notFound
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols
+  59     Instantiated class App\Application\Dto\Output\Ticketing\GetTicketInterInitOutputDto not found.
+         🪪  class.notFound
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols
+  62     Method App\Infrastructure\Service\Transformer\TicketingTransformer::transformGetTicketsIntersUser() has invalid return type
+         App\Application\Dto\Output\Ticketing\GetTicketsIntersUserOutputDto.
+         🪪  class.notFound
+  68     Instantiated class App\Application\Dto\Output\Ticketing\TicketInterDto not found.
+         🪪  class.notFound
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols
+  77     Instantiated class App\Application\Dto\Output\Ticketing\GetTicketsIntersUserOutputDto not found.
+         🪪  class.notFound
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols
+  80     Method App\Infrastructure\Service\Transformer\TicketingTransformer::transformSetTicketStatus() has invalid return type
+         App\Application\Dto\Output\Ticketing\SetTicketStatusOutputDto.
+         🪪  class.notFound
+  82     Instantiated class App\Application\Dto\Output\Ticketing\SetTicketStatusOutputDto not found.
+         🪪  class.notFound
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols
+ ------ ---------------------------------------------------------------------------------------------------------------------------------
