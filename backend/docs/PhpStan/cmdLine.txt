@@ -1,0 +1,8 @@
+./vendor/bin/phpstan analyse src/Application
+./vendor/bin/phpstan analyse src/Domain
+./vendor/bin/phpstan analyse src/Infrastructure --memory-limit=2G
+
+./vendor/bin/php-cs-fixer fix src/Application/
+./vendor/bin/php-cs-fixer fix src/Domain/
+./vendor/bin/php-cs-fixer fix src/Http/
+./vendor/bin/php-cs-fixer fix src/Infrastructure --memory-limit=2G

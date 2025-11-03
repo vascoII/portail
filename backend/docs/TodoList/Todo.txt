@@ -1,0 +1,15 @@
+- Créer des validator pour POST/PUT/PATCH backend
+- Valider endPoints backend
+- Delete dead code
+- Ecrire tests backend
+- Validation phpStan
+- Validation php CS fixer
+- Validation Sonar
+- Dev frontend 
+-- dashboard
+-- immeubles
+-- immeuble/{immeubleId}
+-- immeuble/{immeubleId}/logements
+-- immeuble/{immeubleId}/logement/{logementId}
+- Ecrire tests frontend
+- Implémenter Mercure
