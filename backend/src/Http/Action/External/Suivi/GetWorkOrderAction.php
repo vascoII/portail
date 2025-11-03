@@ -14,7 +14,7 @@ use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[AsController]
-#[Route(path: '/suivi/workorder/{id}', name: 'suivi_workorder_get', methods: ['GET'])]
+#[Route(path: '/suivi/workorder/{id}', name: 'external_workorder_get', methods: ['GET'])]
 final class GetWorkOrderAction extends AbstractAction implements ActionInterface
 {
     public function __construct(

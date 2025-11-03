@@ -15,8 +15,8 @@ use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[AsController]
-#[Route(path: '/reporttoken/{id}', name: 'report_by_token_get', methods: ['GET'])]
-final class GetReportByTokenPdfAction extends AbstractAction implements ActionInterface
+#[Route(path: '/document/reporttoken/{id}', name: 'external_document_report_by_token_pdf', methods: ['GET'])]
+final class GenerateReportByTokenPdfAction extends AbstractAction implements ActionInterface
 {
     public function __construct(
         private readonly ResponderInterface $responder,

@@ -15,7 +15,7 @@ use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[AsController]
-#[Route(path: '/releve/generate', name: 'releve_generate', methods: ['POST'])]
+#[Route(path: '/releve/generate', name: 'external_releve_generate', methods: ['POST'])]
 final class GenerateReleveAction extends AbstractAction implements ActionInterface
 {
     public function __construct(

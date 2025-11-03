@@ -15,7 +15,7 @@ use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[AsController]
-#[Route(path: '/security/reset-password', name: 'reset_password', methods: ['POST'])]
+#[Route(path: '/security/reset-password', name: 'security_reset_password', methods: ['POST'])]
 final class ResetPasswordAction extends AbstractAction implements ActionInterface
 {
     public function __construct(

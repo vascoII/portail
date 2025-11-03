@@ -14,7 +14,7 @@ use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[AsController]
-#[Route(path: '/suivi/workorders', name: 'suivi_workorders_list', methods: ['POST'])]
+#[Route(path: '/suivi/workorders', name: 'external_workorder_list', methods: ['POST'])]
 final class ListWorkOrdersAction extends AbstractAction implements ActionInterface
 {
     public function __construct(

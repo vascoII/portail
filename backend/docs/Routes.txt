@@ -1,0 +1,91 @@
+php bin/console debug:router
+ --------------------------------------- -------- -------- ------ --------------------------------------------------------------------- 
+  Name                                    Method   Scheme   Host   Path                                    
+
+ --------------------------------------- -------- -------- ------ --------------------------------------------------------------------- 
+  admin_mercure_metrics                   GET      ANY      ANY    /api/admin/mercure_metrics              
+
+  document_anomalies_excel                POST     ANY      ANY    /api/document/anomalies/excel           
+  document_dysfonctionnements_excel       POST     ANY      ANY    /api/document/dysfonctionnements/excel  
+  document_fuites_excel                   POST     ANY      ANY    /api/document/fuites/excel              
+  document_immeuble_interventions_excel   POST     ANY      ANY    /api/document/immeuble/interventions/excel
+  document_interventions_excel            POST     ANY      ANY    /api/document/interventions/excel       
+  document_facture_pdf                    POST     ANY      ANY    /api/document/facture/pdf               
+  document_immeuble_detail_pdf            POST     ANY      ANY    /api/document/immeuble/detail/pdf       
+  document_immeuble_releve_pdf            POST     ANY      ANY    /api/document/immeuble/releve/pdf       
+  document_immeuble_synthese_pdf          POST     ANY      ANY    /api/document/immeuble/synthese/pdf     
+  document_intervention_pdf               POST     ANY      ANY    /api/document/intervention/pdf          
+  document_logement_repart_pdf            POST     ANY      ANY    /api/document/logement/repart/pdf       
+  document_occupant_note_pdf              POST     ANY      ANY    /api/document/occupant/note/pdf         
+  document_occupant_releve_pdf            POST     ANY      ANY    /api/document/occupant/releve/pdf       
+  document_occupant_repart_pdf            POST     ANY      ANY    /api/document/occupant/repart/pdf       
+
+  external_document_report_by_token_pdf   GET      ANY      ANY    /api/document/reporttoken/{id}          
+  external_document_receive_pdf           POST     ANY      ANY    /api/document/receive                   
+  external_releve_generate                POST     ANY      ANY    /api/releve/generate                    
+  external_workorder_details_pdf          GET      ANY      ANY    /api/suivi/workorder/{id}/pdf           
+  external_workorder_get                  GET      ANY      ANY    /api/suivi/workorder/{id}               
+  external_workorder_list                 POST     ANY      ANY    /api/suivi/workorders                   
+
+  facture_list                            GET      ANY      ANY    /api/factures                           
+
+  immeuble_get                            GET      ANY      ANY    /api/immeuble/{id}                      
+  immeuble_cet_get                        GET      ANY      ANY    /api/immeuble_cet/{id}                  
+  immeuble_capteur_get                    GET      ANY      ANY    /api/immeuble_capteur/{id}              
+  immeuble_ec_get                         GET      ANY      ANY    /api/immeuble_ec/{id}                   
+  immeuble_ef_get                         GET      ANY      ANY    /api/immeuble_ef/{id}                   
+  immeuble_repart_get                     GET      ANY      ANY    /api/immeuble_repart/{id}               
+  immeuble_serie_conseau_eau_get          GET      ANY      ANY    /api/immeuble_serie_conso_eau/{id}      
+  immeuble_anomalies_list                 GET      ANY      ANY    /api/immeuble/{id}/anomalies            
+  immeuble_dysfonctionnements_list        GET      ANY      ANY    /api/immeuble/{id}/dysfonctionnements   
+  immeuble_fuites_list                    GET      ANY      ANY    /api/immeuble/{id}/fuites               
+  immeuble_list                           GET      ANY      ANY    /api/immeubles                          
+  immeuble_interventions_list             GET      ANY      ANY    /api/immeuble/{id}/interventions        
+  immeuble_logements_list                 GET      ANY      ANY    /api/immeuble/{id}/logements            
+  
+  logement_get                            GET      ANY      ANY    /api/logement/{id}                      
+  logement_cet_get                        GET      ANY      ANY    /api/logement_cet/{id}                  
+  logement_capteur_get                    GET      ANY      ANY    /api/logement_capteur/{id}              
+  logement_ec_get                         GET      ANY      ANY    /api/logement_ec/{id}                   
+  logement_ef_get                         GET      ANY      ANY    /api/logement_ef/{id}                   
+  logement_repart_get                     GET      ANY      ANY    /api/logement_repart/{id}               
+  logement_anomalies_list                 GET      ANY      ANY    /api/immeuble/{pkImmeuble}/logement/{pkLogement}/anomalies
+  logement_dysfonctionnements_list        GET      ANY      ANY    /api/immeuble/{pkImmeuble}/logement/{pkLogement}/dysfonctionnements
+  logement_fuites_list                    GET      ANY      ANY    /api/immeuble/{pkImmeuble}/logement/{pkLogement}/fuites
+  logement_interventions_list             GET      ANY      ANY    /api/immeuble/{pkImmeuble}/logement/{pkLogement}/interventions
+  
+  occupant_account_list                   GET      ANY      ANY    /api/occupant/account                   
+  occupant_list                           GET      ANY      ANY    /api/occupant                           
+  occupant_intervention                   GET      ANY      ANY    /api/occupant/intervention/{id}         
+  occupant_alertes_list                   GET      ANY      ANY    /api/occupant/alertes                   
+  occupant_anomalies_list                 GET      ANY      ANY    /api/occupant/anomalies                 
+  occupant_dysfonctionnements_list        GET      ANY      ANY    /api/occupant/dysfonctionnements        
+  occupant_fuites_list                    GET      ANY      ANY    /api/occupant/fuites                    
+  occupant_interventions_list             GET      ANY      ANY    /api/occupant/{occupantId}/interventions
+  occupant_patch                          PATCH    ANY      ANY    /api/occupant/{id}                      
+  occupant_post                           POST     ANY      ANY    /api/occupant                           
+
+  operator_add_building                   POST     ANY      ANY    /api/operator/{id}/immeuble/ajouter     
+  operator_create                         POST     ANY      ANY    /api/operator                           
+  operator_delete                         DELETE   ANY      ANY    /api/operator/{id}                      
+  operator_get                            GET      ANY      ANY    /api/operator/{operatorId}              
+  operator_stats_get                      GET      ANY      ANY    /api/operator/{id}/stats                
+  operator_list                           GET      ANY      ANY    /api/operators                          
+  operator_patch                          PATCH    ANY      ANY    /api/operator/{id}                      
+  operator_put                            PUT      ANY      ANY    /api/operator/{id}                      
+  operator_remove_building                POST     ANY      ANY    /api/operator/{id}/immeuble/supprimer   
+
+  parc_get                                GET      ANY      ANY    /api/parc                               
+
+  security_login                          POST     ANY      ANY    /api/security/login                     
+  security_login_param                    POST     ANY      ANY    /api/security/login/param               
+  security_logout                         POST     ANY      ANY    /api/security/logout                    
+  security_me                             GET      ANY      ANY    /api/security/me                        
+  security_patch_cgu                      PATCH    ANY      ANY    /api/security/patch-cgu                 
+  security_patch_email                    PATCH    ANY      ANY    /api/security/patch-email               
+  security_reset_password                          POST     ANY      ANY    /api/security/reset-password            
+  security_update_password                POST     ANY      ANY    /api/security/update-password           
+
+  ticket_create                           POST     ANY      ANY    /api/ticket                             
+  ticket_list                             GET      ANY      ANY    /api/tickets                            
+  ticket_patch                            PATCH    ANY      ANY    /api/ticket/{id} 

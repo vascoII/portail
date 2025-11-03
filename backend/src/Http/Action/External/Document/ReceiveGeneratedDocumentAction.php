@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Action\External\Document;
 
-use App\Http\Action\AbstractAction;
-use App\Http\Action\ActionInterface;
 use App\Http\Responder\ResponderInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,8 +15,8 @@ use Symfony\Component\Mercure\Update;
 
 
 #[AsController]
-#[Route(path: '/document/receive', name: 'document_receive', methods: ['POST'])]
-final class ReceiveGeneratedDocumentAction extends AbstractAction implements ActionInterface
+#[Route(path: '/document/receive', name: 'external_document_receive_pdf', methods: ['POST'])]
+final class ReceiveGeneratedDocumentAction
 {
     public function __construct(
         private readonly ResponderInterface $responder

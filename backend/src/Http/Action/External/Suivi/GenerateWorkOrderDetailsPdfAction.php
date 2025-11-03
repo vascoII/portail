@@ -14,7 +14,7 @@ use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[AsController]
-#[Route(path: '/suivi/workorder/{id}/pdf', name: 'document_workorder_pdf', methods: ['GET'])]
+#[Route(path: '/suivi/workorder/{id}/pdf', name: 'external_workorder_details_pdf', methods: ['GET'])]
 final class GenerateWorkOrderDetailsPdfAction extends AbstractAction implements ActionInterface
 {
     public function __construct(
