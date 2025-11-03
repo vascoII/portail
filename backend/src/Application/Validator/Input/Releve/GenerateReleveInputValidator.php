@@ -48,15 +48,12 @@ final class GenerateReleveInputValidator implements InputValidatorInterface
 
         if (empty($data['datePassage'])) {
             $errors[] = DomainExceptionFactory::requiredField('datePassage', GenerateReleveAction::class);
-        } elseif (!\DateTimeImmutable::createFromFormat('d/m/Y', $data['datePassage'])) {
+        } elseif (! \DateTimeImmutable::createFromFormat('d/m/Y', $data['datePassage'])) {
             $errors[] = DomainExceptionFactory::invalidFormat('datePassage', 'date au format DD/MM/YYYY', GenerateReleveAction::class);
         }
-
 
         if ($errors) {
             throw DomainExceptionFactory::dtoValidation(GenerateReleveAction::class, $errors);
         }
     }
-
-    
 }

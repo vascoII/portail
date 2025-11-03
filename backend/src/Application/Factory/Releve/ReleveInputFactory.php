@@ -11,11 +11,11 @@ use Symfony\Component\HttpFoundation\Request;
 
 final class ReleveInputFactory
 {
+    private array $data;
+
     public function __construct(
         private GenerateReleveInputValidator $validator
     ) {}
-
-    private array $data;
 
     public function generateReleveFromRequest(Request $request): GenerateReleveInputDto
     {
@@ -34,7 +34,7 @@ final class ReleveInputFactory
         $ville = $this->getString('ville');
         $telephone = $this->getString('telephone');
         $email = $this->getString('email');
-      
+
         $cuisine_ef = $this->getInt('cuisine_ef', null);
         $salleDeBains_ef = $this->getInt('salleDeBains_ef', null);
         $wc_ef = $this->getInt('wc_ef', null);
@@ -46,16 +46,14 @@ final class ReleveInputFactory
         $autreEmplacement_ec = $this->getInt('autreEmplacement_ef', null);
 
         // Relevés des compteurs
-        $eauFroide = new ReleveCompteursDto
-        (
+        $eauFroide = new ReleveCompteursDto(
             $cuisine_ef,
             $salleDeBains_ef,
             $wc_ef,
             $autreEmplacement_ef
         );
 
-        $eauChaude = new ReleveCompteursDto
-        (
+        $eauChaude = new ReleveCompteursDto(
             $cuisine_ec,
             $salleDeBains_ec,
             $wc_ec,
@@ -90,7 +88,14 @@ final class ReleveInputFactory
         }
 
         $this->data = $data;
-        //$this->validator->validate($this->data);
+        // $this->validator->validate($this->data);
+    }
+
+    private function getDate(string $key): ?\DateTimeImmutable
+    {
+        return array_key_exists($key, $this->data) && null !== $this->data[$key]
+            ? new \DateTimeImmutable($this->data[$key])
+            : null;
     }
 
     private function getInt(string $key): ?int
@@ -106,13 +111,4 @@ final class ReleveInputFactory
             ? (string) $this->data[$key]
             : '';
     }
-
-    private function getDate(string $key): ?\DateTimeImmutable
-    {
-        return array_key_exists($key, $this->data) && null !== $this->data[$key]
-            ? new \DateTimeImmutable($this->data[$key])
-            : null;
-    }
-
-
 }
