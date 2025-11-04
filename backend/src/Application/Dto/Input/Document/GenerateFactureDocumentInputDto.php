@@ -7,6 +7,6 @@ namespace App\Application\Dto\Input\Document;
 final class GenerateFactureDocumentInputDto
 {
     public function __construct(
-        public readonly string $pkFacture
+        public readonly int $pkFacture
     ) {}
 }

@@ -342,3 +342,8 @@ services:
 
   #Aliases
   App\Http\Responder\ResponderInterface: '@App\Http\Responder\JsonResponder'
+
+  # GenerateDocumentPdfUseCase
+  App\Application\UseCase\Document\GenerateDocumentPdfUseCase:
+    arguments:
+      $callBackUrlBase: "%env(CALLBACK_URL_BASE)%"

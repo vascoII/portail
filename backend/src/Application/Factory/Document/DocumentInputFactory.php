@@ -35,12 +35,7 @@ final class DocumentInputFactory
         $idOccupant = $this->getInt('idOccupant', null);
         $idAppareil = $this->getInt('idAppareil', null);
 
-        return new GenerateAnomaliesDocumentInputDto(
-            (string) $idImmeuble,
-            (string) $idLogement,
-            (string) $idOccupant,
-            (string) $idAppareil
-        );
+        return new GenerateAnomaliesDocumentInputDto($idImmeuble, $idLogement, $idOccupant, $idAppareil);
     }
 
     public function createDysfonctionnementsFromRequest(Request $request): GenerateDysfonctionnementsDocumentInputDto
@@ -51,11 +46,7 @@ final class DocumentInputFactory
         $idLogement = $this->getInt('idLogement', null);
         $idOccupant = $this->getInt('idOccupant', null);
 
-        return new GenerateDysfonctionnementsDocumentInputDto(
-            (string) $idImmeuble,
-            (string) $idLogement,
-            (string) $idOccupant
-        );
+        return new GenerateDysfonctionnementsDocumentInputDto($idImmeuble, $idLogement, $idOccupant);
     }
 
     public function createFactureFromRequest(Request $request): GenerateFactureDocumentInputDto
@@ -64,9 +55,7 @@ final class DocumentInputFactory
 
         $idFacture = $this->getInt('idFacture');
 
-        return new GenerateFactureDocumentInputDto(
-            (string) $idFacture
-        );
+        return new GenerateFactureDocumentInputDto($idFacture);
     }
 
     public function createFuitesFromRequest(Request $request): GenerateFuitesDocumentInputDto
@@ -78,12 +67,7 @@ final class DocumentInputFactory
         $idOccupant = $this->getInt('idOccupant', null);
         $idAppareil = $this->getInt('idAppareil', null);
 
-        return new GenerateFuitesDocumentInputDto(
-            (string) $idImmeuble,
-            (string) $idLogement,
-            (string) $idOccupant,
-            (string) $idAppareil
-        );
+        return new GenerateFuitesDocumentInputDto($idImmeuble, $idLogement, $idOccupant, $idAppareil);
     }
 
     public function createImmeubleDetailFromRequest(Request $request): GenerateImmeubleDetailByImmeubleDocumentInputDto|GenerateImmeubleDetailDocumentInputDto
@@ -107,24 +91,16 @@ final class DocumentInputFactory
         $idLogement = $this->getInt('idLogement', null);
         $idOccupant = $this->getInt('idOccupant', null);
 
-        return new GenerateInterventionsDocumentInputDto(
-            (string) $idImmeuble,
-            (string) $idLogement,
-            (string) $idOccupant,
-            null,
-            null
-        );
+        return new GenerateInterventionsDocumentInputDto($idImmeuble, $idLogement, $idOccupant, null, null);
     }
 
     public function createImmeubleReleveFromRequest(Request $request): GenerateImmeubleReleveDocumentInputDto
     {
         $this->getData($request);
 
-        $idImmeuble = $this->getInt('idImmeuble');
+        $idReleve = $this->getInt('idReleve');
 
-        return new GenerateImmeubleReleveDocumentInputDto(
-            (string) $idImmeuble
-        );
+        return new GenerateImmeubleReleveDocumentInputDto($idReleve);
     }
 
     public function createImmeubleSyntheseFromRequest(Request $request): GenerateImmeubleSyntheseByImmeubleDocumentInputDto|GenerateImmeubleSyntheseDocumentInputDto
@@ -137,7 +113,7 @@ final class DocumentInputFactory
 
         return is_null($idImmeuble)
             ? new GenerateImmeubleSyntheseDocumentInputDto((string) $date1, (string) $date2)
-            : new GenerateImmeubleSyntheseByImmeubleDocumentInputDto((int) $idImmeuble, (string) $date1, (string) $date2);
+            : new GenerateImmeubleSyntheseByImmeubleDocumentInputDto($idImmeuble, (string) $date1, (string) $date2);
     }
 
     public function createInterventionFromRequest(Request $request): GenerateInterventionDocumentInputDto
@@ -160,7 +136,7 @@ final class DocumentInputFactory
         $date2 = $this->getString('date2', null);
 
         return new GenerateInterventionsDocumentInputDto(
-            (string) $idImmeuble,
+            $idImmeuble,
             null,
             null,
             (string) $date1,
@@ -175,7 +151,7 @@ final class DocumentInputFactory
         $idImmeuble = $this->getInt('idImmeuble');
         $idLogement = $this->getInt('idLogement');
 
-        return new GenerateLogementRepartDocumentInputDto((string) $idImmeuble, (string) $idLogement);
+        return new GenerateLogementRepartDocumentInputDto($idImmeuble, $idLogement);
     }
 
     public function createOccupantNoteFromRequest(Request $request): GenerateOccupantNoteDocumentInputDto
@@ -186,7 +162,7 @@ final class DocumentInputFactory
         $idOccupant = $this->getInt('idOccupant');
         $typeErc = $this->getString('typeErc');
 
-        return new GenerateOccupantNoteDocumentInputDto((string) $idOccupant, (string) $idImmeuble, (string) $typeErc);
+        return new GenerateOccupantNoteDocumentInputDto($idOccupant, $idImmeuble, (string) $typeErc);
     }
 
     public function createOccupantReleveFromRequest(Request $request): GenerateOccupantReleveDocumentInputDto
@@ -195,7 +171,7 @@ final class DocumentInputFactory
 
         $idOccupant = $this->getInt('idOccupant');
 
-        return new GenerateOccupantReleveDocumentInputDto((string) $idOccupant);
+        return new GenerateOccupantReleveDocumentInputDto($idOccupant);
     }
 
     public function createOccupantRepartFromRequest(Request $request): GenerateOccupantRepartDocumentInputDto
@@ -205,7 +181,7 @@ final class DocumentInputFactory
         $idImmeuble = $this->getInt('idImmeuble');
         $idOccupant = $this->getInt('idOccupant');
 
-        return new GenerateOccupantRepartDocumentInputDto((string) $idImmeuble, (string) $idOccupant);
+        return new GenerateOccupantRepartDocumentInputDto($idImmeuble, $idOccupant);
     }
 
     public function createReportByTokenFromRequest(Request $request): GenerateReportByTokenDocumentInputDto

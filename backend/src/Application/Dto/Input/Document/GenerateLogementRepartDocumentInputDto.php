@@ -7,7 +7,7 @@ namespace App\Application\Dto\Input\Document;
 final class GenerateLogementRepartDocumentInputDto
 {
     public function __construct(
-        public readonly string $pkImmeuble,
-        public readonly string $pkLogement
+        public readonly int $pkImmeuble,
+        public readonly int $pkLogement
     ) {}
 }

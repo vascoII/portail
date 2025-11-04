@@ -7,9 +7,9 @@ namespace App\Application\Dto\Input\Document;
 final class GenerateFuitesDocumentInputDto
 {
     public function __construct(
-        public readonly string $pkImmeuble,
-        public readonly ?string $pkLogement = null,
-        public readonly ?string $pkOccupant = null,
-        public readonly ?string $pkAppareil = null
+        public readonly int $pkImmeuble,
+        public readonly ?int $pkLogement = null,
+        public readonly ?int $pkOccupant = null,
+        public readonly ?int $pkAppareil = null
     ) {}
 }

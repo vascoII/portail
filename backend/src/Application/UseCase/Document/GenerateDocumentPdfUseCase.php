@@ -10,9 +10,12 @@ use App\Application\Service\DataProvider\DocumentDataProviderInterface;
 
 final class GenerateDocumentPdfUseCase
 {
+    public const CALLBACK_PATH = '/api/document/receive';
+
     public function __construct(
         private readonly DocumentDataProviderInterface $documentDataProvider,
-        private readonly AuthServiceInterface $authService
+        private readonly AuthServiceInterface $authService,
+        private readonly string $callBackUrlBase,
     ) {}
 
     /**
@@ -30,37 +33,50 @@ final class GenerateDocumentPdfUseCase
     private function extractParamsFromInput(string $reportType, mixed $inputDto): array
     {
         return match ($reportType) {
-            'FACTURE' => ['PKFACTURE' => $inputDto->pkFacture],
-            'CR_INTERVENTION' => ['WORKORDERNUMBER' => $inputDto->workOrderNumber],
+            'FACTURE' => [
+                'PKFACTURE' => $inputDto->pkFacture, 
+                'CALLBACKURL' => $this->callBackUrlBase . self::CALLBACK_PATH
+            ],
+            'CR_INTERVENTION' => [
+                'WORKORDERNUMBER' => $inputDto->workOrderNumber, 
+                'CALLBACKURL' => $this->callBackUrlBase . self::CALLBACK_PATH
+            ],
             'RELEVE_IMMEUBLE' => [
                 'PKRELEVE' => $inputDto->pkReleve,
+                'CALLBACKURL' => $this->callBackUrlBase . self::CALLBACK_PATH
             ],
             'LIVRET_INTER_SYNTHESE' => array_filter([
                 'PKIMMEUBLE' => $inputDto->pkImmeuble ?? null,
                 'DATE1' => $inputDto->date1,
                 'DATE2' => $inputDto->date2,
+                'CALLBACKURL' => $this->callBackUrlBase . self::CALLBACK_PATH
             ], fn ($val) => null !== $val),
             'LIVRET_INTER_DETAIL' => array_filter([
                 'PKIMMEUBLE' => $inputDto->pkImmeuble ?? null,
                 'DATE1' => $inputDto->date1,
                 'DATE2' => $inputDto->date2,
+                'CALLBACKURL' => $this->callBackUrlBase . self::CALLBACK_PATH
             ], fn ($val) => null !== $val),
             'REPART_LOGEMENT' => [
                 'PKIMMEUBLE' => $inputDto->pkImmeuble,
                 'PKLOGEMENT' => $inputDto->pkLogement,
+                'CALLBACKURL' => $this->callBackUrlBase . self::CALLBACK_PATH
             ],
             'RELEVE_OCCUPANT' => [
                 'PKOCCUPANT' => $inputDto->pkOccupant,
                 'TYPEERC' => 'EAU',
+                'CALLBACKURL' => $this->callBackUrlBase . self::CALLBACK_PATH
             ],
             'REPART_OCCUPANT' => [
                 'PKIMMEUBLE' => $inputDto->pkImmeuble,
                 'PKOCCUPANT' => $inputDto->pkOccupant,
+                'CALLBACKURL' => $this->callBackUrlBase . self::CALLBACK_PATH
             ],
             'NOTE_INFO_MENSUELLE' => array_filter([
                 'PKOCCUPANT' => $inputDto->pkOccupant,
                 'PKIMMEUBLE' => $inputDto->pkImmeuble,
                 'TYPEERC' => $inputDto->typeEnergie,
+                'CALLBACKURL' => $this->callBackUrlBase . self::CALLBACK_PATH
             ], fn ($val) => null !== $val),
             default => []
         };
