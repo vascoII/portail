@@ -1,10 +1,45 @@
 - Créer des validator pour POST/PUT/PATCH/DELETE backend
+-- POST GenerateAnomaliesExcelAction
+-- POST GenerateDysfonctionnementsExcelAction
+-- POST GenerateFuitesExcelAction
+-- POST GenerateImmeubleInterventionsExcelAction
+-- POST GenerateInterventionsExcelAction
+-- POST GenerateFacturePdfAction
+-- POST GenerateImmeubleDetailPdfAction
+-- POST GenerateImmeubleRelevePdfAction
+-- POST GenerateImmeubleSynthesePdfAction
+-- POST GenerateInterventionPdfAction
+-- POST GenerateLogementRepartPdfAction
+-- POST GenerateOccupantNotePdfAction
+-- POST GenerateOccupantRelevePdfAction
+-- POST GenerateOccupantRepartPdfAction
+-- POST ReceiveGeneratedDocumentAction
+-- POST GenerateReleveAction
+-- POST ListWorkOrdersAction
+-- POST PostOccupantAction
+-- POST AddBuildingToOperatorAction
+-- POST CreateOperatorAction
+-- POST RemoveBuildingToOperatorAction
+-- POST LoginAction
+-- POST LoginFromParamAction
+-- POST ResetPasswordAction
+-- POST UpdatePasswordAction
+-- POST CreateTicketAction
+-- PUT  PutOperatorAction
+-- PATCH PatchOccupantAction
+-- PATCH PatchOperatorAction
+-- PATCH PatchCguAction
+-- PATCH PatchEmailAction
+-- PATCH PatchTicketAction
+-- DELETE DeleteOperatorAction
+
 - Valider endPoints backend
 - Delete dead code
 - Ecrire tests backend
 - Validation phpStan
 - Validation php CS fixer
 - Validation Sonar
+
 - Dev frontend 
 -- dashboard
 -- immeubles
