@@ -1,4 +1,4 @@
-- Créer des validator pour POST/PUT/PATCH backend
+- Créer des validator pour POST/PUT/PATCH/DELETE backend
 - Valider endPoints backend
 - Delete dead code
 - Ecrire tests backend
