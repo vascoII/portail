@@ -20,6 +20,7 @@ use App\Application\Dto\Input\Document\GenerateOccupantNoteDocumentInputDto;
 use App\Application\Dto\Input\Document\GenerateOccupantReleveDocumentInputDto;
 use App\Application\Dto\Input\Document\GenerateOccupantRepartDocumentInputDto;
 use App\Application\Dto\Input\Document\GenerateReportByTokenDocumentInputDto;
+use App\Application\Dto\Input\Document\GenerateReportDocumentInputDto;
 use Symfony\Component\HttpFoundation\Request;
 
 final class DocumentInputFactory
@@ -30,100 +31,100 @@ final class DocumentInputFactory
     {
         $this->getData($request);
 
-        $idImmeuble = $this->getInt('idImmeuble');
-        $idLogement = $this->getInt('idLogement', null);
-        $idOccupant = $this->getInt('idOccupant', null);
-        $idAppareil = $this->getInt('idAppareil', null);
+        $immeubleId = $this->getInt('immeubleId');
+        $logementId = $this->getInt('logementId', null);
+        $occupantId = $this->getInt('occupantId', null);
+        $appareilId = $this->getInt('appareilId', null);
 
-        return new GenerateAnomaliesDocumentInputDto($idImmeuble, $idLogement, $idOccupant, $idAppareil);
+        return new GenerateAnomaliesDocumentInputDto($immeubleId, $logementId, $occupantId, $appareilId);
     }
 
     public function createDysfonctionnementsFromRequest(Request $request): GenerateDysfonctionnementsDocumentInputDto
     {
         $this->getData($request);
 
-        $idImmeuble = $this->getInt('idImmeuble');
-        $idLogement = $this->getInt('idLogement', null);
-        $idOccupant = $this->getInt('idOccupant', null);
+        $immeubleId = $this->getInt('immeubleId');
+        $logementId = $this->getInt('logementId', null);
+        $occupantId = $this->getInt('occupantId', null);
 
-        return new GenerateDysfonctionnementsDocumentInputDto($idImmeuble, $idLogement, $idOccupant);
+        return new GenerateDysfonctionnementsDocumentInputDto($immeubleId, $logementId, $occupantId);
     }
 
     public function createFactureFromRequest(Request $request): GenerateFactureDocumentInputDto
     {
         $this->getData($request);
 
-        $idFacture = $this->getInt('idFacture');
+        $factureId = $this->getInt('factureId');
 
-        return new GenerateFactureDocumentInputDto($idFacture);
+        return new GenerateFactureDocumentInputDto($factureId);
     }
 
     public function createFuitesFromRequest(Request $request): GenerateFuitesDocumentInputDto
     {
         $this->getData($request);
 
-        $idImmeuble = $this->getInt('idImmeuble');
-        $idLogement = $this->getInt('idLogement', null);
-        $idOccupant = $this->getInt('idOccupant', null);
-        $idAppareil = $this->getInt('idAppareil', null);
+        $immeubleId = $this->getInt('immeubleId');
+        $logementId = $this->getInt('logementId', null);
+        $occupantId = $this->getInt('occupantId', null);
+        $appareilId = $this->getInt('appareilId', null);
 
-        return new GenerateFuitesDocumentInputDto($idImmeuble, $idLogement, $idOccupant, $idAppareil);
+        return new GenerateFuitesDocumentInputDto($immeubleId, $logementId, $occupantId, $appareilId);
     }
 
     public function createImmeubleDetailFromRequest(Request $request): GenerateImmeubleDetailByImmeubleDocumentInputDto|GenerateImmeubleDetailDocumentInputDto
     {
         $this->getData($request);
 
-        $idImmeuble = $this->getInt('idImmeuble');
+        $immeubleId = $this->getInt('immeubleId');
         $date1 = $this->getString('date1');
         $date2 = $this->getString('date2');
 
-        return is_null($idImmeuble)
+        return is_null($immeubleId)
             ? new GenerateImmeubleDetailDocumentInputDto((string) $date1, (string) $date2)
-            : new GenerateImmeubleDetailByImmeubleDocumentInputDto((int) $idImmeuble, (string) $date1, (string) $date2);
+            : new GenerateImmeubleDetailByImmeubleDocumentInputDto((int) $immeubleId, (string) $date1, (string) $date2);
     }
 
     public function createImmeubleInterventionsFromRequest(Request $request): GenerateInterventionsDocumentInputDto
     {
         $this->getData($request);
 
-        $idImmeuble = $this->getInt('idImmeuble');
-        $idLogement = $this->getInt('idLogement', null);
-        $idOccupant = $this->getInt('idOccupant', null);
+        $immeubleId = $this->getInt('immeubleId');
+        $logementId = $this->getInt('logementId', null);
+        $occupantId = $this->getInt('occupantId', null);
 
-        return new GenerateInterventionsDocumentInputDto($idImmeuble, $idLogement, $idOccupant, null, null);
+        return new GenerateInterventionsDocumentInputDto($immeubleId, $logementId, $occupantId, null, null);
     }
 
     public function createImmeubleReleveFromRequest(Request $request): GenerateImmeubleReleveDocumentInputDto
     {
         $this->getData($request);
 
-        $idReleve = $this->getInt('idReleve');
+        $releveId = $this->getInt('releveId');
 
-        return new GenerateImmeubleReleveDocumentInputDto($idReleve);
+        return new GenerateImmeubleReleveDocumentInputDto($releveId);
     }
 
     public function createImmeubleSyntheseFromRequest(Request $request): GenerateImmeubleSyntheseByImmeubleDocumentInputDto|GenerateImmeubleSyntheseDocumentInputDto
     {
         $this->getData($request);
 
-        $idImmeuble = $this->getInt('idImmeuble');
+        $immeubleId = $this->getInt('immeubleId');
         $date1 = $this->getString('date1');
         $date2 = $this->getString('date2');
 
-        return is_null($idImmeuble)
+        return is_null($immeubleId)
             ? new GenerateImmeubleSyntheseDocumentInputDto((string) $date1, (string) $date2)
-            : new GenerateImmeubleSyntheseByImmeubleDocumentInputDto($idImmeuble, (string) $date1, (string) $date2);
+            : new GenerateImmeubleSyntheseByImmeubleDocumentInputDto($immeubleId, (string) $date1, (string) $date2);
     }
 
     public function createInterventionFromRequest(Request $request): GenerateInterventionDocumentInputDto
     {
         $this->getData($request);
 
-        $idWorkOrder = $this->getInt('idWorkOrder');
+        $workOrderId = $this->getInt('workOrderId');
 
         return new GenerateInterventionDocumentInputDto(
-            (string) $idWorkOrder
+            (string) $workOrderId
         );
     }
 
@@ -131,12 +132,12 @@ final class DocumentInputFactory
     {
         $this->getData($request);
 
-        $idImmeuble = $this->getInt('idImmeuble');
+        $immeubleId = $this->getInt('immeubleId');
         $date1 = $this->getString('date1', null);
         $date2 = $this->getString('date2', null);
 
         return new GenerateInterventionsDocumentInputDto(
-            $idImmeuble,
+            $immeubleId,
             null,
             null,
             (string) $date1,
@@ -148,40 +149,40 @@ final class DocumentInputFactory
     {
         $this->getData($request);
 
-        $idImmeuble = $this->getInt('idImmeuble');
-        $idLogement = $this->getInt('idLogement');
+        $immeubleId = $this->getInt('immeubleId');
+        $logementId = $this->getInt('logementId');
 
-        return new GenerateLogementRepartDocumentInputDto($idImmeuble, $idLogement);
+        return new GenerateLogementRepartDocumentInputDto($immeubleId, $logementId);
     }
 
     public function createOccupantNoteFromRequest(Request $request): GenerateOccupantNoteDocumentInputDto
     {
         $this->getData($request);
 
-        $idImmeuble = $this->getInt('idImmeuble');
-        $idOccupant = $this->getInt('idOccupant');
+        $immeubleId = $this->getInt('immeubleId');
+        $occupantId = $this->getInt('occupantId');
         $typeErc = $this->getString('typeErc');
 
-        return new GenerateOccupantNoteDocumentInputDto($idOccupant, $idImmeuble, (string) $typeErc);
+        return new GenerateOccupantNoteDocumentInputDto($occupantId, $immeubleId, (string) $typeErc);
     }
 
     public function createOccupantReleveFromRequest(Request $request): GenerateOccupantReleveDocumentInputDto
     {
         $this->getData($request);
 
-        $idOccupant = $this->getInt('idOccupant');
+        $occupantId = $this->getInt('occupantId');
 
-        return new GenerateOccupantReleveDocumentInputDto($idOccupant);
+        return new GenerateOccupantReleveDocumentInputDto($occupantId);
     }
 
     public function createOccupantRepartFromRequest(Request $request): GenerateOccupantRepartDocumentInputDto
     {
         $this->getData($request);
 
-        $idImmeuble = $this->getInt('idImmeuble');
-        $idOccupant = $this->getInt('idOccupant');
+        $immeubleId = $this->getInt('immeubleId');
+        $occupantId = $this->getInt('occupantId');
 
-        return new GenerateOccupantRepartDocumentInputDto($idImmeuble, $idOccupant);
+        return new GenerateOccupantRepartDocumentInputDto($immeubleId, $occupantId);
     }
 
     public function createReportByTokenFromRequest(Request $request): GenerateReportByTokenDocumentInputDto
@@ -189,6 +190,16 @@ final class DocumentInputFactory
         return new GenerateReportByTokenDocumentInputDto(
             (string) $request->attributes->get('tokenId')
         );
+    }
+
+    public function createDocumentContentFromRequest(Request $request): GenerateReportDocumentInputDto
+    {
+        $this->getData($request);
+
+        $id = $this->getInt('id');
+        $content = $this->getContent('content');
+
+        return new GenerateReportDocumentInputDto($id, $content);
     }
 
     private function getData(Request $request): void
@@ -213,5 +224,12 @@ final class DocumentInputFactory
         return array_key_exists($key, $this->data) && null !== $this->data[$key]
             ? (string) $this->data[$key]
             : '';
+    }
+
+    private function getContent(mixed $content): mixed
+    {
+        return array_key_exists($content, $this->data) && null !== $this->data[$content]
+            ? $this->data[$content]
+            : null;
     }
 }
