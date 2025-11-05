@@ -136,7 +136,7 @@ const LoginPage: React.FC = () => {
               <p className="text-sm text-gray-600">
                 Contactez le support technique au{" "}
                 <a
-                  href="tel:+33123456789"
+                  href="tel:0146012067"
                   className="font-medium text-blue-600 hover:text-blue-500"
                 >
                   01 23 45 67 89
