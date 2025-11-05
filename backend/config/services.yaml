@@ -312,6 +312,11 @@ services:
       parent: App\Infrastructure\Service\Hydrator\Hydrator
       autowire: true
       autoconfigure: true
+  # ReleveHydrator
+  App\Infrastructure\Service\Hydrator\ReleveHydrator:
+      parent: App\Infrastructure\Service\Hydrator\Hydrator
+      autowire: true
+      autoconfigure: true    
   # SecurityHydrator
   App\Infrastructure\Service\Hydrator\SecurityHydrator:
       parent: App\Infrastructure\Service\Hydrator\Hydrator

@@ -35,46 +35,66 @@ final class ReleveInputFactory
         $telephone = $this->getString('telephone');
         $email = $this->getString('email');
 
+        $cuisine_ef_num = $this->getString('cuisine_ef_num', null);
         $cuisine_ef = $this->getInt('cuisine_ef', null);
+        $salleDeBains_ef_num = $this->getString('salleDeBains_ef_num', null);
         $salleDeBains_ef = $this->getInt('salleDeBains_ef', null);
+        $wc_ef_num = $this->getString('wc_ef_num', null);
         $wc_ef = $this->getInt('wc_ef', null);
-        $autreEmplacement_ef = $this->getString('autreEmplacement_ef', null);
+        $autreEmplacement_ef_loc = $this->getString('autreEmplacement_ef_loc', null);
+        $autreEmplacement_ef_num = $this->getString('autreEmplacement_ef_num', null);
+        $autreEmplacement_ef = $this->getInt('autreEmplacement_ef', null);
 
-        $cuisine_ec = $this->getString('cuisine_ec', null);
+        $cuisine_ec_num = $this->getString('cuisine_ec_num', null);
+        $cuisine_ec = $this->getInt('cuisine_ec', null);
+        $salleDeBains_ec_num = $this->getString('salleDeBains_ec_num', null);
         $salleDeBains_ec = $this->getInt('salleDeBains_ec', null);
+        $wc_ec_num = $this->getString('wc_ec_num', null);
         $wc_ec = $this->getInt('wc_ec', null);
-        $autreEmplacement_ec = $this->getInt('autreEmplacement_ef', null);
+        $autreEmplacement_ec_loc = $this->getString('autreEmplacement_ec_loc', null);
+        $autreEmplacement_ec_num = $this->getString('autreEmplacement_ec_num', null);
+        $autreEmplacement_ec = $this->getInt('autreEmplacement_ec', null);
 
         // Relevés des compteurs
         $eauFroide = new ReleveCompteursDto(
-            $cuisine_ef,
-            $salleDeBains_ef,
-            $wc_ef,
-            $autreEmplacement_ef
+            cuisineNum: $cuisine_ef_num,
+            cuisine: $cuisine_ef,
+            salleDeBainsNum: $salleDeBains_ef_num,
+            salleDeBains: $salleDeBains_ef,
+            wcNum: $wc_ef_num,
+            wc: $wc_ef,
+            autreEmplacementLoc: $autreEmplacement_ef_loc,
+            autreEmplacementNum: $autreEmplacement_ef_num,
+            autreEmplacement: $autreEmplacement_ef 
         );
 
         $eauChaude = new ReleveCompteursDto(
-            $cuisine_ec,
-            $salleDeBains_ec,
-            $wc_ec,
-            $autreEmplacement_ec
+            cuisineNum: $cuisine_ec_num,
+            cuisine: $cuisine_ec,
+            salleDeBainsNum: $salleDeBains_ec_num,
+            salleDeBains: $salleDeBains_ec,
+            wcNum: $wc_ec_num,
+            wc: $wc_ec,
+            autreEmplacementLoc: $autreEmplacement_ec_loc,
+            autreEmplacementNum: $autreEmplacement_ec_num,
+            autreEmplacement: $autreEmplacement_ec 
         );
 
         return new GenerateReleveInputDto(
-            $numeroImmeuble,
-            $batiment,
-            $escalier,
-            $etage,
-            $datePassage,
-            $prenom,
-            $nom,
-            $adresse,
-            $codePostal,
-            $ville,
-            $telephone,
-            $email,
-            $eauFroide,
-            $eauChaude
+            numeroImmeuble: $numeroImmeuble,
+            adresse: $adresse,
+            batiment: $batiment,  
+            codePostal: $codePostal,
+            datePassage: $datePassage,
+            eauChaude: $eauChaude,
+            eauFroide: $eauFroide,
+            email: $email,
+            escalier: $escalier,
+            etage: $etage,
+            nom: $nom,
+            prenom: $prenom,
+            telephone: $telephone,
+            ville: $ville
         );
     }
 

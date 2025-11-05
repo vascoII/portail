@@ -6,11 +6,15 @@ namespace App\Application\Dto\Input\Releve;
 
 final class ReleveCompteursDto
 {
-    public ?string $autreEmplacement; // description si autre emplacement
-
-    public ?int $cuisine;           // m³
-
-    public ?int $salleDeBains;      // m³
-
-    public ?int $wc;                // m³
+    public function __construct(
+        public readonly ?string $cuisineNum,
+        public readonly ?int $cuisine,
+        public readonly ?string $salleDeBainsNum,
+        public readonly ?int $salleDeBains,
+        public readonly ?string $wcNum,
+        public readonly ?int $wc,
+        public readonly ?string $autreEmplacementLoc,
+        public readonly ?string $autreEmplacementNum,
+        public readonly ?int $autreEmplacement
+    ) {}
 }

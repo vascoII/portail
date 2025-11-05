@@ -27,7 +27,7 @@ final class GenerateReleveAction extends AbstractAction implements ActionInterfa
     public function __invoke(Request $request, array $args = []): Response
     {
         $input = $this->inputFactory->generateReleveFromRequest($request);
-        dd($input);
+
         $output = $this->useCase->execute($input);
 
         return $this->responder->respond($output);
