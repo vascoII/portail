@@ -4,3 +4,4 @@ export * from "./logement";
 export * from "./consumption";
 export * from "./intervention";
 export * from "./common";
+export * from "./releve";

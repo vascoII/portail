@@ -1,7 +1,14 @@
+// Types pour les réponses API
 export interface ApiResponse<T> {
   data: T;
-  message?: string;
   success: boolean;
+  message?: string;
+}
+
+export interface ApiError {
+  message: string;
+  code: string;
+  details?: Record<string, any>;
 }
 
 export interface PaginatedResponse<T> {

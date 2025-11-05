@@ -1,55 +1,39 @@
 "use client";
 
-import React, { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useAuth } from "@/hooks/useAuth";
-import LoginForm from "@/components/Forms/LoginForm";
-import { LoginFormData } from "@/src/types/auth";
-import { useDataStore } from "@/store/dataStore";
+import ReleveForm from "@/components/Forms/ReleveForm";
+import { ReleveFormData } from "@/src/types/releve";
 
-const LoginPage: React.FC = () => {
-  const router = useRouter();
-  const { login, isLoading, error, isAuthenticated } = useAuth();
-  const { loginData } = useDataStore();
+const RelevePage: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState(false);
 
-  // Rediriger si déjà connecté
-  useEffect(() => {
-    if (isAuthenticated) {
-      router.push("/dashboard");
-    }
-  }, [isAuthenticated, router]);
-
-  // Cleanup effect: ensure we're properly logged out when visiting login page
-  useEffect(() => {
-    // If we have loginData but no valid authentication, clear it
-    if (loginData && !isAuthenticated) {
-      console.log("Clearing stale login data on login page");
-      // The useAuth hook will handle the cleanup
-    }
-  }, [loginData, isAuthenticated]);
-
-  const handleLogin = async (credentials: LoginFormData): Promise<void> => {
+  const handleReleveSubmit = async (data: ReleveFormData): Promise<void> => {
+    setIsLoading(true);
+    setError(null);
+    setSuccess(false);
     try {
-      await login(credentials);
-      // La redirection sera gérée par useEffect
-    } catch (error) {
-      // L'erreur est gérée par le hook useAuth
-      console.error("Login failed:", error);
+      const response = await fetch("/api/releve/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Erreur lors de l'envoi du relevé.");
+      }
+
+      setSuccess(true);
+    } catch (err: any) {
+      setError(err.message || "Une erreur est survenue.");
+    } finally {
+      setIsLoading(false);
     }
   };
-
-  if (isAuthenticated) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-2 text-gray-600">Redirection en cours...</p>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -63,7 +47,7 @@ const LoginPage: React.FC = () => {
       <div className="sm:mx-auto sm:w-full sm:max-w-md" style={{ zIndex: 1 }}>
         {/* Logo */}
         <div className="flex justify-center">
-          <Link href="/dashboard" className="flex items-center">
+          <Link href="/" className="flex items-center">
             <div className="flex-shrink-0">
               <Image
                 width={0}
@@ -88,10 +72,11 @@ const LoginPage: React.FC = () => {
 
         {/* Titre */}
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          Connexion
+          Transmettre votre relevé de compteurs
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
-          Accédez à votre espace client Techem
+          Le releveur s’est présenté à votre résidence mais n’a pas pu accéder à votre logement pour le relevé de vos compteurs d’eau.
+          Vous avez la possibilité de relever et nous transmettre via le formulaire ci-dessous votre consommation d'eau.
         </p>
       </div>
 
@@ -101,23 +86,7 @@ const LoginPage: React.FC = () => {
       >
         <div className="bg-white py-8 px-4 shadow-xl sm:rounded-lg sm:px-10">
           {/* Formulaire de connexion */}
-          <LoginForm
-            onSubmit={handleLogin}
-            loading={isLoading}
-            error={error?.message || null}
-          />
-
-          {/* Debug: Show stored login data (remove in production) */}
-          {loginData && (
-            <div className="mt-4 p-4 bg-gray-100 rounded-lg">
-              <h3 className="text-sm font-medium text-gray-700 mb-2">
-                Debug: Login Data Stored
-              </h3>
-              <pre className="text-xs text-gray-600 overflow-auto max-h-32">
-                {JSON.stringify(loginData, null, 2)}
-              </pre>
-            </div>
-          )}
+          <ReleveForm onSubmit={handleReleveSubmit} loading={isLoading} error={error} success={success} />
 
           {/* Informations supplémentaires */}
           <div className="mt-6">
@@ -127,7 +96,7 @@ const LoginPage: React.FC = () => {
               </div>
               <div className="relative flex justify-center text-sm">
                 <span className="px-2 bg-white text-gray-500">
-                  Besoin d'aide ?
+                  Besoin d&apos;aide ?
                 </span>
               </div>
             </div>
@@ -187,4 +156,4 @@ const LoginPage: React.FC = () => {
   );
 };
 
-export default LoginPage;
+export default RelevePage;
