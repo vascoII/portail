@@ -75,8 +75,8 @@ const RelevePage: React.FC = () => {
           Transmettre votre relevé de compteurs
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
-          Le releveur s’est présenté à votre résidence mais n’a pas pu accéder à votre logement pour le relevé de vos compteurs d’eau.
-          Vous avez la possibilité de relever et nous transmettre via le formulaire ci-dessous votre consommation d'eau.
+          Le releveur s&apos;est présenté à votre résidence mais n&apos;a pas pu accéder à votre logement pour le relevé de vos compteurs d&apos;eau.
+          Vous avez la possibilité de relever et nous transmettre via le formulaire ci-dessous votre consommation d&apos;eau.
         </p>
       </div>
 
