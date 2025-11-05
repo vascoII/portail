@@ -122,7 +122,7 @@ services:
 
   mercure:
     image: dunglas/mercure
-    container_name: mercure_local
+    container_name: mercure
     ports:
       - "9090:80"
     environment:
@@ -130,6 +130,7 @@ services:
       MERCURE_PUBLISHER_JWT_KEY: '!ChangeMe!'
       MERCURE_SUBSCRIBER_JWT_KEY: '!ChangeMe!'
       MERCURE_EXTRA_DIRECTIVES: |
+        metrics
         cors_origins http://localhost:3000
         anonymous
     networks:

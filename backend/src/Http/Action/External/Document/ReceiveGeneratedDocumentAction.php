@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace App\Http\Action\External\Document;
 
 use App\Http\Responder\ResponderInterface;
+use App\Application\Factory\Document\DocumentInputFactory;
+use App\Application\UseCase\External\GetDocumentGeneratedUseCase;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
-use Symfony\Component\Mercure\HubInterface;
-use Symfony\Component\Mercure\Update;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[AsController]
@@ -18,10 +18,12 @@ use Symfony\Component\Routing\Annotation\Route;
 final class ReceiveGeneratedDocumentAction
 {
     public function __construct(
-        private readonly ResponderInterface $responder
+        private readonly ResponderInterface $responder,
+        private readonly GetDocumentGeneratedUseCase $useCase,
+        private readonly DocumentInputFactory $inputFactory 
     ) {}
 
-    public function __invoke(Request $request, HubInterface $hub): Response
+    public function __invoke(Request $request): Response
     {
         $data = json_decode($request->getContent(), true);
 
@@ -29,15 +31,9 @@ final class ReceiveGeneratedDocumentAction
             return new JsonResponse(['error' => 'Invalid payload'], Response::HTTP_BAD_REQUEST);
         }
 
-        // Publier l'événement Mercure
-        $documentId = $data['id'];
-        $update = new Update(
-            "document/{$documentId}",
-            json_encode(['status' => 'ready', 'id' => $documentId])
-        );
+        $input = $this->inputFactory->createDocumentContentFromRequest($request);
+        $output = $this->useCase->execute($input);
 
-        $hub->publish($update);
-
-        return new JsonResponse(['status' => 'OK'], Response::HTTP_OK);
+        return $this->responder->respond($output);
     }
 }

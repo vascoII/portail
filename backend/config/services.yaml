@@ -347,3 +347,9 @@ services:
   App\Application\UseCase\Document\GenerateDocumentPdfUseCase:
     arguments:
       $callBackUrlBase: "%env(CALLBACK_URL_BASE)%"
+
+  # DocumentStorage
+  App\Infrastructure\Service\Storage\DocumentStorage:    
+    arguments:
+      $storagePath: "%env(DOCUMENT_STORAGE_PATH)%"
+      $publicUrlPrefix: "%env(DOCUMENT_URL_PREFIX)%"
