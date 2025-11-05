@@ -1,6 +1,21 @@
 version: "3.9"
 
 services:
+  nginx:
+    image: nginx:stable-alpine
+    container_name: nginx_local
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./backend:/var/www/backend:ro
+      - ./storage/documents:/var/www/storage/documents:ro
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
   backend:
     image: php:8.4-fpm
     container_name: backend_local
@@ -8,6 +23,7 @@ services:
     volumes:
       - ./backend:/var/www/backend
       - ./backend/vendor:/var/www/backend/vendor
+      - ./storage/documents:/var/www/storage/documents
     depends_on:
       - db
       - redis
@@ -21,6 +37,8 @@ services:
       JWT_EXPIRATION: "3600"
       SOAP_WSDL_URL: "http://techn5292.eu.techem.corp:8083/Main.asmx?wsdl"
       CALLBACK_URL_BASE: "http://techn5274:83"
+      DOCUMENT_STORAGE_PATH: "/var/www/storage/documents"
+      DOCUMENT_URL_PREFIX: "/documents"
     ports:
       - "8000:8000"
     command: php -S 0.0.0.0:8000 -t public
