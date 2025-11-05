@@ -5,9 +5,47 @@ meta {
 }
 
 post {
-  url: {{localhost_backend}}/api/releve/create
-  body: none
+  url: {{localhost_backend}}/api/releve/generate
+  body: json
   auth: inherit
+}
+
+body:json {
+  {
+    "numeroImmeuble": "numeroImmeuble",
+    "batiment": "batiment",
+    "escalier": "escalier",
+    "etage": "etage",
+    "datePassage": "01/01/2025",
+  
+    "prenom": "prenom",
+    "nom": "nom",
+    "adresse": "adresse",
+    "codePostal": "codePostal",
+    "ville": "ville",
+    "telephone": "telephone",
+    "email": "email",
+  
+    "cuisine_ef_num": "cuisine_ef_num",
+    "cuisine_ef": 1,
+    "salleDeBains_ef_num": "salleDeBains_ef_num",
+    "salleDeBains_ef": 2,
+    "wc_ef_num": "wc_ef_num",
+    "wc_ef": 3,
+    "autreEmplacement_ef_loc": "autreEmplacement_ef_loc",
+    "autreEmplacement_ef_num": "autreEmplacement_ef_num",
+    "autreEmplacement_ef": 4,
+  
+    "cuisine_ec_num": "cuisine_ec_num",
+    "cuisine_ec": 5,
+    "salleDeBains_ec_num": "salleDeBains_ec_num",
+    "salleDeBains_ec": 6,
+    "wc_ec_num": "wc_ec_num",
+    "wc_ec": 7,
+    "autreEmplacement_ec_loc": "autreEmplacement_ec_loc",
+    "autreEmplacement_ec_num": "autreEmplacement_ec_num",
+    "autreEmplacement_ec": 8
+  }
 }
 
 settings {

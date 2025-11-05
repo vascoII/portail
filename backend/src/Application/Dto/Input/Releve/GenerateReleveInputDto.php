@@ -6,34 +6,22 @@ namespace App\Application\Dto\Input\Releve;
 
 final class GenerateReleveInputDto
 {
-    public string $adresse;
+    public function __construct(
+        public readonly string $numeroImmeuble,
+        public readonly \DateTimeImmutable $datePassage,
+        public readonly string $prenom,
+        public readonly string $nom,
+        public readonly string $adresse,
+        public readonly string $codePostal,
+        public readonly string $ville,
+        public readonly string $telephone,
+        public readonly string $email,
 
-    public ?string $batiment;              // Bâtiment (optionnel)
-
-    public string $codePostal;
-
-    public \DateTimeImmutable $datePassage; // Date de passage en relevé
-
-    public ReleveCompteursDto $eauChaude;
-
-    // Relevés des compteurs
-    public ReleveCompteursDto $eauFroide;
-
-    public string $email;
-
-    public ?string $escalier;              // Escalier (optionnel)
-
-    public ?string $etage;                 // Étage (optionnel)
-
-    public string $nom;
-
-    // Informations sur l'immeuble
-    public string $numeroImmeuble;         // N°
-
-    // Informations sur l'occupant
-    public string $prenom;
-
-    public string $telephone;
-
-    public string $ville;
+        public readonly ?string $batiment,
+        public readonly ?string $escalier,
+        public readonly ?string $etage,
+        
+        public readonly ReleveCompteursDto $eauChaude,
+        public readonly ReleveCompteursDto $eauFroide,
+    ) {}
 }

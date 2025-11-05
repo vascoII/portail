@@ -6,6 +6,7 @@ namespace App\Application\UseCase\Releve;
 
 use App\Application\Dto\Output\Shared\SuccessOutputDto;
 use App\Application\Service\DataProvider\ReleveDataProviderInterface;
+use App\Application\Dto\Input\Releve\GenerateReleveInputDto;
 
 final class GenerateReleveUseCase
 {
@@ -13,8 +14,8 @@ final class GenerateReleveUseCase
         private readonly ReleveDataProviderInterface $serviceDataProvider
     ) {}
 
-    public function execute(): SuccessOutputDto
+    public function execute(GenerateReleveInputDto $inputDto): SuccessOutputDto
     {
-        return $this->serviceDataProvider->listCasesService();
+        return $this->serviceDataProvider->generateReleveService($inputDto);
     }
 }
