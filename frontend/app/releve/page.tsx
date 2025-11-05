@@ -108,7 +108,7 @@ const RelevePage: React.FC = () => {
                   href="tel:0146012067"
                   className="font-medium text-blue-600 hover:text-blue-500"
                 >
-                  01 23 45 67 89
+                  01 46 01 20 67
                 </a>
               </p>
             </div>
