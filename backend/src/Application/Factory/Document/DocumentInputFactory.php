@@ -197,9 +197,9 @@ final class DocumentInputFactory
         $this->getData($request);
 
         $id = $this->getInt('id');
-        $content = $this->getContent('content');
+        $pdfContent = $this->getContent('content');
 
-        return new GenerateReportDocumentInputDto($id, $content);
+        return new GenerateReportDocumentInputDto($id, $pdfContent);
     }
 
     private function getData(Request $request): void

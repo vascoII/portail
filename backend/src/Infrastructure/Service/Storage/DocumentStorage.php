@@ -26,11 +26,21 @@ final class DocumentStorage implements DocumentStorageInterface
     {
         $fullPath = $this->storagePath . '/document_' . $inputDto->id . '.pdf';
 
+        if (empty($inputDto->pdfContent)) {
+            throw new \RuntimeException('Le contenu PDF est vide.');
+        }
+
+        if ($this->isValidBase64($inputDto->pdfContent)) {
+            $binaryContent = base64_decode($inputDto->pdfContent);
+        } else {
+            $binaryContent = $inputDto->pdfContent; // binaire pur
+        }
+
         // Sauvegarde le fichier
-        $this->filesystem->dumpFile($fullPath, $inputDto->content);
+        $this->filesystem->dumpFile($fullPath, $binaryContent);
 
         // Récupère la taille du fichier
-        $length = (string) strlen($inputDto->content);
+        $length = (string) strlen($binaryContent);
 
         // Construit l'URL publique si exposée via nginx ou autre
         $url = $this->publicUrlPrefix . '/document_' . $inputDto->id . '.pdf';
@@ -41,5 +51,12 @@ final class DocumentStorage implements DocumentStorageInterface
             url: $url,
             length: $length
         );
+    }
+
+    private function isValidBase64(string $data): bool
+    {
+        $decoded = base64_decode($data, true);
+
+        return false !== $decoded && base64_encode($decoded) === $data;
     }
 }

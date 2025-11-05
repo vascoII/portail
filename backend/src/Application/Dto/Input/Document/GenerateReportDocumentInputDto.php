@@ -8,6 +8,6 @@ final class GenerateReportDocumentInputDto
 {
     public function __construct(
         public readonly int $id,
-        public readonly mixed $content
+        public readonly mixed $pdfContent
     ) {}
 }
