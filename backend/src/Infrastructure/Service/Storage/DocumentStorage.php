@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Service\Storage;
 
-use Symfony\Component\Filesystem\Filesystem;
-use App\Application\Service\Storage\DocumentStorageInterface;
 use App\Application\Dto\Input\Document\GenerateReportDocumentInputDto;
 use App\Application\Dto\Output\External\StoredDocumentOutputDto;
+use App\Application\Service\Storage\DocumentStorageInterface;
+use Symfony\Component\Filesystem\Filesystem;
 
 final class DocumentStorage implements DocumentStorageInterface
 {
     private Filesystem $filesystem;
 
     public function __construct(
-        private string $storagePath, 
+        private string $storagePath,
         private string $publicUrlPrefix
     ) {
         $this->storagePath = rtrim($storagePath, '/');

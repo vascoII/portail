@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Service\DataSource;
 
-use App\Application\Service\DataSource\ReleveDataSourceInterface;
 use App\Application\Dto\Input\Releve\GenerateReleveInputDto;
+use App\Application\Service\DataSource\ReleveDataSourceInterface;
 use App\Infrastructure\Service\Hydrator\ReleveHydrator;
 
 final class ReleveSoap extends Soap implements ReleveDataSourceInterface

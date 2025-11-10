@@ -16,11 +16,9 @@ final class GenerateReleveInputDto
         public readonly string $ville,
         public readonly string $telephone,
         public readonly string $email,
-
         public readonly ?string $batiment,
         public readonly ?string $escalier,
         public readonly ?string $etage,
-        
         public readonly ReleveCompteursDto $eauChaude,
         public readonly ReleveCompteursDto $eauFroide,
     ) {}

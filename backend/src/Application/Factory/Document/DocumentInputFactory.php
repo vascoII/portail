@@ -48,6 +48,16 @@ final class DocumentInputFactory
         return new GenerateAnomaliesDocumentInputDto($immeubleId, $logementId, $occupantId, $appareilId);
     }
 
+    public function createDocumentContentFromRequest(Request $request): GenerateReportDocumentInputDto
+    {
+        $this->getData($request);
+
+        $id = $this->getInt('id');
+        $pdfContent = $this->getContent('content');
+
+        return new GenerateReportDocumentInputDto($id, $pdfContent);
+    }
+
     public function createDysfonctionnementsFromRequest(Request $request): GenerateDysfonctionnementsDocumentInputDto
     {
         $this->getData($request);
@@ -223,40 +233,6 @@ final class DocumentInputFactory
         );
     }
 
-    public function createDocumentContentFromRequest(Request $request): GenerateReportDocumentInputDto
-    {
-        $this->getData($request);
-
-        $id = $this->getInt('id');
-        $pdfContent = $this->getContent('content');
-
-        return new GenerateReportDocumentInputDto($id, $pdfContent);
-    }
-
-    private function getData(Request $request): void
-    {
-        $raw = (string) $request->getContent();
-        $this->data = json_decode($raw, true);
-
-        if (! is_array($this->data)) {
-            $this->data = [];
-        }
-    }
-
-    private function getInt(string $key): ?int
-    {
-        return array_key_exists($key, $this->data) && null !== $this->data[$key]
-            ? (int) $this->data[$key]
-            : null;
-    }
-
-    private function getString(string $key, ?string $default = ''): ?string
-    {
-        return array_key_exists($key, $this->data) && null !== $this->data[$key]
-            ? (string) $this->data[$key]
-            : $default;
-    }
-
     private function convertToExcelValidationFormat(array $data): array
     {
         $converted = [];
@@ -278,6 +254,7 @@ final class DocumentInputFactory
         if (isset($data['date2'])) {
             $converted['date2'] = $data['date2'];
         }
+
         return $converted;
     }
 
@@ -308,6 +285,7 @@ final class DocumentInputFactory
         if (isset($data['date2'])) {
             $converted['date2'] = $data['date2'];
         }
+
         return $converted;
     }
 
@@ -316,5 +294,29 @@ final class DocumentInputFactory
         return array_key_exists($content, $this->data) && null !== $this->data[$content]
             ? $this->data[$content]
             : null;
+    }
+
+    private function getData(Request $request): void
+    {
+        $raw = (string) $request->getContent();
+        $this->data = json_decode($raw, true);
+
+        if (! is_array($this->data)) {
+            $this->data = [];
+        }
+    }
+
+    private function getInt(string $key): ?int
+    {
+        return array_key_exists($key, $this->data) && null !== $this->data[$key]
+            ? (int) $this->data[$key]
+            : null;
+    }
+
+    private function getString(string $key, ?string $default = ''): ?string
+    {
+        return array_key_exists($key, $this->data) && null !== $this->data[$key]
+            ? (string) $this->data[$key]
+            : $default;
     }
 }

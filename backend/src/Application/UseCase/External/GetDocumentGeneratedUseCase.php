@@ -7,8 +7,8 @@ namespace App\Application\UseCase\External;
 use App\Application\Dto\Input\Document\GenerateReportDocumentInputDto;
 use App\Application\Dto\Output\External\GeneratedDocumentOutputDto;
 use App\Application\Service\Builder\PdfReportBuilderInterface;
-use App\Application\Service\Storage\DocumentStorageInterface;
 use App\Application\Service\Publisher\PublisherInterface;
+use App\Application\Service\Storage\DocumentStorageInterface;
 
 final class GetDocumentGeneratedUseCase
 {
@@ -18,12 +18,12 @@ final class GetDocumentGeneratedUseCase
         private readonly PublisherInterface $mercurePublisher
     ) {}
 
-    public function execute(GenerateReportDocumentInputDto $inputDto): GeneratedDocumentOutputDto 
+    public function execute(GenerateReportDocumentInputDto $inputDto): GeneratedDocumentOutputDto
     {
         $stored = $this->serviceStorage->storeDocumentReportService($inputDto);
-        
+
         $this->mercurePublisher->publish($stored);
-        
+
         return new GeneratedDocumentOutputDto(
             id: $inputDto->id,
             filename: $stored->filename,

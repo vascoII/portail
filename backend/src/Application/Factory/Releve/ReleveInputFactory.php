@@ -65,7 +65,7 @@ final class ReleveInputFactory
             wc: $wc_ef,
             autreEmplacementLoc: $autreEmplacement_ef_loc,
             autreEmplacementNum: $autreEmplacement_ef_num,
-            autreEmplacement: $autreEmplacement_ef 
+            autreEmplacement: $autreEmplacement_ef
         );
 
         $eauChaude = new ReleveCompteursDto(
@@ -77,13 +77,13 @@ final class ReleveInputFactory
             wc: $wc_ec,
             autreEmplacementLoc: $autreEmplacement_ec_loc,
             autreEmplacementNum: $autreEmplacement_ec_num,
-            autreEmplacement: $autreEmplacement_ec 
+            autreEmplacement: $autreEmplacement_ec
         );
 
         return new GenerateReleveInputDto(
             numeroImmeuble: $numeroImmeuble,
             adresse: $adresse,
-            batiment: $batiment,  
+            batiment: $batiment,
             codePostal: $codePostal,
             datePassage: $datePassage,
             eauChaude: $eauChaude,

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Service\DataProvider;
 
-use App\Application\Dto\Output\Shared\SuccessOutputDto;
 use App\Application\Dto\Input\Releve\GenerateReleveInputDto;
+use App\Application\Dto\Output\Shared\SuccessOutputDto;
 use App\Application\Service\DataProvider\ReleveDataProviderInterface;
 use App\Application\Service\DataSource\ReleveDataSourceInterface;
 use App\Application\Service\Transformer\ReleveTransformerInterface;

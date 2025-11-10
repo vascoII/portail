@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Action\External\Document;
 
-use App\Http\Responder\ResponderInterface;
 use App\Application\Factory\Document\DocumentInputFactory;
 use App\Application\UseCase\External\GetDocumentGeneratedUseCase;
+use App\Http\Responder\ResponderInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,7 +20,7 @@ final class ReceiveGeneratedDocumentAction
     public function __construct(
         private readonly ResponderInterface $responder,
         private readonly GetDocumentGeneratedUseCase $useCase,
-        private readonly DocumentInputFactory $inputFactory 
+        private readonly DocumentInputFactory $inputFactory
     ) {}
 
     public function __invoke(Request $request): Response

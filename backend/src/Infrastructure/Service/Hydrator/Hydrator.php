@@ -27,7 +27,7 @@ class Hydrator
             'PKFACTURE',
             'PKRELEVE',
             'CALLBACKURL',
-            'TYPEERC'
+            'TYPEERC',
         ];
 
         $filteredKeys = array_filter($keys, fn ($key) => isset($params[$key]) && ('' !== $params[$key] || '0' === $params[$key]));
