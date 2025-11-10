@@ -8,9 +8,9 @@ use App\Application\Validator\Input\InputValidatorInterface;
 use App\Domain\Exception\DomainExceptionFactory;
 use App\Http\Action\External\Releve\GenerateReleveAction;
 
-final class GenerateReleveInputValidator implements InputValidatorInterface
+final class ReleveInputValidator implements InputValidatorInterface
 {
-    public function validate(array $data): void
+    public function validateGenerateReleveInput(array $data): void
     {
         $errors = [];
 
