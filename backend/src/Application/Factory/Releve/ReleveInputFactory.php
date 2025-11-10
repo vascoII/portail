@@ -6,7 +6,7 @@ namespace App\Application\Factory\Releve;
 
 use App\Application\Dto\Input\Releve\GenerateReleveInputDto;
 use App\Application\Dto\Input\Releve\ReleveCompteursDto;
-use App\Application\Validator\Input\Releve\GenerateReleveInputValidator;
+use App\Application\Validator\Input\Releve\ReleveInputValidator;
 use Symfony\Component\HttpFoundation\Request;
 
 final class ReleveInputFactory
@@ -14,7 +14,7 @@ final class ReleveInputFactory
     private array $data;
 
     public function __construct(
-        private GenerateReleveInputValidator $validator
+        private ReleveInputValidator $validator
     ) {}
 
     public function generateReleveFromRequest(Request $request): GenerateReleveInputDto
@@ -108,7 +108,7 @@ final class ReleveInputFactory
         }
 
         $this->data = $data;
-        // $this->validator->validate($this->data);
+        $this->validator->validateGenerateReleveInput($this->data);
     }
 
     private function getDate(string $key): ?\DateTimeImmutable

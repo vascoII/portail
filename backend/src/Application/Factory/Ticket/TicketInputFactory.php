@@ -5,10 +5,15 @@ declare(strict_types=1);
 namespace App\Application\Factory\Ticket;
 
 use App\Application\Dto\Input\Ticket\CreateTicketInterInputDto;
+use App\Application\Validator\Input\Ticket\TicketInputValidator;
 use Symfony\Component\HttpFoundation\Request;
 
 final class TicketInputFactory
 {
+    public function __construct(
+        private TicketInputValidator $validator
+    ) {}
+
     public function createGetByIdFromRequest(Request $request, array $args = []): CreateTicketInterInputDto
     {
         $raw = (string) $request->getContent();
@@ -17,6 +22,8 @@ final class TicketInputFactory
         if (! is_array($data)) {
             $data = [];
         }
+
+        $this->validator->validateCreateTicketInput($data);
 
         $pkLogement = array_key_exists('pkLogement', $data) && null !== $data['pkLogement']
           ? (int) $data['pkLogement']

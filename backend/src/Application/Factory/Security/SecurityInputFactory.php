@@ -13,10 +13,15 @@ use App\Application\Dto\Input\Security\ResetOrCreateInputDto;
 use App\Application\Dto\Input\Security\ResetPasswordFromPKUserInputDto;
 use App\Application\Dto\Input\Security\ResetPasswordInputDto;
 use App\Application\Dto\Input\Security\UpdatePasswordInputDto;
+use App\Application\Validator\Input\Security\SecurityInputValidator;
 use Symfony\Component\HttpFoundation\Request;
 
 final class SecurityInputFactory
 {
+    public function __construct(
+        private SecurityInputValidator $validator
+    ) {}
+
     public function createCreateFromRequest(Request $request): CreateInputDto
     {
         return new CreateInputDto();
@@ -42,12 +47,14 @@ final class SecurityInputFactory
             $data = [];
         }
 
+        $this->validator->validateLoginInput($data);
+
         $username = array_key_exists('username', $data) && null !== $data['username']
-          ? (string) $data['username']
-          : '';
+            ? (string) $data['username']
+            : '';
         $password = array_key_exists('password', $data) && null !== $data['password']
-          ? (string) $data['password']
-          : '';
+            ? (string) $data['password']
+            : '';
 
         return new LoginInputDto($username, $password);
     }
@@ -69,7 +76,12 @@ final class SecurityInputFactory
 
     public function createResetPasswordFromRequest(Request $request): ResetPasswordInputDto
     {
-        return new ResetPasswordInputDto($request->query->get('email'));
+        $email = $request->query->get('email');
+
+        $data = ['email' => $email];
+        $this->validator->validateResetPasswordInput($data);
+
+        return new ResetPasswordInputDto($email);
     }
 
     public function createUpdateEmailFromPKUserFromRequest(Request $request): PatchEmailInputDto
@@ -82,8 +94,8 @@ final class SecurityInputFactory
         }
 
         $email = array_key_exists('email', $data) && null !== $data['email']
-          ? (string) $data['email']
-          : '';
+            ? (string) $data['email']
+            : '';
 
         return new PatchEmailInputDto(
             $email
@@ -92,9 +104,12 @@ final class SecurityInputFactory
 
     public function createUpdatePasswordFromRequest(Request $request): UpdatePasswordInputDto
     {
-        return new UpdatePasswordInputDto(
-            (string) $request->request->get('pkUser'),
-            (string) $request->request->get('password')
-        );
+        $pkUser = (string) $request->request->get('pkUser');
+        $password = (string) $request->request->get('password');
+
+        $data = ['pkUser' => $pkUser, 'password' => $password];
+        $this->validator->validateUpdatePasswordInput($data);
+
+        return new UpdatePasswordInputDto($pkUser, $password);
     }
 }

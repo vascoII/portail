@@ -8,10 +8,15 @@ use App\Application\Dto\Input\Occupant\PatchOccupantInputDto;
 use App\Application\Dto\Input\Occupant\PostOccupantInputDto;
 use App\Application\Dto\Input\Shared\GetByEnergyStringInputDto;
 use App\Application\Dto\Input\Shared\GetByIdIntInputDto;
+use App\Application\Validator\Input\Occupant\OccupantInputValidator;
 use Symfony\Component\HttpFoundation\Request;
 
 final class OccupantInputFactory
 {
+    public function __construct(
+        private OccupantInputValidator $validator
+    ) {}
+
     public function createGetByEnergyFromRequest(Request $request, array $args = []): GetByEnergyStringInputDto
     {
         $energy = (string) ($args['energy'] ?? $request->query->get('energy', ''));
@@ -34,6 +39,11 @@ final class OccupantInputFactory
         if (! is_array($data)) {
             $data = [];
         }
+
+        $dataWithId = array_merge($data, [
+            'pkOccupant' => (int) ($args['id'] ?? $request->query->get('id', '')),
+        ]);
+        $this->validator->validatePatchOccupantInput($dataWithId);
 
         $pkOccupant = (int) ($args['id'] ?? $request->query->get('id', ''));
 
@@ -67,6 +77,8 @@ final class OccupantInputFactory
         if (! is_array($data)) {
             $data = [];
         }
+
+        $this->validator->validatePostOccupantInput($data);
 
         $nom = array_key_exists('nom', $data) && null !== $data['nom']
           ? (string) $data['nom']

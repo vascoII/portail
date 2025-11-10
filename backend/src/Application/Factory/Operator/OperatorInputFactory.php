@@ -11,13 +11,13 @@ use App\Application\Dto\Input\Operator\PatchOperatorImmeubleInputDto;
 use App\Application\Dto\Input\Operator\PatchOperatorInputDto;
 use App\Application\Dto\Input\Operator\PutOperatorInputDto;
 use App\Application\Dto\Input\Shared\GetByIdIntInputDto;
-use App\Application\Validator\Input\Operator\CreateOperatorInputValidator;
+use App\Application\Validator\Input\Operator\OperatorInputValidator;
 use Symfony\Component\HttpFoundation\Request;
 
 final class OperatorInputFactory
 {
     public function __construct(
-        private CreateOperatorInputValidator $validator
+        private OperatorInputValidator $validator
     ) {}
 
     public function createListOperatorsFromRequest(Request $request, string $type): ListOperatorsInputDto
@@ -49,7 +49,7 @@ final class OperatorInputFactory
             $data = [];
         }
 
-        $this->validator->validate($data);
+        $this->validator->validateCreateOperatorInput($data);
 
         return new CreateOperatorInputDto(
             email: $data['email'],
@@ -74,7 +74,7 @@ final class OperatorInputFactory
             $data = [];
         }
 
-        $this->validator->validatePassword($data);
+        $this->validator->validatePatchOperatorInput($data);
 
         return new PatchOperatorInputDto(
             id: (int) $request->attributes->get('id'),
@@ -106,7 +106,7 @@ final class OperatorInputFactory
             $data = [];
         }
 
-        $this->validator->validate($data);
+        $this->validator->validatePutOperatorInput($data);
 
         return new PutOperatorInputDto(
             id: (int) $request->attributes->get('id'),
