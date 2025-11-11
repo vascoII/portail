@@ -1,0 +1,119 @@
+├── Document
+│   ├── GenerateAnomaliesDocumentRequestDto.ts
+│   ├── GenerateDysfonctionnementsDocumentRequestDto.ts
+│   ├── GenerateFactureDocumentRequestDto.ts
+│   ├── GenerateFuitesDocumentRequestDto.ts
+│   ├── GenerateImmeubleDetailByImmeubleDocumentRequestDto.ts
+│   ├── GenerateImmeubleDetailDocumentRequestDto.ts
+│   ├── GenerateImmeubleReleveDocumentRequestDto.ts
+│   ├── GenerateImmeubleSyntheseByImmeubleDocumentRequestDto.ts
+│   ├── GenerateImmeubleSyntheseDocumentRequestDto.ts
+│   ├── GenerateInterventionDocumentRequestDto.ts
+│   ├── GenerateInterventionsDocumentRequestDto.ts
+│   ├── GenerateLogementRepartDocumentRequestDto.ts
+│   ├── GenerateOccupantNoteDocumentRequestDto.ts
+│   ├── GenerateOccupantReleveDocumentRequestDto.ts
+│   ├── GenerateOccupantRepartDocumentRequestDto.ts
+│   ├── GenerateReportByTokenDocumentRequestDto.ts
+│   └── GenerateReportDocumentRequestDto.ts
+├── Immeuble
+│   ├── AnomaliesRequestDto.ts
+│   ├── DysfunctionsRequestDto.ts
+│   ├── FilterResultRequestDto.ts
+│   ├── GetInfosAnomaliesByImmeubleRequestDto.ts
+│   ├── GetInfosDepannagesByImmeubleRequestDto.ts
+│   ├── GetInfosDysfonctionnementsByImmeubleRequestDto.ts
+│   ├── GetInfosFuitesByImmeubleRequestDto.ts
+│   ├── GetInfosImmeublesRequestDto.ts
+│   ├── GetInfosLogementsByImmeubleRequestDto.ts
+│   ├── GetTableauBordImmeubleRequestDto.ts
+│   ├── IndexRequestDto.ts
+│   ├── InterventionRequestDto.ts
+│   ├── InterventionsRequestDto.ts
+│   ├── LeaksRequestDto.ts
+│   ├── ReportRequestDto.ts
+│   ├── ShowRequestDto.ts
+│   └── ShowInterventionRequestDto.ts
+├── Intervention
+│   └── GetCasesByEmailInpuDto.ts
+├── Logement
+│   ├── AnomaliesRequestDto.ts
+│   ├── CreateTicketImmeubleRequestDto.ts
+│   ├── CreateTicketRequestDto.ts
+│   ├── DysfunctionsRequestDto.ts
+│   ├── EditRequestDto.ts
+│   ├── ExportRequestDto.ts
+│   ├── FilterResultRequestDto.ts
+│   ├── GetImmeubleIdAndLogementIdRequestDto.ts
+│   ├── GetInfosAppareilRequestDto.ts
+│   ├── GetInfosAppareilsByLogementInpuDto.ts
+│   ├── GetInfosLogementsRequestDto.ts
+│   ├── GetNbTicketsInterByLogementRequestDto.ts
+│   ├── GetOccupants4ChgtRequestDto.ts
+│   ├── GetStatOccupantsGraphRequestDto.ts
+│   ├── GetTableauBordLogementRequestDto.ts
+│   ├── GetTicketOnwerRequestDto.ts
+│   ├── GuideRequestDto.ts
+│   ├── IndexRequestDto.ts
+│   ├── InterventionsRequestDto.ts
+│   ├── LeaksRequestDto.ts
+│   ├── SearchRequestDto.ts
+│   ├── SetOccupants4ChgtRequestDto.ts
+│   ├── SetSeuilConsoRequestDto.ts
+│   ├── ShowRequestDto.ts
+│   ├── ShowInterventionRequestDto.ts
+│   └── ShowRepartReleveRequestDto.ts
+├── Occupant
+│   ├── AnomaliesRequestDto.ts
+│   ├── DysfunctionsRequestDto.ts
+│   ├── EditRequestDto.ts
+│   ├── InterventionsRequestDto.ts
+│   ├── LeaksRequestDto.ts
+│   ├── MyAccountRequestDto.ts
+│   ├── PatchOccupantRequestDto.ts
+│   ├── PostOccupantRequestDto.ts
+│   ├── ShowEauReleveRequestDto.ts
+│   ├── ShowRequestDto.ts
+│   ├── ShowInterventionRequestDto.ts
+│   ├── ShowNoteReleveRequestDto.ts
+│   ├── ShowRepartReleveRequestDto.ts
+│   └── SimulateurRequestDto.ts
+├── Operator
+│   ├── CreateOperationImmeubleRequestDto.ts
+│   ├── CreateOperatorRequestDto.ts
+│   ├── ListOperatorsRequestDto.ts
+│   ├── PatchOperatorImmeubleRequestDto.ts
+│   ├── PatchOperatorRequestDto.ts
+│   └── PutOperatorRequestDto.ts
+├── Releve
+│   ├── GenerateReleveRequestDto.ts
+│   └── ReleveCompteursRequestDto.ts
+├── Search
+│   └── IndexRequestDto.ts
+├── Security
+│   ├── CreateRequestDto.ts
+│   ├── LoginFromParamRequestDto.ts
+│   ├── LoginRequestDto.ts
+│   ├── LogoutRequestDto.ts
+│   ├── PatchEmailRequestDto.ts
+│   ├── ResetOrCreateRequestDto.ts
+│   ├── ResetPasswordFromPKUserRequestDto.ts
+│   ├── ResetPasswordRequestDto.ts
+│   ├── UpdateCGUFromPKUserRequestDto.ts
+│   ├── UpdateEmailFromPKUserRequestDto.ts
+│   └── UpdatePasswordRequestDto.ts
+├── Shared
+│   ├── GetByEnergyStringRequestDto.ts
+│   ├── GetByIdIntRequestDto.ts
+│   ├── GetByIdStringRequestDto.ts
+│   ├── GetDetailsDepannageInpuDto.ts
+│   ├── GetExcelInpuDto.ts
+│   ├── GetReportByTokenRequestDto.ts
+│   ├── GetReportRequestDto.ts
+│   └── ReportTokenRequestDto.ts
+└── Ticket
+    ├── CreateTicketInterRequestDto.ts
+    ├── GetAttachmentRequestDto.ts
+    ├── GetTicketInterInitRequestDto.ts
+    ├── GetTicketsIntersUserRequestDto.ts
+    └── SetTicketStatusRequestDto.ts

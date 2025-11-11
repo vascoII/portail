@@ -8,8 +8,8 @@ use App\Application\Validator\Input\InputValidatorInterface;
 use App\Domain\Exception\DomainExceptionFactory;
 use App\Http\Action\Security\LoginAction;
 use App\Http\Action\Security\ResetPasswordAction;
-use App\Http\Action\Security\UpdateCguAction;
-use App\Http\Action\Security\UpdateEmailAction;
+use App\Http\Action\Security\PatchCguAction;
+use App\Http\Action\Security\PatchEmailAction;
 use App\Http\Action\Security\UpdatePasswordAction;
 
 final class SecurityInputValidator implements InputValidatorInterface
@@ -49,15 +49,15 @@ final class SecurityInputValidator implements InputValidatorInterface
         $errors = [];
 
         if (! isset($data['pkUser']) || ! is_int($data['pkUser'])) {
-            $errors[] = DomainExceptionFactory::requiredField('pkUser', UpdateCguAction::class);
+            $errors[] = DomainExceptionFactory::requiredField('pkUser', PatchCguAction::class);
         }
 
         if (empty($data['cgu'])) {
-            $errors[] = DomainExceptionFactory::requiredField('cgu', UpdateCguAction::class);
+            $errors[] = DomainExceptionFactory::requiredField('cgu', PatchCguAction::class);
         }
 
         if ($errors) {
-            throw DomainExceptionFactory::dtoValidation(UpdateCguAction::class, $errors);
+            throw DomainExceptionFactory::dtoValidation(PatchCguAction::class, $errors);
         }
     }
 
@@ -66,17 +66,17 @@ final class SecurityInputValidator implements InputValidatorInterface
         $errors = [];
 
         if (! isset($data['pkUser']) || ! is_int($data['pkUser'])) {
-            $errors[] = DomainExceptionFactory::requiredField('pkUser', UpdateEmailAction::class);
+            $errors[] = DomainExceptionFactory::requiredField('pkUser', PatchEmailAction::class);
         }
 
         if (empty($data['email'])) {
-            $errors[] = DomainExceptionFactory::requiredField('email', UpdateEmailAction::class);
+            $errors[] = DomainExceptionFactory::requiredField('email', PatchEmailAction::class);
         } elseif (! filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-            $errors[] = DomainExceptionFactory::invalidFormat('email', 'email', UpdateEmailAction::class);
+            $errors[] = DomainExceptionFactory::invalidFormat('email', 'email', PatchEmailAction::class);
         }
 
         if ($errors) {
-            throw DomainExceptionFactory::dtoValidation(UpdateEmailAction::class, $errors);
+            throw DomainExceptionFactory::dtoValidation(PatchEmailAction::class, $errors);
         }
     }
 

@@ -27,6 +27,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 final class DocumentInputFactory
 {
+    /** @var array<string, mixed> */
     private array $data;
 
     public function __construct(
@@ -233,6 +234,10 @@ final class DocumentInputFactory
         );
     }
 
+    /**
+     * @param array<string, mixed> $data
+     * @return array<string, mixed>
+     */
     private function convertToExcelValidationFormat(array $data): array
     {
         $converted = [];
@@ -258,6 +263,10 @@ final class DocumentInputFactory
         return $converted;
     }
 
+    /**
+     * @param array<string, mixed> $data
+     * @return array<string, mixed>
+     */
     private function convertToPdfValidationFormat(array $data): array
     {
         $converted = [];
@@ -299,18 +308,20 @@ final class DocumentInputFactory
     private function getData(Request $request): void
     {
         $raw = (string) $request->getContent();
-        $this->data = json_decode($raw, true);
+        $decoded = json_decode($raw, true);
 
-        if (! is_array($this->data)) {
+        if (is_array($decoded)) {
+            $this->data = $decoded;
+        } else {
             $this->data = [];
         }
     }
 
-    private function getInt(string $key): ?int
+    private function getInt(string $key, ?int $default = null): ?int
     {
         return array_key_exists($key, $this->data) && null !== $this->data[$key]
             ? (int) $this->data[$key]
-            : null;
+            : $default;
     }
 
     private function getString(string $key, ?string $default = ''): ?string
