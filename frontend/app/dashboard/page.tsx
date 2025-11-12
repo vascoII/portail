@@ -13,7 +13,8 @@ import {
   DashboardMenu,
 } from "@/components/Dashboard";
 import MobileMenu from "@/components/Dashboard/MobileMenu";
-import { useParcData, useUserData } from "@/hooks/useParcData";
+import { useParc } from "@/hooks/domain/useParc";
+import { useUser } from "@/hooks/domain/useUser";
 import {
   transformParcData,
   calculateConstructionStats,
@@ -31,13 +32,13 @@ const DashboardPage: React.FC = () => {
     loading: parcLoading,
     error: parcError,
     refetch: refetchParc,
-  } = useParcData();
+  } = useParc();
   const {
     user: userData,
     loading: userLoading,
     error: userError,
     refetch: refetchUser,
-  } = useUserData();
+  } = useUser();
 
   // Transform data for components
   const dashboardData =
@@ -101,9 +102,9 @@ const DashboardPage: React.FC = () => {
 
             <ErrorMessage
               error={parcError || userError || "Erreur inconnue"}
-              onRetry={() => {
-                refetchParc();
-                refetchUser();
+              onRetry={async () => {
+                await refetchParc(true);
+                await refetchUser(true);
               }}
             />
           </div>
@@ -125,9 +126,9 @@ const DashboardPage: React.FC = () => {
 
             <ErrorMessage
               error="Aucune donnée disponible"
-              onRetry={() => {
-                refetchParc();
-                refetchUser();
+              onRetry={async () => {
+                await refetchParc(true);
+                await refetchUser(true);
               }}
             />
           </div>
