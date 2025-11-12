@@ -1,119 +1,924 @@
-├── Document
-│   ├── GenerateAnomaliesDocumentRequestDto.ts
-│   ├── GenerateDysfonctionnementsDocumentRequestDto.ts
-│   ├── GenerateFactureDocumentRequestDto.ts
-│   ├── GenerateFuitesDocumentRequestDto.ts
-│   ├── GenerateImmeubleDetailByImmeubleDocumentRequestDto.ts
-│   ├── GenerateImmeubleDetailDocumentRequestDto.ts
-│   ├── GenerateImmeubleReleveDocumentRequestDto.ts
-│   ├── GenerateImmeubleSyntheseByImmeubleDocumentRequestDto.ts
-│   ├── GenerateImmeubleSyntheseDocumentRequestDto.ts
-│   ├── GenerateInterventionDocumentRequestDto.ts
-│   ├── GenerateInterventionsDocumentRequestDto.ts
-│   ├── GenerateLogementRepartDocumentRequestDto.ts
-│   ├── GenerateOccupantNoteDocumentRequestDto.ts
-│   ├── GenerateOccupantReleveDocumentRequestDto.ts
-│   ├── GenerateOccupantRepartDocumentRequestDto.ts
-│   ├── GenerateReportByTokenDocumentRequestDto.ts
-│   └── GenerateReportDocumentRequestDto.ts
-├── Immeuble
-│   ├── AnomaliesRequestDto.ts
-│   ├── DysfunctionsRequestDto.ts
-│   ├── FilterResultRequestDto.ts
-│   ├── GetInfosAnomaliesByImmeubleRequestDto.ts
-│   ├── GetInfosDepannagesByImmeubleRequestDto.ts
-│   ├── GetInfosDysfonctionnementsByImmeubleRequestDto.ts
-│   ├── GetInfosFuitesByImmeubleRequestDto.ts
-│   ├── GetInfosImmeublesRequestDto.ts
-│   ├── GetInfosLogementsByImmeubleRequestDto.ts
-│   ├── GetTableauBordImmeubleRequestDto.ts
-│   ├── IndexRequestDto.ts
-│   ├── InterventionRequestDto.ts
-│   ├── InterventionsRequestDto.ts
-│   ├── LeaksRequestDto.ts
-│   ├── ReportRequestDto.ts
-│   ├── ShowRequestDto.ts
-│   └── ShowInterventionRequestDto.ts
-├── Intervention
-│   └── GetCasesByEmailInpuDto.ts
-├── Logement
-│   ├── AnomaliesRequestDto.ts
-│   ├── CreateTicketImmeubleRequestDto.ts
-│   ├── CreateTicketRequestDto.ts
-│   ├── DysfunctionsRequestDto.ts
-│   ├── EditRequestDto.ts
-│   ├── ExportRequestDto.ts
-│   ├── FilterResultRequestDto.ts
-│   ├── GetImmeubleIdAndLogementIdRequestDto.ts
-│   ├── GetInfosAppareilRequestDto.ts
-│   ├── GetInfosAppareilsByLogementInpuDto.ts
-│   ├── GetInfosLogementsRequestDto.ts
-│   ├── GetNbTicketsInterByLogementRequestDto.ts
-│   ├── GetOccupants4ChgtRequestDto.ts
-│   ├── GetStatOccupantsGraphRequestDto.ts
-│   ├── GetTableauBordLogementRequestDto.ts
-│   ├── GetTicketOnwerRequestDto.ts
-│   ├── GuideRequestDto.ts
-│   ├── IndexRequestDto.ts
-│   ├── InterventionsRequestDto.ts
-│   ├── LeaksRequestDto.ts
-│   ├── SearchRequestDto.ts
-│   ├── SetOccupants4ChgtRequestDto.ts
-│   ├── SetSeuilConsoRequestDto.ts
-│   ├── ShowRequestDto.ts
-│   ├── ShowInterventionRequestDto.ts
-│   └── ShowRepartReleveRequestDto.ts
-├── Occupant
-│   ├── AnomaliesRequestDto.ts
-│   ├── DysfunctionsRequestDto.ts
-│   ├── EditRequestDto.ts
-│   ├── InterventionsRequestDto.ts
-│   ├── LeaksRequestDto.ts
-│   ├── MyAccountRequestDto.ts
-│   ├── PatchOccupantRequestDto.ts
-│   ├── PostOccupantRequestDto.ts
-│   ├── ShowEauReleveRequestDto.ts
-│   ├── ShowRequestDto.ts
-│   ├── ShowInterventionRequestDto.ts
-│   ├── ShowNoteReleveRequestDto.ts
-│   ├── ShowRepartReleveRequestDto.ts
-│   └── SimulateurRequestDto.ts
-├── Operator
-│   ├── CreateOperationImmeubleRequestDto.ts
-│   ├── CreateOperatorRequestDto.ts
-│   ├── ListOperatorsRequestDto.ts
-│   ├── PatchOperatorImmeubleRequestDto.ts
-│   ├── PatchOperatorRequestDto.ts
-│   └── PutOperatorRequestDto.ts
-├── Releve
-│   ├── GenerateReleveRequestDto.ts
-│   └── ReleveCompteursRequestDto.ts
-├── Search
-│   └── IndexRequestDto.ts
-├── Security
-│   ├── CreateRequestDto.ts
-│   ├── LoginFromParamRequestDto.ts
-│   ├── LoginRequestDto.ts
-│   ├── LogoutRequestDto.ts
-│   ├── PatchEmailRequestDto.ts
-│   ├── ResetOrCreateRequestDto.ts
-│   ├── ResetPasswordFromPKUserRequestDto.ts
-│   ├── ResetPasswordRequestDto.ts
-│   ├── UpdateCGUFromPKUserRequestDto.ts
-│   ├── UpdateEmailFromPKUserRequestDto.ts
-│   └── UpdatePasswordRequestDto.ts
-├── Shared
-│   ├── GetByEnergyStringRequestDto.ts
-│   ├── GetByIdIntRequestDto.ts
-│   ├── GetByIdStringRequestDto.ts
-│   ├── GetDetailsDepannageInpuDto.ts
-│   ├── GetExcelInpuDto.ts
-│   ├── GetReportByTokenRequestDto.ts
-│   ├── GetReportRequestDto.ts
-│   └── ReportTokenRequestDto.ts
-└── Ticket
-    ├── CreateTicketInterRequestDto.ts
-    ├── GetAttachmentRequestDto.ts
-    ├── GetTicketInterInitRequestDto.ts
-    ├── GetTicketsIntersUserRequestDto.ts
-    └── SetTicketStatusRequestDto.ts
+Note: Using configuration file /Users/fabriceds/Documents/Professionel/Prestataire/Techem/portail/backend/phpstan.neon.
+   0/492 [░░░░░░░░░░░░░░░░░░░░░░░░░░░░]   0%[1G[2K 492/492 [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100%
+
+
+ ------ --------------------------------------------------------------------------------- 
+  Line   Application/Factory/Immeuble/ImmeubleOutputFactory.php                           
+ ------ --------------------------------------------------------------------------------- 
+  :16    PHPDoc tag @param for parameter $immeuble with type                              
+         App\Application\Factory\Immeuble\User is not subtype of native type              
+         App\Domain\Entity\Immeuble.                                                      
+         🪪  parameter.phpDocType                                                         
+  :16    Parameter $immeuble of method                                                    
+         App\Application\Factory\Immeuble\ImmeubleOutputFactory::createGetImmeuble() has  
+         invalid type App\Application\Factory\Immeuble\User.                              
+         🪪  class.notFound                                                               
+  :60    Parameter $immeubles of method                                                   
+         App\Application\Factory\Immeuble\ImmeubleOutputFactory::createListImmeubles()    
+         has invalid type App\Application\Factory\Immeuble\User.                          
+         🪪  class.notFound                                                               
+  :62    Parameter #1 $listImmeubleDto of class                                           
+         App\Application\Dto\Output\Immeuble\ListImmeublesOutputDto constructor expects   
+         array<App\Domain\Entity\Immeuble>, array<App\Application\Factory\Immeuble\User>  
+         given.                                                                           
+         🪪  argument.type                                                                
+ ------ --------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------- 
+  Line   Application/Factory/Intervention/InterventionInputFactory.php              
+ ------ --------------------------------------------------------------------------- 
+  :26    Parameter #1 $id of class                                                  
+         App\Application\Dto\Input\Intervention\GetCasesByEmailInpuDto constructor  
+         expects string, int given.                                                 
+         🪪  argument.type                                                          
+ ------ --------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------- 
+  Line   Application/Factory/Logement/LogementEntityFactory.php                           
+ ------ --------------------------------------------------------------------------------- 
+  :98    Method                                                                           
+         App\Application\Factory\Logement\LogementEntityFactory::createManyLogementsFrom  
+         RawList() should return array<App\Domain\Entity\Logement> but returns array<arr  
+         ay>.                                                                             
+         🪪  return.type                                                                  
+ ------ --------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------- 
+  Line   Application/Factory/Logement/LogementInputFactory.php                          
+ ------ ------------------------------------------------------------------------------- 
+  :125   Class App\Application\Dto\Input\Logement\GetInfosAppareilInputDto constructor  
+         invoked with 1 parameter, 0 required.                                          
+         🪪  arguments.count                                                            
+ ------ ------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------- 
+  Line   Application/Factory/Operator/OperatorOutputFactory.php                           
+ ------ --------------------------------------------------------------------------------- 
+  :51    Parameter #1 $userDto of class                                                   
+         App\Application\Dto\Output\Operator\ListOperatorsOutputDto constructor expects   
+         array<App\Application\Dto\Output\Shared\UserDto>, array<App\Domain\Entity\User>  
+         given.                                                                           
+         🪪  argument.type                                                                
+ ------ --------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------- 
+  Line   Application/Factory/Releve/ReleveInputFactory.php                                
+ ------ ---------------------------------------------------------------------------------                                                                           
+  :25    Method App\Application\Factory\Releve\ReleveInputFactory::getString() invoked    
+         with 2 parameters, 1 required.                                                   
+         🪪  arguments.count                                                              
+  :26    Method App\Application\Factory\Releve\ReleveInputFactory::getString() invoked    
+         with 2 parameters, 1 required.                                                   
+         🪪  arguments.count                                                              
+  :27    Method App\Application\Factory\Releve\ReleveInputFactory::getString() invoked    
+         with 2 parameters, 1 required.                                                   
+         🪪  arguments.count                                                              
+  :38    Method App\Application\Factory\Releve\ReleveInputFactory::getString() invoked    
+         with 2 parameters, 1 required.                                                   
+         🪪  arguments.count                                                              
+  :39    Method App\Application\Factory\Releve\ReleveInputFactory::getInt() invoked with  
+         2 parameters, 1 required.                                                        
+         🪪  arguments.count                                                              
+  :40    Method App\Application\Factory\Releve\ReleveInputFactory::getString() invoked    
+         with 2 parameters, 1 required.                                                   
+         🪪  arguments.count                                                              
+  :41    Method App\Application\Factory\Releve\ReleveInputFactory::getInt() invoked with  
+         2 parameters, 1 required.                                                        
+         🪪  arguments.count                                                              
+  :42    Method App\Application\Factory\Releve\ReleveInputFactory::getString() invoked    
+         with 2 parameters, 1 required.                                                   
+         🪪  arguments.count                                                              
+  :43    Method App\Application\Factory\Releve\ReleveInputFactory::getInt() invoked with  
+         2 parameters, 1 required.                                                        
+         🪪  arguments.count                                                              
+  :44    Method App\Application\Factory\Releve\ReleveInputFactory::getString() invoked    
+         with 2 parameters, 1 required.                                                   
+         🪪  arguments.count                                                              
+  :45    Method App\Application\Factory\Releve\ReleveInputFactory::getString() invoked    
+         with 2 parameters, 1 required.                                                   
+         🪪  arguments.count                                                              
+  :46    Method App\Application\Factory\Releve\ReleveInputFactory::getInt() invoked with  
+         2 parameters, 1 required.                                                        
+         🪪  arguments.count                                                              
+  :48    Method App\Application\Factory\Releve\ReleveInputFactory::getString() invoked    
+         with 2 parameters, 1 required.                                                   
+         🪪  arguments.count                                                              
+  :49    Method App\Application\Factory\Releve\ReleveInputFactory::getInt() invoked with  
+         2 parameters, 1 required.                                                        
+         🪪  arguments.count                                                              
+  :50    Method App\Application\Factory\Releve\ReleveInputFactory::getString() invoked    
+         with 2 parameters, 1 required.                                                   
+         🪪  arguments.count                                                              
+  :51    Method App\Application\Factory\Releve\ReleveInputFactory::getInt() invoked with  
+         2 parameters, 1 required.                                                        
+         🪪  arguments.count                                                              
+  :52    Method App\Application\Factory\Releve\ReleveInputFactory::getString() invoked    
+         with 2 parameters, 1 required.                                                   
+         🪪  arguments.count                                                              
+  :53    Method App\Application\Factory\Releve\ReleveInputFactory::getInt() invoked with  
+         2 parameters, 1 required.                                                        
+         🪪  arguments.count                                                              
+  :54    Method App\Application\Factory\Releve\ReleveInputFactory::getString() invoked    
+         with 2 parameters, 1 required.                                                   
+         🪪  arguments.count                                                              
+  :55    Method App\Application\Factory\Releve\ReleveInputFactory::getString() invoked    
+         with 2 parameters, 1 required.                                                   
+         🪪  arguments.count                                                              
+  :56    Method App\Application\Factory\Releve\ReleveInputFactory::getInt() invoked with  
+         2 parameters, 1 required.                                                        
+         🪪  arguments.count                                                              
+ ------ --------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------- 
+  Line   Application/Factory/Security/SecurityInputFactory.php  
+ ------ ------------------------------------------------------- 
+  :35    Expression on left side of ?? is not nullable.         
+         🪪  nullCoalesce.expr                                  
+  :36    Expression on left side of ?? is not nullable.         
+         🪪  nullCoalesce.expr                                  
+ ------ ------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------- 
+  Line   Application/Factory/Shared/SharedEntityFactory.php                               
+ ------ --------------------------------------------------------------------------------- 
+  :171   Method                                                                           
+         App\Application\Factory\Shared\SharedEntityFactory::createManyAlertesFromRawLis  
+         t() has invalid return type App\Application\Factory\Shared\Alertes.              
+         🪪  class.notFound                                                               
+  :173   Parameter #1 $callback of function array_map expects (callable(object):          
+         mixed)|null, array{$this(App\Application\Factory\Shared\SharedEntityFactory),    
+         'createAlerteFromRaw'} given.                                                    
+         🪪  argument.type                                                                
+  :183   Method                                                                           
+         App\Application\Factory\Shared\SharedEntityFactory::createManyAnomaliesFromRawL  
+         ist() should return array<App\Domain\Entity\Anomalie> but returns array<array>.  
+         🪪  return.type                                                                  
+  :193   Method                                                                           
+         App\Application\Factory\Shared\SharedEntityFactory::createManyDysfonctionnement  
+         sFromRawList() should return array<App\Domain\Entity\Dysfonctionnement> but ret  
+         urns array<array>.                                                               
+         🪪  return.type                                                                  
+  :203   Method                                                                           
+         App\Application\Factory\Shared\SharedEntityFactory::createManyFuitesFromRawList  
+         () should return array<App\Domain\Entity\Fuite> but returns array<array>.        
+         🪪  return.type                                                                  
+  :211   Method                                                                           
+         App\Application\Factory\Shared\SharedEntityFactory::createManyInterventionsFrom  
+         RawList() has invalid return type App\Application\Factory\Shared\Intervention.   
+         🪪  class.notFound                                                               
+  :213   Method                                                                           
+         App\Application\Factory\Shared\SharedEntityFactory::createManyInterventionsFrom  
+         RawList() should return array<App\Application\Factory\Shared\Intervention> but   
+         returns array<array>.                                                            
+         🪪  return.type                                                                  
+  :226   Method                                                                           
+         App\Application\Factory\Shared\SharedEntityFactory::createSessionFromRaw() has   
+         no return type specified.                                                        
+         🪪  missingType.return                                                           
+ ------ --------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------- 
+  Line   Application/Service/Transformer/FrontTransformerInterface.php                    
+ ------ --------------------------------------------------------------------------------- 
+  :14    Method                                                                           
+         App\Application\Service\Transformer\FrontTransformerInterface::transformPersona  
+         lData() has invalid return type                                                  
+         App\Application\Dto\Output\Admin\GetSousTraitantsOutputDto.                      
+         🪪  class.notFound                                                               
+ ------ --------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------- 
+  Line   Application/Service/Transformer/GestionParcTransformerInterface.php              
+ ------ --------------------------------------------------------------------------------- 
+  :21    Method                                                                           
+         App\Application\Service\Transformer\GestionParcTransformerInterface::transformF  
+         ilterResult() has invalid return type                                            
+         App\Application\Dto\Output\Immeuble\GetInfosImmeublesOutputDto.                  
+         🪪  class.notFound                                                               
+  :26    Method                                                                           
+         App\Application\Service\Transformer\GestionParcTransformerInterface::transformI  
+         ndex() has invalid return type                                                   
+         App\Application\Dto\Output\TableauBordClient\GetTableauBordClientOutputDto.      
+         🪪  class.notFound                                                               
+  :36    Method                                                                           
+         App\Application\Service\Transformer\GestionParcTransformerInterface::transformL  
+         istAnomalies() has invalid return type                                           
+         App\Application\Dto\Output\Immeuble\GetInfosAnomaliesByImmeubleOutputDto.        
+         🪪  class.notFound                                                               
+  :41    Method                                                                           
+         App\Application\Service\Transformer\GestionParcTransformerInterface::transformL  
+         istDysfunctions() has invalid return type                                        
+         App\Application\Dto\Output\Immeuble\GetInfosDysfonctionnementsByImmeubleOutputD  
+         to.                                                                              
+         🪪  class.notFound                                                               
+  :46    Method                                                                           
+         App\Application\Service\Transformer\GestionParcTransformerInterface::transformL  
+         istInterventions() has invalid return type                                       
+         App\Application\Dto\Output\Immeuble\GetInfosDepannagesByImmeubleOutputDto.       
+         🪪  class.notFound                                                               
+  :51    Method                                                                           
+         App\Application\Service\Transformer\GestionParcTransformerInterface::transformL  
+         istLeaks() has invalid return type                                               
+         App\Application\Dto\Output\Immeuble\GetInfosFuitesByImmeubleOutputDto.           
+         🪪  class.notFound                                                               
+  :61    Method                                                                           
+         App\Application\Service\Transformer\GestionParcTransformerInterface::transformS  
+         how() has invalid return type                                                    
+         App\Application\Dto\Output\Immeuble\GetTableauBordImmeubleOutputDto.             
+         🪪  class.notFound                                                               
+  :66    Method                                                                           
+         App\Application\Service\Transformer\GestionParcTransformerInterface::transformS  
+         howIntervention() has invalid return type                                        
+         App\Application\Dto\Output\Immeuble\GetInfosDepannagesByImmeubleOutputDto.       
+         🪪  class.notFound                                                               
+ ------ --------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------- 
+  Line   Application/Service/Transformer/SearchTransformerInterface.php                   
+ ------ --------------------------------------------------------------------------------- 
+  :14    Method                                                                           
+         App\Application\Service\Transformer\SearchTransformerInterface::transformIndex(  
+         ) has invalid return type App\Application\Dto\Output\Search\IndexOutputDto.      
+         🪪  class.notFound                                                               
+ ------ --------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------- 
+  Line   Application/Service/Transformer/TableauBordClientTransformerInterface.php        
+ ------ --------------------------------------------------------------------------------- 
+  :14    Method                                                                           
+         App\Application\Service\Transformer\TableauBordClientTransformerInterface::tran  
+         sformGetTableauBordClient() has invalid return type                              
+         App\Application\Dto\Output\TableauBordClient\GetTableauBordClientOutputDto.      
+         🪪  class.notFound                                                               
+ ------ --------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------- 
+  Line   Application/Service/Transformer/TicketingTransformerInterface.php                
+ ------ --------------------------------------------------------------------------------- 
+  :17    Method                                                                           
+         App\Application\Service\Transformer\TicketingTransformerInterface::transformChe  
+         ckTicketsInterEnabled() has invalid return type                                  
+         App\Application\Dto\Output\Ticketing\CheckTicketsInterEnabledOutputDto.          
+         🪪  class.notFound                                                               
+  :19    Method                                                                           
+         App\Application\Service\Transformer\TicketingTransformerInterface::transformCre  
+         ateTicketInter() has invalid return type                                         
+         App\Application\Dto\Output\Ticketing\CreateTicketInterOutputDto.                 
+         🪪  class.notFound                                                               
+  :21    Method                                                                           
+         App\Application\Service\Transformer\TicketingTransformerInterface::transformGet  
+         Attachment() has invalid return type                                             
+         App\Application\Dto\Output\Ticketing\GetAttachmentOutputDto.                     
+         🪪  class.notFound                                                               
+  :23    Method                                                                           
+         App\Application\Service\Transformer\TicketingTransformerInterface::transformGet  
+         NbTicketsIntersUser() has invalid return type                                    
+         App\Application\Dto\Output\Ticketing\GetNbTicketsIntersUserOutputDto.            
+         🪪  class.notFound                                                               
+  :25    Method                                                                           
+         App\Application\Service\Transformer\TicketingTransformerInterface::transformGet  
+         TicketInterInit() has invalid return type                                        
+         App\Application\Dto\Output\Ticketing\GetTicketInterInitOutputDto.                
+         🪪  class.notFound                                                               
+  :27    Method                                                                           
+         App\Application\Service\Transformer\TicketingTransformerInterface::transformGet  
+         TicketsIntersUser() has invalid return type                                      
+         App\Application\Dto\Output\Ticketing\GetTicketsIntersUserOutputDto.              
+         🪪  class.notFound                                                               
+  :29    Method                                                                           
+         App\Application\Service\Transformer\TicketingTransformerInterface::transformSet  
+         TicketStatus() has invalid return type                                           
+         App\Application\Dto\Output\Ticketing\SetTicketStatusOutputDto.                   
+         🪪  class.notFound                                                               
+ ------ --------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------- 
+  Line   Application/UseCase/Document/GenerateDocumentExcelUseCase.php                    
+ ------ --------------------------------------------------------------------------------- 
+  :17    Property                                                                         
+         App\Application\UseCase\Document\GenerateDocumentExcelUseCase::$authService is   
+         never read, only written.                                                        
+         🪪  property.onlyWritten                                                         
+         💡  See:                                                                         
+         https://phpstan.org/developing-extensions/always-read-written-properties         
+  :33    Unreachable statement - code above always terminates.                            
+         🪪  deadCode.unreachable                                                                                                                                
+ ------ --------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------- 
+  Line   Application/UseCase/Document/GenerateDocumentPdfUseCase.php                      
+ ------ --------------------------------------------------------------------------------- 
+  :17    Property                                                                         
+         App\Application\UseCase\Document\GenerateDocumentPdfUseCase::$authService is     
+         never read, only written.                                                        
+         🪪  property.onlyWritten                                                         
+         💡  See:                                                                         
+         https://phpstan.org/developing-extensions/always-read-written-properties                                                                                  
+ ------ --------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------- 
+  Line   Application/UseCase/Document/GenerateInterventionPdfUseCase.php                  
+ ------ --------------------------------------------------------------------------------- 
+  :14    Parameter $serviceDataProvider of method                                         
+         App\Application\UseCase\Document\GenerateInterventionPdfUseCase::__construct()   
+         has invalid type                                                                 
+         App\Application\Service\DataProvider\InterventionDataProviderInterface.          
+         🪪  class.notFound                                                               
+  :14    Property                                                                         
+         App\Application\UseCase\Document\GenerateInterventionPdfUseCase::$serviceDataPr  
+         ovider has unknown class                                                         
+         App\Application\Service\DataProvider\InterventionDataProviderInterface as its    
+         type.                                                                            
+         🪪  class.notFound                                                               
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols             
+  :19    Call to method generateInterventionPdfService() on an unknown class              
+         App\Application\Service\DataProvider\InterventionDataProviderInterface.          
+         🪪  class.notFound                                                               
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols             
+ ------ --------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------- 
+  Line   Application/UseCase/External/GetDocumentGeneratedUseCase.php                     
+ ------ --------------------------------------------------------------------------------- 
+  :17    Property                                                                         
+         App\Application\UseCase\External\GetDocumentGeneratedUseCase::$reportBuilderInt  
+         erface is never read, only written.                                              
+         🪪  property.onlyWritten                                                         
+         💡  See:                                                                         
+         https://phpstan.org/developing-extensions/always-read-written-properties         
+ ------ --------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------- 
+  Line   Application/UseCase/Occupant/ListFuitesByOccupantUseCase.php                     
+ ------ --------------------------------------------------------------------------------- 
+  :18    Method App\Application\UseCase\Occupant\ListFuitesByOccupantUseCase::execute()   
+         should return App\Application\Dto\Output\Shared\ListFuitesOutputDto but returns  
+         App\Application\Dto\Output\Shared\SuccessOutputDto.                              
+         🪪  return.type                                                                  
+ ------ --------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------- 
+  Line   Application/UseCase/Operator/AddBuildingUseCase.php                              
+ ------ --------------------------------------------------------------------------------- 
+  :17    Method App\Application\UseCase\Operator\AddBuildingUseCase::execute() has        
+         invalid return type App\Application\Dto\Output\Operator\AddBuildingOutputDto.    
+         🪪  class.notFound                                                               
+  :17    Parameter $inputDto of method                                                    
+         App\Application\UseCase\Operator\AddBuildingUseCase::execute() has invalid type  
+         App\Application\Dto\Input\Operator\AddBuildingInputDto.                          
+         🪪  class.notFound                                                               
+ ------ --------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------- 
+  Line   Application/UseCase/Operator/RemoveBuildingUseCase.php                         
+ ------ ------------------------------------------------------------------------------- 
+  :17    Method App\Application\UseCase\Operator\RemoveBuildingUseCase::execute() has   
+         invalid return type                                                            
+         App\Application\Dto\Output\Operator\RemoveBuildingOutputDto.                   
+         🪪  class.notFound                                                             
+  :17    Parameter $inputDto of method                                                  
+         App\Application\UseCase\Operator\RemoveBuildingUseCase::execute() has invalid  
+         type App\Application\Dto\Input\Operator\RemoveBuildingInputDto.                
+         🪪  class.notFound                                                             
+ ------ ------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------- 
+  Line   Application/UseCase/Search/IndexUseCase.php                                
+ ------ --------------------------------------------------------------------------- 
+  :17    Method App\Application\UseCase\Search\IndexUseCase::execute() has invalid  
+         return type App\Application\Dto\Output\Search\IndexOutputDto.              
+         🪪  class.notFound                                                         
+ ------ --------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------- 
+  Line   Application/UseCase/Security/PatchCguUseCase.php                            
+ ------ ---------------------------------------------------------------------------- 
+  :15    Property App\Application\UseCase\Security\PatchCguUseCase::$authService is  
+         never read, only written.                                                   
+         🪪  property.onlyWritten                                                    
+         💡  See:                                                                    
+         https://phpstan.org/developing-extensions/always-read-written-properties    
+ ------ ---------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------ 
+  Line   Application/UseCase/Security/PatchEmailUseCase.php                            
+ ------ ------------------------------------------------------------------------------ 
+  :16    Property App\Application\UseCase\Security\PatchEmailUseCase::$authService is  
+         never read, only written.                                                     
+         🪪  property.onlyWritten                                                      
+         💡  See:                                                                      
+         https://phpstan.org/developing-extensions/always-read-written-properties      
+ ------ ------------------------------------------------------------------------------ 
+
+ ------ -------------------------------------------------------------------------------- 
+  Line   Application/UseCase/Security/ResetOrCreateUseCase.php                           
+ ------ -------------------------------------------------------------------------------- 
+  :19    Method App\Application\UseCase\Security\ResetOrCreateUseCase::execute() should  
+         return App\Application\Dto\Output\Security\ResetOrCreateOutputDto but returns   
+         App\Application\Dto\Output\Security\ResetPasswordFromPKUserOutputDto.           
+         🪪  return.type                                                                 
+ ------ -------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------- 
+  Line   Application/Validator/Input/Document/Excel/GenerateExcelInputValidator.php       
+ ------ ---------------------------------------------------------------------------------                                                                           
+  :27    Strict comparison using !== between null and mixed will always evaluate to       
+         true.                                                                            
+         🪪  notIdentical.alwaysTrue                                                      
+         💡  Type null has already been eliminated from mixed.                            
+  :31    Strict comparison using !== between null and mixed will always evaluate to       
+         true.                                                                            
+         🪪  notIdentical.alwaysTrue                                                      
+         💡  Type null has already been eliminated from mixed.                            
+  :35    Strict comparison using !== between null and mixed will always evaluate to       
+         true.                                                                            
+         🪪  notIdentical.alwaysTrue                                                      
+         💡  Type null has already been eliminated from mixed.                            
+  :54    Strict comparison using !== between null and mixed will always evaluate to       
+         true.                                                                            
+         🪪  notIdentical.alwaysTrue                                                      
+         💡  Type null has already been eliminated from mixed.                            
+  :58    Strict comparison using !== between null and mixed will always evaluate to       
+         true.                                                                            
+         🪪  notIdentical.alwaysTrue                                                      
+         💡  Type null has already been eliminated from mixed.                            
+  :77    Strict comparison using !== between null and mixed will always evaluate to       
+         true.                                                                            
+         🪪  notIdentical.alwaysTrue                                                      
+         💡  Type null has already been eliminated from mixed.                            
+  :81    Strict comparison using !== between null and mixed will always evaluate to       
+         true.                                                                            
+         🪪  notIdentical.alwaysTrue                                                      
+         💡  Type null has already been eliminated from mixed.                            
+  :85    Strict comparison using !== between null and mixed will always evaluate to       
+         true.                                                                            
+         🪪  notIdentical.alwaysTrue                                                      
+         💡  Type null has already been eliminated from mixed.                            
+  :104   Strict comparison using !== between null and mixed will always evaluate to       
+         true.                                                                            
+         🪪  notIdentical.alwaysTrue                                                      
+         💡  Type null has already been eliminated from mixed.                            
+  :108   Strict comparison using !== between null and mixed will always evaluate to       
+         true.                                                                            
+         🪪  notIdentical.alwaysTrue                                                      
+         💡  Type null has already been eliminated from mixed.                            
+  :121   Strict comparison using !== between null and mixed will always evaluate to       
+         true.                                                                            
+         🪪  notIdentical.alwaysTrue                                                      
+         💡  Type null has already been eliminated from mixed.                            
+  :125   Strict comparison using !== between null and mixed will always evaluate to       
+         true.                                                                            
+         🪪  notIdentical.alwaysTrue                                                      
+         💡  Type null has already been eliminated from mixed.                            
+  :129   Strict comparison using !== between null and mixed will always evaluate to       
+         true.                                                                            
+         🪪  notIdentical.alwaysTrue                                                      
+         💡  Type null has already been eliminated from mixed.                            
+  :133   Strict comparison using !== between null and mixed will always evaluate to       
+         true.                                                                            
+         🪪  notIdentical.alwaysTrue                                                      
+         💡  Type null has already been eliminated from mixed.                            
+  :137   Strict comparison using !== between null and mixed will always evaluate to       
+         true.                                                                            
+         🪪  notIdentical.alwaysTrue                                                      
+         💡  Type null has already been eliminated from mixed.                            
+ ------ --------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------- 
+  Line   Application/Validator/Input/Occupant/OccupantInputValidator.php                  
+ ------ ---------------------------------------------------------------------------------                                                                            
+  :24    Strict comparison using !== between null and mixed will always evaluate to       
+         true.                                                                            
+         🪪  notIdentical.alwaysTrue                                                      
+         💡  Type null has already been eliminated from mixed.                            
+  :28    Strict comparison using !== between null and mixed will always evaluate to       
+         true.                                                                            
+         🪪  notIdentical.alwaysTrue                                                      
+         💡  Type null has already been eliminated from mixed.                            
+  :32    Strict comparison using !== between null and mixed will always evaluate to       
+         true.                                                                            
+         🪪  notIdentical.alwaysTrue                                                      
+         💡  Type null has already been eliminated from mixed.                            
+  :36    Strict comparison using !== between null and mixed will always evaluate to       
+         true.                                                                            
+         🪪  notIdentical.alwaysTrue                                                      
+         💡  Type null has already been eliminated from mixed.                                                                                                     
+  :59    Strict comparison using !== between null and mixed will always evaluate to       
+         true.                                                                            
+         🪪  notIdentical.alwaysTrue                                                      
+         💡  Type null has already been eliminated from mixed.                            
+  :63    Strict comparison using !== between null and mixed will always evaluate to       
+         true.                                                                            
+         🪪  notIdentical.alwaysTrue                                                      
+         💡  Type null has already been eliminated from mixed.                            
+ ------ --------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------- 
+  Line   Infrastructure/Exception/InfrastructureExceptionFactory.php                 
+ ------ ---------------------------------------------------------------------------- 
+  :17    Instantiated class App\Infrastructure\Exception\InfrastructureException is  
+         abstract.                                                                   
+         🪪  new.abstract                                                            
+  :32    Instantiated class App\Infrastructure\Exception\InfrastructureException is  
+         abstract.                                                                   
+         🪪  new.abstract                                                            
+  :136   Instantiated class App\Infrastructure\Exception\InfrastructureException is  
+         abstract.                                                                   
+         🪪  new.abstract                                                            
+ ------ ---------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------ 
+  Line   Infrastructure/Logger/Subscriber/HttpLoggingSubscriber.php  
+ ------ ------------------------------------------------------------ 
+  :118   Ternary operator condition is always true.                  
+         🪪  ternary.alwaysTrue                                      
+ ------ ------------------------------------------------------------ 
+
+ ------ ------------------------------------------------------------------------------- 
+  Line   Infrastructure/Service/Admin/Mercure/MercureMetricsService.php                 
+ ------ ------------------------------------------------------------------------------- 
+  :13    Property                                                                       
+         App\Infrastructure\Service\Admin\Mercure\MercureMetricsService::$registry has  
+         unknown class Prometheus\CollectorRegistry as its type.                        
+         🪪  class.notFound                                                             
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols           
+  :17    Instantiated class Prometheus\CollectorRegistry not found.                     
+         🪪  class.notFound                                                             
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols           
+  :17    Instantiated class Prometheus\Storage\InMemory not found.                      
+         🪪  class.notFound                                                             
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols           
+  :22    Instantiated class Prometheus\RenderTextFormat not found.                      
+         🪪  class.notFound                                                             
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols           
+  :24    Call to method getMetricFamilySamples() on an unknown class                    
+         Prometheus\CollectorRegistry.                                                  
+         🪪  class.notFound                                                             
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols           
+  :24    Call to method render() on an unknown class Prometheus\RenderTextFormat.       
+         🪪  class.notFound                                                             
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols           
+  :29    Call to method getOrRegisterCounter() on an unknown class                      
+         Prometheus\CollectorRegistry.                                                  
+         🪪  class.notFound                                                             
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols           
+ ------ ------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------- 
+  Line   Infrastructure/Service/DataProvider/SecurityDataProvider.php                     
+ ------ --------------------------------------------------------------------------------- 
+  :66    Access to an undefined property                                                  
+         App\Application\Dto\Output\Security\LogoutOutputDto::$success.                   
+         🪪  property.notFound                                                            
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-pro  
+         perty                                                                            
+  :113   Method                                                                           
+         App\Infrastructure\Service\DataProvider\SecurityDataProvider::getAuthContext()   
+         is unused.                                                                       
+         🪪  method.unused                                                                
+ ------ --------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------- 
+  Line   Infrastructure/Service/DataSource/InterventionSoap.php                           
+ ------ --------------------------------------------------------------------------------- 
+  :11    Class App\Infrastructure\Service\DataSource\InterventionSoap implements unknown  
+         interface App\Application\Service\DataSource\InterventionDataSourceInterface.    
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols             
+ ------ --------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------- 
+  Line   Infrastructure/Service/DataSource/OperatorSoap.php     
+ ------ ------------------------------------------------------- 
+  :99    Unreachable statement - code above always terminates.  
+         🪪  deadCode.unreachable                               
+ ------ ------------------------------------------------------- 
+
+ ------ ----------------------------------------------------------------------------- 
+  Line   Infrastructure/Service/DataSource/ParcSoap.php                               
+ ------ ----------------------------------------------------------------------------- 
+  :16    Property App\Infrastructure\Service\DataSource\ParcSoap::$hydrator is never  
+         read, only written.                                                          
+         🪪  property.onlyWritten                                                     
+         💡  See:                                                                     
+         https://phpstan.org/developing-extensions/always-read-written-properties     
+ ------ ----------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------- 
+  Line   Infrastructure/Service/DataSource/ResponseProcessor/BoolResponseProcessor.php    
+ ------ --------------------------------------------------------------------------------- 
+  :9     Method                                                                           
+         App\Infrastructure\Service\DataSource\ResponseProcessor\BoolResponseProcessor::  
+         process() has parameter $response with no type specified.                        
+         🪪  missingType.parameter                                                        
+ ------ --------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------- 
+  Line   Infrastructure/Service/DataSource/ResponseProcessor/StringResponseProcessor.php  
+ ------ --------------------------------------------------------------------------------- 
+  :9     Method                                                                           
+         App\Infrastructure\Service\DataSource\ResponseProcessor\StringResponseProcessor  
+         ::process() has parameter $response with no type specified.                      
+         🪪  missingType.parameter                                                        
+ ------ --------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------- 
+  Line   Infrastructure/Service/DataSource/SoapClient.php                                 
+ ------ --------------------------------------------------------------------------------- 
+  :19    Property App\Infrastructure\Service\DataSource\SoapClient::$processors has       
+         unknown class                                                                    
+         App\Infrastructure\Service\DataSource\SoapResponseProcessorInterface as its      
+         type.                                                                            
+         🪪  class.notFound                                                               
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols                                                                                         
+  :25    Property App\Infrastructure\Service\DataSource\SoapClient::$cache is never       
+         read, only written.                                                              
+         🪪  property.onlyWritten                                                         
+         💡  See:                                                                         
+         https://phpstan.org/developing-extensions/always-read-written-properties         
+  :27    Property App\Infrastructure\Service\DataSource\SoapClient::$debug is never       
+         read, only written.                                                              
+         🪪  property.onlyWritten                                                         
+         💡  See:                                                                         
+         https://phpstan.org/developing-extensions/always-read-written-properties         
+  :28    Deprecated in PHP 8.1: Required parameter $processors follows optional           
+         parameter $debug.                                                                
+         🪪  parameter.requiredAfterOptional                                              
+  :61    Call to method supports() on an unknown class                                    
+         App\Infrastructure\Service\DataSource\SoapResponseProcessorInterface.            
+         🪪  class.notFound                                                               
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols             
+  :62    Call to method process() on an unknown class                                     
+         App\Infrastructure\Service\DataSource\SoapResponseProcessorInterface.            
+         🪪  class.notFound                                                               
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols             
+  :68    Variable $result might not be defined.                                           
+         🪪  variable.undefined                                                           
+ ------ --------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------- 
+  Line   Infrastructure/Service/Hydrator/Hydrator.php                                     
+ ------ ---------------------------------------------------------------------------------                                                                             
+  :33    Strict comparison using === between '0' and '' will always evaluate to false.    
+         🪪  identical.alwaysFalse                                                        
+ ------ --------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------- 
+  Line   Infrastructure/Service/Hydrator/LogementHydrator.php                             
+ ------ --------------------------------------------------------------------------------- 
+  :16    Access to an undefined property                                                  
+         App\Application\Dto\Input\Shared\GetByIdIntInputDto::$pkOccupant.                
+         🪪  property.notFound                                                            
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-pro  
+         perty                                                                            
+  :24    Access to an undefined property                                                  
+         App\Application\Dto\Input\Shared\GetByIdIntInputDto::$pkOccupant.                
+         🪪  property.notFound                                                            
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-pro  
+         perty                                                                            
+  :32    Access to an undefined property                                                  
+         App\Application\Dto\Input\Shared\GetByIdIntInputDto::$pkOccupant.                
+         🪪  property.notFound                                                            
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-pro  
+         perty                                                                            
+  :40    Access to an undefined property                                                  
+         App\Application\Dto\Input\Shared\GetByIdIntInputDto::$pkOccupant.                
+         🪪  property.notFound                                                            
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-pro  
+         perty                                                                            
+  :48    Access to an undefined property                                                  
+         App\Application\Dto\Input\Shared\GetByIdIntInputDto::$pkOccupant.                
+         🪪  property.notFound                                                            
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-pro  
+         perty                                                                            
+  :56    Access to an undefined property                                                  
+         App\Application\Dto\Input\Shared\GetByIdIntInputDto::$pkOccupant.                
+         🪪  property.notFound                                                            
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-pro  
+         perty                                                                            
+  :64    Access to an undefined property                                                  
+         App\Application\Dto\Input\Shared\GetByIdIntInputDto::$pkOccupant.                
+         🪪  property.notFound                                                            
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-pro  
+         perty                                                                            
+  :72    Access to an undefined property                                                  
+         App\Application\Dto\Input\Shared\GetByIdIntInputDto::$pkOccupant.                
+         🪪  property.notFound                                                            
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-pro  
+         perty                                                                            
+ ------ --------------------------------------------------------------------------------- 
+
+ ------ -------------------------------------------------------------------------- 
+  Line   Infrastructure/Service/Publisher/MercurePublisher.php                     
+ ------ -------------------------------------------------------------------------- 
+  :14    Parameter $hub of method                                                  
+         App\Infrastructure\Service\Publisher\MercurePublisher::__construct() has  
+         invalid type Symfony\Component\Mercure\HubInterface.                      
+         🪪  class.notFound                                                        
+  :14    Property App\Infrastructure\Service\Publisher\MercurePublisher::$hub has  
+         unknown class Symfony\Component\Mercure\HubInterface as its type.         
+         🪪  class.notFound                                                        
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols      
+  :26    Instantiated class Symfony\Component\Mercure\Update not found.            
+         🪪  class.notFound                                                        
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols      
+  :32    Call to method publish() on an unknown class                              
+         Symfony\Component\Mercure\HubInterface.                                   
+         🪪  class.notFound                                                        
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols      
+ ------ -------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------ 
+  Line   Infrastructure/Service/Transformer/DocumentTransformer.php                    
+ ------ ------------------------------------------------------------------------------ 
+  :17    Call to function is_null() with string will always evaluate to false.         
+         🪪  function.impossibleType                                                   
+  :17    Call to function is_string() with string will always evaluate to true.        
+         🪪  function.alreadyNarrowedType                                              
+  :17    Result of && is always true.                                                  
+         🪪  booleanAnd.alwaysTrue                                                     
+         💡  Because the type is coming from a PHPDoc, you can turn off this check by  
+         setting treatPhpDocTypesAsCertain: false in your phpstan.neon.                
+  :28    Call to function is_object() with object will always evaluate to true.        
+         🪪  function.alreadyNarrowedType                                              
+ ------ ------------------------------------------------------------------------------ 
+
+ ------ ------------------------------------------------------------------------------ 
+  Line   Infrastructure/Service/Transformer/ExternalTransformer.php                    
+ ------ ------------------------------------------------------------------------------ 
+  :19    Call to function is_null() with string will always evaluate to false.         
+         🪪  function.impossibleType                                                   
+  :19    Call to function is_string() with string will always evaluate to true.        
+         🪪  function.alreadyNarrowedType                                              
+  :19    Result of && is always true.                                                  
+         🪪  booleanAnd.alwaysTrue                                                     
+         💡  Because the type is coming from a PHPDoc, you can turn off this check by  
+         setting treatPhpDocTypesAsCertain: false in your phpstan.neon.                
+ ------ ------------------------------------------------------------------------------ 
+
+ ------ --------------------------------------------------------------------------------- 
+  Line   Infrastructure/Service/Transformer/ImmeubleTransformer.php                       
+ ------ --------------------------------------------------------------------------------- 
+  :308   Parameter #1 $immeubles of method                                                
+         App\Application\Factory\Immeuble\ImmeubleOutputFactory::createListImmeubles()    
+         expects array<App\Application\Factory\Immeuble\User>, array<App\Domain\Entity\I  
+         mmeuble> given.                                                                  
+         🪪  argument.type                                                                
+ ------ --------------------------------------------------------------------------------- 
+
+ ------ -------------------------------------------------------------------------------- 
+  Line   Infrastructure/Service/Transformer/SearchTransformer.php                        
+ ------ -------------------------------------------------------------------------------- 
+  :15    Parameter $entityFactory of method                                              
+         App\Infrastructure\Service\Transformer\SearchTransformer::__construct() has     
+         invalid type App\Application\Factory\Search\SearchEntityFactory.                
+         🪪  class.notFound                                                              
+  :15    Property                                                                        
+         App\Infrastructure\Service\Transformer\SearchTransformer::$entityFactory has    
+         unknown class App\Application\Factory\Search\SearchEntityFactory as its type.   
+         🪪  class.notFound                                                              
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols            
+  :15    Property                                                                        
+         App\Infrastructure\Service\Transformer\SearchTransformer::$entityFactory is     
+         never read, only written.                                                       
+         🪪  property.onlyWritten                                                        
+         💡  See:                                                                        
+         https://phpstan.org/developing-extensions/always-read-written-properties        
+  :16    Parameter $outputFactory of method                                              
+         App\Infrastructure\Service\Transformer\SearchTransformer::__construct() has     
+         invalid type App\Application\Factory\Search\SearchOutputFactory.                
+         🪪  class.notFound                                                              
+  :16    Property                                                                        
+         App\Infrastructure\Service\Transformer\SearchTransformer::$outputFactory has    
+         unknown class App\Application\Factory\Search\SearchOutputFactory as its type.   
+         🪪  class.notFound                                                              
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols            
+  :16    Property                                                                        
+         App\Infrastructure\Service\Transformer\SearchTransformer::$outputFactory is     
+         never read, only written.                                                       
+         🪪  property.onlyWritten                                                        
+         💡  See:                                                                        
+         https://phpstan.org/developing-extensions/always-read-written-properties        
+  :22    Method                                                                          
+         App\Infrastructure\Service\Transformer\SearchTransformer::transformIndex() has  
+         invalid return type App\Application\Dto\Output\Search\IndexOutputDto.           
+         🪪  class.notFound                                                              
+  :24    Instantiated class App\Application\Dto\Output\Search\IndexOutputDto not found.  
+         🪪  class.notFound                                                              
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols            
+ ------ -------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------ 
+  Line   Infrastructure/Service/Transformer/SecurityTransformer.php  
+ ------ ------------------------------------------------------------ 
+  :96    Expression on left side of ?? is not nullable.              
+         🪪  nullCoalesce.expr                                       
+ ------ ------------------------------------------------------------ 
+
+ ------ --------------------------------------------------------------------------------- 
+  Line   Infrastructure/Service/Transformer/TicketingTransformer.php                      
+ ------ --------------------------------------------------------------------------------- 
+  :23    Parameter $entityFactory of method                                               
+         App\Infrastructure\Service\Transformer\TicketingTransformer::__construct() has   
+         invalid type App\Application\Factory\Ticketing\TicketingEntityFactory.           
+         🪪  class.notFound                                                               
+  :23    Property                                                                         
+         App\Infrastructure\Service\Transformer\TicketingTransformer::$entityFactory has  
+         unknown class App\Application\Factory\Ticketing\TicketingEntityFactory as its    
+         type.                                                                            
+         🪪  class.notFound                                                               
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols             
+  :23    Property                                                                         
+         App\Infrastructure\Service\Transformer\TicketingTransformer::$entityFactory is   
+         never read, only written.                                                        
+         🪪  property.onlyWritten                                                         
+         💡  See:                                                                         
+         https://phpstan.org/developing-extensions/always-read-written-properties         
+  :24    Parameter $outputFactory of method                                               
+         App\Infrastructure\Service\Transformer\TicketingTransformer::__construct() has   
+         invalid type App\Application\Factory\Ticketing\TicketingOutputFactory.           
+         🪪  class.notFound                                                               
+  :24    Property                                                                         
+         App\Infrastructure\Service\Transformer\TicketingTransformer::$outputFactory has  
+         unknown class App\Application\Factory\Ticketing\TicketingOutputFactory as its    
+         type.                                                                            
+         🪪  class.notFound                                                               
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols             
+  :24    Property                                                                         
+         App\Infrastructure\Service\Transformer\TicketingTransformer::$outputFactory is   
+         never read, only written.                                                        
+         🪪  property.onlyWritten                                                         
+         💡  See:                                                                         
+         https://phpstan.org/developing-extensions/always-read-written-properties         
+  :27    Method                                                                           
+         App\Infrastructure\Service\Transformer\TicketingTransformer::transformCheckTick  
+         etsInterEnabled() has invalid return type                                        
+         App\Application\Dto\Output\Ticketing\CheckTicketsInterEnabledOutputDto.          
+         🪪  class.notFound                                                               
+  :29    Instantiated class                                                               
+         App\Application\Dto\Output\Ticketing\CheckTicketsInterEnabledOutputDto not       
+         found.                                                                           
+         🪪  class.notFound                                                               
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols             
+  :32    Method                                                                           
+         App\Infrastructure\Service\Transformer\TicketingTransformer::transformCreateTic  
+         ketInter() has invalid return type                                               
+         App\Application\Dto\Output\Ticketing\CreateTicketInterOutputDto.                 
+         🪪  class.notFound                                                               
+  :34    Instantiated class                                                               
+         App\Application\Dto\Output\Ticketing\CreateTicketInterOutputDto not found.       
+         🪪  class.notFound                                                               
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols             
+  :37    Method                                                                           
+         App\Infrastructure\Service\Transformer\TicketingTransformer::transformGetAttach  
+         ment() has invalid return type                                                   
+         App\Application\Dto\Output\Ticketing\GetAttachmentOutputDto.                     
+         🪪  class.notFound                                                               
+  :40    Instantiated class App\Application\Dto\Output\Ticketing\GetAttachmentOutputDto   
+         not found.                                                                       
+         🪪  class.notFound                                                               
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols             
+  :43    Method                                                                           
+         App\Infrastructure\Service\Transformer\TicketingTransformer::transformGetNbTick  
+         etsIntersUser() has invalid return type                                          
+         App\Application\Dto\Output\Ticketing\GetNbTicketsIntersUserOutputDto.            
+         🪪  class.notFound                                                               
+  :45    Instantiated class                                                               
+         App\Application\Dto\Output\Ticketing\GetNbTicketsIntersUserOutputDto not found.  
+         🪪  class.notFound                                                               
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols             
+  :48    Method                                                                           
+         App\Infrastructure\Service\Transformer\TicketingTransformer::transformGetTicket  
+         InterInit() has invalid return type                                              
+         App\Application\Dto\Output\Ticketing\GetTicketInterInitOutputDto.                
+         🪪  class.notFound                                                               
+  :51    Instantiated class App\Application\Dto\Output\Ticketing\TicketInterInitDto not   
+         found.                                                                           
+         🪪  class.notFound                                                               
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols             
+  :59    Instantiated class                                                               
+         App\Application\Dto\Output\Ticketing\GetTicketInterInitOutputDto not found.      
+         🪪  class.notFound                                                               
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols             
+  :62    Method                                                                           
+         App\Infrastructure\Service\Transformer\TicketingTransformer::transformGetTicket  
+         sIntersUser() has invalid return type                                            
+         App\Application\Dto\Output\Ticketing\GetTicketsIntersUserOutputDto.              
+         🪪  class.notFound                                                               
+  :68    Instantiated class App\Application\Dto\Output\Ticketing\TicketInterDto not       
+         found.                                                                           
+         🪪  class.notFound                                                               
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols             
+  :77    Instantiated class                                                               
+         App\Application\Dto\Output\Ticketing\GetTicketsIntersUserOutputDto not found.    
+         🪪  class.notFound                                                               
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols             
+  :80    Method                                                                           
+         App\Infrastructure\Service\Transformer\TicketingTransformer::transformSetTicket  
+         Status() has invalid return type                                                 
+         App\Application\Dto\Output\Ticketing\SetTicketStatusOutputDto.                   
+         🪪  class.notFound                                                               
+  :82    Instantiated class                                                               
+         App\Application\Dto\Output\Ticketing\SetTicketStatusOutputDto not found.         
+         🪪  class.notFound                                                               
+         💡  Learn more at https://phpstan.org/user-guide/discovering-symbols             
+ ------ --------------------------------------------------------------------------------- 

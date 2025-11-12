@@ -5,7 +5,7 @@ import { listImmeublesApiService } from "@/services/api/Immeuble/ListImmeublesAp
 import type { ListImmeublesResponseDto } from "@/types/api/response/immeuble/ListImmeublesResponseDto";
 import type { IndexRequestDto } from "@/types/api/request/Immeuble/IndexRequestDto";
 
-export interface UseLogementsReturn {
+export interface UseImmeublesReturn {
   data: ListImmeublesResponseDto | null;
   loading: boolean;
   error: string | null;
@@ -16,7 +16,7 @@ export interface UseLogementsReturn {
   isStale: boolean;
 }
 
-export interface UseLogementsOptions {
+export interface UseImmeublesOptions {
   enabled?: boolean;
   filters?: IndexRequestDto;
   cacheKey?: string;
@@ -27,9 +27,9 @@ export interface UseLogementsOptions {
  * Utilise le cache pour éviter les requêtes inutiles
  * @param options Options de configuration du hook
  */
-export function useLogements(
-  options?: UseLogementsOptions
-): UseLogementsReturn {
+export function useImmeubles(
+  options?: UseImmeublesOptions
+): UseImmeublesReturn {
   const {
     enabled = true,
     filters,

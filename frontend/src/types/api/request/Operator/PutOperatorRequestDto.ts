@@ -3,7 +3,7 @@
  * Corresponds to: App\Application\Dto\Input\Operator\PutOperatorInputDto
  */
 export interface PutOperatorRequestDto {
-  id: number;
+  pkOperator: number;
   email: string;
   lastname: string;
   firstname: string;

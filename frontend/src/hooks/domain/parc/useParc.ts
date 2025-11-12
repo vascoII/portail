@@ -15,11 +15,19 @@ export interface UseParcReturn {
   isStale: boolean;
 }
 
+export interface UseParcOptions {
+  enabled?: boolean;
+  cacheKey?: string;
+}
+
 /**
  * Hook pour récupérer les données du parc (portfolio)
  * Utilise le cache pour éviter les requêtes inutiles
+ * @param options Options de configuration du hook
  */
-export function useParc(): UseParcReturn {
+export function useParc(options?: UseParcOptions): UseParcReturn {
+  const { enabled = true, cacheKey = "parc-data" } = options || {};
+
   const {
     data,
     loading,
@@ -29,13 +37,10 @@ export function useParc(): UseParcReturn {
     isSuccess,
     isError,
     isStale,
-  } = useCachedQuery<GetParcResponseDto>(
-    () => getParcApiService.getParc(),
-    {
-      cacheKey: "parc-data",
-      enabled: true,
-    }
-  );
+  } = useCachedQuery<GetParcResponseDto>(() => getParcApiService.getParc(), {
+    cacheKey,
+    enabled,
+  });
 
   return {
     data,
@@ -48,4 +53,3 @@ export function useParc(): UseParcReturn {
     isStale,
   };
 }
-

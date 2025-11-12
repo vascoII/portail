@@ -82,7 +82,7 @@ src/
 │   │   └── FormValidation.tsx
 │   └── Layout/             # Composants de mise en page
 ├── hooks/                  # Hooks React personnalisés
-│   └── useParcData.ts
+│   └── useParcHook.ts
 ├── services/               # Services API
 │   └── api.ts
 ├── types/                  # Définitions TypeScript
@@ -750,7 +750,7 @@ module.exports = {
 
 ```typescript
 // Hook pour les données du parc avec gestion d'état complète
-export const useParcData = (): UseParcDataReturn => {
+export const useParcHook = (): UseParcHookReturn => {
   const [data, setData] = useState<ParcData | null>(null);
   const [loading, setLoading] = useState<LoadingState>({
     isLoading: true,
@@ -1427,7 +1427,7 @@ describe("StatusGauge", () => {
 });
 
 // Tests d'intégration pour les hooks
-describe("useParcData", () => {
+describe("useParcHook", () => {
   it("should fetch parc data successfully", async () => {
     const mockData = { nbImmeubles: 10, nbCompteurs: 100 };
     jest.spyOn(apiService, "getParcData").mockResolvedValue({
@@ -1435,7 +1435,7 @@ describe("useParcData", () => {
       data: mockData,
     });
 
-    const { result } = renderHook(() => useParcData());
+    const { result } = renderHook(() => useParcHook());
 
     await waitFor(() => {
       expect(result.current.data).toEqual(mockData);

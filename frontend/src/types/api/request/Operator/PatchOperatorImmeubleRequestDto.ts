@@ -3,6 +3,6 @@
  * Corresponds to: App\Application\Dto\Input\Operator\PatchOperatorImmeubleInputDto
  */
 export interface PatchOperatorImmeubleRequestDto {
-  operatorId: number;
-  immeubleId: number;
+  pkOperator: number;
+  pkImmeuble: number;
 }

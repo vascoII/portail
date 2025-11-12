@@ -3,6 +3,6 @@
  * Corresponds to: App\Application\Dto\Input\Operator\PatchOperatorInputDto
  */
 export interface PatchOperatorRequestDto {
-  id: number;
+  pkOperator: number;
   password: string;
 }
