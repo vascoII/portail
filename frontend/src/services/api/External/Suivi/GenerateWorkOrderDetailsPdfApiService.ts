@@ -1,8 +1,8 @@
-import { BaseApiService } from "../../BaseApiService";
+import { BaseExternalApiService } from "../../BaseExternalApiService";
 import type { ApiResponse } from "@/types/api";
 import type { GetDetailsDepannageInpuDto } from "@/types/api/request/Shared/GetDetailsDepannageInpuDto";
 
-export class GenerateWorkOrderDetailsPdfApiService extends BaseApiService {
+export class GenerateWorkOrderDetailsPdfApiService extends BaseExternalApiService {
   async generateWorkOrderDetailsPdf(
     data: GetDetailsDepannageInpuDto
   ): Promise<ApiResponse<Blob>> {

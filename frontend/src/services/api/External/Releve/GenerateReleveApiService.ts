@@ -1,8 +1,8 @@
-import { BaseApiService } from "../../BaseApiService";
+import { BaseExternalApiService } from "../../BaseExternalApiService";
 import type { ApiResponse } from "@/types/api";
 import type { GenerateReleveRequestDto } from "@/types/api/request/Releve/GenerateReleveRequestDto";
 
-export class GenerateReleveApiService extends BaseApiService {
+export class GenerateReleveApiService extends BaseExternalApiService {
   async generateReleve(
     data: GenerateReleveRequestDto
   ): Promise<ApiResponse<Blob>> {

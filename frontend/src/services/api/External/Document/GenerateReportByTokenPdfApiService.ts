@@ -1,8 +1,8 @@
-import { BaseApiService } from "../../BaseApiService";
+import { BaseExternalApiService } from "../../BaseExternalApiService";
 import type { ApiResponse } from "@/types/api";
 import type { GenerateReportByTokenDocumentRequestDto } from "@/types/api/request/Document/GenerateReportByTokenDocumentRequestDto";
 
-export class GenerateReportByTokenPdfApiService extends BaseApiService {
+export class GenerateReportByTokenPdfApiService extends BaseExternalApiService {
   async generateReportByTokenPdf(
     data: GenerateReportByTokenDocumentRequestDto
   ): Promise<ApiResponse<Blob>> {

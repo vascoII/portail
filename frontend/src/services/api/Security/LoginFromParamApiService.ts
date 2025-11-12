@@ -1,9 +1,9 @@
-import { BaseApiService } from "../BaseApiService";
+import { BaseExternalApiService } from "../BaseExternalApiService";
 import type { ApiResponse } from "@/types/api";
 import type { LoginFromParamRequestDto } from "@/types/api/request/Security/LoginFromParamRequestDto";
 import type { LoginResponseDto } from "@/types/api/response/security/LoginResponseDto";
 
-export class LoginFromParamApiService extends BaseApiService {
+export class LoginFromParamApiService extends BaseExternalApiService {
   async loginFromParam(
     data: LoginFromParamRequestDto
   ): Promise<ApiResponse<LoginResponseDto>> {

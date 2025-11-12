@@ -1,9 +1,9 @@
-import { BaseApiService } from "../../BaseApiService";
+import { BaseExternalApiService } from "../../BaseExternalApiService";
 import type { ApiResponse } from "@/types/api";
 import type { PaginatedResponse } from "@/types/api";
 import type { DepannageResponseDto } from "@/types/api/response/shared/DepannageResponseDto";
 
-export class ListWorkOrdersApiService extends BaseApiService {
+export class ListWorkOrdersApiService extends BaseExternalApiService {
   async listWorkOrders(
     params?: Record<string, string | number>
   ): Promise<ApiResponse<PaginatedResponse<DepannageResponseDto>>> {
