@@ -33,7 +33,7 @@ final class LoginAction extends AbstractAction implements ActionInterface
         // $output = $this->useCase->execute($input);
 
         $output = new LoginOutputDto(
-            tokenJwt: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ0ZWNoZW0tcG9ydGFpbCIsImF1ZCI6InRlY2hlbS1jbGllbnQiLCJpYXQiOjE3NjE3NDI4MDQsImV4cCI6MTc2MTc0NjQwNCwic3ViIjoiNzkyMjIiLCJkYXRhIjp7InNlc3Npb25JZCI6ImI0Y2NhODA3LWQ3MmQtNGE2ZS1hYzViLWNhNGU1YjhiYTk2ZiIsInVzZXJOYW1lIjoiVEVTVCBDTElFTlQgQ29tcGxldCIsImxvZ2luSWQiOiJURVNUQ0xJRU5UQ09NUExFVCIsInVzZXJUeXBlIjoiQyIsImNsaWVudElkIjoiQzAwMzgzIiwiZmtDbGllbnQiOjM3NzE4LCJ1c2VyUm9sZSI6IiJ9fQ._Aw1A7xdqoiMjY0qY_9WKF57YXANTdVJu1zI60bVnpA",
+            tokenJwt: "npA",
             loginId: "TESTCLIENTCOMPLET",
             userName: "TEST CLIENT Complet",
             email: "noreply@techem.fr",
