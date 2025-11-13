@@ -1,0 +1,161 @@
+{
+  "indicators": {
+    "pkLogement": 1036204,
+    "logementEC": {
+      "NbFuites": 0,
+      "NbAnomalies": 0,
+      "ConsoPeriode": {
+        "Conso": "0",
+        "DateDeb": "0001-01-01T00:00:00",
+        "DateFin": "0001-01-01T00:00:00",
+        "R5": {
+          "DateReleve": "0001-01-01T00:00:00",
+          "Index": "0",
+          "Conso": "0"
+        },
+        "R4": {
+          "DateReleve": "0001-01-01T00:00:00",
+          "Index": "0",
+          "Conso": "0"
+        },
+        "R3": {
+          "DateReleve": "0001-01-01T00:00:00",
+          "Index": "0",
+          "Conso": "0"
+        },
+        "R2": {
+          "DateReleve": "0001-01-01T00:00:00",
+          "Index": "0",
+          "Conso": "0"
+        },
+        "R1": {
+          "DateReleve": "0001-01-01T00:00:00",
+          "Index": "0",
+          "Conso": "0"
+        },
+        "VAR4": "0",
+        "VAR3": "0",
+        "VAR2": "0",
+        "VAR1": "0",
+        "DegresVAR4": 1,
+        "DegresVAR3": 1,
+        "DegresVAR2": 1,
+        "DegresVAR1": 1
+      },
+      "ListeInfosAppareils": {
+        "infosAppareilEAU": [
+          {
+            "Appareil": {
+              "PkAppareil": 2962659,
+              "Numero": "999999",
+              "Emplacement": "..",
+              "Fluide": "EC",
+              "TypeAppareil": "EC",
+              "Unite": "m3"
+            },
+            "SerieConsos": {
+              "Erreur": "",
+              "Info": "",
+              "DefaultIntervalle": 365,
+              "ValeursXYL": "",
+              "Annee": ""
+            },
+            "R6": {
+              "DateReleve": "0001-01-01T00:00:00",
+              "Index": "0",
+              "Conso": "0"
+            },
+            "R5": {
+              "DateReleve": "0001-01-01T00:00:00",
+              "Index": "0",
+              "Conso": "0"
+            },
+            "R4": {
+              "DateReleve": "0001-01-01T00:00:00",
+              "Index": "0",
+              "Conso": "0"
+            },
+            "R3": {
+              "DateReleve": "0001-01-01T00:00:00",
+              "Index": "0",
+              "Conso": "0"
+            },
+            "R2": {
+              "DateReleve": "0001-01-01T00:00:00",
+              "Index": "0",
+              "Conso": "0"
+            },
+            "R1": {
+              "DateReleve": "0001-01-01T00:00:00",
+              "Index": "0",
+              "Conso": "0"
+            },
+            "NbFuites": 0,
+            "NbDepannages": 0,
+            "NbDysfonctionnements": -1,
+            "NbAnomalies": 0
+          },
+          {
+            "Appareil": {
+              "PkAppareil": 2962467,
+              "Numero": "999999",
+              "Emplacement": "..",
+              "Fluide": "EC",
+              "TypeAppareil": "EC",
+              "Unite": "m3"
+            },
+            "SerieConsos": {
+              "Erreur": "",
+              "Info": "",
+              "DefaultIntervalle": 365,
+              "ValeursXYL": "",
+              "Annee": ""
+            },
+            "R6": {
+              "DateReleve": "0001-01-01T00:00:00",
+              "Index": "0",
+              "Conso": "0"
+            },
+            "R5": {
+              "DateReleve": "0001-01-01T00:00:00",
+              "Index": "0",
+              "Conso": "0"
+            },
+            "R4": {
+              "DateReleve": "0001-01-01T00:00:00",
+              "Index": "0",
+              "Conso": "0"
+            },
+            "R3": {
+              "DateReleve": "0001-01-01T00:00:00",
+              "Index": "0",
+              "Conso": "0"
+            },
+            "R2": {
+              "DateReleve": "0001-01-01T00:00:00",
+              "Index": "0",
+              "Conso": "0"
+            },
+            "R1": {
+              "DateReleve": "0001-01-01T00:00:00",
+              "Index": "0",
+              "Conso": "0"
+            },
+            "NbFuites": 0,
+            "NbDepannages": 0,
+            "NbDysfonctionnements": -1,
+            "NbAnomalies": 0
+          }
+        ]
+      },
+      "SerieConsos": {
+        "erreur": "",
+        "info": "",
+        "defaultIntervalle": 365,
+        "valeursXYL": "",
+        "annee": ""
+      },
+      "ConsoMemeTypeLogement": "-1"
+    }
+  }
+}

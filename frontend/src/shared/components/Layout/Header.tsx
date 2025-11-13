@@ -22,12 +22,21 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
           {/* Logo */}
           <div className="flex items-center">
             <Link href="/dashboard" className="flex items-center">
-              <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mr-3">
+              <div
+                className="w-12 h-12 rounded-lg"
+                style={{
+                  backgroundImage: "url('/images/logo.svg')",
+                  width: "20%",
+                  height: "20%",
+                  maxWidth: "200px",
+                  maxHeight: "200px",
+                  minWidth: "150px",
+                  minHeight: "100px",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                }}
+              >
                 <i className="fas fa-building text-white text-xl"></i>
-              </div>
-              <div className="block">
-                <h1 className="text-xl font-bold text-gray-900">Techem</h1>
-                <p className="text-xs text-gray-500">Portail Client</p>
               </div>
             </Link>
           </div>

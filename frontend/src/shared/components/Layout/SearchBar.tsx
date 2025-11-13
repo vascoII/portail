@@ -89,9 +89,13 @@ const SearchBar: React.FC<SearchBarProps> = ({
       {/* Advanced Search Dropdown */}
       <div className="relative" ref={advancedRef}>
         <button
-          className="flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200 text-sm font-medium"
+          className="flex items-center px-4 py-2 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200 text-sm font-medium"
           type="button"
           onClick={() => setIsAdvancedOpen(!isAdvancedOpen)}
+          style={{
+            backgroundColor: "#606060",
+            color: "#fff",
+          }}
         >
           <i className="fas fa-search mr-2"></i>
           Recherche avancée

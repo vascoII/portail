@@ -11,6 +11,8 @@ import {
   SoapUserResponse,
   JWTPayload,
 } from "@/src/shared/types/auth";
+import { shouldUseMockData } from "@/src/config";
+import { mockDataService } from "./MockDataService";
 
 // Configuration JWT (simulation)
 const JWT_CONFIG = {
@@ -59,6 +61,62 @@ export class AuthService {
   private async callSoapService(
     credentials: LoginCredentials
   ): Promise<SoapLoginResponse> {
+    // Si le mode mock est activé, charger depuis LoginAction.json
+    if (shouldUseMockData()) {
+      try {
+        console.log("[MOCK] Loading login data from LoginAction.json");
+        const loginData = await mockDataService.load<any>("LoginAction.json");
+
+        // Convertir les données JSON en format SoapLoginResponse
+        const mockSoapResponse: SoapLoginResponse = {
+          Erreur: "",
+          Info: "",
+          Connected: true, // Toujours connecté en mode mock
+          SessionID: "mock-session-" + Date.now(),
+          User: {
+            Erreur: "",
+            Info: "",
+            LoginID: loginData.loginId || credentials.username,
+            UserName: loginData.userName || "",
+            Password: credentials.password,
+            EMail: loginData.email || "",
+            UserType: loginData.userType || "C",
+            PKUser: 79222, // Valeur par défaut
+            Adresse: loginData.adresse || "",
+            CP: loginData.cp || "",
+            Ville: loginData.ville || "",
+            FK: 37718, // Valeur par défaut
+            PhoneNumber: loginData.phoneNumber || "",
+            FirstName: loginData.firstName || "",
+            UserRole: loginData.userRole || "",
+            ClientName: loginData.clientName || "",
+            ClientID: loginData.clientId || "",
+            ExpirationDate: "0001-01-01T00:00:00",
+            PasswordExpirationDate: "2025-11-18T14:53:44",
+            CGU: "O",
+            FKClient: 37718,
+            FKClientTop: 37718,
+            NbImmeubles: loginData.nbImmeubles ?? -1,
+            Seuil_Conso_EF: loginData.seuilConsoEf ?? -1,
+            Seuil_Conso_EC: loginData.seuilConsoEc ?? -1,
+            Seuil_Conso_Repart: loginData.seuilConsoRepart ?? -1,
+            Seuil_Conso_CET: loginData.seuilConsoCet ?? -1,
+            Seuil_Conso_Actif: loginData.seuilConsoActif ?? false,
+            Seuil_Conso_Email: loginData.seuilConsoEmail || "",
+            showImmeublesArc: loginData.showImmeublesArc ?? true,
+            showFactures: loginData.showFactures ?? true,
+            showChgtOccupant: loginData.showChgtOccupant ?? true,
+            showChantiers: loginData.showChantiers ?? true,
+          },
+        };
+
+        return mockSoapResponse;
+      } catch (error) {
+        console.error("[MOCK] Failed to load login mock data:", error);
+        // Fallback sur la simulation par défaut
+      }
+    }
+
     // Simulation d'un appel SOAP
     // En réalité, ceci serait un appel HTTP vers votre service SOAP
 
@@ -385,4 +443,3 @@ export class AuthService {
     }
   }
 }
-

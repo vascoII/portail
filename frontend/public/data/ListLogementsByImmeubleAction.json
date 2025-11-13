@@ -1,0 +1,3540 @@
+{
+  "listLogementDto": [
+    {
+      "logement": {
+        "pkLogement": 1036204,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "0",
+        "numOrdre": "1",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 2505421,
+        "nom": "Max DORM",
+        "ref": "",
+        "dateArrivee": "2024-10-11T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962659,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962467,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962468,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962661,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036205,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "0",
+        "numOrdre": "2",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1643533,
+        "nom": "M Mme Onois_1643533",
+        "ref": "LOT 148",
+        "dateArrivee": "2016-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 1,
+      "nbCompteursEC": 0,
+      "nbCompteursEF": 1,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": {
+          "PkAppareil": 2962469,
+          "Numero": "999999",
+          "Emplacement": "..",
+          "Fluide": "EF",
+          "TypeAppareil": "EF",
+          "Unite": "m3"
+        }
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036281,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "0",
+        "numOrdre": "3",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1643613,
+        "nom": "M Mme Onois_1643613",
+        "ref": "LOT 150",
+        "dateArrivee": "2016-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 1,
+      "nbCompteursEC": 0,
+      "nbCompteursEF": 1,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": {
+          "PkAppareil": 2962658,
+          "Numero": "999999",
+          "Emplacement": "..",
+          "Fluide": "EF",
+          "TypeAppareil": "EF",
+          "Unite": "m3"
+        }
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036206,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "1",
+        "numOrdre": "1",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1643534,
+        "nom": "M Mme Onois_1643534",
+        "ref": "LOT 3",
+        "dateArrivee": "2016-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962470,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962471,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962662,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962663,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036207,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "1",
+        "numOrdre": "2",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1643535,
+        "nom": "M Mme Onois_1643535",
+        "ref": "LOT 4",
+        "dateArrivee": "2016-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 4060605,
+            "Numero": "82613688",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 4060603,
+            "Numero": "82613680",
+            "Emplacement": "SALLE DE BAINS",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 4060602,
+            "Numero": "72513739",
+            "Emplacement": "SALLE DE BAINS",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 4060604,
+            "Numero": "72513735",
+            "Emplacement": "WC",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036208,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "1",
+        "numOrdre": "3",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1643536,
+        "nom": "M Mme Onois_1643536",
+        "ref": "LOT 5",
+        "dateArrivee": "2016-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962474,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962475,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962666,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962667,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036209,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "1",
+        "numOrdre": "4",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1733917,
+        "nom": "M Mme Onois_1733917",
+        "ref": "LOT 6",
+        "dateArrivee": "2017-10-09T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962478,
+            "Numero": "376644-4",
+            "Emplacement": "PLACARD - PENDERIE",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962479,
+            "Numero": "662258-3",
+            "Emplacement": "PLACARD - PENDERIE",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962669,
+            "Numero": "662232-3",
+            "Emplacement": "SALLE DE BAINS",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962668,
+            "Numero": "376641-4",
+            "Emplacement": "WC",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036210,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "1",
+        "numOrdre": "5",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 2502558,
+        "nom": "M Mme Onois_2502558",
+        "ref": "LOT 7",
+        "dateArrivee": "2023-11-24T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 5798944,
+            "Numero": "21147130",
+            "Emplacement": "SALLE DE BAINS",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 5798945,
+            "Numero": "20131525",
+            "Emplacement": "SALLE DE BAINS",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962476,
+            "Numero": "05PA064471",
+            "Emplacement": "WC",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962477,
+            "Numero": "662256-3",
+            "Emplacement": "WC",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036211,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "2",
+        "numOrdre": "1",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1764184,
+        "nom": "M Mme Onois_1764184",
+        "ref": "LOT 8",
+        "dateArrivee": "2018-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962480,
+            "Numero": "02PA517475",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962481,
+            "Numero": "662225-3",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962672,
+            "Numero": "436243-4",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962673,
+            "Numero": "662249-3",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036212,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "2",
+        "numOrdre": "2",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 2382078,
+        "nom": "M Mme Onois_2382078",
+        "ref": "LOT 9",
+        "dateArrivee": "2022-11-16T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 5778882,
+            "Numero": "73012345",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962482,
+            "Numero": "376786-4",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962483,
+            "Numero": "662254-3",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962675,
+            "Numero": "662251-3",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036213,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "2",
+        "numOrdre": "3",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1643541,
+        "nom": "M Mme Onois_1643541",
+        "ref": "LOT 10",
+        "dateArrivee": "2016-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962484,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962485,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962676,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962677,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036214,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "2",
+        "numOrdre": "4",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1643542,
+        "nom": "M Mme Onois_1643542",
+        "ref": "LOT 11",
+        "dateArrivee": "2016-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962487,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962678,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962486,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962679,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036215,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "2",
+        "numOrdre": "5",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1643543,
+        "nom": "M Mme Onois_1643543",
+        "ref": "LOT 12",
+        "dateArrivee": "2016-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962488,
+            "Numero": "05PA064227",
+            "Emplacement": "PLACARD - PENDERIE",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962681,
+            "Numero": "662220-3",
+            "Emplacement": "PLACARD - PENDERIE",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962493,
+            "Numero": "662219-3",
+            "Emplacement": "SALLE DE BAINS",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962680,
+            "Numero": "376783-4",
+            "Emplacement": "SALLE DE BAINS",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036216,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "2",
+        "numOrdre": "6",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1643544,
+        "nom": "M Mme Onois_1643544",
+        "ref": "LOT 13",
+        "dateArrivee": "2016-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962496,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962497,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962682,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962683,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036217,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "3",
+        "numOrdre": "1",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1643545,
+        "nom": "M Mme Onois_1643545",
+        "ref": "LOT 14",
+        "dateArrivee": "2016-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962685,
+            "Numero": "425942-4",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962498,
+            "Numero": "68392-4",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962499,
+            "Numero": "662261-3",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962687,
+            "Numero": "04PA199684",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036218,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "3",
+        "numOrdre": "2",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1643546,
+        "nom": "M Mme Onois_1643546",
+        "ref": "LOT 15",
+        "dateArrivee": "2016-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 4041824,
+            "Numero": "72514389",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 4041826,
+            "Numero": "72514534",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 4041827,
+            "Numero": "83602302",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 4041828,
+            "Numero": "83602305",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036219,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "3",
+        "numOrdre": "3",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1643547,
+        "nom": "M Mme Onois_1643547",
+        "ref": "LOT 16",
+        "dateArrivee": "2016-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962502,
+            "Numero": "249634-4",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962503,
+            "Numero": "662179-3",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962690,
+            "Numero": "B12NA527290",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962691,
+            "Numero": "662223-3",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036220,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "3",
+        "numOrdre": "4",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1643548,
+        "nom": "M Mme Onois_1643548",
+        "ref": "LOT 17",
+        "dateArrivee": "2016-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962692,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962505,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962504,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962693,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036221,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "3",
+        "numOrdre": "5",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 2307855,
+        "nom": "M Mme Onois_2307855",
+        "ref": "LOT 18",
+        "dateArrivee": "2022-05-13T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962694,
+            "Numero": "431436-3",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962506,
+            "Numero": "05PA064231",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962507,
+            "Numero": "662224-4",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962695,
+            "Numero": "662226-4",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036222,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "3",
+        "numOrdre": "6",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1643550,
+        "nom": "M Mme Onois_1643550",
+        "ref": "LOT 19",
+        "dateArrivee": "2016-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962508,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962509,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962696,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962697,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036223,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "4",
+        "numOrdre": "1",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1643552,
+        "nom": "M Mme Onois_1643552",
+        "ref": "LOT 20",
+        "dateArrivee": "2016-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962698,
+            "Numero": "662277-3",
+            "Emplacement": "CUISINE",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962699,
+            "Numero": "380186-4",
+            "Emplacement": "CUISINE",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962513,
+            "Numero": "669963-3",
+            "Emplacement": "WC",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962511,
+            "Numero": "999999",
+            "Emplacement": "WC",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036224,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "4",
+        "numOrdre": "2",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1643553,
+        "nom": "M Mme Onois_1643553",
+        "ref": "LOT 21",
+        "dateArrivee": "2016-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962514,
+            "Numero": "54168962",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962515,
+            "Numero": "662267-3",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962700,
+            "Numero": "68371-4",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962701,
+            "Numero": "662271-3",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036225,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "4",
+        "numOrdre": "3",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1764186,
+        "nom": "M Mme Onois_1764186",
+        "ref": "LOT 22",
+        "dateArrivee": "2018-02-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962702,
+            "Numero": "399637-4",
+            "Emplacement": "SALLE DE BAINS",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962703,
+            "Numero": "10NA028004",
+            "Emplacement": "SALLE DE BAINS",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962516,
+            "Numero": "C0500180",
+            "Emplacement": "WC",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962517,
+            "Numero": "663215-3",
+            "Emplacement": "WC",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036226,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "4",
+        "numOrdre": "4",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1643555,
+        "nom": "M Mme Onois_1643555",
+        "ref": "LOT 23",
+        "dateArrivee": "2016-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962518,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962519,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962704,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962705,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036227,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "4",
+        "numOrdre": "5",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 2104169,
+        "nom": "M Mme Onois_2104169",
+        "ref": "LOT 24",
+        "dateArrivee": "2021-01-21T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962520,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962521,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962706,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962707,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036228,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "4",
+        "numOrdre": "6",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1643557,
+        "nom": "M Mme Onois_1643557",
+        "ref": "LOT 25",
+        "dateArrivee": "2016-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962522,
+            "Numero": "380192-4",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962523,
+            "Numero": "662266-3",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962708,
+            "Numero": "383860-4",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962710,
+            "Numero": "662269-3",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036229,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "5",
+        "numOrdre": "1",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1643558,
+        "nom": "M Mme Onois_1643558",
+        "ref": "LOT 26",
+        "dateArrivee": "2016-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962711,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962524,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962526,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962712,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036230,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "5",
+        "numOrdre": "2",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 2307607,
+        "nom": "M Mme Onois_2307607",
+        "ref": "LOT 27",
+        "dateArrivee": "2022-05-11T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962527,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962528,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962713,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962714,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036231,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "5",
+        "numOrdre": "3",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1643560,
+        "nom": "M Mme Onois_1643560",
+        "ref": "LOT 28",
+        "dateArrivee": "2016-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962715,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962529,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962530,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962716,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036232,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "5",
+        "numOrdre": "4",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1909017,
+        "nom": "M Mme Onois_1909017",
+        "ref": "LOT 29",
+        "dateArrivee": "2019-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962532,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962531,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962717,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962718,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036233,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "5",
+        "numOrdre": "5",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1643562,
+        "nom": "M Mme Onois_1643562",
+        "ref": "LOT 30",
+        "dateArrivee": "2016-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962535,
+            "Numero": "662270-3",
+            "Emplacement": "DEBARRAS",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962719,
+            "Numero": "376228-4",
+            "Emplacement": "DEBARRAS",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962533,
+            "Numero": "999999",
+            "Emplacement": "SALLE DE BAINS",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962720,
+            "Numero": "662192-3",
+            "Emplacement": "SALLE DE BAINS",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036234,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "5",
+        "numOrdre": "6",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1994225,
+        "nom": "M Mme Onois_1994225",
+        "ref": "LOT 31",
+        "dateArrivee": "2019-10-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962536,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962537,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962721,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962722,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036235,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "6",
+        "numOrdre": "1",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1643565,
+        "nom": "M Mme Onois_1643565",
+        "ref": "LOT 32",
+        "dateArrivee": "2016-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962538,
+            "Numero": "376640-4",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962545,
+            "Numero": "54169304",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962546,
+            "Numero": "662247-3",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962540,
+            "Numero": "662185-3",
+            "Emplacement": "WC",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036236,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "6",
+        "numOrdre": "2",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1643566,
+        "nom": "M Mme Onois_1643566",
+        "ref": "LOT 33",
+        "dateArrivee": "2016-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962548,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962547,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962541,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962542,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036237,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "6",
+        "numOrdre": "3",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1643567,
+        "nom": "M Mme Onois_1643567",
+        "ref": "LOT 34",
+        "dateArrivee": "2016-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962543,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962544,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962549,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962550,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036238,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "6",
+        "numOrdre": "4",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1643568,
+        "nom": "M Mme Onois_1643568",
+        "ref": "LOT 35",
+        "dateArrivee": "2016-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962553,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962551,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962552,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962555,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036239,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "6",
+        "numOrdre": "5",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 2502461,
+        "nom": "M Mme Onois_2502461",
+        "ref": "LOT 36",
+        "dateArrivee": "2023-11-24T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962557,
+            "Numero": "384145-4",
+            "Emplacement": "PLACARD - PENDERIE",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962558,
+            "Numero": "662189-3",
+            "Emplacement": "PLACARD - PENDERIE",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962560,
+            "Numero": "68450-4",
+            "Emplacement": "SALLE DE BAINS",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962561,
+            "Numero": "14072-06",
+            "Emplacement": "SALLE DE BAINS",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036240,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "6",
+        "numOrdre": "6",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1643570,
+        "nom": "M Mme Onois_1643570",
+        "ref": "LOT 37",
+        "dateArrivee": "2016-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962563,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962564,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962565,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962566,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036241,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "7",
+        "numOrdre": "1",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1643571,
+        "nom": "M Mme Onois_1643571",
+        "ref": "LOT 38",
+        "dateArrivee": "2016-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962569,
+            "Numero": "662218-3",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962567,
+            "Numero": "233772-4",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962572,
+            "Numero": "376648-4",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962573,
+            "Numero": "662214-3",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036242,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "7",
+        "numOrdre": "2",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 2502412,
+        "nom": "M Mme Onois_2502412",
+        "ref": "LOT 39",
+        "dateArrivee": "2023-11-24T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962574,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962575,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962577,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962579,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036243,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "7",
+        "numOrdre": "3",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1909018,
+        "nom": "M Mme Onois_1909018",
+        "ref": "LOT 40",
+        "dateArrivee": "2019-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962583,
+            "Numero": "662204-3",
+            "Emplacement": "SALLE DE BAINS",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962584,
+            "Numero": "68436-4",
+            "Emplacement": "SALLE DE BAINS",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962582,
+            "Numero": "662207-3",
+            "Emplacement": "WC",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962581,
+            "Numero": "197927-4",
+            "Emplacement": "WC",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036244,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "7",
+        "numOrdre": "4",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1643574,
+        "nom": "M Mme Onois_1643574",
+        "ref": "LOT 41",
+        "dateArrivee": "2016-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962585,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962586,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962588,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962591,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036245,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "7",
+        "numOrdre": "5",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1789675,
+        "nom": "M Mme Onois_1789675",
+        "ref": "LOT 42",
+        "dateArrivee": "2018-05-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962594,
+            "Numero": "417739-4",
+            "Emplacement": "DOUCHE",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962595,
+            "Numero": "662245-3",
+            "Emplacement": "DOUCHE",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962592,
+            "Numero": "54168589",
+            "Emplacement": "WC",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962593,
+            "Numero": "662216-3",
+            "Emplacement": "WC",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036246,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "7",
+        "numOrdre": "6",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1643578,
+        "nom": "M Mme Onois_1643578",
+        "ref": "LOT 43",
+        "dateArrivee": "2016-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962597,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962596,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962598,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962599,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036247,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "8",
+        "numOrdre": "1",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1643579,
+        "nom": "M Mme Onois_1643579",
+        "ref": "LOT 44",
+        "dateArrivee": "2016-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962601,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962604,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962603,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962605,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036249,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "8",
+        "numOrdre": "2",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1643581,
+        "nom": "M Mme Onois_1643581",
+        "ref": "LOT 45",
+        "dateArrivee": "2016-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962606,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962607,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962608,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962609,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036254,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "8",
+        "numOrdre": "3",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 2104161,
+        "nom": "M Mme Onois_2104161",
+        "ref": "LOT 46",
+        "dateArrivee": "2021-01-21T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962612,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962613,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962611,
+            "Numero": "662191-3",
+            "Emplacement": "SALLE DE BAINS",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962610,
+            "Numero": "04PA084201",
+            "Emplacement": "SALLE DE BAINS",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036259,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "8",
+        "numOrdre": "4",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1643591,
+        "nom": "M Mme Onois_1643591",
+        "ref": "LOT 47",
+        "dateArrivee": "2016-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962617,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962614,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962615,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962616,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036260,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "8",
+        "numOrdre": "5",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1643592,
+        "nom": "M Mme Onois_1643592",
+        "ref": "LOT 48",
+        "dateArrivee": "2016-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962618,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962619,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962620,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962621,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036261,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "8",
+        "numOrdre": "6",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1643593,
+        "nom": "M Mme Onois_1643593",
+        "ref": "LOT 49",
+        "dateArrivee": "2016-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962623,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962622,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962624,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962625,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036264,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "9",
+        "numOrdre": "1",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1643596,
+        "nom": "M Mme Onois_1643596",
+        "ref": "LOT 50",
+        "dateArrivee": "2016-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962626,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962628,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962629,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962630,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    },
+    {
+      "logement": {
+        "pkLogement": 1036270,
+        "numBatiment": "1",
+        "adrBatiment": "14 rue de le source",
+        "numEscalier": "1",
+        "adrEscalier": "17 RUE DE LORRAINE",
+        "numEtage": "9",
+        "numOrdre": "2",
+        "type": "  "
+      },
+      "occupant": {
+        "pkOccupant": 1643602,
+        "nom": "M Mme Onois_1643602",
+        "ref": "LOT 51",
+        "dateArrivee": "2016-01-01T00:00:00+00:00",
+        "dateDepart": "2999-12-31T00:00:00+00:00"
+      },
+      "nbAppareils": 4,
+      "nbCompteursEC": 2,
+      "nbCompteursEF": 2,
+      "nbCompteursRepart": 0,
+      "nbCompteursCET": 0,
+      "nbCompteursCapteur": 0,
+      "nbCompteursElect": -1,
+      "nbCompteursGaz": -1,
+      "nbFuites": 0,
+      "nbDepannages": -1,
+      "nbDysfonctionnements": -1,
+      "nbAnomalies": 0,
+      "nbTicketsInter": 0,
+      "ticketsInterEnabled": true,
+      "listeAppareils": {
+        "appareil": [
+          {
+            "PkAppareil": 2962638,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962650,
+            "Numero": "999999",
+            "Emplacement": "..",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 5798928,
+            "Numero": "10129207",
+            "Emplacement": "WC",
+            "Fluide": "EC",
+            "TypeAppareil": "EC",
+            "Unite": "m3"
+          },
+          {
+            "PkAppareil": 2962636,
+            "Numero": "662200-3",
+            "Emplacement": "WC",
+            "Fluide": "EF",
+            "TypeAppareil": "EF",
+            "Unite": "m3"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -25,28 +25,78 @@ export interface UseLoginOptions {
 
 /**
  * Hook pour l'authentification (login) sans JWT
+ *
+ * En mode mock (NEXT_PUBLIC_USE_MOCK_DATA=true) :
+ * - Charge les données depuis /public/data/LoginAction.json via LoginApiService
+ * - Le délai réseau est simulé (3-5 secondes)
+ * - Le token JWT est inclus dans LoginResponseDto
+ * - Le token sera stocké dans localStorage par useAuth via le callback onSuccess
+ *
+ * En mode production :
+ * - Fait un appel POST vers /api/security/login
+ * - Retourne LoginResponseDto avec le token JWT
+ *
  * Utilise useExternalApiMutation car le login ne nécessite pas d'authentification
+ *
  * @param options Options de configuration du hook
+ * @param options.onSuccess Callback appelé en cas de succès avec LoginResponseDto (contient tokenJwt)
+ * @param options.onError Callback appelé en cas d'erreur
+ *
+ * @example
+ * ```tsx
+ * const { login } = useLogin({
+ *   onSuccess: (data) => {
+ *     // data.tokenJwt contient le token JWT
+ *     localStorage.setItem("jwt_token", data.tokenJwt);
+ *   },
+ *   onError: (error) => {
+ *     console.error("Login failed:", error);
+ *   },
+ * });
+ *
+ * // Utilisation
+ * await login.mutateAsync({ username: "user", password: "pass" });
+ * ```
  */
 export function useLogin(options?: UseLoginOptions): UseLoginReturn {
   const { onSuccess, onError } = options || {};
 
   // Login mutation (POST)
-  const loginMutation = useExternalApiMutation<LoginResponseDto, LoginRequestDto>(
-    (data) => loginApiService.login(data),
-    {
-      onSuccess: (data) => onSuccess?.(data),
-      onError: (error, variables) => onError?.(error),
-    }
-  );
+  // En mode mock, loginApiService.login() charge automatiquement LoginAction.json
+  const loginMutation = useExternalApiMutation<
+    LoginResponseDto,
+    LoginRequestDto
+  >((data) => loginApiService.login(data), {
+    onSuccess: (data) => {
+      // Vérifier que le token JWT est présent
+      if (!data.tokenJwt) {
+        console.warn(
+          "[useLogin] Warning: tokenJwt is missing in login response"
+        );
+      }
+      onSuccess?.(data);
+    },
+    onError: (error, variables) => {
+      console.error("[useLogin] Login error:", error);
+      onError?.(error);
+    },
+  });
 
   // Helper function to convert ApiResponse<T> to T | null
   const createMutateAsync = (
-    mutateAsync: (variables: LoginRequestDto) => Promise<ApiResponse<LoginResponseDto>>
+    mutateAsync: (
+      variables: LoginRequestDto
+    ) => Promise<ApiResponse<LoginResponseDto>>
   ) => {
-    return async (variables: LoginRequestDto): Promise<LoginResponseDto | null> => {
+    return async (
+      variables: LoginRequestDto
+    ): Promise<LoginResponseDto | null> => {
       const response = await mutateAsync(variables);
-      return response.success && response.data ? response.data : null;
+      if (response.success && response.data) {
+        // Vérifier la persistance du token (sera fait par useAuth)
+        return response.data;
+      }
+      return null;
     };
   };
 
@@ -62,4 +112,3 @@ export function useLogin(options?: UseLoginOptions): UseLoginReturn {
     },
   };
 }
-

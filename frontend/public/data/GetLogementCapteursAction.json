@@ -1,0 +1,33 @@
+{
+  "indicators": {
+    "pkLogement": 1036204,
+    "logementCapteur": {
+      "IndexRecapTemperature": {
+        "date": "0001-01-01T00:00:00",
+        "moy": "-1",
+        "max": "-1",
+        "min": "-1"
+      },
+      "IndexRecapHumidite": {
+        "date": "0001-01-01T00:00:00",
+        "moy": "-1",
+        "max": "-1",
+        "min": "-1"
+      },
+      "SerieConsosTemperature": {
+        "erreur": "",
+        "info": "",
+        "defaultIntervalle": 365,
+        "valeursXYL": "",
+        "annee": ""
+      },
+      "SerieConsosHumidite": {
+        "erreur": "",
+        "info": "",
+        "defaultIntervalle": 365,
+        "valeursXYL": "",
+        "annee": ""
+      }
+    }
+  }
+}

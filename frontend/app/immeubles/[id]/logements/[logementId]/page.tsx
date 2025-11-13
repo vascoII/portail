@@ -7,7 +7,10 @@ import Breadcrumb from "@/src/shared/components/Layout/Breadcrumb";
 import { LogementDetailSkeleton } from "@/src/features/logement/components";
 import { useLogement } from "@/src/features/logement/hooks/useLogement";
 import type { LogementResponseDto } from "@/src/features/logement/types/response/LogementResponseDto";
-import type { Logement, LogementIndicators } from "@/src/shared/hooks/useLogement";
+import type {
+  Logement,
+  LogementIndicators,
+} from "@/src/shared/hooks/useLogement";
 
 // Placeholder components - will be created next
 import LogementHeader from "@/src/features/logement/components/LogementHeader";

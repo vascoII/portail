@@ -1,0 +1,33 @@
+{
+  "success": true,
+  "user": {
+    "loginId": "TESTCLIENTCOMPLET",
+    "userName": "TEST CLIENT Complet",
+    "email": "noreply@techem.fr",
+    "userType": "C",
+    "pkUser": 79222,
+    "adresse": "",
+    "cp": "",
+    "ville": "",
+    "fk": 37718,
+    "phoneNumber": "",
+    "firstName": "Client",
+    "userRole": "",
+    "clientName": "",
+    "clientId": "C00383",
+    "cgu": "O",
+    "fkClient": 37718,
+    "fkClientTop": 37718,
+    "nbImmeubles": -1,
+    "seuilConsoEf": -1,
+    "seuilConsoEc": -1,
+    "seuilConsoRepart": -1,
+    "seuilConsoCet": -1,
+    "seuilConsoActif": false,
+    "seuilConsoEmail": "",
+    "showImmeublesArc": true,
+    "showFactures": true,
+    "showChgtOccupant": true,
+    "showChantiers": true
+  }
+}

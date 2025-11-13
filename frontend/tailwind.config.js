@@ -92,6 +92,8 @@ module.exports = {
         // Loading animation from old CSS
         rotation: "rotation 3s linear infinite",
         "rotation-fast": "rotation 1s linear infinite",
+        // Shimmer animation for skeleton loaders
+        shimmer: "shimmer 2s infinite",
       },
       keyframes: {
         fadeIn: {
@@ -110,6 +112,10 @@ module.exports = {
           "0%": { transform: "rotate(0deg)" },
           "50%": { transform: "rotate(180deg)" },
           "100%": { transform: "rotate(360deg)" },
+        },
+        shimmer: {
+          "0%": { backgroundPosition: "-200% 0" },
+          "100%": { backgroundPosition: "200% 0" },
         },
       },
       // Custom utilities for dashboard components

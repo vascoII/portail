@@ -17,6 +17,7 @@
     "react": "19.1.0",
     "react-datepicker": "^8.8.0",
     "react-dom": "19.1.0",
+    "react-gauge-component": "^1.2.64",
     "react-hook-form": "^7.65.0",
     "recharts": "^3.3.0",
     "swr": "^2.3.6",

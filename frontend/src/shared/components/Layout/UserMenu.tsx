@@ -61,9 +61,13 @@ const UserMenu: React.FC = () => {
       {/* User Menu */}
       <div className="relative" ref={userMenuRef}>
         <button
-          className="flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200 text-sm font-medium"
+          className="flex items-center px-4 py-2 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200 text-sm font-medium"
           type="button"
           onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+          style={{
+            backgroundColor: "#606060",
+            color: "#fff",
+          }}
         >
           <i className="fas fa-user mr-2"></i>
           <span className="truncate max-w-32">{displayName}</span>

@@ -1,5 +1,7 @@
-import config from "@/src/config";
+import config, { shouldUseMockData } from "@/src/config";
 import type { ApiResponse } from "@/src/shared/types/api";
+import { mockDataService } from "./MockDataService";
+import { endpointToMockFile } from "./endpointToMockMapper";
 
 /**
  * Base API Service for external endpoints (no JWT authentication required)
@@ -24,6 +26,48 @@ export class BaseExternalApiService {
     endpoint: string,
     options: RequestInit = {}
   ): Promise<ApiResponse<T>> {
+    // Intercepter les appels en mode mock
+    if (shouldUseMockData()) {
+      const mockFile = endpointToMockFile(endpoint, options.method || "GET");
+      if (mockFile) {
+        try {
+          console.log(
+            `[MOCK] Loading mock data from ${mockFile} for endpoint ${endpoint}`
+          );
+          const data = await mockDataService.load<T>(mockFile);
+
+          // Gérer les réponses avec wrapper { success: true, user: {...} }
+          if (data && typeof data === "object" && "user" in data) {
+            return {
+              success: true,
+              data: (data as any).user as T,
+            };
+          }
+
+          // Gérer les réponses directes
+          return {
+            success: true,
+            data: data as T,
+          };
+        } catch (error) {
+          console.error(
+            `[MOCK] Failed to load mock data from ${mockFile}:`,
+            error
+          );
+          return {
+            success: false,
+            error:
+              error instanceof Error
+                ? error.message
+                : `Failed to load mock data from ${mockFile}`,
+          };
+        }
+      } else {
+        console.warn(`[MOCK] No mock file found for endpoint: ${endpoint}`);
+      }
+    }
+
+    // Appel API réel
     try {
       const url = `${this.baseUrl}${endpoint}`;
 
@@ -103,4 +147,3 @@ export class BaseExternalApiService {
     }
   }
 }
-

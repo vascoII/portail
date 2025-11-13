@@ -1,0 +1,48 @@
+{
+  "indicators": {
+    "pkImmeuble": 4423,
+    "immeubleRepart": {
+      "nbCompteursARelever": -1,
+      "nbCompteursReleves": -1,
+      "chantier": {
+        "pkChantier": -1,
+        "pkDevis": -1,
+        "pkImmeuble": -1,
+        "dateEntreeChantier": "0001-01-01T00:00:00",
+        "nbCompteursPoses": -1,
+        "nbCompteursCommandes": -1
+      },
+      "topConsos": {
+        "dateReleve": "0001-01-01T00:00:00"
+      },
+      "serieConsos": {
+        "defaultIntervalle": 365,
+        "valeursXYL": "",
+        "annee": ""
+      },
+      "totURepart": "-1",
+      "totTantChauff": "-1",
+      "puTant": "-1",
+      "prixURepart": "-1",
+      "prixAbonn": "-1",
+      "montARepartTant": "-1",
+      "partRepartConsos": "-1",
+      "ctCombust": "-1",
+      "serieConsosTotale1": {
+        "defaultIntervalle": 365,
+        "valeursXYL": "",
+        "annee": ""
+      },
+      "serieConsosTotale2": {
+        "defaultIntervalle": 365,
+        "valeursXYL": "",
+        "annee": ""
+      },
+      "serieConsosDJU": {
+        "defaultIntervalle": 365,
+        "valeursXYL": "",
+        "annee": ""
+      }
+    }
+  }
+}

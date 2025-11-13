@@ -2,8 +2,6 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import StatusGauge from "../../features/parc/components/StatusGauge";
-import InterventionModal from "../../features/parc/components/InterventionModal";
 
 interface ImmeubleDetailProps {
   immeuble: {
