@@ -52,13 +52,18 @@ const ImmeubleList: React.FC<ImmeubleListProps> = ({
 
       // Energy type filter (using indicators data)
       if (filters.energie && buildingIndicators) {
+        // Helper function to check if value is valid (> 0, not -1)
+        const isValidCount = (value: number | null | undefined): boolean => {
+          return value !== null && value !== undefined && value > 0;
+        };
+
         const hasEnergy = {
-          energieef: buildingIndicators.nbCompteursEF > 0,
-          energieec: buildingIndicators.nbCompteursEC > 0,
-          energiecet: buildingIndicators.nbCompteursCET > 0,
-          energierepart: buildingIndicators.nbCompteursRepart > 0,
-          energieelect: buildingIndicators.nbCompteursElect > 0,
-          energiegaz: buildingIndicators.nbCompteursGaz > 0,
+          energieef: isValidCount(buildingIndicators.nbCompteursEF),
+          energieec: isValidCount(buildingIndicators.nbCompteursEC),
+          energiecet: isValidCount(buildingIndicators.nbCompteursCET),
+          energierepart: isValidCount(buildingIndicators.nbCompteursRepart),
+          energieelect: isValidCount(buildingIndicators.nbCompteursElect),
+          energiegaz: isValidCount(buildingIndicators.nbCompteursGaz),
         };
 
         if (!hasEnergy[filters.energie as keyof typeof hasEnergy]) {
@@ -68,17 +73,23 @@ const ImmeubleList: React.FC<ImmeubleListProps> = ({
 
       // Alert filters (using indicators data)
       if (buildingIndicators) {
-        if (filters.fuites && buildingIndicators.nbFuites <= 0) return false;
-        if (filters.anomalies && buildingIndicators.nbAnomalies <= 0)
+        // Helper function to check if value is valid (> 0, not -1)
+        const hasAlert = (value: number | null | undefined): boolean => {
+          return value !== null && value !== undefined && value > 0;
+        };
+
+        if (filters.fuites && !hasAlert(buildingIndicators.nbFuites))
+          return false;
+        if (filters.anomalies && !hasAlert(buildingIndicators.nbAnomalies))
           return false;
         if (
           filters.dysfonctionnements &&
-          buildingIndicators.nbDysfonctionnements <= 0
+          !hasAlert(buildingIndicators.nbDysfonctionnements)
         )
           return false;
-        if (filters.depannages && buildingIndicators.nbDepannages <= 0)
+        if (filters.depannages && !hasAlert(buildingIndicators.nbDepannages))
           return false;
-        if (filters.chantiers && buildingIndicators.nbChantiers <= 0)
+        if (filters.chantiers && !hasAlert(buildingIndicators.nbChantiers))
           return false;
       }
 
@@ -176,15 +187,14 @@ const ImmeubleList: React.FC<ImmeubleListProps> = ({
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
         <h2 className="text-2xl font-bold text-gray-800">
-          <span className="text-blue-600">{filteredImmeubles.length}</span>{" "}
-          Immeubles
+          <span className="text" style={{ color: "#606060" }}>
+            {filteredImmeubles.length}
+          </span>{" "}
+          <span style={{ color: "#606060" }}>Immeubles</span>
         </h2>
 
         {/* View Mode Toggle */}
         <div className="flex items-center space-x-2 mt-4 sm:mt-0">
-          <label className="text-sm font-medium text-gray-700">
-            Affichage par :
-          </label>
           <div className="flex bg-gray-100 rounded-lg p-1">
             <button
               onClick={() => setViewMode("list")}

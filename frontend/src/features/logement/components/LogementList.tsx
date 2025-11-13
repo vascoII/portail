@@ -223,9 +223,6 @@ const LogementList: React.FC<LogementListProps> = ({
 
         {/* View Mode Toggle */}
         <div className="flex items-center space-x-2 mt-4 sm:mt-0">
-          <label className="text-sm font-medium text-gray-700">
-            Affichage par :
-          </label>
           <div className="flex bg-gray-100 rounded-lg p-1">
             <button
               onClick={() => setViewMode("list")}

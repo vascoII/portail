@@ -119,11 +119,23 @@ const IndicatorsCard: React.FC<IndicatorsCardProps> = ({
           </div>
           <div className="flex justify-between">
             <span className="text-gray-600">Électricité:</span>
-            <span className="font-medium">{indicators.nbCompteursElect}</span>
+            <span className="font-medium">
+              {indicators.nbCompteursElect !== null &&
+              indicators.nbCompteursElect !== undefined &&
+              indicators.nbCompteursElect >= 0
+                ? indicators.nbCompteursElect
+                : "N/A"}
+            </span>
           </div>
           <div className="flex justify-between">
             <span className="text-gray-600">Gaz:</span>
-            <span className="font-medium">{indicators.nbCompteursGaz}</span>
+            <span className="font-medium">
+              {indicators.nbCompteursGaz !== null &&
+              indicators.nbCompteursGaz !== undefined &&
+              indicators.nbCompteursGaz >= 0
+                ? indicators.nbCompteursGaz
+                : "N/A"}
+            </span>
           </div>
         </div>
       </div>
@@ -181,9 +193,12 @@ const IndicatorsCard: React.FC<IndicatorsCardProps> = ({
 
       {/* View Details Button */}
       <div className="mt-4 pt-4 border-t">
-        <button className="w-full text-sm text-blue-600 hover:text-blue-800 transition-colors">
+        <Link
+          href={`/immeubles/${buildingId}`}
+          className="block w-full text-center text-sm text-blue-600 hover:text-blue-800 transition-colors"
+        >
           Voir les détails complets
-        </button>
+        </Link>
       </div>
     </div>
   );
