@@ -3,7 +3,7 @@
 import React from "react";
 import BaseLayout from "@/src/shared/components/Layout/BaseLayout";
 import Breadcrumb from "@/src/shared/components/Layout/Breadcrumb";
-import { OperatorForm } from "@/components/Operator";
+import { OperatorForm } from "@/src/features/operator/components";
 
 const CreateOperatorPage: React.FC = () => {
   const breadcrumbItems = [

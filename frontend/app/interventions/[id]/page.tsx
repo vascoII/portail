@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import BaseLayout from "@/src/shared/components/Layout/BaseLayout";
 import Breadcrumb from "@/src/shared/components/Layout/Breadcrumb";
 import InterventionCard from "@/src/shared/components/Cards/InterventionCard";
-import { useInterventions } from "@hooks/useInterventions";
+import { useInterventions } from "@/src/features/intervention/hooks/useInterventions";
 
 const InterventionDetailPage: React.FC = () => {
   const router = useRouter();

@@ -4,7 +4,7 @@ import React from "react";
 import { useParams } from "next/navigation";
 import BaseLayout from "@/src/shared/components/Layout/BaseLayout";
 import Breadcrumb from "@/src/shared/components/Layout/Breadcrumb";
-import { OperatorDetail } from "@/components/Operator";
+import { OperatorDetail } from "@/src/features/operator/components";
 
 const OperatorDetailPage: React.FC = () => {
   const params = useParams();

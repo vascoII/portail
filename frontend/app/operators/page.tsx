@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import BaseLayout from "@/src/shared/components/Layout/BaseLayout";
 import Breadcrumb from "@/src/shared/components/Layout/Breadcrumb";
-import { OperatorFilters, OperatorList } from "@/components/Operator";
+import { OperatorFilters, OperatorList } from "@/src/features/operator/components";
 
 interface FilterState {
   search: string;

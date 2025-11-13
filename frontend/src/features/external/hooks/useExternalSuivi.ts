@@ -1,7 +1,7 @@
 "use client";
 
 import { useExternalApiQuery } from "@/src/shared/hooks/useExternalApiQuery";
-import { useExternalApiMutation } from "@/shared/hooks/useExternalApiMutation";
+import { useExternalApiMutation } from "@/src/shared/hooks/useExternalApiMutation";
 import { listWorkOrdersApiService } from "@/src/features/external/services/suivi/ListWorkOrdersApiService";
 import { getWorkOrderApiService } from "@/src/features/external/services/suivi/GetWorkOrderApiService";
 import { generateWorkOrderDetailsPdfApiService } from "@/src/features/external/services/suivi/GenerateWorkOrderDetailsPdfApiService";

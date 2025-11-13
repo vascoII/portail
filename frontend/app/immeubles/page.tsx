@@ -3,10 +3,10 @@
 import React, { useState, useMemo, useCallback } from "react";
 import BaseLayout from "@/src/shared/components/Layout/BaseLayout";
 import Breadcrumb from "@/src/shared/components/Layout/Breadcrumb";
-import { ImmeubleFilters, ImmeubleList } from "@/components/Immeuble";
-import IndicatorsPanel from "@/components/Immeuble/IndicatorsPanel";
+import { ImmeubleFilters, ImmeubleList } from "@/src/features/immeuble/components";
+import IndicatorsPanel from "@/src/features/immeuble/components/IndicatorsPanel";
 import { useImmeubles } from "@/src/features/immeuble/hooks/useImmeubles";
-import type { ImmeubleResponseDto } from "@/types/api/response/immeuble/ImmeubleResponseDto";
+import type { ImmeubleResponseDto } from "@/src/features/immeuble/types/response/ImmeubleResponseDto";
 
 interface FilterState {
   energie: string;

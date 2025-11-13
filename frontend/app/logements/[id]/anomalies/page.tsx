@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import BaseLayout from "@/src/shared/components/Layout/BaseLayout";
 import Breadcrumb from "@/src/shared/components/Layout/Breadcrumb";
 import AnomaliesList from "@/src/shared/components/Lists/AnomaliesList";
-import { useInterventions } from "@/hooks/useInterventions";
+import { useInterventions } from "@/src/features/intervention/hooks/useInterventions";
 
 const LogementAnomaliesPage: React.FC = () => {
   const router = useRouter();

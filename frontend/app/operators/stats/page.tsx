@@ -3,7 +3,7 @@
 import React from "react";
 import BaseLayout from "@/src/shared/components/Layout/BaseLayout";
 import Breadcrumb from "@/src/shared/components/Layout/Breadcrumb";
-import { OperatorStats } from "@/components/Operator";
+import { OperatorStats } from "@/src/features/operator/components";
 
 const OperatorStatsPage: React.FC = () => {
   // Mock data - in a real app, this would come from an API

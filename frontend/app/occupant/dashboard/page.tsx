@@ -4,8 +4,8 @@ import React from "react";
 import BaseLayout from "@/src/shared/components/Layout/BaseLayout";
 import Breadcrumb from "@/src/shared/components/Layout/Breadcrumb";
 import { useAuth } from "@/src/shared/hooks/useAuth";
-import LogementsList from "@/components/Lists/LogementsList";
-import { useLogements } from "@/hooks/useLogements";
+import LogementsList from "@/src/features/logement/components/LogementsList";
+import { useLogements } from "@/src/features/logement/hooks/useLogements";
 import StatusPanel from "@/src/shared/components/Panels/StatusPanel";
 
 const OccupantDashboardPage: React.FC = () => {

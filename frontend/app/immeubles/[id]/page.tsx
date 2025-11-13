@@ -4,14 +4,14 @@ import React, { useMemo } from "react";
 import { useParams } from "next/navigation";
 import BaseLayout from "@/src/shared/components/Layout/BaseLayout";
 import Breadcrumb from "@/src/shared/components/Layout/Breadcrumb";
-import ImmeubleDetailSkeleton from "@/components/Immeuble/ImmeubleDetailSkeleton";
+import ImmeubleDetailSkeleton from "@/src/features/immeuble/components/ImmeubleDetailSkeleton";
 import {
   ImmeubleHeader,
   CapteurRepartPanel,
   WaterEnergyTabs,
-} from "@/components/Immeuble";
+} from "@/src/features/immeuble/components";
 import { useImmeuble } from "@/src/features/immeuble/hooks/useImmeuble";
-import type { GetImmeubleResponseDto } from "@/types/api/response/immeuble/GetImmeubleResponseDto";
+import type { GetImmeubleResponseDto } from "@/src/features/immeuble/types/response/GetImmeubleResponseDto";
 import type { Immeuble, ImmeubleIndicators } from "@/src/shared/hooks/useImmeuble";
 
 // Helper function to convert GetImmeubleResponseDto to Immeuble

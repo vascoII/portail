@@ -21,6 +21,7 @@ import {
 } from "@/src/utils/dataTransform";
 import type { DashboardData, ConstructionStats } from "@/src/shared/types/api";
 import { LoadingCard, ErrorMessage } from "@/src/shared/components/UI/LoadingSpinner";
+import DashboardSkeleton from "@/src/shared/components/skeleton/DashboardSkeleton";
 import "../../public/styles/dashboard.css";
 
 const DashboardPage: React.FC = () => {
@@ -55,36 +56,7 @@ const DashboardPage: React.FC = () => {
     return (
       <BaseLayout>
         <Breadcrumb items={breadcrumbItems} />
-        <div className="dashboard-container">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <h2 className="text-2xl font-bold text-dashboard-textPrimary mb-8">
-              Aperçu de votre parc
-            </h2>
-
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-              <div className="col-span-8">
-                <LoadingCard className="h-64" />
-              </div>
-              <div className="col-span-4 space-y-6">
-                <LoadingCard className="h-32" />
-                <LoadingCard className="h-20" />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-6">
-              <div className="col-span-8">
-                <LoadingCard className="h-32" />
-              </div>
-              <div className="col-span-4">
-                <LoadingCard className="h-32" />
-              </div>
-            </div>
-
-            <div className="mt-6">
-              <LoadingCard className="h-48" />
-            </div>
-          </div>
-        </div>
+          <DashboardSkeleton/>
       </BaseLayout>
     );
   }

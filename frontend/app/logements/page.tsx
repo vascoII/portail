@@ -6,7 +6,7 @@ import BaseLayout from "@/src/shared/components/Layout/BaseLayout";
 import Breadcrumb from "@/src/shared/components/Layout/Breadcrumb";
 import { LogementFilters, LogementList } from "@/src/features/logement/components";
 import LogementIndicatorsPanel from "@/src/features/logement/components/LogementIndicatorsPanel";
-import { useLogements } from "@/hooks/useLogements";
+import { useLogements } from "@/src/features/logement/hooks/useLogements";
 
 interface FilterState {
   energie: string;

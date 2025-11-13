@@ -7,7 +7,7 @@ import {
   FactureFilters,
   FactureList,
   FactureMenu,
-} from "@/components/Facture";
+} from "@/src/features/facture/components";
 
 interface FilterState {
   search: string;

@@ -7,7 +7,7 @@ import LogementCard from "@/src/shared/components/Cards/LogementCard";
 import StatusPanel from "@/src/shared/components/Panels/StatusPanel";
 import WaterPanel from "@/src/shared/components/Energy/WaterPanel";
 import HeatingPanel from "@/src/shared/components/Energy/HeatingPanel";
-import { useLogements } from "@/hooks/useLogements";
+import { useLogements } from "@/src/features/logement/hooks/useLogements";
 import { useConsumption } from "@/hooks/useConsumption";
 import { useAuth } from "@/src/shared/hooks/useAuth";
 

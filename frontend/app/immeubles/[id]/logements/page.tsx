@@ -6,7 +6,7 @@ import { useParams } from "next/navigation";
 import BaseLayout from "@/src/shared/components/Layout/BaseLayout";
 import Breadcrumb from "@/src/shared/components/Layout/Breadcrumb";
 import { LogementListSkeleton } from "@/src/features/logement/components";
-import { useLogements } from "@/hooks/useLogements";
+import { useLogements } from "@/src/features/logement/hooks/useLogements";
 
 const LogementsListPage: React.FC = () => {
   const params = useParams();

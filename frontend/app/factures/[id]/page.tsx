@@ -4,7 +4,7 @@ import React from "react";
 import { useParams } from "next/navigation";
 import BaseLayout from "@/src/shared/components/Layout/BaseLayout";
 import Breadcrumb from "@/src/shared/components/Layout/Breadcrumb";
-import { FactureDetail, FactureMenu } from "@/components/Facture";
+import { FactureDetail, FactureMenu } from "@/src/features/facture/components";
 
 const FactureDetailPage: React.FC = () => {
   const params = useParams();
