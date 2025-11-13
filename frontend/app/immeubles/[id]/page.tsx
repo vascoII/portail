@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useMemo } from "react";
 import { useParams } from "next/navigation";
 import BaseLayout from "@/components/Layout/BaseLayout";
 import Breadcrumb from "@/components/Layout/Breadcrumb";
@@ -10,17 +10,75 @@ import {
   CapteurRepartPanel,
   WaterEnergyTabs,
 } from "@/components/Immeuble";
-import { useImmeuble } from "@/hooks/useImmeuble";
+import { useImmeuble } from "@/hooks/domain/immeuble/useImmeuble";
+import type { GetImmeubleResponseDto } from "@/types/api/response/immeuble/GetImmeubleResponseDto";
+import type { Immeuble, ImmeubleIndicators } from "@/hooks/useImmeuble";
+
+// Helper function to convert GetImmeubleResponseDto to Immeuble
+const convertToImmeuble = (
+  dto: GetImmeubleResponseDto | null
+): Immeuble | null => {
+  if (!dto) return null;
+  return {
+    pkImmeuble: dto.pkImmeuble ?? 0,
+    nom: dto.nom ?? "",
+    numero: dto.numero ?? "",
+    ref: dto.ref ?? "",
+    adresse1: dto.adresse1 ?? "",
+    adresse2: dto.adresse2 ?? "",
+    adresse3: dto.adresse3 ?? "",
+    cp: dto.cp ?? "",
+    ville: dto.ville ?? "",
+    hasTelereleve: dto.hasTelereleve ?? false,
+    fkClientTop: dto.fkClientTop ?? 0,
+    actif: dto.actif ?? false,
+    dateActivationClient: dto.dateActivationClient ?? "",
+    dateActivationOccupant: dto.dateActivationOccupant ?? "",
+    hasNoteOccupant: dto.hasNoteOccupant ?? false,
+    hasDecompteOccupant: dto.hasDecompteOccupant ?? false,
+    hasFactures: dto.hasFactures ?? false,
+    hasChantiers: dto.hasChantiers ?? false,
+  };
+};
+
+// Helper function to extract indicators from GetImmeubleResponseDto
+const extractIndicators = (
+  dto: GetImmeubleResponseDto | null
+): ImmeubleIndicators | null => {
+  if (!dto) return null;
+  return {
+    pkImmeuble: dto.pkImmeuble ?? 0,
+    nbLogements: dto.nbLogements ?? 0,
+    nbAppareils: dto.nbAppareils ?? 0,
+    nbDepannages: dto.nbDepannages ?? 0,
+    nbDepannagesTotal: dto.nbDepannagesTotal ?? 0,
+    degresDepannages: dto.degresDepannages ?? 0,
+    nbDysfonctionnements: dto.nbDysfonctionnements ?? 0,
+    degresDysfonctionnements: dto.degresDysfonctionnements ?? 0,
+    hasTelereleve: dto.hasTelereleve ?? false,
+    nbCompteursEC: dto.nbCompteursEC ?? 0,
+    nbCompteursEF: dto.nbCompteursEF ?? 0,
+    nbCompteursRepart: dto.nbCompteursRepart ?? 0,
+    nbCompteursCET: dto.nbCompteursCET ?? 0,
+    nbCompteursCapteur: dto.nbCompteursCapteur ?? 0,
+    nbCompteursElect: dto.nbCompteursElect ?? 0,
+    nbCompteursGaz: dto.nbCompteursGaz ?? 0,
+    nbCompteursTelereveleTotal: dto.nbCompteursTelereveleTotal ?? 0,
+    nbCompteursTelereveleOK: dto.nbCompteursTelereveleOK ?? 0,
+    hasTransfertFichiers: dto.hasTransfertFichiers ?? false,
+  };
+};
 
 const ImmeubleDetailPage: React.FC = () => {
   const params = useParams();
-  const immeubleId = parseInt(params.id as string, 10);
+  const immeubleId = params.id as string;
 
   const {
     // Main immeuble data
-    immeuble,
+    immeuble: immeubleDto,
     immeubleLoading,
     immeubleError,
+    refetchImmeuble,
 
     // Async data sections
     capteur,
@@ -39,23 +97,33 @@ const ImmeubleDetailPage: React.FC = () => {
     efLoading,
     efError,
 
-    indicators,
-    indicatorsLoading,
-    indicatorsError,
-
     repart,
     repartLoading,
     repartError,
+  } = useImmeuble({
+    pkImmeuble: immeubleId,
+    loadCapteur: true,
+    loadCet: true,
+    loadEc: true,
+    loadEf: true,
+    loadRepart: true,
+  });
 
-    // Actions
-    refetchImmeuble,
-    refetchAsyncData,
-  } = useImmeuble(immeubleId);
+  // Convert DTO to component format
+  const immeuble = useMemo(() => convertToImmeuble(immeubleDto), [immeubleDto]);
+  const indicators = useMemo(
+    () => extractIndicators(immeubleDto),
+    [immeubleDto]
+  );
+
+  // Indicators loading/error states (derived from immeuble data)
+  const indicatorsLoading = immeubleLoading;
+  const indicatorsError = immeubleError;
 
   const breadcrumbItems = [
     { label: "Le parc", href: "/dashboard" },
     { label: "Liste des immeubles", href: "/immeubles" },
-    { label: `Immeuble ${immeuble?.ref || ""}`, href: "#" },
+    { label: `Immeuble ${immeuble?.ref || immeubleDto?.ref || ""}`, href: "#" },
   ];
 
   // Show main skeleton while immeuble is loading
@@ -85,7 +153,7 @@ const ImmeubleDetailPage: React.FC = () => {
                 <p className="text-red-600 text-sm">{immeubleError}</p>
               </div>
               <button
-                onClick={refetchImmeuble}
+                onClick={() => refetchImmeuble(true)}
                 className="px-4 py-2 bg-red-100 text-red-700 rounded-md hover:bg-red-200 transition-colors"
               >
                 Réessayer

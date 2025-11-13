@@ -1,82 +1,163 @@
 "use client";
 
-import React from "react";
+import React, { useMemo, useCallback } from "react";
 import { useParams } from "next/navigation";
 import BaseLayout from "@/components/Layout/BaseLayout";
 import Breadcrumb from "@/components/Layout/Breadcrumb";
 import { LogementDetailSkeleton } from "@/components/Logement";
-import { useLogement } from "@/hooks/useLogement";
+import { useLogement } from "@/hooks/domain/logement/useLogement";
+import type { LogementResponseDto } from "@/types/api/response/logement/LogementResponseDto";
+import type { Logement, LogementIndicators } from "@/hooks/useLogement";
 
 // Placeholder components - will be created next
 import LogementHeader from "@/components/Logement/LogementHeader";
 import LogementCapteurRepartPanel from "@/components/Logement/LogementCapteurRepartPanel";
 import LogementWaterEnergyTabs from "@/components/Logement/LogementWaterEnergyTabs";
 
+// Helper function to convert LogementResponseDto to Logement
+const convertToLogement = (
+  dto: LogementResponseDto | null
+): Logement | null => {
+  if (!dto) return null;
+  return {
+    pkLogement: dto.pkLogement ?? 0,
+    numBatiment: dto.numBatiment ?? "",
+    adrBatiment: dto.adrBatiment ?? "",
+    numEscalier: dto.numEscalier ?? "",
+    adrEscalier: dto.adrEscalier ?? "",
+    numEtage: dto.numEtage ?? "",
+    numOrdre: dto.numOrdre ?? "",
+    type: dto.type ?? "",
+  };
+};
+
 const LogementDetailPage: React.FC = () => {
   const params = useParams();
-  const immeubleId = parseInt(params.id as string, 10);
-  const logementId = parseInt(params.logementId as string, 10);
+  const immeubleId = params.id as string;
+  const logementId = params.logementId as string;
 
   const {
     // Main logement data
-    logement,
+    logement: logementDto,
     logementLoading,
     logementError,
+    refetchLogement,
 
     // Async data sections
-    indicators,
-    indicatorsLoading,
-    indicatorsError,
-
     capteur,
     capteurLoading,
     capteurError,
+    refetchCapteur,
 
     cet,
     cetLoading,
     cetError,
+    refetchCet,
 
     ec,
     ecLoading,
     ecError,
+    refetchEc,
 
     ef,
     efLoading,
     efError,
+    refetchEf,
 
     repart,
     repartLoading,
     repartError,
+    refetchRepart,
 
     // Combined states
     loading,
     error,
+  } = useLogement({
+    pkLogement: logementId,
+    pkImmeuble: immeubleId, // Required for repart
+    loadCapteur: true,
+    loadCet: true,
+    loadEc: true,
+    loadEf: true,
+    loadRepart: true,
+  });
 
-    // Actions
-    refetch,
-    refetchAsyncData,
-  } = useLogement(logementId);
+  // Convert DTO to component format
+  const logement = useMemo(() => convertToLogement(logementDto), [logementDto]);
+
+  // Indicators are not available in the new hook yet
+  // TODO: Create a service API and hook for logement indicators if needed
+  const indicators: LogementIndicators | null = null;
+  const indicatorsLoading = false;
+  const indicatorsError: string | null = null;
+
+  // Wrapper function for refetchAsyncData to maintain compatibility
+  const refetchAsyncData = useCallback(
+    async (dataType?: string) => {
+      const force = true;
+      switch (dataType) {
+        case "capteur":
+          await refetchCapteur(force);
+          break;
+        case "cet":
+          await refetchCet(force);
+          break;
+        case "ec":
+          await refetchEc(force);
+          break;
+        case "ef":
+          await refetchEf(force);
+          break;
+        case "repart":
+          await refetchRepart(force);
+          break;
+        default:
+          // Refetch all async data
+          await Promise.all([
+            refetchCapteur(force),
+            refetchCet(force),
+            refetchEc(force),
+            refetchEf(force),
+            refetchRepart(force),
+          ]);
+      }
+    },
+    [refetchCapteur, refetchCet, refetchEc, refetchEf, refetchRepart]
+  );
+
+  // Combined refetch function
+  const refetch = useCallback(async () => {
+    await refetchLogement(true);
+    await refetchAsyncData();
+  }, [refetchLogement, refetchAsyncData]);
+
+  const breadcrumbItems = [
+    { label: "Le parc", href: "/dashboard" },
+    { label: "Immeubles", href: "/immeubles" },
+    {
+      label: `Immeuble ${immeubleId}`,
+      href: `/immeubles/${immeubleId}`,
+    },
+    {
+      label: "Logements",
+      href: `/immeubles/${immeubleId}/logements`,
+    },
+    {
+      label: logement?.numOrdre
+        ? `Logement ${logement.numOrdre}`
+        : logementDto?.numOrdre
+        ? `Logement ${logementDto.numOrdre}`
+        : "Chargement...",
+      href: "#",
+    },
+  ];
 
   // Show loading skeleton while main data is loading
   if (logementLoading) {
     return (
       <BaseLayout>
         <div className="container mx-auto px-4 py-6">
-          <Breadcrumb
-            items={[
-              { label: "Le parc", href: "/dashboard" },
-              { label: "Immeubles", href: "/immeubles" },
-              {
-                label: `Immeuble ${immeubleId}`,
-                href: `/immeubles/${immeubleId}`,
-              },
-              {
-                label: "Logements",
-                href: `/immeubles/${immeubleId}/logements`,
-              },
-              { label: "Chargement...", href: "#" },
-            ]}
-          />
+          <Breadcrumb items={breadcrumbItems} />
           <LogementDetailSkeleton />
         </div>
       </BaseLayout>
@@ -114,7 +195,7 @@ const LogementDetailPage: React.FC = () => {
                     "Impossible de charger les données du logement"}
                 </p>
                 <button
-                  onClick={refetch}
+                  onClick={() => refetch()}
                   className="mt-3 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-200"
                 >
                   Réessayer
@@ -130,19 +211,7 @@ const LogementDetailPage: React.FC = () => {
   return (
     <BaseLayout>
       <div className="container mx-auto px-4 py-6">
-        <Breadcrumb
-          items={[
-            { label: "Immeubles", href: "/immeubles" },
-            {
-              label: `Immeuble ${immeubleId}`,
-              href: `/immeubles/${immeubleId}`,
-            },
-            {
-              label: "Logements",
-              href: `/immeubles/${immeubleId}/logements`,
-            }
-          ]}
-        />
+        <Breadcrumb items={breadcrumbItems} />
 
         <div className="space-y-6">
           {/* Top Section: Logement Info + Indicators */}

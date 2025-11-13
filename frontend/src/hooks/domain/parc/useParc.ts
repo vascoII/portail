@@ -1,6 +1,6 @@
 "use client";
 
-import { useCachedQuery } from "../shared/useCachedQuery";
+import { useCachedQuery } from "../../shared/useCachedQuery";
 import { getParcApiService } from "@/services/api/Parc/GetParcApiService";
 import type { GetParcResponseDto } from "@/types/api/response/parc/GetParcResponseDto";
 

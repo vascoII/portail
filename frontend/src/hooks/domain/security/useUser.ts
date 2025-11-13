@@ -1,6 +1,6 @@
 "use client";
 
-import { useCachedQuery } from "../shared/useCachedQuery";
+import { useCachedQuery } from "../../shared/useCachedQuery";
 import { meApiService } from "@/services/api/Security/MeApiService";
 import type { UserResponseDto } from "@/types/api/response/shared/UserResponseDto";
 
@@ -29,13 +29,10 @@ export function useUser(): UseUserReturn {
     isSuccess,
     isError,
     isStale,
-  } = useCachedQuery<UserResponseDto>(
-    () => meApiService.me(),
-    {
-      cacheKey: "user-data",
-      enabled: true,
-    }
-  );
+  } = useCachedQuery<UserResponseDto>(() => meApiService.me(), {
+    cacheKey: "user-data",
+    enabled: true,
+  });
 
   return {
     user,
@@ -48,4 +45,3 @@ export function useUser(): UseUserReturn {
     isStale,
   };
 }
-

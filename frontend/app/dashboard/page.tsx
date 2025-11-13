@@ -13,8 +13,8 @@ import {
   DashboardMenu,
 } from "@/components/Dashboard";
 import MobileMenu from "@/components/Dashboard/MobileMenu";
-import { useParc } from "@/hooks/domain/useParc";
-import { useUser } from "@/hooks/domain/useUser";
+import { useParc } from "@/hooks/domain/parc/useParc";
+import { useUser } from "@/hooks/domain/security/useUser";
 import {
   transformParcData,
   calculateConstructionStats,

@@ -11,6 +11,9 @@ import {
 } from "@/types/auth";
 import { useDataStore } from "@/store/dataStore";
 import { AUTH_ENDPOINTS, DEFAULT_HEADERS, handleApiError } from "@/config/api";
+import { useLogin } from "@/hooks/domain/security";
+import type { LoginRequestDto } from "@/types/api/request/Security/LoginRequestDto";
+import type { LoginResponseDto } from "@/types/api/response/security/LoginResponseDto";
 
 // Configuration SWR
 const SWR_CONFIG = {
@@ -43,9 +46,40 @@ const fetcher = async (url: string): Promise<User | null> => {
   return data.success ? data.user : null;
 };
 
+// Helper function to convert LoginResponseDto to LoginOutputDto
+const convertLoginResponseToOutput = (
+  response: LoginResponseDto
+): LoginOutputDto => {
+  return {
+    tokenJwt: response.tokenJwt,
+    loginId: response.loginId,
+    userName: response.userName,
+    email: response.email,
+    userType: response.userType,
+    adresse: response.adresse,
+    cp: response.cp,
+    ville: response.ville,
+    phoneNumber: response.phoneNumber,
+    firstName: response.firstName,
+    userRole: response.userRole,
+    clientName: response.clientName,
+    nbImmeubles: response.nbImmeubles,
+    seuilConsoEf: response.seuilConsoEf,
+    seuilConsoEc: response.seuilConsoEc,
+    seuilConsoRepart: response.seuilConsoRepart,
+    seuilConsoCet: response.seuilConsoCet,
+    seuilConsoActif: response.seuilConsoActif,
+    seuilConsoEmail: response.seuilConsoEmail,
+    showImmeublesArc: response.showImmeublesArc,
+    showFactures: response.showFactures,
+    showChgtOccupant: response.showChgtOccupant,
+    showChantiers: response.showChantiers,
+  };
+};
+
 // Hook principal d'authentification
 export const useAuth = () => {
-  const { setLoginData, clearLoginData } = useDataStore();
+  const { setLoginData, clearLoginData, loginData } = useDataStore();
   const [authState, setAuthState] = useState<AuthState>({
     user: null,
     token: null,
@@ -65,65 +99,76 @@ export const useAuth = () => {
     SWR_CONFIG
   );
 
-  // Fonction de login
+  // Utiliser le hook useLogin pour gérer l'authentification
+  const { login: loginHook } = useLogin({
+    onSuccess: (loginResponse: LoginResponseDto) => {
+      // Convertir LoginResponseDto en LoginOutputDto
+      const loginOutput = convertLoginResponseToOutput(loginResponse);
+
+      // Stocker le JWT token dans localStorage
+      localStorage.setItem("jwt_token", loginOutput.tokenJwt);
+
+      // Stocker les données complètes dans le data store
+      setLoginData(loginOutput);
+
+      // Mettre à jour l'état
+      setAuthState({
+        user: null, // Will be fetched by SWR
+        token: loginOutput.tokenJwt,
+        isAuthenticated: true,
+        isLoading: false,
+        error: null,
+      });
+
+      // Invalider le cache SWR pour forcer la revalidation
+      mutate();
+    },
+    onError: (error: string) => {
+      const authError: AuthError = {
+        message: error,
+        code: "LOGIN_FAILED",
+      };
+
+      setAuthState((prev) => ({
+        ...prev,
+        isLoading: false,
+        error: authError,
+      }));
+    },
+  });
+
+  // Fonction de login qui convertit LoginFormData en LoginRequestDto
   const login = useCallback(
     async (credentials: LoginFormData): Promise<void> => {
+      // Réinitialiser l'erreur du hook useLogin
+      loginHook.reset();
+
       setAuthState((prev) => ({ ...prev, isLoading: true, error: null }));
 
       try {
-        const response = await fetch(AUTH_ENDPOINTS.LOGIN, {
-          method: "POST",
-          headers: DEFAULT_HEADERS,
-          body: JSON.stringify({
-            username: credentials.username,
-            password: credentials.password,
-          }),
-        });
-
-        const loginData: LoginOutputDto = await response.json();
-
-        if (!response.ok) {
-          const error = handleApiError({
-            response: { data: loginData, status: response.status },
-          });
-          throw new Error(error.message);
-        }
-
-        // Stocker le JWT token
-        localStorage.setItem("jwt_token", loginData.tokenJwt);
-
-        // Stocker les données complètes dans le data store
-        setLoginData(loginData);
-
-        // Mettre à jour l'état
-        setAuthState({
-          user: null, // Will be fetched by SWR
-          token: loginData.tokenJwt,
-          isAuthenticated: true,
-          isLoading: false,
-          error: null,
-        });
-
-        // Invalider le cache SWR pour forcer la revalidation
-        mutate();
-      } catch (error) {
-        const apiError = handleApiError(error);
-        const authError: AuthError = {
-          message: apiError.message,
-          code: apiError.code || "LOGIN_FAILED",
+        // Convertir LoginFormData en LoginRequestDto
+        const loginRequest: LoginRequestDto = {
+          username: credentials.username,
+          password: credentials.password,
         };
 
-        setAuthState((prev) => ({
-          ...prev,
-          isLoading: false,
-          error: authError,
-        }));
-
+        // Utiliser le hook useLogin pour effectuer la connexion
+        await loginHook.mutateAsync(loginRequest);
+      } catch (error) {
+        // L'erreur est déjà gérée par le onError du useLogin
         throw error;
       }
     },
-    [mutate, setLoginData]
+    [loginHook]
   );
+
+  // Utiliser l'état de chargement du hook useLogin si on est en train de se connecter
+  const isLoading = authState.isLoading || loginHook.loading;
+
+  // Utiliser l'erreur du hook useLogin si elle existe, sinon utiliser celle de authState
+  const error = loginHook.error
+    ? { message: loginHook.error, code: "LOGIN_FAILED" }
+    : authState.error;
 
   // Fonction de logout
   const logout = useCallback(async (): Promise<void> => {
@@ -221,6 +266,8 @@ export const useAuth = () => {
 
   return {
     ...authState,
+    isLoading, // Utiliser l'état de chargement combiné
+    error, // Utiliser l'erreur combinée
     login,
     logout,
     refreshToken,
