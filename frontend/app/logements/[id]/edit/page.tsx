@@ -2,9 +2,9 @@
 
 import React from "react";
 import { useParams } from "next/navigation";
-import BaseLayout from "@/components/Layout/BaseLayout";
-import Breadcrumb from "@/components/Layout/Breadcrumb";
-import { LogementEdit, LogementMenu } from "@/components/Logement";
+import BaseLayout from "@/src/shared/components/Layout/BaseLayout";
+import Breadcrumb from "@/src/shared/components/Layout/Breadcrumb";
+import { LogementEdit, LogementMenu } from "@/src/features/logement/components";
 
 const LogementEditPage: React.FC = () => {
   const params = useParams();

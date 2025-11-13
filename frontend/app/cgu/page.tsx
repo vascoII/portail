@@ -3,9 +3,9 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useDataStore } from "@/src/store/dataStore";
-import { CGUForm } from "@/src/components/CGU/CGUForm";
-import { OccupantCGUContent } from "@/src/components/CGU/OccupantCGUContent";
-import { ClientCGUContent } from "@/src/components/CGU/ClientCGUContent";
+import { CGUForm } from "@/src/shared/components/CGU/CGUForm";
+import { OccupantCGUContent } from "@/src/shared/components/CGU/OccupantCGUContent";
+import { ClientCGUContent } from "@/src/shared/components/CGU/ClientCGUContent";
 
 export default function CGUPage() {
   const loginData = useDataStore((state) => state.loginData);

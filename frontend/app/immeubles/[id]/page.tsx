@@ -2,17 +2,17 @@
 
 import React, { useMemo } from "react";
 import { useParams } from "next/navigation";
-import BaseLayout from "@/components/Layout/BaseLayout";
-import Breadcrumb from "@/components/Layout/Breadcrumb";
+import BaseLayout from "@/src/shared/components/Layout/BaseLayout";
+import Breadcrumb from "@/src/shared/components/Layout/Breadcrumb";
 import ImmeubleDetailSkeleton from "@/components/Immeuble/ImmeubleDetailSkeleton";
 import {
   ImmeubleHeader,
   CapteurRepartPanel,
   WaterEnergyTabs,
 } from "@/components/Immeuble";
-import { useImmeuble } from "@/hooks/domain/immeuble/useImmeuble";
+import { useImmeuble } from "@/src/features/immeuble/hooks/useImmeuble";
 import type { GetImmeubleResponseDto } from "@/types/api/response/immeuble/GetImmeubleResponseDto";
-import type { Immeuble, ImmeubleIndicators } from "@/hooks/useImmeuble";
+import type { Immeuble, ImmeubleIndicators } from "@/src/shared/hooks/useImmeuble";
 
 // Helper function to convert GetImmeubleResponseDto to Immeuble
 const convertToImmeuble = (

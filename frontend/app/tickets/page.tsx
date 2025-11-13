@@ -1,10 +1,10 @@
 "use client"
 
 import React from "react";
-import BaseLayout from "@/components/Layout/BaseLayout";
-import Breadcrumb from "@/components/Layout/Breadcrumb";
-import Button from "@/components/UI/Button";
-import Alert from "@/components/UI/Alert";
+import BaseLayout from "@/src/shared/components/Layout/BaseLayout";
+import Breadcrumb from "@/src/shared/components/Layout/Breadcrumb";
+import Button from "@/src/shared/components/UI/Button";
+import Alert from "@/src/shared/components/UI/Alert";
 
 const TicketsListPage: React.FC = () => {
   const breadcrumbItems = [

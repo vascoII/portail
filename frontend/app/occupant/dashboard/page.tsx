@@ -1,12 +1,12 @@
 "use client"
 
 import React from "react";
-import BaseLayout from "@/components/Layout/BaseLayout";
-import Breadcrumb from "@/components/Layout/Breadcrumb";
-import { useAuth } from "@/hooks/useAuth";
+import BaseLayout from "@/src/shared/components/Layout/BaseLayout";
+import Breadcrumb from "@/src/shared/components/Layout/Breadcrumb";
+import { useAuth } from "@/src/shared/hooks/useAuth";
 import LogementsList from "@/components/Lists/LogementsList";
 import { useLogements } from "@/hooks/useLogements";
-import StatusPanel from "@/components/Panels/StatusPanel";
+import StatusPanel from "@/src/shared/components/Panels/StatusPanel";
 
 const OccupantDashboardPage: React.FC = () => {
   const { user } = useAuth();

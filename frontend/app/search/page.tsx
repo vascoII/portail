@@ -1,7 +1,7 @@
 import React from "react";
-import BaseLayout from "@/components/Layout/BaseLayout";
-import Breadcrumb from "@/components/Layout/Breadcrumb";
-import SearchForm from "@/components/Forms/SearchForm";
+import BaseLayout from "@/src/shared/components/Layout/BaseLayout";
+import Breadcrumb from "@/src/shared/components/Layout/Breadcrumb";
+import SearchForm from "@/src/shared/components/Forms/SearchForm";
 
 const SearchPage: React.FC = () => {
   const breadcrumbItems = [{ label: "Recherche", href: "/search" }];

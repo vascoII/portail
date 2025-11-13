@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import BaseLayout from "@/components/Layout/BaseLayout";
-import Breadcrumb from "@/components/Layout/Breadcrumb";
-import { useAuth } from "@/hooks/useAuth";
-import Alert from "@/components/UI/Alert";
+import BaseLayout from "@/src/shared/components/Layout/BaseLayout";
+import Breadcrumb from "@/src/shared/components/Layout/Breadcrumb";
+import { useAuth } from "@/src/shared/hooks/useAuth";
+import Alert from "@/src/shared/components/UI/Alert";
 
 const ProfilePage: React.FC = () => {
   const { user, isLoading, error } = useAuth();

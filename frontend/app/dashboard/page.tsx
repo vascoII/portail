@@ -2,8 +2,8 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import BaseLayout from "@/components/Layout/BaseLayout";
-import Breadcrumb from "@/components/Layout/Breadcrumb";
+import BaseLayout from "@/src/shared/components/Layout/BaseLayout";
+import Breadcrumb from "@/src/shared/components/Layout/Breadcrumb";
 import {
   ParcOverview,
   StatusGauge,
@@ -11,16 +11,16 @@ import {
   ConstructionPanel,
   InterventionModal,
   DashboardMenu,
-} from "@/components/Dashboard";
-import MobileMenu from "@/components/Dashboard/MobileMenu";
-import { useParc } from "@/hooks/domain/parc/useParc";
-import { useUser } from "@/hooks/domain/security/useUser";
+} from "@/src/features/parc/components";
+import MobileMenu from "@/src/features/parc/components/MobileMenu";
+import { useParc } from "@/src/features/parc/hooks/useParc";
+import { useUser } from "@/src/features/security/hooks/useUser";
 import {
   transformParcData,
   calculateConstructionStats,
 } from "@/src/utils/dataTransform";
-import type { DashboardData, ConstructionStats } from "@/src/types/api";
-import { LoadingCard, ErrorMessage } from "@/components/UI/LoadingSpinner";
+import type { DashboardData, ConstructionStats } from "@/src/shared/types/api";
+import { LoadingCard, ErrorMessage } from "@/src/shared/components/UI/LoadingSpinner";
 import "../../public/styles/dashboard.css";
 
 const DashboardPage: React.FC = () => {

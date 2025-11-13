@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import BaseLayout from "@/components/Layout/BaseLayout";
-import Breadcrumb from "@/components/Layout/Breadcrumb";
+import BaseLayout from "@/src/shared/components/Layout/BaseLayout";
+import Breadcrumb from "@/src/shared/components/Layout/Breadcrumb";
 import { OperatorStats } from "@/components/Operator";
 
 const OperatorStatsPage: React.FC = () => {

@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import BaseLayout from "@/components/Layout/BaseLayout";
-import Breadcrumb from "@/components/Layout/Breadcrumb";
-import { OccupantDashboard, OccupantMenu } from "@/components/Occupant";
+import BaseLayout from "@/src/shared/components/Layout/BaseLayout";
+import Breadcrumb from "@/src/shared/components/Layout/Breadcrumb";
+import { OccupantDashboard, OccupantMenu } from "@/src/features/occupant/components";
 
 const OccupantPage: React.FC = () => {
   const [rgpdConsent, setRgpdConsent] = useState(false);

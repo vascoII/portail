@@ -1,15 +1,15 @@
 "use client";
 import React from "react";
 import { useRouter } from "next/navigation";
-import BaseLayout from "@/components/Layout/BaseLayout";
-import Breadcrumb from "@/components/Layout/Breadcrumb";
-import LogementCard from "@/components/Cards/LogementCard";
-import StatusPanel from "@/components/Panels/StatusPanel";
-import WaterPanel from "@/components/Energy/WaterPanel";
-import HeatingPanel from "@/components/Energy/HeatingPanel";
+import BaseLayout from "@/src/shared/components/Layout/BaseLayout";
+import Breadcrumb from "@/src/shared/components/Layout/Breadcrumb";
+import LogementCard from "@/src/shared/components/Cards/LogementCard";
+import StatusPanel from "@/src/shared/components/Panels/StatusPanel";
+import WaterPanel from "@/src/shared/components/Energy/WaterPanel";
+import HeatingPanel from "@/src/shared/components/Energy/HeatingPanel";
 import { useLogements } from "@/hooks/useLogements";
 import { useConsumption } from "@/hooks/useConsumption";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "@/src/shared/hooks/useAuth";
 
 const OccupantLogementPage: React.FC = () => {
   const router = useRouter();

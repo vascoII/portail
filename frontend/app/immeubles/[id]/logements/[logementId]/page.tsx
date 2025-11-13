@@ -2,17 +2,17 @@
 
 import React, { useMemo, useCallback } from "react";
 import { useParams } from "next/navigation";
-import BaseLayout from "@/components/Layout/BaseLayout";
-import Breadcrumb from "@/components/Layout/Breadcrumb";
-import { LogementDetailSkeleton } from "@/components/Logement";
-import { useLogement } from "@/hooks/domain/logement/useLogement";
-import type { LogementResponseDto } from "@/types/api/response/logement/LogementResponseDto";
-import type { Logement, LogementIndicators } from "@/hooks/useLogement";
+import BaseLayout from "@/src/shared/components/Layout/BaseLayout";
+import Breadcrumb from "@/src/shared/components/Layout/Breadcrumb";
+import { LogementDetailSkeleton } from "@/src/features/logement/components";
+import { useLogement } from "@/src/features/logement/hooks/useLogement";
+import type { LogementResponseDto } from "@/src/features/logement/types/response/LogementResponseDto";
+import type { Logement, LogementIndicators } from "@/src/shared/hooks/useLogement";
 
 // Placeholder components - will be created next
-import LogementHeader from "@/components/Logement/LogementHeader";
-import LogementCapteurRepartPanel from "@/components/Logement/LogementCapteurRepartPanel";
-import LogementWaterEnergyTabs from "@/components/Logement/LogementWaterEnergyTabs";
+import LogementHeader from "@/src/features/logement/components/LogementHeader";
+import LogementCapteurRepartPanel from "@/src/features/logement/components/LogementCapteurRepartPanel";
+import LogementWaterEnergyTabs from "@/src/features/logement/components/LogementWaterEnergyTabs";
 
 // Helper function to convert LogementResponseDto to Logement
 const convertToLogement = (

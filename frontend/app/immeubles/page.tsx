@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useState, useMemo, useCallback } from "react";
-import BaseLayout from "@/components/Layout/BaseLayout";
-import Breadcrumb from "@/components/Layout/Breadcrumb";
+import BaseLayout from "@/src/shared/components/Layout/BaseLayout";
+import Breadcrumb from "@/src/shared/components/Layout/Breadcrumb";
 import { ImmeubleFilters, ImmeubleList } from "@/components/Immeuble";
 import IndicatorsPanel from "@/components/Immeuble/IndicatorsPanel";
-import { useImmeubles } from "@/hooks/domain/immeuble/useImmeubles";
+import { useImmeubles } from "@/src/features/immeuble/hooks/useImmeubles";
 import type { ImmeubleResponseDto } from "@/types/api/response/immeuble/ImmeubleResponseDto";
 
 interface FilterState {

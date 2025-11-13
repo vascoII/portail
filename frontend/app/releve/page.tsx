@@ -3,8 +3,8 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import ReleveForm from "@/components/Forms/ReleveForm";
-import { ReleveFormData } from "@/src/types/releve";
+import ReleveForm from "@/src/shared/components/Forms/ReleveForm";
+import { ReleveFormData } from "@/src/shared/types/releve";
 
 const RelevePage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);

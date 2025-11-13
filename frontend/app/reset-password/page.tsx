@@ -2,9 +2,9 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import Alert from "@/components/UI/Alert";
-import Button from "@/components/UI/Button";
-import Input from "@/components/UI/Input";
+import Alert from "@/src/shared/components/UI/Alert";
+import Button from "@/src/shared/components/UI/Button";
+import Input from "@/src/shared/components/UI/Input";
 import {
   AUTH_ENDPOINTS,
   DEFAULT_HEADERS,

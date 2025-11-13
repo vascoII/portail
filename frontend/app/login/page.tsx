@@ -4,9 +4,9 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { useAuth } from "@/hooks/useAuth";
-import LoginForm from "@/components/Forms/LoginForm";
-import { LoginFormData } from "@/src/types/auth";
+import { useAuth } from "@/src/shared/hooks/useAuth";
+import LoginForm from "@/src/shared/components/Forms/LoginForm";
+import { LoginFormData } from "@/src/shared/types/auth";
 import { useDataStore } from "@/store/dataStore";
 
 const LoginPage: React.FC = () => {

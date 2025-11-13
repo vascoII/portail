@@ -1,12 +1,12 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import BaseLayout from "@/components/Layout/BaseLayout";
-import Breadcrumb from "@/components/Layout/Breadcrumb";
-import Button from "@/components/UI/Button";
-import Input from "@/components/UI/Input";
-import Select from "@/components/UI/Select";
-import Alert from "@/components/UI/Alert";
+import BaseLayout from "@/src/shared/components/Layout/BaseLayout";
+import Breadcrumb from "@/src/shared/components/Layout/Breadcrumb";
+import Button from "@/src/shared/components/UI/Button";
+import Input from "@/src/shared/components/UI/Input";
+import Select from "@/src/shared/components/UI/Select";
+import Alert from "@/src/shared/components/UI/Alert";
 
 const TicketDetailPage: React.FC = () => {
   const router = useRouter();

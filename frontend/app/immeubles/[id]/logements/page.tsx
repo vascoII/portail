@@ -3,9 +3,9 @@
 import React from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import BaseLayout from "@/components/Layout/BaseLayout";
-import Breadcrumb from "@/components/Layout/Breadcrumb";
-import { LogementListSkeleton } from "@/components/Logement";
+import BaseLayout from "@/src/shared/components/Layout/BaseLayout";
+import Breadcrumb from "@/src/shared/components/Layout/Breadcrumb";
+import { LogementListSkeleton } from "@/src/features/logement/components";
 import { useLogements } from "@/hooks/useLogements";
 
 const LogementsListPage: React.FC = () => {

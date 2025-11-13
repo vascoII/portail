@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
 import { useRouter } from "next/navigation";
-import BaseLayout from "@/components/Layout/BaseLayout";
-import Breadcrumb from "@/components/Layout/Breadcrumb";
-import InterventionCard from "@/components/Cards/InterventionCard";
+import BaseLayout from "@/src/shared/components/Layout/BaseLayout";
+import Breadcrumb from "@/src/shared/components/Layout/Breadcrumb";
+import InterventionCard from "@/src/shared/components/Cards/InterventionCard";
 import { useInterventions } from "@/hooks/useInterventions";
 
 const LogementInterventionDetailPage: React.FC = () => {

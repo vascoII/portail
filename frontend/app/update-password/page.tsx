@@ -1,11 +1,11 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import BaseLayout from "@/components/Layout/BaseLayout";
-import Breadcrumb from "@/components/Layout/Breadcrumb";
-import PasswordForm from "@/components/Forms/PasswordForm";
-import Alert from "@/components/UI/Alert";
-import { useAuth } from "@/hooks/useAuth";
+import BaseLayout from "@/src/shared/components/Layout/BaseLayout";
+import Breadcrumb from "@/src/shared/components/Layout/Breadcrumb";
+import PasswordForm from "@/src/shared/components/Forms/PasswordForm";
+import Alert from "@/src/shared/components/UI/Alert";
+import { useAuth } from "@/src/shared/hooks/useAuth";
 
 const UpdatePasswordPage: React.FC = () => {
   const [loading, setLoading] = useState(false);

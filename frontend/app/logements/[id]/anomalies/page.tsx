@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
 import { useRouter } from "next/navigation";
-import BaseLayout from "@/components/Layout/BaseLayout";
-import Breadcrumb from "@/components/Layout/Breadcrumb";
-import AnomaliesList from "@/components/Lists/AnomaliesList";
+import BaseLayout from "@/src/shared/components/Layout/BaseLayout";
+import Breadcrumb from "@/src/shared/components/Layout/Breadcrumb";
+import AnomaliesList from "@/src/shared/components/Lists/AnomaliesList";
 import { useInterventions } from "@/hooks/useInterventions";
 
 const LogementAnomaliesPage: React.FC = () => {

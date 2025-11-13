@@ -2,9 +2,9 @@
 
 import React, { useState } from "react";
 import { useParams } from "next/navigation";
-import BaseLayout from "@/components/Layout/BaseLayout";
-import Breadcrumb from "@/components/Layout/Breadcrumb";
-import LogementDetailSkeleton from "@/components/Logement/LogementDetailSkeleton";
+import BaseLayout from "@/src/shared/components/Layout/BaseLayout";
+import Breadcrumb from "@/src/shared/components/Layout/Breadcrumb";
+import LogementDetailSkeleton from "@/src/features/logement/components/LogementDetailSkeleton";
 import DataPanel from "@/components/Immeuble/DataPanel";
 import { useLogement } from "@hooks/useLogement";
 

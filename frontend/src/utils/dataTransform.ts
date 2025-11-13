@@ -3,7 +3,7 @@ import type {
   UserData,
   DashboardData,
   ConstructionStats,
-} from "@/types/api";
+} from "@/src/shared/types/api";
 
 // Transform backend data to match frontend component expectations
 export const transformParcData = (
