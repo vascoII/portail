@@ -1,0 +1,17 @@
+{
+  "success": true,
+  "user": {
+    "loginId": "TESTCLIENTCOMPLET",
+    "userName": "TEST CLIENT Complet",
+    "email": "noreply@techem.fr",
+    "userType": "C",
+    "firstName": "Client",
+    "userRole": "",
+    "clientId": "C00383",
+    "clientName": "",
+    "showImmeublesArc": true,
+    "showFactures": true,
+    "showChgtOccupant": true,
+    "showChantiers": true
+  }
+}
