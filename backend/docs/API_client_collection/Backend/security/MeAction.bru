@@ -1,0 +1,26 @@
+meta {
+  name: MeAction
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{localhost_backend}}/api/security/me
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bearToken}}
+}
+
+body:json {
+  {
+    "username": "TESTCLIENTCOMPLET", 
+    "password": "Techem92"
+  }
+}
+
+settings {
+  encodeUrl: true
+}
