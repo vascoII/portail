@@ -25,7 +25,6 @@ services:
       - ./backend/vendor:/var/www/backend/vendor
       - ./storage/documents:/var/www/storage/documents
     depends_on:
-      - db
       - redis
     build:
       context: .
@@ -60,20 +59,6 @@ services:
     ports:
       - "3000:3000"
     command: sh -c "CHOKIDAR_USEPOLLING=true yarn install && CHOKIDAR_USEPOLLING=true yarn dev"
-    networks:
-      - app-network
-
-  db:
-    image: postgres:15
-    container_name: postgres_local
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: poc_db
-    ports:
-      - "5432:5432"
-    volumes:
-      - pgdata:/var/lib/postgresql/data
     networks:
       - app-network
 
@@ -183,7 +168,6 @@ services:
       - app-network
 
 volumes:
-  pgdata:
   portainer_data:
   grafana-storage:
 
