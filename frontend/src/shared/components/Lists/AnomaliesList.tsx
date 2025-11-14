@@ -140,7 +140,7 @@ const AnomaliesList: React.FC<AnomaliesListProps> = ({
               <input
                 type="text"
                 className="form-control"
-                placeholder="Type d'anomalie"
+                placeholder="Type d&apos;anomalie"
                 value={filters.type}
                 onChange={(e) => handleFilterChange("type", e.target.value)}
               />

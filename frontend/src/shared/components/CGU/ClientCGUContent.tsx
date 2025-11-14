@@ -1,7 +1,7 @@
 export function ClientCGUContent() {
   return (
     <div className="prose prose-sm max-w-none">
-      <h3>Conditions Générales d'Utilisation - Client / Gestionnaire</h3>
+      <h3>Conditions Générales d&apos;Utilisation - Client / Gestionnaire</h3>
       
       <ol>
         <li>
@@ -9,7 +9,7 @@ export function ClientCGUContent() {
           <p>
             La société TECHEM met à la disposition de ses clients un accès personnalisé à une interface 
             de gestion de l'ensemble de leurs immeubles, permettant le suivi des consommations de leur 
-            parc d'immeubles.
+            parc d&apos;immeubles.
           </p>
         </li>
 
@@ -17,14 +17,14 @@ export function ClientCGUContent() {
           <strong>Inscription aux Services</strong>
           <p>
             L'accès à l'Espace Client et les Services sont réservés aux professionnels de la gestion 
-            d'immeubles liés à TECHEM par un contrat de fourniture et/ou d'entretien de compteurs.
+            d&apos;immeubles liés à TECHEM par un contrat de fourniture et/ou d&apos;entretien de compteurs.
           </p>
         </li>
 
         <li>
-          <strong>Conditions d'accès aux Services</strong>
+          <strong>Conditions d&apos;accès aux Services</strong>
           <p>
-            <strong>Codes d'accès:</strong> L'Utilisateur est seul responsable de l'utilisation de son 
+            <strong>Codes d&apos;accès:</strong> L'Utilisateur est seul responsable de l'utilisation de son 
             compte. Nous recommandons de quitter votre compte à la fin de chaque session.
           </p>
           <p>
@@ -41,7 +41,7 @@ export function ClientCGUContent() {
             <li>Consulter les relevés de consommations, les statistiques</li>
             <li>Télécharger des documents PDF</li>
             <li>Exporter des données Excel</li>
-            <li>Accéder à la répartition des charges d'eau</li>
+            <li>Accéder à la répartition des charges d&apos;eau</li>
           </ul>
         </li>
 

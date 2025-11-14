@@ -112,7 +112,7 @@ const OccupantAccount: React.FC<OccupantAccountProps> = ({
                   <strong>Référence :</strong> {occupant.Ref}
                 </p>
                 <p className="text-sm text-gray-600">
-                  <strong>Date d'arrivée :</strong>{" "}
+                  <strong>Date d&apos;arrivée :</strong>{" "}
                   {new Date(occupant.DateArrivee).toLocaleDateString("fr-FR")}
                 </p>
               </div>
